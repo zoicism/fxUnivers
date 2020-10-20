@@ -1,0 +1,5 @@
+<?php
+
+$get_tar_courses_query = "SELECT * FROM teacher WHERE user_id=$tar_id";
+
+?>

@@ -1,0 +1,8 @@
+<?php
+
+require('conn/fxpartner.php');
+
+$get_partner_query="SELECT * FROM on_user WHERE partner=$get_user_id";
+$get_partner_result=mysqli_query($fxpartner_connection,$get_partner_query) or die(mysqli_error($fxpartner_connection));
+
+?>

@@ -1,0 +1,4 @@
+<?php
+require('../wallet/php/wallet_connect.php');
+
+$gfr_query = "SELECT * FROM fxcoin_req WHERE notif=

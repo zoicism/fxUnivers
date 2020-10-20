@@ -1,0 +1,172 @@
+/******************
+  (c) fxUnivers
+*******************/
+
+.icon {
+    width:65px;
+    height:65px;
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-position:center center;
+    border-radius:50%;
+    cursor:pointer;
+}
+
+.intro-icon {
+    width:80px;
+    height:80px;
+    float:left;
+    margin-left:6%;
+    margin-top:10px;
+    margin-bottom:10px;
+    margin-right:10px;
+}
+
+
+
+.fxstar {
+    background-image:url('../images/icons/fxstar.png');
+}
+.fxstar-white {
+    background-image:url('../images/icons/fxstar-white.png');
+}
+.fxstar-bg {
+    background-image:url('../images/icons/fxstar-65.png');
+}
+
+
+.fxuniversity {
+    background-image:url('../images/icons/fxuniversity.png');
+}
+.fxuniversity-white {
+    background-image:url('../images/icons/fxuniversity-white.png');
+}
+.fxuniversity-bg {
+    background-image:url('../images/icons/fxuniversity-65.png');
+}
+
+
+.fxpartner {
+    background-image:url('../images/icons/fxpartner.png');
+}
+.fxpartner-white {
+    background-image:url('../images/icons/fxpartner-white.png');
+}
+.fxpartner-bg {
+    background-image:url('../images/icons/fxpartner-65.png');
+}
+
+
+.fxuniverse {
+    background-image:url('../images/icons/fxuniverse.png');
+}
+.fxuniverse-white {
+    background-image:url('../images/icons/fxuniverse-white.png');
+}
+.fxuniverse-bg {
+    background-image:url('../images/icons/fxuniverse-65.png');
+}
+
+
+.fxsonet {
+    background-image:url('../images/icons/fxsonet.png');
+}
+.fxsonet-white {
+    background-image:url('../images/icons/fxsonet-white.png');
+}
+.fxsonet-bg {
+    background-image:url('../images/icons/fxsonet-65.png');
+}
+
+
+
+/********* TOOLBAR *********/
+.footbar-icon {
+    width:24px;
+    height:24px;
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-position:center center;
+    margin:10px;
+    opacity:0.7;
+}
+
+.footbar-icon:active {
+    opacity:1;
+}
+
+.toolbar-icon {
+    width:24px;
+    height:24px;
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-position:center center;
+    margin-left:50px;
+    margin-top:10px;
+    opacity:0.6;
+    cursor:pointer;
+    display:inline-block;
+}
+
+.toolbar-icon:active {
+    opacity:0.8;
+}
+
+.toolbar-icon:hover {
+    opacity:1;
+}
+
+.home {
+    background-image:url('../images/icons/toolbar/home.png');
+}
+.home#active {
+    background-image:url('../images/icons/toolbar/home-blue.png');
+    opacity:1;
+}
+
+.search {
+    background-image:url('../images/icons/toolbar/search.png');
+}
+.search#active {
+    background-image:url('../images/icons/toolbar/search-blue.png');
+    opacity:1;
+}
+
+.notif {
+    background-image:url('../images/icons/toolbar/notif.png');
+}
+.notif#active {
+    background-image:url('../images/icons/toolbar/notif-blue.png');
+    opacity:1;
+}
+
+.msg {
+    background-image:url('../images/icons/toolbar/msg.png');
+}
+.msg#active {
+    background-image:url('../images/icons/toolbar/msg-blue.png');
+    opacity:1;
+}
+
+
+@media only screen and (max-width:480px) {
+    .icon {
+	width:60px;
+	height:60px;
+    }
+
+    .upperbar-icon {
+	width:16px;
+	height:24px;
+	background-size:cover;
+	background-repeat:no-repeat;
+	background-position:center center;
+	opacity:0.7;
+	margin:10px;
+	cursor:pointer;
+    }
+
+    .back {
+	background-image:url('../images/icons/toolbar/back.png');
+    }
+}

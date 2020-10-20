@@ -1,0 +1,8 @@
+<?php
+
+require('conn/fxinstructor.php');
+
+$gcf_query="SELECT * FROM class_files WHERE inst_id=$get_course_teacher_id";
+$gcf_result=mysqli_query($fxinstructor_connection,$gcf_query) or die(mysqli_error($fxinstructor_connection));
+
+?>

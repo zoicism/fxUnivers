@@ -1,0 +1,181 @@
+<script>
+$(document).ready(function() {
+    $('#traderBtn').hover(function() {
+        var imgUrl='../../images/leftsidebar/trader_b.png';
+        $('#traderSpan').css("background-image", "url(" + imgUrl + ")");
+    }, function() {
+        var imgUrl0='../../images/leftsidebar/trader_a.png';
+        $('#traderSpan').css("background-image", "url(" + imgUrl0 + ")");
+    });
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    $('#walletBtn').hover(function() {
+        var imgUrl='../../images/leftsidebar/wallet_b.png';
+        $('#walletSpan').css("background-image", "url(" + imgUrl + ")");
+    }, function() {
+        var imgUrl0='../../images/leftsidebar/wallet_a.png';
+        $('#walletSpan').css("background-image", "url(" + imgUrl0 + ")");
+    });
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    $('#instructorBtn').hover(function() {
+        var imgUrl='../../images/leftsidebar/instructor_b.png';
+        $('#instructorSpan').css("background-image", "url(" + imgUrl + ")");
+    }, function() {
+        var imgUrl0='../../images/leftsidebar/instructor_a.png';
+        $('#instructorSpan').css("background-image", "url(" + imgUrl0 + ")");
+    });
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    $('#partnerBtn').hover(function() {
+        var imgUrl='../../images/leftsidebar/partner_b.png';
+        $('#partnerSpan').css("background-image", "url(" + imgUrl + ")");
+    }, function() {
+        var imgUrl0='../../images/leftsidebar/partner_a.png';
+        $('#partnerSpan').css("background-image", "url(" + imgUrl0 + ")");
+    });
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    $('#studentBtn').hover(function() {
+        var imgUrl='../../images/leftsidebar/student_b.png';
+        $('#studentSpan').css("background-image", "url(" + imgUrl + ")");
+    }, function() {
+        var imgUrl0='../../images/leftsidebar/student_a.png';
+        $('#studentSpan').css("background-image", "url(" + imgUrl0 + ")");
+    });
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    $('#homeBtn').hover(function() {
+        var imgUrl='../../images/logos/fxlogo_a.png';
+        $('#homeSpan').css("background-image", "url(" + imgUrl + ")");
+    }, function() {
+        var imgUrl0='../../images/logos/fxlogo_b.png';
+        $('#homeSpan').css("background-image", "url(" + imgUrl0 + ")");
+    });
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    $('#notif_a').hover(function() {
+        var imgUrl='../../images/upperbar/notification_b.png';
+        $('#ubiNotif').attr("src", imgUrl);
+    }, function() {
+        var imgUrl0='../../images/upperbar/notification_a.png';
+        $('#ubiNotif').attr("src",imgUrl0);
+    });
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    $('#ubHome').hover(function() {
+        var imgUrl='../../images/upperbar/home_b.png';
+        $('#ubiHome').attr("src", imgUrl);
+    }, function() {
+        var imgUrl0='../../images/upperbar/home_a.png';
+        $('#ubiHome').attr("src",imgUrl0);
+    });
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    $('#ubLogout').hover(function() {
+        var imgUrl='../../images/upperbar/logout_b.png';
+        $('#ubiLogout').attr("src", imgUrl);
+    }, function() {
+        var imgUrl0='../../images/upperbar/logout_a.png';
+        $('#ubiLogout').attr("src",imgUrl0);
+    });
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    $('#msg_bar').hover(function() {
+        var imgUrl='../../images/upperbar/message_b.png';
+        $('#ubiMsg').attr("src", imgUrl);
+    }, function() {
+        var imgUrl0='../../images/upperbar/message_a.png';
+        $('#ubiMsg').attr("src",imgUrl0);
+    });
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    $('#ubSearch').hover(function() {
+        var imgUrl='../../images/upperbar/search_b.png';
+        $('#ubiSearch').attr("src", imgUrl);
+    }, function() {
+        var imgUrl0='../../images/upperbar/search_a.png';
+        $('#ubiSearch').attr("src",imgUrl0);
+    });
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    $('.userpic').hover(function() {
+        $('.userpic').html('CHANGE');
+    }, function() {
+        $('.userpic').html('');
+    });
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    $('#ads1').hover(function() {
+        $('#ads1').css({opacity:1});
+    }, function() {
+        $('#ads1').css({opacity:0.8});
+    });
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    $('#ads2').hover(function() {
+        $('#ads2').css({opacity:1});
+    }, function() {
+        $('#ads2').css({opacity:0.8});
+    });
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    $('#ads3').hover(function() {
+        $('#ads3').css({opacity:1});
+    }, function() {
+        $('#ads3').css({opacity:0.8});
+    });
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    $('#ads4').hover(function() {
+        $('#ads4').css({opacity:1});
+    }, function() {
+        $('#ads4').css({opacity:0.8});
+    });
+});
+</script>

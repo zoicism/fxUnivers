@@ -1,0 +1,11 @@
+<?php
+require('conn/fxinstructor.php');
+
+if(isset($_POST['msgBody'])) $msgtxt=$_POST['msgBody'];
+$dt=date("Y-m-d h:i:s");
+$setclasschat_q='INSERT INTO chat(userId, classId, dt, txt) VALUES(114,80,"$dt", "$msgtxt")';
+$setclasschat_r=mysqli_query($fxinstructor_connection,$setclasschat_q) or die(mysqli_error($fxinstructor_connection));
+
+
+
+?>

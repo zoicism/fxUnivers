@@ -1,0 +1,3 @@
+<?php
+
+get_questions_query = "SELECT * FROM exam WHERE 

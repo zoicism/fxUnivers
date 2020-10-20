@@ -1,0 +1,6 @@
+<?php
+require('../register/connect.php');
+require('conn/fxinstructor.php');
+$remove_class_query="DELETE FROM class WHERE id=$class_id";
+$remove_class_result=mysqli_query($connection,
+?>

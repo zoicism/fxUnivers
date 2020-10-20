@@ -1,0 +1,4 @@
+<?php
+require('../register/connect.php');
+echo 'foobar '.$first_notif_active;
+?>

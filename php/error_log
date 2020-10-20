@@ -1,0 +1,25 @@
+[14-Sep-2020 06:31:41 America/Chicago] PHP Recoverable fatal error:  Object of class mysqli_result could not be converted to string in /home1/fxunivers/public_html/php/signup2.php on line 19
+[14-Sep-2020 06:44:39 America/Chicago] PHP Recoverable fatal error:  Object of class mysqli_result could not be converted to string in /home1/fxunivers/public_html/php/signup2.php on line 19
+[14-Sep-2020 06:46:00 America/Chicago] PHP Recoverable fatal error:  Object of class mysqli_result could not be converted to string in /home1/fxunivers/public_html/php/signup2.php on line 19
+[14-Sep-2020 06:46:07 America/Chicago] PHP Recoverable fatal error:  Object of class mysqli_result could not be converted to string in /home1/fxunivers/public_html/php/signup2.php on line 19
+[14-Sep-2020 06:46:24 America/Chicago] PHP Recoverable fatal error:  Object of class mysqli_result could not be converted to string in /home1/fxunivers/public_html/php/signup2.php on line 19
+[14-Sep-2020 06:47:37 America/Chicago] PHP Recoverable fatal error:  Object of class mysqli_result could not be converted to string in /home1/fxunivers/public_html/php/signup2.php on line 19
+[14-Sep-2020 06:47:48 America/Chicago] PHP Recoverable fatal error:  Object of class mysqli_result could not be converted to string in /home1/fxunivers/public_html/php/signup2.php on line 19
+[14-Sep-2020 06:48:34 America/Chicago] PHP Recoverable fatal error:  Object of class mysqli_result could not be converted to string in /home1/fxunivers/public_html/php/signup2.php on line 19
+[14-Sep-2020 06:48:56 America/Chicago] PHP Recoverable fatal error:  Object of class mysqli_result could not be converted to string in /home1/fxunivers/public_html/php/signup2.php on line 19
+[14-Sep-2020 06:51:42 America/Chicago] PHP Recoverable fatal error:  Object of class mysqli_result could not be converted to string in /home1/fxunivers/public_html/php/signup2.php on line 19
+[14-Sep-2020 07:02:50 America/Chicago] PHP Recoverable fatal error:  Object of class mysqli_result could not be converted to string in /home1/fxunivers/public_html/php/signup2.php on line 19
+[14-Sep-2020 07:04:14 America/Chicago] PHP Recoverable fatal error:  Object of class mysqli_result could not be converted to string in /home1/fxunivers/public_html/php/signup2.php on line 21
+[14-Sep-2020 07:04:56 America/Chicago] PHP Recoverable fatal error:  Object of class mysqli_result could not be converted to string in /home1/fxunivers/public_html/php/signup2.php on line 21
+[17-Sep-2020 10:39:53 America/Chicago] PHP Parse error:  syntax error, unexpected ''userType'' (T_CONSTANT_ENCAPSED_STRING) in /home1/fxunivers/public_html/php/del_course.php on line 8
+[17-Sep-2020 10:42:33 America/Chicago] PHP Parse error:  syntax error, unexpected end of file in /home1/fxunivers/public_html/php/del_course.php on line 20
+[17-Sep-2020 10:44:59 America/Chicago] PHP Parse error:  syntax error, unexpected end of file in /home1/fxunivers/public_html/php/del_course.php on line 20
+[17-Sep-2020 10:45:52 America/Chicago] PHP Parse error:  syntax error, unexpected end of file in /home1/fxunivers/public_html/php/del_course.php on line 20
+[17-Sep-2020 10:46:12 America/Chicago] PHP Parse error:  syntax error, unexpected end of file in /home1/fxunivers/public_html/php/del_course.php on line 20
+[17-Sep-2020 10:46:50 America/Chicago] PHP Parse error:  syntax error, unexpected end of file in /home1/fxunivers/public_html/php/del_course.php on line 21
+[17-Sep-2020 10:47:57 America/Chicago] PHP Warning:  session_start(): Cannot send session cache limiter - headers already sent (output started at /home1/fxunivers/public_html/php/del_course.php:2) in /home1/fxunivers/public_html/php/del_course.php on line 3
+[17-Sep-2020 12:15:03 America/Chicago] PHP Warning:  session_start(): Cannot send session cache limiter - headers already sent (output started at /home1/fxunivers/public_html/php/del_course.php:2) in /home1/fxunivers/public_html/php/del_course.php on line 3
+[17-Sep-2020 12:15:03 America/Chicago] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home1/fxunivers/public_html/php/del_course.php on line 24
+[17-Sep-2020 12:15:03 America/Chicago] PHP Warning:  mysqli_error() expects parameter 1 to be mysqli, null given in /home1/fxunivers/public_html/php/del_course.php on line 24
+[17-Sep-2020 13:17:50 America/Chicago] PHP Warning:  unlink(): No such file or directory in /home1/fxunivers/public_html/php/del_course.php on line 44
+[17-Sep-2020 13:17:50 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/fxunivers/public_html/php/del_course.php:44) in /home1/fxunivers/public_html/php/del_course.php on line 49

@@ -1,0 +1,26 @@
+#skroll {
+    height:600px;
+    width:100%;
+    overflow:scroll;
+}
+
+@media only screen and (max-width:480px) {
+    
+    .txtCon {
+	width:100%;
+	height:50px;
+	float:left;
+	position:fixed;
+	padding:10px 0 10px 0;
+	background:#fff;
+	border-top:1px solid #eee;
+	margin-top:10px;
+	bottom:0;
+    }
+
+    #skroll {
+	height:400px;
+	overflow:scroll;
+    }
+
+}

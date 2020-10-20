@@ -1,0 +1,31 @@
+.white {
+    color:#fff;
+}
+
+.light-blue {
+    color:#00afe8;
+}
+
+.dark-blue {
+    color:#0084b6;
+}
+
+.fxstar-color {
+    background:#fffbb3;
+}
+
+.fxpartner-color {
+    background:#d6facf;
+}
+
+.fxuniversity-color {
+    background:#e1e8fa;
+}
+
+.fxuniverse-color {
+    background:#ecfaff;
+}
+
+.fxsonet-color {
+    background:#ffe7cb;
+}

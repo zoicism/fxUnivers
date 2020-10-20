@@ -1,0 +1,13 @@
+<?php
+
+// does A follow B?
+$get_follow_q="SELECT * FROM following WHERE id1=$get_user_id AND id2=$tar_id";
+$get_follow_r=mysqli_query($connection,$get_follow_q) or die(mysqli_error($connection));
+$get_follow=mysqli_num_rows($get_follow_r);
+
+// are A and B friends?
+$get_fnd_q="SELECT * FROM friend WHERE ( (user1='$get_user_id' AND user2='$tar_id') OR (user1='$tar_id' AND user2='$get_user_id') )";
+$get_fnd_r=mysqli_query($connection,$get_fnd_q) or die(mysqli_error($connection));
+$get_fnd=mysqli_num_rows($get_fnd_r);
+
+?>

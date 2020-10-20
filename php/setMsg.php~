@@ -1,0 +1,7 @@
+<?php
+require('../contact/message_connect.php');
+
+$set_msg_query = "INSERT INTO messenger(user1id, user2id, text) VALUES(114, 199, 'test')";
+$set_msg_result = mysqli_query($msg_connection, $set_msg_query) or die(mysqli_error($msg_connection));
+
+?>

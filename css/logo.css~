@@ -1,0 +1,24 @@
+.logo {
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-position:center center;
+    margin-bottom:10px;
+}
+
+.fxunivers-big {
+    width:150px;
+    height:150px;
+    background-image:url('../images/logo/fxunivers.png');
+}
+
+.logo-25 {
+    width:25px;
+    height:25px;
+    background-image:url('../images/logo/logo-25.png');
+}
+
+.logo-40 {
+    width:50px;
+    height:50px;
+    background-image:url('../images/logo/logo-40.png');
+}

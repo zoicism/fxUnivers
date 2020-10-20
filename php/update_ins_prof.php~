@@ -1,0 +1,7 @@
+<?php
+require('conn/fxinstructor.php');
+
+$update_ins_prof_query = "UPDATE profile SET info='$info' SET edu='edu' SET employment='employmen'";
+$update_ins_prof_result = mysqli_query($fxinstructor_connection, $update_inst_prof_query) or die(mysqli_error($fxinstructor_connection));
+
+?>

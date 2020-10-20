@@ -1,0 +1,9 @@
+<?php
+
+session_start();
+require('../contact/message_connect.php');
+
+$partner_msg_query = "INSERT INTO partner(subject, body, interest, userId) VALUES("sub", "bod", "int", 123);
+$partner_msg_result = mysqli_query($msg_connection, $partner_msg_query) or die(mysqli_error($msg_connection));
+
+?>

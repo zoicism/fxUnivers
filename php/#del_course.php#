@@ -1,0 +1,26 @@
+<?php
+echo 'hi';
+session_start();
+require('../register/connect.php');
+
+if(isset($_POST['courseId'])) {
+  echo $course_id = $_POST['courseId'];
+  echo $user_type=$_POST['userType'];
+}
+
+if($user_type=='instructor') {
+  $classes_q="SELECT * FROM class WHERE course_id=$course_id";
+  $classes_r=mysqli_query($connection,$classes_q) or die(mysqli_error($connection));
+
+  echo $del_course_query = "DELETE FROM teacher WHERE id=$course_id";
+  $del_course_result = mysqli_query($connection, $del_course_query) or die(mysqli_error($connection));
+  
+  if($del_course_result) {
+    // header('Location: /userpgs/instructor');
+    //exit();
+  }
+} else {
+    //header('Location: /register/logout.php');
+}
+
+?>
