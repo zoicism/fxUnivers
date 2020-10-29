@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="/css/liveClass.css"/>
+<script src="https://rtcmulticonnection.herokuapp.com/dist/RTCMultiConnection.js"></script>
+<script src="https://cdn.webrtc-experiment.com/FileBufferReader.js"></script>
+
+<!-- socket.io for signaling -->
+<script src="https://rtcmulticonnection.herokuapp.com/socket.io/socket.io.js"></script>
+
+  </head>
+  <body>
+<h1><a href="https://github.com/muaz-khan/RTCMultiConnection/tree/master/RTCMultiConnection-v3.0">Audio+Video+TextChat+FileSharing</a></h1>
+<hr>
+<input type="text" id="room-id" value="abcdef">
+<button id="open-room">Open Room</button>
+<button id="join-room">Join Room</button>
+<button id="open-or-join-room">Auto Open Or Join Room</button>
+<hr>
+<div id="chat-container">
+    <input type="text" id="input-text-chat" placeholder="Enter Text Chat" disabled>
+    <button id="share-file" disabled>Share File</button>
+    <br>
+    <div id="file-container"></div>
+    <div class="chat-output"></div>
+</div>
+<hr>
+<script src="/js/liveClass.js"></script>
+  </body>
+</html>
+

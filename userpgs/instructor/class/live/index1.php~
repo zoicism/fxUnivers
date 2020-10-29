@@ -1,0 +1,355 @@
+<?php
+
+  session_start();
+  require('../../../../register/connect.php');
+
+  if(isset($_SESSION['username'])) {
+    $username = $_SESSION['username'];
+  } else {
+    // logout
+  }
+
+  if(isset($_GET['course_id']))
+    $course_id=$_GET['course_id'];
+
+
+  require('../../../../php/get_user.php');
+  //$id = $get_user_id;
+
+  require('../../../php/notif.php');
+
+  if(isset($_GET['class_id']))
+   $class_id = $_GET['class_id'];
+
+  $class_query = "SELECT * FROM `class` WHERE id=$class_id";
+  $class_result = mysqli_query($connection, $class_query) or die(mysqli_error($connection));
+  $class_fetch = mysqli_fetch_array($class_result);
+
+  /*$user_id = $class_fetch['teacher_id'];*/
+  $header = $class_fetch['title'];
+  $description = $class_fetch['body'];
+  $video = $class_fetch['video'];
+
+  require('../../php/classes.php');
+
+  require('../../../../php/get_course.php');
+
+  require('../../../../php/get_user_type.php');
+/*
+  if($user_type == 'neither') {
+    $go_home = "Location: /";
+    header($go_home);
+  }
+  */
+
+  function randHash($len) {
+    return substr(md5(openssl_random_pseudo_bytes(20)), -$len);
+  }
+
+  $liveClassId = randHash(32);
+?>
+
+
+<!DOCTYPE HTML>
+<html>
+<head><meta name="viewport" content="width=device-width"/>
+<title>Class</title>
+<!-- STYLES & JQUERY 
+================================================== -->
+<link rel="stylesheet" type="text/css" href="/userpgs/css/style.css"/>
+<link rel="stylesheet" type="text/css" href="/css/icons.css"/>
+<link rel="stylesheet" type="text/css" href="/css/slider.css"/>
+<link rel="stylesheet" type="text/css" href="/css/skinblue.css"/><!-- Change skin color here -->
+<link rel="stylesheet" type="text/css" href="/css/dropdown.css"/>
+<link rel="stylesheet" type="text/css" href="/css/toptobottom.css"/>
+<link rel="stylesheet" type="text/css" href="/css/modal.css"/>
+<link rel="stylesheet" type="text/css" href="/css/responsive.css"/>
+<link rel="stylesheet" type="text/css" href="/css/lessons.css"/>
+<link rel="stylesheet" type="text/css" href="/css/tabs.css"/>
+<link rel="stylesheet" type="text/css" href="/css/buttons/liveClass.css"/>
+<script src="/js/jquery-1.9.0.min.js"></script><!-- scripts at the bottom of the document -->
+<script type='text/javascript' src='https://cdn.scaledrone.com/scaledrone.min.js'></script>
+<script src="https://rtcmulticonnection.herokuapp.com/dist/RTCMultiConnection.js"></script>
+<script src="https://cdn.webrtc-experiment.com/FileBufferReader.js"></script>
+<script src="https://rtcmulticonnection.herokuapp.com/socket.io/socket.io.js"></script>
+</head>
+<body>
+<!-- UPPER BAR -->
+<section class="nav-bar" style="display: block">
+  <div class="nav-container">
+    <div class="brand">
+      <div class="logoimg toplogo"></div>
+    </div>
+    <nav>
+      <div class="nav-mobile"><a id="nav-toggle" href="#!"><span></span></a></div>
+      <ul class="nav-list">
+        <li>
+          <a href="/userpgs"><img src="/images/upperbar/home.png" style="height: 25px; width: 25px;" alt="Home"></a>
+        </li>
+        <li>
+          <a href="/userpgs/search.php"><img src="/images/upperbar/search.png" style="height: 25px; width: 25px;" alt="Search"></a>
+        </li>
+        <li>
+          <a href="#"><img src="/images/upperbar/notif.png" style="height: 25px; width: 21px;" alt="Notifications"></a>
+          <ul class="nav-dropdown">
+	  <?php while($row = $notif_result->fetch_assoc()) { ?>
+	    <li>
+	      <a href="/userpgs/notif/"><?php echo $row["body"]; ?></a>
+	    </li>
+	  <?php } ?>
+          </ul>
+        </li>
+        <li>
+          <a href="#"><img src="/images/upperbar/message.png" style="height: 21px; width: 25px;" alt="Messages"></a>
+	    <ul class="nav-dropdown">
+            <li>
+              <a href="#">Photoshop</a>
+            </li>
+            <li>
+              <a href="#">Illustrator</a>
+            </li>
+            <li>
+              <a href="#">InDesign</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="/register/logout.php"><img src="/images/upperbar/logout.png" style="height:21px; width: 25px;" alt="Logout" ></a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</section>
+
+<div class="boxedtheme">
+<!-- TOP LOGO & MENU
+================================================== -->
+<div class="grid">
+        <div class="row space-bot">
+
+        </div>
+</div>
+
+
+<!-- CONTENT
+================================================== -->
+<div class="grid">
+		<div class="shadowundertop">
+		</div>
+		<div class="row">
+			<div class="c12">
+				<h1 style="font-size: 3rem;">
+				  <img src="/images/artwork/course_title.png" style="height: 50px; width: 50px;"> <?php echo $header ?>
+				</h1>
+			</div>
+		</div>
+		<div class="row">
+			
+			<div class="c12" style="margin-left: 25%;">
+
+			<div id="liveVid"></div>
+			    
+			</div><!-- end slider area -->
+
+			<hr class="hrtitle">
+
+			<!-- Tabs -->
+
+
+			<div class="new-tab">
+			  <button class="tablinks active" style="margin-bottom: 0; color: black;" onclick="openCity(event, 'Live Chat')">Live Chat</button>
+  			  <button class="tablinks" style="margin-bottom: 0; color: black;" onclick="openCity(event, 'Lesson Overview')">Lesson Overview</button>
+  			  <button class="tablinks" style="margin-bottom: 0; color: black;" onclick="openCity(event, 'Resources')">Resources</button>
+			</div>
+
+			<div id="Live Chat" class="tabcontent" style="display: block;">
+			  <?php if($user_type=='instructor') { echo 'instructor'; } elseif($user_type=='student') { echo 'student'; } else { echo 'neither'; } ?>
+			  <?php echo $get_course_teacher_id ?>
+			  <?php echo $get_user_id ?>
+			  <div id="chat-container">
+    			    <input type="text" id="input-text-chat" placeholder="Enter Text Chat" disabled>
+    			    <button id="share-file" disabled>Share File</button>
+    			    <br>
+    			    <div id="file-container"></div>
+    			    <div class="chat-output"></div>
+			  </div>
+			</div>
+			
+			<div id="Lesson Overview" class="tabcontent">
+  			  <p><img src="/images/artwork/course_description.png" style="height: 15px; width: 15px;"> <?php echo $description?></p>
+			</div>
+
+			<div id="Resources" class="tabcontent">
+  			  <p>There are no resources for this lesson.</p> 
+			</div>
+
+
+			<!-- EO Tabs -->
+
+			<hr class="hrtitle">
+
+			<!-- Classes -->
+			<h1 style="font-size: 2.0rem;">
+			  <img src="/images/artwork/class.png" style="height: 35px; width: 35px;"> Classes
+			</h1>
+			<div class="list-type1">
+		  	  <ol>
+			    <?php if($class_result->num_rows > 0) { ?>
+		    	    <li><a href="/userpgs/instructor/class/?course_id=<?php echo $course_id; ?>&class_id=<?php echo $first_class_id ?>"><b><?php if($first_class_id==$class_id) echo '<img src="/images/artwork/play-button.png" style="height: 15px; width: 15px;"> '; echo $first_title; ?></b><br>
+			      <?php echo $first_body ?>
+			      </a>
+			    </li>
+			    <?php while($row = $class_result->fetch_assoc()) { ?>
+			    <li><a href="/userpgs/instructor/class/?course_id=<?php echo $course_id; ?>&class_id=<?php echo $row['id']; ?>">
+			      <b><?php if($row['id']==$class_id) echo '<img src="/images/artwork/play-button.png" style="height: 15px; width: 15px;"> '; echo $row['title']; ?></b><br>
+			      <?php echo $row['body'] ?>
+			      </a>
+			    </li>
+			    <?php }
+			      } else { ?>
+			    <li><a href="/userpgs/instructor/class/new_class.php?course_id=<?php echo $course_id ?>"><b>Add a class!</b></a></li>
+			    <?php } ?>
+			    <li><a href="/userpgs/instructor/class/new_class.php?course_id=<?php echo $course_id ?>">+ Add New Class!</a></li>
+		  	  </ol>
+			</div>
+			<!-- EO Classes -->
+		</div>
+
+		
+
+
+
+	</div>
+
+
+<!-- FOOTER
+================================================== -->
+<div id="wrapfooter">
+        <div class="grid">
+                <div class="row" id="footer">
+                        <!-- to top button  -->
+                        <p class="back-top floatright">
+                                <a href="#top"><span></span></a>
+                        </p>
+                        <!-- 1st column -->
+			<div class="c3">
+                          <div class="logoimgbig biglogo" style="margin-left: 0"></div>
+                        </div>
+                        <!-- 2nd column -->
+                        <div class="c3">
+                                <h2 class="title"><i class="icon-envelope-alt"></i> Contact</h2>
+                                <hr class="footerstress">
+                                <dl>
+                                        <dt>New Horizon Building, Ground Floor,
+                                                <br />3 1/2 Miles Philip S.W. Goldson Highway,
+                                                <br />Belize City, Belize,
+                                                <br />Central America</dt>
+                                        <dd>E-mail: <a href="#">contact@fxunivers.com</a></dd>
+                                </dl>
+                                <ul class="social-links" style="margin-top:15px;">
+                                        <li class="facebook-link smallrightmargin">
+                                        <a href="https://www.facebook.com/fxunivers" class="facebook has-tip" target="_blank" title="Join us on Facebook">Facebook</a>
+                                        </li>
+                                        <li class="linkedin-link smallrightmargin">
+                                        <a href="https://www.linkedin.com/company/fxunivers/" class="linkedin has-tip" title="Linkedin" target="_blank">Linkedin</a>
+                                        </li>
+                                        <li class="twitter-link smallrightmargin">
+                                        <a href="https://twitter.com/fxunivers" class="twitter has-tip" target="_blank" title="Follow Us on Twitter">Twitter</a>
+                                        </li>
+                                </ul>
+                        </div>
+                        <!-- 4th column -->
+                        <div class="c3">
+                                <h2 class="title">(c) Copyright Details</h2>
+                                <hr class="footerstress">
+                                Copyright Area
+                        </div>
+                        <!-- end 4th column -->
+                </div>
+        </div>
+</div>
+
+<!-- copyright area -->
+<div class="copyright">
+        <div class="grid">
+		<div class="row">
+                        <div class="c6">
+                                With all due Reserves,
+                        </div>
+                </div>
+                <div class="row">
+                        <div class="c6">
+                                 fxUnivers &copy; 2018-2019. All Rights Reserved.
+                        </div>
+                        <div class="c6">
+                                <span class="right">
+                                <!-- by Milad, milad@fxunivers.com --> </span>
+                        </div>
+                </div>
+        </div>
+</div>
+
+
+<!-- JAVASCRIPTS
+================================================== -->
+<!-- all -->
+<script src="/js/modernizr-latest.js"></script>
+
+
+
+<script src="/js/modal.js"></script>
+
+<!-- menu & scroll to top -->
+<script src="/js/common.js"></script>
+
+<!-- slider -->
+<script src="js/jquery.cslider.js"></script>
+
+<!-- twitter -->
+<script src="/js/jquery.tweet.js"></script>
+
+<!-- cycle -->
+<script src="/js/jquery.cycle.js"></script>
+
+<!-- flexslider -->
+<script src="/js/jquery.flexslider-min.js"></script>
+
+<!-- CALL flexslder -->
+<script>
+// Can also be used with $(document).ready()
+$(window).load(function() {
+$('.flexslider').flexslider({
+animation: "slide"
+});
+});
+</script>
+
+<script src="/js/tabs.js"></script>
+
+<script>
+function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+</script>
+
+<script>
+sessionStorage.setItem("liveClassId", "123"); //<?php echo $liveClassId ?>
+</script>
+<script>
+sessionStorage.setItem("userType", "<?php if($user_type=='instructor') { echo 'instructor'; } elseif($user_type=='student') { echo 'student'; } else { echo 'neither'; } ?>");
+</script>
+
+<script src="/js/liveClass.js"></script>
+
+</body>
+</html>

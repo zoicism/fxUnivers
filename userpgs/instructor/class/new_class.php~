@@ -1,0 +1,83 @@
+<?php
+session_start();
+require('../../../register/connect.php');
+
+if(isset($_SESSION['username'])) {
+    $username = $_SESSION['username'];
+} else {
+    header("Location: /register/logout.php");
+}
+
+require('../../../php/get_user.php');
+$id = $get_user_id;
+
+require('../../php/notif.php');
+
+if(isset($_GET['course_id'])) $course_id = $_GET['course_id'];
+
+require('../../../php/get_plans.php');
+require('../../../php/get_rel.php');
+require('../../../wallet/php/get_fxcoin_count.php');
+
+require('../../../php/get_course.php');
+require('../../../php/get_user_type.php');
+if($user_type!='instructor') {
+    header("Location: /");
+    
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Condensed&display=swap" rel="stylesheet">   
+    <title>fxUnivers</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>html{background:#D4B1FC}</style>
+    <script src="/js/jquery-3.4.1.min.js"></script>
+    </head>
+
+<body>
+<div class="upperbar">
+    <span class="float-left">
+      <a href="/" style="color:white">fxUnivers</a> &#8250; <a href="/userpgs/fxuniversity" style="color:white">fxUniversity</a> &#8250; <a href="/userpgs/instructor/" style="color:white">instructor</a> &#8250; <a style="color:white" href="/userpgs/instructor/course_management/course.php?course_id=<?php echo $course_id?>">course</a> &#8250; new class
+    </span>
+    <span class="float-right">
+      <a id="msg_bar" href="/msg/inbox.php">msg</a> &#8226; <a id="notif_a" href="/userpgs/notif">notif</a>
+    </span>            
+</div>
+
+<div class="center" style="width:45%">
+                <h3>new class</h3>
+                <p>enter the topic and description and hit publish.</p>
+                <form method="POST" action="new_post.php" enctype="multipart/form-data" autocomplete="off">
+                  <input type="text" name="header" class="form-control" placeholder="topic" required style="width:90%"><br>
+                  <textarea name="description" rows="20" placeholder="description" style="width:100%"></textarea><br>
+                  <input type="hidden" name="course_id" value="<?php echo $course_id ?>">
+                  <input type="submit" value="publish">
+                </form>
+</div>
+
+
+
+
+
+<div class="footer" style="bottom: 0;position: fixed;">With all due Reserves, &copy; fxUnivers 2017-2020 All rights reserved.</div>
+
+
+<script>
+                if(screen.width>480) {
+                    /*var h11=$('#oneone').height();
+                    var h12=$('#onetwo').height();
+                    var row1=0;
+                    if(h11>row1) row1=h11;
+                    if(h12>row1) row1=h12;
+                    $('#oneone').height(row1);
+                    $('#onetwo').height(row1);*/
+                } else {
+                    $('.center').width('80%');
+                }
+</script>
+</body>
+</html>

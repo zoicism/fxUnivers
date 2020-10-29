@@ -1,0 +1,116 @@
+<?php
+session_start();
+require('../../register/connect.php');
+
+if(isset($_SESSION['username'])) {
+    $username = $_SESSION['username'];
+    require('../../php/get_user.php');
+    $get_real_user_id=$get_user_id;
+} else {
+	header('Location: /');
+}
+
+
+if(isset($_GET['tar'])) $username=$_GET['tar'];
+
+require('../../php/get_user.php');
+
+//require('../php/notif.php');
+
+require('../../php/get_plans.php');
+
+require('../../php/get_rel.php');
+
+require('../../wallet/php/get_fxcoin_count.php');
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Condensed&display=swap" rel="stylesheet">   
+    <title>fxUnivers</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/avatar.css">
+    <style>html{background:#fff}</style>
+    <script src="/js/jquery-3.4.1.min.js"></script>
+    </head>
+
+<body>
+<div class="upperbar">
+    <span class="float-left">
+      <a href="/">fxUnivers</a> &#8250; <a href="/user/<?php echo $username?>">@<?php echo $username?></a> &#8250; friends
+    </span>
+    <span class="float-right">
+      <a id="msg_bar" href="/msg/inbox.php">msg</a> &#8226; <a id="notif_a" href="/userpgs/notif">notif</a>
+    </span>
+</div>
+
+
+<div class="col-1 left-col">
+                <h3><?php echo '@'.$username?></h3>
+                <p><b><?php echo $get_user_fname.' '.$get_user_lname?></b></p>
+                <p><b><?php echo $get_rel_friends_count ?></b> friends</p>
+</div>
+
+<?php
+                if($get_rel_friends_count>0) {
+                    $count=1;
+                    while($row = $get_rel_friends_result->fetch_assoc()) {
+                        if($row['user1']==$get_user_id) {
+                            $fnd_user_id=$row['user2'];
+                        } else {
+                            $fnd_user_id=$row['user1'];
+                        }
+                        $fnd_user_query = "SELECT * FROM user WHERE id=$fnd_user_id";
+                        $fnd_user_result = mysqli_query($connection, $fnd_user_query) or die(mysqli_error($connection));
+                        $fnd_user_fetch = mysqli_fetch_array($fnd_user_result);
+
+                        $mod=$count%3;
+                        if($mod==1) {
+                            $pos='mid-col';
+                        } elseif($mod==2) {
+                            $pos='right-col';
+                        } else {
+                            $pos='left-col';
+                        }
+                        
+                        echo '<div class="col-1 pointer '.$pos.'" onclick="location.href=\'/user/'.$fnd_user_fetch['username'].'\';">';
+
+
+                        
+                        $path="../avatars/";
+                        if(file_exists($path.$fnd_user_fetch['id'].'.jpg')) {
+                            echo('<div class="avatar float-left" style="background-image: url(\'../avatars/'.$fnd_user_fetch['id'].'.jpg\');"></div>');
+                        } elseif(file_exists($path.$fnd_user_fetch['id'].'.jpeg')) {
+                            echo('<div class="avatar float-left" style="background-image: url(\'../avatars/'.$fnd_user_fetch['id'].'.jpeg\');"></div>');
+                        } elseif(file_exists($path.$fnd_user_fetch['id'].'.png')) {
+                            echo('<div class="avatar float-left" style="background-image: url(\'../avatars/'.$fnd_user_fetch['id'].'.png\');"></div>');
+                        } elseif(file_exists($path.$fnd_user_fetch['id'].'.gif')) {
+                            echo('<div class="avatar float-left" style="background-image: url(\'../avatars/'.$fnd_user_fetch['id'].'.gif\');"></div>');
+                        } else {
+                            echo('<div class="avatar float-left"></div>');
+                        }
+
+                        
+                        echo '<h3>@'.$fnd_user_fetch['username'].'</h3>';
+                        echo '<p><b>'.$fnd_user_fetch["fname"].' '.$fnd_user_fetch["lname"].'</b></p>';
+                        echo '</div>';
+
+                        $count++;
+                    }
+                    $get_rel_friends_result->free();
+                } else {
+                    echo '<p>No friends yet</p>';
+                }
+?>
+
+
+
+<div class="footer"></div>
+<script src="/js/footer.js"></script>
+
+</body>
+</html>

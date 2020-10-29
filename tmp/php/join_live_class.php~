@@ -1,0 +1,6 @@
+<?php
+
+$join_live_class_query = "SELECT * FROM liveclass WHERE class_id=$class_id";
+$join_live_class_result = mysqli_query($msg_connection, $join_live_class_query) or die(mysqli_error($msg_connection));
+
+?>

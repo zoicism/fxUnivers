@@ -1,0 +1,24 @@
+<?php
+
+if(isset($_POST['requester'])) $requester=$_POST['requestor'];
+if(isset($_POST['requestee'])) $requestee=$_POST['requestee'];
+
+$friendship_query="SELECT * FROM friend WHERE (( user1=$requester AND user2=$requestee ) OR (user1=$requestee AND user2=$requester ))";
+$friendship_result=mysqli_query($connection,$friendship_query) or die(mysqli_error($connection));
+$friendship=mysqli_num_rows($friendship_result);
+$friendship_fetch=mysqli_fetch_array($friendship_result);
+
+if($friendship==0) {
+    // there's no friendship record, so add one
+    $set_fnd_q="INSERT INTO friend(user1,user2) VALUES($requester,$requestee)";
+    $set_fnd_r=mysqli_query($connection,$set_fnd_q) or die(mysqli_error($connection));
+    echo 'friendAdd';
+} else {
+    // there's a friendship record, so delete it
+    $del_fnd_q="DELETE FROM friend WHERE (( user1=$requester AND user2=$requestee ) OR (user1=$requestee AND user2=$requester ))";
+    $del_fnd_r=mysqli_query($connection,$del_fnd_q);
+    echo 'friendDel';
+}
+
+?>
+    

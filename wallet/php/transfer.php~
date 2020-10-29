@@ -1,0 +1,12 @@
+<?php
+
+require('../../register/connect.php');
+require('wallet_connect.php');
+
+// We need the following:
+//  1. Person A id	$stu_id	
+//  2. Person B id	$instructor_id
+//  3. fxCoin amnt	$cost
+//  4. Date & time	NA
+
+echo $stu_id.'/'.$instructor_id.'/'.$cost.'/';

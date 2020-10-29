@@ -1,0 +1,6 @@
+<?php
+
+$tar_id = "SELECT id FROM user WHERE username='$tarname'";
+//$sonet_query = "SELECT * FROM sonet WHERE 
+
+?>

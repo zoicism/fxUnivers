@@ -1,0 +1,13 @@
+<?php
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Condensed&display=swap" rel="stylesheet">   
+    <title>fxUnivers</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/jquery-3.4.1.min.js"></script>
+</head>

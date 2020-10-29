@@ -1,0 +1,59 @@
+<?php
+
+date_default_timezone_set('America/New_York');
+$current_date_time = date("Y-m-d h:i:s");
+//echo $current_date_time;
+
+$plain_text = "100000000|5487888|1114444|".$current_date_time;
+//echo $plain_text;
+$ivlen = openssl_cipher_iv_length($cipher="AES-128-CBC");
+$iv = openssl_random_pseudo_bytes($ivlen);
+$key = "92332116372a47b84cd50cb84caac1231e5bce18779b68605c1a73621c1271eb16224924c49a13f0bd1969dbde096e70348019a25369bb0a920c71b19708c10641392439b2befd2c65a1832d557ccec4ea66ecad2417967b5e5326ab08b945a910f05d79ba74b03ea2f320f765a9020abde8d35a3f29e99f3f3953067c58";
+$ciphertext_raw = openssl_encrypt($plain_text, $cipher, $key, $options=OPENSSL_RAW_DATA, $iv);
+$hmac = hash_hmac('sha256', $ciphertext_raw, $key, $as_binary=true);
+$ciphertext = base64_encode($iv.$hmac.$ciphertext_raw);
+echo $ciphertext;
+
+// ciphered text= Ud67io+5BCfkbH5MGiRdL2ydBbagPBfpa0jYHXfxtf7BzuyvhzCspWX3/iSHjQIGckHcjvKAY1kk5bNBt3u2sBU8MvCO4DmCqYmhkcPyt9c=
+/*
+$ciphertext = "c9Y9HX3g8YrekANKhwy8bmZfxB4c3TA7vigz7TCVH7sub2/Y/MMaRr82mMmUubyhSOScJWeW8WgRojuob48pfYQnaSPJlQHcP4nD/b4W1mhFawGVK50T0k5H3s52i42h";
+$key = "92332116372a47b84cd50cb84caac1231e5bce18779b68605c1a73621c1271eb16224924c49a13f0bd1969dbde096e70348019a25369bb0a920c71b19708c10641392439b2befd2c65a1832d557ccec4ea66ecad2417967b5e5326ab08b945a910f05d79ba74b03ea2f320f765a9020abde8d35a3f29e99f3f3953067c58";
+$c = base64_decode($ciphertext);
+$ivlen = openssl_cipher_iv_length($cipher="AES-128-CBC");
+$iv = substr($c, 0, $ivlen);
+$hmac = substr($c, $ivlen, $sha2len=32);
+$ciphertext_raw = substr($c, $ivlen+$sha2len);
+$original_plaintext = openssl_decrypt($ciphertext_raw, $cipher, $key, $options=OPENSSL_RAW_DATA, $iv);
+$calcmac = hash_hmac('sha256', $ciphertext_raw, $key, $as_binary=true);
+if(hash_equals($hmac, $calcmac)) {
+  echo $original_plaintext."\n";
+}
+*/
+/*
+
+
+//decrypt later....
+$c = base64_decode($ciphertext);
+$ivlen = openssl_cipher_iv_length($cipher="AES-128-CBC");
+$iv = substr($c, 0, $ivlen);
+$hmac = substr($c, $ivlen, $sha2len=32);
+$ciphertext_raw = substr($c, $ivlen+$sha2len);
+$original_plaintext = openssl_decrypt($ciphertext_raw, $cipher, $key, $options=OPENSSL_RAW_DATA, $iv);
+$calcmac = hash_hmac('sha256', $ciphertext_raw, $key, $as_binary=true);
+if (hash_equals($hmac, $calcmac))//PHP 5.6+ timing attack safe comparison
+{
+    echo $original_plaintext."\n";
+}
+
+
+
+
+//$key previously generated safely, ie: openssl_random_pseudo_bytes
+$plaintext = "message to be encrypted";
+$ivlen = openssl_cipher_iv_length($cipher="AES-128-CBC");
+$iv = openssl_random_pseudo_bytes($ivlen);
+$ciphertext_raw = openssl_encrypt($plaintext, $cipher, $key, $options=OPENSSL_RAW_DATA, $iv);
+$hmac = hash_hmac('sha256', $ciphertext_raw, $key, $as_binary=true);
+$ciphertext = base64_encode( $iv.$hmac.$ciphertext_raw );
+*/
+?>

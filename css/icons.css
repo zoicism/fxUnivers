@@ -117,10 +117,10 @@
 }
 
 .home {
-    background-image:url('../images/icons/toolbar/home.png');
+    background-image:url('http://localhost/images/logo/logo-100.png');
 }
 .home#active {
-    background-image:url('../images/icons/toolbar/home-blue.png');
+    background-image:url('http://localhost/images/logo/logo-100.png');
     opacity:1;
 }
 
@@ -149,7 +149,7 @@
 }
 
 
-@media only screen and (max-width:480px) {
+@media only screen and (max-width:628px) {
     .icon {
 	width:60px;
 	height:60px;

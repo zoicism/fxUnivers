@@ -1,7 +1,6 @@
 if(screen.width<480) {
     var loc = window.location.pathname;
     var footbar = `
-    <section>
 <div class="footbar-icon home" style="margin-left:30px;cursor:pointer;" onclick="location.href='/';"></div>
 <div class="footbar-icon search" style="cursor:pointer" onclick="location.href='/search';"></div>
 <div class="footbar-icon notif" style="cursor:pointer" onclick="location.href='/userpgs/notif';">
@@ -10,7 +9,6 @@ if(screen.width<480) {
 <div class="footbar-icon msg" style="margin-right:30px;cursor:pointer" onclick="location.href='/msg/inbox.php';">
   <div class="newnum" id="msg-bar" style="margin-right:-9px"></div>
 </div>
-</section>
 `;
     
     $('.footbar').html(footbar);

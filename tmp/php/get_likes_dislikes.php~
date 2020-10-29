@@ -1,0 +1,13 @@
+<?php
+
+require('conn/sonet.php');
+
+$get_likes_query="SELECT * FROM likes WHERE postId=$sonet_postId";
+$get_likes_result=mysqli_query($sonet_connection,$get_likes_query) or die(mysqli_error($sonet_connection));
+$get_likes=mysqli_num_rows($get_likes_result);
+
+$get_dislikes_query="SELECT * FROM dislikes WHERE postId=$sonet_postId";
+$get_dislikes_result=mysqli_query($sonet_connection,$get_dislikes_query) or die(mysqli_error($sonet_connection));
+$get_dislikes=mysqli_num_rows($get_dislikes_result);
+
+?>

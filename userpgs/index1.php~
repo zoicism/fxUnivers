@@ -1,0 +1,98 @@
+<?php
+// Requiring https
+/*if($_SERVER['HTTPS'] != "on") {
+    $url = "https://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+    header("Location: $url");
+    exit;
+}*/
+
+session_start();
+require('../register/connect.php');
+
+if(isset($_SESSION['username'])) {
+    $username = $_SESSION['username'];
+} else {
+	header("Location: /register/logout.php");
+}
+
+$user_query = "SELECT * FROM user WHERE username='$username'";
+$user_result = mysqli_query($connection, $user_query) or die(mysqli_error($connection));
+$user_fetch = mysqli_fetch_array($user_result);
+$fname = $user_fetch['fname'];
+$lname = $user_fetch['lname'];
+$id = $user_fetch['id'];
+//$bio = $user_fetch['bio'];
+
+// add new post to the timeline
+if(isset($_POST['new_post'])) {
+	$raw_newpost = nl2br($_POST['new_post']);
+	$newpost = mysqli_real_escape_string($connection, $raw_newpost);
+	$newpost_query = "INSERT INTO sonet(uid, body) VALUES($id, '$newpost')";
+	$newpost_result = mysqli_query($connection, $newpost_query) or die(mysqli_error($connection));
+}
+
+// fetch the sonet records
+//require('sonet/following.php');
+// Get the notification!
+require('php/notif.php');
+// Get the plans!
+$get_user_id=$id;
+require('../php/get_plans.php');
+require('../php/get_rel.php');
+require('../wallet/php/get_fxcoin_count.php');
+//require('../php/get_likes_dislikes.php');
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Condensed&display=swap" rel="stylesheet">   
+    <title>fxUnivers</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>html{background:#84ff7c}</style>
+    <script src="/js/jquery-3.4.1.min.js"></script>
+    </head>
+
+<body>
+<div class="upperbar">
+    fxUnivers
+</div>
+
+<div class="col-1 pointer" style="background-color:#f0c425;" id="oneone" onclick="location.href='/wallet/index1.php';">
+    <h3>fxStar</h3>
+    <p><strong><?php echo $get_fxcoin_count?></strong> fxStars</p>
+</div>
+
+<div class="col-1" style="background-color:#D780FF" id="twotwo">
+  <h3>fxUniversity</h3>
+    <p><strong>0</strong> courses</p>
+</div>
+
+<div class="col-1 pointer" style="background-color:#FF9C40" id="twothree" onclick="location.href='/userpgs/partner';">
+  <h3>fxPartner</h3>
+  <p><strong>165</strong> fxStars</p>
+</div>
+
+<div class="col-1" style="background-color:#4bb5ff" id="threeone">
+  <h3>fxUniverse</h3>
+   <p>(coming soon)</p>                   
+</div> 
+
+<div class="col-1" style="background-color:#f95886" id="threetwo">
+  <h3>fxSonet</h3>
+  <p>(coming soon)</p>                    
+</div>
+
+
+
+
+<div class="footer">With all due Reserves, &copy; fxUnivers 2017-2020 All rights reserved.</div>
+
+
+
+                                                         
+</body>
+</html>
+    
+    

@@ -1,0 +1,19 @@
+<?php
+session_start();
+
+$username = $_SESSION['username'];
+
+$query = "SELECT * FROM user WHERE username='$username'";
+$result = mysqli_query($connection, $query) or die(mysqli_error($connection));
+$fetch_user = mysqli_fetch_array($result);
+$id = $fetch_user['id'];
+
+$class_query = "SELECT * FROM class WHERE course_id=$course_id";
+$class_result = mysqli_query($connection, $class_query) or die(mysqli_error($connection));
+$fetch_class = mysqli_fetch_array($class_result);
+
+$first_title = $fetch_class['title'];
+$first_body = $fetch_class['body'];
+$first_class_id = $fetch_class['id'];
+
+?>

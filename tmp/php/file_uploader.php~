@@ -1,0 +1,18 @@
+<?php
+if(isset($_POST['class_id'])) $class_id=$_POST['class_id'];
+if(isset($_FILES['video_up'])) {
+    $video_path='live/uploads/';
+    $prev_vid=glob($video_path.$class_id.'.*');
+    if(count($prev_vid)>0) unlink($prev_vid[0]);
+    
+    $video_array=explode('.', $_FILES['video_up']['name']);
+    $video_ext=end($video_array);
+    $path="live/uploads/".$class_id.'.'.$video_ext;
+    if(move_uploaded_file($_FILES['video_up']['tmp_name'], $path)) {
+        $video_upload_ok=1;
+        echo $path;
+    } else {
+        echo $path;
+        $video_upload_ok=0;
+    }
+}

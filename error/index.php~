@@ -1,0 +1,26 @@
+<?php
+if(isset($_GET['no'])) $no=$_GET['no'];
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>error</title>
+<link rel="stylesheet" href="/css1/style.css">
+    <style>html {background-color:#ff9595}</style>
+</head>
+
+<body>
+    <div class="center">
+<?php
+    if(isset($_GET['no'])) {
+        echo '<p>error number '.$no.' :(</p>';
+    } else {
+        echo '<p>error :(</p>';
+    }
+?>
+
+     <p><a href="/">go home</a></p>
+     </div>
+</body>
+</html>

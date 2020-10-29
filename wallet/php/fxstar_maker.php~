@@ -1,0 +1,32 @@
+<?php
+
+session_start();
+require('wallet_connect.php');
+
+$amnt=100;
+
+function generateRandomString($length) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($j = 0; $j < $length; $j++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
+
+
+for($i=0; $i<$amnt; $i++) {
+    $hashed=hash(sha256, generateRandomString(64), false);
+    
+    $buy_coin_query = "INSERT INTO fxcoin(hash) VALUES('$hashed')";
+    $buy_coin_result = mysqli_query($wallet_connection, $buy_coin_query) or die(mysqli_error($wallet_connection));
+
+    $hashed_coin_id_query = "SELECT id FROM fxcoin WHERE hash='$hashed'";
+    $hashed_coin_id_result = mysqli_query($wallet_connection, $hashed_coin_id_query) or die(mysqli_error($wallet_connection));
+    $hashed_coin_id_fetch = mysqli_fetch_array($hashed_coin_id_result);
+    $hashed_coin_id = $hashed_coin_id_fetch['id'];
+
+    $link_query = "INSERT INTO link(fxCoinId, userId) VALUES($hashed_coin_id, 0)";
+    $link_result = mysqli_query($wallet_connection, $link_query) or die(mysqli_error($wallet_connection));
+}

@@ -5,10 +5,10 @@
     margin-bottom:10px;
 }
 
-.fxunivers-big {
-    width:150px;
-    height:150px;
-    background-image:url('../images/logo/fxunivers.png');
+.logo-200 {
+    width:200px;
+    height:200px;
+    background-image:url('../images/logo/logo-200.png');
 }
 
 .logo-25 {

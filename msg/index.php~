@@ -1,0 +1,363 @@
+<?php
+session_start();
+require('../register/connect.php');
+
+if(isset($_SESSION['username'])) {
+        $username = $_SESSION['username'];
+	$smsg = "Successfully logged in!";
+} else {
+	echo "could not get the username!";
+}
+
+require('../php/get_user.php');
+
+$id = $get_user_id;
+
+
+if(isset($_GET['plan'])) {
+	$plan = $_GET['plan'];
+}
+
+
+require('../userpgs/php/notif.php');
+
+$get_user_id = $id;
+require('../php/get_plans.php');
+
+require('../php/get_rel.php');
+
+require('../wallet/php/get_fxcoin_count.php');
+
+require('../php/get_msg.php');
+
+?>
+<!DOCTYPE HTML>
+<html>
+<head><meta name="viewport" content="width=device-width"/>
+<title>Messages</title>
+<!-- STYLES & JQUERY 
+================================================== -->
+<link rel="stylesheet" type="text/css" href="/userpgs/css/style.css"/>
+<link rel="stylesheet" type="text/css" href="/userpgs/css/icons.css"/>
+<link rel="stylesheet" type="text/css" href="/userpgs/css/skinblue.css"/><!-- change skin color here -->
+<link rel="stylesheet" type="text/css" href="/css/dropdown.css"/>
+<link rel="stylesheet" type="text/css" href="/css/list/rotated_nav.css"/>
+<link rel="stylesheet" type="text/css" href="/css/toptobottom.css"/>
+
+<script src="/js/function.js"></script>
+<script src="/js/jquery-3.4.1.min.js"></script>
+<!-- the rest of the scripts at the bottom of the document -->
+</head>
+<body>
+<!-- UPPER BAR -->
+<section class="nav-bar">
+  <div class="nav-container">
+    <div class="brand">
+      <div class="logoimg toplogo"></div>
+    </div>
+    <nav>
+      <div class="nav-mobile"><a id="nav-toggle" href="#!"><span></span></a></div>
+      <ul class="nav-list">
+        <li>
+          <a href="/"><img src="/images/upperbar/home.png" style="height: 25px; width: 25px;" alt="Home"></a>
+        </li>
+        <li>
+          <a href="/search"><img src="/images/upperbar/search.png" style="height: 25px; width: 25px;" alt="Search"></a>
+        </li>
+	<li>
+          <a href="/userpgs/notif"><img src="/images/upperbar/notif.png" style="height: 25px; width: 21px;" alt="Notifs"></a>
+        </li>
+	<!--
+        <li>
+          <a href="#"><img src="/images/upperbar/notif.png" style="height: 25px; width: 21px;" alt="Notifications"></a>
+          <ul class="nav-dropdown">
+	  <?php while($row = $notif_result->fetch_assoc()) { ?>
+	    <li>
+	      <a href="/userpgs/notif/"><?php echo $row["body"]; ?></a>
+	    </li>
+	  <?php } ?>
+          </ul>
+        </li>
+	-->
+        <li>
+          <a href="#"><img src="/images/upperbar/message.png" style="height: 21px; width: 25px;" alt="Messages"></a>
+	    <!--
+	    <ul class="nav-dropdown">
+            <li>
+              <a href="#">test1</a>
+            </li>
+            <li>
+              <a href="#">test2</a>
+            </li>
+            <li>
+              <a href="#">test3</a>
+            </li>
+          </ul>
+	  -->
+        </li>
+        <li>
+          <a href="/register/logout.php"><img src="/images/upperbar/logout.png" style="height:21px; width: 25px;" alt="Logout" ></a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</section>
+
+
+<div class="boxedtheme">
+<!-- TOP LOGO & MENU
+================================================== -->
+<div class="grid">
+        <div class="row space-bot">
+               
+                
+        </div>
+</div>
+
+<!-- LEFT PANEL
+================================================== -->
+
+
+<div class="grid">
+                <div class="shadowundertop">
+                </div>
+                <div class="row">
+		        <!-- LEFT SIDEBAR -->
+                        <div class="c9">
+				<div class="userpic avatarr">
+				</div><br/><br/>
+				<h2><?php echo "$get_user_fname $get_user_lname"; ?></h2>
+                        	
+				<h3><?php echo "@$username"; ?></h3>
+
+				<?php echo "$bio" ?>
+
+				<table style="background-color: #dadddf; margin-top: 10px;">
+				  <tr>
+				    <td style="width: 20%; height: 4px; "><img src="/images/small_fxstar.png" style="height: 20px; width: 15px"></td>
+				    <td style="text-align: right"><p style="font-size: 2rem; font-family: courier;"><?php echo $get_fxcoin_count ?></p></td>
+				  </tr>
+				</table>
+
+
+				<table>
+				  <tr>
+				    <td style="width: 33.3%"><a href="/userpgs/rel?act=friends" style="color: black">Friends <strong><?php echo $get_rel_friends_count ?></strong></a></td>
+				    <td style="width: 33.3%"><a href="/userpgs/rel?act=following" style="color: black">Following <strong><?php echo $get_rel_following_count ?></strong></a></td>
+				    <td style="width: 33.3%"><a href="/userpgs/rel?act=followers" style="color: black">Followers <strong><?php echo $get_rel_followers_count ?></strong></a></td>
+				  </tr>
+				</table>
+
+				<h7>Navigation</h7>
+				<div id="list4">
+				     <ul>
+				        <li><a href="/" style="color: #BDCFE0; background-color: #425362;"><table><tr style="line-height: 2px;"><td style="width: 10%; text-align: center; padding-right: 0; padding-top: 3px;"><div class="smallicon toplogo"></div></td><td style="width: 90%; text-align: left;">Home</td></tr></table></a></li>
+					<li><a href="/wallet"><table><tr style="line-height: 2px;"><td style="width: 10%; text-align: center; padding-right: 0; padding-top: 3px;"><div class="smallicon smallicon_wallet"></div></td><td style="width: 90%; text-align: left;">Wallet</td></tr></table></a></li>
+                                     </ul>
+				</div>
+				<br/>
+				
+				<h7>Dashboards</h7>
+				<div id="list4">
+				     <ul>
+					
+					<li><a href="/userpgs/trader"><table><tr style="line-height: 2px;"><td style="width: 10%; text-align: center; padding-right: 0; padding-top: 3px;"><div class="smallicon smallicon_trader"></div></td><td style="width: 90%; text-align: left;">Trader</td></tr></table></a></li>
+					<li><a href="<?php 
+					if($plans_msg) {
+					  if($get_plans_fxuniversityins) {
+					      echo '/userpgs/instructor'; 
+					    } elseif($get_plans_fxuniversityins_req) {
+					      echo '/register/instructor_wait.php';
+					    } else {
+					      echo '/register/instructor_reg.php';
+					    }
+					  } else {
+					    echo '/register/instructor_reg.php';
+					  } ?>"><table><tr style="line-height: 2px;"><td style="width: 10%; text-align: center; padding-right: 0; padding-top: 3px;"><div class="smallicon smallicon_instructor"></div></td><td style="width: 90%; text-align: left;">Instructor</td></tr></table></a></li>
+					<li><a href="<?php
+					if($plans_msg) {
+					  if($get_plans_fxuniversitystu) {
+					    echo '/userpgs/student';
+					  } elseif($get_plans_fxuniversitystu_req) {
+					    echo '/register/student_wait.php';
+					  } else {
+					    echo '/register/student_reg.php';
+					  }
+					} else {
+					  echo '/register/student_reg.php';
+					} ?>"><table><tr style="line-height: 2px;"><td style="width: 10%; text-align: center; padding-right: 0; padding-top: 3px;"><div class="smallicon smallicon_student"></div></td><td style="width: 90%; text-align: left;">Student</td></tr></table></a></li>
+					<li><a href="/userpgs/partner"><table><tr style="line-height: 2px"><td style="width: 10%; text-align: center; padding-right: 0; padding-top: 3px;"><div class="smallicon smallicon_partner"></div></td><td style="width: 90%; text-align: left;">Partner</td></tr></table></a></li>
+				     </ul>
+				</div>
+
+
+			</div>
+			
+			<!-- MAIN CONTENT -->
+			<div class="c3">
+                                <div class="rightsidebar">
+                                        <div id="result"><h2 class="title stresstitle"><img src="/images/artwork/msg.png" style="height: 25px; width: 25px; display: inline;"> Messages</h2></div>
+                                        <hr class="hrtitle">
+					  <table style="border: 1px solid #e8e8e8">
+					  <?php while($row = $get_msg_result->fetch_assoc()) {
+					    if($row['user1id']==$get_user_id) {
+					      $guest_id = $row['user2id'];
+					    } else {
+					      $guest_id = $row['user1id'];
+					    }
+					    require('../php/get_guest.php');
+					  ?>
+					    <tr style="border-bottom: 1px solid #e8e8e8">
+					      <td style="width: 10%"><div class="avatarpic avatarr"></div></td>
+					      <td style="width: 90%; padding-left: 20px;"><?php echo '<strong>'.$get_guest['fname'].' '.$get_guest['lname'].'</strong> @'.$get_guest['username'].'<br><p style=" color: gray">'.$row['text'].'</p>' ?></td>	    
+					    </tr>
+					<?php } ?>
+					</table>
+                                </div>
+                        </div>
+			<!-- end sidebar -->
+                </div>
+</div>
+
+
+
+<!-- FOOTER
+================================================== -->
+<div id="wrapfooter">
+        <div class="grid">
+                <div class="row" id="footer">
+                        <!-- to top button  -->
+                        <p class="back-top floatright">
+                                <a href="#top"><span></span></a>
+                        </p>
+                        <!-- 1st column -->
+			<div class="c3">
+                          <div class="logoimgbig biglogo" style="margin-left: 0"></div>
+                        </div>
+                        <!-- 2nd column -->
+                        <div class="c3">
+                                <h2 class="title"><i class="icon-envelope-alt"></i> Contact</h2>
+                                <hr class="footerstress">
+                                <dl>
+                                        <dt>New Horizon Building, Ground Floor,
+                                                <br />3 1/2 Miles Philip S.W. Goldson Highway,
+                                                <br />Belize City, Belize,
+                                                <br />Central America</dt>
+                                        <dd>E-mail: <a href="#">contact@fxunivers.com</a></dd>
+                                </dl>
+                                <ul class="social-links" style="margin-top:15px;">
+                                        <li class="facebook-link smallrightmargin">
+                                        <a href="https://www.facebook.com/fxunivers" class="facebook has-tip" target="_blank" title="Join us on Facebook">Facebook</a>
+                                        </li>
+                                        <li class="linkedin-link smallrightmargin">
+                                        <a href="https://www.linkedin.com/company/fxunivers/" class="linkedin has-tip" title="Linkedin" target="_blank">Linkedin</a>
+                                        </li>
+                                        <li class="twitter-link smallrightmargin">
+                                        <a href="https://twitter.com/fxunivers" class="twitter has-tip" target="_blank" title="Follow Us on Twitter">Twitter</a>
+                                        </li>
+                                </ul>
+                        </div>
+                        <!-- 4th column -->
+                        <div class="c3">
+                                <h2 class="title">(c) Copyright Details</h2>
+                                <hr class="footerstress">
+                                Copyright Area
+                        </div>
+                        <!-- end 4th column -->
+                </div>
+        </div>
+</div>
+
+<!-- copyright area -->
+<div class="copyright">
+        <div class="grid">
+		<div class="row">
+                        <div class="c6">
+                                With all due Reserves,
+                        </div>
+                </div>
+                <div class="row">
+                        <div class="c6">
+                                 fxUnivers &copy; 2018-2019. All Rights Reserved.
+                        </div>
+                        <div class="c6">
+                                <span class="right">
+                                <!-- by Milad, milad@fxunivers.com --> </span>
+                        </div>
+                </div>
+        </div>
+</div>
+
+
+
+<!-- JAVASCRIPTS
+================================================== -->
+<!-- all -->
+<script src="/js/modernizr-latest.js"></script>
+
+<!-- menu & scroll to top -->
+<script src="/js/common.js"></script>
+
+<!-- cycle -->
+<script src="/js/jquery.cycle.js"></script>
+
+<!-- twitter -->
+<script src="/js/jquery.tweet.js"></script>
+
+<!-- filtering -->
+<script src="/js/jquery.isotope.min.js"></script>
+
+<!-- CALL filtering & masonry-->
+<script>
+$(document).ready(function(){
+var $container = $('#content');
+  $container.imagesLoaded( function(){
+        $container.isotope({
+        filter: '*',
+        animationOptions: {
+     duration: 750,
+     easing: 'linear',
+     queue: false,
+   }
+});
+});
+$('#nav a').click(function(){
+  var selector = $(this).attr('data-filter');
+    $container.isotope({ 
+        filter: selector,
+        animationOptions: {
+     duration: 750,
+     easing: 'linear',
+     queue: false,
+   }
+  });
+  return false;
+});
+$('#nav a').click(function (event) {
+    $('a.selected').removeClass('selected');
+    var $this = $(this);
+    $this.addClass('selected');
+    var selector = $this.attr('data-filter');
+    $container.isotope({
+         filter: selector
+    });
+    return false; // event.preventDefault()
+});
+});
+ </script>
+
+ <!-- Call opacity on hover images-->
+<script type="text/javascript">
+$(document).ready(function(){
+    $(".boxcontainer img").hover(function() {
+      $(this).stop().animate({opacity: "0.6"}, 'slow');
+    },
+    function() {
+      $(this).stop().animate({opacity: "1.0"}, 'slow');
+                                                                                       289,55        97%
+    });
+  });
+</script>
+
+</body>
+</html>

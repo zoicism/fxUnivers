@@ -1,19 +1,33 @@
 if(screen.width>628) {
+
     $('.header').html(`
-	
+
         <a class="logo logo-25" href="/">
         </a>
         <nav>
             <ul class="nav__links">
-                <li><a href="#"><img src="../images/icons/toolbar/home.png" width="22px" height="22px"></a></li>
-                <li><a href="#"><img src="../images/icons/toolbar/msg.png" width="22px" height="22px"></a></li>
-                <li><a href="#"><img src="../images/icons/toolbar/notif.png" width="22px" height="22px"></a></li>
-                <li><a href="#"><img src="../images/icons/toolbar/search.png" width="22px" height="22px"></a></li>
+                <li><a href="/"><img src="/images/icons/toolbar/home.png" width="22px" height="22px"></a></li>
+                <li><a href="/msg/inbox.php"><img src="/images/icons/toolbar/msg.png" width="22px" height="22px"></a></li>
+                <li><a href="/userpgs/notif"><img src="/images/icons/toolbar/notif.png" width="22px" height="22px"></a></li>
+                <li><a href="/search"><img src="/images/icons/toolbar/search.png" width="22px" height="22px"></a></li>
             </ul>
         </nav>
-    
-		     `);
 
+                     `);
+
+    $('.header-sidebar').html(`
+<nav>
+            <ul class="nav__links">
+                <li><a href="/"><img src="/images/icons/toolbar/home.png" width="22px" height="22px"></a></li>
+                <li><a href="/msg/inbox.php"><img src="/images/icons/toolbar/msg.png" width="22px" height="22px"></a></li>
+                <li><a href="/userpgs/notif"><img src="/images/icons/toolbar/notif.png" width="22px" height="22px"></a></li>
+                <li><a href="/search"><img src="/images/icons/toolbar/search.png" width="22px" height="22px"></a></li>
+            </ul>
+        </nav>
+`);
+
+
+    
     $('.upperbar').html(`
       <span style="float:left">
         <div class="logo logo-25" onclick="location.href='/';" style="margin-left:30px;margin-top:10px;cursor:pointer;"></div>
@@ -39,7 +53,27 @@ if(screen.width>628) {
 `;
     
     $('.upperbar').html(upperbar);
+
+
+
+
+$('.header').html(`
+<a href="/" style="margin-right:auto"><img src="/images/icons/toolbar/back.png" width="22px" height="22px"></a>
+       
+        <nav>
+            <ul class="nav__links">
+                
+                <li><a href="/search"><img src="/images/icons/toolbar/search.png" width="22px" height="22px"></a></li>
+            </ul>
+        </nav>
+
+                     `);
+
+
+
+
     
+
     if(loc=='/userpgs/') {
 	$('#current').html('Home');
 	$('.back').hide();

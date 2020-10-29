@@ -1,0 +1,3 @@
+<?php
+
+$guc_query="SELECT * FROM teacher WHERE 

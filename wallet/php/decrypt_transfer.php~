@@ -1,0 +1,16 @@
+<?php
+
+$ciphertext = "eOZKy1gLHJHyycvLx33+S3CwsqSI89FbMAacV0gjOHkTgTwFP/fNnXHITBOEcLXW6bv+UFe7PnYRCijD3+MKb3LyIxyMbvzHWIzOVGKrJLbqCYRkCWpbZqr7aPbye1GIzXAecLfpcShCoU4OG4PAQGqZ3n1WYx+wHB6zdJ+HFZM=";
+$key = "92332116372a47b84cd50cb84caac1231e5bce18779b68605c1a73621c1271eb16224924c49a13f0bd1969dbde096e70348019a25369bb0a920c71b19708c10641392439b2befd2c65a1832d557ccec4ea66ecad2417967b5e5326ab08b945a910f05d79ba74b03ea2f320f765a9020abde8d35a3f29e99f3f3953067c58";
+$c = base64_decode($ciphertext);
+$ivlen = openssl_cipher_iv_length($cipher="AES-128-CBC");
+$iv = substr($c, 0, $ivlen);
+$hmac = substr($c, $ivlen, $sha2len=32);
+$ciphertext_raw = substr($c, $ivlen+$sha2len);
+$original_plaintext = openssl_decrypt($ciphertext_raw, $cipher, $key, $options=OPENSSL_RAW_DATA, $iv);
+$calcmac = hash_hmac('sha256', $ciphertext_raw, $key, $as_binary=true);
+if(hash_equals($hmac, $calcmac)) {
+  echo $original_plaintext."\n";
+}
+
+?>
