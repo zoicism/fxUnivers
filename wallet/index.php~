@@ -80,6 +80,13 @@ require('php/get_fxcoin_count.php');
 			<a href="#" class="sm instagram"></a>
 			<a href="#" class="sm twitter"></a>
 			<a href="#" class="policy">Policy</a>
+
+                          <div class="copyright">
+                          With all due Reserves, © fxUnivers 
+                          </div>
+                          <div class="copyright">
+                          2017-2020 All rights reserved.
+                          </div>
   		</div>
 	</div>
 

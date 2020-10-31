@@ -134,9 +134,49 @@ require('php/get_fxcoin_count.php');
                               <h2>fxStar</h2>
                               <p>Balance: <strong><?php echo $get_fxcoin_count?> fxStars</strong></p>
                             </div>
-                          <h2 style="width:100%;font-size:1rem">fxStar Functions</h2>
+
+
+
+
+<div class="main-content-mob">
+
+              <ul class="main-flex-container">
+                  <li class="main-items">
+                      <a href="/wallet/buy" class="link-main">
+                          <div class="head">Buy fxStars</div>
+                      </a>
+                  </li>
+                  <li class="main-items">
+                      <a href="/wallet/cashout" class="link-main">
+                          <div class="head">Cash-out fxStars</div>
+                      </a>
+                  </li>
+                  <li class="main-items">
+                      <a href="/wallet/txn" class="link-main">
+                          <div class="head">Transactions</div>
+                      </a>
+                  </li>
+                  <li class="main-items">
+                      <a href="/wallet/send" class="link-main">
+                          <div class="head">Send fxStars</div>
+                      </a>
+                  </li>
+                  <li class="main-items">
+                      <a href="/wallet/req" class="link-main">
+                          <div class="head">Request fxStars</div>
+                      </a>
+                  </li>
+              </ul>
+
+    </div>
+
+
+
+
                           
-                          <div class="description" style="font-size:0.6rem">
+                          
+                          <div class="description" style="margin-bottom:55px;font-size:0.6rem;">
+                          <h2 style="width:100%;font-size:1rem">fxStar Functions</h2>
                           <h3 style="font-size:0.8rem">Buy fxStars</h3>
 <p style="font-size:0.8rem">To use most parts of the fxUnivers you need fxStars and here is where you can buy some. 10 fxStars cost 11 USD.</p>
 
@@ -153,6 +193,9 @@ require('php/get_fxcoin_count.php');
                           <h3 style="font-size:0.8rem">Request fxStars</h3>
                           <p style="font-size:0.8rem">Request a specific number of fxStars from friends! They will get informed immediately and may send you the requested ammount with one click.</p>
                           </div>
-                          
+
+
+                          <div class="footbar"></div>
+                          <script src="/js/footbar.js"></script>
 </body>
 </html>
