@@ -129,7 +129,11 @@ require('php/get_fxcoin_count.php');
 
     </div>
 
-                          <div class="relative-main-content">
+
+
+
+
+  <div class="relative-main-content">
                             <div class="content-box">
                               <h2>fxStar</h2>
                               <p>Balance: <strong><?php echo $get_fxcoin_count?> fxStars</strong></p>
@@ -138,7 +142,7 @@ require('php/get_fxcoin_count.php');
 
 
 
-<div class="main-content-mob">
+                          <div class="main-content-mob">
 
               <ul class="main-flex-container">
                   <li class="main-items">
@@ -168,13 +172,15 @@ require('php/get_fxcoin_count.php');
                   </li>
               </ul>
 
-    </div>
+                          </div>
 
 
 
 
-                          
-                          
+
+
+
+
                           <div class="description" style="margin-bottom:55px;font-size:0.6rem;">
                           <h2 style="width:100%;font-size:1rem">fxStar Functions</h2>
                           <h3 style="font-size:0.8rem">Buy fxStars</h3>
@@ -192,10 +198,25 @@ require('php/get_fxcoin_count.php');
 
                           <h3 style="font-size:0.8rem">Request fxStars</h3>
                           <p style="font-size:0.8rem">Request a specific number of fxStars from friends! They will get informed immediately and may send you the requested ammount with one click.</p>
-                          </div>
+                        </div>
+  </div>
+
+
+
+
+                          
+                          
+                        
 
 
                           <div class="footbar"></div>
                           <script src="/js/footbar.js"></script>
+
+
+  <script>
+                          $('#page-header').html('fxStar');
+$('#page-header').attr('href','/wallet');
+</script>
+
 </body>
 </html>

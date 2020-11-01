@@ -71,6 +71,20 @@ $('.header').html(`
 
 
 
+    $('.header-sidebar').html(`
+<a href="/" style="margin-right:auto"><img src="/images/icons/toolbar/back.png" width="22px" height="22px"></a>
+       
+        <nav>
+            <ul class="nav__links">
+                
+                <li><a href="/search"><img src="/images/icons/toolbar/search.png" width="22px" height="22px"></a></li>
+            </ul>
+        </nav>
+
+                     `);
+
+
+
 
     
 

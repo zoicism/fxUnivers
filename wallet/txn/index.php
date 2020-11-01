@@ -128,8 +128,8 @@ require('../../php/get_trans.php');
 
 
   <div class="relative-main-content">
-  <div class="content-box" style="width:80%;height:90%;">
-                          <h2>fxStar Transactions</h2>
+  <div class="content-box" id="txn-content-box">
+                          <h2>Transactions</h2>
                           
 <div class="row">
                           <div class="col" style="overflow:hidden"><h3>Outgoing fxStars</h3></div>
@@ -217,6 +217,9 @@ require('../../php/get_trans.php');
 </script>
 <script src="/js/notif_msg.js"></script>
 
-
+<script>
+                          $('#page-header').html('fxStar');
+$('#page-header').attr('href','/wallet');
+</script>
 </body>
 </html>                         

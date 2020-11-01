@@ -50,15 +50,15 @@ require('../php/get_fxcoin_count.php');
 		<div class="logo-sidebar logo-25"></div>
 		<div>
             <?php
-                    $path="../avatars/";
+                    $path="../../userpgs/avatars/";
                     if(file_exists($path.$get_user_id.'.jpg')) {
-                        echo('<a class="link avatar-sidebar" style="background-image: url(\'../avatars/'.$get_user_id.'.jpg\');"></a>');
+                        echo('<a class="link avatar-sidebar" style="background-image: url(\'../../userpgs/avatars/'.$get_user_id.'.jpg\');"></a>');
                     } elseif(file_exists($path.$get_user_id.'.jpeg')) {
-                        echo('<a class="link avatar-sidebar" style="background-image: url(\'../avatars/'.$get_user_id.'.jpeg\');"></a>');
+                        echo('<a class="link avatar-sidebar" style="background-image: url(\'../../userpgs/avatars/'.$get_user_id.'.jpeg\');"></a>');
                     } elseif(file_exists($path.$get_user_id.'.png')) {
-                        echo('<a class="link avatar-sidebar" style="background-image: url(\'../avatars/'.$get_user_id.'.png\');"></a>');
+                        echo('<a class="link avatar-sidebar" style="background-image: url(\'../../userpgs/avatars/'.$get_user_id.'.png\');"></a>');
                     } elseif(file_exists($path.$get_user_id.'.gif')) {
-                        echo('<a class="link avatar-sidebar" style="background-image: url(\'../avatars/'.$get_user_id.'.gif\');"></a>');
+                        echo('<a class="link avatar-sidebar" style="background-image: url(\'../../userpgs/avatars/'.$get_user_id.'.gif\');"></a>');
                     } else {
                         echo('<a class="link avatar-sidebar"></a>');
                     }
@@ -66,7 +66,7 @@ require('../php/get_fxcoin_count.php');
 			<a class="id-sidebar" href="#">@Neo</a>
 		</div>
 		<div class="elements">
-		    <a href="#" class="sidebar-icon fxstar-sidebar" id="sidebar-active">fxStar</a>
+		    <a href="/wallet" class="sidebar-icon fxstar-sidebar" id="sidebar-active">fxStar</a>
 		    <a href="#" class="sidebar-icon fxuniversity-sidebar">fxUniversity</a>
 		    <a href="#" class="sidebar-icon fxpartner-sidebar">fxPartner</a>
 		    <a href="#" class="sidebar-icon fxuniverse-sidebar">fxUniverse</a>
@@ -78,7 +78,16 @@ require('../php/get_fxcoin_count.php');
 			<a href="#" class="sm instagram"></a>
 			<a href="#" class="sm twitter"></a>
 			<a href="#" class="policy">Policy</a>
+
+                          <div class="copyright">
+                          With all due Reserves, © fxUnivers 
+                          </div>
+                          <div class="copyright">
+                          2017-2020 All rights reserved.
+                          </div>
   		</div>
+
+                          
 	</div>
 
 <div class="main-content">
@@ -124,27 +133,41 @@ require('../php/get_fxcoin_count.php');
 
 
 <form id="sendToFndForm">
-                          <p>Select recepient:</p>
-<?php while($row=$get_rel_friends_result2->fetch_assoc()) {
-				   if($row['user1']==$get_user_id) {
-				     $fnd_user_id=$row['user2'];
-				   } else {
-				     $fnd_user_id=$row['user1'];
-				   }
-				   $fnd_user_query = "SELECT * FROM user WHERE id=$fnd_user_id";
-				   $fnd_user_result = mysqli_query($connection, $fnd_user_query) or die(mysqli_error($connection));
-				   $fnd_user_fetch = mysqli_fetch_array($fnd_user_result);
+                          <p>Select a friend:</p>
+<?php
+                          if($get_rel_friends_count>0) {
+                              echo '<select name="sendTo" id="sendToId" class="select-input">';
+                              echo '<option value="" disabled selected>Select</option>';
+                              
+                              while($row=$get_rel_friends_result2->fetch_assoc()) {
+                                  if($row['user1']==$get_user_id) {
+                                      $fnd_user_id=$row['user2'];
+                                  } else {
+                                      $fnd_user_id=$row['user1'];
+                                  }
+                                  $fnd_user_query = "SELECT * FROM user WHERE id=$fnd_user_id";
+                                  $fnd_user_result = mysqli_query($connection, $fnd_user_query) or die(mysqli_error($connection));
+                                  $fnd_user_fetch = mysqli_fetch_array($fnd_user_result);
+                                  
+                                  echo '<option value="'.$fnd_user_fetch['username'].'">@'.$fnd_user_fetch['username'].'</option>';
+                              }
+                              echo '</select>';
+                          } else {
+                              echo '<p style="color:gray">You need to have at least oen friend.</p>';
+                          }
 				 ?>
+<!--
 				   <span class="toggleSendFinal pointer" style="cursor:pointer;border:1px solid #000;padding-left:5px;padding-right:5px;margin-top:10px;border-radius:3px;"><?php echo '@'.$fnd_user_fetch['username']?></span><span> &#8226; </span>
-				 <?php } ?>
+                          -->
+				
 
-                          
+                          <!--
                           <p>Send to:</p>
-                          <input type="text" name="sendTo" id="sendToId" readonly/>
+                          <input type="text" name="sendTo" id="sendToId" readonly/>-->
 
                           <p>Amount:</p>
                           <input type="number" class="num-into num-input" name="sendAmnt" id="sendToAmnt" min="1" max="1000000" value="1" required/>
-                          <p>Total cost (fxStars): <span id="totalSendCost">2</span></p>
+                          <p>Total cost: <strong><span id="totalSendCost">2</span> fxStars</strong></p>
 
 
 

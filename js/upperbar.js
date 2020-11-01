@@ -58,7 +58,7 @@ if(screen.width>628) {
 
 
 $('.header').html(`
-<a href="/" style="margin-right:auto"><img src="/images/icons/toolbar/back.png" width="22px" height="22px"></a>
+<a  style="margin-right:auto" onclick="goBack()"><img src="/images/icons/toolbar/back.png" width="22px" height="22px"></a>
        
         <nav>
             <ul class="nav__links">
@@ -72,11 +72,12 @@ $('.header').html(`
 
 
     $('.header-sidebar').html(`
-<a href="/" style="margin-right:auto"><img src="/images/icons/toolbar/back.png" width="22px" height="22px"></a>
+
        
         <nav>
             <ul class="nav__links">
-                
+                <li><a  style="margin-right:auto" onclick="goBack()"><img src="/images/icons/toolbar/back.png" width="22px" height="22px"></a></li>
+<li><a href="" id="page-header"></a></li>
                 <li><a href="/search"><img src="/images/icons/toolbar/search.png" width="22px" height="22px"></a></li>
             </ul>
         </nav>

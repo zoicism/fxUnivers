@@ -59,15 +59,15 @@ require('../php/get_fxcoin_count.php');
 		<div class="logo-sidebar logo-25"></div>
 		<div>
             <?php
-                    $path="../../avatars/";
+                    $path="../../userpgs/avatars/";
                     if(file_exists($path.$get_user_id.'.jpg')) {
-                        echo('<a class="link avatar-sidebar" style="background-image: url(\'../../avatars/'.$get_user_id.'.jpg\');"></a>');
+                        echo('<a class="link avatar-sidebar" style="background-image: url(\'../../userpgs/avatars/'.$get_user_id.'.jpg\');"></a>');
                     } elseif(file_exists($path.$get_user_id.'.jpeg')) {
-                        echo('<a class="link avatar-sidebar" style="background-image: url(\'../../avatars/'.$get_user_id.'.jpeg\');"></a>');
+                        echo('<a class="link avatar-sidebar" style="background-image: url(\'../../userpgs/avatars/'.$get_user_id.'.jpeg\');"></a>');
                     } elseif(file_exists($path.$get_user_id.'.png')) {
-                        echo('<a class="link avatar-sidebar" style="background-image: url(\'../../avatars/'.$get_user_id.'.png\');"></a>');
+                        echo('<a class="link avatar-sidebar" style="background-image: url(\'../../userpgs/avatars/'.$get_user_id.'.png\');"></a>');
                     } elseif(file_exists($path.$get_user_id.'.gif')) {
-                        echo('<a class="link avatar-sidebar" style="background-image: url(\'../../avatars/'.$get_user_id.'.gif\');"></a>');
+                        echo('<a class="link avatar-sidebar" style="background-image: url(\'../../userpgs/avatars/'.$get_user_id.'.gif\');"></a>');
                     } else {
                         echo('<a class="link avatar-sidebar"></a>');
                     }
@@ -87,7 +87,16 @@ require('../php/get_fxcoin_count.php');
 			<a href="#" class="sm instagram"></a>
 			<a href="#" class="sm twitter"></a>
 			<a href="#" class="policy">Policy</a>
+
+                          <div class="copyright">
+                          With all due Reserves, © fxUnivers 
+                          </div>
+                          <div class="copyright">
+                          2017-2020 All rights reserved.
+                          </div>
   		</div>
+
+                          
 	</div>
 
 
@@ -139,7 +148,7 @@ require('../php/get_fxcoin_count.php');
                           <h2>Buy fxStars</h2>
 <p>Number of fxStars to purchase:</p>
                           
-    <input type="number" min="0" max="1000000000" id="fxCoinAmnt" value="1" autocomplete="off">
+    <input type="number" class="num-input" min="0" max="1000000000" id="fxCoinAmnt" value="1" autocomplete="off">
                           
   <p>Total cost: <strong><span id="totalCost">2</span> USD</strong></p>
                           
@@ -149,6 +158,8 @@ require('../php/get_fxcoin_count.php');
 </div>
   </div>
 
+                          <div class="footbar"></div>
+<script src="/js/footbar.js"></script>
 
   <!-- SCRIPTS -->
                           <script>

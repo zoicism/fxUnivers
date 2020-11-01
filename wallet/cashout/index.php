@@ -147,11 +147,11 @@ require('../php/get_fxcoin_count.php');
   </div>
   </div>
 
-
-
-                          <!-- SCRIPTS -->
 <div class="footbar"></div>
 <script src="/js/footbar.js"></script>
+
+                          <!-- SCRIPTS -->
+
 
 <script>
     var notifUserId=<?php echo $get_user_id ?>;
@@ -200,6 +200,10 @@ if(isset($_GET['res']) && $_GET['res']=='success') {
 }
 ?>
 
+<script>
+                          $('#page-header').html('fxStar');
+$('#page-header').attr('href','/wallet');
+</script>
 
 </body>
 </html>

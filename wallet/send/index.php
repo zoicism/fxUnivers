@@ -240,20 +240,13 @@ $('#sendToAmnt').each(function() {
 });
 </script>                
 
+
+
+
+
 <script>
-if(screen.width>480) {
-    var h11=$('#oneone').height();
-    var h12=$('#onetwo').height();
-    var h13=$('#onethree').height();
-    var row1=0;
-    if(h11>row1) row1=h11;
-    if(h12>row1) row1=h12;
-    if(h13>row1) row1=h13;
-    $('#oneone').height(row1);
-    $('#onetwo').height(row1);
-    $('#onethree').height(row1);
-}
+                          $('#page-header').html('fxStar');
+$('#page-header').attr('href','/wallet');
 </script>
-                          
 </body>
 </html>

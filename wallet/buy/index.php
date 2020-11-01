@@ -158,6 +158,8 @@ require('../php/get_fxcoin_count.php');
 </div>
   </div>
 
+                          <div class="footbar"></div>
+<script src="/js/footbar.js"></script>
 
   <!-- SCRIPTS -->
                           <script>
@@ -256,6 +258,11 @@ inputNum.oninput = function() {
     this.value = this.value.slice(0,10);
   }
 }
+</script>
+
+<script>
+                          $('#page-header').html('fxStar');
+$('#page-header').attr('href','/wallet');
 </script>
 </body>
 </html>
