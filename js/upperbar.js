@@ -18,12 +18,27 @@ if(screen.width>628) {
     $('.header-sidebar').html(`
 <nav>
             <ul class="nav__links">
-                <li><a href="/"><img src="/images/icons/toolbar/home.png" width="22px" height="22px"></a></li>
-                <li><a href="/msg/inbox.php"><img src="/images/icons/toolbar/msg.png" width="22px" height="22px"></a></li>
-                <li><a href="/userpgs/notif"><img src="/images/icons/toolbar/notif.png" width="22px" height="22px"></a></li>
-                <li><a href="/search"><img src="/images/icons/toolbar/search.png" width="22px" height="22px"></a></li>
+                <li><a href="/"><img src="../images/icons/toolbar/home.png"></a></li>
+                <li><a href="/msg/inbox.php"><img src="../images/icons/toolbar/msg.png"></a></li>
+                <li><a href="/userpgs/notif"><img src="../images/icons/toolbar/notif.png"></a></li>
+                <li><a href="/search"><img src="../images/icons/toolbar/search.png"></a></li>
+                <li><a href="#" class="openbtn" onclick="openNav()">☰</a></li>
+                
             </ul>
+
         </nav>
+
+        <div id="mySidepanel" class="sidepanel">
+                  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+                  <a href="#">About</a>
+                  <a href="#">Contact</a>
+                  <a href="#">Log out</a>
+                    <div class="socialmedia">
+                      <a href="#" class="facebook"></a>
+                      <a href="#" class="instagram"></a>
+                      <a href="#" class="twitter"></a>
+                    </div>
+                </div>
 `);
 
 
@@ -76,11 +91,41 @@ $('.header').html(`
        
         <nav>
             <ul class="nav__links">
-                <li><a  style="margin-right:auto" onclick="goBack()"><img src="/images/icons/toolbar/back.png" width="22px" height="22px"></a></li>
+                <li><a  class="blur" onclick="goBack()"><img src="/images/icons/toolbar/back.png" width="22px" height="22px"></a></li>
 <li><a href="" id="page-header"></a></li>
-                <li><a href="/search"><img src="/images/icons/toolbar/search.png" width="22px" height="22px"></a></li>
+                <li><a href="#" class="openbtn" onclick="openNav()">☰</a></li>
             </ul>
         </nav>
+
+<div id="mySidepanel" class="sidepanel">
+                  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+                    <div class="sidebar-m">
+                        <div>
+                            <a href="#" class="avatar-m"></a>
+                        </div>
+                    </div>
+                    <a class="id-sidebar-m menu-info" href="#">@Neo</a>
+                    <div class="sidebar-m">
+                        <div class="elements">
+                            <a href="#" class="fxstar-sidebar">fxStar</a>
+                            <a href="#" class="fxuniversity-sidebar">fxUniversity</a>
+                            <a href="#" class="fxpartner-sidebar">fxPartner</a>
+                            <a href="#" class="fxuniverse-sidebar">fxUniverse</a>
+                            <a href="#" class="fxsonet-sidebar">fxSonet</a>
+                        </div>
+                    </div>
+                    <div class="menu-info">
+                        <a href="#" class="policy-m">Policy</a>
+                        <a href="#">About</a>
+                        <a href="#">Contact</a>
+                        <a href="#">Log out</a>
+                    </div>
+                    <div class="socialmedia socialmedia-m">
+                      <a href="#" class="facebook"></a>
+                      <a href="#" class="instagram"></a>
+                      <a href="#" class="twitter"></a>
+                    </div>
+                </div>
 
                      `);
 
@@ -108,6 +153,26 @@ $('.header').html(`
 	$('#current').html('fxMsg');
     }
 }
+
+
+
+function openNav() {
+            if(screen.width<629) {
+              document.getElementById("mySidepanel").style.width = "70%";
+              $('.blur').css('filter','blur(5px)');
+            } else {
+              document.getElementById("mySidepanel").style.width = "20%";
+            }
+          }
+
+          function closeNav() {
+            document.getElementById("mySidepanel").style.width = "0";
+            if (screen.width<629) {
+              $('.blur').css('filter','blur(0)');
+            }
+            
+          }
+
 
 function goBack() {
     window.history.back();

@@ -215,6 +215,11 @@ input:focus, textarea:focus, select:focus{
     color:#007FFF;
 }
 
+#txn-content-box {
+	height:90%;
+	width:95%;
+}
+
 .main-section {
     margin-bottom:50px;
 }
@@ -639,6 +644,8 @@ input:focus, textarea:focus, select:focus{
     .main-content-mob {
 	display:none;
     }
+
+    
 }
 
 @media (max-width: 628px) {
@@ -716,10 +723,7 @@ input:focus, textarea:focus, select:focus{
       padding:2em;
   }
 
-  .content-box #txn-content-box {
-      width:100% !important;
-      height:90%;
-  }
+  
 
   
   .description {

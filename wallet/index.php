@@ -46,7 +46,7 @@ require('php/get_fxcoin_count.php');
 	<div class="header-sidebar"></div>
     <script src="/js/upperbar.js"></script>
 
-
+<div class="blur">
     
 	<div class="sidebar">
 		<div class="logo-sidebar logo-25"></div>
@@ -75,19 +75,9 @@ require('php/get_fxcoin_count.php');
 		    <a href="#" class="sidebar-icon fxsonet-sidebar">fxSonet</a>
 		    
 	    </div>
-	    <div class="socialmedia">
-			<a href="#" class="sm facebook"></a>
-			<a href="#" class="sm instagram"></a>
-			<a href="#" class="sm twitter"></a>
-			<a href="#" class="policy">Policy</a>
-
-                          <div class="copyright">
-                          With all due Reserves, © fxUnivers 
+                          <div class="policy">
+                          With all due Reserves, © fxUnivers 2017-2020 All rights reserved. <a href="#">Policy</a>
                           </div>
-                          <div class="copyright">
-                          2017-2020 All rights reserved.
-                          </div>
-  		</div>
 	</div>
 
 
@@ -205,13 +195,19 @@ require('php/get_fxcoin_count.php');
 
 
                           
-                          
+ </div>                         
                         
 
 
-                          <div class="footbar"></div>
+                          <div class="footbar blur"></div>
                           <script src="/js/footbar.js"></script>
 
+
+
+
+
+
+                          <!-- SCRIPTS -->
 
   <script>
                           $('#page-header').html('fxStar');
