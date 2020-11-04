@@ -46,6 +46,8 @@ require('../php/get_fxcoin_count.php');
 	<div class="header-sidebar"></div>
     <script src="/js/upperbar.js"></script>
 
+    <div class="blur mobile-main">
+
     <div class="sidebar">
 		<div class="logo-sidebar logo-25"></div>
 		<div>
@@ -180,13 +182,15 @@ require('../php/get_fxcoin_count.php');
   </div>
   </div>
 
+</div>
+                          
 
-                          <!-- SCRIPTS -->
 
-
-<div class="footbar"></div>
+<div class="footbar blur"></div>
 <script src="/js/footbar.js"></script>
 
+
+                          <!-- SCRIPTS -->
 <script>
     var notifUserId=<?php echo $get_user_id ?>;
 </script>

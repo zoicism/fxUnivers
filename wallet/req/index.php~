@@ -252,5 +252,10 @@ if(screen.width>480) {
 </script>
 
 
+<script>
+                          $('#page-header').html('fxStar');
+$('#page-header').attr('href','/wallet');
+</script>
+
 </body>
 </html>

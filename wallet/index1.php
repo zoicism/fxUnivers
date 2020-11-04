@@ -46,7 +46,7 @@ require('php/get_fxcoin_count.php');
 	<div class="header-sidebar"></div>
     <script src="/js/upperbar.js"></script>
 
-<div class="mobile-main blur">
+<div class="movile-main blur">
     
 	<div class="sidebar">
 		<div class="logo-sidebar logo-25"></div>

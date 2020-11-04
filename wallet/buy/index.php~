@@ -259,5 +259,10 @@ inputNum.oninput = function() {
   }
 }
 </script>
+
+<script>
+                          $('#page-header').html('fxStar');
+$('#page-header').attr('href','/wallet');
+</script>
 </body>
 </html>

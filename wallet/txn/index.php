@@ -45,6 +45,7 @@ require('../../php/get_trans.php');
 <body>
 	<div class="header-sidebar"></div>
     <script src="/js/upperbar.js"></script>
+    <div class="blur mobile-main">
 
     <div class="sidebar">
 		<div class="logo-sidebar logo-25"></div>
@@ -205,9 +206,9 @@ require('../../php/get_trans.php');
 
   </div>
   </div>
+</div>
 
-
-<div class="footbar"></div>
+<div class="footbar blur"></div>
 <script src="/js/footbar.js"></script>
 
 

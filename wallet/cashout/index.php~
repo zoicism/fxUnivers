@@ -200,6 +200,10 @@ if(isset($_GET['res']) && $_GET['res']=='success') {
 }
 ?>
 
+<script>
+                          $('#page-header').html('fxStar');
+$('#page-header').attr('href','/wallet');
+</script>
 
 </body>
 </html>
