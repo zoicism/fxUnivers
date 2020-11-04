@@ -117,10 +117,10 @@
 }
 
 .home {
-    background-image:url('http://localhost/images/logo/logo-100.png');
+    background-image:url('../images/logo/logo-100.png');
 }
 .home#active {
-    background-image:url('http://localhost/images/logo/logo-100.png');
+    background-image:url('../images/logo/logo-100.png');
     opacity:1;
 }
 

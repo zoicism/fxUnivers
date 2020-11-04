@@ -503,7 +503,7 @@ input:focus, textarea:focus, select:focus{
 
 .avatar {
     background-image:url('../images/background/avatar.png');
-    background-size: inherit;
+    background-size:cover;
     background-repeat: no-repeat;
     background-position: center center;
     border-radius:50%;
@@ -725,6 +725,9 @@ input:focus, textarea:focus, select:focus{
 }
 
 @media (max-width: 628px) {
+    .mobile-main {
+margin-bottom:70px;
+}
   .upperbar {
       display: flex;
       justify-content: space-around;
@@ -764,14 +767,21 @@ input:focus, textarea:focus, select:focus{
 	display:flex;
 	justify-content:space-between;
   }
-
-  .header {
-      padding: 15px 7%;
-  }
+.header {
+padding:0;
+margin: 0 0 20px 0;
+display: block;
+height: 50px;
+}
+.header nav {
+width:100%;
+}
   
   .header-sidebar {
       padding:0;
-      margin:0;
+      margin:0 0 20px 0;
+      display:block;
+height:50px;
   }
 
   .header-sidebar nav {
@@ -830,12 +840,28 @@ input:focus, textarea:focus, select:focus{
 
   .nav__links {
       justify-content:space-between;
+display:flex;
+position:fixed;
+align-items:center;
+background-color:#efefef;
+height:50px;
+width:100%;
+border-bottom:1px solid #dfdddd;
   }
   
   .nav__links li {
       padding:0;
       margin:10px;
   }
+
+.nav__links li a {
+box-shadow:none;
+margin:0;
+}
+
+.nav__links li a:focus {
+box-shadow:none;
+}
 
   #page-header {
       font-weight:bold;
