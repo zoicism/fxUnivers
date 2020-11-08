@@ -35,10 +35,10 @@ if(screen.width>628) {
     $('.header-sidebar').html(`
 <nav>
             <ul class="nav__links">
-                <li><a href="/"><img src="../images/icons/toolbar/home.png"></a></li>
-                <li><a href="/msg/inbox.php"><img src="../images/icons/toolbar/msg.png"></a></li>
-                <li><a href="/userpgs/notif"><img src="../images/icons/toolbar/notif.png"></a></li>
-                <li><a href="/search"><img src="../images/icons/toolbar/search.png"></a></li>
+                <li><a href="/"><img src="/images/icons/toolbar/home.png"></a></li>
+                <li><a href="/msg/inbox.php"><img src="/images/icons/toolbar/msg.png"></a></li>
+                <li><a href="/userpgs/notif"><img src="/images/icons/toolbar/notif.png"></a></li>
+                <li><a href="/search"><img src="/images/icons/toolbar/search.png"></a></li>
                 <li><a href="#" class="openbtn" onclick="openNav()">☰</a></li>
                 
             </ul>
@@ -155,11 +155,11 @@ $('.header').html(`
                     <a class="id-sidebar-m menu-info" href="#">@Neo</a>
                     <div class="sidebar-m">
                         <div class="elements">
-                            <a href="#" class="fxstar-sidebar">fxStar</a>
-                            <a href="#" class="fxuniversity-sidebar">fxUniversity</a>
-                            <a href="#" class="fxpartner-sidebar">fxPartner</a>
-                            <a href="#" class="fxuniverse-sidebar">fxUniverse</a>
-                            <a href="#" class="fxsonet-sidebar">fxSonet</a>
+                            <a href="/wallet" class="sidebar-icon fxstar-sidebar">fxStar</a>
+                            <a href="/userpgs/fxuniversity" class="sidebar-icon fxuniversity-sidebar">fxUniversity</a>
+                            <a href="/userpgs/partner" class="sidebar-icon fxpartner-sidebar">fxPartner</a>
+                            <a href="/" class="sidebar-icon fxuniverse-sidebar">fxUniverse</a>
+                            <a href="/" class="sidebar-icon fxsonet-sidebar">fxSonet</a>
                         </div>
                     </div>
                     <div class="menu-info">

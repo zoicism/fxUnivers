@@ -364,7 +364,7 @@ input:focus, textarea:focus, select:focus{
   max-width: 98rem;
   padding:0;
   display:flex;
-  justify-content:space-between;
+  justify-content:center;
   flex-flow:row wrap;
 }
 
@@ -701,6 +701,10 @@ input:focus, textarea:focus, select:focus{
 }
 
 @media (min-width:629px) {
+
+    .content-box {
+	margin-top:50px;
+    }
     
     .footer {
 	width:100%;
@@ -820,7 +824,7 @@ height:50px;
   }
 
   .main-content-mob {
-      margin:auto auto 50px auto;
+      margin:auto auto 0 auto;
       padding:0;
       width:100%;
       display:flex;

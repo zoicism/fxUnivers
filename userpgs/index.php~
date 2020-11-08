@@ -80,13 +80,13 @@ require('../php/get_stu_stucourse.php');
                     if(file_exists($path.$get_user_id.'.jpg')) {
                         echo('<a class="link avatar" style="background-image: url(\'avatars/'.$get_user_id.'.jpg\');"></a>');
                     } elseif(file_exists($path.$get_user_id.'.jpeg')) {
-                        echo('<a class="link avatar" style="margin:auto;background-image: url(\'avatars/'.$get_user_id.'.jpeg\');"></a>');
+                        echo('<a class="link avatar" style="background-image: url(\'avatars/'.$get_user_id.'.jpeg\');"></a>');
                     } elseif(file_exists($path.$get_user_id.'.png')) {
-                        echo('<a class="link avatar" style="margin:auto;background-image: url(\'avatars/'.$get_user_id.'.png\');"></a>');
+                        echo('<a class="link avatar" style="background-image: url(\'avatars/'.$get_user_id.'.png\');"></a>');
                     } elseif(file_exists($path.$get_user_id.'.gif')) {
-                        echo('<a class="link avatar" style="margin:auto;background-image: url(\'avatars/'.$get_user_id.'.gif\');"></a>');
+                        echo('<a class="link avatar" style="background-image: url(\'avatars/'.$get_user_id.'.gif\');"></a>');
                     } else {
-                        echo('<a class="link avatar" style="margin:auto;"></a>');
+                        echo('<a class="link avatar"></a>');
                     }
                 ?>
                                 <a class="id" href="#"><?php echo '@'.$username?></a>
@@ -105,35 +105,35 @@ require('../php/get_stu_stucourse.php');
 	<section style="margin-bottom:50px">
 		<ul class="flex-container">
 			<li class="items">
-                                <a href="#" class="link">
+                                <a href="/wallet" class="link">
                                         <div class="head">fxStar
                                          <p class="sub"><?php echo $get_fxcoin_count?> fxStars</p>
                                         </div>
                                 </a>
                         </li>
                         <li class="items">
-                                <a href="#"class="link">
+                                <a href="/userpgs/fxuniversity" class="link">
                                         <div class="head">fxUniversity
                                          <p class="sub"><?php echo $course_count+$gss_count?> courses</p>
                                         </div>
                                 </a>
                         </li>
                         <li class="items">
-                                <a href="#"class="link">
+                                <a href="/userpgs/partner" class="link">
                                         <div class="head">fxPartner
                                                 <p class="sub"><?php echo $pTotal ?> fxStars</p>
                                         </div>
                                 </a>
                         </li>
                         <li class="items">
-                                <a href="#"class="link">
+                                <a onclick="coming()" class="link">
                                         <div class="head">fxUniverse
                                                 <p class="sub">coming soon</p>
                                         </div>
                                 </a>
                         </li>
                         <li class="items">
-                                <a href="#"class="link">
+                                <a onclick="coming()" class="link">
                                         <div class="head">fxSonet
                                                 <p class="sub">coming soon</p>
                                         </div>
@@ -143,9 +143,19 @@ require('../php/get_stu_stucourse.php');
                     
 	</section>
 
-    <div class="footbar">
-</div>
+<div class="footer"></div>
+<script src="/js/footer.js"></script>
+
+                    
+<div class="footbar"></div>
 <script src="/js/footbar.js"></script>
 
+<script>
+function coming() {
+    alert('Coming soon for public!');
+}
+</script>
+
+                    
 </body>
 </html>

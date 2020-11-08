@@ -30,63 +30,106 @@ require('../../wallet/php/get_fxcoin_count.php');
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
-    <head>
+<html>
+<head>
+	<title>fxStar</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">   
-    <title>fxUnivers</title>
-    <link rel="stylesheet" href="/css/style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/icons.css">
     <link rel="stylesheet" href="/css/logo.css">
-    <link rel="stylesheet" href="/css/colors.css">
     <script src="/js/jquery-3.4.1.min.js"></script>
-    </head>
-
-<body>
-
-    <div class="upperbar"></div>
-<script src="/js/upperbar.js"></script>
-
+</head>
     
-<?php
+<body>
+	<div class="header-sidebar"></div>
+    <script src="/js/upperbar.js"></script>
+
+<div class="blur mobile-main">
+    
+	<div class="sidebar"></div>
+	<?php require('../../php/sidebar.php'); ?>
+
+
+
+
+
+
+
+                          
+    <div class="main-content">
+
+              <ul class="main-flex-container">
+                  <li class="main-items">
+                      <a href="/userpgs/instructor" class="link-main">
+                          <div class="head">fxHR</div>
+                      </a>
+                  </li>
+                  <li class="main-items">
+                      <a href="/userpgs/student" class="link-main">
+                          <div class="head">Earnings History</div>
+                      </a>
+                  </li>
+                  
+              </ul>
+
+    </div>
+
+
+
+
+
+  <div class="relative-main-content">
+                            <div class="content-box">
+			    <?php
                 $total=0;
                 while($row=$get_partner_result->fetch_assoc()) {
                     $total+=$row['income'];
                 }
 ?>
-<div class="col-33 left-col">
-<div class="col-1">
-    <div class="main fxpartner-color"></div>
-    <div class="icon col-icon fxpartner-bg" onclick="location.href='/userpgs/fxpartner';"></div>
-    <h3>Income</h3>
-    <p><strong><?php echo $total ?></strong> fxStars</p>
-</div>
+			    	 <h2>fxPartner</h2>
+                              	 <p>Earnings: <strong><?php echo $total ?> fxStars</strong></p>
+                            </div>
+
+
+
+
+
+
+
+			    <div class="description">
+			    <h3>fxPartner Options</h3>
+			    <p><strong>fxHR:</strong> Create an invitation link with which you can invite friends to use fxUnivers. We will share our profit from these new users with you half-half for 90 days.</p>
+			    <p><strong>Earnings History:</strong> The earnings you have made using fxHR.</p>
+    			    </div>
+
+
+    </div>
+
+
+
+    
+
+
 </div>
 
-                    <div class="col-33 mid-col">
-<div class="col-1 pointer fxpartner-color" onclick="location.href='/userpgs/partner/income';">
-                    <h3>Earning History</h3>
-                    <p>Click to see what you have earned</p>
-</div>
-<div class="col-1 pointer fxpartner-color" onclick="location.href='/userpgs/partner/positions';">
-    <h3>fxHR</h3>
-    <p>Click to see the open positions to partner us with in half-half profits.</p>
-</div>
 
-</div>
+<div class="footbar blur"></div>
+                          <script src="/js/footbar.js"></script>
 
-<div class="footer"></div>
-<script src="/js/footer.js"></script>
 
-<div class="footbar"></div>
-<script src="/js/footbar.js"></script>
 
+<!-- SCRIPTS -->
 <script>
-    var notifUserId=<?php echo $get_user_id ?>;
+                          $('#page-header').html('fxPartner');
+$('#page-header').attr('href','/userpgs/partner/index.php');
 </script>
 
-<script src="/js/notif_msg.js"></script>
+
+<!-- fxPartner sidebar active -->
+<script>
+$('.fxpartner-sidebar').attr('id','sidebar-active');
+</script>
 
 </body>
 </html>

@@ -46,39 +46,10 @@ require('php/get_fxcoin_count.php');
 	<div class="header-sidebar"></div>
     <script src="/js/upperbar.js"></script>
 
-<div class="mobile-main blur">
+<div class="blur mobile-main">
     
-	<div class="sidebar">
-		<div class="logo-sidebar logo-25"></div>
-		<div>
-            <?php
-                    $path="../userpgs/avatars/";
-                    if(file_exists($path.$get_user_id.'.jpg')) {
-                        echo('<a class="link avatar-sidebar" style="background-image: url(\'../userpgs/avatars/'.$get_user_id.'.jpg\');"></a>');
-                    } elseif(file_exists($path.$get_user_id.'.jpeg')) {
-                        echo('<a class="link avatar-sidebar" style="background-image: url(\'../userpgs/avatars/'.$get_user_id.'.jpeg\');"></a>');
-                    } elseif(file_exists($path.$get_user_id.'.png')) {
-                        echo('<a class="link avatar-sidebar" style="background-image: url(\'../userpgs/avatars/'.$get_user_id.'.png\');"></a>');
-                    } elseif(file_exists($path.$get_user_id.'.gif')) {
-                        echo('<a class="link avatar-sidebar" style="background-image: url(\'../userpgs/avatars/'.$get_user_id.'.gif\');"></a>');
-                    } else {
-                        echo('<a class="link avatar-sidebar"></a>');
-                    }
-                ?>
-			<a class="id-sidebar" href="#">@Neo</a>
-		</div>
-		<div class="elements">
-		    <a href="/wallet" class="sidebar-icon fxstar-sidebar" id="sidebar-active">fxStar</a>
-		    <a href="#" class="sidebar-icon fxuniversity-sidebar">fxUniversity</a>
-		    <a href="#" class="sidebar-icon fxpartner-sidebar">fxPartner</a>
-		    <a href="#" class="sidebar-icon fxuniverse-sidebar">fxUniverse</a>
-		    <a href="#" class="sidebar-icon fxsonet-sidebar">fxSonet</a>
-		    
-	    </div>
-                          <div class="policy">
-                          With all due Reserves, © fxUnivers 2017-2020 All rights reserved. <a href="#">Policy</a>
-                          </div>
-	</div>
+	<div class="sidebar"></div>
+	<?php require('../php/sidebar.php'); ?>
 
 
 

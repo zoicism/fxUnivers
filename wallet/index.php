@@ -48,37 +48,8 @@ require('php/get_fxcoin_count.php');
 
 <div class="blur mobile-main">
     
-	<div class="sidebar">
-		<div class="logo-sidebar logo-25"></div>
-		<div>
-            <?php
-                    $path="../userpgs/avatars/";
-                    if(file_exists($path.$get_user_id.'.jpg')) {
-                        echo('<a class="link avatar-sidebar" style="background-image: url(\'../userpgs/avatars/'.$get_user_id.'.jpg\');"></a>');
-                    } elseif(file_exists($path.$get_user_id.'.jpeg')) {
-                        echo('<a class="link avatar-sidebar" style="background-image: url(\'../userpgs/avatars/'.$get_user_id.'.jpeg\');"></a>');
-                    } elseif(file_exists($path.$get_user_id.'.png')) {
-                        echo('<a class="link avatar-sidebar" style="background-image: url(\'../userpgs/avatars/'.$get_user_id.'.png\');"></a>');
-                    } elseif(file_exists($path.$get_user_id.'.gif')) {
-                        echo('<a class="link avatar-sidebar" style="background-image: url(\'../userpgs/avatars/'.$get_user_id.'.gif\');"></a>');
-                    } else {
-                        echo('<a class="link avatar-sidebar"></a>');
-                    }
-                ?>
-			<a class="id-sidebar" href="#">@Neo</a>
-		</div>
-		<div class="elements">
-		    <a href="/wallet" class="sidebar-icon fxstar-sidebar" id="sidebar-active">fxStar</a>
-		    <a href="#" class="sidebar-icon fxuniversity-sidebar">fxUniversity</a>
-		    <a href="#" class="sidebar-icon fxpartner-sidebar">fxPartner</a>
-		    <a href="#" class="sidebar-icon fxuniverse-sidebar">fxUniverse</a>
-		    <a href="#" class="sidebar-icon fxsonet-sidebar">fxSonet</a>
-		    
-	    </div>
-                          <div class="policy">
-                          With all due Reserves, © fxUnivers 2017-2020 All rights reserved. <a href="#">Policy</a>
-                          </div>
-	</div>
+	<div class="sidebar"></div>
+	<?php require('../php/sidebar.php'); ?>
 
 
 
@@ -171,23 +142,18 @@ require('php/get_fxcoin_count.php');
 
 
 
-                          <div class="description" style="margin-bottom:55px;font-size:0.6rem;">
-                          <h2 style="width:100%;font-size:1rem">fxStar Functions</h2>
-                          <h3 style="font-size:0.8rem">Buy fxStars</h3>
-<p style="font-size:0.8rem">To use most parts of the fxUnivers you need fxStars and here is where you can buy some. 10 fxStars cost 11 USD.</p>
+                          <div class="description" style="font-size:0.6rem;">
+                          <h3>fxStar Functions</h3>
+                          <p><strong>Buy fxStars:</strong> To use most parts of the fxUnivers you need fxStars and here is where you can buy some. 10 fxStars cost 11 USD.</p>
 
-                          <h3 style="font-size:0.8rem">Cash-out fxStars</h3>
-                          <p style="font-size:0.8rem">With a minimum number of 100 fxStars you can request cash-outs which may take place within 3 business days. Coming soon, you will also be able to request cash-outs with various cryptocurrencies.</p>
+                          <p><strong>Cash-out fxStars:</strong> With a minimum number of 100 fxStars you can request cash-outs which may take place within 3 business days. Coming soon, you will also be able to request cash-outs with various cryptocurrencies.</p>
                           
 
-                          <h3 style="font-size:0.8rem">Transactions</h3>
-                          <p style="font-size:0.8rem">The history of your fxStar transactions.</p>
+                          <p><strong>Transactions:</strong> The history of your fxStar transactions.</p>
 
-                          <h3 style="font-size:0.8rem">Send fxStars</h3>
-                          <p style="font-size:0.8rem">Send your friends fxStars instantly and securely! They will get the fxStars and be informed of the transaction right away.</p>
+                          <p><strong>Send fxStars:</strong> Send your friends fxStars instantly and securely! They will get the fxStars and be informed of the transaction right away.</p>
 
-                          <h3 style="font-size:0.8rem">Request fxStars</h3>
-                          <p style="font-size:0.8rem">Request a specific number of fxStars from friends! They will get informed immediately and may send you the requested ammount with one click.</p>
+                          <p><strong>Request fxStars:</strong> Request a specific number of fxStars from friends! They will get informed immediately and may send you the requested ammount with one click.</p>
                         </div>
   </div>
 
@@ -212,6 +178,12 @@ require('php/get_fxcoin_count.php');
   <script>
                           $('#page-header').html('fxStar');
 $('#page-header').attr('href','/wallet');
+</script>
+
+
+<!-- fxStar sidebar active -->
+<script>
+$('.fxstar-sidebar').attr('id','sidebar-active');
 </script>
 
 </body>
