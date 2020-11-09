@@ -51,12 +51,6 @@ require('php/get_fxcoin_count.php');
 	<div class="sidebar"></div>
 	<?php require('../php/sidebar.php'); ?>
 
-
-
-
-
-
-
                           
     <div class="main-content">
 
