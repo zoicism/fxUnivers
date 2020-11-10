@@ -31,7 +31,7 @@ require('../../wallet/php/get_fxcoin_count.php');
 <!DOCTYPE html>
 <html>
 <head>
-	<title>fxStar</title>
+	<title>fxUniversity</title>
     <meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/styles.css">
@@ -104,7 +104,7 @@ require('../../wallet/php/get_fxcoin_count.php');
 			    echo '<div class="object" onclick="location.href=\'/userpgs/instructor/course_management/course.php?course_id='.$row3['id'].'\';">';
 
 			    echo '<div class="preview">
-				  <img src="/images/background/course.png">
+				  <img src="/images/background/course.svg">
 				</div>
 				<div class="details">';
 

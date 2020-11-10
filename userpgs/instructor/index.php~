@@ -31,7 +31,7 @@ require('../../wallet/php/get_fxcoin_count.php');
 <!DOCTYPE html>
 <html>
 <head>
-	<title>fxStar</title>
+	<title>fxUniversity</title>
     <meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/styles.css">
@@ -80,6 +80,14 @@ require('../../wallet/php/get_fxcoin_count.php');
 
     <div class="relative-main-content">
 
+		<div class="add-box">
+
+		 
+		   Add New Course <img src="/images/background/add.svg" onclick="location.href='/userpgs/instructor/course_management/new_course.php';">
+
+		</div>
+
+
 		<div class="obj-box">
 			      
 
@@ -100,41 +108,40 @@ require('../../wallet/php/get_fxcoin_count.php');
 				</div>
 				<div class="details">';
 
-			    echo '<h3>'.$row3['header'].'</h3>';
+			    echo '<p><strong>'.$row3['header'].'</strong></p>';
 			    
 			    $descrip=preg_replace("/<br\W*?\/>/"," ",$row3['description']);
-			    echo '<p>'.limited($descrip,85).'</p>';
+			    echo '<p>';
+			    echo limited($descrip,85).'</p>';
 
-			    if($row3['cost']>0) {
-			    	echo '<div class="detail-bottom">
-				    <div class="little-box">
+			    
+			    echo '<div class="detail-bottom">
+				    <div class="little-box blue">
 				      '.$coursecounts.' <span>students</span>
-				    </div>
-				  
-				    <div class="little-box price">
+				    </div>';
+				    
+			   if($row3['cost']>0) {	  
+				    echo '<div class="little-box gold">
 				      '.$row3['cost'].' <span>fxStars</span>
-				    </div>
-				  </div>
-				  </div>
-				  </div>';
+				    </div>';
 			    } else {
-			      echo '<div class="detail-bottom">
-				    <div class="little-box">
-				      '.$coursecounts.' <span>students</span>
-				    </div>
-				  
-				    <div class="little-box price">
+			      	   echo '<div class="little-box green" style="padding: 4px 20px;">
 				      Free
-				    </div>
-				  </div>
+				    </div>';
+			    }
+
+			    echo '<div class="little-box gray"><span>'.date("M jS, Y", strtotime($row3['start_date'])).'</span></div>';
+
+			    echo ' </div>
 				  </div>
 				  </div>';
-		            }
 			}
 		  	    
 			      
 
-		 }
+		 } else {
+		   echo '<p style="color:gray">No courses added yet</p>';
+		   }	
 		
 		?>
 		</div>
@@ -163,8 +170,8 @@ require('../../wallet/php/get_fxcoin_count.php');
 
 <!-- SCRIPTS -->
 <script>
-                          $('#page-header').html('fxStar');
-$('#page-header').attr('href','/wallet');
+                          $('#page-header').html('fxUniversity');
+$('#page-header').attr('href','/userpgs/fxuniversity');
 </script>
 
 
