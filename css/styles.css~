@@ -193,6 +193,87 @@ input:focus, textarea:focus, select:focus{
     justify-content:center;
 }
 
+.obj-box {
+    display:flex;
+    flex-flow:row wrap;
+    width:100%;
+    margin-top:50px;
+}
+
+.obj-box .object {
+    border-radius: 25px;
+    background: #efefef;
+    box-shadow:  6px 6px 12px #d9d9d9, 
+		 -6px -6px 12px #ffffff;
+    width:17em;
+    height:19em;
+    margin:2em;
+    opacity:0.8;
+    cursor:pointer;
+}
+
+.obj-box .object:hover {
+    opacity:1;
+}
+
+.obj-box .object:active {
+    border-radius: 25px;
+    background: #efefef;
+    box-shadow: inset 6px 6px 12px #d9d9d9, 
+		inset -6px -6px 12px #ffffff;
+}
+
+
+.obj-box .object .preview {
+    display:flex;
+    width:inherit;
+    height:6em;
+    text-align:center;
+    background-color:#aee4ff6e;
+    border-radius:25px 25px 0 0;
+}
+
+.obj-box .object .preview img {
+    height:5em;
+    margin:auto;
+    opacity:0.4;
+}
+
+.obj-box .object .details {
+    padding:15px;
+    position:relative;
+    height:13em
+}
+
+.obj-box .object h3 {
+    margin-top:0;
+}
+
+.obj-box .object .details .detail-bottom {
+    position:absolute;
+    bottom:15px;
+    display:flex;
+    flex-wrap:wrap;
+}
+
+.obj-box .object .details .little-box {
+    margin-right:5px;
+    padding:4px 10px;
+    font-weight:bold;
+    background:#00B2EE;
+    border-radius:8px;
+    color:white;
+    font-size:15px;
+}
+
+.detail-bottom .price {
+    background:#27BCAB !important;
+}
+
+.little-box span {
+    font-size:13px;
+}
+
 .content-box {
     display:flex;
     flex-flow:column nowrap;
@@ -257,6 +338,7 @@ input:focus, textarea:focus, select:focus{
 .nav__links {
   list-style: none;
   display: flex;
+  z-index:1;
 }
 
 /* * * * * * * * * * > upperbar shadow + width + padding * * * * * * * * * */
@@ -285,7 +367,7 @@ input:focus, textarea:focus, select:focus{
 .sidepanel  {
   width: 0;
   position: fixed;
-  z-index: 1;
+  z-index: 2;
   top: 7%;
   right: 0;
   background-color: #efefef;
@@ -364,7 +446,7 @@ input:focus, textarea:focus, select:focus{
   max-width: 98rem;
   padding:0;
   display:flex;
-  justify-content:space-between;
+  justify-content:center;
   flex-flow:row wrap;
 }
 
@@ -817,14 +899,14 @@ height:50px;
 
   
   .description {
-      display:none;
-      /*margin:auto;
+      
+      margin:auto;
       margin-top:2em;
-      width:95%;*/
+      width:95%;
   }
 
   .main-content-mob {
-      margin:auto auto 0 auto;
+      margin:20px auto 0 auto;
       padding:0;
       width:100%;
       display:flex;

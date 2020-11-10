@@ -23,7 +23,7 @@ require('../../php/get_stu_stucourse.php');
 <!DOCTYPE html>
 <html>
 <head>
-	<title>fxStar</title>
+	<title>fxUniversity</title>
     <meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/styles.css">
@@ -79,6 +79,24 @@ require('../../php/get_stu_stucourse.php');
 
 
 
+<div class="main-content-mob">
+
+<ul class="main-flex-container">
+                  <li class="main-items">
+                      <a href="/userpgs/instructor" class="link-main">
+                          <div class="head">Teach</div>
+                      </a>
+                  </li>
+                  <li class="main-items">
+                      <a href="/userpgs/student" class="link-main">
+                          <div class="head">Learn</div>
+                      </a>
+                  </li>
+                  
+              </ul>
+
+</div>
+
 
 
 
@@ -107,8 +125,8 @@ require('../../php/get_stu_stucourse.php');
 
 <!-- SCRIPTS -->
 <script>
-                          $('#page-header').html('fxStar');
-$('#page-header').attr('href','/wallet');
+                          $('#page-header').html('fxUniversity');
+$('#page-header').attr('href','/userpgs/fxuniversity');
 </script>
 
 
