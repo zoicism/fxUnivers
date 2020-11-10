@@ -27,6 +27,16 @@ a {
   -webkit-tap-highlight-color: transparent;
 }
 
+img {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
 a {
     outline:0;
     cursor:pointer;
@@ -210,6 +220,14 @@ input:focus, textarea:focus, select:focus{
     margin:2em;
     opacity:0.8;
     cursor:pointer;
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .obj-box .object:hover {
