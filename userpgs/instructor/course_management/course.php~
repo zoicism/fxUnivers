@@ -53,93 +53,146 @@ require('../../../php/get_tar_id.php');
 
 ?>
 
-
 <!DOCTYPE html>
-<html lang="en">
-    <head>
+<html>
+<head>
+	<title>fxStar</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-            <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">   
-
-    <title>fxUnivers</title>
-    <link rel="stylesheet" href="/css/style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/icons.css">
     <link rel="stylesheet" href="/css/logo.css">
-    <link rel="stylesheet" href="/css/colors.css">
     <script src="/js/jquery-3.4.1.min.js"></script>
-    </head>
-
+</head>
+    
 <body>
-<div class="upperbar"></div>
-<script src="/js/upperbar.js"></script>
+  <div class="header-sidebar"></div>
+  <script src="/js/upperbar.js"></script>
+  
+  <div class="blur mobile-main">
+    
+    <div class="sidebar"></div>
+    <?php require('../../../php/sidebar.php'); ?>
+    
+    <div class="main-content">
+      
+      <ul class="main-flex-container">
+        <li class="main-items">
+                      <a href="/userpgs/instructor" class="link-main" id="active-main">
+                        <div class="head">Teach</div>
+                      </a>
+        </li>
+        <li class="main-items">
+          <a href="/userpgs/student" class="link-main">
+            <div class="head">Learn</div>
+          </a>
+        </li>
+        
+      </ul>
+      
+    </div>
+          
+
+    <div class="relative-main-content">
+
+      <div class="course-content">
+	<div class="left-content">
+	  <!-- VIDEO -->
+	  <?php
+	   $path='videos/';
+	   $file_ex=glob($path.$course_id.'.*');
+	   if(count($file_ex)>0) {
+	      $vid_arr=explode('.', $file_ex[0]);
+	      $vid_ext=end($vid_arr);
+	  ?>
+
+	  <video width="560" height="315" controls>
+            <source src="<?php echo 'videos/'.$course_id.'.'.$vid_ext ?>" type="video/<?php echo $vid_ext?>"> 
+	  </video>
+
+	  <!-- Title, description, and info -->
+	  <?php
+	   } else {
+
+	     if($user_type=='instructor') {
+	   ?>
+
+	   <div class="video-placeholder" style="cursor:pointer">
+         	   <img src="/images/background/vid_upload.png">
+
+		   
+		   	   <p>Click to upload a video</p>	
+	   </div>
 
 
-<div class="col-66 left-col">
-    <div class="main fxuniversity-color"></div>
-    <div class="icon col-icon fxuniversity-bg" onclick="location.href='/userpgs/fxuniversity';"></div>
 
-  <?php
-    $path='videos/';
-    $file_ex=glob($path.$course_id.'.*');
-    if(count($file_ex)>0) {
-       $vid_arr=explode('.', $file_ex[0]);
-       $vid_ext=end($vid_arr);
-  ?>
-<div style="text-align:center">
-       <video width="560" height="315" controls>
-         <source src="<?php echo 'videos/'.$course_id.'.'.$vid_ext ?>" type="video/<?php echo $vid_ext?>"> 
-       </video>
-   </div>
-  <?php
-    } 
-    echo '<h2>'.$header.'</h2>';
-    echo '<p>'.$description.'</p>';
-    echo '<p style="margin-top:20px">by <strong><a href="/user/'.$tar_user_fetch['fname'].'">'.$tar_user_fetch['fname'].' '.$tar_user_fetch['lname'].' @'.$tar_user_fetch['username'].'</a></strong></p>';
-    echo '<p><strong>'.$class_num.'</strong> classes</p>';
-    echo '<p><strong>'.$cost.'</strong> fxStars</p>';
-  ?>
-</div>
+	   <?php
+	   } else {
+
+	   //video placeholder for other users
+	   ?>
 
 
-
-<div class="col-33 right-col">
 
 <?php
-        if($user_type=='instructor') {
+}
+	   }
+ 
+	     echo '<h2>'.$header.'</h2>';
+             echo '<p>'.$description.'</p>';
 ?>
-<div class="col-1 pointer fxuniversity-color" onclick="location.href='/userpgs/instructor/course_management/edit_course.php?course_id=<?php echo $course_id?>';">
-                                     <h3>Edit course</h3>
-                                     <p>Click to edit course.</p>
-     </div>
-  <div class="col-1 pointer fxuniversity-color" onclick="location.href='/userpgs/instructor/class/new_class.php?course_id=<?php echo $course_id?>';">
-                <h3>Add class</h3>
-                <p>Click to add a new class.</p>
-  </div>
+	  
+<div class="detail-bottom">
+
+	  <div class="little-box violet">
+	    <?php
+	    echo '<a href="/user/'.$tar_user_fetch['fname'].'">'.$tar_user_fetch['fname'].' '.$tar_user_fetch['lname'].' @'.$tar_user_fetch['username'].'</a>';
+	    ?>
+	  </div>
 
 <?php
-           } else {
-             if($user_type=='neither') {
-?>
-                 <div class="col-1 pointer fxuniversity-color" onclick="location.href='/wallet/purchase?item=course&no=<?php echo $course_id?>';">
-                 <h3>Purchase</h3>
-                 <p><?php echo $cost ?> fxStars</p>
-                 </div>
-<?php
-             }
-?>
-
-             <div class="col-1 pointer fxuniversity-color" id="examId">
-             <h3>Exam</h3>
-             <p>Click to take the exam and earn a certificate.</p>
-             </div>
-<?php
-        }
+$coursecounter_q="SELECT * FROM stucourse WHERE course_id=".$course_id;
+                            $coursecounter_r=mysqli_query($connection,$coursecounter_q);
+                            $coursecounts=mysqli_num_rows($coursecounter_r);
 ?>
 
 
-<?php
+	<div class="little-box blue">
+	  <?php echo $coursecounts.' <span>students</span>'; ?>
+	</div>
+
+
+
+	  <div class="little-box orange">
+	    <?php echo $class_num.' <span>sessions</span>'; ?>
+	  </div>
+
+	  <?php
+	  if($row3['cost']>0) {	  
+				    echo '<div class="little-box gold">
+				      '.$row3['cost'].' <span>fxStars</span>
+				    </div>';
+			    } else {
+			      	   echo '<div class="little-box green" style="padding: 4px 20px;">
+				      Free
+				    </div>';
+			    }
+
+echo '<div class="little-box gray"><span>'.date("M jS, Y", strtotime($s_date)).'</span></div>';
+
+			    ?>
+ </div>
+
+
+
+
+
+	  
+	</div>
+	<div class="right-content">
+	  <?php
                 require('../../../php/limit_str.php');
-echo '<h3 style="text-align:center">Classes</h3>';
+echo '<div class="add-box">Sessions <img src="/images/background/add.svg"></div>';
                 if($class_result->num_rows>0) {
                     while($row=$class_result->fetch_assoc()) {
                         if($user_type=='instructor' || $user_type=='student') {
@@ -160,56 +213,35 @@ echo '<h3 style="text-align:center">Classes</h3>';
                     }
                     $class_result->free();
                 } else {
-                    echo '<p style="color:gray;text-align:center;">No classes yet.</p>';
+                    echo '<p style="color:gray;text-align:center;">No sessions yet.</p>';
                 }
  ?>
-</div>
+	</div>
+      </div>
+      
+            
+    </div>
+
+
+  </div>
+  
+
+  <div class="footbar blur"></div>
+  <script src="/js/footbar.js"></script>
 
 
 
-
-
-
-
-
-<div class="footer"></div>
-<script src="/js/footer.js"></script>
-
-<div class="footbar"></div>
-<script src="/js/footbar.js"></script>
-
-<script>
-    var notifUserId=<?php echo $get_user_id ?>;
-</script>
-
-<script src="/js/notif_msg.js"></script>
-
-                
-
-
-
-
-
-<script>
-$(document).ready(function() {
-    $('#examId').click(function(e) {
-        if('<?php echo $user_type?>'=='student') {
-            if(<?php echo $get_exam_count?> > 0) {
-                window.location.href="/userpgs/instructor/exam/take_exam.php?q_id=<?php echo $get_exam_fetch['id']?>&course_id=<?php echo $course_id?>";
-            } else {
-                alert('No exam added by the instructor yet.');
-            }
-        } else if('<?php echo $user_type?>'=='neither') {
-            alert('You need to purchase the course first.');
-        }
-    });
-});
-</script>
-
-<script>
-function unpurchased() {
-  alert("You need to purchase the course first. ");
-}
-</script>
+  <!-- SCRIPTS -->
+  <script>
+    $('#page-header').html('fxUniversity');
+    $('#page-header').attr('href','/userpgs/fxuniversity');
+  </script>
+  
+  
+  <!-- fxUniversity sidebar active -->
+  <script>
+    $('.fxuniversity-sidebar').attr('id','sidebar-active');
+  </script>
+  
 </body>
 </html>

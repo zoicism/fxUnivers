@@ -62,142 +62,212 @@ require('../../../php/get_tar_id.php');
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
-    <head>
+<html>
+<head>
+	<title>fxStar</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-            <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">   
-
-    <title>fxUnivers</title>
-    <link rel="stylesheet" href="/css/style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/icons.css">
     <link rel="stylesheet" href="/css/logo.css">
-    <link rel="stylesheet" href="/css/colors.css">
-    <link href="https://cdn.jsdelivr.net/timepicker.js/latest/timepicker.min.css" rel="stylesheet">
     <script src="/js/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/timepicker.js/latest/timepicker.min.js"></script>
-    </head>
-
+</head>
+    
 <body>
-
-    <div class="upperbar"></div>
-<script src="/js/upperbar.js"></script>
-
-<div class="col-66 left-col">
+  <div class="header-sidebar"></div>
+  <script src="/js/upperbar.js"></script>
+  
+  <div class="blur mobile-main">
     
-    <div class="main fxuniversity-color"></div>
-    <div class="icon col-icon fxuniversity-bg" onclick="location.href='/userpgs/fxuniversity';"></div>
-<?php
-    $path='live/uploads/';
-$file_ex=glob($path.$class_id.'.*');
-if(count($file_ex)>0) {
-    $vid_arr=explode('.', $file_ex[0]);
-    $vid_ext=end($vid_arr);
-?>
-
-    <video width="560" height="315" controls>
-    <source src="<?php echo 'live/uploads/'.$class_id.'.'.$vid_ext ?>" type="video/<?php echo $vid_ext?>">
-    </video>
-
-    <?php
-}
-                echo '<h2>'.$header.'</h2>';
-
+    <div class="sidebar"></div>
+    <?php require('../../../php/sidebar.php'); ?>
     
-
-                echo '<p style="text-align:left">'.$description.'</p>';
-                echo '<p style="margin-top:20px">By: <strong><a href="/user/'.$tar_user_fetch['fname'].'">'.$tar_user_fetch['fname'].' '.$tar_user_fetch['lname'].' @'.$tar_user_fetch['username'].'</a></strong></p>';
-                echo '<p>Course: <strong><a href="/userpgs/instructor/course_management/course.php?course_id='.$course_id.'">'.$get_course_fetch["header"].'</a></strong></p>';
-  ?>
-
-
-<div class="col-1">
-    <h3>Files</h3>
-<?php
-    if($gcf_count>0) {
-        while($class_fs=$gcf_result->fetch_assoc()) {
-            if($user_type=='instructor') {
-                echo '<p><a href="dl_file.php?file=' . urlencode($class_fs['fileName']) . '">' . $class_fs['fileName'] . '</a> <a href="del_file.php?file_name='.$class_fs['fileName'].'&course_id='.$course_id.'&class_id='.$class_id.'" style="color:red">[delete]</a></p>';
-            } else {
-                echo '<p><a href="dl_file.php?file=' . urlencode($class_fs['fileName']) . '">' . $class_fs['fileName'] . '</a></p>';
-            }
-        }
-    } else {
-        echo '<p style="color:gray">No files yet</p>';
-    }
-?>
-  </div>
-  </div>
-
-    
-
-<div class="col-33 right-col">
-  <?php if($user_type=='instructor') { ?>
-    <div class="col-1 pointer fxuniversity-color" onclick="location.href='/userpgs/instructor/class/edit_class.php?course_id=<?php echo $course_id?>&class_id=<?php echo $class_id?>';">
-    <h3>Edit class</h3>
-    <p>Click to edit class.</p>
+    <div class="main-content">
+      
+      <ul class="main-flex-container">
+        <li class="main-items">
+                      <a href="/userpgs/instructor" class="link-main" id="active-main">
+                        <div class="head">Teach</div>
+                      </a>
+        </li>
+        <li class="main-items">
+          <a href="/userpgs/student" class="link-main">
+            <div class="head">Learn</div>
+          </a>
+        </li>
+        
+      </ul>
+      
     </div>
-<?php } ?>
-  <div class="col-1 pointer fxuniversity-color">
-           <h3>Live class</h3>
-           <p>Click to enter the live class.</p>
-              <?php echo '<form action="/userpgs/instructor/class/live/#'.$class_id.'" method="POST"><input type="hidden" name="course_id" value="'.$course_id.'"><input type="hidden" name="class_id" value="'.$class_id.'"><input type="submit" value="Enter"></form>';?>    
-           
-  </div>
+          
+
+    <div class="relative-main-content">
+
+      <div class="course-content">
+	<div class="left-content">
+	  <!-- VIDEO -->
+	  <?php
+	   $path='videos/';
+	   $file_ex=glob($path.$course_id.'.*');
+	   if(count($file_ex)>0) {
+	      $vid_arr=explode('.', $file_ex[0]);
+	      $vid_ext=end($vid_arr);
+	  ?>
+
+	  <video width="560" height="315" controls>
+            <source src="<?php echo 'videos/'.$course_id.'.'.$vid_ext ?>" type="video/<?php echo $vid_ext?>"> 
+	  </video>
+
+	  <!-- Title, description, and info -->
+	  <?php
+	   } else {
+
+	     if($user_type=='instructor') {
+	   ?>
+
+	   <div class="video-placeholder" style="cursor:pointer">
+         	   <img src="/images/background/vid_upload.png">
+
+		   
+		   	   <p>Click to upload a video</p>	
+	   </div>
 
 
-<h3 style="text-align:center;">Classes</h3>
+
+	   <?php
+	   } else {
+
+	   //video placeholder for other users
+	   ?>
+
+
+
 <?php
+}
+	   }
+ 
+	     echo '<h2>'.$header.'</h2>';
+             echo '<p>'.$description.'</p>';
+?>
+	  
+<div class="detail-bottom">
+
+	  <div class="little-box gray">
+	    <?php
+	    echo '<a href="/user/'.$tar_user_fetch['fname'].'">'.$tar_user_fetch['fname'].' '.$tar_user_fetch['lname'].' @'.$tar_user_fetch['username'].'</a>';
+	    ?>
+	  </div>
+
+<?php
+$coursecounter_q="SELECT * FROM stucourse WHERE course_id=".$course_id;
+                            $coursecounter_r=mysqli_query($connection,$coursecounter_q);
+                            $coursecounts=mysqli_num_rows($coursecounter_r);
+?>
+
+
+	<div class="little-box blue">
+	  <?php echo $coursecounts.' <span>students</span>'; ?>
+	</div>
+
+
+
+	  <div class="little-box gray">
+	    <?php echo $class_num.' <span>sessions</span>'; ?>
+	  </div>
+
+	  <?php
+	  if($row3['cost']>0) {	  
+				    echo '<div class="little-box gold">
+				      '.$row3['cost'].' <span>fxStars</span>
+				    </div>';
+			    } else {
+			      	   echo '<div class="little-box green" style="padding: 4px 20px;">
+				      Free
+				    </div>';
+			    }
+
+echo '<div class="little-box gray"><span>'.date("M jS, Y", strtotime($s_date)).'</span></div>';
+
+			    ?>
+ </div>
+
+
+
+
+
+	  
+	</div>
+	<div class="right-content">
+	  <?php
                 require('../../../php/limit_str.php');
+echo '<div class="options">';
+
+echo '<div class="add-box">Settings <img src="/images/background/settings.png" onclick="location.href=\'/userpgs/instructor/course_management/edit_course.php?course_id='.$course_id.'\';"></div>';
+
+echo '<div class="add-box">Sessions <img src="/images/background/add.svg" onclick="location.href=\'/userpgs/instructor/class/new_class.php?course_id='.$course_id.'\';"></div>';
+
+echo '</div>';
+
                 if($class_result->num_rows>0) {
+		
                     while($row=$class_result->fetch_assoc()) {
                         if($user_type=='instructor' || $user_type=='student') {
                             $onclickurl="location.href='/userpgs/instructor/class?course_id=".$course_id."&class_id=".$row['id']."'";
                         } else {
-                            $onclickurl="notPurchased()";
+                            // not purchased
+                            $onclickurl="unpurchased()";
                         }
-                        echo '<div class="col-1 pointer" onclick="'.$onclickurl.'">';
-                        echo '<h3>'.$row['title'].'</h3>';
+			echo '<div class="session" onclick="'.$onclickurl.'">';
+			?>
+
+			  <div class="session-prev">
+			   <img src="/images/background/course.svg">
+			  </div>
+			  <div class="session-desc">
+
+			<?php
+                        
+                        echo '<p><strong>'.$row['title'].'</strong></p>';
                         if($row['body']=='') {
                             $descrip='<span style="color:gray">(No description)</span>';
                         } else {
                             $descrip=preg_replace("/<br\W*?\/>/", " ", $row['body']);
                         }
-                        echo '<p>'.limited($descrip,70).'</p>';
-                        echo '</div>';
+                        echo '<p>';
+			echo limited($descrip,70).'</p>';
+                        echo '</div></div>';
                     }
                     $class_result->free();
+                } else {
+                    echo '<p style="color:gray;text-align:center;">No sessions yet.</p>';
                 }
  ?>
-</div>
+	</div>
+      </div>
+      
+            
+    </div>
 
 
-                
-                
-<div class="footer"></div>
-<script src="/js/footer.js"></script>
+  </div>
+  
 
-<div class="footbar"></div>
-<script src="/js/footbar.js"></script>
-
-<script>
-    var notifUserId=<?php echo $get_user_id ?>;
-</script>
-
-<script src="/js/notif_msg.js"></script>
-
-<script>
-   var timepicker = new TimePicker('time', {
-     lang: 'en',
-     theme: 'dark'
-   });
-                                       
-   timepicker.on('change', function(evt) {
-     var value = (evt.hour || '00') + ':' + (evt.minute || '00');
-     evt.element.value = value;
-   });
-</script>
+  <div class="footbar blur"></div>
+  <script src="/js/footbar.js"></script>
 
 
+
+  <!-- SCRIPTS -->
+  <script>
+    $('#page-header').html('fxUniversity');
+    $('#page-header').attr('href','/userpgs/fxuniversity');
+  </script>
+  
+  
+  <!-- fxUniversity sidebar active -->
+  <script>
+    $('.fxuniversity-sidebar').attr('id','sidebar-active');
+  </script>
+  
 </body>
 </html>

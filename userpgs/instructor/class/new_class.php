@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 require('../../../register/connect.php');
@@ -28,59 +29,102 @@ if($user_type!='instructor') {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
-    <head>
+<html>
+<head>
+	<title>fxStar</title>
     <meta charset="utf-8">
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">   
-
-    <title>fxUnivers</title>
-    <link rel="stylesheet" href="/css/style.css">
-    
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/icons.css">
     <link rel="stylesheet" href="/css/logo.css">
-    <link rel="stylesheet" href="/css/colors.css">
     <script src="/js/jquery-3.4.1.min.js"></script>
-    </head>
-
+</head>
+    
 <body>
+	<div class="header-sidebar"></div>
+    <script src="/js/upperbar.js"></script>
 
-<div class="upperbar"></div>
-<script src="/js/upperbar.js"></script>
+<div class="blur mobile-main">
+    
+	<div class="sidebar"></div>
+	<?php require('../../../php/sidebar.php'); ?>
 
-    <div class="col-33 left-col">
-  <div class="col-1">
-    <div class="main fxuniversity-color"></div>
-    <div class="icon col-icon fxuniversity-bg" onclick="location.href='/userpgs/fxuniversity';"></div>
-                    
-                <h3>New Class</h3>
-    <p style="text-align:left">After adding a new class, you will be provided with different tools inside the class to interact with students, like posting a video or going live with them.</p>
-  </div>
+
+
+
+
+
+
+                          
+    <div class="main-content">
+
+              <ul class="main-flex-container">
+                  <li class="main-items">
+                      <a href="/userpgs/instructor" class="link-main" id="active-main">
+                          <div class="head">Teach</div>
+                      </a>
+                  </li>
+                  <li class="main-items">
+                      <a href="/userpgs/student" class="link-main">
+                          <div class="head">Learn</div>
+                      </a>
+                  </li>
+                  
+              </ul>
+
+    </div>
+
+
+
+
+
+  <div class="relative-main-content">
+                            <div class="content-box">
+			      <h2>Add Session</h2>
+
+
+			      <form method="POST" action="new_post.php" autocomplete="off">
+                  <input type="text" name="header" class="txt-input" placeholder="Session title" required>
+                  <textarea name="description" placeholder="Session Description" rows="10"></textarea>
+                  <input type="hidden" name="course_id" value="<?php echo $course_id ?>">
+                  <input type="submit" value="Publish" class="submit-btn">
+                </form>
+			      
+
+			      
+                            </div>
+
+
+
+
+
+
+    </div>
+
+
+
+    
+
+
 </div>
 
-    <div class="col-33 mid-col">
-    <div class="col-1">
-    <form method="POST" action="new_post.php" enctype="multipart/form-data" autocomplete="off">
-                  <input type="text" name="header" class="form-control" placeholder="topic" required style="width:90%"><br>
-                  <textarea name="description" rows="20" placeholder="description" style="width:100%"></textarea><br>
-                  <input type="hidden" name="course_id" value="<?php echo $course_id ?>">
-                  <input type="submit" value="Publish" style="margin-right:0">
-                </form>
-    </div>
-    </div>
+
+<div class="footbar blur"></div>
+                          <script src="/js/footbar.js"></script>
 
 
-<div class="footer"></div>
-<script src="/js/footer.js"></script>
 
-<div class="footbar"></div>
-<script src="/js/footbar.js"></script>
-
+<!-- SCRIPTS -->
 <script>
-    var notifUserId=<?php echo $get_user_id ?>;
+                          $('#page-header').html('fxUniversity');
+$('#page-header').attr('href','/userpgs/fxuniversity');
 </script>
 
-<script src="/js/notif_msg.js"></script>
 
+<!-- fxUniversity sidebar active -->
+<script>
+$('.fxuniversity-sidebar').attr('id','sidebar-active');
+</script>
 
 </body>
 </html>

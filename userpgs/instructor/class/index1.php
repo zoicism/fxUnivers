@@ -52,8 +52,7 @@
 
   require('../../../contact/message_connect.php');
   require('../../../php/check_live_class.php');
-
-require('../../../php/get_class_files.php');
+  require('../../../php/get_class_files.php');
 
 
 $tar_id=$class_fetch['teacher_id'];
@@ -67,54 +66,53 @@ require('../../../php/get_tar_id.php');
     <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Condensed&display=swap" rel="stylesheet">   
+            <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">   
+
     <title>fxUnivers</title>
     <link rel="stylesheet" href="/css/style.css">
-    <style>html{background:<?php if($user_type=='instructor') echo '#D4B1FC'; else echo '#A7A0FF'; ?></style>
+    <link rel="stylesheet" href="/css/icons.css">
+    <link rel="stylesheet" href="/css/logo.css">
+    <link rel="stylesheet" href="/css/colors.css">
+    <link href="https://cdn.jsdelivr.net/timepicker.js/latest/timepicker.min.css" rel="stylesheet">
     <script src="/js/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/timepicker.js/latest/timepicker.min.js"></script>
     </head>
 
 <body>
-<div class="upperbar">
-    <span class="float-left">
-      <a href="/" style="color:white">fxUnivers</a> &#8250; <a href="/userpgs/fxuniversity">fxUniversity</a> &#8250; <a href="/userpgs/instructor"><?php echo $user_type?></a> &#8250; <a href="/userpgs/instructor/course_management/course.php?course_id=<?php echo $course_id?>">course</a> &#8250; class
-    </span>
-    <span class="float-right">
-      <a id="msg_bar" href="/msg/inbox.php">msg</a> &#8226; <a id="notif_a" href="/userpgs/notif">notif</a>
-    </span>
-</div>
-<div class="col-33 left-col">
-  <div class="col-1" id="oneone">
-  <?php
-                echo '<h3>'.$header.'</h3>';
-                echo '<p>'.$description.'</p>';
-                echo '<p>by <strong>'.$tar_user_fetch['fname'].' '.$tar_user_fetch['lname'].' @'.$tar_user_fetch['username'].'</strong></p>';
-                echo 'course: <strong><a style="color:black" href="/userpgs/instructor/course_management/course.php?course_id='.$course_id.'">'.$get_course_fetch["header"].'</a></strong>';
-  ?>
-  </div>
 
+    <div class="upperbar"></div>
+<script src="/js/upperbar.js"></script>
 
-  <div class="col-1" id="onetwo">
-                <p>video</p>
-  <?php
-                $path='live/uploads/';
-                $file_ex=glob($path.$class_id.'.webm');
-                if(count($file_ex)>0) {
-                    $vid_arr=explode('.', $file_ex[0]);
-                    $vid_ext=end($vid_arr);
-  ?>
+<div class="col-66 left-col">
     
-      <video width="560" height="315" controls>
-        <source src="<?php echo 'live/uploads/'.$class_id.'.webm' ?>" type="video/webm">
-        <source src="<?php echo 'live/uploads/'.$class_id.'.mp4' ?>" type="video/mp4"> 
-      </video>
-  <?php } else { ?>
-      <p style="color:#25252588">no video uploaded yet.</p>
-  <?php } ?>
-  </div>
+    <div class="main fxuniversity-color"></div>
+    <div class="icon col-icon fxuniversity-bg" onclick="location.href='/userpgs/fxuniversity';"></div>
+<?php
+    $path='live/uploads/';
+$file_ex=glob($path.$class_id.'.*');
+if(count($file_ex)>0) {
+    $vid_arr=explode('.', $file_ex[0]);
+    $vid_ext=end($vid_arr);
+?>
 
-  <div class="col-1">
-    <p>files</p>
+    <video width="560" height="315" controls>
+    <source src="<?php echo 'live/uploads/'.$class_id.'.'.$vid_ext ?>" type="video/<?php echo $vid_ext?>">
+    </video>
+
+    <?php
+}
+                echo '<h2>'.$header.'</h2>';
+
+    
+
+                echo '<p style="text-align:left">'.$description.'</p>';
+                echo '<p style="margin-top:20px">By: <strong><a href="/user/'.$tar_user_fetch['fname'].'">'.$tar_user_fetch['fname'].' '.$tar_user_fetch['lname'].' @'.$tar_user_fetch['username'].'</a></strong></p>';
+                echo '<p>Course: <strong><a href="/userpgs/instructor/course_management/course.php?course_id='.$course_id.'">'.$get_course_fetch["header"].'</a></strong></p>';
+  ?>
+
+
+<div class="col-1">
+    <h3>Files</h3>
 <?php
     if($gcf_count>0) {
         while($class_fs=$gcf_result->fetch_assoc()) {
@@ -125,57 +123,31 @@ require('../../../php/get_tar_id.php');
             }
         }
     } else {
-        echo '<p style="color:#25252588">no files uploaded yet.</p>';
+        echo '<p style="color:gray">No files yet</p>';
     }
 ?>
   </div>
-</div>
-
-
-
-<div class="col-33 mid-col">
-<?php if($user_type=='instructor') { ?>
-  <div class="col-1 pointer" onclick="location.href='/userpgs/instructor/class/edit_class.php?course_id=<?php echo $course_id?>&class_id=<?php echo $class_id?>';">
-    <h3>edit class</h3>
-    <p>click to edit class.</p>
-  </div>
-<?php } ?>
-  <div class="col-1 pointer">
-           <h3>live class</h3>
-           <p>click to enter the live class.</p>
-           <?php echo '<form action="/userpgs/instructor/class/live/" method="POST"><input type="hidden" name="course_id" value="'.$course_id.'"><input type="hidden" name="class_id" value="'.$class_id.'"><input type="submit" value="enter"></form>';?>
-  </div>
-<?php
-                if($user_type=='instructor') {
-?>
-  
-
-  <div class="col-1" style="background:#E5CFFF">
-  <h3>video upload</h3>
-  <form method="POST"  action="file_uploader.php" enctype="multipart/form-data" >
-    <input name="video_up" type="file" accept=".avchd, .avi, .flv, .mkv, .mov, .mp4, .webm, .wmv">
-    <input name="course_id" type="hidden" value="<?php echo $course_id?>">
-    <input name="class_id" type="hidden" value="<?php echo $class_id?>"><br>
-    <input type="submit" value="upload">
-  </form>
   </div>
 
-  <div class="col-1" style="background:#E5CFFF">
-    <h3>file upload</h3>
-    <form method="POST" action="class_file_upload.php" enctype="multipart/form-data">
-    <input type="hidden" name="inst_id" value="<?php echo $get_user_id?>">
-    <input name="class_id" type="hidden" value="<?php echo $class_id?>">
-    <input name="course_id" type="hidden" value="<?php echo $course_id?>">
-    <input type="file" name="uploaded_file" id="fileToUpload"><br>
-    <input type="submit" value="upload">
-    </form>
-  </div>
-<?php } ?> 
-</div>
-
+    
 
 <div class="col-33 right-col">
-  <?php
+  <?php if($user_type=='instructor') { ?>
+    <div class="col-1 pointer fxuniversity-color" onclick="location.href='/userpgs/instructor/class/edit_class.php?course_id=<?php echo $course_id?>&class_id=<?php echo $class_id?>';">
+    <h3>Edit class</h3>
+    <p>Click to edit class.</p>
+    </div>
+<?php } ?>
+  <div class="col-1 pointer fxuniversity-color">
+           <h3>Live class</h3>
+           <p>Click to enter the live class.</p>
+              <?php echo '<form action="/userpgs/instructor/class/live/#'.$class_id.'" method="POST"><input type="hidden" name="course_id" value="'.$course_id.'"><input type="hidden" name="class_id" value="'.$class_id.'"><input type="submit" value="Enter"></form>';?>    
+           
+  </div>
+
+
+<h3 style="text-align:center;">Classes</h3>
+<?php
                 require('../../../php/limit_str.php');
                 if($class_result->num_rows>0) {
                     while($row=$class_result->fetch_assoc()) {
@@ -184,12 +156,10 @@ require('../../../php/get_tar_id.php');
                         } else {
                             $onclickurl="notPurchased()";
                         }
-                        if($class_id==$row['id']) $class_color='style="background:#6A29FF50"';
-                        else $class_color='';
-                        echo '<div class="col-1 pointer" '.$class_color.'" onclick="'.$onclickurl.'">';
+                        echo '<div class="col-1 pointer" onclick="'.$onclickurl.'">';
                         echo '<h3>'.$row['title'].'</h3>';
                         if($row['body']=='') {
-                            $descrip='<span style="color:#0000007C">(no description)</span>';
+                            $descrip='<span style="color:gray">(No description)</span>';
                         } else {
                             $descrip=preg_replace("/<br\W*?\/>/", " ", $row['body']);
                         }
@@ -200,35 +170,34 @@ require('../../../php/get_tar_id.php');
                 }
  ?>
 </div>
+
+
                 
                 
+<div class="footer"></div>
+<script src="/js/footer.js"></script>
 
-
-
-<div class="footer">With all due Reserves, &copy; fxUnivers 2017-2020 All rights reserved.</div>
-
+<div class="footbar"></div>
+<script src="/js/footbar.js"></script>
 
 <script>
- if(screen.width>480) {/*
-     var h11=$('#oneone').height();
-     var h12=$('#onetwo').height();
-     var row1=0;
-     if(h11>row1) row1=h11;
-     if(h12>row1) row1=h12;
-     $('#oneone').height(row1);
-     $('#onetwo').height(row1);
-
-     var h21=$('#twoone').height();
-     var h22=$('#twotwo').height();
-     var h23=$('#twothree').height();
-     var row2=0;
-     if(h21>row2) row2=h21;
-     if(h22>row2) row2=h22;
-     if(h23>row2) row2=h23;
-     $('#twoone').height(row2);
-     $('#twotwo').height(row2);
-     $('#twothree').height(row2);*/
- }
+    var notifUserId=<?php echo $get_user_id ?>;
 </script>
+
+<script src="/js/notif_msg.js"></script>
+
+<script>
+   var timepicker = new TimePicker('time', {
+     lang: 'en',
+     theme: 'dark'
+   });
+                                       
+   timepicker.on('change', function(evt) {
+     var value = (evt.hour || '00') + ':' + (evt.minute || '00');
+     evt.element.value = value;
+   });
+</script>
+
+
 </body>
 </html>

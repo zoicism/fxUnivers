@@ -64,8 +64,9 @@ input, textarea, select {
 	border: none;
 	outline: 0;
 	background:transparent;
-	margin:10px 0;
+	margin:20px 0;
 	padding:0 15px;
+	display:block;
 }
 
 input[type=number]::-webkit-inner-spin-button {
@@ -87,6 +88,34 @@ input:focus, textarea:focus, select:focus{
 }
 
 .num-input:focus {
+	box-shadow: inset 4px 4px 4px #d1d9e6, inset -4px -4px 4px #f9f9f9;
+}
+
+textarea {
+    height:200px;
+    width:400px;
+    padding: 15px;
+    border:none;
+    border-radius: 10px;
+    background-color: #efefef;
+    box-shadow: inset 2px 2px 4px #d1d9e6, inset -2px -2px 4px #f9f9f9;
+}
+
+textarea:focus {
+	box-shadow: inset 4px 4px 4px #d1d9e6, inset -4px -4px 4px #f9f9f9;
+}
+
+.txt-input {
+	height:38px;
+ 	width:400px;
+ 	padding: 0 15px;
+  	border:none;
+  	border-radius: 100px;
+  	background-color: #efefef;
+  	box-shadow: inset 2px 2px 4px #d1d9e6, inset -2px -2px 4px #f9f9f9;
+}
+
+.txt-input:focus {
 	box-shadow: inset 4px 4px 4px #d1d9e6, inset -4px -4px 4px #f9f9f9;
 }
 
@@ -113,7 +142,6 @@ input:focus, textarea:focus, select:focus{
 	width: 100px;
 	height: 40px;
 	border-radius: 100px;
-	margin-top: 20px;
 	border: none;
 	cursor: pointer;
 	box-shadow: -6px -6px 14px rgba(255, 255, 255, .7),
@@ -203,6 +231,104 @@ input:focus, textarea:focus, select:focus{
     justify-content:center;
 }
 
+.course-content {
+    width:95%;
+    display:flex;
+    flex-flow:row nowrap;
+    
+}
+
+.course-content .left-content {
+    width:60%;
+    display:block;
+    position:relative;
+    padding:10px;
+}
+
+.course-content .right-content {
+    width:40%;
+    display:block;
+    position:relative;
+    padding:10px;
+}
+
+
+.right-content .session {
+    display:flex;
+    flex-flow:row nowrap;
+    margin:15px 0;
+    border-radius: 20px;
+    background: #efefef;
+    box-shadow: -4px -2px 4px 0px #ffffff, 4px 2px 6px 0px #DFE4EA;
+    cursor:pointer;
+}
+
+.right-content .session:active {
+    border-radius: 20px;
+    background: linear-gradient(145deg, #d7d7d7, #ffffff);
+    box-shadow: inset -4px -2px 4px 0px #fff,
+        inset 4px 2px 6px 0px #DFE4EA,
+        -4px -2px 4px 0px #ffffff,
+        4px 2px 6px 0px #DFE4EA;
+}
+
+.right-content .options {
+    display:flex;
+    flex-flow:row nowrap;
+    justify-content:center;
+}
+
+.session .session-prev {
+    width:30%;
+    height:7em;
+    display:flex;
+    text-align:center;
+    background-color:#aee4ff59;
+    border-radius:20px 0 0 20px;
+}
+
+.session-prev img {
+    height:4em;
+    margin:auto;
+    opacity:0.4;
+}
+
+.session .session-desc {
+    margin-left:10px;
+    width:70%;
+}
+
+.course-content .video-placeholder {
+    border-radius: 20px;
+    background: #efefef;
+    box-shadow:  9px 9px 18px #cbcbcb, 
+		 -9px -9px 18px #ffffff;
+    max-width:560px;
+    height:315px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-flow:column;
+    margin:0 auto 20px auto;
+}
+
+.course-content .video-placeholder:active {
+    border-radius: 20px;
+    background: linear-gradient(145deg, #d7d7d7, #ffffff);
+box-shadow:  9px 9px 18px #cbcbcb, 
+             -9px -9px 18px #ffffff;
+}
+
+.video-placeholder img {
+    width:60px;
+    height:60px;
+    opacity:0.5;
+}
+
+.video-placeholder p {
+    opacity:0.5;
+}
+
 .obj-box {
     display:flex;
     flex-flow:row wrap;
@@ -264,14 +390,24 @@ input:focus, textarea:focus, select:focus{
 }
 
 
-.obj-box .object .details .detail-bottom {
+.detail-bottom {
     position:absolute;
     bottom:15px;
     display:flex;
     flex-wrap:wrap;
 }
 
-.obj-box .object .details .little-box {
+.course-content .detail-bottom {
+    bottom:0;
+    position:relative;
+}
+
+.detail-bottom a {
+    text-decoration:none;
+    color:white;
+}
+
+.little-box {
     margin:0 5px 3px 0;
     padding:4px 10px;
     font-weight:bold;
@@ -296,6 +432,18 @@ input:focus, textarea:focus, select:focus{
     background:#6cc841
 }
 
+.violet {
+    background:#7a00cc;
+}
+
+.orange {
+    background:#cb4215;
+}
+
+.red {
+    background:#c8416c;
+}
+
 .gray {
     background:#999;
 }
@@ -310,6 +458,12 @@ input:focus, textarea:focus, select:focus{
     color:#393939;
 }
 
+.course-content .add-box {
+    margin:0 20px;
+    justify-content:center;
+    margin-bottom:20px;
+}
+
 .add-box img {
     cursor:pointer;
     border-radius:50px;
@@ -322,6 +476,10 @@ input:focus, textarea:focus, select:focus{
 		-6px -6px 10px rgba(255, 255, 255, .5),
 		6px 6px 8px rgba(255, 255, 255, .075),
 		6px 6px 10px rgba(0, 0, 0, .15);
+}
+
+.course-content .add-box img {
+    margin-left:10px;
 }
 
 .add-box img:active {
@@ -371,6 +529,8 @@ input:focus, textarea:focus, select:focus{
 .main-section {
     margin-bottom:50px;
 }
+
+
 
 .logo-25 {
     width:25px;
@@ -864,7 +1024,9 @@ input:focus, textarea:focus, select:focus{
 	display:none;
     }
 
-    
+    .course-content {
+	margin-top:50px;
+    }
 }
 
 @media (max-width: 628px) {
@@ -1101,6 +1263,14 @@ input:focus, textarea:focus, select:focus{
     .obj-box .object {
 	width:100%;
 	margin: 2em 0;
+    }
+
+    .txt-input {
+	width:100%;
+    }
+
+    textarea {
+	width:100%;
     }
 }
 

@@ -108,7 +108,10 @@ require('../../wallet/php/get_fxcoin_count.php');
 				</div>
 				<div class="details">';
 
-			    echo '<p><strong>'.$row3['header'].'</strong></p>';
+			    $ctitle=preg_replace("/<br\W*?\/>/"," ",$row3['header']);
+			    
+			    echo '<p><strong>';
+			    echo limited($ctitle,40).'</strong></p>';
 			    
 			    $descrip=preg_replace("/<br\W*?\/>/"," ",$row3['description']);
 			    echo '<p>';
