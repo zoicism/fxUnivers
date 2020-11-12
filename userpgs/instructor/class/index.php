@@ -217,7 +217,11 @@ echo '</div>';
                             // not purchased
                             $onclickurl="unpurchased()";
                         }
-			echo '<div class="session" onclick="'.$onclickurl.'">';
+			if($class_id==$row['id']) {
+			  echo '<div class="session" id="active" onclick="'.$onclickurl.'">';
+			  } else {
+			  echo '<div class="session" onclick="'.$onclickurl.'">';
+			  }
 			?>
 
 			  <div class="session-prev">

@@ -261,6 +261,11 @@ textarea:focus {
     background: #efefef;
     box-shadow: -4px -2px 4px 0px #ffffff, 4px 2px 6px 0px #DFE4EA;
     cursor:pointer;
+    opacity:0.85;
+}
+
+.right-content .session:hover {
+    opacity:1;
 }
 
 .right-content .session:active {
@@ -270,6 +275,17 @@ textarea:focus {
         inset 4px 2px 6px 0px #DFE4EA,
         -4px -2px 4px 0px #ffffff,
         4px 2px 6px 0px #DFE4EA;
+    opacity:1;
+}
+
+.right-content #active {
+    border-radius: 20px;
+    background: linear-gradient(145deg, #d7d7d7, #ffffff);
+    box-shadow: inset -4px -2px 4px 0px #fff,
+        inset 4px 2px 6px 0px #DFE4EA,
+        -4px -2px 4px 0px #ffffff,
+        4px 2px 6px 0px #DFE4EA;
+    opacity:1;
 }
 
 .right-content .options {
