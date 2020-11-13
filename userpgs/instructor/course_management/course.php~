@@ -56,7 +56,7 @@ require('../../../php/get_tar_id.php');
 <!DOCTYPE html>
 <html>
 <head>
-	<title>fxStar</title>
+	<title>fxUniversity</title>
     <meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/styles.css">
@@ -144,7 +144,7 @@ require('../../../php/get_tar_id.php');
 	  
 <div class="detail-bottom">
 
-	  <div class="little-box violet">
+	  <div class="little-box gray">
 	    <?php
 	    echo '<a href="/user/'.$tar_user_fetch['fname'].'">'.$tar_user_fetch['fname'].' '.$tar_user_fetch['lname'].' @'.$tar_user_fetch['username'].'</a>';
 	    ?>
@@ -163,7 +163,7 @@ $coursecounter_q="SELECT * FROM stucourse WHERE course_id=".$course_id;
 
 
 
-	  <div class="little-box orange">
+	  <div class="little-box gray">
 	    <?php echo $class_num.' <span>sessions</span>'; ?>
 	  </div>
 
@@ -192,8 +192,16 @@ echo '<div class="little-box gray"><span>'.date("M jS, Y", strtotime($s_date)).'
 	<div class="right-content">
 	  <?php
                 require('../../../php/limit_str.php');
-echo '<div class="add-box">Sessions <img src="/images/background/add.svg"></div>';
+echo '<div class="options">';
+
+echo '<div class="add-box">Settings <img src="/images/background/settings.png" onclick="location.href=\'/userpgs/instructor/course_management/edit_course.php?course_id='.$course_id.'\';"></div>';
+
+echo '<div class="add-box">Sessions <img src="/images/background/add.svg" onclick="location.href=\'/userpgs/instructor/class/new_class.php?course_id='.$course_id.'\';"></div>';
+
+echo '</div>';
+
                 if($class_result->num_rows>0) {
+		
                     while($row=$class_result->fetch_assoc()) {
                         if($user_type=='instructor' || $user_type=='student') {
                             $onclickurl="location.href='/userpgs/instructor/class?course_id=".$course_id."&class_id=".$row['id']."'";
@@ -201,15 +209,25 @@ echo '<div class="add-box">Sessions <img src="/images/background/add.svg"></div>
                             // not purchased
                             $onclickurl="unpurchased()";
                         }
-                        echo '<div class="col-1 pointer" onclick="'.$onclickurl.'">';
-                        echo '<h3>'.$row['title'].'</h3>';
+			echo '<div class="session" onclick="'.$onclickurl.'">';
+			?>
+
+			  <div class="session-prev">
+			   <img src="/images/background/course.svg">
+			  </div>
+			  <div class="session-desc">
+
+			<?php
+                        
+                        echo '<p><strong>'.$row['title'].'</strong></p>';
                         if($row['body']=='') {
                             $descrip='<span style="color:gray">(No description)</span>';
                         } else {
                             $descrip=preg_replace("/<br\W*?\/>/", " ", $row['body']);
                         }
-                        echo '<p>'.limited($descrip,70).'</p>';
-                        echo '</div>';
+                        echo '<p>';
+			echo limited($descrip,70).'</p>';
+                        echo '</div></div>';
                     }
                     $class_result->free();
                 } else {

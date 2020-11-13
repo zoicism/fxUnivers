@@ -232,7 +232,6 @@ textarea:focus {
 }
 
 .course-content {
-    border:2px solid black;
     width:95%;
     display:flex;
     flex-flow:row nowrap;
@@ -240,7 +239,6 @@ textarea:focus {
 }
 
 .course-content .left-content {
-    border:1px solid blue;
     width:60%;
     display:block;
     position:relative;
@@ -248,18 +246,83 @@ textarea:focus {
 }
 
 .course-content .right-content {
-    border:1px solid green;
     width:40%;
     display:block;
     position:relative;
     padding:10px;
+    box-shadow: -4px -2px 4px 0px #ffffff, 4px 2px 6px 0px #DFE4EA;
+    border-radius:20px;
+    overflow-y:scroll;
+    height:40em;
+}
+
+
+.right-content .session {
+    display:flex;
+    flex-flow:row nowrap;
+    margin:15px 0;
+    border-radius: 20px;
+    background: #efefef;
+    cursor:pointer;
+    opacity:0.85;
+    border-bottom:1px solid #aee4ff59;;
+}
+
+.right-content .session:hover {
+    opacity:1;
+}
+
+.right-content .session:focus {
+    border-radius: 20px;
+    background: linear-gradient(145deg, #d7d7d7, #ffffff);
+    box-shadow: inset -4px -2px 4px 0px #fff,
+        inset 4px 2px 6px 0px #DFE4EA,
+        -4px -2px 4px 0px #ffffff,
+        4px 2px 6px 0px #DFE4EA;
+    opacity:1;
+}
+
+.right-content #active {
+    border-radius: 20px;
+    background: linear-gradient(145deg, #d7d7d7, #ffffff);
+    box-shadow: inset -4px -2px 4px 0px #fff,
+        inset 4px 2px 6px 0px #DFE4EA,
+        -4px -2px 4px 0px #ffffff,
+        4px 2px 6px 0px #DFE4EA;
+    opacity:1;
+}
+
+.right-content .options {
+    display:flex;
+    flex-flow:row nowrap;
+    justify-content:center;
+}
+
+.session .session-prev {
+    width:30%;
+    height:7em;
+    display:flex;
+    text-align:center;
+    background-color:#aee4ff59;
+    border-radius:20px 0 0 20px;
+}
+
+.session-prev img {
+    height:4em;
+    margin:auto;
+    opacity:0.4;
+}
+
+.session .session-desc {
+    margin-left:10px;
+    width:70%;
 }
 
 .course-content .video-placeholder {
-    border-radius: 50px;
+    border-radius: 20px;
     background: #efefef;
-box-shadow:  9px 9px 18px #cbcbcb, 
-             -9px -9px 18px #ffffff;
+    box-shadow:  9px 9px 18px #cbcbcb, 
+		 -9px -9px 18px #ffffff;
     max-width:560px;
     height:315px;
     display:flex;
@@ -270,7 +333,7 @@ box-shadow:  9px 9px 18px #cbcbcb,
 }
 
 .course-content .video-placeholder:active {
-    border-radius: 50px;
+    border-radius: 20px;
     background: linear-gradient(145deg, #d7d7d7, #ffffff);
 box-shadow:  9px 9px 18px #cbcbcb, 
              -9px -9px 18px #ffffff;
@@ -416,7 +479,7 @@ box-shadow:  9px 9px 18px #cbcbcb,
 }
 
 .course-content .add-box {
-    margin-top:0;
+    margin:0 20px;
     justify-content:center;
     margin-bottom:20px;
 }

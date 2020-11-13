@@ -200,13 +200,20 @@ echo '<div class="little-box gray"><span>'.date("M jS, Y", strtotime($s_date)).'
 	<div class="right-content">
 	  <?php
                 require('../../../php/limit_str.php');
-echo '<div class="options">';
 
-echo '<div class="add-box">Settings <img src="/images/background/settings.png" onclick="location.href=\'/userpgs/instructor/course_management/edit_course.php?course_id='.$course_id.'\';"></div>';
+if($user_type=='instructor') {
 
-echo '<div class="add-box">Sessions <img src="/images/background/add.svg" onclick="location.href=\'/userpgs/instructor/class/new_class.php?course_id='.$course_id.'\';"></div>';
+			     echo '<div class="options">';
 
-echo '</div>';
+			     echo '<div class="add-box">Class Edit <img src="/images/background/settings.png" onclick="location.href=\'/userpgs/instructor/class/edit_class.php?course_id='.$course_id.'&class_id='.$class_id.'\';"></div>';
+
+			     echo '<div class="add-box">Go Live <img src="/images/background/live.png" onclick="location.href=\'/userpgs/instructor/class/new_class.php?course_id='.$course_id.'\';"></div>';
+
+			     echo '</div>';
+}
+
+echo '<div class="sessions">';
+echo '<h3>Sessions</h3>';
 
                 if($class_result->num_rows>0) {
 		

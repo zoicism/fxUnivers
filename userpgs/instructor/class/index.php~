@@ -5,49 +5,57 @@
     header("Location: $url");
     exit;
 }*/
+
   session_start();
   require('../../../register/connect.php');
 
-if(isset($_SESSION['username'])) {
+  if(isset($_SESSION['username'])) {
     $username = $_SESSION['username'];
-} else {
-	header("Location: /register/logout.php");
-}
+  } else {
+    // logout
+      header("Location: /register/logout.php");
+  }
 
-  if(isset($_GET['course_id'])) $course_id = $_GET['course_id'];
-
-  $course_query = "SELECT * FROM `teacher` WHERE id=$course_id";
-  $course_result = mysqli_query($connection, $course_query) or die(mysqli_error($connection));
-  $course_fetch = mysqli_fetch_array($course_result);
-
-  $user_id = $course_fetch['user_id'];
-  $get_course_teacher_id = $user_id;
-  $header = $course_fetch['header'];
-  $description = $course_fetch['description'];
-  $video = $course_fetch['video_url'];
-  $s_date = $course_fetch['start_date'];
-  $e_date = $course_fetch['exam_date'];
-  $cost = $course_fetch['cost'];
-  $test_date = $course_fetch['test_date'];
-
-  
+  if(isset($_GET['course_id']))
+    $course_id=$_GET['course_id'];
 
 
   require('../../../php/get_user.php');
   $id = $get_user_id;
-require('../php/classes.php');
+
   require('../../php/notif.php');
+
+  if(isset($_GET['class_id']))
+   $class_id = $_GET['class_id'];
+
+  $class_query = "SELECT * FROM `class` WHERE id=$class_id";
+  $class_result = mysqli_query($connection, $class_query) or die(mysqli_error($connection));
+  $class_fetch = mysqli_fetch_array($class_result);
+
+  /*$user_id = $class_fetch['teacher_id'];*/
+  $header = $class_fetch['title'];
+  $description = $class_fetch['body'];
+  $video = $class_fetch['video'];
+
+  require('../php/classes.php');
+
+  require('../../../php/get_course.php');
+// includes $get_course_teacher_id
 
   require('../../../php/get_user_type.php');
 
-  require('../../../php/get_exam.php');
-$get_exam_fetch=mysqli_fetch_array($get_exam_result);
+  if($user_type == 'neither') {
+    $go_home = "Location: /userpgs/instructor/course_management/course.php?course_id=".$course_id."&class_id=".$class_id;
+    header($go_home);
+  }
+  
 
-require('../../../php/get_stucourse.php');
+  require('../../../contact/message_connect.php');
+  require('../../../php/check_live_class.php');
+  require('../../../php/get_class_files.php');
 
-  require('../../../wallet/php/get_fxcoin_count.php');
 
-$tar_id=$get_course_teacher_id;
+$tar_id=$class_fetch['teacher_id'];
 require('../../../php/get_tar_id.php');
 
 
@@ -56,7 +64,7 @@ require('../../../php/get_tar_id.php');
 <!DOCTYPE html>
 <html>
 <head>
-	<title>fxStar</title>
+	<title>fxUniversity</title>
     <meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/styles.css">
@@ -194,9 +202,9 @@ echo '<div class="little-box gray"><span>'.date("M jS, Y", strtotime($s_date)).'
                 require('../../../php/limit_str.php');
 echo '<div class="options">';
 
-echo '<div class="add-box">Settings <img src="/images/background/settings.png" onclick="location.href=\'/userpgs/instructor/course_management/edit_course.php?course_id='.$course_id.'\';"></div>';
+echo '<div class="add-box">Settings <img src="/images/background/settings.png" onclick="location.href=\'/userpgs/instructor/class/edit_class.php?course_id='.$course_id.'&class_id='.$class_id.'\';"></div>';
 
-echo '<div class="add-box">Sessions <img src="/images/background/add.svg" onclick="location.href=\'/userpgs/instructor/class/new_class.php?course_id='.$course_id.'\';"></div>';
+echo '<div class="add-box">Go Live <img src="/images/background/add.svg" onclick="location.href=\'/userpgs/instructor/class/new_class.php?course_id='.$course_id.'\';"></div>';
 
 echo '</div>';
 
@@ -209,7 +217,11 @@ echo '</div>';
                             // not purchased
                             $onclickurl="unpurchased()";
                         }
-			echo '<div class="session" onclick="'.$onclickurl.'">';
+			if($class_id==$row['id']) {
+			  echo '<div class="session" id="active" onclick="'.$onclickurl.'">';
+			  } else {
+			  echo '<div class="session" onclick="'.$onclickurl.'">';
+			  }
 			?>
 
 			  <div class="session-prev">

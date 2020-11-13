@@ -96,6 +96,7 @@ require('../../../php/get_tar_id.php');
     <div class="relative-main-content">
 
       <div class="course-content">
+      
 	<div class="left-content">
 	  <!-- VIDEO -->
 	  <?php
@@ -192,13 +193,22 @@ echo '<div class="little-box gray"><span>'.date("M jS, Y", strtotime($s_date)).'
 	<div class="right-content">
 	  <?php
                 require('../../../php/limit_str.php');
-echo '<div class="options">';
 
-echo '<div class="add-box">Settings <img src="/images/background/settings.png" onclick="location.href=\'/userpgs/instructor/course_management/edit_course.php?course_id='.$course_id.'\';"></div>';
 
-echo '<div class="add-box">Sessions <img src="/images/background/add.svg" onclick="location.href=\'/userpgs/instructor/class/new_class.php?course_id='.$course_id.'\';"></div>';
 
-echo '</div>';
+if($user_type=='instructor') {
+			     echo '<div class="options">';	
+			     echo '<div class="add-box">Edit Course <img src="/images/background/settings.png" onclick="location.href=\'/userpgs/instructor/course_management/edit_course.php?course_id='.$course_id.'\';"></div>';
+
+			     echo '<div class="add-box">Add Session <img src="/images/background/add.svg" onclick="location.href=\'/userpgs/instructor/class/new_class.php?course_id='.$course_id.'\';"></div>';
+
+			     echo '</div>';
+}
+
+
+
+echo '<div class="sessions">';
+echo '<h3>Sessions</h3>';
 
                 if($class_result->num_rows>0) {
 		
@@ -236,7 +246,7 @@ echo '</div>';
  ?>
 	</div>
       </div>
-      
+</div>      
             
     </div>
 
