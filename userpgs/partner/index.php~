@@ -62,12 +62,12 @@ require('../../wallet/php/get_fxcoin_count.php');
               <ul class="main-flex-container">
                   <li class="main-items">
                       <a href="/userpgs/instructor" class="link-main">
-                          <div class="head">Teach</div>
+                          <div class="head">fxHR</div>
                       </a>
                   </li>
                   <li class="main-items">
                       <a href="/userpgs/student" class="link-main">
-                          <div class="head">Learn</div>
+                          <div class="head">Earnings History</div>
                       </a>
                   </li>
                   
@@ -81,9 +81,14 @@ require('../../wallet/php/get_fxcoin_count.php');
 
   <div class="relative-main-content">
                             <div class="content-box">
-			    	 <h2>fxUniversity</h2>
-                              	 <p>Taught courses: <strong>15</strong></p>
-				 <p>Learned courses: <strong>4</strong></p>
+			    <?php
+                $total=0;
+                while($row=$get_partner_result->fetch_assoc()) {
+                    $total+=$row['income'];
+                }
+?>
+			    	 <h2>fxPartner</h2>
+                              	 <p>Earnings: <strong><?php echo $total ?> fxStars</strong></p>
                             </div>
 
 
@@ -93,9 +98,9 @@ require('../../wallet/php/get_fxcoin_count.php');
 
 
 			    <div class="description">
-			    <h3>fxUniversity Options</h3>
-			    <p><strong>Teach:</strong> Create courses, put a price on your courses, and gain fxStars as users purchase them.</p>
-			    <p><strong>Learn:</strong> Purchase courses with your fxStars and learn from various courses.</p>
+			    <h3>fxPartner Options</h3>
+			    <p><strong>fxHR:</strong> Create an invitation link with which you can invite friends to use fxUnivers. We will share our profit from these new users with you half-half for 90 days.</p>
+			    <p><strong>Earnings History:</strong> The earnings you have made using fxHR.</p>
     			    </div>
 
 

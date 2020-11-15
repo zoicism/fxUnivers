@@ -61,12 +61,12 @@ require('../../wallet/php/get_fxcoin_count.php');
 
               <ul class="main-flex-container">
                   <li class="main-items">
-                      <a href="/userpgs/instructor" class="link-main">
+                      <a href="/" class="link-main">
                           <div class="head">fxHR</div>
                       </a>
                   </li>
                   <li class="main-items">
-                      <a href="/userpgs/student" class="link-main">
+                      <a href="/" class="link-main">
                           <div class="head">Earnings History</div>
                       </a>
                   </li>

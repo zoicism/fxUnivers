@@ -115,6 +115,7 @@ textarea:focus {
   	box-shadow: inset 2px 2px 4px #d1d9e6, inset -2px -2px 4px #f9f9f9;
 }
 
+
 .txt-input:focus {
 	box-shadow: inset 4px 4px 4px #d1d9e6, inset -4px -4px 4px #f9f9f9;
 }
@@ -139,7 +140,7 @@ textarea:focus {
 
 
 .submit-btn {
-	width: 100px;
+	min-width: 100px;
 	height: 40px;
 	border-radius: 100px;
 	border: none;
@@ -249,11 +250,22 @@ textarea:focus {
     width:40%;
     display:block;
     position:relative;
-    padding:10px;
-    box-shadow: -4px -2px 4px 0px #ffffff, 4px 2px 6px 0px #DFE4EA;
+    
     border-radius:20px;
+    justify-content:space-between;
+}
+
+.right-content .sessions {
+    box-shadow: -4px -2px 4px 0px #ffffff, 4px 2px 6px 0px #DFE4EA;
     overflow-y:scroll;
     height:40em;
+    border-radius:20px;
+    padding:10px;
+}
+
+.sessions h3 {
+    text-align:center;
+    margin-bottom:20px;
 }
 
 
@@ -294,8 +306,17 @@ textarea:focus {
 
 .right-content .options {
     display:flex;
-    flex-flow:row nowrap;
+    padding:10px;
+    border-radius:20px;
+    margin-bottom:20px;
+    flex-flow:row wrap;
     justify-content:center;
+    box-shadow: -4px -2px 4px 0px #ffffff, 4px 2px 6px 0px #DFE4EA;
+}
+
+.options h3 {
+    display:block;
+    text-area:center;
 }
 
 .session .session-prev {
@@ -318,6 +339,27 @@ textarea:focus {
     width:70%;
 }
 
+.course-content .video-holder {
+    border-radius: 20px;
+    padding:20px;
+    background: #efefef;
+    box-shadow:  9px 9px 18px #cbcbcb, 
+		 -9px -9px 18px #ffffff;
+    max-width:560px;
+    height:315px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-flow:column;
+    margin:0 auto 20px auto;
+}
+
+.video-holder video {
+    max-width:560px;
+    height:315px;
+    outline:none;
+}
+
 .course-content .video-placeholder {
     border-radius: 20px;
     background: #efefef;
@@ -332,12 +374,6 @@ textarea:focus {
     margin:0 auto 20px auto;
 }
 
-.course-content .video-placeholder:active {
-    border-radius: 20px;
-    background: linear-gradient(145deg, #d7d7d7, #ffffff);
-box-shadow:  9px 9px 18px #cbcbcb, 
-             -9px -9px 18px #ffffff;
-}
 
 .video-placeholder img {
     width:60px;
@@ -479,9 +515,9 @@ box-shadow:  9px 9px 18px #cbcbcb,
 }
 
 .course-content .add-box {
-    margin:0 20px;
+    margin:20px;
     justify-content:center;
-    margin-bottom:20px;
+    font-size:1rem;
 }
 
 .add-box img {

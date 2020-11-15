@@ -36,6 +36,7 @@
   $header = $class_fetch['title'];
   $description = $class_fetch['body'];
   $video = $class_fetch['video'];
+  $dt = $class_fetch['dt'];
 
   require('../php/classes.php');
 
@@ -108,15 +109,22 @@ require('../../../php/get_tar_id.php');
 	  <!-- VIDEO -->
 	  <?php
 	   $path='videos/';
-	   $file_ex=glob($path.$course_id.'.*');
+	   $file_ex=glob($path.$class_id.'.*');
 	   if(count($file_ex)>0) {
 	      $vid_arr=explode('.', $file_ex[0]);
 	      $vid_ext=end($vid_arr);
 	  ?>
 
+
+
+	  <div class="video-holder">
 	  <video width="560" height="315" controls>
-            <source src="<?php echo 'videos/'.$course_id.'.'.$vid_ext ?>" type="video/<?php echo $vid_ext?>"> 
+            <source src="<?php echo 'videos/'.$class_id.'.'.$vid_ext ?>" type="video/<?php echo $vid_ext?>"> 
 	  </video>
+	  </div>
+
+
+
 
 	  <!-- Title, description, and info -->
 	  <?php
@@ -125,14 +133,12 @@ require('../../../php/get_tar_id.php');
 	     if($user_type=='instructor') {
 	   ?>
 
-	   <div class="video-placeholder" style="cursor:pointer">
+	   <div class="video-placeholder" style="cursor:pointer" >
          	   <img src="/images/background/vid_upload.png">
-
-		   
 		   	   <p>Click to upload a video</p>	
 	   </div>
 
-
+	   
 
 	   <?php
 	   } else {
@@ -154,39 +160,17 @@ require('../../../php/get_tar_id.php');
 
 	  <div class="little-box gray">
 	    <?php
-	    echo '<a href="/user/'.$tar_user_fetch['fname'].'">'.$tar_user_fetch['fname'].' '.$tar_user_fetch['lname'].' @'.$tar_user_fetch['username'].'</a>';
+	    echo '<a href="/user/'.$tar_user_fetch['username'].'">'.$tar_user_fetch['fname'].' '.$tar_user_fetch['lname'].' @'.$tar_user_fetch['username'].'</a>';
 	    ?>
 	  </div>
 
-<?php
-$coursecounter_q="SELECT * FROM stucourse WHERE course_id=".$course_id;
-                            $coursecounter_r=mysqli_query($connection,$coursecounter_q);
-                            $coursecounts=mysqli_num_rows($coursecounter_r);
-?>
-
-
-	<div class="little-box blue">
-	  <?php echo $coursecounts.' <span>students</span>'; ?>
-	</div>
 
 
 
-	  <div class="little-box gray">
-	    <?php echo $class_num.' <span>sessions</span>'; ?>
-	  </div>
 
 	  <?php
-	  if($row3['cost']>0) {	  
-				    echo '<div class="little-box gold">
-				      '.$row3['cost'].' <span>fxStars</span>
-				    </div>';
-			    } else {
-			      	   echo '<div class="little-box green" style="padding: 4px 20px;">
-				      Free
-				    </div>';
-			    }
 
-echo '<div class="little-box gray"><span>'.date("M jS, Y", strtotime($s_date)).'</span></div>';
+echo '<div class="little-box gray"><span>'.date("M jS, Y", strtotime($dt)).'</span></div>';
 
 			    ?>
  </div>
@@ -200,13 +184,20 @@ echo '<div class="little-box gray"><span>'.date("M jS, Y", strtotime($s_date)).'
 	<div class="right-content">
 	  <?php
                 require('../../../php/limit_str.php');
-echo '<div class="options">';
 
-echo '<div class="add-box">Settings <img src="/images/background/settings.png" onclick="location.href=\'/userpgs/instructor/class/edit_class.php?course_id='.$course_id.'&class_id='.$class_id.'\';"></div>';
+if($user_type=='instructor') {
 
-echo '<div class="add-box">Go Live <img src="/images/background/add.svg" onclick="location.href=\'/userpgs/instructor/class/new_class.php?course_id='.$course_id.'\';"></div>';
+			     echo '<div class="options">';
 
-echo '</div>';
+			     echo '<div class="add-box">Manage Session <img src="/images/background/settings.png" onclick="location.href=\'/userpgs/instructor/class/edit_class.php?course_id='.$course_id.'&class_id='.$class_id.'\';"></div>';
+
+			     echo '<div class="add-box">Go Live <img src="/images/background/live.png" onclick=""></div>';
+
+			     echo '</div>';
+}
+
+echo '<div class="sessions">';
+echo '<h3>Sessions</h3>';
 
                 if($class_result->num_rows>0) {
 		

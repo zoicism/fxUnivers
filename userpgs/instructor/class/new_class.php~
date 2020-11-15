@@ -1,17 +1,12 @@
+
 <?php
-// Requiring https
-/*if($_SERVER['HTTPS'] != "on") {
-    $url = "https://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
-    header("Location: $url");
-    exit;
-}*/
 session_start();
 require('../../../register/connect.php');
 
 if(isset($_SESSION['username'])) {
     $username = $_SESSION['username'];
 } else {
-	header("Location: /register/logout.php");
+    header("Location: /register/logout.php");
 }
 
 require('../../../php/get_user.php');
@@ -19,11 +14,18 @@ $id = $get_user_id;
 
 require('../../php/notif.php');
 
-require('../../../php/get_plans.php');
+if(isset($_GET['course_id'])) $course_id = $_GET['course_id'];
 
+require('../../../php/get_plans.php');
 require('../../../php/get_rel.php');
 require('../../../wallet/php/get_fxcoin_count.php');
 
+require('../../../php/get_course.php');
+require('../../../php/get_user_type.php');
+if($user_type!='instructor') {
+    header("Location: /");
+    
+}
 ?>
 
 <!DOCTYPE html>
@@ -78,16 +80,15 @@ require('../../../wallet/php/get_fxcoin_count.php');
 
   <div class="relative-main-content">
                             <div class="content-box">
-			      <h2>Add Course</h2>
+			      <h2>Add Session</h2>
+
 
 			      <form method="POST" action="new_post.php" autocomplete="off">
-				<input type="text" class="txt-input" name="header" placeholder="Course title" required>
-				<textarea name="description" rows="10" placeholder="Description" required></textarea>
-				<input type="number" class="num-input" name="course_fxstar" placeholder="Cost (fxStars)" id="costIn" min="0" required>
-				<input type="submit" class="submit-btn" value="Publish">
-				
-			      </form>
-
+                  <input type="text" name="header" class="txt-input" placeholder="Session title" required>
+                  <textarea name="description" placeholder="Session Description" rows="10"></textarea>
+                  <input type="hidden" name="course_id" value="<?php echo $course_id ?>">
+                  <input type="submit" value="Publish" class="submit-btn">
+                </form>
 			      
 
 			      

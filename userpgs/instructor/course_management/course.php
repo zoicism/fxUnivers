@@ -78,12 +78,12 @@ require('../../../php/get_tar_id.php');
       
       <ul class="main-flex-container">
         <li class="main-items">
-                      <a href="/userpgs/instructor" class="link-main" id="active-main">
+                      <a href="/userpgs/instructor" class="link-main" <?php if($user_type=='instructor') echo 'id="active-main"'; ?>>
                         <div class="head">Teach</div>
                       </a>
         </li>
         <li class="main-items">
-          <a href="/userpgs/student" class="link-main">
+          <a href="/userpgs/student" class="link-main" <?php if($user_type!='instructor') echo 'id="active-main"'; ?>>
             <div class="head">Learn</div>
           </a>
         </li>
@@ -115,28 +115,20 @@ require('../../../php/get_tar_id.php');
 	  <?php
 	   } else {
 
-	     if($user_type=='instructor') {
 	   ?>
 
-	   <div class="video-placeholder" style="cursor:pointer">
-         	   <img src="/images/background/vid_upload.png">
-
-		   
-		   	   <p>Click to upload a video</p>	
+	   <div class="video-placeholder">
+         	   <img src="/images/background/novid.svg">
+		   	   <p>No video</p>	
 	   </div>
 
 
 
-	   <?php
-	   } else {
-
-	   //video placeholder for other users
-	   ?>
 
 
 
 <?php
-}
+
 	   }
  
 	     echo '<h2>'.$header.'</h2>';
@@ -198,11 +190,18 @@ echo '<div class="little-box gray"><span>'.date("M jS, Y", strtotime($s_date)).'
 
 if($user_type=='instructor') {
 			     echo '<div class="options">';	
-			     echo '<div class="add-box">Edit Course <img src="/images/background/settings.png" onclick="location.href=\'/userpgs/instructor/course_management/edit_course.php?course_id='.$course_id.'\';"></div>';
+			     echo '<div class="add-box">Manage Course <img src="/images/background/settings.png" onclick="location.href=\'/userpgs/instructor/course_management/edit_course.php?course_id='.$course_id.'\';"></div>';
 
 			     echo '<div class="add-box">Add Session <img src="/images/background/add.svg" onclick="location.href=\'/userpgs/instructor/class/new_class.php?course_id='.$course_id.'\';"></div>';
 
+			     
+			     echo '<div class="add-box">Manage Test <img src="/images/background/checkbox.svg"></div>';
+
 			     echo '</div>';
+} else {
+echo '<div class="options">';
+echo '<div class="add-box">Take the Test <img src="/images/background/checkbox.svg"></div>';
+echo '</div>';
 }
 
 
