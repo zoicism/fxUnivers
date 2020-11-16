@@ -87,12 +87,12 @@ require('../../../php/get_tar_id.php');
       
       <ul class="main-flex-container">
         <li class="main-items">
-                      <a href="/userpgs/instructor" class="link-main" id="active-main">
+                      <a href="/userpgs/instructor" class="link-main" <?php if($user_type=='instructor') echo 'id="active-main"'; ?>>
                         <div class="head">Teach</div>
                       </a>
         </li>
         <li class="main-items">
-          <a href="/userpgs/student" class="link-main">
+          <a href="/userpgs/student" class="link-main" <?php if($user_type!='instructor') echo 'id="active-main"'; ?>>
             <div class="head">Learn</div>
           </a>
         </li>
@@ -130,26 +130,18 @@ require('../../../php/get_tar_id.php');
 	  <?php
 	   } else {
 
-	     if($user_type=='instructor') {
 	   ?>
-
-	   <div class="video-placeholder" style="cursor:pointer" >
-         	   <img src="/images/background/vid_upload.png">
-		   	   <p>Click to upload a video</p>	
-	   </div>
 
 	   
+	   <div class="video-placeholder">
+         	   <img src="/images/background/novid.svg">
 
-	   <?php
-	   } else {
-
-	   //video placeholder for other users
-	   ?>
-
+		   	   <p>No video</p>	
+	   </div>
 
 
 <?php
-}
+
 	   }
  
 	     echo '<h2>'.$header.'</h2>';

@@ -378,7 +378,7 @@ textarea:focus {
 .video-placeholder img {
     width:60px;
     height:60px;
-    opacity:0.5;
+    opacity:0.3;
 }
 
 .video-placeholder p {
@@ -1059,6 +1059,7 @@ textarea:focus {
 
     .content-box {
 	margin-top:50px;
+	margin-bottom:50px;
     }
     
     .footer {

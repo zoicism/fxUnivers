@@ -78,12 +78,12 @@ require('../../../php/get_tar_id.php');
       
       <ul class="main-flex-container">
         <li class="main-items">
-                      <a href="/userpgs/instructor" class="link-main" id="active-main">
+                      <a href="/userpgs/instructor" class="link-main" <?php if($user_type=='instructor') echo 'id="active-main"'; ?>>
                         <div class="head">Teach</div>
                       </a>
         </li>
         <li class="main-items">
-          <a href="/userpgs/student" class="link-main">
+          <a href="/userpgs/student" class="link-main" <?php if($user_type!='instructor') echo 'id="active-main"'; ?>>
             <div class="head">Learn</div>
           </a>
         </li>
@@ -119,8 +119,6 @@ require('../../../php/get_tar_id.php');
 
 	   <div class="video-placeholder">
          	   <img src="/images/background/novid.svg">
-
-		   
 		   	   <p>No video</p>	
 	   </div>
 
@@ -200,6 +198,10 @@ if($user_type=='instructor') {
 			     echo '<div class="add-box">Manage Test <img src="/images/background/checkbox.svg"></div>';
 
 			     echo '</div>';
+} else {
+echo '<div class="options">';
+echo '<div class="add-box">Take the Test <img src="/images/background/checkbox.svg"></div>';
+echo '</div>';
 }
 
 
