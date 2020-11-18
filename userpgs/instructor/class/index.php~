@@ -143,19 +143,21 @@ require('../../../php/get_tar_id.php');
 <?php
 
 	   }
- 
+ echo '<div class="pub-avatar" onclick="location.href=\'/user/'.$tar_user_fetch['username'].'\'">';
+	     	  echo '<div class="pub-img avatar">';
+		  echo '</div>';
+		  echo '<div class="pub-name">';
+		  echo '<p class="fullname">'.$tar_user_fetch['fname'].' '.$tar_user_fetch['lname'].'</p>';
+		  echo '<p>@'.$tar_user_fetch['username'].'</p>';
+		  echo '</div>';
+	     echo '</div>';
+
+
 	     echo '<h2>'.$header.'</h2>';
              echo '<p>'.$description.'</p>';
 ?>
 	  
 <div class="detail-bottom">
-
-	  <div class="little-box gray">
-	    <?php
-	    echo '<a href="/user/'.$tar_user_fetch['username'].'">'.$tar_user_fetch['fname'].' '.$tar_user_fetch['lname'].' @'.$tar_user_fetch['username'].'</a>';
-	    ?>
-	  </div>
-
 
 
 

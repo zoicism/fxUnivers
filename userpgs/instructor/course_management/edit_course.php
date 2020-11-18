@@ -89,7 +89,7 @@ if($user_type!='instructor') {
 
   <div class="relative-main-content">
                             <div class="content-box">
-			      <h2>Edit Course</h2>
+			      <h2>Course Management</h2>
 
 <h3>Title, Description, Cost</h3>
 

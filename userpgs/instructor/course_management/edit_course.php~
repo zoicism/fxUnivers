@@ -119,7 +119,7 @@ if($user_type!='instructor') {
 
 
 <h3>Delete Course</h3>
-<p style="max-width:400px">By deleting a course all of the related sessions and videos will be lost permenantly, so think twice before deciding to do so.</p>
+<p style="max-width:400px">By deleting a course, all of the related sessions and videos will be lost permenantly, so think twice before deciding to do so.</p>
 			      <form><input onclick="delFunction()" type="submit" class="submit-btn" value="Delete Course"></form>
                             </div>
 
