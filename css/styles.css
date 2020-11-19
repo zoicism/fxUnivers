@@ -291,22 +291,74 @@ textarea:focus {
     width:40%;
     display:block;
     position:relative;
-    
     border-radius:20px;
     justify-content:space-between;
 }
 
 .right-content .sessions {
     box-shadow: -4px -2px 4px 0px #ffffff, 4px 2px 6px 0px #DFE4EA;
+    border-radius:20px;
+    padding:0;
+}
+
+.sessions .sess-list {
     overflow-y:scroll;
     height:40em;
-    border-radius:20px;
     padding:10px;
+}
+
+.sessions .chat-list {
+    padding:20px;
+}
+
+.chat-list .txt-input {
+    width:100%;
+}
+
+.chat-list .msgs {
+    overflow-y:scroll;
+}
+
+.msgs .one-msg {
+    border-bottom:1px solid gray;
+    margin:10px 0;
+    padding:10px;
+}
+
+.sessions .tabs {
+    display:flex;
+    flex-flow:row nowrap;
+    justify-content:space-around;
+}
+
+.sessions .tabs .tab {
+    width:50%;
+    border-radius:20px 20px 0 0;
+    box-shadow:-4px -2px 4px 0px #ffffff, 4px 2px 6px 0px #DFE4EA;
+    opacity:0.5;
+    cursor:pointer;
+}
+
+.sessions .tabs .tab:hover {
+    opacity:0.9;
+}
+
+.sessions .tabs .tab:active {
+    box-shadow:inset -4px -2px 4px 0px #ffffff, inset 4px 2px 6px 0px #DFE4EA;
+    opacity:1;
+}
+			 
+.sessions .tabs .active-tab {
+    box-shadow:none;
+    opacity:1;
+}
+
+.tabs h3 {
+    margin:10px 0;
 }
 
 .sessions h3 {
     text-align:center;
-    margin-bottom:20px;
 }
 
 

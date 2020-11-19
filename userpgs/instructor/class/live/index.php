@@ -30,6 +30,10 @@
   $description = $class_fetch['body'];
   $video = $class_fetch['video'];
 
+$tar_id=$class_fetch['teacher_id'];
+require('../../../../php/get_tar_id.php');
+
+
   require('../../php/classes.php');
 
   require('../../../../php/get_course.php');
@@ -248,6 +252,8 @@ if($user_type=='instructor') {
 
 			     echo '<div class="add-box">Live Whiteboard <img src="/images/background/whiteboard.svg" id="wbImg"></div>';
 
+
+
 ?>
 
 <form id="wbForm" target="_blank" action="/userpgs/instructor/class/live/whiteboard/#<?php echo $class_id ?>" method="POST" style="display:none">
@@ -256,7 +262,7 @@ if($user_type=='instructor') {
           <input type="submit" value="Open whiteboard">
          </form>
 
-
+<div class="add-box">Files(<span id="filesNum"></span>) <img src="/images/background/files.svg"></div>
 <?php
 
 			     
@@ -265,8 +271,21 @@ if($user_type=='instructor') {
 }
 
 echo '<div class="sessions">';
-echo '<h3>Sessions</h3>';
+?>
 
+
+<div class="tabs">
+
+  <div class="tab active-tab" style="border-radius:20px 0 0 0;" id="chat-tab"><h3>Chat</h3></div>
+  <div class="tab" style="border-radius:0 20px 0 0;" id="sessions-tab"><h3>Sessions</h3></div>
+
+</div>
+
+
+
+
+<?php
+echo '<div class="sess-list" style="display:none">';
                 if($class_result->num_rows>0) {
 		
                     while($row=$class_result->fetch_assoc()) {
@@ -305,6 +324,16 @@ echo '<h3>Sessions</h3>';
                     echo '<p style="color:gray;text-align:center;">No sessions yet.</p>';
                 }
  ?>
+</div> <!-- sess-list -->
+
+
+<!-- CHAT -->
+<div class="chat-list">
+<input name="msgBody" type="text" id="chatInput" class="txt-input" placeholder="Type here">
+<div class="msgs" id="newMsgs"></div>
+</div>
+
+
 	</div>
       </div>
       
@@ -1258,6 +1287,73 @@ $('#wbForm').submit();
 });
 </script>	
 
+
+<!-- FILES -->
+<script>
+$(document).ready(function() {
+    setInterval(function() {         
+        $('#filesNum').load('/php/class_file_update.php', {class_id: <?php echo $class_id ?>, user_type: '<?php echo $user_type ?>'});
+    }, 1000);
+});
+</script>
+
+<!-- TABS -->
+<script>
+$('#sessions-tab').click(function() {
+  $('#sessions-tab').addClass('active-tab');
+  $('#chat-tab').removeClass('active-tab');
+  $('.sess-list').show();
+  $('.chat-list').hide();
+});
+</script>
+<script>
+$('#chat-tab').click(function() {
+  $('#sessions-tab').removeClass('active-tab');
+  $('#chat-tab').addClass('active-tab');
+  $('.sess-list').hide();
+  $('.chat-list').show();
+});
+</script>
+
+
+<!-- CHATS -->
+<script>
+$('#chatInput').keypress(function(event) {
+    var keycode=(event.keyCode ? event.keyCode : event.which);
+    if(keycode == '13') {
+        var msgbody = $('#chatInput').val();
+        var msguserid = <?php echo $get_user_id ?>;
+        var msgclassid = <?php echo $class_id ?>;
+        jQuery.ajax({
+          type: 'POST',
+          url: '/php/set_class_chat.php',
+                data: {msgBody: msgbody, msgUserId: msguserid, msgClassId: msgclassid},
+          success: function(response) {
+                //alert(response);
+                $('#chatInput').val('');
+                $('#chatInput').focus();
+          }
+        });
+    }
+});
+</script>
+<script>
+$(document).ready(function() {
+    
+    setInterval(function() {
+        jQuery.ajax({
+          type: "POST",
+          url: "/php/get_class_chat.php",
+          data: {class_id: <?php echo $class_id ?>},
+          success: function(response) {
+                //alert(response);
+                $("#newMsgs").load('/php/class_chat_update.php', {class_id: <?php echo $class_id ?>});
+          }
+        });
+        }, 1000);
+});
+</script>
+<!-- EO CHAT -->
 
 </body>
 </html>

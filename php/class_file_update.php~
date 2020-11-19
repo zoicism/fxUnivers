@@ -13,6 +13,6 @@ if($select_file_count>0) {
         }
     }
 } else {
-    echo '<p style="color:#6f6f6f">No file uploaded yet</p>';
+    echo '<p style="color:#6f6f6f">No file yet</p>';
 }
 ?>
