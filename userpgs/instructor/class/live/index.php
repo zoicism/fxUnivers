@@ -131,7 +131,7 @@ require('../php/notify_students.php');
 				 <option>Only Audio</option>
 				 <option id="broadcasting-screen">Screen</option>
 			       </select>
-			       <img src="/images/background/live.png" id="setup-new-broadcast">
+			       <img src="/images/background/live.svg" style="padding:5px;opacity:1;" id="setup-new-broadcast">
 			       <input type="hidden" id="broadcast-name">
 			     </div>
 
@@ -179,7 +179,7 @@ require('../php/notify_students.php');
       <option>Ogg</option>
       <option>Gif</option>
     </select><br>
-    <img src="/images/background/live.png" id="recordImg">
+    <img src="/images/background/record.png" style="opacity:1" id="recordImg">
     <button class="btn" id="recordBtn" style="display:none">Start Recording</button>
 
     <div style="text-align: center; display: none;">
@@ -244,9 +244,22 @@ if($user_type=='instructor') {
 
 			     echo '<div class="options">';
 
-			     echo '';
+			     
 
-			     echo '<div class="add-box">Record <img src="/images/background/live.png" onclick=""></div>';
+			     echo '<div class="add-box">Live Whiteboard <img src="/images/background/whiteboard.svg" id="wbImg"></div>';
+
+?>
+
+<form id="wbForm" target="_blank" action="/userpgs/instructor/class/live/whiteboard/#<?php echo $class_id ?>" method="POST" style="display:none">
+          <input type="hidden" name="courseId" value="<?php echo $course_id ?>">
+          <input type="hidden" name="classId" value="<?php echo $class_id ?>">
+          <input type="submit" value="Open whiteboard">
+         </form>
+
+
+<?php
+
+			     
 
 			     echo '</div>';
 }
@@ -1236,6 +1249,14 @@ $('#recordImg').click(function() {
 });
 </script>
             <!-- EO RTC RECORD --> 
+
+
+<!-- WHITEBOARD -->
+<script>
+$('#wbImg').click( function() {
+$('#wbForm').submit();
+});
+</script>	
 
 
 </body>
