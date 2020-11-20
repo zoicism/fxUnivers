@@ -193,6 +193,8 @@ if($user_type=='instructor') {
 					});
 				   </script>';
 
+echo '<div class="add-box">Files('.$gcf_count.') <img src="/images/background/files.svg" ></div>';
+
 
 
 

@@ -24,9 +24,11 @@ if(isset($_POST['username']) and isset($_POST['password'])) {
     $_SESSION['username'] = $username;
 
     if(isset($_POST['rememberme']) && $_POST['rememberme']=='remember') {
-        setcookie('user_login', $_POST['username'], time()+60*60*24*30, '/');
+        setcookie('username',$_POST['username'],time()+60*60*24*30,'/');
+        setcookie('password',$_POST['password'],time()+60*60*24*30,'/');
     } else {
-        setcookie ("member_login","");
+        setcookie("username","");
+        setcookie("password","");
     }
     
     header('Location: /userpgs');

@@ -35,7 +35,7 @@ if(isset($_POST['username']) and isset($_POST['password'])) {
     //exit;
     
   } else {
-    header('Location: /?err=wup');
+    header('Location: /?err=wup&un='.$username);
   }
 } else {
   header('Location: /?err=nup');

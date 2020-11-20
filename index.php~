@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>fx login</title>
+  <link rel="stylesheet" type="text/css" href="styles-new.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-form">
+      <div class="fxunivers-logo">
+        <img src="fxunivers-logo.svg">
+        <span>fxUnivers</span>
+        <p>Universe of Possibilities</p>
+      </div>
+      <h2>Log in to fxUnivers</h2>
+      <input class="login-input" type="text" placeholder="Email">
+      <input class="login-input" type="password" placeholder="Password">
+      <a class="login-forgot">Forgot your password?</a>
+      <a class="login-button">Log in</a>
+      <a class="signup-button">Sign up</a>
+    </div>
+      
+    <div class="login-description">
+      <div class="login-text">
+        <div class="fx-icon fxstar-icon"><span>fxStar</span><p>Purchase products/services, or send/recieve as gift</p></div>
+        <div class="fx-icon fxuniversity-icon"><span>fxUniversity</span><p>Create courses as instructor & make fxStars, or browse to take them as student</p></div>
+        <div class="fx-icon fxpartner-icon"><span>fxPartner</span><p>Partner us & make easy fxStars</p></div>
+        <div class="fx-icon fxuniverse-icon"><span>fxUniverse</span><p>Universe of trading (Coming soon for public)</p></div>
+        <div class="fx-icon fxsonet-icon"><span>fxSonet</span><p>Next level of worldwide connection (Coming soon for public)</p></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

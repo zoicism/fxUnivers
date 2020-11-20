@@ -202,8 +202,8 @@ echo '<div class="add-box">Files('.$gcf_count.') <img src="/images/background/fi
 }
 
 echo '<div class="sessions">';
-echo '<h3>Sessions</h3>';
-
+echo '<div class="sess-title"><h3>Sessions</h3></div>';
+echo '<div class="sess-list">';
                 if($class_result->num_rows>0) {
 		
                     while($row=$class_result->fetch_assoc()) {
@@ -242,6 +242,7 @@ echo '<h3>Sessions</h3>';
                     echo '<p style="color:gray;text-align:center;">No sessions yet.</p>';
                 }
  ?>
+ </div>
 	</div>
       </div>
       

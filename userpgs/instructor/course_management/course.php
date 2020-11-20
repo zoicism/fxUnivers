@@ -208,7 +208,8 @@ echo '</div>';
 
 
 echo '<div class="sessions">';
-echo '<h3>Sessions</h3>';
+echo '<div class="sess-title"><h3>Sessions</h3></div>';
+echo '<div class="sess-list">';
 
                 if($class_result->num_rows>0) {
 		
@@ -246,7 +247,7 @@ echo '<h3>Sessions</h3>';
  ?>
 	</div>
       </div>
-</div>      
+</div>     </div> 
             
     </div>
 
