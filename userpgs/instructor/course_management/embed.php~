@@ -1,0 +1,19 @@
+<?php
+require('../../../register/connect.php');
+
+if(isset($_POST['course_id']) && isset($_POST['embed_link'])) {
+  $courseId=$_POST['course_id'];
+  $embedLink=$_POST['embed_link'];
+
+  $embed_q='UPDATE teacher SET video_url="'.$embedLink.'" WHERE id='.$course_id;
+  $embed_r=mysqli_query($connection,$embed_q) or die(mysqli_error($connection));
+
+  if($embed_r) {
+    echo 1;
+  } else {
+    echo 0;
+  }
+} else {
+  echo 0;
+}
+?>

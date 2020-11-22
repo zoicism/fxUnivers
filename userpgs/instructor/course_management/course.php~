@@ -162,9 +162,9 @@ $coursecounter_q="SELECT * FROM stucourse WHERE course_id=".$course_id;
 
 
 	  <?php
-	  if($row3['cost']>0) {	  
+	  if($cost>0) {	  
 				    echo '<div class="little-box gold">
-				      '.$row3['cost'].' <span>fxStars</span>
+				      '.$cost.' <span>fxStars</span>
 				    </div>';
 			    } else {
 			      	   echo '<div class="little-box green" style="padding: 4px 20px;">
@@ -208,7 +208,8 @@ echo '</div>';
 
 
 echo '<div class="sessions">';
-echo '<h3>Sessions</h3>';
+echo '<div class="sess-title"><h3>Sessions</h3></div>';
+echo '<div class="sess-list">';
 
                 if($class_result->num_rows>0) {
 		
@@ -246,7 +247,7 @@ echo '<h3>Sessions</h3>';
  ?>
 	</div>
       </div>
-</div>      
+</div>     </div> 
             
     </div>
 

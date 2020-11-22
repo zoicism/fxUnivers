@@ -78,7 +78,7 @@ if(isset($_COOKIE['username']) && isset($_COOKIE['password'])) {
 <!------ LOGIN OVERLAY ------->
 <div class="overlay-container" style="display:none" id="login-overlay">
 <div class="overlay">
-<div class="close-btn" id="close-btn">×</div>
+<div class="close-btn" id="login-close-btn">×</div>
   <h1>Login</h1>
   <form action="/php/login.php" method="POST">
     <input class="txt-input" type="text" placeholder="Username or Email" name="username" <?php if(isset($_GET['un'])) echo 'value="'.$_GET['un'].'"'; ?> required>
@@ -102,7 +102,7 @@ if(isset($_COOKIE['username']) && isset($_COOKIE['password'])) {
   <div class="overlay-container" style="display:none" id="signup-overlay">
   
     <div class="overlay">
-    <div class="close-btn" id="close-btn">×</div>
+    <div class="close-btn" id="signup-close-btn">×</div>
       <h1 id="overlay-title">Create Account</h1>
       <form  method="POST" autocomplete="off" id="regForm">
 
@@ -261,9 +261,14 @@ $('#regForm').submit(function(event) {
 
 <!-- CLOSE OVERLAY -->
 <script>
-$('#close-btn').click(function() {
-  $('.overlay-container').hide();
+$('#login-close-btn').click(function() {
+  $('#login-overlay').hide();
 });
+
+$('#signup-close-btn').click(function() {
+  $('#signup-overlay').hide();
+});
+  
 </script>
 
 </body>

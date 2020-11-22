@@ -113,6 +113,10 @@ require('../../../php/get_tar_id.php');
 
 	  <!-- Title, description, and info -->
 	  <?php
+	   } elseif($video!='') {
+	     echo '<div class="video-holder">';
+         	   echo $video;
+	     echo '</div>';
 	   } else {
 
 	   ?>
@@ -162,9 +166,9 @@ $coursecounter_q="SELECT * FROM stucourse WHERE course_id=".$course_id;
 
 
 	  <?php
-	  if($row3['cost']>0) {	  
+	  if($cost>0) {	  
 				    echo '<div class="little-box gold">
-				      '.$row3['cost'].' <span>fxStars</span>
+				      '.$cost.' <span>fxStars</span>
 				    </div>';
 			    } else {
 			      	   echo '<div class="little-box green" style="padding: 4px 20px;">

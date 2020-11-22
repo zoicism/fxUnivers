@@ -26,9 +26,9 @@ $signup_query = "INSERT INTO `user`(email, password, hash) VALUES('$email', '$pa
 $signup_result = mysqli_query($connection, $signup_query) or die(mysqli_error($connection));
 
 if($signup_result) {
-  $msg = "Success!";
+  $msg = 1;
 } else {
-  $msg = "Failed!";
+  $msg = 0;
 }
 
 //if(isset($_POST['partner'])) $partner=$_POST['partner'];
@@ -108,32 +108,7 @@ mail($to, $subject, $message, implode("\r\n", $headers));
 
 ////////////////////////////////////////////
 
+
+echo $msg;
+
 ?>
-
-
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>fxUnivers</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">   
-    <link rel="stylesheet" href="/css/style.css">
-    <script src="/js/jquery-3.4.1.min.js"></script>
-  </head>
-
-
-
-
-<body>            
- <div class="center">
-   <h3>Activate your account!</h3>
-   <p>We emailed you an activation link. Check your inbox and click on it to complete the registration.</p>
-   <p><a href="/">Home</a> <a href="https://gmail.com">Gmail</a></p>
- </div>
-
- <div class="footer" style="bottom:0;position:fixed;"></div>
-<script src="/js/footer.js"></script>
-
-</body>
-</html>
