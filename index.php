@@ -56,9 +56,10 @@ if(isset($_COOKIE['username']) && isset($_COOKIE['password'])) {
 }
 ?>
 	<a class="login-forgot">Forgot your password?</a>
-	<input type="submit" class="login-button" value="Log in">
+	<input type="submit" class="login-button" value="Log in" id="desktop-login-btn">
       </form>
       
+      <a class="login-button" id="goto-login">Login</a>
       <a class="signup-button" id="goto-signup">Sign up</a>
     </div>
       
@@ -74,11 +75,34 @@ if(isset($_COOKIE['username']) && isset($_COOKIE['password'])) {
   </div>
 
 
+<!------ LOGIN OVERLAY ------->
+<div class="overlay-container" style="display:none" id="login-overlay">
+<div class="overlay">
+<div class="close-btn" id="login-close-btn">×</div>
+  <h1>Login</h1>
+  <form action="/php/login.php" method="POST">
+    <input class="txt-input" type="text" placeholder="Username or Email" name="username" <?php if(isset($_GET['un'])) echo 'value="'.$_GET['un'].'"'; ?> required>
+    <input class="txt-input" type="password" name="password" placeholder="Password" required>
+    
+    <?php 
+	 if(isset($_GET['err']) && $_GET['err']=='wup') {
+	 echo '<p class="red">Wrong username or password.</p>';
+	 }
+    ?>
+    <a class="login-forgot">Forgot your password?</a>
+    <input type="submit" class="login-button" value="Log in">
+  </form>
+
+  
+
+</div>
+</div>
+
 <!---------------- Signup Overlay ---------------->
-  <div class="overlay-container" style="display:none">
+  <div class="overlay-container" style="display:none" id="signup-overlay">
   
     <div class="overlay">
-    <div class="close-btn" id="close-btn">×</div>
+    <div class="close-btn" id="signup-close-btn">×</div>
       <h1 id="overlay-title">Create Account</h1>
       <form  method="POST" autocomplete="off" id="regForm">
 
@@ -106,7 +130,7 @@ if(isset($_COOKIE['username']) && isset($_COOKIE['password'])) {
          }
         ?>
 
-        <input type="submit" value="Sign up" class="signup-button">
+        <input type="submit" value="Sign up" class="signup-button" id="sup-btn">
       </form>
       <p id="overlay-text" style="display:none">Check your email inbox or spam folder for an activation email we just sent you.</p>
     </div>
@@ -116,10 +140,15 @@ if(isset($_COOKIE['username']) && isset($_COOKIE['password'])) {
 <!-- SCRIPTS -->
 <script>
 $('#goto-signup').click(function() {
-$('.overlay-container').show();
+$('#signup-overlay').show();
 });
 </script>
 
+<script>
+$('#goto-login').click(function() {
+$('#login-overlay').show();
+});
+</script>
 
 <!-- Email Validation -->
 <script type="text/javascript">
@@ -206,6 +235,9 @@ $('#regForm').submit(function(event) {
     if(($('#pass').val().length <= 8) || ($('#confpass').val()!=$('#pass').val()) || !(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test($('#deskEmail').val()))) {
         alert('Enter valid data!');
     } else {
+       $('#sup-btn').css('opacity','0.5');
+       $('#sup-btn').prop('disabled',true);
+       $('#sup-btn').val('Signing up...');
        jQuery.ajax({
          type:'POST',
 	 url: '/register/reg.php',
@@ -228,12 +260,16 @@ $('#regForm').submit(function(event) {
 </script>
 
 <!-- CLOSE OVERLAY -->
-
-
 <script>
-$('#close-btn').click(function() {
-  $('.overlay-container').hide();
+$('#login-close-btn').click(function() {
+  $('#login-overlay').hide();
 });
+
+$('#signup-close-btn').click(function() {
+  $('#signup-overlay').hide();
+});
+  
 </script>
+
 </body>
 </html>

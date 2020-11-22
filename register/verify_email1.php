@@ -1,4 +1,4 @@
-<?php
+ <?php
 require('connect.php');
 
 $match = 0;
@@ -62,54 +62,79 @@ if($match) {
 
 ?>
 
-
 <!DOCTYPE html>
-<html>
-<head>
+<html lang="en">
+  <head>
   <title>fxUnivers</title>
-  <link rel="stylesheet" type="text/css" href="/css/styles.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="/js/jquery-3.4.1.min.js"></script>
-</head>
+  <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">  
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/jquery-3.4.1.min.js"></script>
+  </head>
+
+
+
+
 <body>
-  <div class="solo-container">
+   
 
-    <div class="solo">
+    <div class="center">
+                
+                <?php if($match) { ?>
+                                   <h3>Email verified</h3>
+  <p>Now tell us your name to get started.</p>
+  <form action="/php/signup2.php" autocomplete="off" method="POST">
+    <input type="text" name="firstname" id="inputfn" placeholder="First name (required)" required>
+	<input type="text" name="lastname" id="inputln" placeholder="Last name (required)" required>
 
-      <?php
-        if($match) {
-      ?>
-          <h3>Email verified</h3>
-	  <p>Your email is verified. Now choose yourself a username.</p>
-
-	  <form action="/php/signup2.php" autocomplete="off" method="POST">
-	    <input type="text" name="firstname" id="inputfn" placeholder="First name (required)" class="txt-input" required>
-	    <input type="text" name="lastname" id="inputln" placeholder="Last name (required)" class="txt-input" required>
-
-
-	    <input type="text" name="username" placeholder="Username (required)" id="username" class="txt-input" required>
-	    <p id="fewCh" class="tooltip red">More than 3 characters</p>
-    	    <p class="tooltip red" id="dupUN">That username is taken</p>
-
-
-	    <input type="phone" name="phonenumber" placeholder="Phone number (optional)" class="txt-input">
-	    
-	    <input type="hidden" name="email" value="<?php echo $email ?>">
-	    <input type="hidden" name="hash" value="<?php echo $hash ?>">
-	    
-	    <input type="submit" value="continue" id="submitButt" class="submit-btn" disabled>
-	  </form>
-	  
-	    <?php
-	      } else {
-                echo '<p>error :/</p>';
-    	      }
-	    ?>
-    </div>
+                                        
+    <span id="fewCh" class="tooltip" style="margin-left:10%;">More than 3 characters</span>
+    <span class="tooltip" id="dupUN" style="margin-left:10%;">That username is taken</span>
+	<input type="text" name="username" placeholder="Username (required)" id="username" required>
     
-  </div>
+    
+    <input type="phone" name="phonenumber" placeholder="Phone number (optional)">
+	<input type="hidden" name="email" value="<?php echo $email ?>">
+	<input type="hidden" name="hash" value="<?php echo $hash ?>">
+    <input type="checkbox" name="policyCB" value="one" style="display:inline" required>
+                <label for="policyCB">I agree to the <a href="/policy" target="_blank">terms & conditions</a>.</label><br>
+	<input type="submit" value="continue" id="submitButt" style="opacity:0.5" disabled>
+  </form>
+<?php } else {
+        echo '<p>error :/</p>';
+    }
+?>
+</div>
 
-<!-- SCRIPTS -->
+
+<div class="footer" style="bottom:0;position:fixed;"></div>
+<script src="/js/footer.js"></script>
+
+<script type="text/javascript">
+/*    $(function() {
+      $('#suForm').on('submit', function(e) {
+        e.preventDefault();
+        if($('#dupUN').is(':visible')) {
+        } else {
+            jQuery.ajax({
+              type: 'post',
+              url: '/php/signup2.php',
+              data: $('#suForm').serialize(),
+              success: function(data) {
+                    window.location.replace("/userpgs");
+              },
+              error: function(jqxhr) {
+                    if(jqxhr.responseText==='uname_dup') {
+                        $('#dup_err').show();
+                    }
+              }
+            });
+        }
+      });
+      });*/
+</script>
+
 <script>
 $('#username').each(function() {
     var elem=$(this);
@@ -148,6 +173,43 @@ $('#username').each(function() {
     });
 });        
 </script>
+
+<script type="text/javascript">/*
+function setUsername() {
+  var enteredUN = document.getElementById('username').value;
+  var UNlen = enteredUN.length;
+  jQuery.ajax({
+    type:'POST',
+    url:'/php/dup_username.php',
+    data:$('#username').serialize(),
+    success: function(data) {
+      if(data=='dup' && UNlen!=0) {
+        $('#dupUN').show();
+	$('#nonDupUN').hide();
+	$('#fewCh').hide();
+	$('#username').val('');
+	$('#username').focus();
+      } else {
+        $('#dupUN').hide();
+	if(UNlen>0 && UNlen<3) {
+	  $('#fewCh').show();
+	  $('#nonDupUN').hide();
+	  $('#username').focus();
+	} else {
+	  if(UNlen==0) {
+	    $('#nonDupUN').hide();
+	  } else {
+	    $('#nonDupUN').show();
+	  }
+	  //$('#nonDupUN').hide();
+	  $('#fewCh').hide();
+	}
+      }
+    }
+  });
+  }*/
+</script>
+
 
 </body>
 </html>

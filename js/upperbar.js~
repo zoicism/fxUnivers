@@ -21,11 +21,11 @@ if(screen.width>628) {
                   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
                   <a href="#">About</a>
                   <a href="#">Contact</a>
-                  <a href="#">Log out</a>
+                  <a href="/register/logout.php">Log out</a>
                     <div class="socialmedia">
-                      <a href="#" class="facebook"></a>
-                      <a href="#" class="instagram"></a>
-                      <a href="#" class="twitter"></a>
+                      <a href="https://facebook.com/fxunivers" class="facebook" target="_blank"></a>
+                      <a href="https://instagram.com/fxunivers" class="instagram" target="_blank"></a>
+                      <a href="https://twitter.com/fxunivers" class="twitter" target="_blank"></a>
                     </div>
                 </div>
 
@@ -51,9 +51,9 @@ if(screen.width>628) {
                   <a href="#">Contact</a>
                   <a href="#">Log out</a>
                     <div class="socialmedia">
-                      <a href="#" class="facebook"></a>
-                      <a href="#" class="instagram"></a>
-                      <a href="#" class="twitter"></a>
+<a href="https://facebook.com/fxunivers" class="facebook" target="_blank"></a>
+                      <a href="https://instagram.com/fxunivers" class="instagram" target="_blank"></a>
+                      <a href="https://twitter.com/fxunivers" class="twitter" target="_blank"></a>
                     </div>
                 </div>
 `);
@@ -123,9 +123,9 @@ $('.header').html(`
                         <a href="#">Log out</a>
                     </div>
                     <div class="socialmedia socialmedia-m">
-                      <a href="#" class="facebook"></a>
-                      <a href="#" class="instagram"></a>
-                      <a href="#" class="twitter"></a>
+<a href="https://facebook.com/fxunivers" class="facebook" target="_blank"></a>
+                      <a href="https://instagram.com/fxunivers" class="instagram" target="_blank"></a>
+                      <a href="https://twitter.com/fxunivers" class="twitter" target="_blank"></a>
                     </div>
                 </div>
 
@@ -157,9 +157,9 @@ $('.header').html(`
                         <div class="elements">
                             <a href="/wallet" class="sidebar-icon fxstar-sidebar">fxStar</a>
                             <a href="/userpgs/fxuniversity" class="sidebar-icon fxuniversity-sidebar">fxUniversity</a>
-                            <a href="/userpgs/partner" class="sidebar-icon fxpartner-sidebar">fxPartner</a>
-                            <a href="/" class="sidebar-icon fxuniverse-sidebar">fxUniverse</a>
-                            <a href="/" class="sidebar-icon fxsonet-sidebar">fxSonet</a>
+                            <a href="/userpgs/partner" class="sidebar-icon fxpartner-sidebar" target="_blank">fxPartner</a>
+                            <a href="/" class="sidebar-icon fxuniverse-sidebar" target="_blank">fxUniverse</a>
+                            <a href="/" class="sidebar-icon fxsonet-sidebar" target="_blank">fxSonet</a>
                         </div>
                     </div>
                     <div class="menu-info">
@@ -169,9 +169,9 @@ $('.header').html(`
                         <a href="#">Log out</a>
                     </div>
                     <div class="socialmedia socialmedia-m">
-                      <a href="#" class="facebook"></a>
-                      <a href="#" class="instagram"></a>
-                      <a href="#" class="twitter"></a>
+<a href="https://facebook.com/fxunivers" class="facebook" target="_blank"></a>
+                      <a href="https://instagram.com/fxunivers" class="instagram" target="_blank"></a>
+                      <a href="https://twitter.com/fxunivers" class="twitter" target="_blank"></a>
                     </div>
                 </div>
 

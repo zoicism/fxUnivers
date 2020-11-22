@@ -1393,7 +1393,19 @@ textarea:focus {
   border-radius: 20px;
   width: 40%;
   height: fit-content;
-  padding: 60px 30px;
+  padding: 36px 30px;
+}
+
+.overlay .close-btn {
+    margin-left:auto;
+    font-size: 24px;
+    text-align:right;
+    cursor:pointer;
+    opacity:0.7;
+}
+
+.overlay p {
+    font-size:16px;
 }
 
 .overlay h1 {

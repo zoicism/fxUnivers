@@ -21,7 +21,7 @@ if(screen.width>628) {
                   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
                   <a href="#">About</a>
                   <a href="#">Contact</a>
-                  <a href="#">Log out</a>
+                  <a href="/register/logout.php">Log out</a>
                     <div class="socialmedia">
                       <a href="https://facebook.com/fxunivers" class="facebook" target="_blank"></a>
                       <a href="https://instagram.com/fxunivers" class="instagram" target="_blank"></a>
@@ -120,7 +120,7 @@ $('.header').html(`
                         <a href="#" class="policy-m">Policy</a>
                         <a href="#">About</a>
                         <a href="#">Contact</a>
-                        <a href="#">Log out</a>
+                        <a href="/register/logout.php">Log out</a>
                     </div>
                     <div class="socialmedia socialmedia-m">
 <a href="https://facebook.com/fxunivers" class="facebook" target="_blank"></a>
@@ -166,7 +166,7 @@ $('.header').html(`
                         <a href="#" class="policy-m">Policy</a>
                         <a href="#">About</a>
                         <a href="#">Contact</a>
-                        <a href="#">Log out</a>
+                        <a href="/register/logout.php">Log out</a>
                     </div>
                     <div class="socialmedia socialmedia-m">
 <a href="https://facebook.com/fxunivers" class="facebook" target="_blank"></a>
