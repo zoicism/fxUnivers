@@ -89,7 +89,7 @@ if($user_type!='instructor') {
 
   <div class="relative-main-content">
                             <div class="content-box">
-			      <h2>Session Edit</h2>
+			      <h2>Session Management</h2>
 
 <h3>Title & Description
 <form method="POST" action="edit_post.php">

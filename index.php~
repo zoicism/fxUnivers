@@ -235,7 +235,7 @@ $('#regForm').submit(function(event) {
     if(($('#pass').val().length <= 8) || ($('#confpass').val()!=$('#pass').val()) || !(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test($('#deskEmail').val()))) {
         alert('Enter valid data!');
     } else {
-       $('#sup-btn').css('opacity','0.5');
+       $('#sup-btn').css('opacity','0.85');
        $('#sup-btn').prop('disabled',true);
        $('#sup-btn').val('Signing up...');
        jQuery.ajax({
