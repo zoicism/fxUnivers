@@ -127,7 +127,7 @@ mail($to, $subject, $message, implode("\r\n", $headers));
 
 <body>            
  <div class="center">
-                 <h3>Activate your account!</h3>
+   <h3>Activate your account!</h3>
    <p>We emailed you an activation link. Check your inbox and click on it to complete the registration.</p>
    <p><a href="/">Home</a> <a href="https://gmail.com">Gmail</a></p>
  </div>

@@ -1,24 +1,65 @@
+ <?php
+// Requiring https
+/*if($_SERVER['HTTPS'] != "on") {
+    $url = "https://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+    header("Location: $url");
+    exit;
+    }*/
+
+session_start();
+require('register/connect.php');
+
+if(isset($_SESSION['username'])) {
+	$registered=true;
+	header("Location: /userpgs");
+	exit();
+}
+
+if(isset($_GET['err'])) {
+  $error=$_GET['err'];
+}
+
+if(isset($_GET['msg'])) {
+  $msg=$_GET['msg'];
+}
+
+if(isset($_COOKIE['username']) && isset($_COOKIE['password'])) {
+    $uname=$_COOKIE['username'];
+    $pass=$_COOKIE['password'];
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
   <title>fx login</title>
-  <link rel="stylesheet" type="text/css" href="styles-new.css">
+  <link rel="stylesheet" type="text/css" href="/css/styles.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="/js/jquery-3.4.1.min.js"></script>
 </head>
 <body>
   <div class="login-container">
     <div class="login-form">
       <div class="fxunivers-logo">
-        <img src="fxunivers-logo.svg">
+        <img src="/images/logos/fxunivers-logo.svg">
         <span>fxUnivers</span>
         <p>Universe of Possibilities</p>
       </div>
       <h2>Log in to fxUnivers</h2>
-      <input class="login-input" type="text" placeholder="Email">
-      <input class="login-input" type="password" placeholder="Password">
-      <a class="login-forgot">Forgot your password?</a>
-      <a class="login-button">Log in</a>
-      <a class="signup-button">Sign up</a>
+      <form action="/php/login.php" method="POST">
+	<input class="login-input" type="text" placeholder="Username or Email" name="username" <?php if(isset($_GET['un'])) echo 'value="'.$_GET['un'].'"'; ?> required>
+	<input class="login-input" type="password" name="password" placeholder="Password" required>
+
+	<?php 
+	 if(isset($_GET['err']) && $_GET['err']=='wup') {
+	 echo '<p class="red">Wrong username or password.</p>';
+}
+?>
+	<a class="login-forgot">Forgot your password?</a>
+	<input type="submit" class="login-button" value="Log in">
+      </form>
+      
+      <a class="signup-button" id="goto-signup">Sign up</a>
     </div>
       
     <div class="login-description">
@@ -31,5 +72,136 @@
       </div>
     </div>
   </div>
+
+
+<!---------------- Signup Overlay ---------------->
+  <div class="overlay-container" style="display:none">
+    <div class="overlay">
+      <h1>Create Account</h1>
+      <form action="/register/reg.php" method="POST" autocomplete="off" id="regForm">
+
+        <input class="signup-input" type="text" name="email" placeholder="Email" id="deskEmail">
+	<p class="tooltip red" id="dupEmail">This email is already used.</p>
+        <p class="tooltip red"  id="badEmail">Invalid email address</p>
+
+
+        <input class="signup-input" type="password" name="password" placeholder="Password" id="pass">
+        <p class="tooltip red" class="tooltip" id="badPass">Weak password</p>
+
+
+        <input class="signup-input" type="password" name="password2" placeholder="Repeat Password" id="confpass">
+	<p class="tooltip red" class="tooltip" id="noMatch">Passwords do not match</p>
+	
+        <label class="checkbox">I agree to <a href="#">terms and conditions</a>
+        <input type="radio" name="policycb" required>
+        <span class="checkmark"></span>
+        </label>
+
+	<?php 
+         if(isset($_GET['partner'])) {
+             $partner=$_GET['partner'];
+             echo '<input type="hidden" name="partner" value="'.$partner.'">';
+         }
+        ?>
+
+        <input type="submit" value="Sign up" class="signup-button">
+      </form>
+    </div>
+  </div>
 </body>
+
+<!-- SCRIPTS -->
+<script>
+$('#goto-signup').click(function() {
+$('.overlay-container').show();
+});
+</script>
+
+
+<!-- Email Validation -->
+<script type="text/javascript">
+$('#deskEmail').each(function() {
+  var elem=$(this);
+
+  // current val
+  elem.data('oldVal', elem.val());
+
+  //look for changes
+  elem.bind("propertychange change click keyup input paste", function(event) {
+    if(elem.data('oldVal')!=elem.val()) {
+      elem.data('oldVal', elem.val());
+
+      if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(elem.val())) {
+          $('#badEmail').hide();
+          jQuery.ajax({
+            type: 'POST',
+            url: '/php/dup_email.php',
+            data: $('#deskEmail').serialize(),
+            success: function(data) {
+              if(data=='dup') {
+                  $('#dupEmail').show();
+              } else {
+                  $('#dupEmail').hide();
+              }
+            }
+          });
+      } else {
+          $('#badEmail').show();
+      }
+    }
+  });
+});
+</script>
+
+
+
+<!-- Bad Password -->
+<script type="text/javascript">
+$('#pass').each(function() {
+  var elem1=$(this);
+  elem1.data('oldVal', elem1.val());
+  elem1.bind("propertychange change click keyup input paste", function(event) {
+    if(elem1.data('oldVal')!=elem1.val()) {
+      elem1.data('oldVal', elem1.val());
+      if(elem1.val().length > 8) {
+        $('#badPass').hide();
+      } else {
+        $('#badPass').show();
+      }
+    }
+  });
+});
+</script>
+
+
+
+
+<!-- Password Confirmation -->
+<script type="text/javascript">
+    $('#confpass').each(function() {
+        var elem2=$(this);
+        elem2.data('oldVal', elem2.val());
+        elem2.bind("propertychange change click keyup input paste", function(event) {
+            if(elem2.data('oldVal')!=elem2.val()) {
+                elem2.data('oldVal', elem2.val());
+                if(elem2.val()!=$('#pass').val()) {
+                    $('#noMatch').show();
+                } else {
+                    $('#noMatch').hide();
+                }
+            }
+        });
+    });
+</script>
+
+<script>
+$('#regForm').submit(function(event) {
+    if(($('#pass').val().length <= 8) || ($('#confpass').val()!=$('#pass').val()) || !(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test($('#deskEmail').val()))) {
+        event.preventDefault();
+        alert('Enter valid data please!');
+    }
+});
+</script>
+
+
 </html>

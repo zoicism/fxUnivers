@@ -106,6 +106,13 @@ input:focus, textarea:focus, select:focus{
   height: 90%;
 }
 
+.login-form form {
+    display:inherit;
+    flex-flow:inherit;
+    align-items:inherit;
+    width:100%;
+}
+
 .fxunivers-logo {
   display: flex;
   flex-flow: column nowrap;
@@ -115,7 +122,7 @@ input:focus, textarea:focus, select:focus{
 
 .fxunivers-logo img {
   margin: auto;
-  width: 50px;
+  width: 100px;
 }
 
 .fxunivers-logo span {
@@ -224,7 +231,6 @@ input:focus, textarea:focus, select:focus{
 
 .login-text p {
   font-size: 14px;
-  font-weight: 600;
   margin-bottom: 30px;
 }
 
@@ -235,7 +241,7 @@ input:focus, textarea:focus, select:focus{
 .fxstar-icon:before {
   content: "";
   display: block;
-  background: url("fxstar.svg") no-repeat;
+  background: url("/images/icons/platforms/fxstar.svg") no-repeat;
   width: 1em;
   height: 1em;
   float: left;
@@ -245,7 +251,7 @@ input:focus, textarea:focus, select:focus{
 .fxuniversity-icon:before {
   content: "";
   display: block;
-  background: url("fxuniversity.svg") no-repeat;
+  background: url("/images/icons/platforms/fxuniversity.svg") no-repeat;
   width: 1em;
   height: 1em;
   float: left;
@@ -255,7 +261,7 @@ input:focus, textarea:focus, select:focus{
 .fxpartner-icon:before {
   content: "";
   display: block;
-  background: url("fxpartner.svg") no-repeat;
+  background: url("/images/icons/platforms/fxpartner.svg") no-repeat;
   width: 1em;
   height: 1em;
   float: left;
@@ -265,7 +271,7 @@ input:focus, textarea:focus, select:focus{
 .fxuniverse-icon:before {
   content: "";
   display: block;
-  background: url("fxuniverse.svg") no-repeat;
+  background: url("/images/icons/platforms/fxuniverse.svg") no-repeat;
   width: 1em;
   height: 1em;
   float: left;
@@ -275,7 +281,7 @@ input:focus, textarea:focus, select:focus{
 .fxsonet-icon:before {
   content: "";
   display: block;
-  background: url("fxsonet.svg") no-repeat;
+  background: url("/images/icons/platforms/fxsonet.svg") no-repeat;
   width: 1em;
   height: 1em;
   float: left;
@@ -1425,7 +1431,7 @@ input:focus, textarea:focus, select:focus{
 }
 
 @media (max-width: 628px) {
-
+/******* ADDED *******/
   .login-container {
     flex-flow: column nowrap;
   }
@@ -1437,7 +1443,7 @@ input:focus, textarea:focus, select:focus{
   }
 
   .login-description {
-    width: 100%;
+    width: 95%;
     height: 100%;
   }
 
@@ -1448,7 +1454,8 @@ input:focus, textarea:focus, select:focus{
   .login-button, .signup-button {
     width: 90%;
   }
-
+  /******* UNTIL HERE *******/
+  
   .sidebar {
     display:none;
     }

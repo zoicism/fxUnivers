@@ -1,4 +1,4 @@
-<?php
+ <?php
 // Requiring https
 /*if($_SERVER['HTTPS'] != "on") {
     $url = "https://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
@@ -32,9 +32,10 @@ if(isset($_COOKIE['username']) && isset($_COOKIE['password'])) {
 <!DOCTYPE html>
 <html>
 <head>
-  <title>fx login</title>
+  <title>fxUnivers</title>
   <link rel="stylesheet" type="text/css" href="/css/styles.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="/js/jquery-3.4.1.min.js"></script>
 </head>
 <body>
   <div class="login-container">
@@ -58,7 +59,7 @@ if(isset($_COOKIE['username']) && isset($_COOKIE['password'])) {
 	<input type="submit" class="login-button" value="Log in">
       </form>
       
-      <a class="signup-button">Sign up</a>
+      <a class="signup-button" id="goto-signup">Sign up</a>
     </div>
       
     <div class="login-description">
@@ -71,5 +72,168 @@ if(isset($_COOKIE['username']) && isset($_COOKIE['password'])) {
       </div>
     </div>
   </div>
+
+
+<!---------------- Signup Overlay ---------------->
+  <div class="overlay-container" style="display:none">
+  
+    <div class="overlay">
+    <div class="close-btn" id="close-btn">×</div>
+      <h1 id="overlay-title">Create Account</h1>
+      <form  method="POST" autocomplete="off" id="regForm">
+
+        <input class="signup-input" type="text" name="email" placeholder="Email" id="deskEmail">
+	<p class="tooltip red" id="dupEmail">This email is already used.</p>
+        <p class="tooltip red"  id="badEmail">Invalid email address</p>
+
+
+        <input class="signup-input" type="password" name="password" placeholder="Password" id="pass">
+        <p class="tooltip red" class="tooltip" id="badPass">Weak password</p>
+
+
+        <input class="signup-input" type="password" name="password2" placeholder="Repeat Password" id="confpass">
+	<p class="tooltip red" class="tooltip" id="noMatch">Passwords do not match</p>
+	
+        <label class="checkbox">I agree to <a href="#">terms and conditions</a>
+        <input type="radio" name="policycb" required>
+        <span class="checkmark"></span>
+        </label>
+
+	<?php 
+         if(isset($_GET['partner'])) {
+             $partner=$_GET['partner'];
+             echo '<input type="hidden" name="partner" value="'.$partner.'">';
+         }
+        ?>
+
+        <input type="submit" value="Sign up" class="signup-button">
+      </form>
+      <p id="overlay-text" style="display:none">Check your email inbox or spam folder for an activation email we just sent you.</p>
+    </div>
+  </div>
+
+
+<!-- SCRIPTS -->
+<script>
+$('#goto-signup').click(function() {
+$('.overlay-container').show();
+});
+</script>
+
+
+<!-- Email Validation -->
+<script type="text/javascript">
+$('#deskEmail').each(function() {
+  var elem=$(this);
+
+  // current val
+  elem.data('oldVal', elem.val());
+
+  //look for changes
+  elem.bind("propertychange change click keyup input paste", function(event) {
+    if(elem.data('oldVal')!=elem.val()) {
+      elem.data('oldVal', elem.val());
+
+      if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(elem.val())) {
+          $('#badEmail').hide();
+          jQuery.ajax({
+            type: 'POST',
+            url: '/php/dup_email.php',
+            data: $('#deskEmail').serialize(),
+            success: function(data) {
+              if(data=='dup') {
+                  $('#dupEmail').show();
+              } else {
+                  $('#dupEmail').hide();
+              }
+            }
+          });
+      } else {
+          $('#badEmail').show();
+      }
+    }
+  });
+});
+</script>
+
+
+
+<!-- Bad Password -->
+<script type="text/javascript">
+$('#pass').each(function() {
+  var elem1=$(this);
+  elem1.data('oldVal', elem1.val());
+  elem1.bind("propertychange change click keyup input paste", function(event) {
+    if(elem1.data('oldVal')!=elem1.val()) {
+      elem1.data('oldVal', elem1.val());
+      if(elem1.val().length > 8) {
+        $('#badPass').hide();
+      } else {
+        $('#badPass').show();
+      }
+    }
+  });
+});
+</script>
+
+
+
+
+<!-- Password Confirmation -->
+<script type="text/javascript">
+    $('#confpass').each(function() {
+        var elem2=$(this);
+        elem2.data('oldVal', elem2.val());
+        elem2.bind("propertychange change click keyup input paste", function(event) {
+            if(elem2.data('oldVal')!=elem2.val()) {
+                elem2.data('oldVal', elem2.val());
+                if(elem2.val()!=$('#pass').val()) {
+                    $('#noMatch').show();
+                } else {
+                    $('#noMatch').hide();
+                }
+            }
+        });
+    });
+</script>
+
+
+<!-- SIGNUP FORM SUBMIT -->
+<script>
+$('#regForm').submit(function(event) {
+        event.preventDefault();
+
+    if(($('#pass').val().length <= 8) || ($('#confpass').val()!=$('#pass').val()) || !(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test($('#deskEmail').val()))) {
+        alert('Enter valid data!');
+    } else {
+       jQuery.ajax({
+         type:'POST',
+	 url: '/register/reg.php',
+	 data: $(this).serialize(),
+	 success: function(response) {
+	   if(response==1) {
+	     $('#overlay-title').html('Confirm Your Email Address');
+	     $('#overlay-text').show();
+	     $('#regForm').hide();
+	   } else {
+	     $('#overlay-title').html('Error!');
+	     $('#overlay-text').show();
+	     $('#overlay-text').html('Something went wrong! :/ Try again.');
+	     $('#regForm').hide();
+	   }
+	 }
+       });
+    }
+});
+</script>
+
+<!-- CLOSE OVERLAY -->
+
+
+<script>
+$('#close-btn').click(function() {
+  $('.overlay-container').hide();
+});
+</script>
 </body>
 </html>
