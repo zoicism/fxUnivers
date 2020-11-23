@@ -23,7 +23,7 @@ if(isset($_POST['course_id'])) $course_id = $_POST['course_id'];
 
 
 $query = "INSERT INTO `class` (teacher_id, course_id, title, body) VALUES ($id, $course_id, '$header', '$description')";
-//echo '>>'.$query;
+echo '>>'.$query;
 $result = mysqli_query($connection, $query) or die(mysqli_error($connection));
 
 $classId_query="SELECT * FROM class WHERE teacher_id=$id ORDER BY id DESC LIMIT 1";

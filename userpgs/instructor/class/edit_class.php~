@@ -105,15 +105,27 @@ if($user_type!='instructor') {
 
 
 
-<h3>Video upload</h3>
+<h3>Video</h3>
   <form method="POST"  action="file_uploader.php" enctype="multipart/form-data" >
+    <p style="max-width:400px">Uploading a new video will replace the previous session video if there is one already.</p>
     <input name="video_up" type="file" accept=".avchd, .avi, .flv, .mkv, .mov, .mp4, .webm, .wmv">
     <input name="course_id" type="hidden" value="<?php echo $course_id?>">
     <input name="class_id" type="hidden" value="<?php echo $class_id?>">
     <input type="submit" value="Upload" class="submit-btn">
   </form>
+<form><input type="submit" class="submit-btn" value="Delete Video"></form>
 
 
+<p style="max-width:400px">You could link a video from websites like YouTube and Vimeo by embedding it here:</p>
+<form id="vid-embed" autocomplete="off">
+  <input type="text" class="txt-input" name="embed_link" placeholder="Copy embed link here" required>
+  <input type="hidden" name="class_id" value="<?php echo $class_id?>">
+  <input type="submit" class="submit-btn" value="Embed Video" id="embedBtn">
+</form>
+<form id="del-embed">
+  <input type="hidden" name="class_id" value="<?php echo $class_id?>">
+  <input type="submit" class="submit-btn" value="Remove Embed" id="delEmbedBtn">
+</form>
 
 
 
@@ -174,6 +186,47 @@ $('#page-header').attr('href','/userpgs/fxuniversity');
 <script>
 $('.fxuniversity-sidebar').attr('id','sidebar-active');
 </script>
+
+
+<!-- VIDEO EMBED -->
+<script>
+$('#vid-embed').submit(function(event) {
+  event.preventDefault();
+  console.log('Submitting...');
+  jQuery.ajax({
+    url:'embed.php',
+    type:'POST',
+    data: $(this).serialize(),
+    success: function(response) {
+      if(response==1) {
+        $('#embedBtn').css('opacity','0.8');
+        $('#embedBtn').prop('disabled',true);
+	$('#embedBtn').val('Embedded');
+	console.log('Embed link updated.');
+      }
+    }
+  });
+});
+
+$('#del-embed').submit(function(ev) {
+  ev.preventDefault();
+  console.log('Removing embed ...');
+  jQuery.ajax({
+    url:'del_embed.php',
+    type:'POST',
+    data:$(this).serialize(),
+    success: function(res) {
+      if(res==1) {
+        $('#delEmbedBtn').css('opacity','0.8');
+	$('#delEmbedBtn').prop('disabled',true);
+	$('#delEmbedBtn').val('Embed removed');
+	console.log('Embed link removed.');
+      }
+    }
+  });
+});
+</script>
+
 
 </body>
 </html>

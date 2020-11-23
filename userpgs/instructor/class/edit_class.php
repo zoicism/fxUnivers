@@ -47,6 +47,7 @@ if($user_type!='instructor') {
     <link rel="stylesheet" href="/css/icons.css">
     <link rel="stylesheet" href="/css/logo.css">
     <script src="/js/jquery-3.4.1.min.js"></script>
+    <script src="/js/jquery.form.js"></script>
 </head>
     
 <body>
@@ -134,11 +135,12 @@ if($user_type!='instructor') {
 
 
 <h3>File upload</h3>
-    <form method="POST" action="class_file_upload.php" enctype="multipart/form-data">
+    <form method="POST" id="fileForm" enctype="multipart/form-data" action="class_file_upload.php">
     <input type="hidden" name="inst_id" value="<?php echo $get_user_id?>">
     <input name="class_id" type="hidden" value="<?php echo $class_id?>">
     <input name="course_id" type="hidden" value="<?php echo $course_id?>">
     <input type="file" name="uploaded_file" id="fileToUpload">
+    <p id="uploadMsg" style="display:none">Uploaded. You can upload another now.</p>
     <input type="submit" value="Upload file" class="submit-btn">
     </form>
 
@@ -227,6 +229,18 @@ $('#del-embed').submit(function(ev) {
 });
 </script>
 
-
+<!-- FILE UPLOAD -->
+<script>
+$(function() {
+$('#fileForm').ajaxForm(function(response) {
+  console.log('file is uploaded');
+  $('#fileToUpload').val('');
+  $('#uploadMsg').show();
+  setTimeout(function() {
+    $('#uploadMsg').hide();
+  }, 5000);
+});
+});
+</script>
 </body>
 </html>

@@ -22,7 +22,7 @@ if(isset($_FILES['uploaded_file'])) {
         $file_name=basename( $_FILES['uploaded_file']['name']);
     }
     
-    // limit file size
+    // limit file sized
     if($_FILES['uploaded_file']['size'] > 5000000) {
         $uploadOK=0;
     }
@@ -30,9 +30,9 @@ if(isset($_FILES['uploaded_file'])) {
     // limit file type
     if($file_type!='jpg' && $file_type!='jpeg' && $file_type!='png' && $file_type!='gif' && $file_type!='ppt' && $file_type!='pptx' && $file_type!='docx' && $file_type!='doc' && $file_type!='pdf' && $file_type!='txt' && $file_type!='xps' && $file_type!='csv' && $file_type!='xls' && $file_type!='xlsx' && $file_type!='zip') $uploadOK=0;
     
-    echo $uploadOK;
+    $uploadOK;
     if($uploadOK) {
-        echo $path;
+        $path;
         if(move_uploaded_file($_FILES['uploaded_file']['tmp_name'], $path)) {
             //echo "The file ".  basename( $_FILES['uploaded_file']['name'])." has been uploaded";
             require('../../../php/conn/fxinstructor.php');

@@ -39,14 +39,18 @@ if(isset($_FILES['uploaded_file'])) {
             $file_db_query="INSERT INTO class_files(instId,classId,fileName) VALUES($instid,$classid,'$file_name')";
             //echo $file_db_query.'<br>';
             $file_db_result=mysqli_query($fxinstructor_connection,$file_db_query) or die(mysqli_error($fxinstructor_connection));
+	    $uploadOK=1;
         } else {
             //echo "There was an error uploading the file, please try again!";
+	    $uploadOK=0;
         }
     } else {
         //echo "The file doesn't meet the criteria to be uploaded.";
+	$uploadOK=0;
     }
 }
 //echo "successful";
-header("Location: /userpgs/instructor/class?course_id=$courseid&class_id=$classid");
+echo $uploadOK;
+//header("Location: /userpgs/instructor/class?course_id=$courseid&class_id=$classid");
 
 ?>
