@@ -126,6 +126,7 @@ require('../php/notify_students.php');
       <div class="course-content">
 	<div class="left-content">
 	  <!-- VIDEO -->
+	  <?php if($user_type=='instructor') { ?>
 	  <div class="video-holder" id="live-session">
 	   <div id="videos-container"></div>
 	   <div class="ctrl">
@@ -148,13 +149,7 @@ require('../php/notify_students.php');
 
 
 	   </div>
-
-
-
-
-
 	  </div>
-
 
 <div class="video-holder" id="live-session">
 	   
@@ -193,16 +188,38 @@ require('../php/notify_students.php');
     </div>
 
 </div>
-    
-
-
-
 
 
 	      </div>
 
 	   </div>
 </div>
+
+<?php } else { ?>
+
+
+<div class="video-holder" id="live-session">
+	   <div id="videos-container"></div>
+	   <div class="ctrl">
+	                     <div class="ctrl-row" id="before-stream-start" style="align-items:center;justify-content:center;">
+			       <p id="join-p">Live video hasn't started yet.</p>			       
+			       <img src="/images/background/live.svg" style="padding:5px;opacity:0.5;cursor:not-allowed;" disabled id="join-img">
+			       <div style="display:none" id="setup-new-broadcast"></div>
+			       <input type="hidden" id="broadcast-name">
+			     </div>
+	   </div>
+</div>
+
+
+<?php } ?>
+
+
+    
+
+
+
+
+
 	
 
 <?php
@@ -270,7 +287,7 @@ if($user_type=='instructor') {
 			     echo '</div>';
 } else {
 echo '<!-- list of all available broadcasting rooms -->
-          <table style="width: 100%;" id="rooms-list"></table>';
+          <table style="display:none" id="rooms-list"></table>';
 }
 
 echo '<div class="sessions">';
@@ -407,7 +424,7 @@ document.getElementById('setup-new-broadcast').onclick = function() {
 
                         var tr = document.createElement('tr');
                         tr.innerHTML = '<td><strong>' + room.roomName + '</strong> is live now!</td>' +
-                            '<td><button class="join btn">Join</button></td>';
+                            '<td><button class="join btn" id="join-btn">Join</button></td>';
                         roomsList.appendChild(tr);
 
                         var joinRoomButton = tr.querySelector('.join');
@@ -425,7 +442,15 @@ document.getElementById('setup-new-broadcast').onclick = function() {
                                 joinUser: broadcaster
                             });
                             hideUnnecessaryStuff();
+			    
+			    
                         };
+
+			$('#join-img').css({'opacity':'1', 'cursor':'pointer'});
+			$('#join-p').html('<b>We are live! Watch now:</b>');
+			
+
+			
                     },
                     onNewParticipant: function(numberOfViewers) {
                         document.title = 'Viewers: ' + numberOfViewers;
@@ -1357,6 +1382,16 @@ $(document).ready(function() {
 });
 </script>
 <!-- EO CHAT -->
+
+<script>
+$('#join-img').click(function() {
+  $('#join-btn').click();
+
+
+  $('#join-img').css({'opacity':'0.6', 'cursor':'not-allowed'});
+  $('#join-p').html('You are watching live session.');
+});
+</script>
 
 </body>
 </html>

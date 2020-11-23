@@ -203,6 +203,19 @@ echo '<div class="add-box">Files('.$gcf_count.') <img src="/images/background/fi
 
 
 			     echo '</div>';
+} else {
+echo '<div class="options">';
+echo '<div class="add-box">Go Live <img src="/images/background/live.svg" id="LiveImg" style="padding:5px"></div>';
+echo '</div>';
+
+echo '<form action="/userpgs/instructor/class/live/#'.$class_id.'" method="POST" id="LiveForm"><input type="hidden" name="course_id" value="'.$course_id.'"><input type="hidden" name="class_id" value="'.$class_id.'"></form>';
+
+			     echo '<script>$("#LiveImg").on("click",function() {
+			     	  		$("#LiveForm").submit();
+					});
+				   </script>';
+
+echo '<div class="add-box">Files('.$gcf_count.') <img src="/images/background/files.svg" ></div>';
 }
 
 echo '<div class="sessions">';
