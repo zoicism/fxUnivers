@@ -189,7 +189,7 @@ require('../php/notify_students.php');
     <div style="text-align: center; display: none;">
       <button id="save-to-disk" class="submit-btn">Download</button>
       <button id="open-new-tab" class="submit-btn">Open in New Tab</button>
-      <button id="upload-to-server" class="submit-btn">Upload to fxUniversity</button>
+      <button id="upload-to-server" class="submit-btn">Upload to Session</button>
     </div>
 
 </div>
@@ -1181,7 +1181,7 @@ console.log('video stream stopped');
                 var upload_url = 'save.php';
 
                 // var upload_directory = upload_url;
-                var upload_directory = 'uploads/';
+                var upload_directory = '../videos/';
 
                 makeXMLHttpRequest(upload_url, formData, function(progress) {
                     if (progress !== 'upload-ended') {
