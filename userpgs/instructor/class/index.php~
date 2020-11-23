@@ -126,8 +126,12 @@ require('../../../php/get_tar_id.php');
 
 
 
-	  <!-- Title, description, and info -->
+	  
 	  <?php
+	   } elseif($video!='') {
+	     echo '<div class="video-holder">';
+         	   echo $video;
+	     echo '</div>';
 	   } else {
 
 	   ?>
@@ -139,7 +143,7 @@ require('../../../php/get_tar_id.php');
 		   	   <p>No video</p>	
 	   </div>
 
-
+<!-- Title, description, and info -->
 <?php
 
 	   }

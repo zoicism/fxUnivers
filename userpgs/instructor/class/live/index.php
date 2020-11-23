@@ -268,6 +268,9 @@ if($user_type=='instructor') {
 			     
 
 			     echo '</div>';
+} else {
+echo '<!-- list of all available broadcasting rooms -->
+          <table style="width: 100%;" id="rooms-list"></table>';
 }
 
 echo '<div class="sessions">';

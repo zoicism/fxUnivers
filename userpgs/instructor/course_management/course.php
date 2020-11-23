@@ -203,9 +203,13 @@ if($user_type=='instructor') {
 			     echo '<div class="add-box">Manage Test <img src="/images/background/checkbox.svg"></div>';
 
 			     echo '</div>';
-} else {
+} elseif($user_type=='student') {
 echo '<div class="options">';
 echo '<div class="add-box">Take the Test <img src="/images/background/checkbox.svg"></div>';
+echo '</div>';
+} else {
+echo '<div class="options">';
+echo '<div class="add-box">Purchase Course <img src="/images/background/checkbox.svg" onclick="location.href=\'/wallet/purchase?item=course&no='.$course_id.'\';"></div>';
 echo '</div>';
 }
 
