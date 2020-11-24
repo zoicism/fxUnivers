@@ -1162,6 +1162,31 @@ textarea:focus {
   display:block;
 }
 
+.solo-container {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-flow:row;
+    height:100%;
+}
+
+.solo-container .solo {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    width: 47.5%;
+    height: 90%;
+    background-color: #efefef;
+    padding: 20px;
+    border-radius: 25px;
+    box-shadow: inset -4px -2px 4px 0px #fff,
+		inset 4px 2px 6px 0px #DFE4EA,
+		-4px -2px 4px 0px #ffffff,
+		4px 2px 6px 0px #DFE4EA;
+}
+    
+
 /************************************ > Login Page ******************************************/
 
 .login-container {
@@ -1538,6 +1563,8 @@ textarea:focus {
 	margin-top:50px;
 	margin-bottom:50px;
     }
+
+    
     
     .footer {
 	width:100%;
@@ -1561,9 +1588,21 @@ textarea:focus {
     .course-content {
 	margin-top:50px;
     }
+
+    #goto-login {
+      display:none;
+  }
 }
 
 @media (max-width: 628px) {
+
+    .overlay {
+	width:80%;
+    }
+
+    .solo-container .solo {
+	width:80%;
+    }
     
     .login-container {
 	flex-flow: column nowrap;
@@ -1583,6 +1622,11 @@ textarea:focus {
   .login-form h2, .login-input, .login-forgot {
       display: none;
   }
+
+  #desktop-login-btn {
+      display:none;
+  }
+
   
   .login-button, .signup-button {
       width: 90%;

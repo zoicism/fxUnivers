@@ -301,6 +301,55 @@ textarea:focus {
     padding:0;
 }
 
+.sessions .online-list {
+    overflow-y:scroll;
+    height:40em;
+    padding:10px;
+}
+
+.online-list .user {
+    display:flex;
+    flex-flow:row nowrap;
+    cursor:pointer;
+    margin-bottom:10px;
+    margin-top:10px;
+    margin-left:15px;
+}
+
+.user .user-name {
+    margin-left:10px;
+}
+
+.user-name .fullname {
+    font-size:1rem;
+    font-weight:bold;
+}
+
+.fullname .online {
+    display:inline-block;
+    border-radius:50px;
+    width:1rem;
+    height:1rem;
+    background:#6cc841;
+}
+
+.fullname .offline {
+    display:inline-block;
+    border-radius:50px;
+    width:1rem;
+    height:1rem;
+    background:#c8416c;
+}
+
+.user .user-img {
+    width:3.5rem;
+    height:3.5rem;
+    box-shadow: -6px -6px 14px rgba(255, 255, 255, .7),
+              -6px -6px 10px rgba(255, 255, 255, .5),
+              6px 6px 8px rgba(255, 255, 255, .075),
+              6px 6px 10px rgba(0, 0, 0, .15);
+}
+
 .sessions .sess-list {
     overflow-y:scroll;
     height:40em;
@@ -1536,6 +1585,8 @@ textarea:focus {
     display:none;
 }
     
+
+
 
 
 /*** MOBILE VIEW ***/

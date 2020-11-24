@@ -295,8 +295,9 @@ echo '<div class="sessions">';
 
 
 <div class="tabs">
-
-  <div class="tab active-tab" style="border-radius:20px 0 0 0;" id="chat-tab"><h3>Chat</h3></div>
+  <div class="tab active-tab" style="border-radius:20px 0 0 0;" id="users-tab"><h3>Online(<span id="online-num"></span>)</h3></div>
+  <div class="tab" style="border-radius:20px 20px 0 0;" id="chat-tab"><h3>Chat</h3></div>
+  
   <div class="tab" style="border-radius:0 20px 0 0;" id="sessions-tab"><h3>Sessions</h3></div>
 
 </div>
@@ -348,12 +349,17 @@ echo '<div class="sess-list" style="display:none">';
 
 
 <!-- CHAT -->
-<div class="chat-list">
-<input name="msgBody" type="text" id="chatInput" class="txt-input" placeholder="Type here">
-<div class="msgs" id="newMsgs"></div>
+<div class="chat-list" style="display:none">
+  <input name="msgBody" type="text" id="chatInput" class="txt-input" placeholder="Type here">
+  <div class="msgs" id="newMsgs"></div>
 </div>
 
+<!-- ONLINE LIST -->
+<div class="online-list"></div>
 
+
+</div>
+  
 	</div>
       </div>
       
@@ -369,7 +375,7 @@ echo '<div class="sess-list" style="display:none">';
 
 
 
-  <!-- SCRIPTS -->
+<!-- SCRIPTS -->
   <script>
     $('#page-header').html('fxUniversity');
     $('#page-header').attr('href','/userpgs/fxuniversity');
@@ -1313,8 +1319,26 @@ $('#recordImg').click(function() {
 $('#wbImg').click( function() {
 $('#wbForm').submit();
 });
-</script>	
+</script>
 
+<!-- ONLINE USERS -->
+<script>
+$(document).ready(function() {
+  setInterval(function() {
+    jQuery.ajax({
+      url:'/php/live_online_users.php',
+      type:'POST',
+      data: {class_id:"<?php echo $class_id?>", username:"<?php echo $username?>", user_id:"<?php echo $get_user_id?>",course_id:"<?php echo $course_id?>"},
+      success: function(response) {
+	$('.online-list').html(response);
+	$('#online-num').html($('#get-online-num').text());
+	console.log(response);
+      }
+    });
+  }, 2000);
+});
+    
+</script>
 
 <!-- FILES -->
 <script>
@@ -1330,16 +1354,26 @@ $(document).ready(function() {
 $('#sessions-tab').click(function() {
   $('#sessions-tab').addClass('active-tab');
   $('#chat-tab').removeClass('active-tab');
+  $('#users-tab').removeClass('active-tab');
   $('.sess-list').show();
   $('.chat-list').hide();
+  $('.online-list').hide();
 });
-</script>
-<script>
 $('#chat-tab').click(function() {
   $('#sessions-tab').removeClass('active-tab');
   $('#chat-tab').addClass('active-tab');
+  $('#users-tab').removeClass('active-tab');
   $('.sess-list').hide();
   $('.chat-list').show();
+  $('.online-list').hide();
+});
+$('#users-tab').click(function() {
+  $('#sessions-tab').removeClass('active-tab');
+  $('#chat-tab').removeClass('active-tab');
+  $('#users-tab').addClass('active-tab');
+  $('.sess-list').hide();
+  $('.chat-list').hide();
+  $('.online-list').show();
 });
 </script>
 
