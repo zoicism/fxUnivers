@@ -19,7 +19,7 @@ if($stucourse_count>0) {
   $offline_num=0;
   
   while($stu_row=$stucourse_result->fetch_assoc()) {
-    $slct_q='SELECT * FROM user WHERE id='.$stu_row['stu_id'];
+    $slct_q='SELECT * FROM user WHERE id='.$stu_row['stu_id'].' AND lsPage="live/#'.$class_id.'"';
     $slct_r=mysqli_query($connection,$slct_q) or die(mysqli_error($connection));
     $slct=mysqli_fetch_array($slct_r);
     $slct_count=mysqli_num_rows($slct_r);
@@ -36,7 +36,7 @@ if($stucourse_count>0) {
        ';
        $online_num++;
      } else {
-      $on_users .= '
+      $off_users .= '
        <div class="user">
           <div class="user-img avatar"></div>
     	  <div class="user-name">
@@ -51,7 +51,7 @@ if($stucourse_count>0) {
   }
 
 
-  echo $on_users.'<div style="display:none" id="get-online-num">'.$online_num.'</div>';
+  echo $on_users.$off_users.'<div style="display:none" id="get-online-num">'.$online_num.'</div>';
   
 }
 

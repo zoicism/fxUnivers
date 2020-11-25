@@ -189,13 +189,9 @@ if($user_type=='instructor') {
 
 			     echo '<div class="add-box">Manage Session <img src="/images/background/settings.png" onclick="location.href=\'/userpgs/instructor/class/edit_class.php?course_id='.$course_id.'&class_id='.$class_id.'\';"></div>';
 
-			     echo '<div class="add-box">Go Live <img src="/images/background/live.svg" id="LiveImg" style="padding:5px"></div>';
+			     echo '<div class="add-box">Open Live Class <img src="/images/background/live.svg" id="LiveImg" style="padding:5px"></div>';
 			     echo '<form action="/userpgs/instructor/class/live/#'.$class_id.'" method="POST" id="LiveForm"><input type="hidden" name="course_id" value="'.$course_id.'"><input type="hidden" name="class_id" value="'.$class_id.'"></form>';
 
-			     echo '<script>$("#LiveImg").on("click",function() {
-			     	  		$("#LiveForm").submit();
-					});
-				   </script>';
 
 echo '<div class="add-box">Files('.$gcf_count.') <img src="/images/background/files.svg" ></div>';
 
@@ -210,11 +206,6 @@ echo '<div class="add-box">Files('.$gcf_count.') <img src="/images/background/fi
 echo '</div>';
 
 echo '<form action="/userpgs/instructor/class/live/#'.$class_id.'" method="POST" id="LiveForm"><input type="hidden" name="course_id" value="'.$course_id.'"><input type="hidden" name="class_id" value="'.$class_id.'"></form>';
-
-			     echo '<script>$("#LiveImg").on("click",function() {
-			     	  		$("#LiveForm").submit();
-					});
-				   </script>';
 
 
 }
@@ -287,6 +278,28 @@ echo '<div class="sess-list">';
   <script>
     $('.fxuniversity-sidebar').attr('id','sidebar-active');
   </script>
+
+
+<!-- LIVE CLASS -->
+<script>
+$("#LiveImg").on("click",function() {
   
+  jQuery.ajax({
+    url:'add_live.php',
+    type:'POST',
+    data:{classId:"<?php echo $class_id?>"},
+    success:function(response) {
+      if(response==1) {
+        $("#LiveForm").submit();
+      } else {
+        console.log('Error');
+      }
+    }
+  });
+  
+});
+</script>
+
+
 </body>
 </html>

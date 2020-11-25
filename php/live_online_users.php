@@ -53,6 +53,8 @@ if($stucourse_count>0) {
 
   echo $on_users.$off_users.'<div style="display:none" id="get-online-num">'.$online_num.'</div>';
   
+} else {
+  echo '<p class="gray">This course has no students yet</p>';
 }
 
 ?>

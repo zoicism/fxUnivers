@@ -119,21 +119,21 @@ require('../../wallet/php/get_fxcoin_count.php');
 
 			    
 			    echo '<div class="detail-bottom">
-				    <div class="little-box blue">
+				    <div class="little-box blue-bg">
 				      '.$coursecounts.' <span>students</span>
 				    </div>';
 				    
 			   if($row3['cost']>0) {	  
-				    echo '<div class="little-box gold">
+				    echo '<div class="little-box gold-bg">
 				      '.$row3['cost'].' <span>fxStars</span>
 				    </div>';
 			    } else {
-			      	   echo '<div class="little-box green" style="padding: 4px 20px;">
+			      	   echo '<div class="little-box green-bg" style="padding: 4px 20px;">
 				      Free
 				    </div>';
 			    }
 
-			    echo '<div class="little-box gray"><span>'.date("M jS, Y", strtotime($row3['start_date'])).'</span></div>';
+			    echo '<div class="little-box gray-bg"><span>'.date("M jS, Y", strtotime($row3['start_date'])).'</span></div>';
 
 			    echo ' </div>
 				  </div>
@@ -143,7 +143,7 @@ require('../../wallet/php/get_fxcoin_count.php');
 			      
 
 		 } else {
-		   echo '<p style="color:gray">No courses added yet</p>';
+		   echo '<p class="gray">No courses added yet</p>';
 		   }	
 		
 		?>

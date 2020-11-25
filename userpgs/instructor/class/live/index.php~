@@ -281,7 +281,7 @@ if($user_type=='instructor') {
           <input type="submit" value="Open whiteboard">
          </form>
 
-<div class="add-box">Files(<span id="filesNum"></span>) <img src="/images/background/files.svg"></div>
+
 <?php
 
 			     
@@ -298,8 +298,8 @@ echo '<div class="sessions">';
 
 <div class="tabs">
   <div class="tab active-tab" style="border-radius:20px 0 0 0;" id="users-tab"><h3>Online(<span id="online-num"></span>)</h3></div>
-  <div class="tab" style="border-radius:20px 20px 0 0;" id="chat-tab"><h3>Chat</h3></div>
-  <div class="tab" style="border-radius:20px 20px 0 0;" id="file-tab"><h3>Files</h3></div>
+  <div class="tab" style="border-radius:0 0 0 0;" id="chat-tab"><h3>Chat</h3></div>
+  <div class="tab" style="border-radius:0 0 0 0;" id="file-tab"><h3>Files(<span id="filesNum"></span>)</h3></div>
   <div class="tab" style="border-radius:0 20px 0 0;" id="sessions-tab"><h3>Sessions</h3></div>
 
 </div>
@@ -357,33 +357,27 @@ echo '<div class="sess-list" style="display:none">';
 </div>
 
 <!-- ONLINE LIST -->
-<div class="online-list" style="display:none"></div>
+<div class="online-list"></div>
 
 
 <!-- FILES -->
-<?php
-/*if($user_type=='instructor') {
-    echo '<form method="POST" target="hidden-iframe" action="/php/upload_class_file.php" enctype="multipart/form-data">
-        <input type="file" name="class_file" id="classFile">
-        <input type="hidden" name="classId" value="'.$class_id.'"><br>
-        <input type="submit" value="Upload" class="submit-btn">
-      </form>';
-}*/
-?>
-
-<h3>File upload</h3>
-    <form method="POST" id="fileForm" enctype="multipart/form-data" action="live_file_upload.php">
-    <input type="hidden" name="inst_id" value="<?php echo $get_user_id?>">
-    <input name="class_id" type="hidden" value="<?php echo $class_id?>">
-    <input name="course_id" type="hidden" value="<?php echo $course_id?>">
-    <input type="file" name="uploaded_file" id="fileToUpload">
+<div class="file-list" style="display:none">
+<?php if($user_type=='instructor') { ?>
+    <form method="POST" id="fileForm" enctype="multipart/form-data" action="/php/upload_class_file.php">
+    
+    <input name="classId" type="hidden" value="<?php echo $class_id?>">
+    
+    <input type="file" name="class_file" id="fileToUpload">
     <p id="uploadMsg" style="display:none">Uploaded. You can upload another now.</p>
     <input type="submit" value="Upload file" class="submit-btn">
     </form>
-<div class="files-list" id="newFiles"></div>
+
+<iframe name="hidden-del" style="display:none"></iframe>
+    <?php } ?>
+<div id="newFiles"></div>
 
 </div>
-  
+  </div>
 	</div>
       </div>
       
@@ -1379,6 +1373,8 @@ $('#sessions-tab').click(function() {
   $('#sessions-tab').addClass('active-tab');
   $('#chat-tab').removeClass('active-tab');
   $('#users-tab').removeClass('active-tab');
+  $('#file-tab').removeClass('active-tab');
+  $('.file-list').hide();
   $('.sess-list').show();
   $('.chat-list').hide();
   $('.online-list').hide();
@@ -1387,6 +1383,8 @@ $('#chat-tab').click(function() {
   $('#sessions-tab').removeClass('active-tab');
   $('#chat-tab').addClass('active-tab');
   $('#users-tab').removeClass('active-tab');
+  $('#file-tab').removeClass('active-tab');
+  $('.file-list').hide();
   $('.sess-list').hide();
   $('.chat-list').show();
   $('.online-list').hide();
@@ -1395,9 +1393,21 @@ $('#users-tab').click(function() {
   $('#sessions-tab').removeClass('active-tab');
   $('#chat-tab').removeClass('active-tab');
   $('#users-tab').addClass('active-tab');
+  $('#file-tab').removeClass('active-tab');
+  $('.file-list').hide();
   $('.sess-list').hide();
   $('.chat-list').hide();
   $('.online-list').show();
+});
+$('#file-tab').click(function() {
+  $('#sessions-tab').removeClass('active-tab');
+  $('#chat-tab').removeClass('active-tab');
+  $('#users-tab').removeClass('active-tab');
+  $('#file-tab').addClass('active-tab');
+  $('.file-list').show();
+  $('.sess-list').hide();
+  $('.chat-list').hide();
+  $('.online-list').hide();
 });
 </script>
 
@@ -1457,6 +1467,7 @@ $('#join-img').click(function() {
 $(document).ready(function() {
     setInterval(function() {
         $('#newFiles').load('/php/class_file_update.php', {class_id: <?php echo $class_id ?>, user_type: '<?php echo $user_type ?>'});
+	$('#filesNum').html($('#getFilesNum').text());
     }, 1000);
 });
 </script>
