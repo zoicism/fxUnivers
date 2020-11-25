@@ -90,6 +90,8 @@ require('../php/notify_students.php');
     <script src="../js/gif-recorder.js"></script>
     <script src="../getScreenId.js/getScreenId.js"></script>
     <script src="../Chrome-Extensions/Screen-Capturing.js/Screen-Capturing.js"></script>
+
+    <script src="/js/jquery.form.js"></script>
     
 </head>
     
@@ -201,7 +203,7 @@ require('../php/notify_students.php');
 <div class="video-holder" id="live-session">
 	   <div id="videos-container"></div>
 	   <div class="ctrl">
-	                     <div class="ctrl-row" id="before-stream-start" style="align-items:center;justify-content:center;">
+	                     <div class="ctrl-row" id="before-stream-start">
 			       <p id="join-p">Live video hasn't started yet.</p>			       
 			       <img src="/images/background/live.svg" style="padding:5px;opacity:0.5;cursor:not-allowed;" disabled id="join-img">
 			       <div style="display:none" id="setup-new-broadcast"></div>
@@ -295,9 +297,9 @@ echo '<div class="sessions">';
 
 
 <div class="tabs">
-  <div class="tab active-tab" style="border-radius:20px 0 0 0;" id="users-tab"><h3>Online()</h3></div>
+  <div class="tab active-tab" style="border-radius:20px 0 0 0;" id="users-tab"><h3>Online(<span id="online-num"></span>)</h3></div>
   <div class="tab" style="border-radius:20px 20px 0 0;" id="chat-tab"><h3>Chat</h3></div>
-  
+  <div class="tab" style="border-radius:20px 20px 0 0;" id="file-tab"><h3>Files</h3></div>
   <div class="tab" style="border-radius:0 20px 0 0;" id="sessions-tab"><h3>Sessions</h3></div>
 
 </div>
@@ -355,8 +357,30 @@ echo '<div class="sess-list" style="display:none">';
 </div>
 
 <!-- ONLINE LIST -->
-<div class="online-list"></div>
+<div class="online-list" style="display:none"></div>
 
+
+<!-- FILES -->
+<?php
+/*if($user_type=='instructor') {
+    echo '<form method="POST" target="hidden-iframe" action="/php/upload_class_file.php" enctype="multipart/form-data">
+        <input type="file" name="class_file" id="classFile">
+        <input type="hidden" name="classId" value="'.$class_id.'"><br>
+        <input type="submit" value="Upload" class="submit-btn">
+      </form>';
+}*/
+?>
+
+<h3>File upload</h3>
+    <form method="POST" id="fileForm" enctype="multipart/form-data" action="live_file_upload.php">
+    <input type="hidden" name="inst_id" value="<?php echo $get_user_id?>">
+    <input name="class_id" type="hidden" value="<?php echo $class_id?>">
+    <input name="course_id" type="hidden" value="<?php echo $course_id?>">
+    <input type="file" name="uploaded_file" id="fileToUpload">
+    <p id="uploadMsg" style="display:none">Uploaded. You can upload another now.</p>
+    <input type="submit" value="Upload file" class="submit-btn">
+    </form>
+<div class="files-list" id="newFiles"></div>
 
 </div>
   
@@ -1331,6 +1355,8 @@ $(document).ready(function() {
       data: {class_id:"<?php echo $class_id?>", username:"<?php echo $username?>", user_id:"<?php echo $get_user_id?>",course_id:"<?php echo $course_id?>"},
       success: function(response) {
 	$('.online-list').html(response);
+	$('#online-num').html($('#get-online-num').text());
+	console.log(response);
       }
     });
   }, 2000);
@@ -1340,11 +1366,11 @@ $(document).ready(function() {
 
 <!-- FILES -->
 <script>
-$(document).ready(function() {
+/*$(document).ready(function() {
     setInterval(function() {         
         $('#filesNum').load('/php/class_file_update.php', {class_id: <?php echo $class_id ?>, user_type: '<?php echo $user_type ?>'});
     }, 1000);
-});
+});*/
 </script>
 
 <!-- TABS -->
@@ -1422,6 +1448,29 @@ $('#join-img').click(function() {
 
   $('#join-img').css({'opacity':'0.6', 'cursor':'not-allowed'});
   $('#join-p').html('You are watching live session.');
+});
+</script>
+
+
+<!-- FILES -->
+<script>
+$(document).ready(function() {
+    setInterval(function() {
+        $('#newFiles').load('/php/class_file_update.php', {class_id: <?php echo $class_id ?>, user_type: '<?php echo $user_type ?>'});
+    }, 1000);
+});
+</script>
+<!-- FILE UPLOAD -->
+<script>
+$(function() {
+$('#fileForm').ajaxForm(function(response) {
+  console.log('file is uploaded');
+  $('#fileToUpload').val('');
+  $('#uploadMsg').show();
+  setTimeout(function() {
+    $('#uploadMsg').hide();
+  }, 5000);
+});
 });
 </script>
 

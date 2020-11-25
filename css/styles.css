@@ -301,9 +301,39 @@ textarea:focus {
     padding:0;
 }
 
+.sessions .file-list {
+    overflow-y:scroll;
+    max-height:40em;
+    padding:20px;
+    display:flex;
+    flex-flow:column;
+    justify-content:center;
+    align-items:center;
+}
+
+.file-list .file {
+    display:flex;
+    flex-flow:row nowrap;
+    border-bottom:1px solid gray;
+    padding:10px;
+}
+
+.file-list .file .file-name {
+    padding:10px;
+}
+
+.file-list .file .del {
+    padding:10px;
+}
+
+.file-list .file img {
+    width:3rem;
+    height:3rem;
+}
+
 .sessions .online-list {
     overflow-y:scroll;
-    height:40em;
+    max-height:40em;
     padding:10px;
 }
 
@@ -509,6 +539,7 @@ textarea:focus {
     flex-flow:column;
     width:100%;
     padding:5px 0;
+    align-items:center;
 }
 
 .video-holder .ctrl img {
@@ -663,17 +694,25 @@ textarea:focus {
 }
 
 .blue {
-    background:#15c8cb
+    color:#15c8cb
 }
 
-.gold {
+.blue-bg {
+    background:#15c8cb;
+}
+
+.gold-bg {
     background:#cca300
 }
-
-.green {
+.gold {
+    color:#cca300
+}
+.green-bg {
     background:#6cc841
 }
-
+.green {
+    color:#6cc841
+}
 .violet {
     background:#7a00cc;
 }
@@ -691,6 +730,10 @@ textarea:focus {
 }
 
 .gray {
+    color:#999;
+}
+
+.gray-bg {
     background:#999;
 }
 

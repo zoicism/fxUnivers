@@ -90,6 +90,8 @@ require('../php/notify_students.php');
     <script src="../js/gif-recorder.js"></script>
     <script src="../getScreenId.js/getScreenId.js"></script>
     <script src="../Chrome-Extensions/Screen-Capturing.js/Screen-Capturing.js"></script>
+
+    <script src="/js/jquery.form.js"></script>
     
 </head>
     
@@ -201,7 +203,7 @@ require('../php/notify_students.php');
 <div class="video-holder" id="live-session">
 	   <div id="videos-container"></div>
 	   <div class="ctrl">
-	                     <div class="ctrl-row" id="before-stream-start" style="align-items:center;justify-content:center;">
+	                     <div class="ctrl-row" id="before-stream-start">
 			       <p id="join-p">Live video hasn't started yet.</p>			       
 			       <img src="/images/background/live.svg" style="padding:5px;opacity:0.5;cursor:not-allowed;" disabled id="join-img">
 			       <div style="display:none" id="setup-new-broadcast"></div>
@@ -279,7 +281,7 @@ if($user_type=='instructor') {
           <input type="submit" value="Open whiteboard">
          </form>
 
-<div class="add-box">Files(<span id="filesNum"></span>) <img src="/images/background/files.svg"></div>
+
 <?php
 
 			     
@@ -296,8 +298,8 @@ echo '<div class="sessions">';
 
 <div class="tabs">
   <div class="tab active-tab" style="border-radius:20px 0 0 0;" id="users-tab"><h3>Online(<span id="online-num"></span>)</h3></div>
-  <div class="tab" style="border-radius:20px 20px 0 0;" id="chat-tab"><h3>Chat</h3></div>
-  
+  <div class="tab" style="border-radius:0 0 0 0;" id="chat-tab"><h3>Chat</h3></div>
+  <div class="tab" style="border-radius:0 0 0 0;" id="file-tab"><h3>Files(<span id="filesNum"></span>)</h3></div>
   <div class="tab" style="border-radius:0 20px 0 0;" id="sessions-tab"><h3>Sessions</h3></div>
 
 </div>
@@ -358,8 +360,24 @@ echo '<div class="sess-list" style="display:none">';
 <div class="online-list"></div>
 
 
+<!-- FILES -->
+<div class="file-list" style="display:none">
+<?php if($user_type=='instructor') { ?>
+    <form method="POST" id="fileForm" enctype="multipart/form-data" action="/php/upload_class_file.php">
+    
+    <input name="classId" type="hidden" value="<?php echo $class_id?>">
+    
+    <input type="file" name="class_file" id="fileToUpload">
+    <p id="uploadMsg" style="display:none">Uploaded. You can upload another now.</p>
+    <input type="submit" value="Upload file" class="submit-btn">
+    </form>
+
+<iframe name="hidden-del" style="display:none"></iframe>
+    <?php } ?>
+<div id="newFiles"></div>
+
 </div>
-  
+  </div>
 	</div>
       </div>
       
@@ -1342,11 +1360,11 @@ $(document).ready(function() {
 
 <!-- FILES -->
 <script>
-$(document).ready(function() {
+/*$(document).ready(function() {
     setInterval(function() {         
         $('#filesNum').load('/php/class_file_update.php', {class_id: <?php echo $class_id ?>, user_type: '<?php echo $user_type ?>'});
     }, 1000);
-});
+});*/
 </script>
 
 <!-- TABS -->
@@ -1355,6 +1373,8 @@ $('#sessions-tab').click(function() {
   $('#sessions-tab').addClass('active-tab');
   $('#chat-tab').removeClass('active-tab');
   $('#users-tab').removeClass('active-tab');
+  $('#file-tab').removeClass('active-tab');
+  $('.file-list').hide();
   $('.sess-list').show();
   $('.chat-list').hide();
   $('.online-list').hide();
@@ -1363,6 +1383,8 @@ $('#chat-tab').click(function() {
   $('#sessions-tab').removeClass('active-tab');
   $('#chat-tab').addClass('active-tab');
   $('#users-tab').removeClass('active-tab');
+  $('#file-tab').removeClass('active-tab');
+  $('.file-list').hide();
   $('.sess-list').hide();
   $('.chat-list').show();
   $('.online-list').hide();
@@ -1371,9 +1393,21 @@ $('#users-tab').click(function() {
   $('#sessions-tab').removeClass('active-tab');
   $('#chat-tab').removeClass('active-tab');
   $('#users-tab').addClass('active-tab');
+  $('#file-tab').removeClass('active-tab');
+  $('.file-list').hide();
   $('.sess-list').hide();
   $('.chat-list').hide();
   $('.online-list').show();
+});
+$('#file-tab').click(function() {
+  $('#sessions-tab').removeClass('active-tab');
+  $('#chat-tab').removeClass('active-tab');
+  $('#users-tab').removeClass('active-tab');
+  $('#file-tab').addClass('active-tab');
+  $('.file-list').show();
+  $('.sess-list').hide();
+  $('.chat-list').hide();
+  $('.online-list').hide();
 });
 </script>
 
@@ -1424,6 +1458,30 @@ $('#join-img').click(function() {
 
   $('#join-img').css({'opacity':'0.6', 'cursor':'not-allowed'});
   $('#join-p').html('You are watching live session.');
+});
+</script>
+
+
+<!-- FILES -->
+<script>
+$(document).ready(function() {
+    setInterval(function() {
+        $('#newFiles').load('/php/class_file_update.php', {class_id: <?php echo $class_id ?>, user_type: '<?php echo $user_type ?>'});
+	$('#filesNum').html($('#getFilesNum').text());
+    }, 1000);
+});
+</script>
+<!-- FILE UPLOAD -->
+<script>
+$(function() {
+$('#fileForm').ajaxForm(function(response) {
+  console.log('file is uploaded');
+  $('#fileToUpload').val('');
+  $('#uploadMsg').show();
+  setTimeout(function() {
+    $('#uploadMsg').hide();
+  }, 5000);
+});
 });
 </script>
 
