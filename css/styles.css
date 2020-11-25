@@ -1331,7 +1331,7 @@ textarea:focus {
 
 .login-form h2 {
   width: 50%;
-  font-size: 3.01vw;
+  font-size: 2.5vw;
   font-weight: 400;
   text-align: center;
   margin: 18px 0 25px 0;
@@ -1700,6 +1700,7 @@ textarea:focus {
     
     .login-container {
 	flex-flow: column nowrap;
+	padding:0 20px;
     }
     
     .login-form {
@@ -1709,12 +1710,16 @@ textarea:focus {
     }
     
   .login-description {
-      width: 95%;
+      width:100%;
       height: 100%;
   }
   
   .login-form h2, .login-input, .login-forgot {
       display: none;
+  }
+
+  .mob-login-forgot {
+      display:block;
   }
 
   #desktop-login-btn {
@@ -1723,7 +1728,7 @@ textarea:focus {
 
   
   .login-button, .signup-button {
-      width: 90%;
+      width: 100%;
   }
   
   
