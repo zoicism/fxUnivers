@@ -32,40 +32,64 @@ require('../../../wallet/php/get_fxcoin_count.php');
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
-    <head>
+<html>
+<head>
+	<title>fxPartner</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">   
-    <title>fxUnivers</title>
-    <link rel="stylesheet" href="/css/style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/icons.css">
     <link rel="stylesheet" href="/css/logo.css">
-    <link rel="stylesheet" href="/css/colors.css">
     <script src="/js/jquery-3.4.1.min.js"></script>
-    </head>
+</head>
 
 <body>
-<div class="upperbar"></div>
-<script src="/js/upperbar.js"></script>
-    
-<?php
-                $total=0;
-                while($row=$get_partner_result->fetch_assoc()) {
-                    $total+=$row['income'];
-                }
-?>
-<div class="col-33 left-col">
-  <div class="col-1">
-    <div class="main fxpartner-color"></div>
-    <div class="icon col-icon fxpartner-bg" onclick="location.href='/userpgs/fxpartner';"></div>
-                <h3>Income</h3>
-                <p style="text-align:left">You get 50% of the profit made by the users you have added for 90 days since their registration.</p>
-                <p>Total income: <strong><?php echo $total ?></strong> fxStars</p>
-  </div>
-</div>
+	<div class="header-sidebar"></div>
+    <script src="/js/upperbar.js"></script>
+    <div class="blur mobile-main">
 
-<div class="col-33 mid-col">
+
+
+<div class="sidebar"></div>
+	<?php require('../../../php/sidebar.php'); ?>
+
+
+
+  <div class="main-content">
+
+              <ul class="main-flex-container">
+                  <li class="main-items">
+                      <a href="/userpgs/partner/positions" class="link-main">
+                          <div class="head">fxHR</div>
+                      </a>
+                  </li>
+                  <li class="main-items">
+                      <a href="/userpgs/partner/income" class="link-main" id="active-main">
+                          <div class="head">Earnings History</div>
+                      </a>
+                  </li>
+              </ul>
+
+    </div>
+
+
+
+
+
+  <div class="relative-main-content">
+  <div class="content-box" >
+                          <h2>Earnings</h2>
+                          
+
+                       
+              <div class="row">
+                          
+                          <div class="col">
+
+
+
+
+
 <?php
                 require('../../../php/get_partner.php');
                 if($get_partner_count>0) {
@@ -87,32 +111,53 @@ require('../../../wallet/php/get_fxcoin_count.php');
                         $interval = $date1->diff($date2);
 
                         
-                        echo '<div class="col-1" style="background:#ececec">';
-                        echo '<h3>'.$row['income'].' fxStars</h3>';
-                        echo 'from @<strong>'.$pun_username.'</strong><br>';
-                        echo 'added on <strong>'.$add_date.'</strong><br>';
-                        echo '<strong>'.$interval->days.'</strong> days remaining<br>';
+                        echo '<div style="border-bottom:1px solid gray">';
+                        echo '<p>Amount: <strong>'.$row['income'].' fxStars</strong>';
+                        echo '<p>From: <strong>@'.$pun_username.'</strong>';
+                        echo '<p>Date & Time: <strong>'.$add_date.'</strong>';
+                        echo '<p>Remaining: <strong>'.$interval->days.'</strong>';
                         echo '</div>';
                   }
                 } else {
-                    echo 'no records yet.';
+                    echo '<p class="gray">No records yet</p>';
                 }
 ?>
+
+
+                          </div>
+
+
+
+
+                          
+                         
+              </div>
+
+
+
+  </div>
+  </div>
 </div>
 
-
-<div class="footer"></div>
-<script src="/js/footer.js"></script>
-
-<div class="footbar"></div>
+<div class="footbar blur"></div>
 <script src="/js/footbar.js"></script>
 
+
+                          <!-- SCRIPTS -->
 <script>
     var notifUserId=<?php echo $get_user_id ?>;
 </script>
-
 <script src="/js/notif_msg.js"></script>
-                    
 
+<script>
+$('#page-header').html('fxPartner');
+$('#page-header').attr('href','/userpgs/partner');
+</script>
+
+
+<!-- fxPartner sidebar active -->
+<script>
+$('.fxpartner-sidebar').attr('id','sidebar-active');
+</script>
 </body>
 </html>

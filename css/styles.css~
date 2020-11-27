@@ -801,9 +801,10 @@ textarea:focus {
     flex-flow:column nowrap;
     justify-content:space-between;
     align-items:center;
-    overflow:scroll;
+    overflow-y:scroll;
     width:100%;
     margin:5px;
+    max-height:450px;
 }
 
 .content-box .col a {

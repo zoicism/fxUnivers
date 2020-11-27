@@ -107,7 +107,7 @@ textarea:focus {
 
 .txt-input {
 	height:38px;
- 	width:400px;
+ 	max-width:400px;
  	padding: 0 15px;
   	border:none;
   	border-radius: 100px;
@@ -787,6 +787,10 @@ textarea:focus {
     background: linear-gradient(145deg, #d7d7d7, #fff);
     box-shadow:  11px 11px 22px #d9d9d9, -11px -11px 22px #ffffff;
     padding:5rem 10rem;
+}
+
+.content-box p {
+    max-width:400px;
 }
 
 .content-box .row {
