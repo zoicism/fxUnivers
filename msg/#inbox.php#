@@ -71,7 +71,7 @@ $readd_result=mysqli_query($msg_connection,$readd_query) or die(mysqli_error($ms
                 <h3>Conversations</h3>
                 <p>Click on a conversation to continue messaging</p>
                 </div>
-  <?php
+<?php
                 if($get_msg_count>0) {
                     while($row = $get_msg_result->fetch_assoc()) {
                         if($row['user1id']==$get_user_id) {
