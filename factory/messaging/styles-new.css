@@ -780,22 +780,20 @@ input:focus, textarea:focus, select:focus{
 }
 
 .discussions {
-  display: flex;
-  flex-flow: column nowrap;
   width: 25%;
   height: 100%;
   overflow: auto;
+  display: inline-block;
   border-right: solid 1px #E0E0E0;
 }
 
 .discussions .discussion {
-  display:flex;
-  flex-flow: row nowrap;
-  align-items: center;
   width: 100%;
   height: 70px;
   background-color: #efefef;
   border-bottom: solid 1px #E0E0E0;
+  display:flex;
+  align-items: center;
   cursor: pointer;
   outline: none;
 }
@@ -809,6 +807,10 @@ input:focus, textarea:focus, select:focus{
 }
 
 .discussions .search-chat {
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  color: #E0E0E0;
   cursor: default;
 }
 
@@ -842,6 +844,14 @@ input:focus, textarea:focus, select:focus{
   box-shadow: -4px -2px 4px 0px #ffffff, 4px 2px 6px 0px #DFE4EA;
 }
 
+.desc-contact {
+  height: 43px;
+  width: 60%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .discussions .discussion .name {
   margin: 0 0 0 20px;
   font-size: 11pt;
@@ -854,9 +864,6 @@ input:focus, textarea:focus, select:focus{
   font-size: 9pt;
   color:#515151;
   opacity: 0.7;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 /*** message box ***/
@@ -866,15 +873,19 @@ input:focus, textarea:focus, select:focus{
   flex-flow: column nowrap;
   width: 75%;
   height: 100%;
+  position: relative;
 }
 
 .chat .header-chat {
   background-color: #efefef;
   width: 100%;
-  min-height: 70px;
+  top: 0;
+  height: 70px;
   border-bottom: solid 1px #E0E0E0;
   display:flex;
   align-items: center;
+  position: absolute;
+  z-index: 1;
 }
 
 .chat .header-chat .name {
@@ -884,14 +895,14 @@ input:focus, textarea:focus, select:focus{
 }
 
 .message-chat {
-  padding: 0 20px;
+  position: relative;
+  padding: 70px 20px;
   overflow: auto;
   background-color: #efefef;
 }
 
 .messages {
   width: fit-content;
-  width: -moz-fit-content;
   margin: 10px 0;
   position: relative;
   max-width: 70%;
@@ -963,12 +974,14 @@ input:focus, textarea:focus, select:focus{
 
 .footer-chat {
   width: 100%;
-  min-height: 70px;
+  height: 70px;
   display:flex;
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
+  position:absolute;
   background-color: #efefef;
+  bottom: 0;
   border-top: solid 1px #E0E0E0;
 }
 
@@ -1054,8 +1067,16 @@ input:focus, textarea:focus, select:focus{
   border-bottom: solid 1px #E0E0E0;
   display:flex;
   align-items: center;
-  cursor: default;
+  cursor: pointer;
   outline: none;
+}
+
+.notifications .notification:hover:not(.search-chat) {
+  background-color: #DDE6E7;
+}
+
+.notifications .notification:focus {
+  background-color: #CBDDDE;
 }
 
 .notifications .notification .photo {

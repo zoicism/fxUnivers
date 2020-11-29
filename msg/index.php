@@ -4,7 +4,7 @@
 	<title>fxMessaging</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles-new.css">
+  <link rel="stylesheet" href="/css/styles.css">
   <link rel="stylesheet" href="/css/icons.css">
   <link rel="stylesheet" href="/css/logo.css">
   <script src="/js/jquery-3.4.1.min.js"></script>
@@ -135,7 +135,7 @@
                 <!-- uploaded file starts -->
                 <div class="messages message-sent upload-container">
                   <div class="upload-sent">
-                    <img src="file-sent.svg">
+                    <img src="/images/background/file-sent.svg">
                   </div>
                   <div class="file-name">image.png<div>2.5 MB</div></div>
                   <span class="time">6:35 AM</span>
@@ -143,7 +143,7 @@
                 <!-- uploaded file ends -->
                 <div class="messages message-recieved upload-container">
                   <div class="upload-recieved">
-                    <img src="file-recieved.svg">
+                    <img src="/images/background/file-recieved.svg">
                   </div>
                   <div class="file-name">image.png<div>2.5 MB</div></div>
                   <span class="time">6:35 AM</span>
@@ -174,13 +174,13 @@
 
                 <div class="image-upload">
                   <label for="file-input">
-                    <img src="/css/plus.svg" class="chat-icon">
+                    <img src="/images/background/plus.svg" class="chat-icon">
                   </label>
                   <input id="file-input" type="file" multiple>
                 </div>
 
                 <input type="text" placeholder="Type your message here"></input>
-                <a href="#"><img src="/css/send.svg" class="chat-icon"></a>
+                <a href="#"><img src="/images/background/send.svg" class="chat-icon"></a>
               </div>
         </section>
       </div>

@@ -107,7 +107,7 @@ textarea:focus {
 
 .txt-input {
 	height:38px;
- 	max-width:400px;
+ 	width:400px;
  	padding: 0 15px;
   	border:none;
   	border-radius: 100px;
@@ -1635,6 +1635,109 @@ textarea:focus {
     
 
 
+/************************************************* > notification ***********************************/
+
+.notif-header {
+  color:#515151;
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 22px;
+}
+
+.notif-container {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 40%;
+  height: 620px;
+  padding: 10px;
+  border-radius: 20px;
+  box-shadow: inset -4px -2px 4px 0px #fff,
+        inset 4px 2px 6px 0px #DFE4EA,
+        -4px -2px 4px 0px #ffffff,
+        4px 2px 6px 0px #DFE4EA;
+}
+
+.notifications {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  display: inline-block;
+}
+
+.notifications .notification {
+    width: 100%;
+    padding:10px 0;
+  background-color: #efefef;
+  border-bottom: solid 1px #E0E0E0;
+  display:flex;
+  align-items: center;
+  cursor: default;
+  outline: none;
+}
+
+.notifications .notification .avatar-container {
+    display: flex;
+flex-flow: row nowrap;
+cursor: pointer;
+}
+
+.notification .avatar-container .photo {
+    width:3.5rem;
+    height:3.5rem;
+    box-shadow: -4px -2px 4px 0px #ffffff, 4px 2px 6px 0px #DFE4EA;
+}
+
+.desc-contact {
+  width:100%;
+}
+
+.notifications .notification .name {
+  margin: 0 0 0 20px;
+  font-size: 11pt;
+  color:#515151;
+  font-weight: 500;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+.notifications .notification .notif-message {
+  margin: 6px 0 0 20px;
+  font-size: 10pt;
+  color:#515151;
+}
+
+/************************************************* < notification ***********************************/
+
+
+
+/************************************ > scrollbar******************************************/
+
+/* width */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 30px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background-color: #E0E0E0;
+  border-radius: 50px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1; 
+  border-radius: 4px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #aaaaaa; 
+}
+
+/************************************ < scrollbar******************************************/
+
+
 
 
 /*** MOBILE VIEW ***/
@@ -1994,6 +2097,12 @@ textarea:focus {
 
     .course-content .right-content {
 	width:100%;
+    }
+
+    .notif-container {
+	width:90%;
+	height:auto;
+	overflow:none;
     }
 }
 

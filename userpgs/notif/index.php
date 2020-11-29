@@ -42,41 +42,60 @@ $dns_result=mysqli_query($connection,$dns_query) or die(mysqli_error($connection
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-    <title>fxUnivers</title>
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/icons.css">
-    <link rel="stylesheet" href="/css/logo.css">
-    <link rel="stylesheet" href="/css/colors.css">
-    <script src="/js/jquery-3.4.1.min.js"></script>
-    </head>
+<html>
+<head>
+	<title>fxUnivers</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/icons.css">
+  <link rel="stylesheet" href="/css/logo.css">
+  <script src="/js/jquery-3.4.1.min.js"></script>
+</head>
 
 <body>
-    
-<div class="upperbar"></div>
-<script src="/js/upperbar.js"></script>
-    
-<div class="col-33 left-col">
-    <div class="col-1">
-    
-    <h3>Notifications</h3>
+	<div class="header-sidebar"></div>
+  <script src="/js/upperbar.js"></script>
+
+  <div class="blur mobile-main">
+
+   <div class="sidebar"></div>
+<?php require('../../php/sidebar.php'); ?>
+
+  <div class="relative-main-content">
+    <div class="notif-header">
+      Notifications
     </div>
-</div>
-    
-<div class="col-33 mid-col">
-<?php
+    <div class="notif-container">
+        <div class="notifications">
+          <ul>
+
+
+
+	    <?php
                 require('../php/notif.php');
                 require('../../wallet/php/wallet_connect.php');
 
                 if($notif_count>0) {
-                    while($row = $notif_result->fetch_assoc()) {
-                        echo '<div class="col-1" style="background:#eaeaea">';
+            while($row = $notif_result->fetch_assoc()) {
+
+
+	    $notif_from_q = 'SELECT * FROM user WHERE id='.$row['from_id'];
+	    $notif_from_r = mysqli_query($connection,$notif_from_q) or die(mysqli_error($connection));
+	    $notif_from_fetch = mysqli_fetch_array($notif_from_r);
+	    $notif_from_un=$notif_from_fetch['username'];
+	    
+	    
+            echo '<li class="notification" tabindex="1">';
+	      echo ' <div class="avatar-container"><div class="photo avatar" onclick="location.href=\'/user/'.$notif_from_un.'\';"></div></div>';
+
+	      
+
+	      echo '<div class="desc-contact">';
+		echo '<a class="name" href="/user/'.$notif_from_un.'">'.$notif_from_un.'</a>';
+		
                         if($row['reason']=='friendRequest') {
-                            echo '<p>'.$row['body'].'</p>';
+                            echo '<p class="notif-message">'.$row['body'].'</p>';
 ?>
                             <form class="addFriendAccept">
                               <input type="hidden" name="notifId" value="<?php echo $row['id'] ?>">
@@ -93,7 +112,7 @@ $dns_result=mysqli_query($connection,$dns_query) or die(mysqli_error($connection
                             $fxCoinReq_query = "SELECT * FROM fxcoin_req WHERE notif=".$row['id'];
                             $fxCoinReq_result = mysqli_query($wallet_connection, $fxCoinReq_query) or die(mysqli_error($wallet_connection));
                             $fxCoinReq_fetch = mysqli_fetch_array($fxCoinReq_result);
-                            echo '<p>'.$row['body'].'</p>';
+                            echo '<p class="notif-message">'.$row['body'].'</p>';
                             if(!isset($fxCoinReq_fetch['accepted'])) {
 ?>
                                 <form class="reqFxCoinForm">
@@ -117,22 +136,39 @@ $dns_result=mysqli_query($connection,$dns_query) or die(mysqli_error($connection
 <?php
                                 }
                             } else {
-                                echo '<p>'.$row['body'].'</p>';
+                                echo '<p class="notif-message">'.$row['body'].'</p>';
                         }
-                        echo '</div>';
+                        echo '</div></li>';
                     }
                 } else {
-                    echo '<p>no notifications yet.</p>';
+                    echo '<p>No notifications yet</p>';
                 }
                 
 ?>
-</div>
 
 
-<div class="footer"></div>
-<script src="/js/footer.js"></script>
 
-<div class="footbar"></div>
+
+
+	    
+            
+          </ul>
+        </div>
+  </div>
+
+
+  <div class="footbar blur"></div>
+  <script src="/js/footbar.js"></script>
+
+
+
+
+  <script>
+    $('#page-header').html('Notifications');
+    $('#page-header').attr('href','/userpgs/notif');
+  </script>
+
+  <div class="footbar"></div>
 <script src="/js/footbar.js"></script>
 
 <script>
@@ -173,6 +209,5 @@ $(document).ready(function() {
   }, 2000);
 });
 </script>
-
 </body>
 </html>
