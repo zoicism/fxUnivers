@@ -23,7 +23,7 @@ if(isset($_POST['header']) && isset($_POST['description'])) {
 //	if(isset($_POST['video_url'])) $video = '<iframe width="560" height="315" src="https://www.youtube.com/embed/'.$_POST["video_url"].'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
 	if(isset($_POST['course_fxstar'])) $cost = $_POST['course_fxstar'];
     
-	$query = "INSERT INTO `teacher` (user_id, header, description, cost) VALUES ($id, '$header', '$description', $cost)";
+	$query = "INSERT INTO `teacher` (user_id, header, description, cost, start_date) VALUES ($id, '$header', '$description', $cost, NOW())";
 	$result = mysqli_query($connection, $query) or die(mysqli_error($connection));
 	
 	if($result) {

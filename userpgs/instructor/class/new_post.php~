@@ -11,14 +11,19 @@ if(isset($_SESSION['username'])) {
 }
 
 // if the values of the post is set, post it
-if(isset($_POST['header'])) $header = $_POST['header'];
-if(isset($_POST['description'])) $description = nl2br($_POST['description']);
-//if(isset($_POST['video'])) $video = '<iframe width="560" height="315" src="https://www.youtube.com/embed/'.$_POST["video"].'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+if(isset($_POST['header'])) {
+    $header = $_POST['header'];
+    $header=mysqli_real_escape_string($connection,$header);
+}
+if(isset($_POST['description'])) {
+    $description = nl2br($_POST['description']);
+    $description=mysqli_real_escape_string($connection,$description);
+}
 if(isset($_POST['course_id'])) $course_id = $_POST['course_id'];
 
 
 $query = "INSERT INTO `class` (teacher_id, course_id, title, body) VALUES ($id, $course_id, '$header', '$description')";
-echo '>>'.$query;
+//echo '>>'.$query;
 $result = mysqli_query($connection, $query) or die(mysqli_error($connection));
 
 $classId_query="SELECT * FROM class WHERE teacher_id=$id ORDER BY id DESC LIMIT 1";
@@ -27,33 +32,7 @@ $classId_fetch=mysqli_fetch_array($classId_result);
 $classId=$classId_fetch['id'];
 //echo classIdMin1.'444';
 
-if($result) {
-
-
-
-// if video is located
-    if(isset($_FILES['video_up'])) {
-        $video_path='live/uploads/';
-        $prev_vid=glob($video_path.$classId.'.*');
-        if(count($prev_vid)>0) unlink($prev_vid[0]);
-        
-        $video_array=explode('.', $_FILES['video_up']['name']);
-        $video_ext=end($video_array);
-        $path="live/uploads/".$classId.'.'.$video_ext;
-        if(move_uploaded_file($_FILES['video_up']['tmp_name'], $path)) {
-            $video_upload_ok=1;
-            echo $path;
-        } else {
-            echo $path;
-            $video_upload_ok=0;
-        }
-    }
-
-
-
-
-
-    
+if($result) {    
     if(isset($_FILES['uploaded_file'])) {
         $uploadOK=1;
         $path1 = "uploads/";
@@ -95,7 +74,7 @@ if($result) {
         }
     }
     //echo "successful";
-	header("Location: /userpgs/instructor/course_management/course.php?course_id=$course_id");
+	header("Location: /userpgs/instructor/class?course_id=$course_id&class_id=$classId");
 } else {
     //echo "failed";
 }

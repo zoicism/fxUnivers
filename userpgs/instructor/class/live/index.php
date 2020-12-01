@@ -248,7 +248,7 @@ require('../php/notify_students.php');
 
 	  <?php
 
-echo '<div class="little-box gray-bg"><span>'.date("M jS, Y", strtotime($dt)).'</span></div>';
+//echo '<div class="little-box gray-bg"><span>'.date("M jS, Y", strtotime($dt)).'</span></div>';
 
 			    ?>
  </div>
