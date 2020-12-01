@@ -1634,14 +1634,21 @@ textarea:focus {
 }
     
 
-/************************************ > Messaging **********************************/
 
-/*** friends ***/
-.row-chat {
+/************************************************* > notification ***********************************/
+
+.notif-header {
+  color:#515151;
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 22px;
+}
+
+.notif-container {
   display: flex;
-  flex-flow: row nowrap;
-  width: 100%;
-  height: 650px;
+  flex-flow: column nowrap;
+  width: 40%;
+  height: 620px;
   padding: 10px;
   border-radius: 20px;
   box-shadow: inset -4px -2px 4px 0px #fff,
@@ -1650,21 +1657,120 @@ textarea:focus {
         4px 2px 6px 0px #DFE4EA;
 }
 
-.discussions {
-  width: 25%;
+.notifications {
+  width: 100%;
   height: 100%;
   overflow: auto;
   display: inline-block;
-  border-right: solid 1px #E0E0E0;
 }
 
-.discussions .discussion {
-  width: 100%;
-  height: 70px;
+.notifications .notification {
+    width: 100%;
+    padding:10px 0;
   background-color: #efefef;
   border-bottom: solid 1px #E0E0E0;
   display:flex;
   align-items: center;
+  cursor: default;
+  outline: none;
+}
+
+.notifications .notification .avatar-container {
+    display: flex;
+flex-flow: row nowrap;
+cursor: pointer;
+}
+
+.notification .avatar-container .photo {
+    width:3.5rem;
+    height:3.5rem;
+    box-shadow: -4px -2px 4px 0px #ffffff, 4px 2px 6px 0px #DFE4EA;
+}
+
+.desc-contact {
+  width:100%;
+}
+
+.notifications .notification .name {
+  margin: 0 0 0 20px;
+  font-size: 11pt;
+  color:#515151;
+  font-weight: 500;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+.notifications .notification .notif-message {
+  margin: 6px 0 0 20px;
+  font-size: 10pt;
+  color:#515151;
+}
+
+/************************************************* < notification ***********************************/
+
+
+
+/************************************ > scrollbar******************************************/
+
+/* width */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 30px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background-color: #E0E0E0;
+  border-radius: 50px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1; 
+  border-radius: 4px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #aaaaaa; 
+}
+
+/************************************ < scrollbar******************************************/
+/************************************ > Messaging **********************************/
+
+.row-chat {
+  display: flex;
+  flex-flow: row nowrap;
+  width: 100%;
+  height: 80vh;
+  padding: 10px;
+  border-radius: 20px;
+  box-shadow: inset -4px -2px 4px 0px #fff,
+        inset 4px 2px 6px 0px #DFE4EA,
+        -4px -2px 4px 0px #ffffff,
+        4px 2px 6px 0px #DFE4EA;
+}
+
+/*** friends ***/
+
+.discussions {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 25%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x:hidden;
+  border-right: solid 1px #E0E0E0;
+}
+
+.discussions .discussion {
+  display:flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  width: 100%;
+  height: 70px;
+  background-color: #efefef;
+  border-bottom: solid 1px #E0E0E0;
   cursor: pointer;
   outline: none;
 }
@@ -1678,10 +1784,6 @@ textarea:focus {
 }
 
 .discussions .search-chat {
-  display:flex;
-  align-items: center;
-  justify-content: center;
-  color: #E0E0E0;
   cursor: default;
 }
 
@@ -1715,14 +1817,6 @@ textarea:focus {
   box-shadow: -4px -2px 4px 0px #ffffff, 4px 2px 6px 0px #DFE4EA;
 }
 
-.desc-contact {
-  height: 43px;
-  width: 60%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
 .discussions .discussion .name {
   margin: 0 0 0 20px;
   font-size: 11pt;
@@ -1735,6 +1829,9 @@ textarea:focus {
   font-size: 9pt;
   color:#515151;
   opacity: 0.7;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /*** message box ***/
@@ -1744,19 +1841,15 @@ textarea:focus {
   flex-flow: column nowrap;
   width: 75%;
   height: 100%;
-  position: relative;
 }
 
 .chat .header-chat {
   background-color: #efefef;
   width: 100%;
-  top: 0;
-  height: 70px;
+  min-height: 70px;
   border-bottom: solid 1px #E0E0E0;
   display:flex;
   align-items: center;
-  position: absolute;
-  z-index: 1;
 }
 
 .chat .header-chat .name {
@@ -1766,22 +1859,23 @@ textarea:focus {
 }
 
 .message-chat {
-  position: relative;
-  padding: 70px 20px;
+  padding: 0 20px;
   overflow: auto;
   background-color: #efefef;
+  width:100%;
+  height:100%;
 }
 
 .messages {
-    width: fit-content;
-    width: -moz-fit-content;
+  width: fit-content;
+  width: -moz-fit-content;
   margin: 10px 0;
   position: relative;
   max-width: 70%;
 }
 
 .messages p {
-  padding: 10px 60px 10px 20px;
+  padding: 10px 80px 10px 20px;
   color: #393939;
 }
 
@@ -1846,14 +1940,12 @@ textarea:focus {
 
 .footer-chat {
   width: 100%;
-  height: 70px;
+  min-height: 70px;
   display:flex;
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
-  position:absolute;
   background-color: #efefef;
-  bottom: 0;
   border-top: solid 1px #E0E0E0;
 }
 
@@ -1902,92 +1994,6 @@ textarea:focus {
 }
 
 /************************************************* < messaging ***********************************/
-
-/************************************************* > notification ***********************************/
-
-.notif-header {
-  color:#515151;
-  margin-bottom: 10px;
-  font-weight: bold;
-  font-size: 22px;
-}
-
-.notif-container {
-  display: flex;
-  flex-flow: column nowrap;
-  width: 40%;
-  height: 620px;
-  padding: 10px;
-  border-radius: 20px;
-  box-shadow: inset -4px -2px 4px 0px #fff,
-        inset 4px 2px 6px 0px #DFE4EA,
-        -4px -2px 4px 0px #ffffff,
-        4px 2px 6px 0px #DFE4EA;
-}
-
-.notifications {
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  display: inline-block;
-}
-
-.notifications .notification {
-  width: 100%;
-  height: 70px;
-  background-color: #efefef;
-  border-bottom: solid 1px #E0E0E0;
-  display:flex;
-  align-items: center;
-  cursor: pointer;
-  outline: none;
-}
-
-.notifications .notification:hover:not(.search-chat) {
-  background-color: #DDE6E7;
-}
-
-.notifications .notification:focus {
-  background-color: #CBDDDE;
-}
-
-.notifications .notification .photo {
-  margin-left:20px;
-  display: block;
-  width: 45px;
-  height: 45px;
-  border: 2px solid #efefef;
-  background: #E6E7ED;
-  -moz-border-radius: 50px;
-  -webkit-border-radius: 50px;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  box-shadow: -4px -2px 4px 0px #ffffff, 4px 2px 6px 0px #DFE4EA;
-}
-
-.desc-contact {
-  height: 43px;
-  width:50%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.notifications .notification .name {
-  margin: 0 0 0 20px;
-  font-size: 11pt;
-  color:#515151;
-  font-weight: 500;
-}
-
-.notifications .notification .notif-message {
-  margin: 6px 0 0 20px;
-  font-size: 10pt;
-  color:#515151;
-}
-
-/************************************************* < notification ***********************************/
 
 
 
@@ -2348,6 +2354,12 @@ textarea:focus {
 
     .course-content .right-content {
 	width:100%;
+    }
+
+    .notif-container {
+	width:90%;
+	height:auto;
+	overflow:none;
     }
 }
 

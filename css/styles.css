@@ -1742,7 +1742,7 @@ cursor: pointer;
   display: flex;
   flex-flow: row nowrap;
   width: 100%;
-  height: 650px;
+  height: 80vh;
   padding: 10px;
   border-radius: 20px;
   box-shadow: inset -4px -2px 4px 0px #fff,
@@ -1758,7 +1758,8 @@ cursor: pointer;
   flex-flow: column nowrap;
   width: 25%;
   height: 100%;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x:hidden;
   border-right: solid 1px #E0E0E0;
 }
 
@@ -1780,6 +1781,10 @@ cursor: pointer;
 
 .discussions .discussion:focus {
   background-color: #D6D6FF;
+}
+
+.discussions #active-discussion {
+    background-color: #D6D6FF;
 }
 
 .discussions .search-chat {
@@ -1861,6 +1866,8 @@ cursor: pointer;
   padding: 0 20px;
   overflow: auto;
   background-color: #efefef;
+  width:100%;
+  height:100%;
 }
 
 .messages {
@@ -1872,7 +1879,7 @@ cursor: pointer;
 }
 
 .messages p {
-  padding: 10px 60px 10px 20px;
+  padding: 10px 80px 10px 20px;
   color: #393939;
 }
 

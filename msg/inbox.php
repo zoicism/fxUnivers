@@ -67,25 +67,27 @@ $readd_result=mysqli_query($msg_connection,$readd_query) or die(mysqli_error($ms
               <input type="text" placeholder="Search..."></input>
             </li>
 
-
+<div id="disc-container">
 	    <?php
           if($get_msg_count>0) {
             while($row = $get_msg_result->fetch_assoc()) {
-              
 		  
                         if($row['user1id']==$get_user_id) {
-                            $guest_id = $row['user2id'];
+                            $sidebar_guest_id = $row['user2id'];
                         } else {
-                            $guest_id = $row['user1id'];
+                            $sidebar_guest_id = $row['user1id'];
                         }
                         require('../php/get_guest.php');
 
-
-	    echo '<li class="discussion" tabindex="1" onclick="location.href=\'/msg/'.$get_guest["username"].'\';">';
-	        echo '<div class="photo" style="background-image: url(http://www.boutique-uns.com/uns/185-home_01grid/polo-femme.jpg);"></div>';
+	    echo '<li class="discussion" tabindex="1" onclick="location.href=\'/msg/messenger.php?guest='.$get_guest["username"].'\';">';
+	        echo '<div class="photo"></div>';
 	        echo '<div class="desc-contact">';
 
-	         echo '<p class="name">'.$get_guest['username'].'</p>';
+		if($get_unread_count>0) {
+	         echo '<p class="name">'.$get_guest['username'].' ('.$get_unread_count.')</p>';
+		 } else {
+		 echo '<p class="name">'.$get_guest['username'].'</p>';
+		 }
                                    
                         echo '<p class="message">'.$row['text'].'</p>';
                         
@@ -95,149 +97,17 @@ $readd_result=mysqli_query($msg_connection,$readd_query) or die(mysqli_error($ms
                     echo '<p style="color:gray">No conversations started yet</p>';
                 }
   ?>
-
+</div>
 	    
 	    
-            <li class="discussion" tabindex="1">
-              <div class="photo" style="background-image: url(http://www.boutique-uns.com/uns/185-home_01grid/polo-femme.jpg);"></div>
-                  <div class="desc-contact">
-                    <p class="name">Elsie Amador</p>
-                    <p class="message">Lorem ipsum dolor sit amet</p>
-                  </div>
-            </li>
-            <li class="discussion" tabindex="1">
-              <div class="photo" style="background-image: url(http://www.boutique-uns.com/uns/185-home_01grid/polo-femme.jpg);"></div>
-                  <div class="desc-contact">
-                    <p class="name">Elsie Amador</p>
-                    <p class="message">Lorem ipsum dolor sit amet</p>
-                  </div>
-            </li>
-            <li class="discussion" tabindex="1">
-              <div class="photo" style="background-image: url(http://www.boutique-uns.com/uns/185-home_01grid/polo-femme.jpg);"></div>
-                  <div class="desc-contact">
-                    <p class="name">Elsie Amador</p>
-                    <p class="message">Lorem ipsum dolor sit amet</p>
-                  </div>
-            </li>
-            <li class="discussion" tabindex="1">
-              <div class="photo" style="background-image: url(http://www.boutique-uns.com/uns/185-home_01grid/polo-femme.jpg);"></div>
-                  <div class="desc-contact">
-                    <p class="name">Elsie Amador</p>
-                    <p class="message">Lorem ipsum dolor sit amet</p>
-                  </div>
-            </li>
-            <li class="discussion" tabindex="1">
-              <div class="photo" style="background-image: url(http://www.boutique-uns.com/uns/185-home_01grid/polo-femme.jpg);"></div>
-                  <div class="desc-contact">
-                    <p class="name">Elsie Amador</p>
-                    <p class="message">Lorem ipsum dolor sit amet</p>
-                  </div>
-            </li>
-            <li class="discussion" tabindex="1">
-              <div class="photo" style="background-image: url(http://www.boutique-uns.com/uns/185-home_01grid/polo-femme.jpg);"></div>
-                  <div class="desc-contact">
-                    <p class="name">Elsie Amador</p>
-                    <p class="message">Lorem ipsum dolor sit amet</p>
-                  </div>
-            </li>
-            <li class="discussion" tabindex="1">
-              <div class="photo" style="background-image: url(http://www.boutique-uns.com/uns/185-home_01grid/polo-femme.jpg);"></div>
-                  <div class="desc-contact">
-                    <p class="name">Elsie Amador</p>
-                    <p class="message">Lorem ipsum dolor sit amet</p>
-                  </div>
-            </li>
-            <li class="discussion" tabindex="1">
-              <div class="photo" style="background-image: url(http://www.boutique-uns.com/uns/185-home_01grid/polo-femme.jpg);"></div>
-                  <div class="desc-contact">
-                    <p class="name">Elsie Amador</p>
-                    <p class="message">Lorem ipsum dolor sit amet</p>
-                  </div>
-            </li>
-            <li class="discussion" tabindex="1">
-              <div class="photo" style="background-image: url(http://www.boutique-uns.com/uns/185-home_01grid/polo-femme.jpg);"></div>
-                  <div class="desc-contact">
-                    <p class="name">Elsie Amador</p>
-                    <p class="message">Lorem ipsum dolor sit amet</p>
-                  </div>
-            </li>
+            
           </ul>
         </div>
 
         <section class="chat">
-          <div class="header-chat">
-                <p class="name">Elsie Amador</p>
-              </div>
 
-
-              <div class="message-chat">
-                <div class="messages message-recieved">
-                  <p>Hello! Whatsup?</p>
-                  <span class="time">6:35 AM</span>
-                </div>
-                <div class="messages message-recieved">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                  cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                  <span class="time">6:35 AM</span>
-                </div>
-                <div class="messages message-sent">
-                  <p>Hey Elsie! Fine</p>
-                  <span class="time">6:35 AM</span>
-                </div>
-                <!-- uploaded file starts -->
-                <div class="messages message-sent upload-container">
-                  <div class="upload-sent">
-                    <img src="/images/background/file-sent.svg">
-                  </div>
-                  <div class="file-name">image.png<div>2.5 MB</div></div>
-                  <span class="time">6:35 AM</span>
-                </div>
-                <!-- uploaded file ends -->
-                <div class="messages message-recieved upload-container">
-                  <div class="upload-recieved">
-                    <img src="/images/background/file-recieved.svg">
-                  </div>
-                  <div class="file-name">image.png<div>2.5 MB</div></div>
-                  <span class="time">6:35 AM</span>
-                </div>
-
-                <div class="messages message-sent">
-                  <p>Noway!!! Hell yeah i'm coming! I'll meet you guys at the bar at night. Alright?</p>
-                  <span class="time">6:35 AM</span>
-                </div>
-                <div class="messages message-recieved">
-                  <p>I knew it... Owkey then. See ya</p>
-                  <span class="time">6:35 AM</span>
-                </div>
-                <div class="messages message-sent">
-                  <p>Noway!!! Hell yealoremh i'm coming! I'll meet you guys at the bar at night. Alright? Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                  quis nostrud exercitation ullaaborum.</p>
-                  <span class="time">6:35 AM</span>
-                </div>
-                <div class="messages message-recieved">
-                  <p>I knew it... Owkey then. See ya</p>
-                  <span class="time">6:35 AM</span>
-                </div>
-              </div>
-
-
-              <div class="footer-chat">
-
-                <div class="image-upload">
-                  <label for="file-input">
-                    <img src="/images/background/plus.svg" class="chat-icon">
-                  </label>
-                  <input id="file-input" type="file" multiple>
-                </div>
-
-                <input type="text" placeholder="Type your message here"></input>
-                <a href="#"><img src="/images/background/send.svg" class="chat-icon"></a>
-              </div>
+	<p class="gray">Choose a friend and continue messaging.</p>
+              
         </section>
       </div>
   </div>
@@ -247,6 +117,23 @@ $readd_result=mysqli_query($msg_connection,$readd_query) or die(mysqli_error($ms
   <div class="footbar blur"></div>
   <script src="/js/footbar.js"></script>
 
+
+
+<script>
+$(document).ready(function() {
+  setInterval(function() {
+    jQuery.ajax({
+      type:"POST",
+      url:'/php/disq_container.php',
+      data: { user_id: <?php echo $get_user_id?> },
+      success: function(response) {
+        $('#disc-container').load(window.location.href+' #disc-container');
+	console.log('ok');
+      }
+    });
+  }, 2000);
+});
+</script>
 
 
 

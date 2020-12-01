@@ -54,28 +54,28 @@ fi
 
 if [ -d userpgs/instructor/course_management/videos ]; then
     chmod 777 userpgs/instructor/course_management/videos;
-    echo '\e[92m[OK]\e[0m    course_mng/videos made executable.';
+    echo -e '\e[92m[OK]\e[0m    course_mng/videos made executable.';
 else
-    echo '\e[31m[ERR]\e[0m   course_mng/videos not found.';
+    echo -e '\e[31m[ERR]\e[0m   course_mng/videos not found.';
 fi
 
 if [ -d userpgs/instructor/class/videos ]; then
     chmod 777 userpgs/instructor/class/videos;
-    echo '\e[92m[OK]\e[0m    class/videos made executable.';
+    echo -e '\e[92m[OK]\e[0m    class/videos made executable.';
 else
-    echo '\e[31m[ERR]\e[0m   class/videos not found.';
+    echo -e '\e[31m[ERR]\e[0m   class/videos not found.';
 fi
 
 if [ -d userpgs/instructor/class/uploads ]; then
     chmod 777 userpgs/instructor/class/uploads;
-    echo '\e[92m[OK]\e[0m    class/uploads made executable.';
+    echo -e '\e[92m[OK]\e[0m    class/uploads made executable.';
 else
-    echo '\e[31m[ERR]\e[0m   class/uploads not found.';
+    echo -e '\e[31m[ERR]\e[0m   class/uploads not found.';
 fi
 
 if [ -d userpgs/instructor/class/live/files ]; then
     chmod 777 userpgs/instructor/class/live/files;
-    echo '\e[92m[OK]\e[0m    live/files made executable.';
+    echo -e '\e[92m[OK]\e[0m    live/files made executable.';
 else
-    echo '\e[31m[ERR]\e[0m   live/files not found.';
+    echo -e '\e[31m[ERR]\e[0m   live/files not found.';
 fi

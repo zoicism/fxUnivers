@@ -7,7 +7,7 @@ if(screen.width>628) {
         <nav>
             <ul class="nav__links">
                 <li><a href="/"><img src="/images/icons/toolbar/home.png"></a></li>
-                <li><a href="/msg/inbox.php"><img src="/images/icons/toolbar/msg.png" ></a></li>
+                <li><a href="/msg"><img src="/images/icons/toolbar/msg.png" ></a></li>
                 <li><a href="/userpgs/notif"><img src="/images/icons/toolbar/notif.png"></a></li>
                 <li><a href="/search"><img src="/images/icons/toolbar/search.png"></a></li>
 <li><a href="#" class="openbtn" onclick="openNav()">☰</a></li>
@@ -36,7 +36,7 @@ if(screen.width>628) {
 <nav>
             <ul class="nav__links">
                 <li><a href="/"><img src="/images/icons/toolbar/home.png"></a></li>
-                <li><a href="/msg/inbox.php"><img src="/images/icons/toolbar/msg.png"></a></li>
+                <li><a href="/msg"><img src="/images/icons/toolbar/msg.png"></a></li>
                 <li><a href="/userpgs/notif"><img src="/images/icons/toolbar/notif.png"></a></li>
                 <li><a href="/search"><img src="/images/icons/toolbar/search.png"></a></li>
                 <li><a href="#" class="openbtn" onclick="openNav()">☰</a></li>
@@ -71,7 +71,7 @@ if(screen.width>628) {
         <div class="toolbar-icon notif" onclick="location.href='/userpgs/notif';">
           <div class="newnum" id="notif-bar"></div>
         </div>
-        <div class="toolbar-icon msg" onclick="location.href='/msg/inbox.php';">
+        <div class="toolbar-icon msg" onclick="location.href='/msg';">
           <div class="newnum" id="msg-bar" style="margin-right:-9px"></div>
         </div>
       </span>`
@@ -197,7 +197,7 @@ $('.header').html(`
 	$('#current').html('fxFriends');
     } else if(loc=='/userpgs/notif/') {
 	$('#current').html('fxNotifs');
-    } else if(loc=='/msg/inbox.php') {
+    } else if(loc=='/msg') {
 	$('#current').html('fxMsg');
     }
 }
