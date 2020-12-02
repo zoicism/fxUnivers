@@ -11,13 +11,9 @@ if(isset($_SESSION['username'])) {
 
 if(isset($_POST['search'])) {
 	$uname = $_POST['search'];
-	if(isset($_GET['target']) && $_GET['target']=='courses') {
-	  $target = 'courses';
-	  $query = "SELECT * FROM teacher WHERE header LIKE '$uname%' ORDER BY id DESC";
-	} else {
-	  $query = "SELECT * FROM user WHERE username LIKE '$uname%' ORDER BY id DESC";
-	}
+    $query = "SELECT * FROM user WHERE (username LIKE '%$uname%') OR (fname LIKE '%$uname%') OR (lname LIKE '%$uname%')";
 	$search_result = mysqli_query($connection, $query) or die(mysqli_error($connection));
+    $search_count=mysqli_num_rows($search_result);
 }
 
 
@@ -37,559 +33,84 @@ require('../wallet/php/get_fxcoin_count.php');
 
 ?>
 
-<!DOCTYPE HTML>
-<html>
-<head><meta name="viewport" content="width=device-width"/>
-<title>Search</title>
-<!-- STYLES & JQUERY 
-================================================== -->
-<link rel="stylesheet" type="text/css" href="/userpgs/css/style.css"/>
-<link rel="stylesheet" type="text/css" href="/userpgs/css/icons.css"/>
-<link rel="stylesheet" type="text/css" href="/userpgs/css/skinblue.css"/><!-- change skin color here -->
-<link rel="stylesheet" type="text/css" href="/css/dropdown.css"/>
-<link rel="stylesheet" type="text/css" href="/css/list/rotated_nav.css"/>
-<link rel="stylesheet" type="text/css" href="/css/toptobottom.css"/>
-<link rel="stylesheet" type="text/css" href="/css/roundcorner.css"/>
-<link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
-<script src="/js/jquery-1.9.0.min.js"></script><!-- the rest of the scripts at the bottom of the document -->
-</head>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet"> 
+
+    <title>fxUnivers</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/avatar.css">
+    
+    <link rel="stylesheet" href="/css/icons.css">
+    <link rel="stylesheet" href="/css/logo.css">
+    <link rel="stylesheet" href="/css/colors.css">
+    <script src="/js/jquery-3.4.1.min.js"></script>
+    </head>
+
 <body>
 
-<!-- UPPER BAR -->
-<section class="nav-bar">
-  <div class="nav-container">
-    <div class="brand">
-      <div class="logoimg toplogo"></div>
-    </div>
-    <nav>
-      <div class="nav-mobile"><a id="nav-toggle" href="#!"><span></span></a></div>
-      <ul class="nav-list">
-        <li>
-          <a href="/" id="ubHome"><img id="ubiHome" src="/images/upperbar/home_a.png" alt="Home"></a>
-        </li>
-        <li>
-          <a href="/search" id="ubSearch"><img id="ubiSearch" src="/images/upperbar/search_a.png" alt="Search"></a>
-        </li>
-	<li>
-          <a href="/userpgs/notif" id="notif_a"><img id="ubiNotif" src="/images/upperbar/notification_a.png" style="height: 19px; width: 15.77px;" alt="Notifs"></a>
-        </li>
-        <li>
-          <a href="/msg/inbox.php" id="msg_bar"><img id="ubiMsg" src="/images/upperbar/message_a.png" style="height: 15.77px; width: 19px;" alt="Messages"></a>
-	    <!--
-	    <ul class="nav-dropdown">
-            <li>
-              <a href="#">test1</a>
-            </li>
-            <li>
-              <a href="#">test2</a>
-            </li>
-            <li>
-              <a href="#">test3</a>
-            </li>
-          </ul>
-	  -->
-        </li>
-        <li>
-          <a href="/register/logout.php" id="ubLogout"><img id="ubiLogout" src="/images/upperbar/logout_a.png" style="height: 15.77px; width: 19px;" alt="Logout" ></a>
-        </li>
-      </ul>
-    </nav>
-  </div>
-</section>
+<div class="upperbar"></div>
+<script src="/js/upperbar.js"></script>
 
-<div class="boxedtheme">
-<!-- TOP LOGO & MENU
-================================================== -->
-<div class="grid">
-        <div class="row space-bot">
-                
-        </div>
-</div>
-
-<!-- LEFT PANEL
-================================================== -->
-<div class="grid">
-                <div class="shadowundertop">
-                </div>
-                <div class="row">
-
-                        <!-- LEFT SIDE -->
-                        <div class="c9">
-    <?php
-    $path="../userpgs/avatars/";
-    if(file_exists($path.$get_user_id.'.jpg')) {
-        echo('<div class="userpic lsb-sub" style="background-image: url(\'/userpgs/avatars/'.$get_user_id.'.jpg\');"></div>');
-    } elseif(file_exists($path.$get_user_id.'.jpeg')) {
-        echo('<div class="userpic lsb-sub" style="background-image: url(\'/userpgs/avatars/'.$get_user_id.'.jpeg\');"></div>');
-    } elseif(file_exists($path.$get_user_id.'.png')) {
-        echo('<div class="userpic lsb-sub" style="background-image: url(\'/userpgs/avatars/'.$get_user_id.'.png\');"></div>');
-    } elseif(file_exists($path.$get_user_id.'.gif')) {
-        echo('<div class="userpic lsb-sub" style="background-image: url(\'/userpgs/avatars/'.$get_user_id.'.gif\');"></div>');
-    } else {
-        echo('<div class="userpic avatarr lsb-sub" id="showUpButt"></div>');
-    }
+<div class="col-33 left-col">
+                <div class="col-1">
+                <h3>Search</h3>
+    <p>Search for fxUsers</p>
+                <form method="POST" action="#">
+                <input type="text" name="search" autofocus placeholder="Keyword" required>
+                <input type="submit" value="Search">
+<?php
+                if($search_count!='') {
+                    echo '<p><b>'.$search_count.'</b> results</p>';
+                } elseif($search_count===0) {
+                    echo '<p><b>'.$search_count.'</b> results</p>';
+                }
 ?>
-			<h2 style="text-align: center; font-size: 1rem; margin-top: 1px; margin-bottom: 0;" class="lsb-sub"><?php echo '<a href="/user/'.$username.'" style="color: black">'.$get_user_fname.' '.$get_user_lname.' <span style="font-size: 0.9rem">@'.$username.'</span></a>'; ?></h2>
-				<!--<?php echo "$bio" ?>-->
-
-          <p id="rcorners1" style="font-size: 1rem; font-weight: bold; margin-bottom: 0;" class="lsb-sub"><span style="float: left"><img src="/images/leftsidebar/fxcoin.png" style="height: 15px; width: 11.25px"></span><span style="float:right; font-family: courier;"><?php echo $get_fxcoin_count ?></span></p>
-
-
-			    <table style="margin-top: 10px; line-height: 0;" class="lsb-screensize">
-                  <tr>
-				    <td style="width: 33.3%; text-align: left;"><a href="/userpgs/rel?act=friends" style="color: black"><strong><?php echo $get_rel_friends_count ?></strong></a></td>
-				    <td style="width: 33.3%; text-align: center;"><a href="/userpgs/rel?act=following" style="color: black"><strong><?php echo $get_rel_following_count ?></strong></a></td>
-				    <td style="width: 33.3%; text-align: right;"><a href="/userpgs/rel?act=followers" style="color: black"><strong><?php echo $get_rel_followers_count ?></strong></a></td>
-				  </tr>
-				  <tr>
-				    <td style="width: 33.3%; text-align: left;"><a href="/userpgs/rel?act=friends" style="color: black">Friends</a></td>
-				    <td style="width: 33.3%; text-align: center;"><a href="/userpgs/rel?act=following" style="color: black">Following</a></td>
-				    <td style="width: 33.3%; text-align: right;"><a href="/userpgs/rel?act=followers" style="color: black">Followers</a></td>
-				  </tr>
-				</table>
-          
-          
-          <a href="/"><button class="taste taste-lsb-ss" id="homeBtn"><span class="lsblogoimg lsblogo" id="homeSpan"></span><span class="lsb-screensize">HOME</span></button></a>
-          <a href="/wallet"><button class="taste taste-lsb-ss" id="walletBtn"><span class="smallicon smallicon_wallet_a" id="walletSpan"></span><span class="lsb-screensize">WALLET</span></button></a>
-          <a href="/userpgs/trader"><button class="taste taste-lsb-ss" id="traderBtn"><span class="smallicon smallicon_trader_a" id="traderSpan"></span><span class="lsb-screensize">TRADER</span></button></a>
-          <a href="<?php 
-					if($plans_msg) {
-					  if($get_plans_fxuniversityins) {
-					      echo '/userpgs/instructor'; 
-					    } elseif($get_plans_fxuniversityins_req) {
-					      echo '/register/instructor_wait.php';
-					    } else {
-					      echo '/register/instructor_reg.php';
-					    }
-					  } else {
-					    echo '/register/instructor_reg.php';
-					  } ?>"><button class="taste taste-lsb-ss" id="instructorBtn"><span class="smallicon smallicon_instructor_a" id="instructorSpan"></span><span class="lsb-screensize">INSTRUCTOR</span></button></a>
-          <a href="<?php
-					if($plans_msg) {
-					  if($get_plans_fxuniversitystu) {
-					    echo '/userpgs/student';
-					  } elseif($get_plans_fxuniversitystu_req) {
-					    echo '/register/student_wait.php';
-					  } else {
-					    echo '/register/student_reg.php';
-					  }
-					} else {
-					  echo '/register/student_reg.php';
-					} ?>"><button class="taste taste-lsb-ss" id="studentBtn"><span class="smallicon smallicon_student_a" id="studentSpan"></span><span class="lsb-screensize">STUDENT</span></button></a>
-          <a href="/userpgs/partner"><button class="taste taste-lsb-ss" id="partnerBtn"><span class="smallicon smallicon_partner_a" id="partnerSpan"></span><span class="lsb-screensize">PARTNER</span></button></a>
-          
-          <hr class="hrtitle" style="border-color: #25252533">
-          
-			</div>
-
-    
-			<!-- MAIN CONTENT -->
-			<div class="c3">
-                                <div class="rightsidebar">
-                                        <h2 class="title stresstitle">Search</h2>
-                                        <hr class="hrtitle">
-                                        <div class="teamdescription">
-						<form method="POST" action="#">
-							<input type="text" name="search" autofocus placeholder="Search" required style="margin-bottom:0"><br />
-							<button class="btn" style="float:right" type="submit">Search</button>
-						</form>
-                                        </div>
-					
-
-					<table style="border: 1px solid #e8e8e8">
-					<?php
-					if($search_result->num_rows > 0) {                      
- 						while($row = $search_result->fetch_assoc()) {
-					?>
-					<tr style="border-bottom: 1px solid #e8e8e8">
-					<td style="width: 10%">
-					  <?php if(isset($_GET['target']) && $target=='courses') { ?>
-					    <img src="/images/artwork/course.png" style="margin-left: 20px">
-					  <?php } else { ?>
-					    <div class="avatarpic avatarr"></div>
-					  <?php } ?>
-					</td>
-					<td style="width: 90%; padding-left: 20px;">
-					<?php
-					  if(isset($_GET['target']) && $target=='courses') {
-					    $u_id = $row['user_id'];
-					    
-					    $tutor_query = "SELECT username, fname, lname FROM user WHERE id=$u_id";
-					    $tutor_result = mysqli_query($connection, $tutor_query) or die(mysqli_error($connection));
-					    $tutor_fetch = mysqli_fetch_array($tutor_result);
-					    $tutor_username = $tutor_fetch['username'];
-					    $tutor_fname = $tutor_fetch['fname'];
-					    $tutor_lname = $tutor_fetch['lname'];
-
-					    $course_link = "/userpgs/instructor/course_management/course.php?course_id=".$row['id'];
-					    echo '<a href='.$course_link.' style="color: #000;"><b>'.$row["header"].'</b></a><br><p> '.$tutor_fname.' '.$tutor_lname.' @'.$tutor_username.'</p><p style="font-size: .85rem">'. $row['description'] .'</p>';
-					  } else {
-				        	echo "<a style='color: #000' href=\"/user/".$row["username"]."\">". "<b>" . $row["fname"] . " " . $row["lname"] . "</b> @" . $row["username"] . "</a>" . "</b><br>" . $row["bio"] . "<br><br><br>";
-					  }
-					?>
-					</td>
-					</tr>
-					<?php
-						}
-					} else {
-						echo '<p style="font-size: 1rem; padding-top: 10px; text-align: center; color: #ccc;">Enter keywords in the box and click on search!</p>';
-					}
-					?>
-					</table>
-					
-                                </div>
-                        </div>
-			<!-- end sidebar -->
-
+                </form>
                 </div>
-
 </div>
 
-<!-- FOOTER
-================================================== -->
-<div id="wrapfooter">
-        <div class="grid">
-                <div class="row" id="footer">
-                        <!-- to top button  -->
-                        <p class="back-top floatright">
-                                <a href="#top"><span></span></a>
-                        </p>
-                        <!-- 1st column -->
-			<div class="c3">
-                          <div class="logoimgbig biglogo" style="margin-left: 0"></div>
-                        </div>
-                        <!-- 2nd column -->
-                        <div class="c3">
-                                <h2 class="title">Contact</h2>
-                                <hr class="footerstress">
-                                <dl>
-                                        <dt>New Horizon Building, Ground Floor,
-                                                <br />3 1/2 Miles Philip S.W. Goldson Highway,
-                                                <br />Belize City, Belize,
-                                                <br />Central America</dt>
-                                        <dd>E-mail: <a href="#">contact@fxunivers.com</a></dd>
-                                </dl>
-                                <ul class="social-links" style="margin-top:15px;">
-                                        <li class="facebook-link smallrightmargin">
-                                        <a href="https://www.facebook.com/fxunivers" class="facebook has-tip" target="_blank" title="Join us on Facebook">Facebook</a>
-                                        </li>
-                                        <li class="linkedin-link smallrightmargin">
-                                        <a href="https://www.linkedin.com/company/fxunivers/" class="linkedin has-tip" title="Linkedin" target="_blank">Linkedin</a>
-                                        </li>
-                                        <li class="twitter-link smallrightmargin">
-                                        <a href="https://twitter.com/fxunivers" class="twitter has-tip" target="_blank" title="Follow Us on Twitter">Twitter</a>
-                                        </li>
-                                </ul>
-                        </div>
-                        <!-- 4th column -->
-                        <div class="c3" style="width: 100%">
-                                <h2 class="title">Policy</h2>
-                                <hr class="footerstress">
-                                <p align="justify" style="color: #777">fxUnivers reserves the right to offer services to only certain individuals/companies at its own discretion.  Also can revoke/terminate services from any individual/company without cause/reason at any given time, by discretion, upon settlement offered by fxUnivers when applicable. By subscribing or using any fxUnivers services/products, users agree fxUnivers is not to be blamed for any kind of responsibilities, liabilities, damages, occurrences, harassment, losses, misinformation, misinterpretation, misusing, misunderstanding, mistaking, mispresenting, nor negativity.  All such behaviors are solely at risk of users while fxUnivers is to be used by choice only, in a way fxUnivers is not responsible for anything.  By using fxUnivers services, users waive all rights to take any legal or other actions against fxUnivers, its employees, developers, owners, and affiliates.  In case of any disputes or issues, users agree to communicate with fxUnivers and raise/discuss the issue, and fxUnivers is expected to review the issue and propose the resolution which should be taken as final and accepted by users (users elect by choice to accept all fxUnivers decisions as final in advance). By subscribing, all users accept any materials, courses, videos, or contects shared via fxUnivers is opinion based by other users and shall not carry any liability, advise, value, nor weight of any kind; using such data is pure choice of users and fxUnivers is not responsible for any of contents nor behaviors of any kind. fxUnivers takes privacy seriously and does not share any private data to any third parties/authorities nor is responsible for behavior of users.</p>
-                        </div>
-                        <!-- end 4th column -->
-                </div>
-        </div>
-</div>
 
-<!-- copyright area -->
-<div class="copyright">
-        <div class="grid">
-		<div class="row">
-                        <div class="c6">
-                                With all due Reserves,
-                        </div>
-                </div>
-                <div class="row">
-                        <div class="c6">
-                                 fxUnivers &copy; 2017-2020. All Rights Reserved.
-                        </div>
-                        <div class="c6">
-                                <span class="right">
-                                <!-- by Milad, neo@fxunivers.com --> </span>
-                        </div>
-                </div>
-        </div>
-</div>
+<?php
+                echo '<div class="col-33 mid-col">';
+                if($search_result->num_rows > 0) {
+                    while($row = $search_result->fetch_assoc()) {
+                        echo '<div class="col-1 pointer" onclick="location.href=\'/user/'.$row['username'].'\';">';
 
-<!-- JAVASCRIPTS
-================================================== -->
-<!-- all -->
-<script src="js/modernizr-latest.js"></script>
-
-<!-- menu & scroll to top -->
-<script src="js/common.js"></script>
-
-<!-- cycle -->
-<script src="js/jquery.cycle.js"></script>
-
-<!-- twitter -->
-<script src="js/jquery.tweet.js"></script>
-
-<!-- filtering -->
-<script src="js/jquery.isotope.min.js"></script>
-
-<!-- CALL filtering & masonry-->
-<script>
-$(document).ready(function(){
-var $container = $('#content');
-  $container.imagesLoaded( function(){
-        $container.isotope({
-        filter: '*',
-        animationOptions: {
-     duration: 750,
-     easing: 'linear',
-     queue: false,
-   }
-});
-});
-$('#nav a').click(function(){
-  var selector = $(this).attr('data-filter');
-    $container.isotope({ 
-        filter: selector,
-        animationOptions: {
-     duration: 750,
-     easing: 'linear',
-     queue: false,
-   }
-  });
-  return false;
-});
-$('#nav a').click(function (event) {
-    $('a.selected').removeClass('selected');
-    var $this = $(this);
-    $this.addClass('selected');
-    var selector = $this.attr('data-filter');
-    $container.isotope({
-         filter: selector
-    });
-    return false; // event.preventDefault()
-});
-});
- </script>
-
- <!-- Call opacity on hover images-->
-<script type="text/javascript">
-$(document).ready(function(){
-    $(".boxcontainer img").hover(function() {
-      $(this).stop().animate({opacity: "0.6"}, 'slow');
-    },
-    function() {
-      $(this).stop().animate({opacity: "1.0"}, 'slow');
-                                                                                       289,55        97%
-    });
-  });
-</script>
-
-<!-- BUTTONS -->
-<script>
-$(document).ready(function() {
-    $('#traderBtn').hover(function() {
-        var imgUrl='/images/leftsidebar/trader_b.png';
-        $('#traderSpan').css("background-image", "url(" + imgUrl + ")");
-    }, function() {
-        var imgUrl0='/images/leftsidebar/trader_a.png';
-        $('#traderSpan').css("background-image", "url(" + imgUrl0 + ")");
-    });
-});
-</script>
-
-<script>
-$(document).ready(function() {
-    $('#walletBtn').hover(function() {
-        var imgUrl='/images/leftsidebar/wallet_b.png';
-        $('#walletSpan').css("background-image", "url(" + imgUrl + ")");
-    }, function() {
-        var imgUrl0='/images/leftsidebar/wallet_a.png';
-        $('#walletSpan').css("background-image", "url(" + imgUrl0 + ")");
-    });
-});
-</script>
-
-<script>
-$(document).ready(function() {
-    $('#instructorBtn').hover(function() {
-        var imgUrl='/images/leftsidebar/instructor_b.png';
-        $('#instructorSpan').css("background-image", "url(" + imgUrl + ")");
-    }, function() {
-        var imgUrl0='/images/leftsidebar/instructor_a.png';
-        $('#instructorSpan').css("background-image", "url(" + imgUrl0 + ")");
-    });
-});
-</script>
-
-<script>
-$(document).ready(function() {
-    $('#partnerBtn').hover(function() {
-        var imgUrl='/images/leftsidebar/partner_b.png';
-        $('#partnerSpan').css("background-image", "url(" + imgUrl + ")");
-    }, function() {
-        var imgUrl0='/images/leftsidebar/partner_a.png';
-        $('#partnerSpan').css("background-image", "url(" + imgUrl0 + ")");
-    });
-});
-</script>
-
-<script>
-$(document).ready(function() {
-    $('#studentBtn').hover(function() {
-        var imgUrl='/images/leftsidebar/student_b.png';
-        $('#studentSpan').css("background-image", "url(" + imgUrl + ")");
-    }, function() {
-        var imgUrl0='/images/leftsidebar/student_a.png';
-        $('#studentSpan').css("background-image", "url(" + imgUrl0 + ")");
-    });
-});
-</script>
-
-<script>
-$(document).ready(function() {
-    $('#homeBtn').hover(function() {
-        var imgUrl='/images/logos/fxlogo_a.png';
-        $('#homeSpan').css("background-image", "url(" + imgUrl + ")");
-    }, function() {
-        var imgUrl0='/images/logos/fxlogo_b.png';
-        $('#homeSpan').css("background-image", "url(" + imgUrl0 + ")");
-    });
-});
-</script>
-
-<script>
-$(document).ready(function() {
-    $('#notif_a').hover(function() {
-        var imgUrl='/images/upperbar/notification_b.png';
-        $('#ubiNotif').attr("src", imgUrl);
-    }, function() {
-        var imgUrl0='/images/upperbar/notification_a.png';
-        $('#ubiNotif').attr("src",imgUrl0);
-    });
-});
-</script>
-
-<script>
-$(document).ready(function() {
-    $('#ubHome').hover(function() {
-        var imgUrl='/images/upperbar/home_b.png';
-        $('#ubiHome').attr("src", imgUrl);
-    }, function() {
-        var imgUrl0='/images/upperbar/home_a.png';
-        $('#ubiHome').attr("src",imgUrl0);
-    });
-});
-</script>
-
-<script>
-$(document).ready(function() {
-    $('#ubLogout').hover(function() {
-        var imgUrl='/images/upperbar/logout_b.png';
-        $('#ubiLogout').attr("src", imgUrl);
-    }, function() {
-        var imgUrl0='/images/upperbar/logout_a.png';
-        $('#ubiLogout').attr("src",imgUrl0);
-    });
-});
-</script>
-
-<script>
-$(document).ready(function() {
-    $('#msg_bar').hover(function() {
-        var imgUrl='/images/upperbar/message_b.png';
-        $('#ubiMsg').attr("src", imgUrl);
-    }, function() {
-        var imgUrl0='/images/upperbar/message_a.png';
-        $('#ubiMsg').attr("src",imgUrl0);
-    });
-});
-</script>
-
-<script>
-$(document).ready(function() {
-    $('#ubSearch').hover(function() {
-        var imgUrl='/images/upperbar/search_b.png';
-        $('#ubiSearch').attr("src", imgUrl);
-    }, function() {
-        var imgUrl0='/images/upperbar/search_a.png';
-        $('#ubiSearch').attr("src",imgUrl0);
-    });
-});
-</script>
-
-
-<script>
-$(document).ready(function() {
-    $('#ads1').hover(function() {
-        $('#ads1').css({opacity:1});
-    }, function() {
-        $('#ads1').css({opacity:0.8});
-    });
-});
-</script>
-
-<script>
-$(document).ready(function() {
-    $('#ads2').hover(function() {
-        $('#ads2').css({opacity:1});
-    }, function() {
-        $('#ads2').css({opacity:0.8});
-    });
-});
-</script>
-
-<script>
-$(document).ready(function() {
-    $('#ads3').hover(function() {
-        $('#ads3').css({opacity:1});
-    }, function() {
-        $('#ads3').css({opacity:0.8});
-    });
-});
-</script>
-
-<script>
-$(document).ready(function() {
-    $('#ads4').hover(function() {
-        $('#ads4').css({opacity:1});
-    }, function() {
-        $('#ads4').css({opacity:0.8});
-    });
-});
-</script>
-<!-- EO BUTTONS -->
-
-<!-- NOTIFS -->
-<script>
-$(document).ready(function() {
-  var notifUserId=<?php echo $get_user_id ?>;
-  setInterval(function() {
-    $.ajax({
-      type: 'POST',
-      url: '/php/notif_icon.php',
-      data: {notif_userId: notifUserId},
-      success: function(response) {
-            //var json=$.parseJSON(response);
-            //alert(json.last_notif);
-            //alert(response);
-            if(response==='1') {
-                //alert('its 1');
-                $('#notif_a').css('background-color', '#3282b8');
-            }
-
-            $.ajax({
-              type: 'POST',
-              url: '/php/msg_icon.php',
-              data: {msg_userId: notifUserId},
-              success: function(result) {
-                    if(result>0) {
-                        $('#msg_bar').css('background-color', '#3282b8');
+                        $path="../userpgs/avatars/";
+                        if(file_exists($path.$row['id'].'.jpg')) {
+                            echo('<div class="avatar float-left" style="background-image: url(\'../userpgs/avatars/'.$row['id'].'.jpg\');"></div>');
+                        } elseif(file_exists($path.$row['id'].'.jpeg')) {
+                            echo('<div class="avatar float-left" style="background-image: url(\'../userpgs/avatars/'.$row['id'].'.jpeg\');"></div>');
+                        } elseif(file_exists($path.$row['id'].'.png')) {
+                            echo('<div class="avatar float-left" style="background-image: url(\'../userpgs/avatars/'.$row['id'].'.png\');"></div>');
+                        } elseif(file_exists($path.$row['id'].'.gif')) {
+                            echo('<div class="avatar float-left" style="background-image: url(\'../userpgs/avatars/'.$row['id'].'.gif\');"></div>');
+                        } else {
+                            echo('<div class="avatar float-left"></div>');
+                        }
+                        
+                        echo '<h3>@'.$row['username'].'</h3>';
+                        echo '<p><b>'.$row['fname'].' '.$row['lname'].'</b></p>';
+                        echo '</div>';
                     }
-              }
-            });
-      }
-    });
-  }, 2000);
-});
+                    $search_result->free();
+                }
+                echo '</div>';
+?>
+
+<div class="footer"></div>
+<script src="/js/footer.js"></script>
+
+<div class="footbar"></div>
+<script src="/js/footbar.js"></script>
+
+<script>
+    var notifUserId=<?php echo $get_user_id ?>;
 </script>
-<!-- EO NOTIFS -->
+<script src="/js/notif_msg.js"></script>
 </body>
 </html>
-

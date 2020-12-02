@@ -9,11 +9,13 @@ if(isset($_SESSION['username'])) {
     header('Location: /');
 }
 
-if(isset($_POST['search'])) {
-	$uname = $_POST['search'];
-    $query = "SELECT * FROM user WHERE (username LIKE '%$uname%') OR (fname LIKE '%$uname%') OR (lname LIKE '%$uname%')";
-	$search_result = mysqli_query($connection, $query) or die(mysqli_error($connection));
-    $search_count=mysqli_num_rows($search_result);
+if(isset($_GET['q'])) {
+
+        $kw = $_GET['q'];
+        echo $kw_q = "SELECT * FROM user WHERE (username LIKE '%$kw%') OR (fname LIKE '%$kw%') OR (lname LIKE '%$kw%') UNION ALL SELECT * FROM teacher WHERE (header LIKE '%$kw%') OR (description LIKE '%$kw%')";
+echo	$kw_r = mysqli_query($connection,$kw_q) or die(mysqli_error($connection));
+	$kw_count = mysqli_num_rows($kw_r);
+	
 }
 
 
@@ -34,51 +36,54 @@ require('../wallet/php/get_fxcoin_count.php');
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Condensed&display=swap" rel="stylesheet">   
-    <title>fxUnivers</title>
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/avatar.css">
-    <style>html{background:#fff}</style>
-    <script src="/js/jquery-3.4.1.min.js"></script>
-    </head>
+<html>
+<head>
+	<title>fxSearch</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/icons.css">
+  <link rel="stylesheet" href="/css/logo.css">
+  <script src="/js/jquery-3.4.1.min.js"></script>
+</head>
 
 <body>
-<div class="upperbar">
-    <span class="float-left">
-      <a href="/">fxUnivers</a> &#8250; search
-    </span>
-    <span class="float-right">
-      <a id="msg_bar" href="/msg/inbox.php">msg</a> &#8226; <a id="notif_a" href="/userpgs/notif">notif</a>
-    </span>
-</div>
+	<div class="header-sidebar"></div>
+  <script src="/js/upperbar.js"></script>
 
+  <div class="blur mobile-main">
 
-<div class="col-33 left-col">
-                <div class="col-1">
-                <h3>Search</h3>
-                <form method="POST" action="#">
-                <input type="text" name="search" autofocus placeholder="Keyword" required><br />
-                <input type="submit" value="Search">
+   <div class="sidebar"></div>
+<?php require('../php/sidebar.php'); ?>
+
+  <div class="relative-main-content">
+    
+
+<form method="GET" action="/search">
+                <input type="text" name="q" autofocus class="txt-input" placeholder="Search fxUnivers" required>
+                <input type="submit" value="Search" class="submit-btn">
 <?php
-                if($search_count!='') {
-                    echo '<p><b>'.$search_count.'</b> results</p>';
+                if($kw_count!='') {
+                    echo '<p><b>'.$kw_count.'</b> results</p>';
                 } elseif($search_count===0) {
-                    echo '<p><b>'.$search_count.'</b> results</p>';
+                    echo '<p><b>'.$kw_count.'</b> results</p>';
                 }
 ?>
                 </form>
-                </div>
-</div>
+
+
 
 
 <?php
                 echo '<div class="col-33 mid-col">';
-                if($search_result->num_rows > 0) {
-                    while($row = $search_result->fetch_assoc()) {
+                if($kw_r->num_rows > 0) {
+
+		    while($row = $kw_r->fetch_assoc()) {
+
+		        
+		    
+
+/*
                         echo '<div class="col-1 pointer" onclick="location.href=\'/user/'.$row['username'].'\';">';
 
                         $path="../userpgs/avatars/";
@@ -93,10 +98,12 @@ require('../wallet/php/get_fxcoin_count.php');
                         } else {
                             echo('<div class="avatar float-left"></div>');
                         }
-                        
+
+			
                         echo '<h3>@'.$row['username'].'</h3>';
                         echo '<p><b>'.$row['fname'].' '.$row['lname'].'</b></p>';
                         echo '</div>';
+*/
                     }
                     $search_result->free();
                 }
@@ -104,5 +111,60 @@ require('../wallet/php/get_fxcoin_count.php');
 ?>
 
 
+
+
+
+  <div class="footbar blur"></div>
+  <script src="/js/footbar.js"></script>
+
+
+
+
+  <script>
+    $('#page-header').html('Notifications');
+    $('#page-header').attr('href','/userpgs/notif');
+  </script>
+
+  <div class="footbar"></div>
+<script src="/js/footbar.js"></script>
+
+<script>
+    var notifUserId=<?php echo $get_user_id ?>;
+</script>
+<script src="/js/notif_msg.js"></script>
+
+
+<script>
+$(document).ready(function() {
+  var notifUserId=<?php echo $get_user_id ?>;
+  setInterval(function() {
+    jQuery.ajax({
+      type: 'POST',
+      url: '/php/notif_icon.php',
+      data: {notif_userId: notifUserId},
+      success: function(response) {
+            //var json=$.parseJSON(response);
+            //alert(json.last_notif);
+            //alert(response);
+            if(response==='1') {
+                //alert('its 1');
+                $('#notif_a').addClass('blink');
+            }
+
+            jQuery.ajax({
+              type: 'POST',
+              url: '/php/msg_icon.php',
+              data: {msg_userId: notifUserId},
+              success: function(result) {
+                    if(result>0) {
+                        $('#msg_bar').addClass('blink');
+                    }
+              }
+            });
+      }
+    });
+  }, 2000);
+});
+</script>
 </body>
 </html>

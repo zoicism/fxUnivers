@@ -9,11 +9,30 @@ if(isset($_SESSION['username'])) {
     header('Location: /');
 }
 
-if(isset($_POST['search'])) {
-	$uname = $_POST['search'];
-    $query = "SELECT * FROM user WHERE (username LIKE '%$uname%') OR (fname LIKE '%$uname%') OR (lname LIKE '%$uname%')";
-	$search_result = mysqli_query($connection, $query) or die(mysqli_error($connection));
-    $search_count=mysqli_num_rows($search_result);
+if(isset($_GET['q'])) {
+
+        $kw = $_GET['q'];
+	
+
+	if(isset($_GET['type']) && !empty($_GET['type'])) {
+	  $type = $_GET['type'];
+}
+
+
+	      $course_q = 'SELECT * FROM teacher WHERE (header LIKE "%'.$kw.'%") OR (description LIKE "%'.$kw.'%")';
+    	      $course_result = mysqli_query($connection, $course_q);
+    	      $course_count = mysqli_num_rows($course_result);
+
+
+
+  	  $user_q = "SELECT id,username,fname,lname FROM user WHERE (username LIKE '%$kw%') OR (fname LIKE '%$kw%') OR (lname LIKE '%$kw%')";
+	  $user_r = mysqli_query($connection,$user_q) or die(mysqli_error($connection));
+	  $user_count = mysqli_num_rows($user_r);
+
+
+
+	
+// SELECT * FROM teacher WHERE (header LIKE '%$kw%') OR (description LIKE '%$kw%')
 }
 
 
@@ -34,83 +53,232 @@ require('../wallet/php/get_fxcoin_count.php');
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet"> 
-
-    <title>fxUnivers</title>
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/avatar.css">
-    
-    <link rel="stylesheet" href="/css/icons.css">
-    <link rel="stylesheet" href="/css/logo.css">
-    <link rel="stylesheet" href="/css/colors.css">
-    <script src="/js/jquery-3.4.1.min.js"></script>
-    </head>
+<html>
+<head>
+	<title>fxSearch</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/icons.css">
+  <link rel="stylesheet" href="/css/logo.css">
+  <script src="/js/jquery-3.4.1.min.js"></script>
+</head>
 
 <body>
+	<div class="header-sidebar"></div>
+  <script src="/js/upperbar.js"></script>
 
-<div class="upperbar"></div>
-<script src="/js/upperbar.js"></script>
+  <div class="blur mobile-main">
 
-<div class="col-33 left-col">
-                <div class="col-1">
-                <h3>Search</h3>
-    <p>Search for fxUsers</p>
-                <form method="POST" action="#">
-                <input type="text" name="search" autofocus placeholder="Keyword" required>
-                <input type="submit" value="Search">
+   <div class="sidebar"></div>
+<?php require('../php/sidebar.php'); ?>
+
+
+<?php if(isset($_GET['q'])) { ?>
+
+<div class="main-content">
+
+              <ul class="main-flex-container">
+                  <li class="main-items">
+                      <a href="<?php echo '/search?q='.$kw; ?>" class="link-main" <?php if(isset($_GET['q']) && !empty($_GET['q']) && !isset($_GET['type'])) echo 'id="active-main"'; ?>>
+                          <div class="head">Users <?php if(isset($_GET['q']) && !empty($_GET['q'])) echo '('.$user_count.')'; ?></div>
+                      </a>
+                  </li>
+                  <li class="main-items">
+                      <a href="<?php echo '/search?q='.$kw.'&type=course'; ?>" class="link-main" <?php if(isset($_GET['type']) && !empty($_GET['type'])) echo 'id="active-main"'; ?>>
+                          <div class="head">Courses <?php if(isset($_GET['q']) && !empty($_GET['q'])) echo '('.$course_count.')';?></div>
+                      </a>
+                  </li>
+                  
+              </ul>
+
+    </div>
+<?php } ?>
+
+
+
+
+
+
+  <div class="relative-main-content">
+    
+
+<form method="GET" action="/search">
+      <input type="text" name="q" autofocus class="txt-input" placeholder="Search fxUnivers" required>
+      <input type="submit" value="Search" class="submit-btn">
+      
+</form>
+
+
+
+
 <?php
-                if($search_count!='') {
-                    echo '<p><b>'.$search_count.'</b> results</p>';
-                } elseif($search_count===0) {
-                    echo '<p><b>'.$search_count.'</b> results</p>';
-                }
-?>
-                </form>
-                </div>
-</div>
+if($type=='course') {
 
+    require('../php/limit_str.php');
 
-<?php
+    
+
+		 if($course_count>0) {
+
+		   echo '<div class="obj-box">';
+
+		 	while($row3=$course_result->fetch_assoc()) {
+                            $coursecounter_q="SELECT * FROM stucourse WHERE course_id=".$row3['id'];
+                            $coursecounter_r=mysqli_query($connection,$coursecounter_q);
+                            $coursecounts=mysqli_num_rows($coursecounter_r);
+			    
+			    echo '<div class="object" onclick="location.href=\'/userpgs/instructor/course_management/course.php?course_id='.$row3['id'].'\';">';
+
+			    echo '<div class="preview">
+				  <img src="/images/background/course.svg">
+				</div>
+				<div class="details">';
+
+			    $ctitle=preg_replace("/<br\W*?\/>/"," ",$row3['header']);
+			    
+			    echo '<p><strong>';
+			    echo limited($ctitle,40).'</strong></p>';
+			    
+			    $descrip=preg_replace("/<br\W*?\/>/"," ",$row3['description']);
+			    echo '<p>';
+			    echo limited($descrip,85).'</p>';
+
+			    
+			    echo '<div class="detail-bottom">
+				    <div class="little-box blue-bg">
+				      '.$coursecounts.' <span>students</span>
+				    </div>';
+				    
+			   if($row3['cost']>0) {	  
+				    echo '<div class="little-box gold-bg">
+				      '.$row3['cost'].' <span>fxStars</span>
+				    </div>';
+			    } else {
+			      	   echo '<div class="little-box green-bg" style="padding: 4px 20px;">
+				      Free
+				    </div>';
+			    }
+
+			    echo '<div class="little-box gray-bg"><span>'.date("M jS, Y", strtotime($row3['start_date'])).'</span></div>';
+
+			    echo ' </div>
+				  </div>
+				  </div>';
+			}
+		  	    
+		 echo '</div>';	      
+
+		 } else {
+		   echo '<p class="gray">No courses found</p>';
+		   }
+
+} else {
                 echo '<div class="col-33 mid-col">';
-                if($search_result->num_rows > 0) {
-                    while($row = $search_result->fetch_assoc()) {
-                        echo '<div class="col-1 pointer" onclick="location.href=\'/user/'.$row['username'].'\';">';
+                if($user_r->num_rows > 0) {
+		  require('../wallet/php/wallet_connect.php');
+		  require('../php/limit_str.php');
+		  
+		  echo '<div class="obj-box">';
 
-                        $path="../userpgs/avatars/";
-                        if(file_exists($path.$row['id'].'.jpg')) {
-                            echo('<div class="avatar float-left" style="background-image: url(\'../userpgs/avatars/'.$row['id'].'.jpg\');"></div>');
-                        } elseif(file_exists($path.$row['id'].'.jpeg')) {
-                            echo('<div class="avatar float-left" style="background-image: url(\'../userpgs/avatars/'.$row['id'].'.jpeg\');"></div>');
-                        } elseif(file_exists($path.$row['id'].'.png')) {
-                            echo('<div class="avatar float-left" style="background-image: url(\'../userpgs/avatars/'.$row['id'].'.png\');"></div>');
-                        } elseif(file_exists($path.$row['id'].'.gif')) {
-                            echo('<div class="avatar float-left" style="background-image: url(\'../userpgs/avatars/'.$row['id'].'.gif\');"></div>');
-                        } else {
-                            echo('<div class="avatar float-left"></div>');
-                        }
-                        
-                        echo '<h3>@'.$row['username'].'</h3>';
-                        echo '<p><b>'.$row['fname'].' '.$row['lname'].'</b></p>';
-                        echo '</div>';
+		    while($row = $user_r->fetch_assoc()) {
+
+
+		      $fxstar_q = 'SELECT * FROM link WHERE userId='.$row['id'];
+		      $fxstar_r = mysqli_query($wallet_connection, $fxstar_q) or die(mysqli_error($wallet_connection));
+		      $fxstars = mysqli_num_rows($fxstar_r);
+		      
+
+
+                        echo '<div class="object" onclick="location.href=\'/user/'.$row['username'].'\';">';
+
+                        echo '<div class="preview">
+			       <img src="/images/background/avatar.png">
+			     </div>
+
+			     <div class="details">';
+
+			echo '<p><strong>'.$row['fname'].' '.$row['lname'].' @'.$row['username'].'</strong></p>';
+			echo '<p>'.$row['fname'].' '.$row['lname'].'</p>';
+			echo '<p>'.$row['bio'].'</p>';
+
+			echo '<div class="detail-bottom">';
+
+			if($fxstars>0) {
+			  echo '<div class="little-box gold-bg"><span>'.$fxstars.' fxStars</span></div>';
+			} else {
+			  echo '<div class="little-box gray-bg"><span>0 fxStars</span></div>';
+			}
+			echo '</div>';
+			
+                        echo '</div></div>';
+
                     }
-                    $search_result->free();
-                }
+                    $user_r->free();
+
+		    echo '</div>';
+                } else {
+		  echo '<p class="gray">No users found</p>';
+		  }
                 echo '</div>';
+}
 ?>
 
-<div class="footer"></div>
-<script src="/js/footer.js"></script>
 
-<div class="footbar"></div>
+
+
+
+  <div class="footbar blur"></div>
+  <script src="/js/footbar.js"></script>
+
+
+
+
+  <script>
+    $('#page-header').html('Notifications');
+    $('#page-header').attr('href','/userpgs/notif');
+  </script>
+
+  <div class="footbar"></div>
 <script src="/js/footbar.js"></script>
 
 <script>
     var notifUserId=<?php echo $get_user_id ?>;
 </script>
 <script src="/js/notif_msg.js"></script>
+
+
+<script>
+$(document).ready(function() {
+  var notifUserId=<?php echo $get_user_id ?>;
+  setInterval(function() {
+    jQuery.ajax({
+      type: 'POST',
+      url: '/php/notif_icon.php',
+      data: {notif_userId: notifUserId},
+      success: function(response) {
+            //var json=$.parseJSON(response);
+            //alert(json.last_notif);
+            //alert(response);
+            if(response==='1') {
+                //alert('its 1');
+                $('#notif_a').addClass('blink');
+            }
+
+            jQuery.ajax({
+              type: 'POST',
+              url: '/php/msg_icon.php',
+              data: {msg_userId: notifUserId},
+              success: function(result) {
+                    if(result>0) {
+                        $('#msg_bar').addClass('blink');
+                    }
+              }
+            });
+      }
+    });
+  }, 2000);
+});
+</script>
 </body>
 </html>
