@@ -1217,6 +1217,8 @@ input:focus, textarea:focus, select:focus{
 
 /************************************************* < profile ***********************************/
 
+/************************************************* > friends overlay ***********************************/
+
 .frame-container {
   display: flex;
   justify-content: center;
@@ -1235,30 +1237,47 @@ input:focus, textarea:focus, select:focus{
   overflow: auto;
   background-color: #efefef;
   border-radius: 20px;
-  width: 30%;
-  height: 50%;
+  max-height: 400px;
+  min-height: 200px;
+  min-width: 400px;
 }
 
-.frame .student {
+.frame-container .frame .frame-header {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  min-height: 40px;
+  border-bottom: 1px solid #C0C0C0;
+}
+
+.frame-container .frame .frame-header .closebtn {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  font-size: 30px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.frame-container .frame .friends-word{
+  width: 100%;
+  height: 100%;
+  font-weight: 500;
+  text-align: center;
+}
+
+.frame .friends {
   width: 100%;
   height: 60px;
   background-color: #efefef;
   border-bottom: solid 1px #E0E0E0;
   display:flex;
   align-items: center;
-  cursor: pointer;
   outline: none;
 }
 
-.frame .student:hover {
-  background-color: #DDE6E7;
-}
-
-.frame .student:focus {
-  background-color: #CBDDDE;
-}
-
-.frame .student .photo-student {
+.frame .friends .photo-friends {
   margin-left:20px;
   display: block;
   width: 45px;
@@ -1281,22 +1300,26 @@ input:focus, textarea:focus, select:focus{
   text-overflow: ellipsis;
 }
 
-.frame .student .username-student {
+.frame .friends .username-friends {
   margin: 6px 0 0 20px;
   font-size: 10pt;
   color:#515151;
 }
 
-.frame .student .name {
+.frame .friends .name {
   margin: 0 0 0 20px;
   font-size: 11pt;
   color:#515151;
   font-weight: 500;
 }
 
-.frame-container .frame::-webkit-scrollbar {
-  display: none;
+.frame .friends .name:active {
+  opacity: 0.6;
 }
+
+/************************************************* < friends overlay ***********************************/
+
+
 
 /*** MOBILE VIEW ***/
 
@@ -1417,7 +1440,7 @@ input:focus, textarea:focus, select:focus{
 
   /********************** < profile mobile **********************/
 
-  
+
   .sidebar {
     display:none;
   }
