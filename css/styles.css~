@@ -1783,6 +1783,10 @@ cursor: pointer;
   background-color: #D6D6FF;
 }
 
+.discussions #active-discussion {
+    background-color: #D6D6FF;
+}
+
 .discussions .search-chat {
   cursor: default;
 }

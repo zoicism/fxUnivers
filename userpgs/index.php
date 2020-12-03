@@ -76,7 +76,7 @@ require('../php/get_stu_stucourse.php');
                 <ul class="flex-container height-18">
                         <li class="items" >
                             <?php
-                    $path="avatars/";
+                    /*$path="avatars/";
                     if(file_exists($path.$get_user_id.'.jpg')) {
                         echo('<a class="link avatar" style="background-image: url(\'avatars/'.$get_user_id.'.jpg\');"></a>');
                     } elseif(file_exists($path.$get_user_id.'.jpeg')) {
@@ -87,9 +87,10 @@ require('../php/get_stu_stucourse.php');
                         echo('<a class="link avatar" style="background-image: url(\'avatars/'.$get_user_id.'.gif\');"></a>');
                     } else {
                         echo('<a class="link avatar"></a>');
-                    }
+                    }*/
                 ?>
-                                <a class="id" href="#"><?php echo '@'.$username?></a>
+		<a class="link avatar" href="/user?tar=<?php echo $username?>"></a>
+                                <a class="id" href="/user?tar=<?php echo $username?>"><?php echo '@'.$username?></a>
                         </li>
                 </ul>
         </section>

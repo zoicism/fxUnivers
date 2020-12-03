@@ -70,7 +70,7 @@ require('../php/get_stu_stucourse.php');
 
 	<div class="header"></div>
   <script src="/js/upperbar.js"></script>
-
+<div class="mobile-main blur">
 
 <section>
                 <ul class="flex-container height-18">
@@ -102,7 +102,7 @@ require('../php/get_stu_stucourse.php');
 ?>  
 	
 
-	<section style="margin-bottom:50px">
+	<section>
 		<ul class="flex-container">
 			<li class="items">
                                 <a href="/wallet" class="link">
@@ -142,12 +142,13 @@ require('../php/get_stu_stucourse.php');
 		</ul>
                     
 	</section>
+</div>
 
 <div class="footer"></div>
 <script src="/js/footer.js"></script>
 
                     
-<div class="footbar"></div>
+<div class="footbar blur"></div>
 <script src="/js/footbar.js"></script>
 
 <script>
@@ -156,6 +157,11 @@ function coming() {
 }
 </script>
 
+
+<script>
+
+$('#page-header').html('fxUnivers');('#page-header').attr('href','/');
+</script>
                     
 </body>
 </html>
