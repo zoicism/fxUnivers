@@ -1147,7 +1147,7 @@ input:focus, textarea:focus, select:focus{
   display: flex;
   flex-flow: column nowrap;
   margin-left: 6rem;
-  width: 100%;
+  width: 60%;
   font-size: 16px;
   line-height: 24px;
 }
@@ -1230,11 +1230,10 @@ input:focus, textarea:focus, select:focus{
   z-index: 1;
 }
 
-.frame {
+.frame-container .frame {
   display: flex;
   flex-flow: column nowrap;
   margin: auto;
-  overflow: auto;
   background-color: #efefef;
   border-radius: 20px;
   max-height: 400px;
@@ -1245,6 +1244,7 @@ input:focus, textarea:focus, select:focus{
 .frame-container .frame .frame-header {
   display: flex;
   align-items: center;
+  justify-content: center;
   position: relative;
   width: 100%;
   min-height: 40px;
@@ -1260,6 +1260,15 @@ input:focus, textarea:focus, select:focus{
   color: inherit;
 }
 
+.frame-container .frame ul {
+  overflow: auto;
+  border-radius: 0 0 20px 20px;
+}
+
+.frame-container .frame ul::-webkit-scrollbar-track {
+  margin-bottom: 20px;
+}
+
 .frame-container .frame .friends-word{
   width: 100%;
   height: 100%;
@@ -1267,7 +1276,7 @@ input:focus, textarea:focus, select:focus{
   text-align: center;
 }
 
-.frame .friends {
+.frame-container .frame .friends {
   width: 100%;
   height: 60px;
   background-color: #efefef;
@@ -1277,7 +1286,7 @@ input:focus, textarea:focus, select:focus{
   outline: none;
 }
 
-.frame .friends .photo-friends {
+.frame-container .frame .friends .photo-friends {
   margin-left:20px;
   display: block;
   width: 45px;
@@ -1300,26 +1309,178 @@ input:focus, textarea:focus, select:focus{
   text-overflow: ellipsis;
 }
 
-.frame .friends .username-friends {
+.frame-container .frame .friends .username-friends {
   margin: 6px 0 0 20px;
   font-size: 10pt;
   color:#515151;
 }
 
-.frame .friends .name {
+.frame-container .frame .friends .name {
   margin: 0 0 0 20px;
   font-size: 11pt;
   color:#515151;
   font-weight: 500;
 }
 
-.frame .friends .name:active {
+.frame-container .frame .friends .name:active {
   opacity: 0.6;
 }
 
 /************************************************* < friends overlay ***********************************/
 
+/************************************************* > fxuniversity overlay ***********************************/
 
+.frame-container .frame-fxuniversity {
+  display: flex;
+  flex-flow: column nowrap;
+  margin: auto;
+  background-color: #efefef;
+  border-radius: 20px;
+  max-height: 600px;
+  min-height: 500px;
+  min-width: 500px;
+  max-width: 500px;
+}
+
+.frame-container .frame-fxuniversity .frame-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  min-height: 40px;
+}
+
+.frame-container .frame-fxuniversity .frame-header .fxuniversity-word {
+  width: 100%;
+  height: 100%;
+  font-weight: 500;
+  text-align: center;
+}
+
+.frame-container .frame-fxuniversity .frame-header .closebtn {
+  position: absolute;
+  top: 0;
+  right: 20px;
+  font-size: 30px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.frame-container .frame-fxuniversity .frame-header-fxuniversity {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  width: 100%;
+  height: 40px;
+}
+
+.frame-container .frame-fxuniversity .frame-header-fxuniversity a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.frame-container .frame-fxuniversity .frame-header-fxuniversity .teach-word {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 100%;
+  font-weight: 500;
+  color: #8e8e8e;
+  margin: 0 20px;
+  border-bottom: 1px solid #dbdbdb;
+}
+
+.frame-container .frame-fxuniversity .frame-header-fxuniversity .teach-word:active {
+  border-bottom: 1px solid #393939;
+  color: #393939;
+}
+
+.frame-container .frame-fxuniversity .frame-header-fxuniversity .learn-word {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 100%;
+  font-weight: 500;
+  color: #8e8e8e;
+  margin: 0 20px;
+  border-bottom: 1px solid #dbdbdb;
+}
+
+.frame-container .frame-fxuniversity .frame-header-fxuniversity .learn-word:active {
+  border-bottom: 1px solid #393939;
+  color: #393939;
+}
+
+.frame-container .frame-fxuniversity ul {
+  overflow: auto;
+  border-radius: 0 0 20px 20px;
+  padding: 0 20px;
+}
+
+.frame-container .frame-fxuniversity ul::-webkit-scrollbar-track {
+  margin-bottom: 20px;
+}
+
+.frame-container .frame-fxuniversity .course-profile {
+  width: 100%;
+  height: 90px;
+  background-color: #efefef;
+  border-bottom: solid 1px #E0E0E0;
+  display:flex;
+  align-items: center;
+  outline: none;
+}
+
+.frame-container .frame-fxuniversity .course-profile .photo-course-container {
+  min-width: 90px;
+  height: 70px;
+  margin-right: 10px;
+}
+
+.frame-container .frame-fxuniversity .course-profile .photo-course-container .photo-course {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 2px solid #efefef;
+  background: #E6E7ED;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  box-shadow: -4px -2px 4px 0px #ffffff, 4px 2px 6px 0px #DFE4EA;
+}
+
+.course-text {
+  height: 43px;
+  width: 100%;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.frame-container .frame-fxuniversity .course-profile .course-text .name {
+  color:#515151;
+  font-weight: 500;
+}
+
+.frame-container .frame-fxuniversity .course-profile .course-text .desc {
+  font-weight: 400;
+  color:#515151;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.frame-container .frame-fxuniversity .course-profile .course-text .name:active {
+  opacity: 0.6;
+}
+
+/************************************************* < fxuniversity overlay ***********************************/
 
 /*** MOBILE VIEW ***/
 
@@ -1389,6 +1550,7 @@ input:focus, textarea:focus, select:focus{
     justify-content: center;
     font-size: 14px;
     line-height: 30px;
+    width: 100%;
   }
 
   .profile-container .profile-top .info-profile .id-profile {
@@ -1439,6 +1601,26 @@ input:focus, textarea:focus, select:focus{
 
 
   /********************** < profile mobile **********************/
+
+  /********************** > friends overlay mobile **********************/
+
+  .frame-container .frame {
+    min-width: 100%;
+    min-height: 100%;
+    border-radius: 0;
+  }
+
+  /********************** < friends overlay mobile **********************/
+
+  /********************** > fxuniversity overlay mobile **********************/
+
+  .frame-container .frame-fxuniversity {
+    min-width: 100%;
+    min-height: 100%;
+    border-radius: 0;
+  }
+
+  /********************** < fxuniversity overlay mobile **********************/
 
 
   .sidebar {
