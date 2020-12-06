@@ -131,7 +131,7 @@ if($user_type!='instructor') {
 
 <h3>Delete Course</h3>
 <p style="max-width:400px">By deleting a course, all of the related sessions and videos will be lost permenantly, so think twice before deciding to do so.</p>
-			      <form><input onclick="delFunction()" type="submit" class="submit-btn" value="Delete Course"></form>
+			      <form id="delCourseForm"><input type="hidden" name="course_id" value="<?php echo $course_id?>"><input type="submit" class="submit-btn" value="Delete Course"></form>
                             </div>
 
 
@@ -201,7 +201,27 @@ $('#del-embed').submit(function(ev) {
   });
 });
 </script>
-    
+
+<script>
+$('#delCourseForm').submit(function(event) {
+  event.preventDefault();
+  if(confirm("Are you sure you want to delete this course?")) {
+    jQuery.ajax({
+      url:'/php/del_course.php',
+      type:'POST',
+      data:$(this).serialize(),
+      success:function(response) {
+        if(response=='deleted') {
+	  window.location.replace('/userpgs/instructor');
+	} else {
+	  alert('Could not delete your course at this moment. Please try again.');
+	}
+      }
+    });
+  } else {
+  }
+});
+</script>
 
 </body>
 </html>

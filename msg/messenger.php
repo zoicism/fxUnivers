@@ -193,6 +193,7 @@ if($get_unread_count>0) {
 <!-- SYNC MSGS -->
 <script>
 $('.message-chat').scrollTop($('.message-chat')[0].scrollHeight);
+console.log('scrolled');
                 $(document).ready(function() {
                     setInterval(function() {
                         jQuery.ajax({
@@ -231,8 +232,22 @@ $(document).ready(function() {
 </script>
 
   <script>
-    $('#page-header').html('Messages');
-    $('#page-header').attr('href','/msg/inbox.php');
+    if(screen.width<629) {
+      $('#page-header').html('<?php echo $guest?>');
+      $('#page-header').attr('href','/user/<?php echo $guest?>');
+    } else {
+      $('#page-header').html('Messages');
+      $('#page-header').attr('href','/msg/inbox.php');
+    }
   </script>
+
+<script>
+if(screen.width<629) {
+  $('.footbar').hide();
+  $('.discussions').hide();
+  $('#header-menu').css('visibility','hidden');
+}
+</script>
+
 </body>
 </html>

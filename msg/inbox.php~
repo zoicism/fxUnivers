@@ -80,7 +80,7 @@ $readd_result=mysqli_query($msg_connection,$readd_query) or die(mysqli_error($ms
                         require('../php/get_guest.php');
 
 	    echo '<li class="discussion" tabindex="1" onclick="location.href=\'/msg/messenger.php?guest='.$get_guest["username"].'\';">';
-	        echo '<div class="photo" style="background-image: url(http://www.boutique-uns.com/uns/185-home_01grid/polo-femme.jpg);"></div>';
+	        echo '<div class="photo"></div>';
 	        echo '<div class="desc-contact">';
 
 		if($get_unread_count>0) {

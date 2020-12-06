@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$course_query = "SELECT * FROM teacher WHERE user_id=$get_user_id ORDER BY id DESC";
+$course_query = "SELECT * FROM teacher WHERE user_id=$get_user_id AND alive=1 ORDER BY id DESC";
 $course_result = mysqli_query($connection, $course_query) or die(mysqli_error($connection));
 /*$fetch_course = mysqli_fetch_array($course_result);
 $course_title = $fetch_course['header'];

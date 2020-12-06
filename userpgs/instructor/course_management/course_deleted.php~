@@ -156,27 +156,27 @@ $coursecounter_q="SELECT * FROM stucourse WHERE course_id=".$course_id;
 
 
 
-	  <div class="little-box gray">
+	  <div class="little-box gray-bg">
 	    <?php echo $class_num.' <span>sessions</span>'; ?>
 	  </div>
 
-	<div class="little-box blue">
+	<div class="little-box blue-bg">
 	  <?php echo $coursecounts.' <span>students</span>'; ?>
 	</div>
 
 
 	  <?php
 	  if($cost>0) {	  
-				    echo '<div class="little-box gold">
+				    echo '<div class="little-box gold-bg">
 				      '.$cost.' <span>fxStars</span>
 				    </div>';
 			    } else {
-			      	   echo '<div class="little-box green" style="padding: 4px 20px;">
+			      	   echo '<div class="little-box green-bg" style="padding: 4px 20px;">
 				      Free
 				    </div>';
 			    }
 
-echo '<div class="little-box gray"><span>'.date("M jS, Y", strtotime($s_date)).'</span></div>';
+echo '<div class="little-box gray-bg"><span>'.date("M jS, Y", strtotime($s_date)).'</span></div>';
 
 			    ?>
  </div>
@@ -209,7 +209,7 @@ echo '<div class="add-box">Take the Test <img src="/images/background/checkbox.s
 echo '</div>';
 } else {
 echo '<div class="options">';
-echo '<div class="add-box">Purchase Course <img src="/images/background/checkbox.svg"></div>';
+echo '<div class="add-box">Purchase Course <img src="/images/background/checkbox.svg" onclick="location.href=\'/wallet/purchase?item=course&no='.$course_id.'\';"></div>';
 echo '</div>';
 }
 
@@ -240,7 +240,7 @@ echo '<div class="sess-list">';
                         
                         echo '<p><strong>'.$row['title'].'</strong></p>';
                         if($row['body']=='') {
-                            $descrip='<span style="color:gray">(No description)</span>';
+                            $descrip='<span class="gray">(No description)</span>';
                         } else {
                             $descrip=preg_replace("/<br\W*?\/>/", " ", $row['body']);
                         }
@@ -250,7 +250,7 @@ echo '<div class="sess-list">';
                     }
                     $class_result->free();
                 } else {
-                    echo '<p style="color:gray;text-align:center;">No sessions yet.</p>';
+                    echo '<p class="gray" style="text-align:center;">No sessions yet.</p>';
                 }
  ?>
 	</div>

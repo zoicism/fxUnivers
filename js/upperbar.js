@@ -141,7 +141,7 @@ $('.header').html(`
             <ul class="nav__links">
                 <li><a  class="blur" onclick="goBack()"><img src="/images/icons/toolbar/back.png"></a></li>
 <li><a href="" id="page-header"></a></li>
-                <li><a href="#" class="openbtn" onclick="openNav()">☰</a></li>
+                <li id="header-menu"><a href="#" class="openbtn" onclick="openNav()">☰</a></li>
             </ul>
         </nav>
 

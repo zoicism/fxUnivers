@@ -17,17 +17,23 @@ if(isset($_POST['header']) && isset($_POST['description'])) {
     $description=mysqli_real_escape_string($connection,$description);
 
 
-//	if(isset($_POST['start_date'])) $start_date = $_POST['start_date'];
-//	if(isset($_POST['exam_date'])) $exam_date = $_POST['exam_date'];
-
-//	if(isset($_POST['video_url'])) $video = '<iframe width="560" height="315" src="https://www.youtube.com/embed/'.$_POST["video_url"].'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
 	if(isset($_POST['course_fxstar'])) $cost = $_POST['course_fxstar'];
-    
-	$query = "INSERT INTO `teacher` (user_id, header, description, cost, start_date) VALUES ($id, '$header', '$description', $cost, NOW())";
-	$result = mysqli_query($connection, $query) or die(mysqli_error($connection));
+	$_POST['biddable'];
+	if(isset($_POST['biddable'])) {
+	  $biddable=1;
+	} else {
+	  $biddable=0;
+	}
+
 	
+    
+	$query = "INSERT INTO `teacher` (user_id, header, description, cost, start_date, biddable) VALUES ($id, '$header', '$description', $cost, NOW(), $biddable)";
+	$result = mysqli_query($connection, $query) or die(mysqli_error($connection));
+
+	
+
 	if($result) {
-		//echo "successful";
+		
 		header("Location: /userpgs/instructor");
 	} else {
 		//echo "failed";

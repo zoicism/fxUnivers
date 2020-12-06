@@ -16,9 +16,14 @@ if(isset($_SESSION['username'])) {
 
   if(isset($_GET['course_id'])) $course_id = $_GET['course_id'];
 
-  $course_query = "SELECT * FROM `teacher` WHERE id=$course_id";
+  $course_query = "SELECT * FROM `teacher` WHERE id=$course_id AND alive=1";
   $course_result = mysqli_query($connection, $course_query) or die(mysqli_error($connection));
   $course_fetch = mysqli_fetch_array($course_result);
+
+  $course_count=mysqli_num_rows($course_result);
+  if($course_count!=1) {
+    header('Location: /error');
+  }
 
   $user_id = $course_fetch['user_id'];
   $get_course_teacher_id = $user_id;
@@ -29,6 +34,7 @@ if(isset($_SESSION['username'])) {
   $e_date = $course_fetch['exam_date'];
   $cost = $course_fetch['cost'];
   $test_date = $course_fetch['test_date'];
+  $course_biddable=$course_fetch['biddable'];
 
   
 
@@ -194,13 +200,27 @@ echo '<div class="little-box gray-bg"><span>'.date("M jS, Y", strtotime($s_date)
 
 
 if($user_type=='instructor') {
-			     echo '<div class="options">';	
+			     echo '<div class="options">';
+
+
+
+    if($course_biddable) {
+      echo '<div class="add-box">
+               Accept Bid (<span id="highest-ins"></span>) <img src="/images/background/checkbox.svg" id="acceptBid">
+	    </div>';
+    }
+
+
+
+
+
 			     echo '<div class="add-box">Manage Course <img src="/images/background/settings.png" onclick="location.href=\'/userpgs/instructor/course_management/edit_course.php?course_id='.$course_id.'\';"></div>';
 
 			     echo '<div class="add-box">Add Session <img src="/images/background/add.svg" onclick="location.href=\'/userpgs/instructor/class/new_class.php?course_id='.$course_id.'\';"></div>';
 
 			     
 			     echo '<div class="add-box">Manage Test <img src="/images/background/checkbox.svg"></div>';
+			     
 
 			     echo '</div>';
 } elseif($user_type=='student') {
@@ -208,9 +228,32 @@ echo '<div class="options">';
 echo '<div class="add-box">Take the Test <img src="/images/background/checkbox.svg"></div>';
 echo '</div>';
 } else {
-echo '<div class="options">';
-echo '<div class="add-box">Purchase Course <img src="/images/background/checkbox.svg" onclick="location.href=\'/wallet/purchase?item=course&no='.$course_id.'\';"></div>';
-echo '</div>';
+  
+    echo '<div class="options">';
+
+    if($course_biddable) {
+
+        echo '<div>Make an offer:
+	       <form id="bidForm">
+	         <input type="number" name="amount" class="num-input" id="offer-input" required>
+		 <p>Total cost: <span id="totalOfferCost"></span></p>
+		 <input type="hidden" name="from_id" value="'.$get_user_id.'">
+		 <input type="hidden" name="course_id" value="'.$course_id.'">
+		 <input type="hidden" name="to_id" value="'.$get_course_teacher_id.'">
+		 <input type="hidden" name="initial_bid" value="'.$cost.'">
+		 
+		 <p>Highest offer: <span id="highest">'.$cost.'</span></p>
+	         <input type="submit" class="submit-btn" value="Make Offer">
+	       </form>
+              </div>';
+
+    } else {
+    
+        echo '<div class="add-box">Purchase Course <img src="/images/background/checkbox.svg" onclick="location.href=\'/wallet/purchase?item=course&no='.$course_id.'\';"></div>';
+	
+    }
+    echo '</div>';
+  
 }
 
 
@@ -279,6 +322,87 @@ echo '<div class="sess-list">';
   <script>
     $('.fxuniversity-sidebar').attr('id','sidebar-active');
   </script>
-  
+
+<script>
+$('#bidForm').submit(function(event) {
+    event.preventDefault();
+
+    jQuery.ajax({
+      url:'/php/course_bid.php',
+      type:'POST',
+      data:$(this).serialize(),
+      success: function(response) {
+        console.log(response);
+      }
+    });
+});
+</script>
+
+<script>
+$(document).ready(function() {
+  setInterval(function() {
+    jQuery.ajax({
+      type:'POST',
+      url:'/php/get_hi_bid.php',
+      data:{courseId:<?php echo $course_id?>},
+      success:function(response) {
+	if(response=='no_offer') {
+	  $('#highest').text('<?php echo $cost?>');
+	} else {
+	  $('#highest').text(response);
+	}
+      }
+    });
+  }, 2000);
+});
+</script>
+
+<script>
+$(document).ready(function() {
+  setInterval(function() {
+    jQuery.ajax({
+      type:'POST',
+      url:'/php/get_hi_bid.php',
+      data:{courseId:<?php echo $course_id?>},
+      success:function(response) {
+        
+	if(response=='no_offer') {
+	  $('#highest-ins').text('None');
+	} else {
+	  $('#highest-ins').text(response+' fxStars');
+	}
+      }
+    });
+  }, 2000);
+});
+</script>
+
+<script>
+$('#offer-input').each(function() {
+
+  var elem=$(this);
+  elem.data('oldVal', elem.val());
+  elem.bind('propertychange change click keyup input paste', function(event) {
+    if(elem.data('oldVal')!=elem.val()) {
+      elem.data('oldVal', elem.val());
+      
+      $('#totalOfferCost').html(Math.ceil(elem.val()*0.1)+parseInt(elem.val()));
+    }
+  });
+});
+</script>
+
+<script>
+$('#acceptBid').click(function() {
+  jQuery.ajax({
+    url:'/php/accept_bid.php',
+    type:'POST',
+    data:{course_id:<?php echo $course_id?>},
+    success:function(response) {
+      console.log(response);
+    }
+  });
+});
+</script>
 </body>
 </html>

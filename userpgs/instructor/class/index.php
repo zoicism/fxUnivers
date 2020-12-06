@@ -28,9 +28,14 @@
   if(isset($_GET['class_id']))
    $class_id = $_GET['class_id'];
 
-  $class_query = "SELECT * FROM `class` WHERE id=$class_id";
+  $class_query = "SELECT * FROM `class` WHERE id=$class_id AND alive=1";
   $class_result = mysqli_query($connection, $class_query) or die(mysqli_error($connection));
   $class_fetch = mysqli_fetch_array($class_result);
+
+  $class_count = mysqli_num_rows($class_result);
+  if($class_count!=1) {
+    header('Location: /error');
+  }
 
   /*$user_id = $class_fetch['teacher_id'];*/
   $header = $class_fetch['title'];

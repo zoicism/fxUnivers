@@ -104,7 +104,7 @@ $readd_result=mysqli_query($msg_connection,$readd_query) or die(mysqli_error($ms
           </ul>
         </div>
 
-        <section class="chat">
+        <section class="chat" >
 
 	<p class="gray">Choose a friend and continue messaging.</p>
               
@@ -141,5 +141,9 @@ $(document).ready(function() {
     $('#page-header').html('Messages');
     $('#page-header').attr('href','/msg');
   </script>
+
+<script>
+$('.chat').hide();
+</script>
 </body>
 </html>

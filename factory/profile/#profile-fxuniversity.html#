@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>fxProfile</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/styles-new.css">
+  <link rel="stylesheet" href="/css/icons.css">
+  <link rel="stylesheet" href="/css/logo.css">
+  <script src="/js/jquery-3.4.1.min.js"></script>
+</head>
+
+<body>
+	<div class="header-sidebar"></div>
+  <script src="/js/upperbar.js"></script>
+
+  <div class="blur mobile-main">
+
+   <div class="sidebar">
+    <div class="logo-sidebar logo-25"></div>
+    <div>
+      <a class="link avatar-sidebar"></a>
+      <a class="id-sidebar" href="#">@Neo</a>
+    </div>
+    <div class="elements">
+      <a href="/wallet" class="sidebar-icon fxstar-sidebar" id="sidebar-active">fxStar</a>
+      <a href="#" class="sidebar-icon fxuniversity-sidebar">fxUniversity</a>
+      <a href="#" class="sidebar-icon fxpartner-sidebar">fxPartner</a>
+      <a href="#" class="sidebar-icon fxuniverse-sidebar">fxUniverse</a>
+      <a href="#" class="sidebar-icon fxsonet-sidebar">fxSonet</a>
+
+    </div>
+    <div class="policy">
+      With all due Reserves, © fxUnivers 2017-2020 All rights reserved. <a href="#">Policy</a>
+    </div>
+  </div>
+
+  <div class="relative-main-content">
+    <div class="profile-container profile-top-mob">
+      <div class="profile-top">
+        <div class="avatar-profile-container">
+          <div class="avatar-profile"></div>
+        </div>
+        <div class="info-profile">
+          <div class="id-profile">zoicism</div>
+          <a class="follower-profile">
+            <div class="follower-num">215</div>
+            <div class="follower-word">friends</div>
+          </a>
+          <div class="profile-desktop">
+            <div class="name-profile">Mehran</div>
+            <div class="bio-profile">This is the bio of the desktop view: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua.</div>
+            <div class="edit-profile-con">
+              <a href="#" class="edit-profile">Edit Profile</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="profile-top-mob">
+        <div class="info-profile">
+          <div class="name-profile">Mehran</div>
+          <div class="bio-profile">This is the bio of the mobile view: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua.</div>
+          <div class="edit-profile-con">
+            <a href="#" class="edit-profile">Edit Profile</a>
+          </div>
+        </div>
+      </div>
+      <div class="profile-bottom">
+        <ul class="flex-container">
+          <li class="items">
+            <a href="#" class="link">
+              <div class="head">
+                fxStar
+                <p class="sub">128 fxStars</p>
+              </div>
+            </a>
+          </li>
+          <li class="items">
+            <a href="#" class="link">
+              <div class="head">
+                fxUniversity
+                <p class="sub">13 courses</p>
+              </div>
+            </a>
+          </li>
+          <li class="items">
+            <a href="#" class="link">
+              <div class="head">
+                fxPartner
+                <p class="sub">47 fxStars</p>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+<!-------------------------------- fxuniversity overlay starts -------------------------------->
+
+  <div class="frame-container">
+    <div class="frame-fxuniversity">
+      <div class="frame-header">
+        <div class="fxuniversity-word">zoicism's fxUniversity</div>
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+      </div>
+      <div class="frame-header-fxuniversity">
+        <div class="teach-word active">
+          <a href="#">Teach</a>
+        </div>
+        <div class="learn-word">
+          <a href="#">Learn</a>
+        </div>
+      </div>
+      <ul>
+        <li class="course-profile">
+          <div class="photo-course-container">
+            <a class="photo-course" style="background-image: url(http://www.boutique-uns.com/uns/185-home_01grid/polo-femme.jpg);"></a>
+          </div>
+          <div class="course-text">
+            <a class="name">Computational neuroscience</a>
+            <p class="desc">Computational neuroscience is a branch of neuroscience which employs mathematical models</p>
+          </div>
+        </li>
+        <li class="course-profile">
+          <div class="photo-course-container">
+            <a class="photo-course" style="background-image: url(http://www.boutique-uns.com/uns/185-home_01grid/polo-femme.jpg);"></a>
+          </div>
+          <div class="course-text">
+            <a class="name">Computational neuroscience</a>
+            <p class="desc">Computational neuroscience is a branch of neuroscience which employs mathematical models</p>
+          </div>
+        </li>
+        <li class="course-profile">
+          <div class="photo-course-container">
+            <a class="photo-course" style="background-image: url(http://www.boutique-uns.com/uns/185-home_01grid/polo-femme.jpg);"></a>
+          </div>
+          <div class="course-text">
+            <a class="name">Computational neuroscience</a>
+            <p class="desc">Computational neuroscience is a branch of neuroscience which employs mathematical models</p>
+          </div>
+        </li>
+        <li class="course-profile">
+          <div class="photo-course-container">
+            <a class="photo-course" style="background-image: url(http://www.boutique-uns.com/uns/185-home_01grid/polo-femme.jpg);"></a>
+          </div>
+          <div class="course-text">
+            <a class="name">Computational neuroscience</a>
+            <p class="desc">Computational neuroscience is a branch of neuroscience which employs mathematical models</p>
+          </div>
+        </li>
+        <li class="course-profile">
+          <div class="photo-course-container">
+            <a class="photo-course" style="background-image: url(http://www.boutique-uns.com/uns/185-home_01grid/polo-femme.jpg);"></a>
+          </div>
+          <div class="course-text">
+            <a class="name">Computational neuroscience</a>
+            <p class="desc">Computational neuroscience is a branch of neuroscience which employs mathematical models</p>
+          </div>
+        </li>
+        <li class="course-profile">
+          <div class="photo-course-container">
+            <a class="photo-course" style="background-image: url(http://www.boutique-uns.com/uns/185-home_01grid/polo-femme.jpg);"></a>
+          </div>
+          <div class="course-text">
+            <a class="name">Computational neuroscience</a>
+            <p class="desc">Computational neuroscience is a branch of neuroscience which employs mathematical models</p>
+          </div>
+        </li>
+        <li class="course-profile">
+          <div class="photo-course-container">
+            <a class="photo-course" style="background-image: url(http://www.boutique-uns.com/uns/185-home_01grid/polo-femme.jpg);"></a>
+          </div>
+          <div class="course-text">
+            <a class="name">Computational neuroscience</a>
+            <p class="desc">Computational neuroscience is a branch of neuroscience which employs mathematical models</p>
+          </div>
+        </li>
+        <li class="course-profile">
+          <div class="photo-course-container">
+            <a class="photo-course" style="background-image: url(http://www.boutique-uns.com/uns/185-home_01grid/polo-femme.jpg);"></a>
+          </div>
+          <div class="course-text">
+            <a class="name">Computational neuroscience</a>
+            <p class="desc">Computational neuroscience is a branch of neuroscience which employs mathematical models</p>
+          </div>
+        </li>
+        <li class="course-profile">
+          <div class="photo-course-container">
+            <a class="photo-course" style="background-image: url(http://www.boutique-uns.com/uns/185-home_01grid/polo-femme.jpg);"></a>
+          </div>
+          <div class="course-text">
+            <a class="name">Computational neuroscience</a>
+            <p class="desc">Computational neuroscience is a branch of neuroscience which employs mathematical models</p>
+          </div>
+        </li>
+        <li class="course-profile">
+          <div class="photo-course-container">
+            <a class="photo-course" style="background-image: url(http://www.boutique-uns.com/uns/185-home_01grid/polo-femme.jpg);"></a>
+          </div>
+          <div class="course-text">
+            <a class="name">Computational neuroscience</a>
+            <p class="desc">Computational neuroscience is a branch of neuroscience which employs mathematical models</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+<!-------------------------------- fxuniversity overlay ends -------------------------------->
+
+
+
+
+  <div class="footbar blur"></div>
+  <script src="/js/footbar.js"></script>
+
+
+
+
+  <script>
+    $('#page-header').html('fxStar');
+    $('#page-header').attr('href','/wallet');
+  </script>
+</body>
+</html>

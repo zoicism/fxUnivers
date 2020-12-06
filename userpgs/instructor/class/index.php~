@@ -168,7 +168,7 @@ require('../../../php/get_tar_id.php');
 
 	  <?php
 
-echo '<div class="little-box gray"><span>'.date("M jS, Y", strtotime($dt)).'</span></div>';
+echo '<div class="little-box gray-bg"><span>'.date("M jS, Y", strtotime($dt)).'</span></div>';
 
 			    ?>
  </div>
@@ -238,7 +238,7 @@ echo '<div class="sess-list">';
                         
                         echo '<p><strong>'.$row['title'].'</strong></p>';
                         if($row['body']=='') {
-                            $descrip='<span style="color:gray">(No description)</span>';
+                            $descrip='<span class="gray">(No description)</span>';
                         } else {
                             $descrip=preg_replace("/<br\W*?\/>/", " ", $row['body']);
                         }
@@ -248,7 +248,7 @@ echo '<div class="sess-list">';
                     }
                     $class_result->free();
                 } else {
-                    echo '<p style="color:gray;text-align:center;">No sessions yet.</p>';
+                    echo '<p class="gray" style="text-align:center;">No sessions yet.</p>';
                 }
  ?>
  </div>
