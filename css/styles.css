@@ -2296,8 +2296,13 @@ cursor: pointer;
   border-bottom: 1px solid #dbdbdb;
 }
 
-.frame-container .frame-fxuniversity .frame-header-fxuniversity .teach-word:active {
+.frame-container .frame-fxuniversity .frame-header-fxuniversity #active-tab {
   border-bottom: 1px solid #393939;
+  color: #393939;
+}
+
+.frame-container .frame-fxuniversity .frame-header-fxuniversity .teach-word:active {
+border-bottom: 1px solid #393939;
   color: #393939;
 }
 

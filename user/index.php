@@ -94,7 +94,7 @@ require('../php/get_visibility.php');
         <div class="info-profile">
           <div class="id-profile"><?php echo $tarname ?></div>
           <a class="follower-profile" id="open-friends">
-            <div class="follower-num"><?php echo $get_rel_friends_count ?></div>
+            <div class="follower-num"><?php echo $get_tar_friends_count ?></div>
             <div class="follower-word">friends</div>
           </a>
           <div class="profile-desktop">
@@ -162,69 +162,40 @@ require('../php/get_visibility.php');
         <a  class="closebtn" id="close-friends-overlay" >×</a>
       </div>
       <ul>
-            <li class="friends">
-              <a class="photo-friends" style="background-image: url(http://www.boutique-uns.com/uns/185-home_01grid/polo-femme.jpg);"></a>
-                  <div class="desc-contact">
-                    <a class="name">Elsie Amador</a>
-                    <p class="username-friends">@elsie_amador</p>
-                  </div>
-            </li>
-            <li class="friends">
-              <a class="photo-friends" style="background-image: url(http://www.boutique-uns.com/uns/185-home_01grid/polo-femme.jpg);"></a>
-                  <div class="desc-contact">
-                    <a class="name">Elsie Amador</a>
-                    <p class="username-friends">@elsie_amador</p>
-                  </div>
-            </li>
-            <li class="friends">
-              <a class="photo-friends" style="background-image: url(http://www.boutique-uns.com/uns/185-home_01grid/polo-femme.jpg);"></a>
-                  <div class="desc-contact">
-                    <a class="name">Elsie Amador</a>
-                    <p class="username-friends">@elsie_amador</p>
-                  </div>
-            </li>
-            <li class="friends">
-              <a class="photo-friends" style="background-image: url(http://www.boutique-uns.com/uns/185-home_01grid/polo-femme.jpg);"></a>
-                  <div class="desc-contact">
-                    <a class="name">Elsie Amador</a>
-                    <p class="username-friends">@elsie_amador</p>
-                  </div>
-            </li>
-            <li class="friends">
-              <a class="photo-friends" style="background-image: url(http://www.boutique-uns.com/uns/185-home_01grid/polo-femme.jpg);"></a>
-                  <div class="desc-contact">
-                    <a class="name">Elsie Amador</a>
-                    <p class="username-friends">@elsie_amador</p>
-                  </div>
-            </li>
-            <li class="friends">
-              <a class="photo-friends" style="background-image: url(http://www.boutique-uns.com/uns/185-home_01grid/polo-femme.jpg);"></a>
-                  <div class="desc-contact">
-                    <a class="name">Elsie Amador</a>
-                    <p class="username-friends">@elsie_amador</p>
-                  </div>
-            </li>
-            <li class="friends">
-              <a class="photo-friends" style="background-image: url(http://www.boutique-uns.com/uns/185-home_01grid/polo-femme.jpg);"></a>
-                  <div class="desc-contact">
-                    <a class="name">Elsie Amador</a>
-                    <p class="username-friends">@elsie_amador</p>
-                  </div>
-            </li>
-            <li class="friends">
-              <a class="photo-friends" style="background-image: url(http://www.boutique-uns.com/uns/185-home_01grid/polo-femme.jpg);"></a>
-                  <div class="desc-contact">
-                    <a class="name">Elsie Amador</a>
-                    <p class="username-friends">@elsie_amador</p>
-                  </div>
-            </li>
-            <li class="friends">
-              <a class="photo-friends" style="background-image: url(http://www.boutique-uns.com/uns/185-home_01grid/polo-femme.jpg);"></a>
-                  <div class="desc-contact">
-                    <a class="name">Elsie Amador</a>
-                    <p class="username-friends">@elsie_amador</p>
-                  </div>
-            </li>
+
+
+           <?php
+
+	   if($get_tar_friends_count > 0) {
+	   
+	     while($fnd_row = $get_tar_friends_r -> fetch_assoc()) {
+	       if($fnd_row['user1'] == $get_user_id) {
+	         $fnd_user_id=$fnd_row['user2'];
+	       } else {
+	         $fnd_user_id=$fnd_row['user1'];
+	       }
+
+	       $fnd_user_query = "SELECT * FROM user WHERE id=$fnd_user_id";
+               $fnd_user_result = mysqli_query($connection, $fnd_user_query) or die(mysqli_error($connection));
+               $fnd_user_fetch = mysqli_fetch_array($fnd_user_result);
+
+
+	       echo '<li class="friends">
+	               <a class="photo-friends" style="background-image: url(\'/images/background/avatar.svg\');"></a>
+		       <div class="desc-contact">
+		         <a class="name">'.$fnd_user_fetch['fname'].' '.$fnd_user_fetch['lname'].'</a>
+			 <p class="username-friends">@'.$fnd_user_fetch['username'].'</p>
+		       </div>
+		     </li>';
+	     }
+	   } else {
+	      echo '<p class="gray">No friends yet</p>';
+	   }
+	   
+	   ?>
+
+
+            
       </ul>
     </div>
   </div>
@@ -236,20 +207,95 @@ require('../php/get_visibility.php');
 <!-------------------------------- fxuniversity overlay starts -------------------------------->
 
   <div class="frame-container" id="fxuniversity-overlay" style="display:none">
+<?php
+                $stu1_q="SELECT id FROM teacher WHERE user_id=$id";
+                $stu1_r=mysqli_query($connection,$stu1_q) or die(mysqli_error($connection));
+
+                $stu_count=0;
+                while($row=$stu1_r->fetch_assoc()) {
+                    $course_id=$row['id'];
+                    $stu2_q="SELECT id FROM stucourse WHERE course_id=$course_id";
+                    $stu2_r=mysqli_query($connection,$stu2_q) or die(mysqli_error($connection));
+                    $stu_count+=mysqli_num_rows($stu2_r);
+                }
+
+                $acc_count=0;
+                $stu1_r=mysqli_query($connection,$stu1_q) or die(mysqli_error($connection));
+                while($row2=$stu1_r->fetch_assoc()) {
+                    $course_id=$row2['id'];
+                    $acc_q="SELECT id FROM stucourse WHERE course_id=$course_id AND exam_accepted=1";
+                    $acc_r=mysqli_query($connection,$acc_q) or die(mysqli_error($connection));
+                    $acc_count+=mysqli_num_rows($acc_r);
+                }
+?>
     <div class="frame-fxuniversity">
       <div class="frame-header">
-        <div class="fxuniversity-word">zoicism's fxUniversity</div>
+        <div class="fxuniversity-word"><?php echo $tarname?>'s fxUniversity</div>
         <a id="close-fxuniversity-overlay" class="closebtn">×</a>
       </div>
       <div class="frame-header-fxuniversity">
-        <div class="teach-word active">
+        <div class="teach-word" id="active-tab">
           <a href="#">Teach</a>
+	  
         </div>
         <div class="learn-word">
           <a href="#">Learn</a>
         </div>
       </div>
       <ul>
+      <p><strong><?php echo $get_tar_courses_count?></strong> courses</p>
+                <p><strong><?php echo $stu_count ?></strong> students</p>
+                <p><strong><?php echo $acc_count ?></strong> accepted students</p>
+
+
+
+
+
+
+<?php
+                require('../php/limit_str.php');
+                
+                if($get_tar_courses_count>0) {
+                    while($row3=$get_tar_courses_result->fetch_assoc()) {
+                        $coursecounter_q="SELECT * FROM stucourse WHERE course_id=".$row3['id'];
+                        $coursecounter_r=mysqli_query($connection,$coursecounter_q);
+                        $coursecounts=mysqli_num_rows($coursecounter_r);
+
+			$descrip=preg_replace("/<br\W*?\/>/"," ",$row3['description']);
+
+			echo '<li class="course-profile">
+			        <div class="photo-course-container">
+            			    <a class="photo-course" style="background-image: url(\'/images/background/course.png\');opacity:0.5;"></a>
+				</div>
+				<div class="course-text">
+            			    <a class="name"><b>'.$row3['header'].'</b></a>
+            			    <p class="desc">';
+				    echo limited($descrip,70).'</p>
+          			</div>
+        		      </li>';
+
+
+/*
+                        echo '<div class="col-1 pointer" onclick="location.href=\'/userpgs/instructor/course_management/course.php?course_id='.$row3['id'].'\';">';
+                        echo '<h3>'.$row3['header'].'</h3>';
+                        $descrip=preg_replace("/<br\W*?\/>/"," ",$row3['description']);
+                        //$descrip=str_replace(array("\r\n","\r")," ",$row3['description']);
+                        echo '<p><strong>'.$coursecounts.'</strong> students</p>';
+                        echo '<p>'.limited($descrip,70).'</p>';
+                        echo '</div>';
+*/
+                    }
+                    $get_tar_courses_result->free();
+                }
+?>
+
+
+
+
+
+
+
+
         <li class="course-profile">
           <div class="photo-course-container">
             <a class="photo-course" style="background-image: url(http://www.boutique-uns.com/uns/185-home_01grid/polo-femme.jpg);"></a>

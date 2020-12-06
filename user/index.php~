@@ -93,8 +93,8 @@ require('../php/get_visibility.php');
         </div>
         <div class="info-profile">
           <div class="id-profile"><?php echo $tarname ?></div>
-          <a class="follower-profile">
-            <div class="follower-num"><?php echo $get_rel_friends_count ?></div>
+          <a class="follower-profile" id="open-friends">
+            <div class="follower-num"><?php echo $get_tar_friends_count ?></div>
             <div class="follower-word">friends</div>
           </a>
           <div class="profile-desktop">
@@ -128,7 +128,7 @@ require('../php/get_visibility.php');
             </a>
           </li>
           <li class="items">
-            <a href="#" class="link">
+            <a id="open-fxuniversity" class="link">
               <div class="head">
                 fxUniversity
                 <p class="sub"><?php $total_courses=$$get_tar_courses_count+$gts_count; echo $total_courses?> courses</p>
@@ -151,6 +151,171 @@ require('../php/get_visibility.php');
       </div>
     </div>
   </div>
+</div>
+
+<!-------------------------------- friends overlay starts -------------------------------->
+
+  <div class="frame-container" style="display:none" id="friends-overlay">
+    <div class="frame">
+      <div class="frame-header">
+        <div class="friends-word">Friends</div>
+        <a  class="closebtn" id="close-friends-overlay" >×</a>
+      </div>
+      <ul>
+
+
+           <?php
+
+	   if($get_tar_friends_count > 0) {
+	   
+	     while($fnd_row = $get_tar_friends_r -> fetch_assoc()) {
+	       if($fnd_row['user1'] == $get_user_id) {
+	         $fnd_user_id=$fnd_row['user2'];
+	       } else {
+	         $fnd_user_id=$fnd_row['user1'];
+	       }
+
+	       $fnd_user_query = "SELECT * FROM user WHERE id=$fnd_user_id";
+               $fnd_user_result = mysqli_query($connection, $fnd_user_query) or die(mysqli_error($connection));
+               $fnd_user_fetch = mysqli_fetch_array($fnd_user_result);
+
+
+	       echo '<li class="friends">
+	               <a class="photo-friends" style="background-image: url(\'/images/background/avatar.svg\');"></a>
+		       <div class="desc-contact">
+		         <a class="name">'.$fnd_user_fetch['fname'].' '.$fnd_user_fetch['lname'].'</a>
+			 <p class="username-friends">@'.$fnd_user_fetch['username'].'</p>
+		       </div>
+		     </li>';
+	     }
+	   } else {
+	      echo '<p class="gray">No friends yet</p>';
+	   }
+	   
+	   ?>
+
+
+            
+      </ul>
+    </div>
+  </div>
+
+<!-------------------------------- friends overlay ends -------------------------------->
+
+
+
+<!-------------------------------- fxuniversity overlay starts -------------------------------->
+
+  <div class="frame-container" id="fxuniversity-overlay" style="display:none">
+    <div class="frame-fxuniversity">
+      <div class="frame-header">
+        <div class="fxuniversity-word">zoicism's fxUniversity</div>
+        <a id="close-fxuniversity-overlay" class="closebtn">×</a>
+      </div>
+      <div class="frame-header-fxuniversity">
+        <div class="teach-word active">
+          <a href="#">Teach</a>
+        </div>
+        <div class="learn-word">
+          <a href="#">Learn</a>
+        </div>
+      </div>
+      <ul>
+        <li class="course-profile">
+          <div class="photo-course-container">
+            <a class="photo-course" style="background-image: url(http://www.boutique-uns.com/uns/185-home_01grid/polo-femme.jpg);"></a>
+          </div>
+          <div class="course-text">
+            <a class="name">Computational neuroscience</a>
+            <p class="desc">Computational neuroscience is a branch of neuroscience which employs mathematical models</p>
+          </div>
+        </li>
+        <li class="course-profile">
+          <div class="photo-course-container">
+            <a class="photo-course" style="background-image: url(http://www.boutique-uns.com/uns/185-home_01grid/polo-femme.jpg);"></a>
+          </div>
+          <div class="course-text">
+            <a class="name">Computational neuroscience</a>
+            <p class="desc">Computational neuroscience is a branch of neuroscience which employs mathematical models</p>
+          </div>
+        </li>
+        <li class="course-profile">
+          <div class="photo-course-container">
+            <a class="photo-course" style="background-image: url(http://www.boutique-uns.com/uns/185-home_01grid/polo-femme.jpg);"></a>
+          </div>
+          <div class="course-text">
+            <a class="name">Computational neuroscience</a>
+            <p class="desc">Computational neuroscience is a branch of neuroscience which employs mathematical models</p>
+          </div>
+        </li>
+        <li class="course-profile">
+          <div class="photo-course-container">
+            <a class="photo-course" style="background-image: url(http://www.boutique-uns.com/uns/185-home_01grid/polo-femme.jpg);"></a>
+          </div>
+          <div class="course-text">
+            <a class="name">Computational neuroscience</a>
+            <p class="desc">Computational neuroscience is a branch of neuroscience which employs mathematical models</p>
+          </div>
+        </li>
+        <li class="course-profile">
+          <div class="photo-course-container">
+            <a class="photo-course" style="background-image: url(http://www.boutique-uns.com/uns/185-home_01grid/polo-femme.jpg);"></a>
+          </div>
+          <div class="course-text">
+            <a class="name">Computational neuroscience</a>
+            <p class="desc">Computational neuroscience is a branch of neuroscience which employs mathematical models</p>
+          </div>
+        </li>
+        <li class="course-profile">
+          <div class="photo-course-container">
+            <a class="photo-course" style="background-image: url(http://www.boutique-uns.com/uns/185-home_01grid/polo-femme.jpg);"></a>
+          </div>
+          <div class="course-text">
+            <a class="name">Computational neuroscience</a>
+            <p class="desc">Computational neuroscience is a branch of neuroscience which employs mathematical models</p>
+          </div>
+        </li>
+        <li class="course-profile">
+          <div class="photo-course-container">
+            <a class="photo-course" style="background-image: url(http://www.boutique-uns.com/uns/185-home_01grid/polo-femme.jpg);"></a>
+          </div>
+          <div class="course-text">
+            <a class="name">Computational neuroscience</a>
+            <p class="desc">Computational neuroscience is a branch of neuroscience which employs mathematical models</p>
+          </div>
+        </li>
+        <li class="course-profile">
+          <div class="photo-course-container">
+            <a class="photo-course" style="background-image: url(http://www.boutique-uns.com/uns/185-home_01grid/polo-femme.jpg);"></a>
+          </div>
+          <div class="course-text">
+            <a class="name">Computational neuroscience</a>
+            <p class="desc">Computational neuroscience is a branch of neuroscience which employs mathematical models</p>
+          </div>
+        </li>
+        <li class="course-profile">
+          <div class="photo-course-container">
+            <a class="photo-course" style="background-image: url(http://www.boutique-uns.com/uns/185-home_01grid/polo-femme.jpg);"></a>
+          </div>
+          <div class="course-text">
+            <a class="name">Computational neuroscience</a>
+            <p class="desc">Computational neuroscience is a branch of neuroscience which employs mathematical models</p>
+          </div>
+        </li>
+        <li class="course-profile">
+          <div class="photo-course-container">
+            <a class="photo-course" style="background-image: url(http://www.boutique-uns.com/uns/185-home_01grid/polo-femme.jpg);"></a>
+          </div>
+          <div class="course-text">
+            <a class="name">Computational neuroscience</a>
+            <p class="desc">Computational neuroscience is a branch of neuroscience which employs mathematical models</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+<!-------------------------------- fxuniversity overlay ends -------------------------------->
 
 
   <div class="footbar blur"></div>
@@ -162,6 +327,25 @@ require('../php/get_visibility.php');
   <script>
     $('#page-header').html('fxStar');
     $('#page-header').attr('href','/wallet');
+  </script>
+
+
+<script>
+$('#open-friends').click(function() {
+  $('#friends-overlay').show();
+});
+$('#close-friends-overlay').click(function() {
+  $('#friends-overlay').hide();
+  });
+  </script>
+
+<script>
+$('#open-fxuniversity').click(function() {
+  $('#fxuniversity-overlay').show();
+});
+$('#close-fxuniversity-overlay').click(function() {
+  $('#fxuniversity-overlay').hide();
+  });
   </script>
 </body>
 </html>
