@@ -48,49 +48,14 @@ require('../php/get_fxcoin_count.php');
 
     <div class="blur mobile-main">
 
-    <div class="sidebar">
-		<div class="logo-sidebar logo-25"></div>
-		<div>
-            <?php
-                    $path="../../userpgs/avatars/";
-                    if(file_exists($path.$get_user_id.'.jpg')) {
-                        echo('<a class="link avatar-sidebar" style="background-image: url(\'../../userpgs/avatars/'.$get_user_id.'.jpg\');"></a>');
-                    } elseif(file_exists($path.$get_user_id.'.jpeg')) {
-                        echo('<a class="link avatar-sidebar" style="background-image: url(\'../../userpgs/avatars/'.$get_user_id.'.jpeg\');"></a>');
-                    } elseif(file_exists($path.$get_user_id.'.png')) {
-                        echo('<a class="link avatar-sidebar" style="background-image: url(\'../../userpgs/avatars/'.$get_user_id.'.png\');"></a>');
-                    } elseif(file_exists($path.$get_user_id.'.gif')) {
-                        echo('<a class="link avatar-sidebar" style="background-image: url(\'../../userpgs/avatars/'.$get_user_id.'.gif\');"></a>');
-                    } else {
-                        echo('<a class="link avatar-sidebar"></a>');
-                    }
-                ?>
-			<a class="id-sidebar" href="#">@Neo</a>
-		</div>
-		<div class="elements">
-		    <a href="/wallet" class="sidebar-icon fxstar-sidebar" id="sidebar-active">fxStar</a>
-		    <a href="#" class="sidebar-icon fxuniversity-sidebar">fxUniversity</a>
-		    <a href="#" class="sidebar-icon fxpartner-sidebar">fxPartner</a>
-		    <a href="#" class="sidebar-icon fxuniverse-sidebar">fxUniverse</a>
-		    <a href="#" class="sidebar-icon fxsonet-sidebar">fxSonet</a>
-		    
-	    </div>
-	    <div class="socialmedia">
-			<a href="#" class="sm facebook"></a>
-			<a href="#" class="sm instagram"></a>
-			<a href="#" class="sm twitter"></a>
-			<a href="#" class="policy">Policy</a>
 
-                          <div class="copyright">
-                          With all due Reserves, © fxUnivers 
-                          </div>
-                          <div class="copyright">
-                          2017-2020 All rights reserved.
-                          </div>
-  		</div>
 
-                          
-	</div>
+
+<div class="sidebar"></div>
+<?php require('../../php/sidebar.php'); ?>
+
+
+
 
 <div class="main-content">
 
@@ -138,7 +103,7 @@ require('../php/get_fxcoin_count.php');
                           <p>Select a friend:</p>
 <?php
                           if($get_rel_friends_count>0) {
-                              echo '<select name="sendTo" id="sendToId" class="select-input">';
+                              echo '<select name="sendTo" id="sendToId" class="select-input" style="margin-left:0;">';
                               echo '<option value="" disabled selected>Select</option>';
                               
                               while($row=$get_rel_friends_result2->fetch_assoc()) {
@@ -251,6 +216,12 @@ $('#sendToAmnt').each(function() {
 <script>
                           $('#page-header').html('fxStar');
 $('#page-header').attr('href','/wallet');
+</script>
+
+
+<!-- fxStar sidebar active -->
+<script>
+$('.fxstar-sidebar').attr('id','sidebar-active');
 </script>
 </body>
 </html>

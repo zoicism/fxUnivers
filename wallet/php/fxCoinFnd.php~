@@ -66,9 +66,9 @@ if($get_fxcoin_count>$sendAmnt+$interest) {
     $fxcoin_send_notif_query="INSERT INTO notif(user_id,body,from_id) VALUES($tar_id,'$send_notif_body',$get_user_id)";
     $fxcoin_send_notif_result=mysqli_query($connection,$fxcoin_send_notif_query) or die(mysqli_error($connection));
 
-    //echo 'success';
+    echo 'success';
 } else {
-    //echo 'failed';
+    echo 'failed';
 }
 
 ?>

@@ -95,7 +95,7 @@ require('../php/get_fxcoin_count.php');
                           <p>Select a friend:</p>
 <?php
                           if($get_rel_friends_count>0) {
-                              echo '<select name="reqFrom" id="reqToId" class="select-input">';
+                              echo '<select name="reqFrom" id="reqToId" class="select-input" style="margin-left:0">';
                               echo '<option value="" disabled selected>Select</option>';
                               
                               while($row=$get_rel_friends_result2->fetch_assoc()) {
@@ -152,17 +152,22 @@ $('.toggleReqFinal').click(function() {
 <script>
 $(function() {
   $('#reqToFndForm').on('submit', function(e) {
+   e.preventDefault();
    var reqUname = document.getElementById('reqToId').value;
    var reqAmnt = document.getElementById('reqToAmnt').value;
-   if(confirm('confirm requesting '+reqAmnt+' fxStars from '+reqUname+'.')) {
-    e.preventDefault();
+   if(confirm('Confirm requesting '+reqAmnt+' fxStars from '+reqUname+'.')) {
+    
     jQuery.ajax({
       type: 'POST',
       url: '/wallet/php/reqfxCoinFnd.php',
-      data: $('#reqToFndForm').serialize(),
-      success: function() {
+      data: $(this).serialize(),
+      success: function(response) {
+        if(response=='success') {
             alert(reqAmnt+' is requested from '+reqUname+'.');
             location.reload();
+	} else {
+	  alert('Failed to complete the request. Please select a friend and try again.');
+	}
       }
     });
    } else {

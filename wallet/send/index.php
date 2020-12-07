@@ -103,7 +103,7 @@ require('../php/get_fxcoin_count.php');
                           <p>Select a friend:</p>
 <?php
                           if($get_rel_friends_count>0) {
-                              echo '<select name="sendTo" id="sendToId" class="select-input">';
+                              echo '<select name="sendTo" id="sendToId" class="select-input" style="margin-left:0;">';
                               echo '<option value="" disabled selected>Select</option>';
                               
                               while($row=$get_rel_friends_result2->fetch_assoc()) {
@@ -173,13 +173,12 @@ $(function() {
       e.preventDefault();
    var recepientUname = document.getElementById('sendToId').value;
    var recepientAmnt = document.getElementById('sendToAmnt').value;
-   if(confirm('confirm sending '+recepientAmnt+' fxStars to '+recepientUname+'.')) {
-
+   if(confirm('Confirm sending '+recepientAmnt+' fxStars to '+recepientUname+'.')) {
     
     jQuery.ajax({
       type: 'POST',
       url: '/wallet/php/fxCoinFnd.php',
-      data: $('#sendToFndForm').serialize(),
+      data: $(this).serialize(),
       success: function(result) {
             if(result=='success') {
                 alert(recepientAmnt+' fxStars is sent to '+recepientUname+'.');

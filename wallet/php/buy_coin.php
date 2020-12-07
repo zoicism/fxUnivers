@@ -25,4 +25,5 @@ $trans_query="INSERT INTO transactions(from_id, to_id, amnt, dt) VALUES($trans_f
 $trans_result=mysqli_query($wallet_connection, $trans_query) or die(mysqli_error($wallet_connection));
 
 //header("Location: /wallet");
+//echo $link_query.' --- '.$trans_result;
 ?>

@@ -15,16 +15,8 @@ require('get_fxcoin_count.php');
 if(isset($_POST['sendTo'])) $receiver=$_POST['sendTo'];
 if(isset($_POST['sendAmnt'])) $sendAmnt=$_POST['sendAmnt'];
 
-$tarname=substr($receiver,1);
+$tarname=$receiver;
 require('../../php/get_tar_user.php');
-
-/*
-$log_file = fopen("log.txt", "w") or die("log error");
-fwrite($log_file, $tarname);
-fclose($log_file);
-*/
-
-//echo '<script>alert("'.$sendAmnt.'");</script>';
 
 // current dt
 date_default_timezone_set('America/New_York');
@@ -39,6 +31,7 @@ if($get_fxcoin_count>$sendAmnt+$interest) {
     
     // Update the ownership of the fxCoins
     $transfer_fxcoin_query = "UPDATE link SET userId=$tar_id WHERE userId=$get_user_id LIMIT $sendAmnt";
+    
     $transfer_fxcoin_result = mysqli_query($wallet_connection, $transfer_fxcoin_query) or die(mysqli_error($wallet_connection));
     // set transfer data
     $trans_from=$get_user_id;

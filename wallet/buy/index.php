@@ -175,7 +175,7 @@ require('../php/get_fxcoin_count.php');
           jQuery.ajax({
 	      data: 'numOfFxCoins=' + amntToBase10,
 	      url: '../php/buy_coin.php',
-          method: 'POST',
+              method: 'POST',
 	      success: function(msg) {
 	        
 	      }   
