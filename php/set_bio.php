@@ -13,6 +13,6 @@ if(isset($_POST['user_id'])) $userid=$_POST['user_id'];
 $setbio_q="UPDATE user SET fname='$fname', lname='$lname', bio='$bio' WHERE id=$userid";
 $setbio_r=mysqli_query($connection,$setbio_q) or die(mysqli_error($connection));
 
-header('Location: /user/'.$username);
+header('Location: /user/?tar='.$username);
 
 ?>

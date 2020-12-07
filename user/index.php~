@@ -33,6 +33,7 @@ $user_fetch = mysqli_fetch_array($user_result);
 $fname = $user_fetch['fname'];
 $lname = $user_fetch['lname'];
 $id = $user_fetch['id'];
+$tarid=$id;
 $bio = $user_fetch['bio'];
 
 
@@ -64,6 +65,12 @@ require('../php/get_follow_fnd.php');
 require('../php/get_partner_profile.php');
 
 require('../php/get_visibility.php');
+
+
+require('../php/get_stu_stucourse_profile.php');
+
+require('../php/get_my_accepted_courses_profile.php');
+
 ?>
 
 <!DOCTYPE html>
@@ -207,110 +214,130 @@ require('../php/get_visibility.php');
 <!-------------------------------- fxuniversity overlay starts -------------------------------->
 
   <div class="frame-container" id="fxuniversity-overlay" style="display:none">
+<?php
+                $stu1_q="SELECT id FROM teacher WHERE user_id=$id";
+                $stu1_r=mysqli_query($connection,$stu1_q) or die(mysqli_error($connection));
+
+                $stu_count=0;
+                while($row=$stu1_r->fetch_assoc()) {
+                    $course_id=$row['id'];
+                    $stu2_q="SELECT id FROM stucourse WHERE course_id=$course_id";
+                    $stu2_r=mysqli_query($connection,$stu2_q) or die(mysqli_error($connection));
+                    $stu_count+=mysqli_num_rows($stu2_r);
+                }
+
+                $acc_count=0;
+                $stu1_r=mysqli_query($connection,$stu1_q) or die(mysqli_error($connection));
+                while($row2=$stu1_r->fetch_assoc()) {
+                    $course_id=$row2['id'];
+                    $acc_q="SELECT id FROM stucourse WHERE course_id=$course_id AND exam_accepted=1";
+                    $acc_r=mysqli_query($connection,$acc_q) or die(mysqli_error($connection));
+                    $acc_count+=mysqli_num_rows($acc_r);
+                }
+?>
     <div class="frame-fxuniversity">
       <div class="frame-header">
-        <div class="fxuniversity-word">zoicism's fxUniversity</div>
+        <div class="fxuniversity-word"><?php echo $tarname?>'s fxUniversity</div>
         <a id="close-fxuniversity-overlay" class="closebtn">×</a>
       </div>
       <div class="frame-header-fxuniversity">
-        <div class="teach-word active">
-          <a href="#">Teach</a>
+        <div class="teach-word active-tab">
+          <a id="teach-tab">Teach</a>
         </div>
         <div class="learn-word">
-          <a href="#">Learn</a>
+          <a id="learn-tab">Learn</a>
         </div>
       </div>
-      <ul>
-        <li class="course-profile">
-          <div class="photo-course-container">
-            <a class="photo-course" style="background-image: url(http://www.boutique-uns.com/uns/185-home_01grid/polo-femme.jpg);"></a>
-          </div>
-          <div class="course-text">
-            <a class="name">Computational neuroscience</a>
-            <p class="desc">Computational neuroscience is a branch of neuroscience which employs mathematical models</p>
-          </div>
-        </li>
-        <li class="course-profile">
-          <div class="photo-course-container">
-            <a class="photo-course" style="background-image: url(http://www.boutique-uns.com/uns/185-home_01grid/polo-femme.jpg);"></a>
-          </div>
-          <div class="course-text">
-            <a class="name">Computational neuroscience</a>
-            <p class="desc">Computational neuroscience is a branch of neuroscience which employs mathematical models</p>
-          </div>
-        </li>
-        <li class="course-profile">
-          <div class="photo-course-container">
-            <a class="photo-course" style="background-image: url(http://www.boutique-uns.com/uns/185-home_01grid/polo-femme.jpg);"></a>
-          </div>
-          <div class="course-text">
-            <a class="name">Computational neuroscience</a>
-            <p class="desc">Computational neuroscience is a branch of neuroscience which employs mathematical models</p>
-          </div>
-        </li>
-        <li class="course-profile">
-          <div class="photo-course-container">
-            <a class="photo-course" style="background-image: url(http://www.boutique-uns.com/uns/185-home_01grid/polo-femme.jpg);"></a>
-          </div>
-          <div class="course-text">
-            <a class="name">Computational neuroscience</a>
-            <p class="desc">Computational neuroscience is a branch of neuroscience which employs mathematical models</p>
-          </div>
-        </li>
-        <li class="course-profile">
-          <div class="photo-course-container">
-            <a class="photo-course" style="background-image: url(http://www.boutique-uns.com/uns/185-home_01grid/polo-femme.jpg);"></a>
-          </div>
-          <div class="course-text">
-            <a class="name">Computational neuroscience</a>
-            <p class="desc">Computational neuroscience is a branch of neuroscience which employs mathematical models</p>
-          </div>
-        </li>
-        <li class="course-profile">
-          <div class="photo-course-container">
-            <a class="photo-course" style="background-image: url(http://www.boutique-uns.com/uns/185-home_01grid/polo-femme.jpg);"></a>
-          </div>
-          <div class="course-text">
-            <a class="name">Computational neuroscience</a>
-            <p class="desc">Computational neuroscience is a branch of neuroscience which employs mathematical models</p>
-          </div>
-        </li>
-        <li class="course-profile">
-          <div class="photo-course-container">
-            <a class="photo-course" style="background-image: url(http://www.boutique-uns.com/uns/185-home_01grid/polo-femme.jpg);"></a>
-          </div>
-          <div class="course-text">
-            <a class="name">Computational neuroscience</a>
-            <p class="desc">Computational neuroscience is a branch of neuroscience which employs mathematical models</p>
-          </div>
-        </li>
-        <li class="course-profile">
-          <div class="photo-course-container">
-            <a class="photo-course" style="background-image: url(http://www.boutique-uns.com/uns/185-home_01grid/polo-femme.jpg);"></a>
-          </div>
-          <div class="course-text">
-            <a class="name">Computational neuroscience</a>
-            <p class="desc">Computational neuroscience is a branch of neuroscience which employs mathematical models</p>
-          </div>
-        </li>
-        <li class="course-profile">
-          <div class="photo-course-container">
-            <a class="photo-course" style="background-image: url(http://www.boutique-uns.com/uns/185-home_01grid/polo-femme.jpg);"></a>
-          </div>
-          <div class="course-text">
-            <a class="name">Computational neuroscience</a>
-            <p class="desc">Computational neuroscience is a branch of neuroscience which employs mathematical models</p>
-          </div>
-        </li>
-        <li class="course-profile">
-          <div class="photo-course-container">
-            <a class="photo-course" style="background-image: url(http://www.boutique-uns.com/uns/185-home_01grid/polo-femme.jpg);"></a>
-          </div>
-          <div class="course-text">
-            <a class="name">Computational neuroscience</a>
-            <p class="desc">Computational neuroscience is a branch of neuroscience which employs mathematical models</p>
-          </div>
-        </li>
+      <ul id="teach-tab-content">
+      <p><strong><?php echo $get_tar_courses_count?></strong> courses</p>
+                <p><strong><?php echo $stu_count ?></strong> students</p>
+                <p><strong><?php echo $acc_count ?></strong> accepted students</p>
+
+
+
+
+
+
+<?php
+                require('../php/limit_str.php');
+                
+                if($get_tar_courses_count>0) {
+                    while($row3=$get_tar_courses_result->fetch_assoc()) {
+                        $coursecounter_q="SELECT * FROM stucourse WHERE course_id=".$row3['id'];
+                        $coursecounter_r=mysqli_query($connection,$coursecounter_q);
+                        $coursecounts=mysqli_num_rows($coursecounter_r);
+
+			$descrip=preg_replace("/<br\W*?\/>/"," ",$row3['description']);
+
+			echo '<li class="course-profile" onclick="location.href=\'/userpgs/instructor/course_management/course.php?course_id='.$row3['id'].'\';">
+			        <div class="photo-course-container">
+            			    <a class="photo-course" style="background-image: url(\'/images/background/course.png\');opacity:0.5;"></a>
+				</div>
+				<div class="course-text">
+            			    <a class="name"><b>'.$row3['header'].'</b></a>
+            			    <p class="desc">';
+				    echo limited($descrip,70).'</p>
+          			</div>
+        		      </li>';
+
+
+/*
+                        echo '<div class="col-1 pointer" onclick="location.href=\'/userpgs/instructor/course_management/course.php?course_id='.$row3['id'].'\';">';
+                        echo '<h3>'.$row3['header'].'</h3>';
+                        $descrip=preg_replace("/<br\W*?\/>/"," ",$row3['description']);
+                        //$descrip=str_replace(array("\r\n","\r")," ",$row3['description']);
+                        echo '<p><strong>'.$coursecounts.'</strong> students</p>';
+                        echo '<p>'.limited($descrip,70).'</p>';
+                        echo '</div>';
+*/
+                    }
+                    $get_tar_courses_result->free();
+                }
+?>
+
+
+
+
+      </ul>
+      <ul id="learn-tab-content" style="display:none">
+  <?php
+       echo '<p style="text-align:right"><strong>'.$gss_count.'</strong> courses</p>';
+                echo '<p style="text-align:right"><b>'.$gmac_count.'</b> accepted courses</p>';
+
+
+	if($gss_count>0) {
+                    while($taken_row=$gss_result->fetch_assoc()) {
+                        $taken_course_id=$taken_row['course_id'];
+                        $get_stus_course_query="SELECT * FROM teacher WHERE id=$taken_course_id";
+                        $get_stus_course_result=mysqli_query($connection,$get_stus_course_query) or die(mysqli_error($connection));
+                        $gsc_fetch=mysqli_fetch_array($get_stus_course_result);
+                        $course_link="/userpgs/instructor/course_management/course.php?course_id=".$gsc_fetch['id'];
+
+
+
+			$descrip=preg_replace("/<br\W*?\/>/"," ",$row3['description']);
+
+			echo '<li class="course-profile" onclick="location.href=\''.$course_link.'\';">
+			        <div class="photo-course-container">
+            			    <a class="photo-course" style="background-image: url(\'/images/background/course.png\');opacity:0.5;"></a>
+				</div>
+				<div class="course-text">
+            			    <a class="name"><b>'.$gsc_fetch['header'].'</b></a>
+            			    <p class="desc">'.$gsc_fetch['description'].'</p>
+          			</div>
+        		      </li>';
+
+/*
+                        echo '<div class="col-1 pointer" onclick="location.href=\''.$course_link.'\';">';
+                        echo '<h3>'.$gsc_fetch['header'].'</h3>';
+                        echo '<p>'.$gsc_fetch['description'].'</p>';
+                       echo '</div>';
+		       */
+                    }
+                    $gss_result->free();
+                }
+   ?>
+      
       </ul>
     </div>
   </div>
@@ -347,5 +374,23 @@ $('#close-fxuniversity-overlay').click(function() {
   $('#fxuniversity-overlay').hide();
   });
   </script>
+
+
+<script>
+$('#teach-tab').click(function() {
+  $('.teach-word').addClass('active-tab');
+  $('.learn-word').removeClass('active-tab');
+
+  $('#teach-tab-content').show();
+  $('#learn-tab-content').hide();
+});
+$('#learn-tab').click(function() {
+  $('.teach-word').removeClass('active-tab');
+  $('.learn-word').addClass('active-tab');
+
+  $('#teach-tab-content').hide();
+  $('#learn-tab-content').show();
+});
+</script>
 </body>
 </html>

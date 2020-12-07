@@ -106,10 +106,9 @@ require('../php/get_my_accepted_courses_profile.php');
           </a>
           <div class="profile-desktop">
             <div class="name-profile"><?php echo $tar_fname.' '.$tar_lname ?></div>
-            <div class="bio-profile"><?php echo $tar_bio ?>This is the bio of the mobile view: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua.</div>
+            <div class="bio-profile"><?php echo $tar_bio ?></div>
             <div class="edit-profile-con">
-              <a href="#" class="edit-profile">Edit Profile</a>
+              <a id="open-edit-profile" class="edit-profile">Edit Profile</a>
             </div>
           </div>
         </div>
@@ -345,6 +344,53 @@ require('../php/get_my_accepted_courses_profile.php');
 <!-------------------------------- fxuniversity overlay ends -------------------------------->
 
 
+<!-------------------------------- edit profile overlay starts -------------------------------->
+
+  <div class="frame-container" style="display:none" id="edit-profile-overlay">
+    <div class="frame-edit">
+      <div class="frame-header">
+        <div class="editprofile-word">Edit Profile</div>
+        <a class="closebtn" id="close-edit-profile">×</a>
+      </div>
+      <div class="edit-avatar">
+        <div class="avatar-prf-cnt">
+          <div class="avatar-profile-container">
+            <div class="avatar-profile" style="background-image: url(http://www.boutique-uns.com/uns/185-home_01grid/polo-femme.jpg);"></div>
+          </div>
+        </div>
+        <div class="edit-profile-text">
+          <a class="name"><?php echo $username?></a>
+          <a href="#" class="change-profile-photo">change Profile Photo</a>
+        </div>
+      </div>
+      <form action="/php/set_bio.php" method="POST">
+      <div class="edit-input-container">
+        <div class="edit-firstname">
+          <div class="edit-input-text"><div class="first-name-word">First Name</div></div>
+          <input name="fname" class="edit-input" type="text" placeholder="First Name" value="<?php echo $fname?>">
+        </div>
+        <div class="edit-lastname">
+          <div class="edit-input-text"><div class="last-name-word">Last Name</div></div>
+          <input name="lname" class="edit-input" type="text" placeholder="Last Name" value="<?php echo $lname?>">
+        </div>
+        <div class="edit-bio">
+          <div class="edit-input-text"><div class="bio-word">Bio</div></div>
+          <textarea name="bio" class="edit-input-bio" type="text" placeholder="Bio"><?php echo $bio?></textarea>
+        </div>
+      </div>
+      <input type="hidden" name="user_id" value="<?php echo $get_user_id?>">
+      <input type="hidden" name="username" value="<?php echo $username?>">
+      <input type="submit" class="edit-button" value="Apply Edit">
+    </div>
+    </form>
+  </div>
+
+<!-------------------------------- edit profile overlay ends -------------------------------->
+
+
+
+
+
   <div class="footbar blur"></div>
   <script src="/js/footbar.js"></script>
 
@@ -392,5 +438,16 @@ $('#learn-tab').click(function() {
   $('#learn-tab-content').show();
 });
 </script>
+
+<script>
+$('#open-edit-profile').click(function() {
+  $('#edit-profile-overlay').show();
+});
+$('#close-edit-profile').click(function() {
+  $('#edit-profile-overlay').hide();
+});
+</script>
+
+
 </body>
 </html>
