@@ -2212,11 +2212,7 @@ cursor: pointer;
 }
 
 .desc-contact {
-  height: 43px;
-  width:50%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+    
 }
 
 .frame-container .frame .friends .username-friends {

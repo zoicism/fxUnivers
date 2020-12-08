@@ -235,11 +235,13 @@ echo '</div>';
 
         echo '<div>Make an offer:
 	       <form id="bidForm">
-	         <input type="number" name="amount" class="num-input">
+	         <input type="number" name="amount" class="num-input" id="offer-input" required>
+		 <p>Total cost: <span id="totalOfferCost"></span></p>
 		 <input type="hidden" name="from_id" value="'.$get_user_id.'">
 		 <input type="hidden" name="course_id" value="'.$course_id.'">
 		 <input type="hidden" name="to_id" value="'.$get_course_teacher_id.'">
 		 <input type="hidden" name="initial_bid" value="'.$cost.'">
+		 
 		 <p>Highest offer: <span id="highest">'.$cost.'</span></p>
 	         <input type="submit" class="submit-btn" value="Make Offer">
 	       </form>
@@ -344,7 +346,6 @@ $(document).ready(function() {
       url:'/php/get_hi_bid.php',
       data:{courseId:<?php echo $course_id?>},
       success:function(response) {
-        console.log(response);
 	if(response=='no_offer') {
 	  $('#highest').text('<?php echo $cost?>');
 	} else {
@@ -364,7 +365,7 @@ $(document).ready(function() {
       url:'/php/get_hi_bid.php',
       data:{courseId:<?php echo $course_id?>},
       success:function(response) {
-        console.log(response);
+        
 	if(response=='no_offer') {
 	  $('#highest-ins').text('None');
 	} else {
@@ -377,12 +378,31 @@ $(document).ready(function() {
 </script>
 
 <script>
+$('#offer-input').each(function() {
+
+  var elem=$(this);
+  elem.data('oldVal', elem.val());
+  elem.bind('propertychange change click keyup input paste', function(event) {
+    if(elem.data('oldVal')!=elem.val()) {
+      elem.data('oldVal', elem.val());
+      
+      $('#totalOfferCost').html(Math.ceil(elem.val()*0.1)+parseInt(elem.val()));
+    }
+  });
+});
+</script>
+
+<script>
 $('#acceptBid').click(function() {
   jQuery.ajax({
     url:'/php/accept_bid.php',
     type:'POST',
     data:{course_id:<?php echo $course_id?>},
     success:function(response) {
-      
+      console.log(response);
+    }
+  });
+});
+</script>
 </body>
 </html>

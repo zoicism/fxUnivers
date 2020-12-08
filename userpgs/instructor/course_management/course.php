@@ -172,15 +172,18 @@ $coursecounter_q="SELECT * FROM stucourse WHERE course_id=".$course_id;
 
 
 	  <?php
-	  if($cost>0) {	  
+	  if($course_biddable) {
+	  } else {
+	    if($cost>0) {	  
 				    echo '<div class="little-box gold-bg">
 				      '.$cost.' <span>fxStars</span>
 				    </div>';
 			    } else {
 			      	   echo '<div class="little-box green-bg" style="padding: 4px 20px;">
 				      Free
-				    </div>';
-			    }
+		    </div>';
+	    }
+	  }
 
 echo '<div class="little-box gray-bg"><span>'.date("M jS, Y", strtotime($s_date)).'</span></div>';
 
@@ -205,9 +208,26 @@ if($user_type=='instructor') {
 
 
     if($course_biddable) {
-      echo '<div class="add-box">
+
+      require_once('../../../wallet/php/wallet_connect.php');
+      
+      $bidding_q="SELECT * FROM locked WHERE course_id=$course_id";
+      $bidding_r=mysqli_query($wallet_connection,$bidding_q);
+      $bidding=mysqli_fetch_array($bidding_r);
+
+      $sold2user_q = "SELECT * FROM user WHERE id=".$bidding['from_id'];
+      $sold2user_r=mysqli_query($connection,$sold2user_q);
+      $sold2user=mysqli_fetch_array($sold2user_r);
+
+      if($bidding['finalized']) {
+        echo '<div class="add-box">
+	  <p>Sold to <a href="/user/'.$sold2user['username'].'">@'.$sold2user['username'].'</a> for '.$bidding['raw_amount'].' fxStars</p>
+	  </div>';
+      } else {
+        echo '<div class="add-box">
                Accept Bid (<span id="highest-ins"></span>) <img src="/images/background/checkbox.svg" id="acceptBid">
 	    </div>';
+      }
     }
 
 
@@ -233,20 +253,38 @@ echo '</div>';
 
     if($course_biddable) {
 
-        echo '<div>Make an offer:
+
+    require_once('../../../wallet/php/wallet_connect.php');
+      
+      $bidding_q="SELECT * FROM locked WHERE course_id=$course_id";
+      $bidding_r=mysqli_query($wallet_connection,$bidding_q);
+      $bidding=mysqli_fetch_array($bidding_r);
+
+      $sold2user_q = "SELECT * FROM user WHERE id=".$bidding['from_id'];
+      $sold2user_r=mysqli_query($connection,$sold2user_q);
+      $sold2user=mysqli_fetch_array($sold2user_r);
+
+      if($bidding['finalized']) {
+        echo '<div class="add-box">
+	  <p>Sold to <a href="/user/'.$sold2user['username'].'">@'.$sold2user['username'].'</a> for '.$bidding['raw_amount'].' fxStars</p>
+	  </div>';
+      } else {
+
+
+        echo '<div>Make an offer: <p>Highest offer: <span id="highest">'.$cost.'</span> fxStars</p>
 	       <form id="bidForm">
-	         <input type="number" name="amount" class="num-input" id="offer-input" required>
-		 <p>Total cost: <span id="totalOfferCost"></span></p>
+	         <input type="number" name="amount" class="num-input" id="offer-input" placeholder="Your offer" min="1" required>
+		 <p>Total cost: <span id="totalOfferCost">0</span> fxStars</p>
 		 <input type="hidden" name="from_id" value="'.$get_user_id.'">
 		 <input type="hidden" name="course_id" value="'.$course_id.'">
 		 <input type="hidden" name="to_id" value="'.$get_course_teacher_id.'">
 		 <input type="hidden" name="initial_bid" value="'.$cost.'">
 		 
-		 <p>Highest offer: <span id="highest">'.$cost.'</span></p>
+		 
 	         <input type="submit" class="submit-btn" value="Make Offer">
 	       </form>
               </div>';
-
+      }
     } else {
     
         echo '<div class="add-box">Purchase Course <img src="/images/background/checkbox.svg" onclick="location.href=\'/wallet/purchase?item=course&no='.$course_id.'\';"></div>';
@@ -333,6 +371,17 @@ $('#bidForm').submit(function(event) {
       data:$(this).serialize(),
       success: function(response) {
         console.log(response);
+	if(response=='low') {
+	  alert('Your offer must be higher than the highest bid.');
+	} else if(response=='initlow') {
+	  alert('Your offer must be higher than the reserve declared by the instructor.');
+	} else if(response=='insuff') {
+	  alert('You have insufficient fxStars.');
+	} else if(response=='assigned') {
+	  alert('Your offer is assigned.');
+	} else if(response=='initassigned') {
+	  alert('Your offer is assigned as the first bid.');
+	}
       }
     });
 });
@@ -387,21 +436,44 @@ $('#offer-input').each(function() {
       elem.data('oldVal', elem.val());
       
       $('#totalOfferCost').html(Math.ceil(elem.val()*0.1)+parseInt(elem.val()));
+
     }
   });
+});
+$('#offer-input').keydown(function (e) {
+	if (e.shiftKey || e.ctrlKey || e.altKey) {
+		e.preventDefault();
+	} else {
+	var key = e.keyCode;
+		if (!((key == 8) || (key == 46) || (key >= 35 && key <= 40) || (key >= 48 && key <= 57)      || (key >= 96 && key <= 105))) {
+			e.preventDefault();
+		}
+	}
 });
 </script>
 
 <script>
 $('#acceptBid').click(function() {
+  if(confirm("Confirm accepting the highest bid.")) {
+  
   jQuery.ajax({
     url:'/php/accept_bid.php',
     type:'POST',
     data:{course_id:<?php echo $course_id?>},
     success:function(response) {
-      console.log(response);
+      if(response=='transferred') {
+        alert('Course is sold.');
+	window.location.reload();
+      } else if(response=='nooffer') {
+        alert('No offer has been made yet.');
+      } else {
+        alert('Failed to finalize the deal. Please try again.');
+      }
     }
   });
+
+  }
+  
 });
 </script>
 </body>
