@@ -145,7 +145,11 @@ require('../../../php/get_tar_id.php');
 		  echo '</div>';
 		  echo '<div class="pub-name">';
 		  echo '<p class="fullname">'.$tar_user_fetch['fname'].' '.$tar_user_fetch['lname'].'</p>';
-		  echo '<p>@'.$tar_user_fetch['username'].'</p>';
+		  if($tar_user_fetch['verified']) {
+		    echo '<p>@'.$tar_user_fetch['username'].' <img src="/images/background/verified.png" style="width:1rem; height:1rem;"></p>';
+		  } else {
+		    echo '<p>@'.$tar_user_fetch['username'].'</p>';
+		  }
 		  echo '</div>';
 	     echo '</div>';
 	     echo '<h2>'.$header.'</h2>';
@@ -212,14 +216,21 @@ if($user_type=='instructor') {
       require_once('../../../wallet/php/wallet_connect.php');
       
       $bidding_q="SELECT * FROM locked WHERE course_id=$course_id";
-      $bidding_r=mysqli_query($wallet_connection,$bidding_q);
-      $bidding=mysqli_fetch_array($bidding_r);
+      $bidding_r=mysqli_query($wallet_connection,$bidding_q) or die(mysqli_error($wallet_connection))
+;
 
-      $sold2user_q = "SELECT * FROM user WHERE id=".$bidding['from_id'];
-      $sold2user_r=mysqli_query($connection,$sold2user_q);
-      $sold2user=mysqli_fetch_array($sold2user_r);
+      $bidding_finalized=0;
+      if($bidding_r->num_rows > 0) {
+	$bidding=mysqli_fetch_array($bidding_r);
+	if($bidding['finalized']) $bidding_finalized=1;
 
-      if($bidding['finalized']) {
+	$sold2user_q = 'SELECT * FROM user WHERE id='.$bidding['from_id'];
+	$sold2user_r=mysqli_query($connection,$sold2user_q) or die(mysqli_error($connection));
+	if($sold2user_r) $sold2user=mysqli_fetch_array($sold2user_r);
+      }
+
+
+      if($bidding_finalized) {
         echo '<div class="add-box">
 	  <p>Sold to <a href="/user/'.$sold2user['username'].'">@'.$sold2user['username'].'</a> for '.$bidding['raw_amount'].' fxStars</p>
 	  </div>';
@@ -239,13 +250,14 @@ if($user_type=='instructor') {
 			     echo '<div class="add-box">Add Session <img src="/images/background/add.svg" onclick="location.href=\'/userpgs/instructor/class/new_class.php?course_id='.$course_id.'\';"></div>';
 
 			     
-			     echo '<div class="add-box">Manage Test <img src="/images/background/checkbox.svg"></div>';
+			     echo '<div class="add-box">Manage Test <img src="/images/background/checkbox.svg" id="manageTestId"></div>';
 			     
 
 			     echo '</div>';
 } elseif($user_type=='student') {
 echo '<div class="options">';
-echo '<div class="add-box">Take the Test <img src="/images/background/checkbox.svg"></div>';
+echo '<div class="add-box">Take the Test <img src="/images/background/checkbox.svg" id="examId"></div>';
+echo '<form action="/userpgs/instructor/exam/take_exam.php" id="goToExam" method="POST" style="display:none"><input type="hidden" name="course_id" value="'.$course_id.'"></form>';
 echo '</div>';
 } else {
   
@@ -258,13 +270,20 @@ echo '</div>';
       
       $bidding_q="SELECT * FROM locked WHERE course_id=$course_id";
       $bidding_r=mysqli_query($wallet_connection,$bidding_q);
-      $bidding=mysqli_fetch_array($bidding_r);
 
-      $sold2user_q = "SELECT * FROM user WHERE id=".$bidding['from_id'];
-      $sold2user_r=mysqli_query($connection,$sold2user_q);
-      $sold2user=mysqli_fetch_array($sold2user_r);
+      
+      
+      $bidding_finalized=0;
+      if($bidding_r->num_rows > 0) {
+	$bidding=mysqli_fetch_array($bidding_r);
+	if($bidding['finalized']) $bidding_finalized=1;
 
-      if($bidding['finalized']) {
+	$sold2user_q = 'SELECT * FROM user WHERE id='.$bidding['from_id'];
+	$sold2user_r=mysqli_query($connection,$sold2user_q) or die(mysqli_error($connection));
+	if($sold2user_r) $sold2user=mysqli_fetch_array($sold2user_r);
+      }
+
+      if($bidding_finalized) {
         echo '<div class="add-box">
 	  <p>Sold to <a href="/user/'.$sold2user['username'].'">@'.$sold2user['username'].'</a> for '.$bidding['raw_amount'].' fxStars</p>
 	  </div>';
@@ -287,7 +306,7 @@ echo '</div>';
       }
     } else {
     
-        echo '<div class="add-box">Purchase Course <img src="/images/background/checkbox.svg" onclick="location.href=\'/wallet/purchase?item=course&no='.$course_id.'\';"></div>';
+        echo '<div class="add-box">Purchase Course <img src="/images/background/checkbox.svg" id="purchbutt"></div>';
 	
     }
     echo '</div>';
@@ -475,6 +494,57 @@ $('#acceptBid').click(function() {
   }
   
 });
+</script>
+
+
+<script>
+$(document).ready(function() {
+    $('#examId').click(function(e) {
+        if('<?php echo $user_type?>'=='student') {
+            if(<?php echo $get_exam_count?> > 0) {
+                /*window.location.href="/userpgs/instructor/exam/take_exam.php?q_id=<?php echo $get_exam_fetch['id']?>&course_id=<?php echo $course_id?>";*/
+		/*$('#goToExam').submit();		*/
+		alert('No test added by the instructor yet.');
+            } else {
+                alert('No test added by the instructor yet.');
+            }
+        } else if('<?php echo $user_type?>'=='neither') {
+            alert('You need to purchase the course first.');
+        }
+    });
+});
+$('#manageTestId').click(function() {
+  alert('Test Taking, coming soon.');
+});
+</script>
+
+
+
+<!-- COURSE PURCHASE -->
+<script>
+                $(document).ready(function() {
+                    var courseId=<?php echo $course_id?>;
+                    var stuId=<?php echo $get_user_id?>;
+                    $('#purchbutt').click(function(e) {
+                        
+                        jQuery.ajax({
+                          type:'POST',
+                          url:'/wallet/php/purchase.php',
+                          data: {item:'course', course_id:courseId, stu_id:stuId},
+                          success: function(response) {
+                                if(response=='success') {
+                                    alert('Course purchased successfully.');
+                                    window.location.reload();
+                                } else if(response=='insuff') {
+				  alert('Insufficient fxStars to purchase this course.');
+				} else {
+				  alert('Failed to purchase the course. Please try again.');
+				}
+                          }
+                        });
+                        
+                    });
+                });
 </script>
 </body>
 </html>

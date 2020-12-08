@@ -89,7 +89,7 @@ if(isset($_COOKIE['username']) && isset($_COOKIE['password'])) {
 	 echo '<p class="red">Wrong username or password.</p>';
 	 }
     ?>
-    <a class="login-forgot">Forgot your password?</a>
+    <a class="mob-login-forgot">Forgot your password?</a>
     <input type="submit" class="login-button" value="Log in">
   </form>
 

@@ -128,6 +128,7 @@ if($get_fxcoin_count>=$cost+$interest) {
         }
     }
 } else {
+    echo 'insuff';
     exit();
 }
 ////echo $send_fxcoins_result;

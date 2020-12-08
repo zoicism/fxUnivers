@@ -754,7 +754,20 @@ textarea:focus {
     color:#393939;
 }
 
+.options #live-add-box {
+    width:90%;
+    box-shadow: -6px -6px 14px rgba(255, 255, 255, .7), -6px -6px 10px rgba(255, 255, 255, .5), 6px 6px 8px rgba(255, 255, 255, .075), 6px 6px 10px rgba(0, 0, 0, .15);
+    border-radius:50px;
+    color:#fff;
+     background: rgb(2,0,36);
+     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(154,0,103,1) 0%, rgba(255,151,151,1) 100%);
+     height:3rem;
+     cursor:pointer;
+}
 
+.options #live-add-box img {
+    box-shadow:none;
+}
 
 .course-content .add-box {
     margin:20px;
@@ -838,7 +851,7 @@ textarea:focus {
     width:25px;
     height:25px;
     margin-right:auto;
-    background-image:url('../images/logo/logo-100.png');
+    background-image:url('../images/logo/fxunivers-logo.svg');
 }
 
 .elements a {
@@ -2212,11 +2225,7 @@ cursor: pointer;
 }
 
 .desc-contact {
-  height: 43px;
-  width:50%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+    
 }
 
 .frame-container .frame .friends .username-friends {

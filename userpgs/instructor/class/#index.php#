@@ -192,21 +192,23 @@ if($user_type=='instructor') {
 
 			     echo '<div class="options">';
 
+			     echo '<div class="add-box" id="live-add-box">Open Live Classroom</div>';
+
+
 			     echo '<div class="add-box">Manage Session <img src="/images/background/settings.png" onclick="location.href=\'/userpgs/instructor/class/edit_class.php?course_id='.$course_id.'&class_id='.$class_id.'\';"></div>';
 
-			     echo '<div class="add-box">Open Live Class <img src="/images/background/live.svg" id="LiveImg" style="padding:5px"></div>';
+			     
 			     echo '<form action="/userpgs/instructor/class/live/#'.$class_id.'" method="POST" id="LiveForm"><input type="hidden" name="course_id" value="'.$course_id.'"><input type="hidden" name="class_id" value="'.$class_id.'"></form>';
 
 
-echo '<div class="add-box">Files('.$gcf_count.') <img src="/images/background/files.svg" ></div>';
-
+  
 
 
 
 			     echo '</div>';
 } else {
 echo '<div class="options">';
-echo '<div class="add-box">Go Live <img src="/images/background/live.svg" id="LiveImg" style="padding:5px"></div>';
+echo '<div class="add-box" id="live-add-box">Open Live Classroom</div>';
 echo '<div class="add-box">Files('.$gcf_count.') <img src="/images/background/files.svg" ></div>';
 echo '</div>';
 
@@ -216,7 +218,15 @@ echo '<form action="/userpgs/instructor/class/live/#'.$class_id.'" method="POST"
 }
 
 echo '<div class="sessions">';
-echo '<div class="sess-title"><h3>Sessions</h3></div>';
+?>
+
+<div class="tabs">
+<div class="tab active-tab" style="border-radius:20px 0 0 0;" id="sessions-tab"><h3>Sessions</h3></div>
+<div class="tab" style="border-radius:0 20px 0 0;" id="file-tab"><h3>Files(<?php echo $gcf_count?>)</h3></div>
+</div>
+
+<?php
+//echo '<div class="sess-title"><h3>Sessions</h3></div>';
 echo '<div class="sess-list">';
                 if($class_result->num_rows>0) {
 		
@@ -257,6 +267,24 @@ echo '<div class="sess-list">';
                 }
  ?>
  </div>
+ <div class="files-list" style="display:none">
+   <?php
+    if($gcf_count>0) {
+       echo '<div style="margin:1rem 3rem">';
+        while($class_fs=$gcf_result->fetch_assoc()) {
+	
+            if($user_type=='instructor') {
+                echo '<p><a href="dl_file.php?file=' . urlencode($class_fs['fileName']) . '">' . $class_fs['fileName'] . '</a> <a href="del_file.php?file_name='.$class_fs['fileName'].'&course_id='.$course_id.'&class_id='.$class_id.'" style="color:red">[delete]</a></p>';
+            } else {
+                echo '<p><a href="dl_file.php?file=' . urlencode($class_fs['fileName']) . '">' . $class_fs['fileName'] . '</a></p>';
+            }
+        }
+    } else {
+        echo '<p style="color:gray">No files yet</p>';
+    }
+   echo '</div>';
+?>
+ </div>
 	</div>
       </div>
       
@@ -265,6 +293,7 @@ echo '<div class="sess-list">';
 
 
   </div>
+
   
 
   <div class="footbar blur"></div>
@@ -287,7 +316,7 @@ echo '<div class="sess-list">';
 
 <!-- LIVE CLASS -->
 <script>
-$("#LiveImg").on("click",function() {
+$("#live-add-box").on("click",function() {
   
   jQuery.ajax({
     url:'add_live.php',
@@ -305,6 +334,21 @@ $("#LiveImg").on("click",function() {
 });
 </script>
 
+<script>
+$('#file-tab').click(function() {
+  $('#file-tab').addClass('active-tab');
+  $('#sessions-tab').removeClass('active-tab');
 
+  $('.files-list').show();
+  $('.sess-list').hide();
+});
+$('#sessions-tab').click(function() {
+  $('#file-tab').removeClass('active-tab');
+  $('#sessions-tab').addClass('active-tab');
+
+  $('.sess-list').show();
+  $('.files-list').hide();
+});
+</script>
 </body>
 </html>

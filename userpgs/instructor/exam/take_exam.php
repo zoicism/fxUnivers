@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 require('../../../register/connect.php');
 
@@ -9,7 +8,7 @@ if(isset($_SESSION['username'])) {
 	header("Location: /register/logout.php");
 }
 
-if(isset($_GET['course_id'])) $course_id = $_GET['course_id'];
+if(isset($_POST['course_id'])) $course_id = $_POST['course_id'];
 
 
 
@@ -43,135 +42,122 @@ if(isset($stucourse_fetch['exam_accepted'])) {
 
   require('../../../php/get_exam.php');
 
-  if(isset($_GET['q_id'])) {
-    $q_id = $_GET['q_id'];
-  }
 
-  require('../../../php/get_current_q.php');
+  //require('../../../php/get_current_q.php');
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
-    <head>
+<html>
+<head>
+	<title>fxUniversity</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-      <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet"> 
-    <title>fxUnivers</title>
-    <link rel="stylesheet" href="/css/style.css">  
-
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/icons.css">
     <link rel="stylesheet" href="/css/logo.css">
-    <link rel="stylesheet" href="/css/colors.css">
     <script src="/js/jquery-3.4.1.min.js"></script>
-    </head>
-
+</head>
+    
 <body>
+	<div class="header-sidebar"></div>
+    <script src="/js/upperbar.js"></script>
 
-                <div class="upperbar"></div>
-                <script src="/js/upperbar.js"></script>
-                
-<div class="col-33 left-col">
+<div class="blur mobile-main">
+    
+	<div class="sidebar"></div>
+	<?php require('../../../php/sidebar.php'); ?>
 
-        <div class="col-1">
-    <div class="main fxuniversity-color"></div>
-    <div class="icon col-icon fxuniversity-bg" onclick="location.href='/userpgs/fxuniversity';"></div>
-                <h3>Exam</h3>
-      </div>
-</div>
 
-<div class="col-33 mid-col">
 
-  <div class="col-1">
-                <h3>Question</h3>
+
+
+
+
+                          
+    <div class="main-content">
+
+              <ul class="main-flex-container">
+                  <li class="main-items">
+                      <a href="/userpgs/instructor" class="link-main">
+                          <div class="head">Teach</div>
+                      </a>
+                  </li>
+                  <li class="main-items">
+                      <a href="/userpgs/student" class="link-main" id="active-main">
+                          <div class="head">Learn</div>
+                      </a>
+                  </li>
+                  
+              </ul>
+
+    </div>
+
+
+
+
+
+  <div class="relative-main-content">
+        <div class="content-box">
+			    	 <h2>Exam</h2>
+                              	 <p><strong><?php echo $header ?></strong></p>
+				 <p>Whenever you are ready, click to start taking the exam.</p>
+				 <button class="submit-btn" id="start-btn">Start Exam</button>
+
 <?php
-                echo '<p>'.$g_c_fetch['question'].'</p>'
+if($get_exam_result->num_rows > 0) {
+  $q_number=1;
+  echo '<form>';
+  while($row=$get_exam_result->fetch_assoc()) {
+    echo '<p><strong>Question '.$q_number.'</strong></p>';
+    echo '<p>'.$row['question'].'</p>';
+
+    echo '<input type="radio">'.$row['option_a'];
+    echo '<input type="radio">'.$row['option_b'];
+    echo '<input type="radio">'.$row['option_c'];
+    echo '<input type="radio">'.$row['option_d'];
+
+    echo '<hr style="opacity:0.3">';
+    $q_number++;
+  }
+  echo '<input value="Submit Answers and See Result" type="submit" class="submit-btn">';
+  echo '</form>';
+  $get_exam_result->free();
+}
 ?>
-  </div>
 
 
-<div class="col-1">
-                <h3>Choices</h3>
 
-                <form action="/php/submit_answer.php" method="POST" style="text-align:left">
-      <label>
-                <div class="col-1 pointer" style="text-align:left">
-                <input type="radio" name="radio" style="float:left;margin-right:5px;margin-left:10px;" value="a"> <b>a</b>
-                <p><?php echo $g_c_fetch['option_a']?></p>
-  			    <span class="checkmark"></span>
-                </div>
-      </label>
-      <label>
-                <div class="col-1 pointer" style="text-align:left">
-                <input type="radio" name="radio" style="float:left;margin-right:5px;margin-left:10px;" value="b"> <b>b</b>
-                <p><?php echo $g_c_fetch['option_b']?></p>
-  			    <span class="checkmark"></span>
-                </div>
-      </label>
-      <label>
-                <div class="col-1 pointer" style="text-align:left">
-                <input type="radio" name="radio" style="float:left;margin-right:5px;margin-left:10px;" value="c"> <b>c</b>
-                <p><?php echo $g_c_fetch['option_c']?></p>
-  			    <span class="checkmark"></span>
-                </div>
-      </label>
-      <label>
-                <div class="col-1 pointer" style="text-align:left">
-                <input type="radio" name="radio" style="float:left;margin-right:5px;margin-left:10px;" value="d"> <b>d</b>
-                <p><?php echo $g_c_fetch['option_d']?></p>
-  			    <span class="checkmark"></span>
-			  </div>
-      </label>
-			    <input type="hidden" name="course_id" value="<?php echo $course_id ?>">
-			    <input type="hidden" name="q_id" value="<?php echo $q_id ?>">
-			    <input type="hidden" name="student_id" value="<?php echo $get_user_id ?>">
-			    <input type="hidden" name="question_id" value="<?php echo $g_c_fetch['question_id']?>">
-                
-                <input type="submit" value="Submit > Next question">
-			
-                </form>
-                
-  </div>
-                
+        </div>
 
-  
+
+
+
+    </div>
+
+
+
+    
+
+
 </div>
 
 
-<div class="col-33 right-col">
-      <h3 style="text-align:center">Questions</h3>
-  <div class="col-1">
-<?php
-      if($get_exam_result->num_rows > 0) {
-          $rowNum=1;
-          while($row = $get_exam_result->fetch_assoc()) {
-              echo '<div class="col-1 pointer">';
-              echo '<p>'.$rowNum.'. '.$row['question'].'</p>';
-              echo '</div>';
-              $rowNum++;
-          }
-          $get_exam_result->free();
-      }
-?>
-  </div>
-</div>
+<div class="footbar blur"></div>
+                          <script src="/js/footbar.js"></script>
 
 
 
-<div class="footer"></div>
-<script src="/js/footer.js"></script>
-
-<div class="footbar"></div>
-<script src="/js/footbar.js"></script>
-
+<!-- SCRIPTS -->
 <script>
-    var notifUserId=<?php echo $get_user_id ?>;
+                          $('#page-header').html('fxUniversity');
+$('#page-header').attr('href','/userpgs/fxuniversity');
 </script>
 
-<script src="/js/notif_msg.js"></script>
 
-
-
+<!-- fxUniversity sidebar active -->
+<script>
+$('.fxuniversity-sidebar').attr('id','sidebar-active');
+</script>
 
 </body>
 </html>

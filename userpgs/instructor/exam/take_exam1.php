@@ -50,422 +50,128 @@ if(isset($stucourse_fetch['exam_accepted'])) {
   require('../../../php/get_current_q.php');
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!DOCTYPE HTML>
-<html>
-<head><meta name="viewport" content="width=device-width"/>
-<title>Exam</title>
-<!-- STYLES & JQUERY 
-================================================== -->
-<link rel="stylesheet" type="text/css" href="/userpgs/css/style.css"/>
-<link rel="stylesheet" type="text/css" href="/css/icons.css"/>
-<link rel="stylesheet" type="text/css" href="/css/slider.css"/>
-<link rel="stylesheet" type="text/css" href="/css/skinblue.css"/><!-- Change skin color here -->
-<link rel="stylesheet" type="text/css" href="/css/dropdown.css"/>
-<link rel="stylesheet" type="text/css" href="/css/toptobottom.css"/>
-<link rel="stylesheet" type="text/css" href="/css/modal.css"/>
-<link rel="stylesheet" type="text/css" href="/css/responsive.css"/>
-<link rel="stylesheet" type="text/css" href="/css/lessons.css"/>
-<link rel="stylesheet" type="text/css" href="/css/buttons/exam.css"/>
-<link rel="stylesheet" type="text/css" href="/css/radio.css"/>
-      
-<link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
-<script src="/js/jquery-1.9.0.min.js"></script><!-- scripts at the bottom of the document -->
-</head>
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet"> 
+    <title>fxUnivers</title>
+    <link rel="stylesheet" href="/css/style.css">  
+
+    <link rel="stylesheet" href="/css/icons.css">
+    <link rel="stylesheet" href="/css/logo.css">
+    <link rel="stylesheet" href="/css/colors.css">
+    <script src="/js/jquery-3.4.1.min.js"></script>
+    </head>
+
 <body>
-<!-- UPPER BAR -->
-<section class="nav-bar">
-  <div class="nav-container">
-    <div class="brand">
-      <div class="logoimg toplogo"></div>
-    </div>
-    <nav>
-      <div class="nav-mobile"><a id="nav-toggle" href="#!"><span></span></a></div>
-      <ul class="nav-list">
-        <li>
-          <a href="/" id="ubHome"><img id="ubiHome" src="/images/upperbar/home_a.png" alt="Home"></a>
-        </li>
-        <li>
-          <a href="/search" id="ubSearch"><img id="ubiSearch" src="/images/upperbar/search_a.png" alt="Search"></a>
-        </li>
-	<li>
-          <a href="/userpgs/notif" id="notif_a"><img id="ubiNotif" src="/images/upperbar/notification_a.png" style="height: 19px; width: 15.77px;" alt="Notifs"></a>
-        </li>
-        <li>
-          <a href="/msg/inbox.php" id="msg_bar"><img id="ubiMsg" src="/images/upperbar/message_a.png" style="height: 15.77px; width: 19px;" alt="Messages"></a>
-	    <!--
-	    <ul class="nav-dropdown">
-            <li>
-              <a href="#">test1</a>
-            </li>
-            <li>
-              <a href="#">test2</a>
-            </li>
-            <li>
-              <a href="#">test3</a>
-            </li>
-          </ul>
-	  -->
-        </li>
-        <li>
-          <a href="/register/logout.php" id="ubLogout"><img id="ubiLogout" src="/images/upperbar/logout_a.png" style="height: 15.77px; width: 19px;" alt="Logout" ></a>
-        </li>
-      </ul>
-    </nav>
-  </div>
-</section>
 
-<div class="boxedtheme">
-<!-- TOP LOGO & MENU
-================================================== -->
-<div class="grid">
-        <div class="row space-bot">
-               
-        </div>
+                <div class="upperbar"></div>
+                <script src="/js/upperbar.js"></script>
+                
+<div class="col-33 left-col">
+
+        <div class="col-1">
+    <div class="main fxuniversity-color"></div>
+    <div class="icon col-icon fxuniversity-bg" onclick="location.href='/userpgs/fxuniversity';"></div>
+                <h3>Exam</h3>
+      </div>
 </div>
 
+<div class="col-33 mid-col">
 
-<!-- CONTENT
-================================================== -->
-<div class="grid">
-		<div class="shadowundertop">
-		</div>
-		<div class="row">
-
-
-
+  <div class="col-1">
+                <h3>Question</h3>
+<?php
+                echo '<p>'.$g_c_fetch['question'].'</p>'
+?>
+  </div>
 
 
+<div class="col-1">
+                <h3>Choices</h3>
 
-      
-<!--LEFT HALF-->
-      <div class="c3">
-
-        <h2 style="text-align:center"><?php echo $header.' Exam' ?></h2>
-
-        <h3>Question #<?php echo $g_c_fetch['question_id'] ?>:</h3>
-
-        <p><?php echo $g_c_fetch['question']?></p>
-        <hr class="hrtitle" style="border-color:#25252533">
-        <h3>Choices:</h3>
-        <form action="/php/submit_answer.php" method="POST">
-          <label class="radio-container"><p><strong style="margin-right: 5px">(A)</strong> <?php echo $g_c_fetch['option_a']?></p>
-  			    <input type="radio" name="radio" value="a">
+                <form action="/php/submit_answer.php" method="POST" style="text-align:left">
+      <label>
+                <div class="col-1 pointer" style="text-align:left">
+                <input type="radio" name="radio" style="float:left;margin-right:5px;margin-left:10px;" value="a"> <b>a</b>
+                <p><?php echo $g_c_fetch['option_a']?></p>
   			    <span class="checkmark"></span>
-			  </label>
-      <label class="radio-container"><p><strong style="margin-right: 5px">(B)</strong> <?php echo $g_c_fetch['option_b']?></p>
-  			    <input type="radio" name="radio" value="b">
+                </div>
+      </label>
+      <label>
+                <div class="col-1 pointer" style="text-align:left">
+                <input type="radio" name="radio" style="float:left;margin-right:5px;margin-left:10px;" value="b"> <b>b</b>
+                <p><?php echo $g_c_fetch['option_b']?></p>
   			    <span class="checkmark"></span>
-			  </label>
-      <label class="radio-container"><p><strong style="margin-right: 5px">(C)</strong> <?php echo $g_c_fetch['option_c']?></p>
-  			    <input type="radio" name="radio" value="c">
+                </div>
+      </label>
+      <label>
+                <div class="col-1 pointer" style="text-align:left">
+                <input type="radio" name="radio" style="float:left;margin-right:5px;margin-left:10px;" value="c"> <b>c</b>
+                <p><?php echo $g_c_fetch['option_c']?></p>
   			    <span class="checkmark"></span>
-			  </label>
-      <label class="radio-container"><p><strong style="margin-right: 5px">(D)</strong> <?php echo $g_c_fetch['option_d']?></p>
-  			    <input type="radio" name="radio" value="d">
+                </div>
+      </label>
+      <label>
+                <div class="col-1 pointer" style="text-align:left">
+                <input type="radio" name="radio" style="float:left;margin-right:5px;margin-left:10px;" value="d"> <b>d</b>
+                <p><?php echo $g_c_fetch['option_d']?></p>
   			    <span class="checkmark"></span>
-			  </label>
-			  
+			  </div>
+      </label>
 			    <input type="hidden" name="course_id" value="<?php echo $course_id ?>">
 			    <input type="hidden" name="q_id" value="<?php echo $q_id ?>">
 			    <input type="hidden" name="student_id" value="<?php echo $get_user_id ?>">
 			    <input type="hidden" name="question_id" value="<?php echo $g_c_fetch['question_id']?>">
-      <button type="submit" class="btn">Submit: Next Question</button>
+                
+                <input type="submit" value="Submit > Next question">
 			
-						
-		  	</form>
-<hr class="hrtitle" style="border-color:#25252533">
-      
-      </div>
-<!--EO LEFT HALF-->
+                </form>
+                
+  </div>
+                
 
-
-
-
-
-
-
-
-
-      
-
-<!--RIGHT HALF-->
-      <div class="c3">
-                                                    <h3 style="text-align:center">List of Questions</h3> 
-
-<div class="list-type1">
-		  	  <ol>
-			    <?php if($get_exam_result->num_rows > 0) { ?>
-			      <li><a <?php if($q_id==$get_exam_fetch['id']) echo 'style="background-color:#008bc6;color:white;';?> href="/userpgs/instructor/exam/edit_exam.php?q_id=<?php echo $get_exam_fetch['id'].'&course_id='.$get_exam_fetch['course_id'] ?>"><strong><?php echo 'Question #'.$get_exam_fetch['question_id'] ?></strong><br><?php echo $get_exam_fetch['question'] ?></a></li>
-			    <?php
-			      while($row = $get_exam_result->fetch_assoc()) {
-			    ?>
-			    <li><a <?php if($q_id==$row['id']) echo 'style="background-color:#008bc6;color:white;';?> href="/userpgs/instructor/exam/edit_exam.php?q_id=<?php echo $row['id'].'&course_id='.$row['course_id'] ?>"><strong><?php echo 'Question #'.$row['question_id'] ?></strong><br><?php echo $row['question'] ?></a></li>
-			    <?php } ?>
-			    <?php } ?>
-			    
-		  	  </ol>
-			</div>
-                                                    
-      </div></div>
-<!--EO RIGHT HALF-->
-      
-
-
+  
 </div>
 
 
-<!-- FOOTER
-================================================== -->
-<div id="wrapfooter">
-        <div class="grid">
-                <div class="row" id="footer">
-                        <!-- to top button  -->
-                        <!--<p class="back-top floatright">
-                                <a href="#top"><span></span></a>
-                        </p>-->
-                        <!-- 1st column -->
-			<div class="c4">
-                          <div class="logoimgbig biglogo" style="margin-left: 0"></div>
-                        </div>
-                        <!-- 2nd column -->
-                        <div class="c4">
-                                <h2 class="title">Contact</h2>
-                                <hr class="footerstress">
-                                <dl>
-                                        <dt>New Horizon Building, Ground Floor,
-                                                <br />3 1/2 Miles Philip S.W. Goldson Highway,
-                                                <br />Belize City, Belize,
-                                                <br />Central America</dt>
-                                        <dd>E-mail: <a href="#">contact@fxunivers.com</a></dd>
-                                </dl>
-                                <ul class="social-links" style="margin-top:15px;">
-                                        <li class="facebook-link smallrightmargin">
-                                        <a href="https://www.facebook.com/fxunivers" class="facebook has-tip" target="_blank" title="Join us on Facebook">Facebook</a>
-                                        </li>
-                                        <li class="linkedin-link smallrightmargin">
-                                        <a href="https://www.linkedin.com/company/fxunivers/" class="linkedin has-tip" title="Linkedin" target="_blank">Linkedin</a>
-                                        </li>
-                                        <li class="twitter-link smallrightmargin">
-                                        <a href="https://twitter.com/fxunivers" class="twitter has-tip" target="_blank" title="Follow Us on Twitter">Twitter</a>
-                                        </li>
-                                </ul>
-                        </div>
-                        <!-- 3rd column -->
-                        <div class="c4">
-                                <h2 class="title">Policy</h2>
-                                <hr class="footerstress">
-                                <a href="/policy">Policy and Agreements</a>
-                        </div>
-                </div>
-        </div>
-</div>
-
-<!-- copyright area -->
-<div class="copyright">
-        <div class="grid">
-		<div class="row">
-                        <div class="c6">
-                                With all due Reserves,
-                        </div>
-                </div>
-                <div class="row">
-                        <div class="c6">
-                                 fxUnivers &copy; 2017-2020. All Rights Reserved.
-                        </div>
-                        <div class="c6">
-                                <span class="right">
-                                <!-- by Milad, milad@fxunivers.com --> </span>
-                        </div>
-                </div>
-        </div>
-</div>
-
-
-<!-- JAVASCRIPTS
-================================================== -->
-<!-- all -->
-<script src="/js/modernizr-latest.js"></script>
-
-<script src="/js/modal.js"></script>
-
-<!-- menu & scroll to top -->
-<script src="/js/common.js"></script>
-
-<!-- slider -->
-<script src="js/jquery.cslider.js"></script>
-
-<!-- twitter -->
-<script src="/js/jquery.tweet.js"></script>
-
-<!-- cycle -->
-<script src="/js/jquery.cycle.js"></script>
-
-<!-- flexslider -->
-<script src="/js/jquery.flexslider-min.js"></script>
-
-<!-- CALL flexslder -->
-<script>
-// Can also be used with $(document).ready()
-$(window).load(function() {
-$('.flexslider').flexslider({
-animation: "slide"
-});
-});
-</script>
-
-<!-- Call Showcase - min:4 and max:4 is the range of the items i want 2b visible -->
-<script type="text/javascript">
-$(window).load(function(){			
-			$('#recent-projects').carouFredSel({
-				responsive: true,
-				width: '100%',
-				auto: true,
-				circular	: true,
-				infinite	: false,
-				prev : {
-					button		: "#car_prev",
-					key			: "left",
-						},
-				next : {
-					button		: "#car_next",
-					key			: "right",
-							},
-				swipe: {
-					onMouse: true,
-					onTouch: true
-					},
-				scroll : 2000,
-				items: {
-					visible: {
-						min: 4,
-						max: 4
-					}
-				}
-			});
-		});	
-</script>
-
-
-<!-- Not purchased script -->
-<script>
-function notPurchased() {
-  alert("You need to purchase the course first in order to access the classes!");
-}
-</script>
-
-<script>
-function examNotPurchased() {
-  alert("You need to purchase the course before being able to take the exam!");
-}
-</script>
-
-<!-- BUTTONS -->
-<script>
-$(document).ready(function() {
-    $('#homeBtn').hover(function() {
-        var imgUrl='/images/logos/fxlogo_a.png';
-        $('#homeSpan').css("background-image", "url(" + imgUrl + ")");
-    }, function() {
-        var imgUrl0='/images/logos/fxlogo_b.png';
-        $('#homeSpan').css("background-image", "url(" + imgUrl0 + ")");
-    });
-});
-</script>
-
-<script>
-$(document).ready(function() {
-    $('#notif_a').hover(function() {
-        var imgUrl='/images/upperbar/notification_b.png';
-        $('#ubiNotif').attr("src", imgUrl);
-    }, function() {
-        var imgUrl0='/images/upperbar/notification_a.png';
-        $('#ubiNotif').attr("src",imgUrl0);
-    });
-});
-</script>
-
-<script>
-$(document).ready(function() {
-    $('#ubHome').hover(function() {
-        var imgUrl='/images/upperbar/home_b.png';
-        $('#ubiHome').attr("src", imgUrl);
-    }, function() {
-        var imgUrl0='/images/upperbar/home_a.png';
-        $('#ubiHome').attr("src",imgUrl0);
-    });
-});
-</script>
-
-<script>
-$(document).ready(function() {
-    $('#msg_bar').hover(function() {
-        var imgUrl='/images/upperbar/message_b.png';
-        $('#ubiMsg').attr("src", imgUrl);
-    }, function() {
-        var imgUrl0='/images/upperbar/message_a.png';
-        $('#ubiMsg').attr("src",imgUrl0);
-    });
-});
-</script>
-
-<script>
-$(document).ready(function() {
-    $('#ubSearch').hover(function() {
-        var imgUrl='/images/upperbar/search_b.png';
-        $('#ubiSearch').attr("src", imgUrl);
-    }, function() {
-        var imgUrl0='/images/upperbar/search_a.png';
-        $('#ubiSearch').attr("src",imgUrl0);
-    });
-});
-</script>
-
-<script>
-$(document).ready(function() {
-    $('#ubLogout').hover(function() {
-        var imgUrl='/images/upperbar/logout_b.png';
-        $('#ubiLogout').attr("src", imgUrl);
-    }, function() {
-        var imgUrl0='/images/upperbar/logout_a.png';
-        $('#ubiLogout').attr("src",imgUrl0);
-    });
-});
-</script>
-
-<!-- NOTIFS -->
-<script>
-$(document).ready(function() {
-  var notifUserId=<?php echo $get_user_id ?>;
-  setInterval(function() {
-    $.ajax({
-      type: 'POST',
-      url: '/php/notif_icon.php',
-      data: {notif_userId: notifUserId},
-      success: function(response) {
-            //var json=$.parseJSON(response);
-            //alert(json.last_notif);
-            //alert(response);
-            if(response==='1') {
-                //alert('its 1');
-                $('#notif_a').css('background-color', '#3282b8');
-            }
-
-            $.ajax({
-              type: 'POST',
-              url: '/php/msg_icon.php',
-              data: {msg_userId: notifUserId},
-              success: function(result) {
-                    if(result>0) {
-                        $('#msg_bar').css('background-color', '#3282b8');
-                    }
-              }
-            });
+<div class="col-33 right-col">
+      <h3 style="text-align:center">Questions</h3>
+  <div class="col-1">
+<?php
+      if($get_exam_result->num_rows > 0) {
+          $rowNum=1;
+          while($row = $get_exam_result->fetch_assoc()) {
+              echo '<div class="col-1 pointer">';
+              echo '<p>'.$rowNum.'. '.$row['question'].'</p>';
+              echo '</div>';
+              $rowNum++;
+          }
+          $get_exam_result->free();
       }
-    });
-  }, 2000);
-});
+?>
+  </div>
+</div>
+
+
+
+<div class="footer"></div>
+<script src="/js/footer.js"></script>
+
+<div class="footbar"></div>
+<script src="/js/footbar.js"></script>
+
+<script>
+    var notifUserId=<?php echo $get_user_id ?>;
 </script>
-<!-- EO NOTIFS -->
+
+<script src="/js/notif_msg.js"></script>
+
+
+
+
 </body>
 </html>
