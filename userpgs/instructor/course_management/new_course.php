@@ -81,13 +81,13 @@ require('../../../wallet/php/get_fxcoin_count.php');
 			      <h2 id="titleId">Add Course</h2>
 
 			      <form method="POST" action="new_post.php" autocomplete="off">
-
+<?php if($get_user_verified) { ?>
 			      <p>Make this course biddable:</p>
 				<label class="switch">
   				<input type="checkbox" name="biddable" id="checkedId">
  				 <span class="slider round"></span>
 				 </label>
-
+<?php } ?>
 
 				<input type="text" class="txt-input" name="header" placeholder="Course title" required>
 				<textarea name="description" rows="10" placeholder="Description" required></textarea>

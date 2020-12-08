@@ -134,7 +134,49 @@ require('../../wallet/php/get_fxcoin_count.php');
 				      '.$coursecounts.' <span>students</span>
 				    </div>';
 				    
-			   if($gsc_fetch['cost']>0) {	  
+
+if($gsc_fetch['biddable']) {
+			     require_once('../../wallet/php/wallet_connect.php');
+			     $locked_q = 'SELECT * FROM locked WHERE course_id='.$gsc_fetch['id'];
+			     $locked_r = mysqli_query($wallet_connection,$locked_q);
+			     $locked_count = mysqli_num_rows($locked_r);
+			     
+			     
+
+			     if($locked_count>0) {
+			       $locked=mysqli_fetch_array($locked_r);
+			       if($locked['finalized']) {
+			         echo '<div class="little-box gold-bg">
+				      <span>Sold</span> '.$locked['raw_amount'].' <span>fxStars</span>
+				    </div>';
+		               } else {
+			         echo '<div class="little-box chocolate-bg">
+				      <span>High </span> '.$locked['raw_amount'].' <span>fxStars</span>
+				    </div>';
+		               }
+			     } else {
+			       echo '<div class="little-box chocolate-bg">
+				      <span>Base </span> '.$gsc_fetch['cost'].' <span>fxStars</span>
+				    </div>';
+		             }
+		           } else {
+
+			      if($gsc_fetch['cost']>0) {	  
+				    echo '<div class="little-box gold-bg">
+				      '.$gsc_fetch['cost'].' <span>fxStars</span>
+				    </div>';
+			      } else {
+			      	   echo '<div class="little-box green-bg" style="padding: 4px 20px;">
+				      Free
+				    </div>';
+			      }
+
+			   }
+
+
+
+
+/*if($gsc_fetch['cost']>0) {	  
 				    echo '<div class="little-box gold-bg">
 				      '.$gsc_fetch['cost'].' <span>fxStars</span>
 				    </div>';
@@ -142,7 +184,7 @@ require('../../wallet/php/get_fxcoin_count.php');
 			      	   echo '<div class="little-box green-bg" style="padding: 4px 20px;">
 				      Free
 				    </div>';
-			    }
+			    }*/
 
 			    echo '<div class="little-box gray-bg"><span>'.date("M jS, Y", strtotime($gsc_fetch['start_date'])).'</span></div>';
 

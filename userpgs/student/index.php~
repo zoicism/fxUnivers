@@ -85,7 +85,7 @@ require('../../wallet/php/get_fxcoin_count.php');
 		<div class="add-box">
 
 		 
-		   Search Courses <img src="/images/background/magnifier.svg" onclick="location.href='/userpgs/instructor/course_management/new_course.php';">
+		   Search Courses <img src="/images/background/magnifier.svg" onclick="location.href='/search?type=course';">
 
 		</div>
 

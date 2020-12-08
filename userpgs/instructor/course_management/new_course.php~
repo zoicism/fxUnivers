@@ -29,7 +29,7 @@ require('../../../wallet/php/get_fxcoin_count.php');
 <!DOCTYPE html>
 <html>
 <head>
-	<title>fxStar</title>
+	<title>fxUniversity</title>
     <meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/styles.css">
@@ -78,12 +78,23 @@ require('../../../wallet/php/get_fxcoin_count.php');
 
   <div class="relative-main-content">
                             <div class="content-box">
-			      <h2>Add Course</h2>
+			      <h2 id="titleId">Add Course</h2>
 
 			      <form method="POST" action="new_post.php" autocomplete="off">
+
+			      <p>Make this course biddable:</p>
+				<label class="switch">
+  				<input type="checkbox" name="biddable" id="checkedId">
+ 				 <span class="slider round"></span>
+				 </label>
+
+
 				<input type="text" class="txt-input" name="header" placeholder="Course title" required>
 				<textarea name="description" rows="10" placeholder="Description" required></textarea>
 				<input type="number" class="num-input" name="course_fxstar" placeholder="Cost (fxStars)" id="costIn" min="0" required>
+
+				
+
 				<input type="submit" class="submit-btn" value="Publish">
 				
 			      </form>
@@ -124,6 +135,20 @@ $('#page-header').attr('href','/userpgs/fxuniversity');
 <script>
 $('.fxuniversity-sidebar').attr('id','sidebar-active');
 </script>
+
+
+<script>
+$('#checkedId').click(function() {
+  if($('#checkedId').is(':checked')) {
+    $('#costIn').attr('placeholder', 'Reserve (fxStars)');
+    $('#titleId').text('Add Biddable Course');
+  } else {
+    $('#costIn').attr('placeholder', 'Cost (fxStars)');
+    $('#titleId').text('Add Course');
+  }
+});
+</script>
+
 
 </body>
 </html>

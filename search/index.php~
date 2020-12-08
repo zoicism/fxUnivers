@@ -105,6 +105,9 @@ require('../wallet/php/get_fxcoin_count.php');
 
 <form method="GET" action="/search">
       <input type="text" name="q" autofocus class="txt-input" placeholder="Search fxUnivers" required>
+      <?php if(isset($_GET['type']) && !empty($_GET['type']))
+      echo '<input type="hidden" name="type" value="'.$_GET['type'].'">';
+      ?>
       <input type="submit" value="Search" class="submit-btn">
       
 </form>

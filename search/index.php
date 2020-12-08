@@ -19,13 +19,13 @@ if(isset($_GET['q'])) {
 }
 
 
-	      $course_q = 'SELECT * FROM teacher WHERE (header LIKE "%'.$kw.'%") OR (description LIKE "%'.$kw.'%")';
+	      $course_q = 'SELECT * FROM teacher WHERE (header LIKE "%'.$kw.'%") OR (description LIKE "%'.$kw.'%") ORDER BY id DESC';
     	      $course_result = mysqli_query($connection, $course_q);
     	      $course_count = mysqli_num_rows($course_result);
 
 
 
-  	  $user_q = "SELECT id,username,fname,lname FROM user WHERE (username LIKE '%$kw%') OR (fname LIKE '%$kw%') OR (lname LIKE '%$kw%')";
+  	  $user_q = "SELECT id,username,fname,lname FROM user WHERE (username LIKE '%$kw%') OR (fname LIKE '%$kw%') OR (lname LIKE '%$kw%') ORDER BY id DESC";
 	  $user_r = mysqli_query($connection,$user_q) or die(mysqli_error($connection));
 	  $user_count = mysqli_num_rows($user_r);
 
@@ -104,7 +104,7 @@ require('../wallet/php/get_fxcoin_count.php');
     
 
 <form method="GET" action="/search">
-      <input type="text" name="q" autofocus class="txt-input" placeholder="Search fxUnivers" required>
+      <input type="text" name="q" autofocus class="txt-input" placeholder="Search fxUnivers" <?php if(isset($_GET['q']) && !empty($_GET['q'])) echo 'value="'.$_GET['q'].'"';?> required>
       <?php if(isset($_GET['type']) && !empty($_GET['type']))
       echo '<input type="hidden" name="type" value="'.$_GET['type'].'">';
       ?>
@@ -153,7 +153,7 @@ if($type=='course') {
 				      '.$coursecounts.' <span>students</span>
 				    </div>';
 				    
-			   if($row3['cost']>0) {	  
+			   /*if($row3['cost']>0) {	  
 				    echo '<div class="little-box gold-bg">
 				      '.$row3['cost'].' <span>fxStars</span>
 				    </div>';
@@ -161,7 +161,50 @@ if($type=='course') {
 			      	   echo '<div class="little-box green-bg" style="padding: 4px 20px;">
 				      Free
 				    </div>';
-			    }
+			    }*/
+
+
+
+			    if($row3['biddable']) {
+			     require_once('../wallet/php/wallet_connect.php');
+			     $locked_q = 'SELECT * FROM locked WHERE course_id='.$row3['id'];
+			     $locked_r = mysqli_query($wallet_connection,$locked_q);
+			     $locked_count = mysqli_num_rows($locked_r);
+			     
+			     
+
+			     if($locked_count>0) {
+			       $locked=mysqli_fetch_array($locked_r);
+			       if($locked['finalized']) {
+			         echo '<div class="little-box gold-bg">
+				      <span>Sold</span> '.$locked['raw_amount'].' <span>fxStars</span>
+				    </div>';
+		               } else {
+			         echo '<div class="little-box chocolate-bg">
+				      <span>High </span> '.$locked['raw_amount'].' <span>fxStars</span>
+				    </div>';
+		               }
+			     } else {
+			       echo '<div class="little-box chocolate-bg">
+				      <span>Base </span> '.$row3['cost'].' <span>fxStars</span>
+				    </div>';
+		             }
+		           } else {
+
+			      if($row3['cost']>0) {	  
+				    echo '<div class="little-box gold-bg">
+				      '.$row3['cost'].' <span>fxStars</span>
+				    </div>';
+			      } else {
+			      	   echo '<div class="little-box green-bg" style="padding: 4px 20px;">
+				      Free
+				    </div>';
+			      }
+
+			   }
+
+
+
 
 			    echo '<div class="little-box gray-bg"><span>'.date("M jS, Y", strtotime($row3['start_date'])).'</span></div>';
 

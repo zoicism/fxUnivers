@@ -9,5 +9,6 @@ $get_user_fname = $get_user_fetch['fname'];
 $get_user_lname = $get_user_fetch['lname'];
 $get_user_phone = $get_user_fetch['phone'];
 $get_user_bio = $get_user_fetch['bio'];
+$get_user_verified = $get_user_fetch['verified'];
 
 ?>

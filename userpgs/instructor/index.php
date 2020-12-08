@@ -122,16 +122,45 @@ require('../../wallet/php/get_fxcoin_count.php');
 				    <div class="little-box blue-bg">
 				      '.$coursecounts.' <span>students</span>
 				    </div>';
-				    
-			   if($row3['cost']>0) {	  
+
+
+		           if($row3['biddable']) {
+			     require_once('../../wallet/php/wallet_connect.php');
+			     $locked_q = 'SELECT * FROM locked WHERE course_id='.$row3['id'];
+			     $locked_r = mysqli_query($wallet_connection,$locked_q);
+			     $locked_count = mysqli_num_rows($locked_r);
+			     
+			     
+
+			     if($locked_count>0) {
+			       $locked=mysqli_fetch_array($locked_r);
+			       if($locked['finalized']) {
+			         echo '<div class="little-box gold-bg">
+				      <span>Sold</span> '.$locked['raw_amount'].' <span>fxStars</span>
+				    </div>';
+		               } else {
+			         echo '<div class="little-box chocolate-bg">
+				      <span>High </span> '.$locked['raw_amount'].' <span>fxStars</span>
+				    </div>';
+		               }
+			     } else {
+			       echo '<div class="little-box chocolate-bg">
+				      <span>Base </span> '.$row3['cost'].' <span>fxStars</span>
+				    </div>';
+		             }
+		           } else {
+
+			      if($row3['cost']>0) {	  
 				    echo '<div class="little-box gold-bg">
 				      '.$row3['cost'].' <span>fxStars</span>
 				    </div>';
-			    } else {
+			      } else {
 			      	   echo '<div class="little-box green-bg" style="padding: 4px 20px;">
 				      Free
 				    </div>';
-			    }
+			      }
+
+			   }
 
 			    echo '<div class="little-box gray-bg"><span>'.date("M jS, Y", strtotime($row3['start_date'])).'</span></div>';
 
