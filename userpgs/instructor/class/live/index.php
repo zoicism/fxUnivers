@@ -262,6 +262,15 @@ require('../php/notify_students.php');
 	<div class="right-content">
 	  <?php
                 require('../../../../php/limit_str.php');
+		?>
+
+<form id="wbForm" target="_blank" action="/userpgs/instructor/class/live/whiteboard/#<?php echo $class_id ?>" method="POST" style="display:none">
+          <input type="hidden" name="courseId" value="<?php echo $course_id ?>">
+          <input type="hidden" name="classId" value="<?php echo $class_id ?>">
+          <input type="submit" value="Open whiteboard">
+         </form>
+
+<?php
 
 if($user_type=='instructor') {
 
@@ -272,24 +281,23 @@ if($user_type=='instructor') {
 			     echo '<div class="add-box">Live Whiteboard <img src="/images/background/whiteboard.svg" id="wbImg"></div>';
 
 
-
-?>
-
-<form id="wbForm" target="_blank" action="/userpgs/instructor/class/live/whiteboard/#<?php echo $class_id ?>" method="POST" style="display:none">
-          <input type="hidden" name="courseId" value="<?php echo $course_id ?>">
-          <input type="hidden" name="classId" value="<?php echo $class_id ?>">
-          <input type="submit" value="Open whiteboard">
-         </form>
-
-
-<?php
-
 			     
 
 			     echo '</div>';
 } else {
 echo '<!-- list of all available broadcasting rooms -->
           <table style="display:none" id="rooms-list"></table>';
+
+			     echo '<div class="options">';
+
+			     
+
+			     echo '<div class="add-box">Live Whiteboard <img src="/images/background/whiteboard.svg" id="wbImg"></div>';
+
+
+			     
+
+			     echo '</div>';
 }
 
 echo '<div class="sessions">';

@@ -1,3 +1,24 @@
+<?php
+
+session_start();
+require('../../../../../register/connect.php');
+if(isset($_SESSION['username'])) {
+    $username=$_SESSION['username'];
+} else {
+    header('Location: /');
+}
+
+require('../../../../../php/get_user.php');
+
+if(isset($_POST['courseId'])) {
+    $course_id=$_POST['courseId'];
+    $class_id=$_POST['classId'];
+    require('../../../../../php/get_course.php');
+    require('../../../../../php/get_user_type.php');
+}
+
+
+?>
 <!DOCTYPE html>
 <html itemscope itemtype="http://schema.org/WebPage">
 <head>
@@ -6,7 +27,7 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0, user-scalable=no">
 
 	<title>Whiteboard</title>
-	<meta name="description" content="HTML5 Canvas Designer ® Muaz Khan – A tool aimed to give you a full-fledged drawing surface and also auto generate appropriate code for you in different formats! Generator/Tool/Editor – 2D API/Context">
+    
 
 	<meta name="author" content="neo">
 </head>
@@ -14,6 +35,12 @@
 <script src="canvas-designer-widget.js"></script>
 
 <style>
+<?php if($user_type!='instructor') {
+    echo 'body {
+        pointer-events: none;
+    }';
+}
+    ?>
 * {
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -176,7 +203,6 @@ div#comments-popup {
 <div id="widget-container" style="position: fixed;bottom: 0;right: 20%;left: 20%;height: 100%;border: 1px solid black; border-top:0; border-bottom: 0;"></div>
 
 <div id="fade" class="black_overlay"></div>
-
 <div id="action-controls" style="width: 19%; padding: 1%;position: absolute;left:0;">
     <video controls autoplay playsinline style="width: 105%;margin-left: -15px;margin-top: -23px; display: none;"></video>
 
@@ -245,11 +271,11 @@ div#comments-popup {
 
     <hr>
     <div>
-        Number of users connected with you: <b id="number-of-connected-users">0</b>
+        Online users: <b id="number-of-connected-users">0</b>
 
         <br><br>
 
-        <div id="hide-on-datachannel-opened">
+        <div id="hide-on-datachannel-opened" style="display:none">
             You can open a private WebRTC room to sync dashboard with private users.
 
             <br><br>
@@ -258,7 +284,7 @@ div#comments-popup {
             <button id="open-room">Open</button>
         </div>
     </div>
-
+<?php if($user_type=='instructor') { ?>
     <hr>
     <h2>Shortcut Keys</h2>
     ctrl+t (to display text-fonts box)<br>
@@ -267,6 +293,7 @@ div#comments-popup {
     ctrl+c (copy last-selected shape)<br>
     ctrl+v (paste last-copied shape)<br><br>
     ctrl+mousedown (to copy/paste all shapes)
+<?php } ?>
 </div>
 
 <div class="extra-controls">
@@ -335,9 +362,9 @@ if (localStorage.getItem('canvas-designer-roomid')) {
     document.getElementById('room-id').value = localStorage.getItem('canvas-designer-roomid');
 }
 
-document.getElementById('open-room').onclick = function() {
-    var roomid = document.getElementById('room-id').value;
-    if (!roomid.length) return alert('Please enter roomid.');
+window.onload = function() {
+    var roomid = '<?php echo $class_id ?>';//document.getElementById('room-id').value;
+    //if (!roomid.length) return alert('Please enter roomid.');
 
     this.disabled = true;
 
@@ -373,7 +400,7 @@ designer.setTools({
     quadratic: true,
     bezier: true,
     marker: true,
-    zoom: false,
+    zoom: true,
     lineWidth: true,
     colorsPicker: true,
     extraOptions: true,

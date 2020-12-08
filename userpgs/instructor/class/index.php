@@ -209,7 +209,6 @@ if($user_type=='instructor') {
 } else {
 echo '<div class="options">';
 echo '<div class="add-box" id="live-add-box">Open Live Classroom</div>';
-echo '<div class="add-box">Files('.$gcf_count.') <img src="/images/background/files.svg" ></div>';
 echo '</div>';
 
 echo '<form action="/userpgs/instructor/class/live/#'.$class_id.'" method="POST" id="LiveForm"><input type="hidden" name="course_id" value="'.$course_id.'"><input type="hidden" name="class_id" value="'.$class_id.'"></form>';
