@@ -145,7 +145,11 @@ require('../../../php/get_tar_id.php');
 		  echo '</div>';
 		  echo '<div class="pub-name">';
 		  echo '<p class="fullname">'.$tar_user_fetch['fname'].' '.$tar_user_fetch['lname'].'</p>';
-		  echo '<p>@'.$tar_user_fetch['username'].'</p>';
+		  if($tar_user_fetch['verified']) {
+		    echo '<p>@'.$tar_user_fetch['username'].' <img src="/images/background/verified.png" style="width:1rem; height:1rem;"></p>';
+		  } else {
+		    echo '<p>@'.$tar_user_fetch['username'].'</p>';
+		  }
 		  echo '</div>';
 	     echo '</div>';
 	     echo '<h2>'.$header.'</h2>';
@@ -212,14 +216,21 @@ if($user_type=='instructor') {
       require_once('../../../wallet/php/wallet_connect.php');
       
       $bidding_q="SELECT * FROM locked WHERE course_id=$course_id";
-      $bidding_r=mysqli_query($wallet_connection,$bidding_q);
-      $bidding=mysqli_fetch_array($bidding_r);
+      $bidding_r=mysqli_query($wallet_connection,$bidding_q) or die(mysqli_error($wallet_connection))
+;
 
-      $sold2user_q = "SELECT * FROM user WHERE id=".$bidding['from_id'];
-      $sold2user_r=mysqli_query($connection,$sold2user_q);
-      $sold2user=mysqli_fetch_array($sold2user_r);
+      $bidding_finalized=0;
+      if($bidding_r->num_rows > 0) {
+	$bidding=mysqli_fetch_array($bidding_r);
+	if($bidding['finalized']) $bidding_finalized=1;
 
-      if($bidding['finalized']) {
+	$sold2user_q = 'SELECT * FROM user WHERE id='.$bidding['from_id'];
+	$sold2user_r=mysqli_query($connection,$sold2user_q) or die(mysqli_error($connection));
+	if($sold2user_r) $sold2user=mysqli_fetch_array($sold2user_r);
+      }
+
+
+      if($bidding_finalized) {
         echo '<div class="add-box">
 	  <p>Sold to <a href="/user/'.$sold2user['username'].'">@'.$sold2user['username'].'</a> for '.$bidding['raw_amount'].' fxStars</p>
 	  </div>';
@@ -234,7 +245,7 @@ if($user_type=='instructor') {
 
 
 
-			     echo '<div class="add-box">Manage Course <img src="/images/background/settings.png" onclick="location.href=\'/userpgs/instructor/course_management/edit_course.php?course_id='.$course_id.'\';"></div>';
+			     echo '<div class="add-box">Manage Course <img src="/images/background/manage.svg" onclick="location.href=\'/userpgs/instructor/course_management/edit_course.php?course_id='.$course_id.'\';"></div>';
 
 			     echo '<div class="add-box">Add Session <img src="/images/background/add.svg" onclick="location.href=\'/userpgs/instructor/class/new_class.php?course_id='.$course_id.'\';"></div>';
 
@@ -259,13 +270,20 @@ echo '</div>';
       
       $bidding_q="SELECT * FROM locked WHERE course_id=$course_id";
       $bidding_r=mysqli_query($wallet_connection,$bidding_q);
-      $bidding=mysqli_fetch_array($bidding_r);
 
-      $sold2user_q = "SELECT * FROM user WHERE id=".$bidding['from_id'];
-      $sold2user_r=mysqli_query($connection,$sold2user_q);
-      $sold2user=mysqli_fetch_array($sold2user_r);
+      
+      
+      $bidding_finalized=0;
+      if($bidding_r->num_rows > 0) {
+	$bidding=mysqli_fetch_array($bidding_r);
+	if($bidding['finalized']) $bidding_finalized=1;
 
-      if($bidding['finalized']) {
+	$sold2user_q = 'SELECT * FROM user WHERE id='.$bidding['from_id'];
+	$sold2user_r=mysqli_query($connection,$sold2user_q) or die(mysqli_error($connection));
+	if($sold2user_r) $sold2user=mysqli_fetch_array($sold2user_r);
+      }
+
+      if($bidding_finalized) {
         echo '<div class="add-box">
 	  <p>Sold to <a href="/user/'.$sold2user['username'].'">@'.$sold2user['username'].'</a> for '.$bidding['raw_amount'].' fxStars</p>
 	  </div>';

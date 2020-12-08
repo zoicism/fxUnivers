@@ -195,7 +195,7 @@ if($user_type=='instructor') {
 			     echo '<div class="add-box" id="live-add-box">Open Live Classroom</div>';
 
 
-			     echo '<div class="add-box">Manage Session <img src="/images/background/settings.png" onclick="location.href=\'/userpgs/instructor/class/edit_class.php?course_id='.$course_id.'&class_id='.$class_id.'\';"></div>';
+			     echo '<div class="add-box">Manage Session <img src="/images/background/manage.svg" onclick="location.href=\'/userpgs/instructor/class/edit_class.php?course_id='.$course_id.'&class_id='.$class_id.'\';"></div>';
 
 			     
 			     echo '<form action="/userpgs/instructor/class/live/#'.$class_id.'" method="POST" id="LiveForm"><input type="hidden" name="course_id" value="'.$course_id.'"><input type="hidden" name="class_id" value="'.$class_id.'"></form>';

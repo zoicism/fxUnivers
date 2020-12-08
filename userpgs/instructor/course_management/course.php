@@ -245,18 +245,18 @@ if($user_type=='instructor') {
 
 
 
-			     echo '<div class="add-box">Manage Course <img src="/images/background/settings.png" onclick="location.href=\'/userpgs/instructor/course_management/edit_course.php?course_id='.$course_id.'\';"></div>';
+			     echo '<div class="add-box">Manage Course <img src="/images/background/manage.svg" onclick="location.href=\'/userpgs/instructor/course_management/edit_course.php?course_id='.$course_id.'\';"></div>';
 
 			     echo '<div class="add-box">Add Session <img src="/images/background/add.svg" onclick="location.href=\'/userpgs/instructor/class/new_class.php?course_id='.$course_id.'\';"></div>';
 
 			     
-			     echo '<div class="add-box">Manage Test <img src="/images/background/checkbox.svg" id="manageTestId"></div>';
+			     echo '<div class="add-box">Manage Test <img src="/images/background/exam.svg" id="manageTestId"></div>';
 			     
 
 			     echo '</div>';
 } elseif($user_type=='student') {
 echo '<div class="options">';
-echo '<div class="add-box">Take the Test <img src="/images/background/checkbox.svg" id="examId"></div>';
+echo '<div class="add-box">Take the Test <img src="/images/background/exam.svg" id="examId"></div>';
 echo '<form action="/userpgs/instructor/exam/take_exam.php" id="goToExam" method="POST" style="display:none"><input type="hidden" name="course_id" value="'.$course_id.'"></form>';
 echo '</div>';
 } else {

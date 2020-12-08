@@ -22,7 +22,7 @@ $fname = $user_fetch['fname'];
 $lname = $user_fetch['lname'];
 $id = $user_fetch['id'];
 //$bio = $user_fetch['bio'];
-
+$verified = $user_fetch['verified'];
 // add new post to the timeline
 if(isset($_POST['new_post'])) {
         $raw_newpost = nl2br($_POST['new_post']);
@@ -90,7 +90,7 @@ require('../php/get_stu_stucourse.php');
                     }*/
                 ?>
 		<a class="link avatar" href="/user?tar=<?php echo $username?>"></a>
-                                <a class="id" href="/user?tar=<?php echo $username?>"><?php echo '@'.$username?></a>
+  <a class="id" href="/user?tar=<?php echo $username?>"><?php echo '@'.$username?> <?php if($verified) echo '<img src="/images/background/verified.png" style="height:1.5rem; width:1.5rem">'; ?></a>
                         </li>
                 </ul>
         </section>
