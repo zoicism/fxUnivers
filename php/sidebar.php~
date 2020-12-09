@@ -29,9 +29,9 @@ echo <<<EOL
 		<div class="elements">
 		    <a href="/wallet" class="sidebar-icon fxstar-sidebar">fxStar</a>
 		    <a href="/userpgs/fxuniversity" class="sidebar-icon fxuniversity-sidebar">fxUniversity</a>
-		    <a href="#" class="sidebar-icon fxpartner-sidebar">fxPartner</a>
-		    <a href="#" class="sidebar-icon fxuniverse-sidebar">fxUniverse</a>
-		    <a href="#" class="sidebar-icon fxsonet-sidebar">fxSonet</a>
+		    <a href="/userpgs/partner" class="sidebar-icon fxpartner-sidebar">fxPartner</a>
+		    <a onclick="coming()" class="sidebar-icon fxuniverse-sidebar">fxUniverse</a>
+		    <a onclick="coming()" class="sidebar-icon fxsonet-sidebar">fxSonet</a>
 		    
 	    </div>
                           <div class="policy">
@@ -42,6 +42,12 @@ echo <<<EOL
     `);
 
 
+}
+</script>
+
+<script>
+function coming() {
+alert("Coming soon...");
 }
 </script>
 EOL;

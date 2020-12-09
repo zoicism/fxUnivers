@@ -12,19 +12,19 @@ EOL;
 
                     $path="../userpgs/avatars/";
                     if(file_exists($path.$get_user_id.'.jpg')) {
-                        echo('<a class="link avatar-sidebar" style="background-image: url(\'../userpgs/avatars/'.$get_user_id.'.jpg\');"></a>');
+                        echo('<a href="/user/'.$username.'" class="link avatar-sidebar" style="background-image: url(\'../userpgs/avatars/'.$get_user_id.'.jpg\');"></a>');
                     } elseif(file_exists($path.$get_user_id.'.jpeg')) {
-                        echo('<a class="link avatar-sidebar" style="background-image: url(\'../userpgs/avatars/'.$get_user_id.'.jpeg\');"></a>');
+                        echo('<a href="/user/'.$username.'" class="link avatar-sidebar" style="background-image: url(\'../userpgs/avatars/'.$get_user_id.'.jpeg\');"></a>');
                     } elseif(file_exists($path.$get_user_id.'.png')) {
-                        echo('<a class="link avatar-sidebar" style="background-image: url(\'../userpgs/avatars/'.$get_user_id.'.png\');"></a>');
+                        echo('<a href="/user/'.$username.'" class="link avatar-sidebar" style="background-image: url(\'../userpgs/avatars/'.$get_user_id.'.png\');"></a>');
                     } elseif(file_exists($path.$get_user_id.'.gif')) {
-                        echo('<a class="link avatar-sidebar" style="background-image: url(\'../userpgs/avatars/'.$get_user_id.'.gif\');"></a>');
+                        echo('<a href="/user/'.$username.'" class="link avatar-sidebar" style="background-image: url(\'../userpgs/avatars/'.$get_user_id.'.gif\');"></a>');
                     } else {
-                        echo('<a class="link avatar-sidebar"></a>');
+                        echo('<a href="/user/'.$username.'" class="link avatar-sidebar"></a>');
                     }
 
 echo <<<EOL
-			<a class="id-sidebar" href="#">@$username</a>
+			<a class="id-sidebar" href="/user/$username">@$username</a>
 		</div>
 		<div class="elements">
 		    <a href="/wallet" class="sidebar-icon fxstar-sidebar">fxStar</a>
@@ -35,7 +35,7 @@ echo <<<EOL
 		    
 	    </div>
                           <div class="policy">
-                          With all due Reserves, © fxUnivers 2017-2020 All rights reserved. <a href="#">Policy</a>
+                          With all due Reserves, © fxUnivers 2017-2020 All rights reserved. <a href="/policy">Policy</a>
                           </div>
 
 

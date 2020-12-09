@@ -72,18 +72,82 @@ if($match) {
   <script src="/js/jquery-3.4.1.min.js"></script>
 </head>
 <body>
-  <div class="login-container">
+  <div class="solo-container">
 
-  <div class="login-description">
-      <div class="login-text">
-        <div class="fx-icon fxstar-icon"><span>fxStar</span><p>Purchase products/services, or send/recieve as gift</p></div>
-        <div class="fx-icon fxuniversity-icon"><span>fxUniversity</span><p>Create courses as instructor & make fxStars, or browse to take them as student</p></div>
-        <div class="fx-icon fxpartner-icon"><span>fxPartner</span><p>Partner us & make easy fxStars</p></div>
-        <div class="fx-icon fxuniverse-icon"><span>fxUniverse</span><p>Universe of trading (Coming soon for public)</p></div>
-        <div class="fx-icon fxsonet-icon"><span>fxSonet</span><p>Next level of worldwide connection (Coming soon for public)</p></div>
-      </div>
+    <div class="solo">
+
+      <?php
+        if($match) {
+      ?>
+          <h3>Email verified</h3>
+	  <p>Your email is verified. Now choose yourself a username.</p>
+
+	  <form action="/php/signup2.php" autocomplete="off" method="POST">
+	    <input type="text" name="firstname" id="inputfn" placeholder="First name (required)" class="txt-input" required>
+	    <input type="text" name="lastname" id="inputln" placeholder="Last name (required)" class="txt-input" required>
+
+
+	    <input type="text" name="username" placeholder="Username (required)" id="username" class="txt-input" required>
+	    <p id="fewCh" class="tooltip red">More than 3 characters</p>
+    	    <p class="tooltip red" id="dupUN">That username is taken</p>
+
+
+	    <input type="phone" name="phonenumber" placeholder="Phone number (optional)" class="txt-input">
+	    
+	    <input type="hidden" name="email" value="<?php echo $email ?>">
+	    <input type="hidden" name="hash" value="<?php echo $hash ?>">
+	    
+	    <input type="submit" value="continue" id="submitButt" class="submit-btn" disabled>
+	  </form>
+	  
+	    <?php
+	      } else {
+                echo '<p>error :/</p>';
+    	      }
+	    ?>
     </div>
-
+    
   </div>
+
+<!-- SCRIPTS -->
+<script>
+$('#username').each(function() {
+    var elem=$(this);
+    elem.data('oldVal', elem.val());
+    elem.bind("propertychange change click keyup input paste", function(event) {
+        if(elem.data('oldVal')!=elem.val()) {
+            elem.data('oldVal', elem.val());
+
+            if(elem.val().length > 2) {
+                $('#fewCh').hide();
+                
+
+                jQuery.ajax({
+                    type:'POST',
+                    url:'/php/dup_username.php',
+                    data:$('#username').serialize(),
+                    success: function(data) {
+                        if(data=='dup') {
+                            $('#dupUN').show();
+			    $('#submitButt').fadeTo('fast',0.5);
+			    $('#submitButt').prop('disabled',true);
+                        } else {
+                            $('#dupUN').hide();
+                            $('#submitButt').removeAttr('disabled');
+			    $('#submitButt').fadeTo('fast',1);
+                        }
+                    }
+                });
+            } else {
+                $('#fewCh').show();
+                $('#dupUN').hide();
+		$('#submitButt').fadeTo('fast',0.5);
+		$('#submitButt').prop('disabled',true);
+            }
+        }
+    });
+});        
+</script>
+
 </body>
 </html>

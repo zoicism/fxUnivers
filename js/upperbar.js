@@ -20,7 +20,7 @@ if(screen.width>628) {
 <div id="mySidepanel" class="sidepanel">
                   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
                   <a href="#">About</a>
-                  <a href="#">Contact</a>
+                  <a href="/contact/msgus">Contact</a>
                   <a href="/register/logout.php">Log out</a>
                     <div class="socialmedia">
                       <a href="https://facebook.com/fxunivers" class="facebook" target="_blank"></a>
@@ -48,7 +48,7 @@ if(screen.width>628) {
         <div id="mySidepanel" class="sidepanel">
                   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
                   <a href="#">About</a>
-                  <a href="#">Contact</a>
+                  <a href="/contact/msgus">Contact</a>
                   <a href="/register/logout.php">Log out</a>
                     <div class="socialmedia">
 <a href="https://facebook.com/fxunivers" class="facebook" target="_blank"></a>
@@ -117,9 +117,9 @@ $('.header').html(`
                         </div>
                     </div>
                     <div class="menu-info">
-                        <a href="#" class="policy-m">Policy</a>
+                        <a href="/policy" class="policy-m">Policy</a>
                         <a href="#">About</a>
-                        <a href="#">Contact</a>
+                        <a href="/contact/msgus">Contact</a>
                         <a href="/register/logout.php">Log out</a>
                     </div>
                     <div class="socialmedia socialmedia-m">
@@ -163,9 +163,9 @@ $('.header').html(`
                         </div>
                     </div>
                     <div class="menu-info">
-                        <a href="#" class="policy-m">Policy</a>
+                        <a href="/policy" class="policy-m">Policy</a>
                         <a href="#">About</a>
-                        <a href="#">Contact</a>
+                        <a href="/contact/msgus">Contact</a>
                         <a href="/register/logout.php">Log out</a>
                     </div>
                     <div class="socialmedia socialmedia-m">

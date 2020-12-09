@@ -759,8 +759,9 @@ textarea:focus {
     box-shadow: -6px -6px 14px rgba(255, 255, 255, .7), -6px -6px 10px rgba(255, 255, 255, .5), 6px 6px 8px rgba(255, 255, 255, .075), 6px 6px 10px rgba(0, 0, 0, .15);
     border-radius:50px;
     color:#fff;
-     background: rgb(2,0,36);
-     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(154,0,103,1) 0%, rgba(255,151,151,1) 100%);
+     background: rgb(255,66,29);
+background: linear-gradient(126deg, rgba(255,66,29,1) 0%, rgba(252,67,67,1) 50%, rgba(249,67,104,1)
+100%);
      height:3rem;
      cursor:pointer;
 }
@@ -1383,8 +1384,14 @@ textarea:focus {
   cursor: pointer;
   line-height: 1.5;
   border-bottom: 1px solid #efefef;
+  color:#393939;
+  text-decoration:none;
 }
 
+.login-forgot:visited {
+    color:#393939;
+    
+}
 .login-forgot:hover {
   color: #3498db;
   border-bottom: 1px solid #3498db;

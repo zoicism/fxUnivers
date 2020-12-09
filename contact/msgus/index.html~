@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>fxUnivers</title>
+  <link rel="stylesheet" type="text/css" href="/css/styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display\
+=swap" rel="stylesheet">
+  <script src="/js/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+  <div class="solo-container">
+    <div class="solo">
+
+      <img src="/images/logo/fxunivers-logo.svg" onclick="window.location.replace('/')">
+
+      <form action="/contact/message_us.php" method="POST">
+	<input type="text" name="fname" placeholder="First Name" class="txt-input" required>
+	<input type="text" name="lname" placeholder="Surname">
+	<input type="text" name="email" placeholder="Email Address" required>
+	<textarea name="body" col="20" row="50"></textarea>
+	<input type="submit" value="Send Message" class="submit-btn">
+      </form>
+      
+
+
+      
+    </div>
+      
+
+  </div>
+</body>
+</html>

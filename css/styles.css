@@ -1285,7 +1285,7 @@ background: linear-gradient(126deg, rgba(255,66,29,1) 0%, rgba(252,67,67,1) 50%,
     justify-content:center;
     align-items:center;
     flex-flow:row;
-    height:100%;
+    margin: 40px 0;
 }
 
 .solo-container .solo {
@@ -1293,7 +1293,7 @@ background: linear-gradient(126deg, rgba(255,66,29,1) 0%, rgba(252,67,67,1) 50%,
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
-    width: 47.5%;
+    width: 50%;
     height: 90%;
     background-color: #efefef;
     padding: 20px;
@@ -1303,8 +1303,12 @@ background: linear-gradient(126deg, rgba(255,66,29,1) 0%, rgba(252,67,67,1) 50%,
 		-4px -2px 4px 0px #ffffff,
 		4px 2px 6px 0px #DFE4EA;
 }
-    
 
+.solo-container .solo img {
+    width:8rem;
+    height:8rem;
+    cursor:pointer;
+}
 /************************************ > Login Page ******************************************/
 
 .login-container {
@@ -2830,7 +2834,7 @@ input:checked + .slider:before {
     }
 
     .solo-container .solo {
-	width:80%;
+	width:90%;
     }
     
     .login-container {

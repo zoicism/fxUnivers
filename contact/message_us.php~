@@ -25,13 +25,13 @@ if(isset($_POST['body'])) {
 
 $msg_query = "INSERT INTO messageus(fname, lname, subject, email, body) VALUES('fname', '$lname', '$subject', '$email', '$body')";
 $msg_result = mysqli_query($msg_connection, $msg_query) or die(mysqli_error($msg_connection));
-
+/*
 if($msg_result) {
   echo "success";
   echo $fname.' '.$lname;
-  Header("Location: /");
+  header("Location: /#contact-section?msg=sent");
 } else {
-  echo "failed";
+  header("Location: /?#contact-section?msg=failed");
 }
-
+*/
 ?>
