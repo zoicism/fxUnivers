@@ -1568,12 +1568,56 @@ input:focus, textarea:focus, select:focus{
   white-space: nowrap;
 }
 
+/****** > Change Profile Dropdown ******/
+
 .frame-container .frame-edit .edit-profile-text .change-profile-photo {
+  position: relative;
+  display: inline-block;
   text-decoration: none;
   color: #00A1E0;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 18px;
 }
+
+.frame-container .frame-edit .edit-profile-text .change-profile-photo:hover {
+  background-color: transparent;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #efefef;
+  min-width: 160px;
+  overflow: auto;
+  border-radius: 8px;
+  margin-top: 5px;
+  border: 1px solid #E0E0E0;
+  box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: #000;
+  padding: 8px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content .upload-photo {
+  color: #00A1E0;
+}
+
+.dropdown-content .remove-photo {
+  color: #FB2D47;
+}
+
+.dropdown a:active {background-color: #ddd;}
+
+.show {
+  display: block;
+}
+
+/****** < Change Profile Dropdown ******/
 
 .frame-container .frame-edit .edit-input-container {
   display: flex;
