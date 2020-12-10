@@ -18,7 +18,7 @@ $checkex_q="SELECT * FROM user WHERE email='$email'";
 $checkex_r=mysqli_query($connection,$checkex_q) or die(mysqli_error($connection));
 $checkex_count=mysqli_num_rows($checkex_r);
 if($checkex_count<1) {
-    header('Location: /register/forgot_password?err=no_res');
+    echo 'no_res';
     exit();
 }
 
@@ -100,40 +100,10 @@ $headers[] = 'From: fxUnivers <no-reply@fxunivers.com>';
 if($forgot_r) {
     // Mail it!
     mail($to, $subject, $message, implode("\r\n", $headers));
-    $success=1;
+    echo $success=1;
 } else {
-    $success=0;
+    echo $success=0;
 }
 
 
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>fxUnivers</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">   
-    <link rel="stylesheet" href="/css/style.css">
-    <script src="/js/jquery-3.4.1.min.js"></script>
-  </head>
-
-<body>
-
-<div class="center">
-<?php
-                if($success) {
-                    echo '<h3>We have emailed you a password recovery link.</h3>';
-                    echo '<p>Please check your inbox!</p>';
-                    echo '<p><a href="https://mail.google.com" target="_blank">Gmail</a> - <a href="https://mail.yahoo.com" target="_blank">Yahoo Mail</a></p>';
-                } else {
-                    echo '<h3>Error :( <a href="/register/forgot_password">Try again!</a></h3>';
-                }
-?>
-</div>
-
-<div class="footer" style="bottom:0;position:fixed;"></div>
-<script src="/js/footer.js"></script>
-</body>
-</html>

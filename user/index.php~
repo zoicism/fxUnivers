@@ -35,6 +35,7 @@ $lname = $user_fetch['lname'];
 $id = $user_fetch['id'];
 $tarid=$id;
 $bio = $user_fetch['bio'];
+$verified = $user_fetch['verified'];
 
 
 // fetch the sonet records
@@ -99,7 +100,7 @@ require('../php/get_my_accepted_courses_profile.php');
           <div class="avatar-profile"></div>
         </div>
         <div class="info-profile">
-          <div class="id-profile"><?php echo $tarname ?></div>
+          <div class="id-profile"><?php echo $tarname ?> <?php if($verified) echo '<img src="/images/background/verified.png" style="width:1.5rem; height:1.5rem;">'; ?></div>
           <a class="follower-profile" id="open-friends">
             <div class="follower-num"><?php echo $get_tar_friends_count ?></div>
             <div class="follower-word">friends</div>

@@ -361,7 +361,13 @@ require('../php/get_my_accepted_courses_profile.php');
         </div>
         <div class="edit-profile-text">
           <a class="name"><?php echo $username?></a>
-          <a href="#" class="change-profile-photo">change Profile Photo</a>
+           <div class="dropdown">
+            <a href="#" onclick="myFunction()" class="change-profile-photo">Change Profile Photo</a>
+            <div id="myDropdown" class="dropdown-content">
+              <a href="#" class="upload-photo">Upload Photo</a>
+              <a href="#" class="remove-photo">Remove Current Photo</a>
+            </div>
+          </div>
         </div>
       </div>
       <form action="/php/set_bio.php" method="POST">
@@ -449,6 +455,22 @@ $('#close-edit-profile').click(function() {
 });
 </script>
 
-
+ <script>
+  function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+  }
+  window.onclick = function(event) {
+    if (!event.target.matches('.change-profile-photo')) {
+      var dropdowns = document.getElementsByClassName("dropdown-content");
+      var i;
+      for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+          openDropdown.classList.remove('show');
+        }
+      }
+    }
+  }
+  </script>
 </body>
 </html>
