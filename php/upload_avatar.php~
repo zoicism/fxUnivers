@@ -110,8 +110,8 @@ if(isset($_FILES['avatar_img'])) {
 }
 
 if($success) {
-    header('Location: /?avatar=ok');
+    header('Location: /user/'.$username);
 } else {
-    header('Location: /?avatar=err');
+    header('Location: /user/'.$username);
 }
 ?>

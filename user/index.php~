@@ -84,6 +84,7 @@ require('../php/get_my_accepted_courses_profile.php');
   <link rel="stylesheet" href="/css/icons.css">
   <link rel="stylesheet" href="/css/logo.css">
   <script src="/js/jquery-3.4.1.min.js"></script>
+  <script src="/js/jquery.form.js"></script>
 </head>
 
 <body>
@@ -109,7 +110,12 @@ require('../php/get_my_accepted_courses_profile.php');
             <div class="name-profile"><?php echo $tar_fname.' '.$tar_lname ?></div>
             <div class="bio-profile"><?php echo $tar_bio ?></div>
             <div class="edit-profile-con">
+	    <?php if($session_id==$tarid) { ?>
               <a id="open-edit-profile" class="edit-profile">Edit Profile</a>
+	    <?php } else { ?>
+	      <a class="edit-profile">Add Friend</a>
+	      <a class="edit-profile">Send Message</a>
+	    <?php } ?>
             </div>
           </div>
         </div>
@@ -117,10 +123,14 @@ require('../php/get_my_accepted_courses_profile.php');
       <div class="profile-top-mob">
         <div class="info-profile">
           <div class="name-profile"><?php echo $tar_fname.' '.$tar_lname ?></div>
-          <div class="bio-profile"><?php echo $tar_bio ?>This is the bio of the mobile view: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua.</div>
+          <div class="bio-profile"><?php echo $tar_bio ?></div>
           <div class="edit-profile-con">
+	  <?php if($session_id==$tarid) { ?>
             <a href="#" class="edit-profile">Edit Profile</a>
+	    <?php } else { ?>
+	      <a class="edit-profile">Add Friend</a>
+	      <a class="edit-profile">Send Message</a>
+	    <?php } ?>
           </div>
         </div>
       </div>
@@ -358,10 +368,24 @@ require('../php/get_my_accepted_courses_profile.php');
           <div class="avatar-profile-container">
             <div class="avatar-profile" style="background-image: url(http://www.boutique-uns.com/uns/185-home_01grid/polo-femme.jpg);"></div>
           </div>
-        </div>
+        </div>	
         <div class="edit-profile-text">
           <a class="name"><?php echo $username?></a>
-          <a href="#" class="change-profile-photo">change Profile Photo</a>
+           <div class="dropdown">
+            <a href="#" onclick="myFunction()" class="change-profile-photo">Change Profile Photo</a>
+            <div id="myDropdown" class="dropdown-content">
+              <a id="upload-photo-btn" class="upload-photo">Upload Photo</a>
+              <a href="#" class="remove-photo">Remove Current Photo</a>
+
+	      <form id="avatar-form" method="POST" action="/php/upload_avatar.php" enctype="multipart/form-data">
+                <input type="file" name="avatar_img" id="avatarFile">
+      	        <input type="hidden" name="username" value="<?php echo $username ?>">
+    		<button type="submit" class="taste-rand" style="float: left" id="avatarBtn">Upload</button>
+   	      </form>
+	      
+
+            </div>
+          </div>
         </div>
       </div>
       <form action="/php/set_bio.php" method="POST">
@@ -449,6 +473,35 @@ $('#close-edit-profile').click(function() {
 });
 </script>
 
+ <script>
+  function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+  }
+  window.onclick = function(event) {
+    if (!event.target.matches('.change-profile-photo')) {
+      var dropdowns = document.getElementsByClassName("dropdown-content");
+      var i;
+      for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+          openDropdown.classList.remove('show');
+        }
+      }
+    }
+  }
+  </script>
 
+<script>
+$('#avatarFile').change(function() {
+  console.log('file changed');
+  $('#avatar-form').submit();
+});
+
+$(function() {
+$('#avatar-form').ajaxForm(function(response) {
+      console.log(response);
+});
+});
+</script>
 </body>
 </html>
