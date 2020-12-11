@@ -377,7 +377,7 @@ require('../php/get_my_accepted_courses_profile.php');
               <a id="upload-photo-btn" class="upload-photo">Upload Photo</a>
               <a href="#" class="remove-photo">Remove Current Photo</a>
 
-	      <form id="avatar-form" method="POST" action="/php/upload_avatar.php" enctype="multipart/form-data">
+	      <form id="avatar-form" style="display:none" method="POST" action="/php/upload_avatar.php" enctype="multipart/form-data">
                 <input type="file" name="avatar_img" id="avatarFile">
       	        <input type="hidden" name="username" value="<?php echo $username ?>">
     		<button type="submit" class="taste-rand" style="float: left" id="avatarBtn">Upload</button>
@@ -492,15 +492,20 @@ $('#close-edit-profile').click(function() {
   </script>
 
 <script>
+$('#upload-photo-btn').click(function() {
+  $('#avatarFile').click();
+});
+
 $('#avatarFile').change(function() {
-  console.log('file changed');
   $('#avatar-form').submit();
 });
 
 $(function() {
-$('#avatar-form').ajaxForm(function(response) {
-      console.log(response);
-});
+  $('#avatar-form').ajaxForm(function(response) {
+      if(response==1) {
+        window.location.reload();
+      }
+  });
 });
 </script>
 </body>

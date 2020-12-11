@@ -2634,7 +2634,7 @@ input:checked + .slider:before {
   display: block;
   width: 100%;
   height: 100%;
-  background: #E6E7ED;
+  background: url(../images/background/avatar.png);
   -moz-border-radius: 50px;
   -webkit-border-radius: 50px;
   background-position: center;

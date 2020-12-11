@@ -71,7 +71,7 @@ require('../php/get_visibility.php');
 require('../php/get_stu_stucourse_profile.php');
 
 require('../php/get_my_accepted_courses_profile.php');
-
+$get_user_id=$session_id;
 ?>
 
 <!DOCTYPE html>
@@ -98,7 +98,23 @@ require('../php/get_my_accepted_courses_profile.php');
     <div class="profile-container profile-top-mob">
       <div class="profile-top">
         <div class="avatar-profile-container">
-          <div class="avatar-profile"></div>
+
+<?php
+$avatar_path=$_SERVER['DOCUMENT_ROOT'];
+                    $avatar_path.='/userpgs/avatars/';
+		    $avatar_ex = glob($avatar_path.$tarid.'.*');
+		    if(count($avatar_ex) > 0) {
+		      $avatar_arr = explode('.', $avatar_ex[0]);
+		      $avatar_extension = end($avatar_arr);
+
+		      echo '<div class="avatar-profile" style="background-image:url(\'/userpgs/avatars/'.$tarid.'.'.$avatar_extension.'\');"></div>';
+		    } else {
+		      echo '<div class="avatar-profile"></div>';
+		    }
+		    ?>
+          
+
+
         </div>
         <div class="info-profile">
           <div class="id-profile"><?php echo $tarname ?> <?php if($verified) echo '<img src="/images/background/verified.png" style="width:1.5rem; height:1.5rem;">'; ?></div>
@@ -366,23 +382,35 @@ require('../php/get_my_accepted_courses_profile.php');
       <div class="edit-avatar">
         <div class="avatar-prf-cnt">
           <div class="avatar-profile-container">
-            <div class="avatar-profile" style="background-image: url(http://www.boutique-uns.com/uns/185-home_01grid/polo-femme.jpg);"></div>
+	  <?php
+	    if(count($avatar_ex) > 0) {
+             echo '<div class="avatar-profile" style="background-image:url(\'/userpgs/avatars/'.$get_user_id.'.'.$avatar_extension.'\');"></div>';
+	    } else {
+	     echo '<div class="avatar-profile"></div>';
+	    }
+	    ?>
           </div>
         </div>	
         <div class="edit-profile-text">
           <a class="name"><?php echo $username?></a>
            <div class="dropdown">
-            <a href="#" onclick="myFunction()" class="change-profile-photo">Change Profile Photo</a>
+            <a onclick="myFunction()" class="change-profile-photo">Change Profile Photo</a>
             <div id="myDropdown" class="dropdown-content">
               <a id="upload-photo-btn" class="upload-photo">Upload Photo</a>
-              <a href="#" class="remove-photo">Remove Current Photo</a>
+              <a id="del-photo-btn" class="remove-photo">Remove Current Photo</a>
 
 	      <form id="avatar-form" style="display:none" method="POST" action="/php/upload_avatar.php" enctype="multipart/form-data">
                 <input type="file" name="avatar_img" id="avatarFile">
       	        <input type="hidden" name="username" value="<?php echo $username ?>">
     		<button type="submit" class="taste-rand" style="float: left" id="avatarBtn">Upload</button>
    	      </form>
-	      
+
+
+	  <form method="POST" style="display:none" id="del-photo-form" action="/php/remove_avatar.php">
+            <input type="hidden" name="userId" value="<?php echo $get_user_id ?>"/>
+	    <input type="hidden" name="del-username" value="<?php echo $username?>">
+            <input type="submit">
+          </form>    
 
             </div>
           </div>
@@ -506,6 +534,14 @@ $(function() {
         window.location.reload();
       }
   });
+});
+
+
+</script>
+
+<script>
+$('#del-photo-btn').click(function() {
+  $('#del-photo-form').submit();
 });
 </script>
 </body>

@@ -1,15 +1,9 @@
 <?php
 
-if(isset($_SESSION['username'])) {
-    $username=$_SESSION['username'];
-} else {
-    header("Location: /");
-    exit();
-}
 
 if(isset($_POST['userId'])) $userId=$_POST['userId'];
 
-$path='../userpgs/avatars/';
+$path="../userpgs/avatars/";
 if(file_exists($path.$userId.'.jpg')) {
     unlink($path.$userId.'.jpg');
 } elseif(file_exists($path.$userId.'.jpeg')) {
@@ -20,4 +14,5 @@ if(file_exists($path.$userId.'.jpg')) {
     unlink($path.$userId.'.gif');
 }
 
+header('Location: /userpgs');
 ?>

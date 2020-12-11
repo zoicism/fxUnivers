@@ -76,20 +76,18 @@ require('../php/get_stu_stucourse.php');
                 <ul class="flex-container height-18">
                         <li class="items" >
                             <?php
-                    /*$path="avatars/";
-                    if(file_exists($path.$get_user_id.'.jpg')) {
-                        echo('<a class="link avatar" style="background-image: url(\'avatars/'.$get_user_id.'.jpg\');"></a>');
-                    } elseif(file_exists($path.$get_user_id.'.jpeg')) {
-                        echo('<a class="link avatar" style="background-image: url(\'avatars/'.$get_user_id.'.jpeg\');"></a>');
-                    } elseif(file_exists($path.$get_user_id.'.png')) {
-                        echo('<a class="link avatar" style="background-image: url(\'avatars/'.$get_user_id.'.png\');"></a>');
-                    } elseif(file_exists($path.$get_user_id.'.gif')) {
-                        echo('<a class="link avatar" style="background-image: url(\'avatars/'.$get_user_id.'.gif\');"></a>');
-                    } else {
-                        echo('<a class="link avatar"></a>');
-                    }*/
+			    $avatar_path=$_SERVER['DOCUMENT_ROOT'];
+                    $avatar_path.='/userpgs/avatars/';
+		    $avatar_ex = glob($avatar_path.$get_user_id.'.*');
+		    if(count($avatar_ex) > 0) {
+		      $avatar_arr = explode('.', $avatar_ex[0]);
+		      $avatar_extension = end($avatar_arr);
+
+		      echo '<a href="/user/'.$username.'" class="link avatar" style="background-image:url(\'/userpgs/avatars/'.$get_user_id.'.'.$avatar_extension.'\');"></a>';
+		    } else {
+		      echo '<a href="/user/'.$username.'" class="link avatar"></a>';
+		    }
                 ?>
-		<a class="link avatar" href="/user?tar=<?php echo $username?>"></a>
   <a class="id" href="/user?tar=<?php echo $username?>"><?php echo '@'.$username?> <?php if($verified) echo '<img src="/images/background/verified.png" style="height:1.5rem; width:1.5rem">'; ?></a>
                         </li>
                 </ul>
