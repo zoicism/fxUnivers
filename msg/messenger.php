@@ -49,7 +49,7 @@ require('../php/get_messenger.php');
 
 <body>
 	<div class="header-sidebar"></div>
-  <script src="/js/upperbar.js"></script>
+  <script id="upperbar-script" src="/js/upperbar.js" sess_avatar="<?php echo $session_avatar?>" sess_un="<?php echo $username?>"></script>
 
   <div class="blur mobile-main">
 
@@ -83,7 +83,20 @@ if($_GET['guest']==$get_guest['username']) {
 	    echo '<li class="discussion" tabindex="1" onclick="location.href=\'/msg/messenger.php?guest='.$get_guest["username"].'\';">';
 
 }
-	        echo '<div class="photo" style=""></div>';
+
+
+
+
+if($get_guest['avatar']!=NULL) {
+      $avatar_url='/userpgs/avatars/'.$get_guest['avatar'];
+} else {
+      $avatar_url='/images/background/avatar.png';
+}
+
+
+
+
+	        echo '<div class="photo" style="background-image:url(\''.$avatar_url.'\');"></div>';
 	        echo '<div class="desc-contact">';
 if($get_unread_count>0) {
 	         echo '<p class="name">'.$get_guest['username'].' ('.$get_unread_count.')</p>';

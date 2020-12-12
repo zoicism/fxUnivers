@@ -10,10 +10,11 @@ require('../register/connect.php');
 
 if(isset($_SESSION['username'])) {
         $username = $_SESSION['username'];
-        $session_id_q="SELECT id FROM user WHERE username='$username'";
+        $session_id_q="SELECT * FROM user WHERE username='$username'";
         $session_id_r=mysqli_query($connection,$session_id_q) or die(mysqli_error($connection));
         $session_id_fetch=mysqli_fetch_array($session_id_r);
         $session_id=$session_id_fetch['id'];
+	$session_avatar=$session_id_fetch['avatar'];
 } else {
     header("Location: /register/logout.php");
 }
@@ -89,7 +90,7 @@ $get_user_id=$session_id;
 
 <body>
 	<div class="header-sidebar"></div>
-  <script src="/js/upperbar.js"></script>
+  <script id="upperbar-script" src="/js/upperbar.js" sess_avatar="<?php echo $session_avatar?>" sess_un="<?php echo $username?>"></script>
 
   <div class="blur mobile-main">
 <div class="sidebar"></div>
@@ -128,10 +129,25 @@ $avatar_path=$_SERVER['DOCUMENT_ROOT'];
             <div class="edit-profile-con">
 	    <?php if($session_id==$tarid) { ?>
               <a id="open-edit-profile" class="edit-profile">Edit Profile</a>
-	    <?php } else { ?>
-	      <a class="edit-profile">Add Friend</a>
-	      <a class="edit-profile">Send Message</a>
-	    <?php } ?>
+	    <?php } else {
+                    
+                    echo '<a class="edit-profile" id="friendship">';
+                    
+                    if($get_fnd_count==0) {
+                        echo 'Add Friend';
+                    } else {
+                        if($get_fnd==1) {
+                            echo 'Unfriend';
+                        } else {
+                            echo 'Cancel Friend Request';
+                        }
+                    }
+                    echo '</a>';
+
+                    echo '<a class="edit-profile" id="send-msg-btn">Send Message</a>';
+                }
+	  ?>
+	   
             </div>
           </div>
         </div>
@@ -142,11 +158,26 @@ $avatar_path=$_SERVER['DOCUMENT_ROOT'];
           <div class="bio-profile"><?php echo $tar_bio ?></div>
           <div class="edit-profile-con">
 	  <?php if($session_id==$tarid) { ?>
-            <a href="#" class="edit-profile">Edit Profile</a>
-	    <?php } else { ?>
-	      <a class="edit-profile">Add Friend</a>
-	      <a class="edit-profile">Send Message</a>
-	    <?php } ?>
+            <a id="open-edit-profile-mob" class="edit-profile">Edit Profile</a>
+	    <?php } else { 
+                    
+                    echo '<a class="edit-profile" id="friendship-mob">';
+                    
+                    if($get_fnd_count==0) {
+                        echo 'Add Friend';
+                    } else {
+                        if($get_fnd==1) {
+                            echo 'Unfriend';
+                        } else {
+                            echo 'Cancel Request';
+                        }
+                    }
+                    echo '</a>';
+
+                    echo '<a class="edit-profile" id="send-msg-btn-mob">Send Message</a>';
+                }
+	  ?>
+	    
           </div>
         </div>
       </div>
@@ -213,8 +244,19 @@ $avatar_path=$_SERVER['DOCUMENT_ROOT'];
                $fnd_user_fetch = mysqli_fetch_array($fnd_user_result);
 
 
+if($fnd_user_fetch['avatar']!=NULL) {
+      $avatar_url='/userpgs/avatars/'.$fnd_user_fetch['avatar'];
+} else {
+      $avatar_url='/images/background/avatar.png';
+}
+
+
+
+
+
+
 	       echo '<li class="friends">
-	               <a class="photo-friends" style="background-image: url(\'/images/background/avatar.svg\');"></a>
+	               <a class="photo-friends" style="background-image: url(\''.$avatar_url.'\');"></a>
 		       <div class="desc-contact">
 		         <a class="name">'.$fnd_user_fetch['fname'].' '.$fnd_user_fetch['lname'].'</a>
 			 <p class="username-friends">@'.$fnd_user_fetch['username'].'</p>
@@ -496,6 +538,9 @@ $('#learn-tab').click(function() {
 $('#open-edit-profile').click(function() {
   $('#edit-profile-overlay').show();
 });
+$('#open-edit-profile-mob').click(function() {
+  $('#edit-profile-overlay').show();
+});
 $('#close-edit-profile').click(function() {
   $('#edit-profile-overlay').hide();
 });
@@ -533,6 +578,7 @@ $(function() {
       if(response==1) {
         window.location.reload();
       }
+      
   });
 });
 
@@ -542,6 +588,69 @@ $(function() {
 <script>
 $('#del-photo-btn').click(function() {
   $('#del-photo-form').submit();
+});
+</script>
+
+<!-- FRIEND REQUEST -->
+<script>
+$('#friendship').click(function() {
+    var requesterId=<?php echo $session_id ?>;
+    var requesteeId=<?php echo $tar_id ?>;
+    var requesterUn='<?php echo $username ?>';
+    $.ajax({
+      type: 'POST',
+      url: '/php/set_friend.php',
+            data: {requester: requesterId, requestee: requesteeId, requesterU: requesterUn},
+            success: function(result) {
+            //var results=jQuery.parseJSON(result);
+            if(result==0) {
+                document.getElementById('friendship').innerHTML='Cancel Friend Request';
+            } else if(result==1) {
+                document.getElementById('friendship').innerHTML='Add Friend';
+            }
+      }
+    });
+});
+</script>
+<script>
+$('#friendship-mob').click(function() {
+    var requesterId=<?php echo $session_id ?>;
+    var requesteeId=<?php echo $tar_id ?>;
+    var requesterUn='<?php echo $username ?>';
+    $.ajax({
+      type: 'POST',
+      url: '/php/set_friend.php',
+            data: {requester: requesterId, requestee: requesteeId, requesterU: requesterUn},
+            success: function(result) {
+            //var results=jQuery.parseJSON(result);
+            if(result==0) {
+                document.getElementById('friendship-mob').innerHTML='Cancel Request';
+            } else if(result==1) {
+                document.getElementById('friendship-mob').innerHTML='Add Friend';
+            }
+      }
+    });
+});
+</script>
+
+<script>
+$('#send-msg-btn').click(function() {
+console.log('clicked');
+  if(<?php echo $get_fnd?>==1) {
+    window.location.replace('/msg/<?php echo $tarname?>');
+  } else {
+    alert('You can send messages to the friends only.');
+  }
+});
+</script>
+<script>
+$('#send-msg-btn-mob').click(function() {
+console.log('clicked');
+  if(<?php echo $get_fnd?>==1) {
+    window.location.replace('/msg/<?php echo $tarname?>');
+  } else {
+    alert('You can send messages to the friends only.');
+  }
 });
 </script>
 </body>

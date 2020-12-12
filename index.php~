@@ -55,7 +55,7 @@ if(isset($_COOKIE['username']) && isset($_COOKIE['password'])) {
 	 echo '<p class="red">Wrong username or password.</p>';
 }
 ?>
-	<a class="login-forgot" href="/register/forgot_password">Forgot your password?</a>
+	<a class="login-forgot" id="open-forgot-overlay">Forgot your password?</a>
 	<input type="submit" class="login-button" value="Log in" id="desktop-login-btn">
       </form>
       
@@ -76,7 +76,7 @@ if(isset($_COOKIE['username']) && isset($_COOKIE['password'])) {
 
 
 <!------ LOGIN OVERLAY ------->
-<div class="overlay-container" style="display:none" id="login-overlay">
+<div class="overlay-container" style="display:none" id=" login-overlay">
 <div class="overlay">
 <div class="close-btn" id="login-close-btn">×</div>
   <h1>Login</h1>
@@ -89,7 +89,7 @@ if(isset($_COOKIE['username']) && isset($_COOKIE['password'])) {
 	 echo '<p class="red">Wrong username or password.</p>';
 	 }
     ?>
-    <a class="mob-login-forgot">Forgot your password?</a>
+    <a class="mob-login-forgot" id="open-forgot-overlay-mob">Forgot your password?</a>
     <input type="submit" class="login-button" value="Log in">
   </form>
 
@@ -135,6 +135,27 @@ if(isset($_COOKIE['username']) && isset($_COOKIE['password'])) {
       <p id="overlay-text" style="display:none">Check your email inbox or spam folder for an activation email we just sent you.</p>
     </div>
   </div>
+
+
+<!---------------- Forgot Password Overlay starts ---------------->
+  <div class="overlay-container" id="forgot-overlay" style="display:none">
+    <div class="overlay-forgot">
+      <div class="forgot-header">
+        <h1>Forgot Your Password?</h1>
+        <a id="close-forgot-overlay" class="closebtn" onclick="closeNav()">×</a>
+      </div>
+
+      <form id="forgot-form">
+        <div class="forgot-content">
+          <p>Enter your email address below.</p>
+          <input class="forgot-input" type="text" placeholder="Email" name="email" spellcheck="false" required>
+        </div>
+          <input type="submit" class="forgot-button" value="Send Email">
+      </form>
+    </div>
+  </div>
+<!---------------- Forgot Password Overlay ends ---------------->
+
 
 
 <!-- SCRIPTS -->
@@ -269,6 +290,41 @@ $('#signup-close-btn').click(function() {
   $('#signup-overlay').hide();
 });
   
+</script>
+
+
+<script>
+$('#close-forgot-overlay').click(function() {
+  $('#forgot-overlay').hide();
+});
+$('#open-forgot-overlay').click(function() {
+  $('#forgot-overlay').show();
+});
+$('#open-forgot-overlay-mob').click(function() {
+  $('#login-overlay').hide();
+  $('#forgot-overlay').show();
+});
+</script>
+
+<script>
+$('#forgot-form').submit(function(event) {
+  event.preventDefault();
+  jQuery.ajax({
+    type:'POST',
+    url:'/register/forgot_password/forgotpass.php',
+    data:$(this).serialize(),
+    success: function(response) {
+      if(response=='no_res') {
+        alert('No account found with this email address');
+      } else if(response==1) {
+        alert('We sent you an email with the instructions to reset your password.');
+	window.location.reload();
+      } else {
+        alert('Failed to send the email. Please try again.');
+      }
+    }
+  });
+});
 </script>
 
 </body>

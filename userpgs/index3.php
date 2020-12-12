@@ -65,7 +65,7 @@ require('../php/get_stu_stucourse.php');
     
 <body>    
 <div class="upperbar"></div>
-<script src="/js/upperbar.js"></script>
+<script id="upperbar-script" src="/js/upperbar.js" sess_avatar="<?php echo $session_avatar?>" sess_un="<?php echo $username?>"></script>
 
 
 

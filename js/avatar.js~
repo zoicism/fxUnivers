@@ -1,0 +1,12 @@
+var req_id = $('#avatar-file').attr('req_id');
+
+jQuery.ajax({
+    url: '/userpgs/avatars/'+req_id+'.jpg',
+    type: HEAD,
+    error: function() {
+	$('.avatar-from-js').css('background-image','url("/images/background/avatar.png")');
+    },
+    success: function() {
+	$('.avatar-from-js').css('background-image','url("/userpgs/avatars/'+req_id+'.jpg")');
+    }
+});

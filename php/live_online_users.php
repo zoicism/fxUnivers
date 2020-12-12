@@ -24,10 +24,20 @@ if($stucourse_count>0) {
     $slct=mysqli_fetch_array($slct_r);
     $slct_count=mysqli_num_rows($slct_r);// echo time()strtotime($slct['lastseen']); exit();
    if($slct_count>0) {
+
+
+   if($slct['avatar']!=NULL) {
+      $avatar_url='/userpgs/avatars/'.$slct['avatar'];
+} else {
+      $avatar_url='/images/background/avatar.png';
+}
+
+
+
      if(time()-strtotime($slct['lastseen'])<3) {
       $on_users .= '
-        <div class="user">
-          <div class="user-img avatar"></div>
+        <div class="user" onclick="window.location.replace(\'/user/'.$slct['username'].'\');">
+          <div class="user-img avatar" style="background-image:url(\''.$avatar_url.'\');"></div>
     	  <div class="user-name">
       	    <p class="fullname">'.$slct['fname'].' '.$slct['lname'].' <span class="online"></span></p>
       	    <p>@'.$slct['username'].'</p>
@@ -37,8 +47,8 @@ if($stucourse_count>0) {
        $online_num++;
      } else {
       $off_users .= '
-       <div class="user">
-          <div class="user-img avatar"></div>
+       <div class="user" onclick="window.location.replace(\'/user/'.$slct['username'].'\');">
+          <div class="user-img avatar" style="background-image:url(\''.$avatar_url.'\');"></div>
     	  <div class="user-name">
       	    <p class="fullname">'.$slct['fname'].' '.$slct['lname'].' <span class="offline"></span></p>
       	    <p>@'.$slct['username'].'</p>

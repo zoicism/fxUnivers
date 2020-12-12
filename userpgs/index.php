@@ -23,6 +23,7 @@ $lname = $user_fetch['lname'];
 $id = $user_fetch['id'];
 //$bio = $user_fetch['bio'];
 $verified = $user_fetch['verified'];
+$session_avatar=$user_fetch['avatar'];
 // add new post to the timeline
 if(isset($_POST['new_post'])) {
         $raw_newpost = nl2br($_POST['new_post']);
@@ -69,7 +70,7 @@ require('../php/get_stu_stucourse.php');
 <body>
 
 	<div class="header"></div>
-  <script src="/js/upperbar.js"></script>
+  <script id="upperbar-script" src="/js/upperbar.js" sess_avatar="<?php echo $session_avatar?>" sess_un="<?php echo $username?>"></script>
 <div class="mobile-main blur">
 
 <section>

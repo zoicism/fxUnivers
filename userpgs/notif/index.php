@@ -55,7 +55,7 @@ $dns_result=mysqli_query($connection,$dns_query) or die(mysqli_error($connection
 
 <body>
 	<div class="header-sidebar"></div>
-  <script src="/js/upperbar.js"></script>
+  <script id="upperbar-script" src="/js/upperbar.js" sess_avatar="<?php echo $session_avatar?>" sess_un="<?php echo $username?>"></script>
 
   <div class="blur mobile-main">
 
@@ -87,7 +87,15 @@ $dns_result=mysqli_query($connection,$dns_query) or die(mysqli_error($connection
 	    
 	    
             echo '<li class="notification" tabindex="1">';
-	      echo ' <div class="avatar-container"><div class="photo avatar" onclick="location.href=\'/user/'.$notif_from_un.'\';"></div></div>';
+
+	    if($notif_from_fetch['avatar']!=NULL) {
+	      $avatar_url='/userpgs/avatars/'.$notif_from_fetch['avatar'];
+	    } else {
+	      $avatar_url='/images/background/avatar.png';
+	    }
+	    
+	      echo '<div class="avatar-container"><div class="photo avatar" onclick="location.href=\'/user/'.$notif_from_un.'\';" style="background-image:url(\''.$avatar_url.'\');"></div></div>';
+	      
 
 	      
 
@@ -100,11 +108,11 @@ $dns_result=mysqli_query($connection,$dns_query) or die(mysqli_error($connection
                             <form class="addFriendAccept">
                               <input type="hidden" name="notifId" value="<?php echo $row['id'] ?>">
                               <input type="hidden" name="requesteeUN" value="<?php echo $username?>">
-                              <input type="submit" value="accept"/>
+                              <input type="submit" value="Accept"/>
                             </form>
                             <form class="addFriendDecline">
                               <input type="hidden" name="notifId" value="<?php echo $row['id'] ?>">
-                              <input type="submit" value="decline"/>
+                              <input type="submit" value="Decline"/>
                             </form>
 
 <?php
@@ -122,7 +130,7 @@ $dns_result=mysqli_query($connection,$dns_query) or die(mysqli_error($connection
                                   <input type="hidden" name="amnt" value="<?php echo $fxCoinReq_fetch['amnt'] ?>">
                                   <input type="hidden" name="notif" value="<?php echo $fxCoinReq_fetch['notif'] ?>">
                                   <input type="hidden" name="accepted" value="1">
-                                  <input type="submit" value="send">
+                                  <input type="submit" value="Send">
                                 </form>
                                 <form class="reqFxCoinFormDecline">
                                   <input type="hidden" name="reason" value="<?php echo $row['reason'] ?>">
@@ -131,7 +139,7 @@ $dns_result=mysqli_query($connection,$dns_query) or die(mysqli_error($connection
                                   <input type="hidden" name="amnt" value="<?php echo $fxCoinReq_fetch['amnt'] ?>">
                                   <input type="hidden" name="notif" value="<?php echo $fxCoinReq_fetch['notif'] ?>">
                                   <input type="hidden" name="accepted" value="0">
-                                  <input type="submit" value="decline">
+                                  <input type="submit" value="Decline">
                                 </form>
 <?php
                                 }
@@ -209,5 +217,146 @@ $(document).ready(function() {
   }, 2000);
 });
 </script>
+
+
+
+
+
+
+
+
+<script>
+$(function() {
+  $('.reqFxCoinFormDecline').on('submit', function(e) {
+  //alert('OK');
+   e.preventDefault();
+   if(confirm('Confirm decline!')) {
+    jQuery.ajax({
+      type: 'POST',
+      url: '/wallet/php/req_fxcoin.php',
+      data: $(this).serialize(),
+      success: function() {
+	//alert('success');
+	$.ajax({
+	  type: 'POST',
+	  url: '/userpgs/php/notif.php',
+	  data: $(this).serialize(),
+	  success: function() {
+            alert('The request is declined.');
+            location.reload();
+            //$('#notif_update').load(window.location.href+' #notif_update');
+	  }
+        });
+      }
+    });
+   } else {
+     return false;
+   }
+  });
+});
+</script>
+
+
+
+<script>
+$(function() {
+    $('.reqFxCoinForm').on('submit', function(e) {
+        //alert('OK');
+        e.preventDefault();
+        if(confirm('Please confirm the transfer request and send! Note that this transfer includes 10% interest rate.')) {
+            jQuery.ajax({
+              type: 'POST',
+              url: '/wallet/php/req_fxcoin.php',
+              data: $(this).serialize(),
+              success: function(result) {
+                    if(result=='success') {
+                        alert('The transaction is completed successfully.');
+                        location.reload();
+                        //e.preventDefault();
+                        /*jQuery.ajax({
+                          type: 'POST',
+                          url: '/wallet/php/get_fxcoin_count.php',
+                          data: $(this).serialize(),
+                          success: function() {
+                                $("#fxCoinCount").load(window.location.href + " #fxCoinCount");
+                                //e.preventDefault();
+                                jQuery.ajax({
+                                  type: 'POST',
+                                  url: '/userpgs/php/notif.php',
+                                  data: $(this).serialize(),
+                                  success: function() {
+                                        $('#notif_update').load(window.location.href+' #notif_update');
+                                  }
+                                });
+                          }
+                        });*/
+                    } else if(result=='insuff') {
+                        alert('Insufficient Funds!');
+                    } else if(result=='declined') {
+                        alert('The request is declined.');
+                        location.reload();
+                        //e.preventDefault();
+                        /*jQuery.ajax({
+                          type: 'POST',
+                          url: '/userpgs/php/notif.php',
+                          data: $(this).serialize(),
+                          success: function() {
+                                $('#notif_update').load(window.location.href+' #notif_update');
+                          }
+                        });*/
+                    }
+              }
+            
+            });
+        } else {
+            return false;
+        }
+    });
+});
+
+</script>
+
+<script>
+$(function() {
+    $('.addFriendAccept').on('submit', function(e) {
+        //alert('ok');
+        //alert('<?php echo $first_notif_id ?>');
+        e.preventDefault();
+        jQuery.ajax({
+          type: 'POST',
+          url: '/php/acceptFndReq.php',
+          data: $(this).serialize(),
+          success: function(result) {
+	    if(result==1) {
+	      alert('Friend request accepted.');
+	      window.location.reload();
+	    } else {
+	      alert('Failed to accept friend request. Please try again.');
+	    }
+          }
+        });
+    });
+});
+</script>
+
+<script>
+$(function() {
+    $('.addFriendDecline').on('submit', function(e) {
+        //alert('ok');
+        //alert('<?php echo $first_notif_id ?>');
+        e.preventDefault();
+        jQuery.ajax({
+          type: 'POST',
+          url: '/php/declineFndReq.php',
+          data: $(this).serialize(),
+          success: function(result) {
+                //alert(result);
+                $('#notif_update').load(window.location.href+' #notif_update');
+          }
+        });
+    });
+});
+</script>
+
 </body>
 </html>

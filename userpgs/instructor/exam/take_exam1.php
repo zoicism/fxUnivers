@@ -69,7 +69,7 @@ if(isset($stucourse_fetch['exam_accepted'])) {
 <body>
 
                 <div class="upperbar"></div>
-                <script src="/js/upperbar.js"></script>
+                <script id="upperbar-script" src="/js/upperbar.js" sess_avatar="<?php echo $session_avatar?>" sess_un="<?php echo $username?>"></script>
                 
 <div class="col-33 left-col">
 

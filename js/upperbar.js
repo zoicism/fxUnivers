@@ -86,8 +86,14 @@ if(screen.width>628) {
     
     $('.upperbar').html(upperbar);
 
+    var sess_avatar=$('#upperbar-script').attr('sess_avatar');
+    var sess_un=$('#upperbar-script').attr('sess_un');
 
-
+    if(sess_avatar!=null) {
+	var avatar_div = `<a href="/user/`+sess_un+`" class="avatar-m" style="background-image:url('/userpgs/avatars/`+sess_avatar+`');"></a>`;
+    } else {
+	var avatar_div = `<a href="/user/`+sess_un+`" class="avatar-m" style="background-image:url('/images/background/avatar.png');"></a>`;
+    }
 
 $('.header').html(`
        
@@ -103,10 +109,10 @@ $('.header').html(`
                   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
                     <div class="sidebar-m">
                         <div>
-                            <a href="#" class="avatar-m"></a>
+                            `+avatar_div+`
                         </div>
                     </div>
-                    <a class="id-sidebar-m menu-info" href="#">@Neo</a>
+                    <a class="id-sidebar-m menu-info" href="/user/`+sess_un+`">@`+sess_un+`</a>
                     <div class="sidebar-m">
                         <div class="elements">
                             <a href="#" class="fxstar-sidebar">fxStar</a>
@@ -149,10 +155,10 @@ $('.header').html(`
                   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
                     <div class="sidebar-m">
                         <div>
-                            <a href="#" class="avatar-m"></a>
+                            `+avatar_div+`
                         </div>
                     </div>
-                    <a class="id-sidebar-m menu-info" href="#">@Neo</a>
+                    <a class="id-sidebar-m menu-info" href="/user/`+sess_un+`">@`+sess_un+`</a>
                     <div class="sidebar-m">
                         <div class="elements">
                             <a href="/wallet" class="sidebar-icon fxstar-sidebar">fxStar</a>

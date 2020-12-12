@@ -19,12 +19,12 @@ if($stucourse_count>0) {
   $offline_num=0;
   
   while($stu_row=$stucourse_result->fetch_assoc()) {
-    $slct_q='SELECT * FROM user WHERE id='.$stu_row['stu_id'].' AND lsPage="live/#'.$class_id.'"';
+       $slct_q='SELECT * FROM user WHERE id='.$stu_row['stu_id'].' AND lsPage="live/#'.$class_id.'"'; 
     $slct_r=mysqli_query($connection,$slct_q) or die(mysqli_error($connection));
     $slct=mysqli_fetch_array($slct_r);
-    $slct_count=mysqli_num_rows($slct_r);
-    if($slct_count>0) {
-     if(time()-strtotime($slct['lastseen'])+12600<60) {
+    $slct_count=mysqli_num_rows($slct_r);// echo time()strtotime($slct['lastseen']); exit();
+   if($slct_count>0) {
+     if(time()-strtotime($slct['lastseen'])<3) {
       $on_users .= '
         <div class="user">
           <div class="user-img avatar"></div>
@@ -53,6 +53,8 @@ if($stucourse_count>0) {
 
   echo $on_users.$off_users.'<div style="display:none" id="get-online-num">'.$online_num.'</div>';
   
+} else {
+  echo '<p class="gray">This course has no students yet</p>';
 }
 
 ?>

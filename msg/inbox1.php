@@ -56,7 +56,7 @@ $readd_result=mysqli_query($msg_connection,$readd_query) or die(mysqli_error($ms
 <body>
     
 <div class="upperbar"></div>
-<script src="/js/upperbar.js"></script>
+<script id="upperbar-script" src="/js/upperbar.js" sess_avatar="<?php echo $session_avatar?>" sess_un="<?php echo $username?>"></script>
 
     <div class="col-33 left-col">
     <div class="col-1">

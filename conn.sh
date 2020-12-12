@@ -79,3 +79,10 @@ if [ -d userpgs/instructor/class/live/files ]; then
 else
     echo -e '\e[31m[ERR]\e[0m   live/files not found.';
 fi
+
+if [ -d userpgs/avatars ]; then
+    chmod 777 userpgs/avatars;
+    echo -e '\e[92m[OK]\e[0m    userpgs/avatars made executable.';
+else
+    echo -e '\e[31m[ERR]\e[0m   userpgs/avatars not found.';
+fi

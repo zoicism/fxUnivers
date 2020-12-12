@@ -37,4 +37,10 @@ $update_fnd_notif_r=mysqli_query($connection,$update_fnd_notif_q) or die(mysqli_
 $requestee_n_body="<a href=\"/user/$requestee\">@$requestee</a> accepted your friend request";
 $requestee_notif_q="INSERT INTO notif(user_id,body,from_id) VALUES($requester_id,'$requestee_n_body',$requestee_id)";
 $requestee_notif_r=mysqli_query($connection,$requestee_notif_q) or die(mysqli_error($connection));
+
+if($acceptFnd_r) {
+  echo 1;
+} else {
+  echo 0;
+}
 ?>

@@ -52,7 +52,7 @@ $readd_result=mysqli_query($msg_connection,$readd_query) or die(mysqli_error($ms
 
 <body>
 	<div class="header-sidebar"></div>
-  <script src="/js/upperbar.js"></script>
+  <script id="upperbar-script" src="/js/upperbar.js" sess_avatar="<?php echo $session_avatar?>" sess_un="<?php echo $username?>"></script>
 
   <div class="blur mobile-main">
 
@@ -79,8 +79,17 @@ $readd_result=mysqli_query($msg_connection,$readd_query) or die(mysqli_error($ms
                         }
                         require('../php/get_guest.php');
 
+
+if($get_guest['avatar']!=NULL) {
+      $avatar_url='/userpgs/avatars/'.$get_guest['avatar'];
+} else {
+      $avatar_url='/images/background/avatar.png';
+}
+
+
+
 	    echo '<li class="discussion" tabindex="1" onclick="location.href=\'/msg/messenger.php?guest='.$get_guest["username"].'\';">';
-	        echo '<div class="photo"></div>';
+	        echo '<div class="photo" style="background-image:url(\''.$avatar_url.'\');"></div>';
 	        echo '<div class="desc-contact">';
 
 		if($get_unread_count>0) {

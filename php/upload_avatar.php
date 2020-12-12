@@ -111,8 +111,16 @@ if(isset($_FILES['avatar_img'])) {
 
 if($success) {
     //header('Location: /user/'.$username);
-    echo 1;
+    $avatar_q = "UPDATE user SET avatar='".$get_user_id.".".pathinfo($upfile, PATHINFO_EXTENSION)."' WHERE id=$get_user_id";
+    $avatar_r=mysqli_query($connection,$avatar_q);
+
+    if($avatar_r) {
+      echo 1;
+    } else {
+      echo 0;
+    }
 } else {
     //header('Location: /user/'.$username);
+    echo 0;
 }
 ?>

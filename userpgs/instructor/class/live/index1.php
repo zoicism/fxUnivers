@@ -98,7 +98,7 @@ require('../php/notify_students.php');
 <body>
 
 <div class="upperbar"></div>
-<script src="/js/upperbar.js"></script>
+<script id="upperbar-script" src="/js/upperbar.js" sess_avatar="<?php echo $session_avatar?>" sess_un="<?php echo $username?>"></script>
 
 <div class="col-66 left-col">
     

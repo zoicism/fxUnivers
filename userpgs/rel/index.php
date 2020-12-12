@@ -44,7 +44,7 @@ require('../../wallet/php/get_fxcoin_count.php');
 <body>
 <?php $username=$_SESSION['username'];require('../../php/get_user.php'); ?>
 <div class="upperbar"></div>
-<script src="/js/upperbar.js"></script>
+<script id="upperbar-script" src="/js/upperbar.js" sess_avatar="<?php echo $session_avatar?>" sess_un="<?php echo $username?>"></script>
 <?php $username=$_GET['tar'];require('../../php/get_user.php'); ?>
 <div class="col-33 left-col">
 <div class="col-1">

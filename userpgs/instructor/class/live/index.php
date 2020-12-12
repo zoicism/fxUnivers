@@ -97,7 +97,7 @@ require('../php/notify_students.php');
     
 <body>
   <div class="header-sidebar"></div>
-  <script src="/js/upperbar.js"></script>
+  <script id="upperbar-script" src="/js/upperbar.js" sess_avatar="<?php echo $session_avatar?>" sess_un="<?php echo $username?>"></script>
   
   <div class="blur mobile-main">
     
@@ -225,10 +225,14 @@ require('../php/notify_students.php');
 	
 
 <?php
-
+if($tar_user_fetch['avatar']!=NULL) {
+      $avatar_url='/userpgs/avatars/'.$tar_user_fetch['avatar'];
+} else {
+      $avatar_url='/images/background/avatar.png';
+}
 
  echo '<div class="pub-avatar" onclick="location.href=\'/user/'.$tar_user_fetch['username'].'\'">';
-	     	  echo '<div class="pub-img avatar">';
+	     	  echo '<div class="pub-img avatar" style="background-image:url(\''.$avatar_url.'\');">';
 		  echo '</div>';
 		  echo '<div class="pub-name">';
 		  echo '<p class="fullname">'.$tar_user_fetch['fname'].' '.$tar_user_fetch['lname'].'</p>';

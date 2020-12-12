@@ -20,7 +20,7 @@ if(screen.width>628) {
 <div id="mySidepanel" class="sidepanel">
                   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
                   <a href="#">About</a>
-                  <a href="#">Contact</a>
+                  <a href="/contact/msgus">Contact</a>
                   <a href="/register/logout.php">Log out</a>
                     <div class="socialmedia">
                       <a href="https://facebook.com/fxunivers" class="facebook" target="_blank"></a>
@@ -48,7 +48,7 @@ if(screen.width>628) {
         <div id="mySidepanel" class="sidepanel">
                   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
                   <a href="#">About</a>
-                  <a href="#">Contact</a>
+                  <a href="/contact/msgus">Contact</a>
                   <a href="/register/logout.php">Log out</a>
                     <div class="socialmedia">
 <a href="https://facebook.com/fxunivers" class="facebook" target="_blank"></a>
@@ -86,8 +86,14 @@ if(screen.width>628) {
     
     $('.upperbar').html(upperbar);
 
+    var sess_avatar=$('#upperbar-script').attr('sess_avatar');
+    var sess_un=$('#upperbar-script').attr('sess_un');
 
-
+    if(sess_avatar!=null) {
+	var avatar_div = `<a href="/user/`+sess_un+`" class="avatar-m" style="background-image:url('/userpgs/avatars/`+sess_avatar+`');"></a>`;
+    } else {
+	var avatar_div = `<a href="/user/`+sess_un+`" class="avatar-m" style="background-image:url('/images/background/avatar.png');"></a>`;
+    }
 
 $('.header').html(`
        
@@ -103,7 +109,7 @@ $('.header').html(`
                   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
                     <div class="sidebar-m">
                         <div>
-                            <a href="#" class="avatar-m"></a>
+                            <a  class="avatar-m"></a>
                         </div>
                     </div>
                     <a class="id-sidebar-m menu-info" href="#">@Neo</a>
@@ -117,9 +123,9 @@ $('.header').html(`
                         </div>
                     </div>
                     <div class="menu-info">
-                        <a href="#" class="policy-m">Policy</a>
+                        <a href="/policy" class="policy-m">Policy</a>
                         <a href="#">About</a>
-                        <a href="#">Contact</a>
+                        <a href="/contact/msgus">Contact</a>
                         <a href="/register/logout.php">Log out</a>
                     </div>
                     <div class="socialmedia socialmedia-m">
@@ -149,10 +155,10 @@ $('.header').html(`
                   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
                     <div class="sidebar-m">
                         <div>
-                            <a href="#" class="avatar-m"></a>
+                            `+avatar_div+`
                         </div>
                     </div>
-                    <a class="id-sidebar-m menu-info" href="#">@Neo</a>
+                    <a class="id-sidebar-m menu-info" href="/user/`+sess_un+`">@`+sess_un+`</a>
                     <div class="sidebar-m">
                         <div class="elements">
                             <a href="/wallet" class="sidebar-icon fxstar-sidebar">fxStar</a>
@@ -163,9 +169,9 @@ $('.header').html(`
                         </div>
                     </div>
                     <div class="menu-info">
-                        <a href="#" class="policy-m">Policy</a>
+                        <a href="/policy" class="policy-m">Policy</a>
                         <a href="#">About</a>
-                        <a href="#">Contact</a>
+                        <a href="/contact/msgus">Contact</a>
                         <a href="/register/logout.php">Log out</a>
                     </div>
                     <div class="socialmedia socialmedia-m">

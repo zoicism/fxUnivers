@@ -21,7 +21,11 @@ $avatar_path=$_SERVER['DOCUMENT_ROOT'];
 		      $avatar_arr = explode('.', $avatar_ex[0]);
 		      $avatar_extension = end($avatar_arr);
 		      unlink($avatar_path.$userId.'.'.$avatar_extension);
-		      
+
+		      require_once('../register/connect.php');
+		      $rem_avatar_q = "UPDATE user SET avatar=NULL WHERE id=$userId";
+		      $rem_avatar_r=mysqli_query($connection,$rem_avatar_q);
+
 		      header('Location: /user/'.$username);
 		    } else {
 		      header('Location: /user/'.$username);
