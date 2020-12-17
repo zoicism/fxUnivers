@@ -23,6 +23,7 @@ $lname = $user_fetch['lname'];
 $id = $user_fetch['id'];
 //$bio = $user_fetch['bio'];
 $verified = $user_fetch['verified'];
+$session_avatar=$user_fetch['avatar'];
 // add new post to the timeline
 if(isset($_POST['new_post'])) {
         $raw_newpost = nl2br($_POST['new_post']);

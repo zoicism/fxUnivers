@@ -1041,7 +1041,10 @@ console.log('video stream stopped');
             function captureScreen(config) {
                 getScreenId(function(error, sourceId, screenConstraints) {
                     if (error === 'not-installed') {
-                        document.write('<h1><a target="_blank" href="https://chrome.google.com/webstore/detail/recordrtc/ndcljioonkecdnaaihodjgiliohngojp?hl=en">Please install this chrome extension then reload the page.</a></h1>');
+		    console.log(error);
+			if(confirm('You need to install an extension to be able to record on this browser. Go to the extension page?')) {
+			  window.open('https://chrome.google.com/webstore/detail/recordrtc/ndcljioonkecdnaaihodjgiliohngojp?hl=en');
+			}
                     }
 
                     if (error === 'permission-denied') {
@@ -1362,7 +1365,7 @@ $(document).ready(function() {
       success: function(response) {
 	$('.online-list').html(response);
 	$('#online-num').html($('#get-online-num').text());
-	console.log(response);
+	//console.log(response);
       }
     });
   }, 2000);
@@ -1487,7 +1490,7 @@ $(document).ready(function() {
 <script>
 $(function() {
 $('#fileForm').ajaxForm(function(response) {
-  console.log('file is uploaded');
+  //console.log('file is uploaded');
   $('#fileToUpload').val('');
   $('#uploadMsg').show();
   setTimeout(function() {
