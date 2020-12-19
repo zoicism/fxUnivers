@@ -129,7 +129,7 @@ require('../php/get_fxcoin_count.php');
 
  
                           <div class="footbar blur"></div>
-<script src="/js/footbar.js"></script>
+<script src="/js/footbar.js"></script><script src="/js/notif_msg.js" id="notmsg" nmuid="<?php echo $get_user_id?>"></script>
 
 
 
@@ -139,7 +139,7 @@ require('../php/get_fxcoin_count.php');
 <script>
     var notifUserId=<?php echo $get_user_id ?>;
 </script>
-<script src="/js/notif_msg.js"></script>
+
 
 
 <script>

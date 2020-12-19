@@ -28,21 +28,17 @@ $(document).ready(function() {
 		    data: {msg_userId: userId},
 		    dataType: 'json',
 		    success: function(result) {
-			//console.log(result);
 
 			var msgCount = result[0];
 			var lastText = result[1];
 			var lastFrom = result[2];
 			var msgTime = result[3];
 
-			//console.log(msgCount);
 			if(msgCount>0) {
-			    //console.log('msg count > 0');
 			    $('#msg-bar').show();
 			    $('#msg-bar').html(msgCount);
-
+			    
 			    if(msgTime<5) {
-				//console.log('last msg < 5s ago');
 				var newMsgNotif = new Notification('New Message from @'+lastFrom, {
 				    icon: '/images/icons/toolbar/msg.png',
 				    body: lastText
@@ -50,22 +46,12 @@ $(document).ready(function() {
 
 				
 				newMsgNotif.onclick = function() {
-				    //console.log('clicked');
 				    window.open('/msg/'+lastFrom);
 				    newMsgNotif.close();
 				}
 			    }
 			}
 			
-//			if(msgCount>0) {
-  //                        $('#msg-bar').show();
-   //                       $('#msg-bar').html(msgCount);
-			    
-			    /*var notif = new Notification('title', {
-				icon: '/images/icons/toolbar/msg.png',
-				body: 'message body'
-			    });*/
-//			}
   		    }
 		});
 	    }

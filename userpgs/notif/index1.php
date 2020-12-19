@@ -133,12 +133,12 @@ $dns_result=mysqli_query($connection,$dns_query) or die(mysqli_error($connection
 <script src="/js/footer.js"></script>
 
 <div class="footbar"></div>
-<script src="/js/footbar.js"></script>
+<script src="/js/footbar.js"></script><script src="/js/notif_msg.js" id="notmsg" nmuid="<?php echo $get_user_id?>"></script>
 
 <script>
     var notifUserId=<?php echo $get_user_id ?>;
 </script>
-<script src="/js/notif_msg.js"></script>
+
 
 
 <script>

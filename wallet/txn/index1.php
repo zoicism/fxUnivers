@@ -92,11 +92,11 @@ require('../../php/get_trans.php');
 
 
 <div class="footbar"></div>
-<script src="/js/footbar.js"></script>
+<script src="/js/footbar.js"></script><script src="/js/notif_msg.js" id="notmsg" nmuid="<?php echo $get_user_id?>"></script>
 
 <script>
     var notifUserId=<?php echo $get_user_id ?>;
 </script>
-<script src="/js/notif_msg.js"></script>
+
 </body>
 </html>

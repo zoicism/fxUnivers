@@ -143,7 +143,7 @@ if($get_exam_result->num_rows > 0) {
 
 
 <div class="footbar blur"></div>
-                          <script src="/js/footbar.js"></script>
+                          <script src="/js/footbar.js"></script><script src="/js/notif_msg.js" id="notmsg" nmuid="<?php echo $get_user_id?>"></script>
 
 
 

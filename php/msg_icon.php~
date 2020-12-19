@@ -15,10 +15,14 @@ if($msg_icon_count>0) {
   $msg_from = mysqli_fetch_array($msg_from_r);
 
   $time_diff = time() - strtotime($msg_fetch['sent_dt']);
-  
-  echo '<div style="display:none" id="msg-info">
-          <div id="msgCount">'.$msg_icon_count.'</div>
-	</div>';
-  //.$msg_icon_count.'</div><div style="display:none" id="lastText">'.$msg_fetch['text'].'</div><div style="display:none" id="lastFrom">'.$msg_from['username'].'</div><div style="display:none" id="timing">'.$time_diff.'</div>';
+
+  $msg_arr = array();
+  $msg_arr[0] = $msg_icon_count;
+  $msg_arr[1] = $msg_fetch['text'];
+  $msg_arr[2] = $msg_from['username'];
+  $msg_arr[3] = $time_diff;
+
+  echo json_encode($msg_arr);
+  exit();
 }
 ?>

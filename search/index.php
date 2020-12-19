@@ -275,7 +275,7 @@ if($type=='course') {
 
 
   <div class="footbar blur"></div>
-  <script src="/js/footbar.js"></script>
+  <script src="/js/footbar.js"></script><script src="/js/notif_msg.js" id="notmsg" nmuid="<?php echo $get_user_id?>"></script>
 
 
 
@@ -286,12 +286,12 @@ if($type=='course') {
   </script>
 
   <div class="footbar"></div>
-<script src="/js/footbar.js"></script>
+<script src="/js/footbar.js"></script><script src="/js/notif_msg.js" id="notmsg" nmuid="<?php echo $get_user_id?>"></script>
 
 <script>
     var notifUserId=<?php echo $get_user_id ?>;
 </script>
-<script src="/js/notif_msg.js"></script>
+
 
 
 <script>
