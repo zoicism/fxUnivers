@@ -355,8 +355,10 @@ hr.style-1 {
     color: white;
     font-size: 11px;
     font-weight: bold;
-    margin-right: -4px;
-    margin-top: -3px;
+    margin-top: -8px;
+    margin-left: -11px;
+    position: relative;
+    z-index: 2;
 }
 
 /************ SCREENS ************/

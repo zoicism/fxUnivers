@@ -893,6 +893,23 @@ background: linear-gradient(126deg, rgba(255,66,29,1) 0%, rgba(252,67,67,1) 50%,
 .nav__links li a img {
   width: inherit;
 }
+
+.newnum {
+    display:none;
+    background: red;
+    height: 15px;
+    width: 15px;
+    float: right;
+    border-radius: 8px;
+    text-align: center;
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    margin-top: -8px;
+    margin-left: -11px;
+    position: relative;
+    z-index: 2;
+}
 /* * * * * * * * * * < * * * * * * * * * */
 
 

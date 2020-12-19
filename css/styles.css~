@@ -2331,7 +2331,7 @@ cursor: pointer;
   box-shadow: -4px -2px 4px 0px #ffffff, 4px 2px 6px 0px #DFE4EA;
 }
 
-.disc-container .desc-contact {
+.discussion .desc-contact {
     height: 43px;
   width:70%;
   white-space: nowrap;

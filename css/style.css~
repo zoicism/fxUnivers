@@ -461,6 +461,10 @@ hr.style-1 {
     .left-col {
 	float:left;
     }
+
+    .left-col .col-1 {
+	background:#00afe817;
+    }
     .mid-col {
 	margin-left:1%;
 	float:left;

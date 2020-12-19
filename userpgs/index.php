@@ -145,8 +145,12 @@ require('../php/get_stu_stucourse.php');
 </div>
 
 <div class="footer"></div>
-<script src="/js/footer.js"></script>
 
+
+<!-- SCRIPTS -->
+
+<script src="/js/footer.js"></script>
+<script src="/js/notif_msg.js" id="notmsg" nmuid="<?php echo $get_user_id?>"></script>
                     
 <div class="footbar blur"></div>
 <script src="/js/footbar.js"></script>
@@ -160,8 +164,10 @@ function coming() {
 
 <script>
 
-$('#page-header').html('fxUnivers');('#page-header').attr('href','/');
+$('#page-header').html('fxUnivers');
+$('#page-header').attr('href','/');
 </script>
-                    
+
+
 </body>
 </html>

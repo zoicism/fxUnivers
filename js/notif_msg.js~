@@ -1,31 +1,55 @@
 $(document).ready(function() {
-  var notifUserId=<?php echo $get_user_id ?>;
-  setInterval(function() {
-    jQuery.ajax({
-      type: 'POST',
-      url: '/php/notif_icon.php',
-      data: {notif_userId: notifUserId},
-      success: function(response) {
-            //var json=$.parseJSON(response);
-            //alert(json.last_notif);
-            //alert(response);
-            if(response>0) {
-                $('#notif-bar').show();
-                $('#notif-bar').html(response);
-            }
+    
+    if(!Notification) {
+	console.log('Browser does not support web notif.');
+    } else {
+	if(Notification.permission !== "granted") {
+	    Notification.requestPermission();
+	}
+    }
 
-            jQuery.ajax({
-              type: 'POST',
-              url: '/php/msg_icon.php',
-              data: {msg_userId: notifUserId},
-              success: function(result) {
-                    if(result>0) {
-                        $('#msg-bar').show();
-                        $('#msg-bar').html(result);
-                    }
-              }
-            });
-      }
-    });
-  }, 2000);
+    var userId = $('#notmsg').attr('nmuid');
+
+    
+    setInterval(function() {
+	jQuery.ajax({
+	    type: 'POST',
+	    url: '/php/notif_icon.php',
+	    data: {notif_userId: userId},
+	    success: function(response) {
+		if(response>0) {
+                    $('#notif-bar').show();
+                    $('#notif-bar').html(response);
+		}
+		
+		jQuery.ajax({
+		    type: 'POST',
+		    url: '/php/msg_icon.php',
+		    data: {msg_userId: userId},
+		    success: function(result) {
+			console.log(result);
+			var msgCount = $('#msg-info').html($('#msgCount').text());
+			
+			console.log(msgCount);
+			
+//			if(msgCount>0) {
+  //                        $('#msg-bar').show();
+   //                       $('#msg-bar').html(msgCount);
+			    
+			    /*var notif = new Notification('title', {
+				icon: '/images/icons/toolbar/msg.png',
+				body: 'message body'
+			    });*/
+//			}
+  		    }
+		});
+	    }
+	});
+    }, 2000);
 });
+
+notif.onclick = function() {
+    console.log('clicked');
+    window.open('/msg/inbox.php');
+    notif.close();
+}
