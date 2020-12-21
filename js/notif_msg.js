@@ -16,46 +16,85 @@ $(document).ready(function() {
 	    type: 'POST',
 	    url: '/php/notif_icon.php',
 	    data: {notif_userId: userId},
+	    dataType: 'json',
 	    success: function(response) {
-		if(response>0) {
-                    $('#notif-bar').show();
-                    $('#notif-bar').html(response);
-		}
+
+		console.log(response);
+
+		var notif_count = response[0];
+		var notif_username = response[1];
+		var notif_body = response[2];
+		var notif_timing = response[3];
 		
-		jQuery.ajax({
-		    type: 'POST',
-		    url: '/php/msg_icon.php',
-		    data: {msg_userId: userId},
-		    dataType: 'json',
-		    success: function(result) {
+		
+		if(notif_count>0) {
+                    $('#notif-bar').show();
+                    $('#notif-bar').html(notif_count);
 
-			var msgCount = result[0];
-			var lastText = result[1];
-			var lastFrom = result[2];
-			var msgTime = result[3];
-
-			if(msgCount>0) {
-			    $('#msg-bar').show();
-			    $('#msg-bar').html(msgCount);
-			    
-			    if(msgTime<5) {
-				var newMsgNotif = new Notification('New Message from @'+lastFrom, {
-				    icon: '/images/icons/toolbar/msg.png',
-				    body: lastText
-				});
-
-				
-				newMsgNotif.onclick = function() {
-				    window.open('/msg/'+lastFrom);
-				    newMsgNotif.close();
-				}
-			    }
-			}
+		    if(notif_timing<5) {
+			var formSubstr = notif_body.match("<form(.*)</form>");
+			var aSubstr = notif_body.match("<a id=\"badA\"(.*)</a>");
 			
-  		    }
-		});
+			if(formSubstr!==null) {
+			    var notif_body = notif_body.replace(formSubstr[0],'');
+			}
+
+			if(aSubstr!==null) {
+			    var notif_body = notif_body.replace(aSubstr[0],'');
+			}
+
+			
+			
+			var newNotifNotif = new Notification('New Notif from @'+notif_username, {
+			    icon: '/images/icons/toolbar/notif.png',
+			    body: notif_body
+			});
+
+			newNotifNotif.onclick = function() {
+			    window.open('/userpgs/notif');
+			    newNotifNotif.close();
+			}
+		    }
+					
+		}
 	    }
 	});
-    }, 4000);
 
+
+	jQuery.ajax({
+	    type: 'POST',
+	    url: '/php/msg_icon.php',
+	    data: {msg_userId: userId},
+	    dataType: 'json',
+	    success: function(result) {
+		
+		var msgCount = result[0];
+		var lastText = result[1];
+		var lastFrom = result[2];
+		var msgTime = result[3];
+		
+		if(msgCount>0) {
+		    $('#msg-bar').show();
+		    $('#msg-bar').html(msgCount);
+		    
+		    if(msgTime<5) {
+			var newMsgNotif = new Notification('New Message from @'+lastFrom, {
+			    icon: '/images/icons/toolbar/msg.png',
+			    body: lastText
+			});
+			
+			
+			newMsgNotif.onclick = function() {
+			    window.open('/msg/'+lastFrom);
+			    newMsgNotif.close();
+			}
+		    }
+		}
+		
+  	    }
+	});
+	
+	
+    }, 4000);
+    
 });

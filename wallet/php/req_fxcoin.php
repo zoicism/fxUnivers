@@ -26,7 +26,7 @@ $reciever_un = $tar_user_fetch['username'];
 $interest=ceil(0.1*$amnt);
 
 // current dt
-date_default_timezone_set('America/New_York');
+//date_default_timezone_set('America/New_York');
 $trans_dt=date('Y-m-d H:i:s');
 
 if($get_fxcoin_count>$amnt+$interest && $accepted==1) {
@@ -59,21 +59,25 @@ if($get_fxcoin_count>$amnt+$interest && $accepted==1) {
     // update the fxcoin_req table that the sender has accepted to transfer
     $rfc_acc_query = "UPDATE fxcoin_req SET accepted=1 WHERE notif=$notif";
     $rfc_acc_result = mysqli_query($wallet_connection, $rfc_acc_query) or die(mysqli_error($wallet_connection));
-    
+
+
+
+    $utc_timestamp = date('Y-m-d H:i:s');
+
     // send reciever a notif of acceptance
     $rfc_re_body="@$username accepted your request of $amnt fxCoins.";
-    $rfc_re_notif="INSERT INTO notif(user_id,body,from_id) VALUES($reciever,'$rfc_re_body',$sender)";
+    $rfc_re_notif="INSERT INTO notif(user_id,body,from_id,sent_dt) VALUES($reciever,'$rfc_re_body',$sender, '$utc_timestamp')";
     $rfc_re_result=mysqli_query($connection,$rfc_re_notif) or die(mysqli_error($connection));
     
     // FXWALLET.TRANSACTIONS //
-    date_default_timezone_set('America/New_York');
-    $current_date_time_ny=date("Y-m-d h:i:s");
+    //date_default_timezone_set('America/New_York');
+    /*$current_date_time_ny=date("Y-m-d h:i:s");
     $personA_id=$sender;
     $personB_id=$reciever;
     $cost=$amnt;
     require('encrypt_transfer.php');
     $send_req_trans_query="INSERT INTO transactions(ciphertext) VALUES('$ciphertext')";
-    $send_req_trans_result=mysqli_query($wallet_connection, $send_req_trans_query) or die(mysqli_error($wallet_connection));
+    $send_req_trans_result=mysqli_query($wallet_connection, $send_req_trans_query) or die(mysqli_error($wallet_connection));*/
 
     echo 'success';
 } elseif($get_fxcoin_count<$amnt+$interest && $accepted==1) {
@@ -85,8 +89,9 @@ if($get_fxcoin_count>$amnt+$interest && $accepted==1) {
     $rfcd_notif_result=mysqli_query($connection, $rfcd_notif_query) or die(mysqli_error($connection));
     
     // Send notif to the reciever
+    $utc_timestamp = date('Y-m-d H:i:s');
     $rfcds_notif_body="@$username has declined your request of $amnt fxCoins.";
-    $rfcds_notif_query="INSERT INTO notif(user_id,body,from_id) VALUES($reciever,'$rfcds_notif_body',$sender)";
+    $rfcds_notif_query="INSERT INTO notif(user_id,body,from_id, sent_dt) VALUES($reciever,'$rfcds_notif_body',$sender, '$utc_timestamp')";
     $rfcds_notif_result=mysqli_query($connection,$rfcds_notif_query) or die(mysqli_error($connection));
     
     // Update the fxcoin_req table to declined

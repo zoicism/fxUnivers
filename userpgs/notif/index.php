@@ -108,7 +108,7 @@ $dns_result=mysqli_query($connection,$dns_query) or die(mysqli_error($connection
                             <form class="addFriendAccept">
                               <input type="hidden" name="notifId" value="<?php echo $row['id'] ?>">
                               <input type="hidden" name="requesteeUN" value="<?php echo $username?>">
-                              <input type="submit" value="Accept"/>
+                              <input type="submit" value="Accept">
                             </form>
                             <form class="addFriendDecline">
                               <input type="hidden" name="notifId" value="<?php echo $row['id'] ?>">
@@ -185,45 +185,6 @@ $dns_result=mysqli_query($connection,$dns_query) or die(mysqli_error($connection
 
 
 
-<script>
-$(document).ready(function() {
-  var notifUserId=<?php echo $get_user_id ?>;
-  setInterval(function() {
-    jQuery.ajax({
-      type: 'POST',
-      url: '/php/notif_icon.php',
-      data: {notif_userId: notifUserId},
-      success: function(response) {
-            //var json=$.parseJSON(response);
-            //alert(json.last_notif);
-            //alert(response);
-            if(response==='1') {
-                //alert('its 1');
-                $('#notif_a').addClass('blink');
-            }
-
-            jQuery.ajax({
-              type: 'POST',
-              url: '/php/msg_icon.php',
-              data: {msg_userId: notifUserId},
-              success: function(result) {
-                    if(result>0) {
-                        $('#msg_bar').addClass('blink');
-                    }
-              }
-            });
-      }
-    });
-  }, 2000);
-});
-</script>
-
-
-
-
-
-
-
 
 <script>
 $(function() {
@@ -269,42 +230,20 @@ $(function() {
               url: '/wallet/php/req_fxcoin.php',
               data: $(this).serialize(),
               success: function(result) {
+	            console.log(result);
                     if(result=='success') {
                         alert('The transaction is completed successfully.');
-                        location.reload();
-                        //e.preventDefault();
-                        /*jQuery.ajax({
-                          type: 'POST',
-                          url: '/wallet/php/get_fxcoin_count.php',
-                          data: $(this).serialize(),
-                          success: function() {
-                                $("#fxCoinCount").load(window.location.href + " #fxCoinCount");
-                                //e.preventDefault();
-                                jQuery.ajax({
-                                  type: 'POST',
-                                  url: '/userpgs/php/notif.php',
-                                  data: $(this).serialize(),
-                                  success: function() {
-                                        $('#notif_update').load(window.location.href+' #notif_update');
-                                  }
-                                });
-                          }
-                        });*/
+                        window.location.reload();
+                        
                     } else if(result=='insuff') {
                         alert('Insufficient Funds!');
                     } else if(result=='declined') {
                         alert('The request is declined.');
-                        location.reload();
-                        //e.preventDefault();
-                        /*jQuery.ajax({
-                          type: 'POST',
-                          url: '/userpgs/php/notif.php',
-                          data: $(this).serialize(),
-                          success: function() {
-                                $('#notif_update').load(window.location.href+' #notif_update');
-                          }
-                        });*/
-                    }
+                        window.location.reload();
+                        
+                    } else {
+		        alert('Failed to complete the transaction. Please try again.');
+	            }
               }
             
             });
@@ -316,17 +255,38 @@ $(function() {
 
 </script>
 
+
 <script>
 $(function() {
-    $('.addFriendAccept').on('submit', function(e) {
-        //alert('ok');
-        //alert('<?php echo $first_notif_id ?>');
+    $('.addFriendDecline').on('submit', function(e) {
         e.preventDefault();
+        jQuery.ajax({
+          type: 'POST',
+          url: '/php/declineFndReq.php',
+          data: $(this).serialize(),
+          success: function(result) {
+                if(result==1) {
+		  alert('Declined friend request.');
+		  window.location.reload();
+		} else {
+		  alert('Failed to decline. Please try again.');
+		}
+          }
+        });
+    });
+});
+</script>
+
+<script>
+    $('.addFriendAccept').submit(function(event) {
+        event.preventDefault();
+	console.log('submitted');
         jQuery.ajax({
           type: 'POST',
           url: '/php/acceptFndReq.php',
           data: $(this).serialize(),
           success: function(result) {
+	    console.log(result);
 	    if(result==1) {
 	      alert('Friend request accepted.');
 	      window.location.reload();
@@ -336,26 +296,6 @@ $(function() {
           }
         });
     });
-});
-</script>
-
-<script>
-$(function() {
-    $('.addFriendDecline').on('submit', function(e) {
-        //alert('ok');
-        //alert('<?php echo $first_notif_id ?>');
-        e.preventDefault();
-        jQuery.ajax({
-          type: 'POST',
-          url: '/php/declineFndReq.php',
-          data: $(this).serialize(),
-          success: function(result) {
-                //alert(result);
-                $('#notif_update').load(window.location.href+' #notif_update');
-          }
-        });
-    });
-});
 </script>
 
 </body>

@@ -16,7 +16,9 @@ if($friendship==0) {
     $set_fnd_r=mysqli_query($connection,$set_fnd_q) or die(mysqli_error($connection));
 
     // update notif for requestee
-    $fnd_notif_q="INSERT INTO notif(user_id,body,from_id,reason) VALUES($requestee,'<a href=\"/user/$requesterUn\">@$requesterUn</a> has sent you a friend request.',$requester,'friendRequest')";
+    $utc_timestamp = date('Y-m-d H:i:s');
+    
+    $fnd_notif_q="INSERT INTO notif(user_id,body,from_id,reason,sent_dt) VALUES($requestee,'<a id=\"badA\" href=\"/user/$requesterUn\">@$requesterUn</a> has sent you a friend request.',$requester,'friendRequest','$utc_timestamp')";
     $fnd_notif_r=mysqli_query($connection,$fnd_notif_q) or die(mysqli_error($connection));
 } else {
     // there's a friendship record, so delete it

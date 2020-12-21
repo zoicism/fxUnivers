@@ -31,4 +31,10 @@ $requester_un=$requester_un_fetch['username'];
 $update_dec_notif_body="You declined the friend request of <a href=\"/user/$requester_un\">@$requester_un.";
 $update_dec_notif_q="UPDATE notif SET body='$update_dec_notif_body', active=0, reason=NULL WHERE id=$notif_id";
 $update_dec_notif_r=mysqli_query($connection,$update_dec_notif_q) or die(mysqli_error($connection));
+
+if($acceptFnd_r) {
+  echo 1;
+} else {
+  echo 0;
+}
 ?>

@@ -19,7 +19,7 @@ $biddings_count = mysqli_num_rows($biddings_r);
 if($biddings_count>0) {
 
   // current dt
-  date_default_timezone_set('America/New_York');
+  //date_default_timezone_set('America/New_York');
   $trans_dt=date('Y-m-d H:i:s');
 
   $bidding = mysqli_fetch_array($biddings_r);
@@ -63,8 +63,10 @@ if($biddings_count>0) {
     $purchase_course_query = "INSERT INTO stucourse(stu_id, course_id) VALUES($bid_from_id, $courseId)";
     $purchase_course_result = mysqli_query($connection, $purchase_course_query) or die(mysqli_error($connection));
 
+$utc_timestamp = date('Y-m-d H:i:s');
+
     // NOTIF
-    $notif_query = 'INSERT INTO notif(user_id, body, from_id) VALUES('.$bid_from_id.', "Your offer is accepted as the highest for the course <a href=\'/userpgs/instructor/course_management/course.php?course_id='.$courseId.'\'>'.$course_f['header'].'</a>", '.$bid_to_id.')';
+    $notif_query = 'INSERT INTO notif(user_id, body, from_id, sent_dt) VALUES('.$bid_from_id.', "Your offer is accepted as the highest for the course <a id="badA" href=\'/userpgs/instructor/course_management/course.php?course_id='.$courseId.'\'>'.$course_f['header'].'</a>", '.$bid_to_id.', "'.$utc_timestamp.'")';
     $notif_result = mysqli_query($connection,$notif_query);
   }
     

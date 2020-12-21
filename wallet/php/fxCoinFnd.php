@@ -19,7 +19,7 @@ $tarname=$receiver;
 require('../../php/get_tar_user.php');
 
 // current dt
-date_default_timezone_set('America/New_York');
+//date_default_timezone_set('America/New_York');
 $trans_dt=date('Y-m-d H:i:s');
 
 //function to determine the interest; I=ceil(0.1*m)
@@ -52,11 +52,11 @@ if($get_fxcoin_count>$sendAmnt+$interest) {
     $trans_query="INSERT INTO transactions(from_id, to_id, amnt, dt) VALUES($trans_from, $trans_to, $trans_amnt, '$trans_dt')";
     $trans_result=mysqli_query($wallet_connection, $trans_query) or die(mysqli_error($wallet_connection));
 
+    $utc_timestamp = date('Y-m-d H:i:s');
     
-
     // send notif to the receiver
     $send_notif_body="@$username sent you $sendAmnt fxStars.";
-    $fxcoin_send_notif_query="INSERT INTO notif(user_id,body,from_id) VALUES($tar_id,'$send_notif_body',$get_user_id)";
+    $fxcoin_send_notif_query="INSERT INTO notif(user_id,body,from_id, sent_dt) VALUES($tar_id,'$send_notif_body',$get_user_id, '$utc_timestamp')";
     $fxcoin_send_notif_result=mysqli_query($connection,$fxcoin_send_notif_query) or die(mysqli_error($connection));
 
     echo 'success';

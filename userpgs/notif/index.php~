@@ -87,7 +87,15 @@ $dns_result=mysqli_query($connection,$dns_query) or die(mysqli_error($connection
 	    
 	    
             echo '<li class="notification" tabindex="1">';
-	      echo ' <div class="avatar-container"><div class="photo avatar" onclick="location.href=\'/user/'.$notif_from_un.'\';"></div></div>';
+
+	    if($notif_from_fetch['avatar']!=NULL) {
+	      $avatar_url='/userpgs/avatars/'.$notif_from_fetch['avatar'];
+	    } else {
+	      $avatar_url='/images/background/avatar.png';
+	    }
+	    
+	      echo '<div class="avatar-container"><div class="photo avatar" onclick="location.href=\'/user/'.$notif_from_un.'\';" style="background-image:url(\''.$avatar_url.'\');"></div></div>';
+	      
 
 	      
 
@@ -261,42 +269,20 @@ $(function() {
               url: '/wallet/php/req_fxcoin.php',
               data: $(this).serialize(),
               success: function(result) {
+	            console.log(result);
                     if(result=='success') {
                         alert('The transaction is completed successfully.');
-                        location.reload();
-                        //e.preventDefault();
-                        /*jQuery.ajax({
-                          type: 'POST',
-                          url: '/wallet/php/get_fxcoin_count.php',
-                          data: $(this).serialize(),
-                          success: function() {
-                                $("#fxCoinCount").load(window.location.href + " #fxCoinCount");
-                                //e.preventDefault();
-                                jQuery.ajax({
-                                  type: 'POST',
-                                  url: '/userpgs/php/notif.php',
-                                  data: $(this).serialize(),
-                                  success: function() {
-                                        $('#notif_update').load(window.location.href+' #notif_update');
-                                  }
-                                });
-                          }
-                        });*/
+                        window.location.reload();
+                        
                     } else if(result=='insuff') {
                         alert('Insufficient Funds!');
                     } else if(result=='declined') {
                         alert('The request is declined.');
-                        location.reload();
-                        //e.preventDefault();
-                        /*jQuery.ajax({
-                          type: 'POST',
-                          url: '/userpgs/php/notif.php',
-                          data: $(this).serialize(),
-                          success: function() {
-                                $('#notif_update').load(window.location.href+' #notif_update');
-                          }
-                        });*/
-                    }
+                        window.location.reload();
+                        
+                    } else {
+		        alert('Failed to complete the transaction. Please try again.');
+	            }
               }
             
             });

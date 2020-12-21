@@ -173,13 +173,12 @@ $(function() {
       e.preventDefault();
    var recepientUname = document.getElementById('sendToId').value;
    var recepientAmnt = document.getElementById('sendToAmnt').value;
-   if(confirm('confirm sending '+recepientAmnt+' fxStars to '+recepientUname+'.')) {
-
+   if(confirm('Confirm sending '+recepientAmnt+' fxStars to '+recepientUname+'.')) {
     
     jQuery.ajax({
       type: 'POST',
       url: '/wallet/php/fxCoinFnd.php',
-      data: $('#sendToFndForm').serialize(),
+      data: $(this).serialize(),
       success: function(result) {
             if(result=='success') {
                 alert(recepientAmnt+' fxStars is sent to '+recepientUname+'.');

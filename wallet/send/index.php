@@ -184,7 +184,9 @@ $(function() {
                 alert(recepientAmnt+' fxStars is sent to '+recepientUname+'.');
                 location.reload();
             } else if(result=='failed') {
-                alert('insufficient fxStars!');
+                alert('Insufficient fxStars!');
+            } else {
+	        alert('Failed to send fxStars. Please select a friend and try again.');
             }
         }
     });

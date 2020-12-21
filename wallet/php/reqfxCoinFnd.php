@@ -9,7 +9,9 @@ $tarname=$reqFrom;
 require('../../php/get_tar_user.php');
 $body = "@$username has requested $reqAmnt fxCoins from you. Do you want to send $get_user_fname $get_user_lname, $reqAmnt fxCoins?";
 
-$rfcf_query = "INSERT INTO notif(user_id, body, reason, from_id, active) VALUES($tar_id, '$body', 'fxCoinReq', $get_user_id, 1)";
+$utc_timestamp = date('Y-m-d H:i:s');
+
+$rfcf_query = "INSERT INTO notif(user_id, body, reason, from_id, active, sent_dt) VALUES($tar_id, '$body', 'fxCoinReq', $get_user_id, 1, '$utc_timestamp')";
 $rfcf_result = mysqli_query($connection, $rfcf_query) or die(mysqli_error($connection));
 
 $rfcf_id_query = "SELECT * FROM notif WHERE from_id=$get_user_id ORDER BY id DESC LIMIT 1";

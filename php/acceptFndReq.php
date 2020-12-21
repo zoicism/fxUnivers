@@ -34,8 +34,9 @@ $update_fnd_notif_q="UPDATE notif SET body='$update_fnd_notif_body', active=0, r
 $update_fnd_notif_r=mysqli_query($connection,$update_fnd_notif_q) or die(mysqli_error($connection));
 
 // send requestee a notif of acceptance
-$requestee_n_body="<a href=\"/user/$requestee\">@$requestee</a> accepted your friend request";
-$requestee_notif_q="INSERT INTO notif(user_id,body,from_id) VALUES($requester_id,'$requestee_n_body',$requestee_id)";
+$utc_timestamp = date('Y-m-d H:i:s');
+$requestee_n_body="<a id=\"badA\" href=\"/user/$requestee\">@$requestee</a> accepted your friend request";
+$requestee_notif_q="INSERT INTO notif(user_id,body,from_id, sent_dt) VALUES($requester_id,'$requestee_n_body',$requestee_id, '$utc_timestamp')";
 $requestee_notif_r=mysqli_query($connection,$requestee_notif_q) or die(mysqli_error($connection));
 
 if($acceptFnd_r) {

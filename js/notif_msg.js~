@@ -1,7 +1,7 @@
 $(document).ready(function() {
-    
+        
     if(!Notification) {
-	console.log('Browser does not support web notif.');
+	//console.log('Browser does not support web notif.');
     } else {
 	if(Notification.permission !== "granted") {
 	    Notification.requestPermission();
@@ -16,40 +16,78 @@ $(document).ready(function() {
 	    type: 'POST',
 	    url: '/php/notif_icon.php',
 	    data: {notif_userId: userId},
+	    dataType: 'json',
 	    success: function(response) {
-		if(response>0) {
-                    $('#notif-bar').show();
-                    $('#notif-bar').html(response);
-		}
+
+		console.log(response);
+
+		var notif_count = response[0];
+		var notif_username = response[1];
+		var notif_body = response[2];
+		var notif_timing = response[3];
 		
-		jQuery.ajax({
-		    type: 'POST',
-		    url: '/php/msg_icon.php',
-		    data: {msg_userId: userId},
-		    success: function(result) {
-			console.log(result);
-			var msgCount = $('#msg-info').html($('#msgCount').text());
+		
+		if(notif_count>0) {
+                    $('#notif-bar').show();
+                    $('#notif-bar').html(notif_count);
+
+		    if(notif_timing<5) {
+			var formSubstr = notif_body.match("<form(.*)</form>");
+			console.log(formSubstr);
+			if(formSubstr) {
+			    notif_body.replace(formSubstr[0],'');
+			}
 			
-			console.log(msgCount);
-			
-//			if(msgCount>0) {
-  //                        $('#msg-bar').show();
-   //                       $('#msg-bar').html(msgCount);
-			    
-			    /*var notif = new Notification('title', {
-				icon: '/images/icons/toolbar/msg.png',
-				body: 'message body'
-			    });*/
-//			}
-  		    }
-		});
+			var newNotifNotif = new Notification('New Notif from @'+notif_username, {
+			    icon: '/images/icons/toolbar/notif.png',
+			    body: notif_body
+			});
+
+			newNotifNotif.onclick = function() {
+			    window.open('/userpgs/notif');
+			    newNotifNotif.close();
+			}
+		    }
+					
+		}
 	    }
 	});
-    }, 2000);
-});
 
-notif.onclick = function() {
-    console.log('clicked');
-    window.open('/msg/inbox.php');
-    notif.close();
-}
+
+	jQuery.ajax({
+	    type: 'POST',
+	    url: '/php/msg_icon.php',
+	    data: {msg_userId: userId},
+	    dataType: 'json',
+	    success: function(result) {
+		
+		var msgCount = result[0];
+		var lastText = result[1];
+		var lastFrom = result[2];
+		var msgTime = result[3];
+		
+		if(msgCount>0) {
+		    $('#msg-bar').show();
+		    $('#msg-bar').html(msgCount);
+		    
+		    if(msgTime<5) {
+			var newMsgNotif = new Notification('New Message from @'+lastFrom, {
+			    icon: '/images/icons/toolbar/msg.png',
+			    body: lastText
+			});
+			
+			
+			newMsgNotif.onclick = function() {
+			    window.open('/msg/'+lastFrom);
+			    newMsgNotif.close();
+			}
+		    }
+		}
+		
+  	    }
+	});
+	
+	
+    }, 4000);
+    
+});

@@ -53,7 +53,7 @@ if($user_type=='instructor') {
     <p style="font-size:1rem">The class <b>'.$header.'</b> is live right now and waiting for you to join in!</p>
     <p style="font-size:1rem">Click the following link to directly enter the class or sign in to your fxUnivers account to find out more.</p>
     
-    <form action="/userpgs/instructor/class/live/#'.$class_id.'" method="POST">
+    <form action="https://fxunivers.com/userpgs/instructor/class/live/#'.$class_id.'" method="POST">
       <input type="hidden" name="course_id" value="'.$course_id.'">
       <input type="hidden" name="class_id" value="'.$class_id.'">
       <input type="submit" value="Enter">

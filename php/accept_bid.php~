@@ -1,8 +1,12 @@
 <?php
 require_once('../wallet/php/wallet_connect.php');
+require_once('../register/connect.php');
 
 if(isset($_POST['course_id'])) {
   $courseId=$_POST['course_id'];
+  $course_q="SELECT * FROM teacher WHERE id=$courseId";
+  $course_r=mysqli_query($connection,$course_q);
+  $course_f=mysqli_fetch_array($course_r);
 } else {
   exit();
 }
@@ -29,6 +33,7 @@ if($biddings_count>0) {
   $to_fxstars = $bid_raw_amount;
   $fxunivers_fxstars = $bid_amount-$bid_raw_amount;
 
+
   //echo '>'.$to_fxstars.' >'.$fxunivers_fxstars;
 
   // MAKE TRANSFER FROM BID TO to_id AND fxUnivers
@@ -50,14 +55,19 @@ if($biddings_count>0) {
   }
 
 
-
-
-
   // UPDATE locked
   $locked_update_q = "UPDATE locked SET finalized=1 WHERE course_id=$courseId";
   $locked_update_r = mysqli_query($wallet_connection, $locked_update_q);
 
+  if($locked_update_r) {
+    $purchase_course_query = "INSERT INTO stucourse(stu_id, course_id) VALUES($bid_from_id, $courseId)";
+    $purchase_course_result = mysqli_query($connection, $purchase_course_query) or die(mysqli_error($connection));
 
+    // NOTIF
+    $notif_query = 'INSERT INTO notif(user_id, body, from_id) VALUES('.$bid_from_id.', "Your offer is accepted as the highest for the course <a href=\'/userpgs/instructor/course_management/course.php?course_id='.$courseId.'\'>'.$course_f['header'].'</a>", '.$bid_to_id.')';
+    $notif_result = mysqli_query($connection,$notif_query);
+  }
+    
   echo 'transferred';
 } else {
   echo 'nooffer';
