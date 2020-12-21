@@ -152,17 +152,22 @@ $('.toggleReqFinal').click(function() {
 <script>
 $(function() {
   $('#reqToFndForm').on('submit', function(e) {
+   e.preventDefault();
    var reqUname = document.getElementById('reqToId').value;
    var reqAmnt = document.getElementById('reqToAmnt').value;
-   if(confirm('confirm requesting '+reqAmnt+' fxStars from '+reqUname+'.')) {
-    e.preventDefault();
+   if(confirm('Confirm requesting '+reqAmnt+' fxStars from '+reqUname+'.')) {
+    
     jQuery.ajax({
       type: 'POST',
       url: '/wallet/php/reqfxCoinFnd.php',
-      data: $('#reqToFndForm').serialize(),
-      success: function() {
+      data: $(this).serialize(),
+      success: function(response) {
+        if(response=='success') {
             alert(reqAmnt+' is requested from '+reqUname+'.');
             location.reload();
+	} else {
+	  alert('Failed to complete the request. Please select a friend and try again.');
+	}
       }
     });
    } else {
