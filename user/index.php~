@@ -244,8 +244,19 @@ $avatar_path=$_SERVER['DOCUMENT_ROOT'];
                $fnd_user_fetch = mysqli_fetch_array($fnd_user_result);
 
 
+if($fnd_user_fetch['avatar']!=NULL) {
+      $avatar_url='/userpgs/avatars/'.$fnd_user_fetch['avatar'];
+} else {
+      $avatar_url='/images/background/avatar.png';
+}
+
+
+
+
+
+
 	       echo '<li class="friends">
-	               <a class="photo-friends" style="background-image: url(\'/images/background/avatar.svg\');"></a>
+	               <a class="photo-friends" style="background-image: url(\''.$avatar_url.'\');"></a>
 		       <div class="desc-contact">
 		         <a class="name">'.$fnd_user_fetch['fname'].' '.$fnd_user_fetch['lname'].'</a>
 			 <p class="username-friends">@'.$fnd_user_fetch['username'].'</p>

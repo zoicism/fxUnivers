@@ -493,8 +493,8 @@ if($fnd_user_fetch['avatar']!=NULL) {
 
 
   <script>
-    $('#page-header').html('fxStar');
-    $('#page-header').attr('href','/wallet');
+    $('#page-header').html('fxUnivers');
+    $('#page-header').attr('href','/');
   </script>
 
 
