@@ -282,7 +282,7 @@ if($user_type=='instructor') {
 
 			     
 
-			     echo '<div class="add-box">Live Whiteboard <img src="/images/background/whiteboard.svg" id="wbImg"></div>';
+			     echo '<div class="add-box">Live Whiteboard <span><img src="/images/background/whiteboard.svg" id="wbImg"></span></div>';
 
 
 			     

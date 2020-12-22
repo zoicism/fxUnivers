@@ -869,29 +869,34 @@ background: linear-gradient(126deg, rgba(255,66,29,1) 0%, rgba(252,67,67,1) 50%,
 
 .nav__links {
   list-style: none;
-  display: flex;
   z-index:1;
+  display: flex;
+  flex-flow: row nowrap;
+  width: 100%;
 }
 
-/* * * * * * * * * * > upperbar shadow + width + padding * * * * * * * * * */
-.nav__links li a {
-  width: 16px;
-  padding: 6px 10px;
-  margin-left: 22px;
-  border-radius: 4px;
+
+.nav__links li {
+  outline: none;
+  width: 22px;
+  height: 22px;
+  margin-left: 24px;
   text-decoration: none;
-  box-shadow: -4px -2px 4px 0px #ffffff, 4px 2px 6px 0px #DFE4EA;
 }
 
-.nav__links li a:focus {
-  box-shadow: inset -4px -2px 4px 0px #fff,
-        inset 4px 2px 6px 0px #DFE4EA,
-        -4px -2px 4px 0px #ffffff,
-        4px 2px 6px 0px #DFE4EA;
+.nav__links li svg {
+  width: 100%;
+  height: 100%;
 }
 
-.nav__links li a img {
-  width: inherit;
+.nav__links li .stroked {
+  fill: #393939;
+  display: block;
+}
+
+.nav__links li .filled {
+    display:none;
+    fill: #393939;
 }
 
 .newnum {
@@ -905,8 +910,9 @@ background: linear-gradient(126deg, rgba(255,66,29,1) 0%, rgba(252,67,67,1) 50%,
     color: white;
     font-size: 11px;
     font-weight: bold;
-    margin-top: -8px;
-    margin-left: -11px;
+    margin-top: -34px;
+    margin-right:-9px;
+   
     position: relative;
     z-index: 2;
 }
@@ -3079,6 +3085,16 @@ input:checked + .slider:before {
 	display:flex;
 	justify-content:space-between;
     }
+
+    .footbar-icon .stroked {
+	fill: #393939;
+	display: block;
+    }
+    
+    .footbar-icon .filled {
+	display:none;
+	fill: #393939;
+    }
     
     .header {
 	padding:0;
@@ -3146,7 +3162,7 @@ input:checked + .slider:before {
     .main-items {
 	width:100%;
     }
-    
+
     .nav__links {
 	justify-content:space-between;
 	display:flex;
@@ -3161,13 +3177,22 @@ input:checked + .slider:before {
     .nav__links li {
 	padding:0;
 	margin:10px;
+	width:auto;
+	height:auto;
     }
-    
+
     .nav__links li a {
+	width: 16px;
+	padding: 6px 10px;
+	border-radius: 4px;
+	text-decoration: none;
 	box-shadow:none;
 	margin:0;
     }
     
+    .nav__links li svg {
+	width:inherit;
+    }
     .nav__links li a:focus {
 	box-shadow:none;
     }
