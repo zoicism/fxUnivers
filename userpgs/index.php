@@ -168,6 +168,9 @@ $('#page-header').html('fxUnivers');
 $('#page-header').attr('href','/');
 </script>
 
-
+<script>
+  $('#nav-home .filled').show();
+  $('#nav-home .stroked').hide();
+</script>
 </body>
 </html>

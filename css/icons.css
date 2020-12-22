@@ -88,7 +88,7 @@
     background-repeat:no-repeat;
     background-position:center center;
     margin:10px;
-    opacity:0.7;
+    /*opacity:0.7;*/
 }
 
 .footbar-icon:active {
@@ -117,34 +117,33 @@
 }
 
 .home {
-    background-image:url('../images/logo/fxunivers-logo.svg');
+    /*background-image:url('../images/logo/fxunivers-logo.svg');*/
 }
 .home#active {
-    background-image:url('../images/logo/fxunivers-logo.svg');
-    opacity:1;
+    /*background-image:url('../images/logo/fxunivers-logo.svg');*/
 }
 
 .search {
-    background-image:url('../images/icons/toolbar/search.png');
+    /*background-image:url('../images/icons/toolbar/search.png');*/
 }
 .search#active {
-    background-image:url('../images/icons/toolbar/search-blue.png');
+    /*background-image:url('../images/icons/toolbar/search-blue.png');*/
     opacity:1;
 }
 
 .notif {
-    background-image:url('../images/icons/toolbar/notif.png');
+    /*background-image:url('../images/icons/toolbar/notif.png');*/
 }
 .notif#active {
-    background-image:url('../images/icons/toolbar/notif-blue.png');
+    /*background-image:url('../images/icons/toolbar/notif-blue.png');*/
     opacity:1;
 }
 
 .msg {
-    background-image:url('../images/icons/toolbar/msg.png');
+    /*background-image:url('../images/icons/toolbar/msg.png');*/
 }
 .msg#active {
-    background-image:url('../images/icons/toolbar/msg-blue.png');
+    /*background-image:url('../images/icons/toolbar/msg-blue.png');*/
     opacity:1;
 }
 

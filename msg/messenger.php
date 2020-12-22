@@ -262,5 +262,10 @@ if(screen.width<629) {
 }
 </script>
 
+
+<script>
+  $('#nav-msg .filled').show();
+  $('#nav-msg .stroked').hide();
+</script>
 </body>
 </html>

@@ -117,10 +117,10 @@
 }
 
 .home {
-    background-image:url('../images/logo/logo-100.png');
+    background-image:url('../images/logo/fxunivers-logo.svg');
 }
 .home#active {
-    background-image:url('../images/logo/logo-100.png');
+    background-image:url('../images/logo/fxunivers-logo.svg');
     opacity:1;
 }
 

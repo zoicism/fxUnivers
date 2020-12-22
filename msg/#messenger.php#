@@ -11,6 +11,8 @@ if(isset($_SESSION['username'])) {
 
 require('../php/get_user.php');
 
+
+
 $id = $get_user_id;
 
 
@@ -32,6 +34,8 @@ require('../wallet/php/get_fxcoin_count.php');
 require('../php/get_msg.php');
 
 require('../php/get_messenger.php');
+
+
 
 ?>
 
@@ -64,7 +68,7 @@ require('../php/get_messenger.php');
               <input type="text" placeholder="Search..."></input>
             </li>
 
-
+<div id="disc-container">
 	    <?php
           if($get_msg_count>0) {
             while($row = $get_msg_result->fetch_assoc()) {
@@ -77,12 +81,33 @@ require('../php/get_messenger.php');
                         }
                         require('../php/get_guest.php');
 
-
+if($_GET['guest']==$get_guest['username']) {
+    echo '<li class="discussion" id="active-discussion" tabindex="1" onclick="location.href=\'/msg/messenger.php?guest='.$get_guest["username"].'\';">';
+} else {
 	    echo '<li class="discussion" tabindex="1" onclick="location.href=\'/msg/messenger.php?guest='.$get_guest["username"].'\';">';
-	        echo '<div class="photo" style="background-image: url(http://www.boutique-uns.com/uns/185-home_01grid/polo-femme.jpg);"></div>';
-	        echo '<div class="desc-contact">';
 
-	         echo '<p class="name">'.$get_guest['username'].'</p>';
+}
+
+
+
+
+if($get_guest['avatar']!=NULL) {
+      $avatar_url='/userpgs/avatars/'.$get_guest['avatar'];
+} else {
+      $avatar_url='/images/background/avatar.png';
+}
+
+
+
+
+	        echo '<div class="photo" style="background-image:url(\''.$avatar_url.'\');"></div>';
+	        echo '<div class="desc-contact">';
+if($get_unread_count>0) {
+	         echo '<p class="name">'.$get_guest['username'].' ('.$get_unread_count.')</p>';
+		 } else {
+		 echo '<p class="name">'.$get_guest['username'].'</p>';
+		 }
+		 
                                    
                         echo '<p class="message">'.$row['text'].'</p>';
                         
@@ -92,6 +117,8 @@ require('../php/get_messenger.php');
                     echo '<p style="color:gray">No conversations started yet</p>';
                 }
   ?>
+
+</div>
           </ul>
         </div>
 
@@ -172,7 +199,7 @@ require('../php/get_messenger.php');
                                 $('#inputMsgTxt').val('');
                                 $('#inputMsgTxt').focus();
 				$('.message-chat').append(response);
-				$('.message-chat').scrollTop($('.message-chat')[0].scrollHeight);																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																										
+				$('.message-chat').scrollTop($('.message-chat')[0].scrollHeight);
                           }
                         });
                     });
@@ -183,6 +210,7 @@ require('../php/get_messenger.php');
 <!-- SYNC MSGS -->
 <script>
 $('.message-chat').scrollTop($('.message-chat')[0].scrollHeight);
+console.log('scrolled');
                 $(document).ready(function() {
                     setInterval(function() {
                         jQuery.ajax({
@@ -203,9 +231,40 @@ $('.message-chat').scrollTop($('.message-chat')[0].scrollHeight);
 </script>
 
 
+<!-- SYNC CONVS -->
+<script>
+$(document).ready(function() {
+  setInterval(function() {
+    jQuery.ajax({
+      type:"POST",
+      url:'/php/disq_container.php',
+      data: { user_id: <?php echo $get_user_id?> },
+      success: function(response) {
+        $('#disc-container').load(window.location.href+' #disc-container');
+	console.log('ok');
+      }
+    });
+  }, 2000);
+});
+</script>
+
   <script>
-    $('#page-header').html('Messages');
-    $('#page-header').attr('href','/msg/inbox.php');
+    if(screen.width<629) {
+      $('#page-header').html('<?php echo $guest?>');
+      $('#page-header').attr('href','/user/<?php echo $guest?>');
+    } else {
+      $('#page-header').html('Messages');
+      $('#page-header').attr('href','/msg/inbox.php');
+    }
   </script>
+
+<script>
+if(screen.width<629) {
+  $('.footbar').hide();
+  $('.discussions').hide();
+  $('#header-menu').css('visibility','hidden');
+}
+</script>
+
 </body>
 </html>

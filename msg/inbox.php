@@ -154,5 +154,11 @@ $(document).ready(function() {
 <script>
 $('.chat').hide();
 </script>
+
+
+<script>
+  $('#nav-msg .filled').show();
+  $('#nav-msg .stroked').hide();
+</script>
 </body>
 </html>

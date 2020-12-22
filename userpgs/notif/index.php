@@ -298,5 +298,10 @@ $(function() {
     });
 </script>
 
+
+<script>
+  $('#nav-notif .filled').show();
+  $('#nav-notif .stroked').hide();
+</script>
 </body>
 </html>

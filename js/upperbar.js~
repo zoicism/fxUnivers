@@ -36,8 +36,8 @@ if(screen.width>628) {
 <nav>
             <ul class="nav__links">
                 <li><a href="/"><img src="/images/icons/toolbar/home.png"></a></li>
-                <li><a href="/msg/inbox.php"><img src="/images/icons/toolbar/msg.png"></a></li>
-                <li><a href="/userpgs/notif"><img src="/images/icons/toolbar/notif.png"></a></li>
+                <li><a href="/msg/inbox.php"><img src="/images/icons/toolbar/msg.png"></a><div class="newnum" id="msg-bar"></div></li>
+                <li><a href="/userpgs/notif"><img src="/images/icons/toolbar/notif.png"></a><div class="newnum" id="notif-bar"></div></li>
                 <li><a href="/search"><img src="/images/icons/toolbar/search.png"></a></li>
                 <li><a href="#" class="openbtn" onclick="openNav()">☰</a></li>
                 

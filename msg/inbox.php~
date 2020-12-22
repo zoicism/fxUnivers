@@ -81,10 +81,10 @@ $readd_result=mysqli_query($msg_connection,$readd_query) or die(mysqli_error($ms
 
 
 if($get_guest['avatar']!=NULL) {
-	      $avatar_url='/userpgs/avatars/'.$get_guest['avatar'];
-	    } else {
-	      $avatar_url='/images/background/avatar.png';
-	    }
+      $avatar_url='/userpgs/avatars/'.$get_guest['avatar'];
+} else {
+      $avatar_url='/images/background/avatar.png';
+}
 
 
 
