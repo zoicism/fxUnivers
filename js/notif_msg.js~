@@ -33,10 +33,17 @@ $(document).ready(function() {
 
 		    if(notif_timing<5) {
 			var formSubstr = notif_body.match("<form(.*)</form>");
-			console.log(formSubstr);
-			if(formSubstr) {
-			    notif_body.replace(formSubstr[0],'');
+			var aSubstr = notif_body.match("<a id=\"badA\"(.*)</a>");
+			
+			if(formSubstr!==null) {
+			    var notif_body = notif_body.replace(formSubstr[0],'');
 			}
+
+			if(aSubstr!==null) {
+			    var notif_body = notif_body.replace(aSubstr[0],'');
+			}
+
+			
 			
 			var newNotifNotif = new Notification('New Notif from @'+notif_username, {
 			    icon: '/images/icons/toolbar/notif.png',

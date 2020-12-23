@@ -19,7 +19,6 @@ $(document).ready(function() {
 	    dataType: 'json',
 	    success: function(response) {
 
-		console.log(response);
 
 		var notif_count = response[0];
 		var notif_username = response[1];
