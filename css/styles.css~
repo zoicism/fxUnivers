@@ -1813,6 +1813,7 @@ background: linear-gradient(126deg, rgba(255,66,29,1) 0%, rgba(252,67,67,1) 50%,
   height: 100%;
   overflow: auto;
   display: inline-block;
+  padding-left:5px;
 }
 
 .notifications .notification {
@@ -1830,6 +1831,7 @@ background: linear-gradient(126deg, rgba(255,66,29,1) 0%, rgba(252,67,67,1) 50%,
     display: flex;
 flex-flow: row nowrap;
 cursor: pointer;
+margin-bottom:auto;
 }
 
 .notification .avatar-container .photo {
@@ -3430,6 +3432,15 @@ input:checked + .slider:before {
 
   /******** < Forgot Password Overlay Mobile ********/
 
+
+  .notif-header {
+      display:none;
+  }
+
+  .notif-container {
+      width:100%;
+      box-shadow:none;
+  }
 }
 
 @media (max-width: 374px) {

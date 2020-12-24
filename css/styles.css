@@ -2020,6 +2020,7 @@ margin-bottom:auto;
   border-bottom: solid 1px #E0E0E0;
   display:flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .chat .header-chat .name {
