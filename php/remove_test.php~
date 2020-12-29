@@ -1,0 +1,16 @@
+<?php
+require_once('conn/fxinstructor.php');
+require_once('../register/connect.php');
+
+if(isset($_POST['courseId'])) {
+  $course_id = $_POST['courseId'];
+  $user_type = $_POST['userType'];
+
+  echo $user_type;
+/*
+  if($user_type=='instructor') {
+    $del_q =
+    */
+}
+
+?>

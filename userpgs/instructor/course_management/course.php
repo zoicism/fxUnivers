@@ -35,7 +35,7 @@ if(isset($_SESSION['username'])) {
   $cost = $course_fetch['cost'];
   $test_date = $course_fetch['test_date'];
   $course_biddable=$course_fetch['biddable'];
-
+  $test_exists = $course_fetch['test_duration'];
   
 
 
@@ -268,6 +268,11 @@ if($user_type=='instructor') {
 } elseif($user_type=='student') {
 echo '<div class="options">';
 echo '<div class="add-box">Take the Test <img src="/images/background/exam.svg" id="examId"></div>';
+if($stucourse_fetch['last_exam']!=null) {
+  echo '<div class="add-box"><p>Your Score: '.round($stucourse_fetch['score']*10,1).'</p></div>';
+} else {
+  echo '<div class="add-box"><p>Your Score: Not Taken</p></div>';
+}
 echo '<form action="/userpgs/instructor/exam/take_exam.php" id="goToExam" method="POST" style="display:none"><input type="hidden" name="course_id" value="'.$course_id.'"></form>';
 echo '</div>';
 } else {
@@ -512,20 +517,58 @@ $('#acceptBid').click(function() {
 $(document).ready(function() {
     $('#examId').click(function(e) {
         if('<?php echo $user_type?>'=='student') {
-            if(<?php echo $get_exam_count?> > 0) {
-                /*window.location.href="/userpgs/instructor/exam/take_exam.php?q_id=<?php echo $get_exam_fetch['id']?>&course_id=<?php echo $course_id?>";*/
-		/*$('#goToExam').submit();		*/
-		alert('No test added by the instructor yet.');
-            } else {
-                alert('No test added by the instructor yet.');
-            }
+            jQuery.ajax({
+	      url:'/php/exam_exists.php',
+	      type:'POST',
+	      data:{courseId:<?php echo $course_id?>},
+	      dataType:'json',
+	      success: function(response) {
+	        var wanted_num = response[0];
+		var actual_num = response[1];
+
+		if(wanted_num==null) {		  
+		  alert('Instructor has not added any questions yet.');
+		} else {		  
+		  if(actual_num >= wanted_num) {
+		    jQuery.ajax({
+		      url:'/php/exam_date.php',
+		      type:'POST',
+		      data:{last_date:'<?php echo $stucourse_fetch["last_exam"]?>'},
+		      success: function(report) {
+		        console.log(report);
+			if(report>7) {
+			  if(confirm('By starting the test for this course you will not be able to retake it for 7 days.')) {
+			    window.location.replace('/userpgs/student/exam?courseId=<?php echo $course_id?>');
+			  }
+			} else {
+			  var wait_days = 7-report;
+               		  alert('You have taken the test '+report+' days ago. You have to wait '+wait_days+' days to be able to retake it.');
+			}
+	              }		    
+		    });
+		  } else {
+		    alert('Instructor has not added enough questions yet.');
+		  }
+		}
+	      }
+	    });
         } else if('<?php echo $user_type?>'=='neither') {
             alert('You need to purchase the course first.');
         }
     });
 });
-$('#manageTestId').click(function() {
-  alert('Test Taking, coming soon.');
+
+
+$(document).ready(function() {
+  var testExists = '<?php echo $test_exists?>';
+  $('#manageTestId').click(function() {
+    console.log(testExists);
+    if(testExists != '') {
+      window.location.replace('/userpgs/instructor/exam/mng_question?courseId=<?php echo $course_id?>');
+    } else {
+      window.location.replace('/userpgs/instructor/exam/new_question?courseId=<?php echo $course_id?>');
+    }
+  });  
 });
 </script>
 

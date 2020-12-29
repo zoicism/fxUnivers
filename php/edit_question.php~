@@ -1,0 +1,11 @@
+<?php
+require_once('../register/connect.php');
+require_once('conn/fxinstructor.php');
+
+if(isset($_POST['qCount'])) {
+  $qCount = $_POST['qCount'];
+
+  echo $qCount;
+}
+
+?>
