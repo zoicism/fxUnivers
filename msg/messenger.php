@@ -205,6 +205,7 @@ if($get_unread_count>0) {
 </div>
 
 
+<!--
 <div class="frame-container" style="display:none" id="video-income-overlay">
   <div class="frame">
      <div class="frame-header">
@@ -220,7 +221,44 @@ if($get_unread_count>0) {
 
 </div>
 </div>
+-->
 
+<!---------- video call starts ---------->
+
+  <div class="frame-container" style="display:none" id="video-income-overlay">
+    <div class="frame-call">
+      <div class="calling-content">
+        <div class="photo">
+          <img src="/images/background/avatar.png">
+        </div>
+        <div class="id-friend">
+          <div class="txt" id="caller-username"></div>
+        </div>
+
+<div id="receiving-videos-container"></div>
+<table style="display:none" id="rooms-list" style="width: 100%;"></table>
+
+        <div class="calling">
+          <div class="txt">is calling ...</div>
+        </div>
+
+        <div class="call-btn">
+          <a class="btn decline" id="guest-ignore">
+            <svg viewBox="0 0 100 100">
+              <path class="red-circle" d="M50,0a50,50,0,1,0,50,50A50,50,0,0,0,50,0ZM84.5,52.4,74.1,62.8a1.4,1.4,0,0,1-1.7,0,32.7,32.7,0,0,0-11.5-7,1.1,1.1,0,0,1-.8-1.1v-6a.6.6,0,0,0-.5-.6,39,39,0,0,0-19.2,0,.6.6,0,0,0-.5.6v6a1.1,1.1,0,0,1-.8,1.1,32.7,32.7,0,0,0-11.5,7,1.4,1.4,0,0,1-1.7,0L15.5,52.4a1.2,1.2,0,0,1,.1-1.8A49.8,49.8,0,0,1,39.9,37.9a49.1,49.1,0,0,1,20.2,0A49.8,49.8,0,0,1,84.4,50.6,1.2,1.2,0,0,1,84.5,52.4Z"/>
+            </svg>
+          </a>
+          <a class="btn accept" id="accept-call">
+            <svg viewBox="0 0 100 100">
+              <path class="green-circle" d="M50,0a50,50,0,1,0,50,50A50,50,0,0,0,50,0ZM75,73.8A1.2,1.2,0,0,1,73.7,75a48.9,48.9,0,0,1-26.2-8.2A51.2,51.2,0,0,1,33.2,52.5,48.9,48.9,0,0,1,25,26.3,1.3,1.3,0,0,1,26.3,25H40.9a1.2,1.2,0,0,1,1.2,1.2,32.8,32.8,0,0,0,3.2,13,1.2,1.2,0,0,1-.2,1.5l-4.3,4.2a.6.6,0,0,0,0,.8A40.8,40.8,0,0,0,54.3,59.3a.6.6,0,0,0,.8-.2l4.2-4.2a1.2,1.2,0,0,1,1.5-.2,32.8,32.8,0,0,0,13,3.2A1.2,1.2,0,0,1,75,59.1Z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!---------- video call ends ---------->
 
   <div class="footbar blur"></div>
   <script src="/js/footbar.js"></script><script src="/js/notif_msg.js" id="notmsg" nmuid="<?php echo $get_user_id?>"></script>
@@ -538,6 +576,20 @@ $('#start-broadcasting').click();
                     //td1.innerHTML = userid + ' has camera. Are you interested in video chat?';
 
 
+jQuery.ajax({
+  url:'/php/get_caller.php',
+  type:'POST',
+  data: {caller_username: userid},
+  success: function(response) {
+    console.log(response);
+    
+    if(response!='') {
+      var caller_avatar_path = '/userpgs/avatars/'+response;
+      $('.calling-content .photo img').prop('src', caller_avatar_path);
+    }
+  }
+});
+
 $('#video-income-overlay').show();
 $('#caller-username').html(userid);
 $('#caller-accept').html(userid + ' is calling you.');
@@ -564,6 +616,9 @@ $('#caller-accept').html(userid + ' is calling you.');
 
 		    $('#accept-call').click(function() {
 		      button.click();
+		    });
+		    $('#guest-ignore').click(function() {
+		      $('#video-income-overlay').hide();
 		    });
 
 		    

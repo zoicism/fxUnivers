@@ -2844,6 +2844,50 @@ input:checked + .slider:before {
 
 
 
+/*** SIMPLE BG ***/
+.relative-main-content .simple-bg {
+    border-radius: 20px;
+    background: #efefef;
+    box-shadow: inset 5px 5px 9px #d5d5d5, 
+		inset -5px -5px 9px #ffffff;
+    max-width:50em;
+    margin-top:50px;
+}
+
+.simple-bg h2 {
+    margin: 20px;
+}
+
+.simple-bg h3 {
+    margin: 30px 20px 20px 20px;
+}
+
+.simple-bg .question {
+    background:#eaeaea;
+    width:80%;
+    margin:20px auto;
+    padding:20px;
+    border-radius:20px;
+}
+
+.simple-bg p {
+    margin:20px;
+}
+
+.simple-bg input {
+    margin:20px;
+    min-width:25em;
+}
+
+.simple-bg textarea {
+    margin:20px;
+    max-height:10em;
+}
+
+
+
+
+
 
 
 /*** MOBILE VIEW ***/

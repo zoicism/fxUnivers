@@ -53,12 +53,6 @@ require('../php/get_messenger.php');
         <script src="/js/webrtc/socket.io/PeerConnection.js"> </script>
 
 
-  <script>
-            if(!location.hash.replace('#', '').length) {
-                location.href = location.href.split('#')[0] + '#' + (Math.random() * 100).toString().replace('.', '');
-                location.reload();
-            }
-  </script>
 </head>
 
 <body>
@@ -134,7 +128,8 @@ if($get_unread_count>0) {
 
         <section class="chat">
           <div class="header-chat">
-                <p class="name"><?php echo $guest?> <a id="video-call-btn">Video Call</a></p>
+                <p class="name"><?php echo $guest?></p>
+		<p><a id="video-call-btn">Video Call</a></p>
               </div>
 
 
@@ -192,15 +187,19 @@ if($get_unread_count>0) {
        <div class="friends-word"><?php echo $guest?></div>
      </div>
 
-     <input type="text" id="your-name" placeholder="your-name" value="<?php echo $username?>">
-                    <button id="start-broadcasting" class="setup">Start Transmitting Yourself!</button>
+     <input style="display:none" type="text" id="your-name" placeholder="your-name" value="<?php echo $username?>">
+                    <button id="start-broadcasting" style="display:none" class="setup">Start Transmitting Yourself!</button>
 
 
-<!-- list of all available conferencing rooms -->
                 <!--<table id="rooms-list" style="width: 100%;"></table>-->
 
-                <!-- local/remote videos container -->
-                <div id="videos-container"></div>
+
+
+<div id="stop">Stop</div>
+
+<div id="videos-container"></div>
+
+
 
    </div>
 </div>
@@ -212,11 +211,12 @@ if($get_unread_count>0) {
        <div class="friends-word" id="caller-username"></div>
      </div>
 
-
-<div id="caller-accept"></div>
+<div id="accept-call">Accept Call</div>
+<div id="guest-ignore">Ignore Call</div>
+<div id="guest-stop">Stop</div>
 <div id="receiving-videos-container"></div>
      
-<table id="rooms-list" style="width: 100%;"></table>
+<table style="display:none" id="rooms-list" style="width: 100%;"></table>
 
 </div>
 </div>
@@ -319,6 +319,7 @@ if(screen.width<629) {
 <script>
 $('#video-call-btn').click( function() {
   $('#video-chat-overlay').show();
+  
 
   //var channel = location.href.replace(/\/|:|#|%|\.|\[|\]/g, '');
 		var channel = 'httplocalhostmsgmessengerphp'+'<?php echo $guest_id?>';
@@ -466,8 +467,8 @@ $('#video-call-btn').click( function() {
                     navigator.getUserMedia(hints,function(stream) {
                         var video = document.createElement('video');
                         video.srcObject = stream;
-                        video.controls = true;
-                        video.muted = true;
+                        video.controls = false;
+                        video.muted = false;
 
                         peer.onStreamAdded({
                             mediaElement: video,
@@ -485,7 +486,14 @@ $('#video-call-btn').click( function() {
                         if (location.hash.length > 2) uniqueToken.parentNode.parentNode.parentNode.innerHTML = '<h2 style="text-align:center;"><a href="' + location.href + '" target="_blank">Share this link</a></h2>';
                         else uniqueToken.innerHTML = uniqueToken.parentNode.parentNode.href = '#' + (Math.random() * new Date().getTime()).toString(36).toUpperCase().replace( /\./g , '-');
                 })();
+
+
+
+$('#start-broadcasting').click();
+
 });
+
+
 </script>
 
 
@@ -532,7 +540,7 @@ $('#video-call-btn').click( function() {
 
 $('#video-income-overlay').show();
 $('#caller-username').html(userid);
-$('#caller-accept').html(userid + 'is calling you.');
+$('#caller-accept').html(userid + ' is calling you.');
 
 
 
@@ -553,6 +561,12 @@ $('#caller-accept').html(userid + 'is calling you.');
                     tr.appendChild(td1);
                     tr.appendChild(td2);
                     roomsList.appendChild(tr);
+
+		    $('#accept-call').click(function() {
+		      button.click();
+		    });
+
+		    
                 };
 
                 peer.onStreamAdded = function(e) {
@@ -645,8 +659,8 @@ $('#caller-accept').html(userid + 'is calling you.');
                     navigator.getUserMedia(hints,function(stream) {
                         var video = document.createElement('video');
                         video.srcObject = stream;
-                        video.controls = true;
-                        video.muted = true;
+                        video.controls = false;
+                        video.muted = false;
 
                         peer.onStreamAdded({
                             mediaElement: video,
@@ -664,8 +678,47 @@ $('#caller-accept').html(userid + 'is calling you.');
                         if (location.hash.length > 2) uniqueToken.parentNode.parentNode.parentNode.innerHTML = '<h2 style="text-align:center;"><a href="' + location.href + '" target="_blank">Share this link</a></h2>';
                         else uniqueToken.innerHTML = uniqueToken.parentNode.parentNode.href = '#' + (Math.random() * new Date().getTime()).toString(36).toUpperCase().replace( /\./g , '-');
                 })();
-
             </script>
+
+
+<script>
+$('#stop').click(function() {
+var streamingVid = document.querySelector('video');
+
+const stream = streamingVid.srcObject;
+const tracks = stream.getTracks();
+
+tracks.forEach(function(track) {
+track.stop();
+});
+
+console.log('video stream stopped');
+
+$('#video-call-overlay').hide();
+
+window.location.reload();
+});
+
+
+
+$('#guest-stop').click(function() {
+var streamingVid = document.querySelector('video');
+
+const stream = streamingVid.srcObject;
+const tracks = stream.getTracks();
+
+tracks.forEach(function(track) {
+track.stop();
+});
+
+console.log('video stream stopped');
+
+$('#video-income-overlay').hide();
+
+window.location.reload();
+});
+</script> 
+
 
 </body>
 </html>
