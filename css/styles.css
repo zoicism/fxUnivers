@@ -2260,6 +2260,116 @@ margin-bottom:auto;
 
 /************************************************* < video call overlay ***********************************/
 
+/************************************************* > video face call overlay ***********************************/
+
+.frame-container .frame-videocall {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  border-radius: 20px;
+  background-color: #efefef;
+  position: relative;
+}
+
+.frame-container .frame-videocall .guest-video {
+  position: relative;
+  border-radius: 20px;
+  width: 70vw;
+}
+
+.frame-container .frame-videocall .host-video {
+  position: absolute;
+  border-radius: 20px;
+  width: 200px;
+  bottom: 10px;
+  right: 10px;
+  border: 1px solid #efefef;
+}
+
+.frame-container .frame-videocall .top-videocall {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  padding: 0 10px;
+  position: absolute;
+  top: 10px;
+  width: 100%;
+  opacity: 0.8;
+}
+
+.frame-container .frame-videocall .guest-pi {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.frame-container .frame-videocall .guest-pi .guest-photo {
+  max-width: 22px;
+  max-height: 22px;
+  margin-right: 10px;
+}
+
+.frame-container .frame-videocall .guest-pi .guest-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.frame-container .frame-videocall .guest-pi .guest-id {
+  color: #fff;
+}
+
+.frame-container .frame-videocall .top-videocall .by-fx {
+  display: flex;
+  flex-flow: row nowrap;
+  color: #008bc6;
+}
+
+.frame-container .frame-videocall .top-videocall .by-fx .fx-logo {
+  max-width: 22px;
+  max-height: 22px;
+  margin-left: 10px;
+}
+
+.frame-container .frame-videocall .top-videocall .by-fx .fx-logo svg {
+  width: 100%;
+  height: 100%;
+}
+
+.frame-container .frame-videocall .bottom-videocall {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  padding: 0 10px;
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+}
+
+.frame-container .frame-videocall .call-btn {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: auto;
+}
+
+.frame-container .frame-videocall .call-btn .btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid #fff ;
+  opacity: 0.8;
+}
+
+.frame-container .frame-videocall .call-btn .btn:active {
+  opacity: 1;
+}
+
+/************************************************* < video face call overlay ***********************************/
+
 
 /************************************************* > profile ***********************************/
 
@@ -3600,6 +3710,20 @@ input:checked + .slider:before {
   }
 
   /********************** > video call mobile **********************/
+
+  /********************** > video face call mobile **********************/
+
+  .frame-container .frame-videocall {
+    border-radius: 0;
+  }
+
+  .frame-container .frame-videocall .guest-video {
+    border-radius: 0;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  /********************** < video face call mobile **********************/
 
 }
 
