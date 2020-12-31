@@ -405,7 +405,7 @@ $('#bidForm').submit(function(event) {
       type:'POST',
       data:$(this).serialize(),
       success: function(response) {
-        console.log(response);
+        //console.log(response);
 	if(response=='low') {
 	  alert('Your offer must be higher than the highest bid.');
 	} else if(response=='initlow') {
@@ -535,7 +535,7 @@ $(document).ready(function() {
 		      type:'POST',
 		      data:{last_date:'<?php echo $stucourse_fetch["last_exam"]?>'},
 		      success: function(report) {
-		        console.log(report);
+		        //console.log(report);
 			if(report>7) {
 			  if(confirm('By starting the test for this course you will not be able to retake it for 7 days.')) {
 			    window.location.replace('/userpgs/student/exam?courseId=<?php echo $course_id?>');
@@ -562,7 +562,7 @@ $(document).ready(function() {
 $(document).ready(function() {
   var testExists = '<?php echo $test_exists?>';
   $('#manageTestId').click(function() {
-    console.log(testExists);
+    //console.log(testExists);
     if(testExists != '') {
       window.location.replace('/userpgs/instructor/exam/mng_question?courseId=<?php echo $course_id?>');
     } else {
