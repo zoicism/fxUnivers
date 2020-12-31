@@ -90,11 +90,11 @@ $(document).ready(function() {
 				body: lastText
 			    });
 			}
-			
-			newMsgNotif.onclick = function() {
+
+			newMsgNotif.addEventListener('click', function() {
 			    var newTab = '/msg/'+lastFrom;
 			    window.open(newTab);
-			}
+			}, false);
 		    }
 		}
 		

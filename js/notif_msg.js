@@ -90,11 +90,18 @@ $(document).ready(function() {
 				body: lastText
 			    });
 			}
-
+/*
 			newMsgNotif.addEventListener('click', function() {
 			    var newTab = '/msg/'+lastFrom;
 			    window.open(newTab);
-			}, false);
+			    }, false);*/
+
+			newMsgNotif.onclick = function() {
+			    console.log('clicked');
+			    $(document.body).append('<a href="/msg/'+lastFrom+'" id="openThisNotif" target="_blank" style="display:none"></a>');
+			    console.log($('#openThisNotif').attr('href'));
+			    $('#openThisNotif')[0].click();
+			}
 		    }
 		}
 		
