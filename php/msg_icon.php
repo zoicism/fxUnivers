@@ -21,7 +21,8 @@ if($msg_icon_count>0) {
   $msg_arr[1] = $msg_fetch['text'];
   $msg_arr[2] = $msg_from['username'];
   $msg_arr[3] = $time_diff;
-
+  $msg_arr[4] = $msg_fetch['msg_type'];
+  
   echo json_encode($msg_arr);
   exit();
 }

@@ -55,11 +55,11 @@ require('../php/get_messenger.php');
 
 </head>
 
-<body>
-	<div class="header-sidebar"></div>
+<body style="overflow:hidden">
+	<div class="header-sidebar" style="overflow:hidden;margin-bottom:0"></div>
   <script id="upperbar-script" src="/js/upperbar.js" sess_avatar="<?php echo $session_avatar?>" sess_un="<?php echo $username?>"></script>
 
-  <div class="blur mobile-main">
+  <div class="blur mobile-main" style="margin-bottom:0">
 
    <div class="sidebar"></div>
 <?php require('../php/sidebar.php'); ?>
@@ -181,17 +181,97 @@ if($get_unread_count>0) {
   </div>
   </div>
 
+
+
+
+
+
+
+
+
+
+
+
 <div class="frame-container" style="display:none" id="video-chat-overlay">
-  <div class="frame">
-     <div class="frame-header">
-       <div class="friends-word"><?php echo $guest?></div>
-     </div>
+<div class="frame-videocall">
+
+
+<table style="display:none" id="rooms-list" style="width: 100%;"></table>
+<input style="display:none" type="text" id="your-name" placeholder="your-name" value="<?php echo $username?>">
+<button id="start-broadcasting" style="display:none" class="setup">Start Transmitting Yourself!</button>
+
+<div id="videos-container"></div>
+
+      <div class="top-videocall">
+        <div class="guest-pi">
+          <div class="guest-photo">
+	    <?php
+	      if($get_guest_by_username['avatar']!=null) {
+	        echo '<img src="/userpgs/avatars/'.$get_guest_by_username['avatar'].'">';
+	      } else { 
+	        echo '<img src="/images/background/avatar.png">';
+              }
+	    ?>
+          </div>
+          <div class="guest-id"><?php echo $guest?></div>
+        </div>
+
+        <div class="by-fx">
+          <div class="by-word">by</div>
+          <div class="fx-logo">
+            <svg viewBox="0 0 20 20"><defs><style>.by-logo{fill:#008bc6;}</style></defs><path class="by-logo" d="M10,0A10.1,10.1,0,0,0,6.1.8,9.9,9.9,0,0,0,2.9,2.9,10,10,0,0,0,0,10,9.9,9.9,0,0,0,10,20a10.1,10.1,0,0,0,3.9-.8,9.9,9.9,0,0,0,3.2-2.1A10,10,0,0,0,20,10,9.9,9.9,0,0,0,10,0Zm9.3,10a8.6,8.6,0,0,1-.7,3.6,12.1,12.1,0,0,1-2,3,12.1,12.1,0,0,1-3,2,8.6,8.6,0,0,1-3.6.7,8.6,8.6,0,0,1-3.6-.7,12.1,12.1,0,0,1-3-2,12.1,12.1,0,0,1-2-3A8.6,8.6,0,0,1,.7,10a8.6,8.6,0,0,1,.7-3.6,12.1,12.1,0,0,1,2-3,12.1,12.1,0,0,1,3-2A8.6,8.6,0,0,1,10,.7a8.6,8.6,0,0,1,3.6.7,12.1,12.1,0,0,1,3,2,12.1,12.1,0,0,1,2,3A8.6,8.6,0,0,1,19.3,10Z"/><path class="by-logo" d="M8.3,8.8,10,10.5l1.8-1.7a2.2,2.2,0,0,1,3.4,0l-3.5,3.5L13.5,14l.7.7-1.7,1.8L4.8,8.8,10,3.5l1.8,1.8Z"/><path class="by-logo" d="M7,13.5l1.7,1.8-.5.5a2.6,2.6,0,0,1-1.7.7,2.6,2.6,0,0,1-1.7-.7Z"/></g></svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="bottom-videocall">
+<p class="calling-text" id="calling-txt">Calling ...</p>
+        <div class="call-btn">
+          <a class="btn decline" id="host-stop">
+            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><style>.decline-red{fill:#ff3b30;}.phone-wh{fill:#efefef;}</style></defs><circle class="decline-red" cx="50" cy="50" r="50"/><path class="phone-wh" d="M39.9,54.7v-6a.6.6,0,0,1,.5-.6,39,39,0,0,1,19.2,0,.6.6,0,0,1,.5.6v6a1.1,1.1,0,0,0,.8,1.1,32.7,32.7,0,0,1,11.5,7,1.4,1.4,0,0,0,1.7,0L84.5,52.4a1.2,1.2,0,0,0-.1-1.8A49.8,49.8,0,0,0,60.1,37.9a49.1,49.1,0,0,0-20.2,0A49.8,49.8,0,0,0,15.6,50.6a1.2,1.2,0,0,0-.1,1.8L25.9,62.8a1.4,1.4,0,0,0,1.7,0,32.7,32.7,0,0,1,11.5-7A1.1,1.1,0,0,0,39.9,54.7Z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+</div>
+
+<!--
+  <div class="frame-call">
+  <div class="calling-content">
+        <div class="photo">
+          <img src="/images/background/avatar.png">
+        </div>
+        <div class="id-friend">
+          <div class="txt"><?php echo $guest?></div>
+        </div>
+
+	<table style="display:none" id="rooms-list" style="width: 100%;"></table>
+
+
+        <div class="calling">
+          <div class="txt">is calling ...</div>
+        </div>
+
+        <div class="call-btn">
+          <a class="btn decline" id="guest-ignore">
+            <svg viewBox="0 0 100 100">
+              <path class="red-circle" d="M50,0a50,50,0,1,0,50,50A50,50,0,0,0,50,0ZM84.5,52.4,74.1,62.8a1.4,1.4,0,0,1-1.7,0,32.7,32.7,0,0,0-11.5-7,1.1,1.1,0,0,1-.8-1.1v-6a.6.6,0,0,0-.5-.6,39,39,0,0,0-19.2,0,.6.6,0,0,0-.5.6v6a1.1,1.1,0,0,1-.8,1.1,32.7,32.7,0,0,0-11.5,7,1.4,1.4,0,0,1-1.7,0L15.5,52.4a1.2,1.2,0,0,1,.1-1.8A49.8,49.8,0,0,1,39.9,37.9a49.1,49.1,0,0,1,20.2,0A49.8,49.8,0,0,1,84.4,50.6,1.2,1.2,0,0,1,84.5,52.4Z"/>
+            </svg>
+          </a>
+          <a class="btn accept" id="accept-call">
+            <svg viewBox="0 0 100 100">
+              <path class="green-circle" d="M50,0a50,50,0,1,0,50,50A50,50,0,0,0,50,0ZM75,73.8A1.2,1.2,0,0,1,73.7,75a48.9,48.9,0,0,1-26.2-8.2A51.2,51.2,0,0,1,33.2,52.5,48.9,48.9,0,0,1,25,26.3,1.3,1.3,0,0,1,26.3,25H40.9a1.2,1.2,0,0,1,1.2,1.2,32.8,32.8,0,0,0,3.2,13,1.2,1.2,0,0,1-.2,1.5l-4.3,4.2a.6.6,0,0,0,0,.8A40.8,40.8,0,0,0,54.3,59.3a.6.6,0,0,0,.8-.2l4.2-4.2a1.2,1.2,0,0,1,1.5-.2,32.8,32.8,0,0,0,13,3.2A1.2,1.2,0,0,1,75,59.1Z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
 
      <input style="display:none" type="text" id="your-name" placeholder="your-name" value="<?php echo $username?>">
                     <button id="start-broadcasting" style="display:none" class="setup">Start Transmitting Yourself!</button>
 
 
-                <!--<table id="rooms-list" style="width: 100%;"></table>-->
+                <!--<table id="rooms-list" style="width: 100%;"></table>
 
 
 
@@ -202,9 +282,90 @@ if($get_unread_count>0) {
 
 
    </div>
-</div>
+</div>-->
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!---------- video call starts ---------->
+
+  <div class="frame-container" style="display:none" id="video-income-overlay">
+    <div class="frame-call" id="frame-calling-overlay">
+      <div class="calling-content">
+        <div class="photo">
+          <img src="/images/background/avatar.png">
+        </div>
+        <div class="id-friend">
+          <div class="txt" id="caller-username"></div>
+        </div>
+
+<!--<div id="receiving-videos-container"></div>-->
+<table style="display:none" id="rooms-list" style="width: 100%;"></table>
+
+
+        <div class="calling">
+          <div class="txt">is calling ...</div>
+        </div>
+
+        <div class="call-btn">
+          <a class="btn decline" id="guest-ignore">
+            <svg viewBox="0 0 100 100">
+              <path class="red-circle" d="M50,0a50,50,0,1,0,50,50A50,50,0,0,0,50,0ZM84.5,52.4,74.1,62.8a1.4,1.4,0,0,1-1.7,0,32.7,32.7,0,0,0-11.5-7,1.1,1.1,0,0,1-.8-1.1v-6a.6.6,0,0,0-.5-.6,39,39,0,0,0-19.2,0,.6.6,0,0,0-.5.6v6a1.1,1.1,0,0,1-.8,1.1,32.7,32.7,0,0,0-11.5,7,1.4,1.4,0,0,1-1.7,0L15.5,52.4a1.2,1.2,0,0,1,.1-1.8A49.8,49.8,0,0,1,39.9,37.9a49.1,49.1,0,0,1,20.2,0A49.8,49.8,0,0,1,84.4,50.6,1.2,1.2,0,0,1,84.5,52.4Z"/>
+            </svg>
+          </a>
+          <a class="btn accept" id="accept-call">
+            <svg viewBox="0 0 100 100">
+              <path class="green-circle" d="M50,0a50,50,0,1,0,50,50A50,50,0,0,0,50,0ZM75,73.8A1.2,1.2,0,0,1,73.7,75a48.9,48.9,0,0,1-26.2-8.2A51.2,51.2,0,0,1,33.2,52.5,48.9,48.9,0,0,1,25,26.3,1.3,1.3,0,0,1,26.3,25H40.9a1.2,1.2,0,0,1,1.2,1.2,32.8,32.8,0,0,0,3.2,13,1.2,1.2,0,0,1-.2,1.5l-4.3,4.2a.6.6,0,0,0,0,.8A40.8,40.8,0,0,0,54.3,59.3a.6.6,0,0,0,.8-.2l4.2-4.2a1.2,1.2,0,0,1,1.5-.2,32.8,32.8,0,0,0,13,3.2A1.2,1.2,0,0,1,75,59.1Z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="frame-videocall" style="display:none" id="frame-video-overlay">
+
+<div id="receiving-videos-container"></div>
+
+      <div class="top-videocall">
+        <div class="guest-pi">
+          <div class="guest-photo">
+            <img src="/images/background/avatar.png">
+          </div>
+          <div class="guest-id"></div>
+        </div>
+
+        <div class="by-fx">
+          <div class="by-word">by</div>
+          <div class="fx-logo">
+            <svg viewBox="0 0 20 20"><defs><style>.by-logo{fill:#008bc6;}</style></defs><path class="by-logo" d="M10,0A10.1,10.1,0,0,0,6.1.8,9.9,9.9,0,0,0,2.9,2.9,10,10,0,0,0,0,10,9.9,9.9,0,0,0,10,20a10.1,10.1,0,0,0,3.9-.8,9.9,9.9,0,0,0,3.2-2.1A10,10,0,0,0,20,10,9.9,9.9,0,0,0,10,0Zm9.3,10a8.6,8.6,0,0,1-.7,3.6,12.1,12.1,0,0,1-2,3,12.1,12.1,0,0,1-3,2,8.6,8.6,0,0,1-3.6.7,8.6,8.6,0,0,1-3.6-.7,12.1,12.1,0,0,1-3-2,12.1,12.1,0,0,1-2-3A8.6,8.6,0,0,1,.7,10a8.6,8.6,0,0,1,.7-3.6,12.1,12.1,0,0,1,2-3,12.1,12.1,0,0,1,3-2A8.6,8.6,0,0,1,10,.7a8.6,8.6,0,0,1,3.6.7,12.1,12.1,0,0,1,3,2,12.1,12.1,0,0,1,2,3A8.6,8.6,0,0,1,19.3,10Z"/><path class="by-logo" d="M8.3,8.8,10,10.5l1.8-1.7a2.2,2.2,0,0,1,3.4,0l-3.5,3.5L13.5,14l.7.7-1.7,1.8L4.8,8.8,10,3.5l1.8,1.8Z"/><path class="by-logo" d="M7,13.5l1.7,1.8-.5.5a2.6,2.6,0,0,1-1.7.7,2.6,2.6,0,0,1-1.7-.7Z"/></g></svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="bottom-videocall">
+
+        <div class="call-btn">
+          <a class="btn decline" id="guest-stop">
+            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><style>.decline-red{fill:#ff3b30;}.phone-wh{fill:#efefef;}</style></defs><circle class="decline-red" cx="50" cy="50" r="50"/><path class="phone-wh" d="M39.9,54.7v-6a.6.6,0,0,1,.5-.6,39,39,0,0,1,19.2,0,.6.6,0,0,1,.5.6v6a1.1,1.1,0,0,0,.8,1.1,32.7,32.7,0,0,1,11.5,7,1.4,1.4,0,0,0,1.7,0L84.5,52.4a1.2,1.2,0,0,0-.1-1.8A49.8,49.8,0,0,0,60.1,37.9a49.1,49.1,0,0,0-20.2,0A49.8,49.8,0,0,0,15.6,50.6a1.2,1.2,0,0,0-.1,1.8L25.9,62.8a1.4,1.4,0,0,0,1.7,0,32.7,32.7,0,0,1,11.5-7A1.1,1.1,0,0,0,39.9,54.7Z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<!--
 <div class="frame-container" style="display:none" id="video-income-overlay">
   <div class="frame">
      <div class="frame-header">
@@ -220,6 +381,11 @@ if($get_unread_count>0) {
 
 </div>
 </div>
+-->
+<!---------- video call ends ---------->
+
+
+
 
 
   <div class="footbar blur"></div>
@@ -305,7 +471,8 @@ $(document).ready(function() {
 if(screen.width<629) {
   $('.footbar').hide();
   $('.discussions').hide();
-  $('#header-menu').css('visibility','hidden');
+  $('#header-menu').html('<a id="video-call-btn">Video Call</a>');
+  //$('#header-menu').css('visibility','hidden');
 }
 </script>
 
@@ -377,8 +544,23 @@ $('#video-call-btn').click( function() {
                     roomsList.appendChild(tr);
                 };
 
+		var sendingVidQueue = 0;
                 peer.onStreamAdded = function(e) {
                     var video = e.mediaElement;
+
+		    if(sendingVidQueue==0) {
+		      video.setAttribute('class', 'guest-video');
+		      video.setAttribute('id', 'guest-video');
+		      video.controls=false;
+		      video.muted=true;
+		    } else {
+		      $('#calling-txt').hide();
+		      $('#guest-video').removeClass('guest-video').addClass('host-video');
+		      video.setAttribute('class', 'guest-video');
+		      video.controls=false;
+		    }
+		    sendingVidQueue++;
+
                     video.setAttribute('width', 600);
                     videosContainer.insertBefore(video, videosContainer.firstChild);
 
@@ -538,8 +720,24 @@ $('#start-broadcasting').click();
                     //td1.innerHTML = userid + ' has camera. Are you interested in video chat?';
 
 
+jQuery.ajax({
+  url:'/php/get_caller.php',
+  type:'POST',
+  data: {caller_username: userid},
+  success: function(response) {
+    console.log(response);
+    
+    if(response!='') {
+      var caller_avatar_path = '/userpgs/avatars/'+response;
+      $('.calling-content .photo img').prop('src', caller_avatar_path);
+      $('.guest-photo img').prop('src', caller_avatar_path);
+    }
+  }
+});
+
 $('#video-income-overlay').show();
 $('#caller-username').html(userid);
+$('.guest-id').html(userid);
 $('#caller-accept').html(userid + ' is calling you.');
 
 
@@ -565,18 +763,41 @@ $('#caller-accept').html(userid + ' is calling you.');
 		    $('#accept-call').click(function() {
 		      button.click();
 		    });
+		    $('#guest-ignore').click(function() {
+		      $('#video-income-overlay').hide();
+		    });
 
 		    
                 };
 
+		var videoQueue = 0;
                 peer.onStreamAdded = function(e) {
                     var video = e.mediaElement;
                     video.setAttribute('width', 600);
+
+		    if(videoQueue==0) {
+ 		      video.setAttribute('id', 'host-video');
+		      video.setAttribute('class', 'host-video');
+		      video.controls = false;
+		      video.muted=true;
+		    } else {
+		      video.setAttribute('id', 'guest-video');
+		      video.setAttribute('class', 'guest-video');
+		      video.controls = false;
+		    }
+		    videoQueue++;
+		    
                     videosContainer.insertBefore(video, videosContainer.firstChild);
+
+		    // heeeeeeee
 
                     video.play();
                     rotateVideo(video);
                     scaleVideos();
+
+		    $('#frame-calling-overlay').hide();
+		    $('#frame-video-overlay').show();
+		    
                 };
 
                 peer.onStreamEnded = function(e) {
@@ -717,8 +938,24 @@ $('#video-income-overlay').hide();
 
 window.location.reload();
 });
-</script> 
 
+$('#host-stop').click(function() {
+var streamingVid = document.querySelector('video');
+
+const stream = streamingVid.srcObject;
+const tracks = stream.getTracks();
+
+tracks.forEach(function(track) {
+track.stop();
+});
+
+console.log('video stream stopped');
+
+$('#video-overlay').hide();
+
+window.location.reload();
+});
+</script> 
 
 </body>
 </html>

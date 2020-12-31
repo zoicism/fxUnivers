@@ -71,22 +71,30 @@ $(document).ready(function() {
 		var lastText = result[1];
 		var lastFrom = result[2];
 		var msgTime = result[3];
+		var msgType = result[4];
 		
 		if(msgCount>0) {
 		    $('#msg-bar').show();
 		    $('#msg-bar').html(msgCount);
 		    
 		    if(msgTime<5) {
-			var newMsgNotif = new Notification('New Message from @'+lastFrom, {
-			    icon: '/images/icons/toolbar/msg.png',
-			    body: lastText
-			});
-			
-			
-			newMsgNotif.onclick = function() {
-			    window.open('/msg/'+lastFrom);
-			    newMsgNotif.close();
+
+			if(msgType=='video call') {
+			    var newMsgNotif = new Notification('@'+lastFrom, {
+				icon: '/images/icons/videocall.png',
+				body: lastText
+			    });
+			} else {
+			    var newMsgNotif = new Notification('New Message from @'+lastFrom, {
+				icon: '/images/icons/toolbar/msg.png',
+				body: lastText
+			    });
 			}
+
+			newMsgNotif.addEventListener('click', function() {
+			    var newTab = '/msg/'+lastFrom;
+			    window.open(newTab);
+			}, false);
 		    }
 		}
 		

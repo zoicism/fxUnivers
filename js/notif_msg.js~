@@ -19,7 +19,6 @@ $(document).ready(function() {
 	    dataType: 'json',
 	    success: function(response) {
 
-		console.log(response);
 
 		var notif_count = response[0];
 		var notif_username = response[1];
@@ -72,21 +71,29 @@ $(document).ready(function() {
 		var lastText = result[1];
 		var lastFrom = result[2];
 		var msgTime = result[3];
+		var msgType = result[4];
 		
 		if(msgCount>0) {
 		    $('#msg-bar').show();
 		    $('#msg-bar').html(msgCount);
 		    
 		    if(msgTime<5) {
-			var newMsgNotif = new Notification('New Message from @'+lastFrom, {
-			    icon: '/images/icons/toolbar/msg.png',
-			    body: lastText
-			});
-			
+
+			if(msgType=='video call') {
+			    var newMsgNotif = new Notification('@'+lastFrom, {
+				icon: '/images/icons/videocall.png',
+				body: lastText
+			    });
+			} else {
+			    var newMsgNotif = new Notification('New Message from @'+lastFrom, {
+				icon: '/images/icons/toolbar/msg.png',
+				body: lastText
+			    });
+			}
 			
 			newMsgNotif.onclick = function() {
-			    window.open('/msg/'+lastFrom);
-			    newMsgNotif.close();
+			    var newTab = '/msg/'+lastFrom;
+			    window.open(newTab);
 			}
 		    }
 		}

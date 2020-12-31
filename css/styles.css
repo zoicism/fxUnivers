@@ -2048,6 +2048,7 @@ margin-bottom:auto;
 .messages p {
   padding: 10px 80px 10px 20px;
   color: #393939;
+  word-break:break-all;
 }
 
 .message-recieved {
@@ -2269,15 +2270,17 @@ margin-bottom:auto;
   align-items: center;
   margin: auto;
   border-radius: 20px;
-  background-color: #efefef;
+  background-color: transparent;
   position: relative;
 }
 
 .frame-container .frame-videocall .guest-video {
   position: relative;
   border-radius: 20px;
-  width: 70vw;
+  height: 80vh;
+  width:auto;
 }
+
 
 .frame-container .frame-videocall .host-video {
   position: absolute;
@@ -2286,6 +2289,10 @@ margin-bottom:auto;
   bottom: 10px;
   right: 10px;
   border: 1px solid #efefef;
+}
+
+.frame-container .frame-videocall video {
+    display:block;
 }
 
 .frame-container .frame-videocall .top-videocall {
@@ -2340,12 +2347,20 @@ margin-bottom:auto;
 
 .frame-container .frame-videocall .bottom-videocall {
   display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
+  flex-flow: column nowrap;
+  justify-content: center;
   padding: 0 10px;
   position: absolute;
   bottom: 10px;
   width: 100%;
+}
+
+.bottom-videocall .calling-text {
+    text-align:center;
+    font-size:2rem;
+    color:#fff;
+    margin-bottom:60px;
+    opacity:0.8;
 }
 
 .frame-container .frame-videocall .call-btn {
@@ -3714,7 +3729,13 @@ input:checked + .slider:before {
   /********************** > video face call mobile **********************/
 
   .frame-container .frame-videocall {
-    border-radius: 0;
+      border-radius: 0;
+      background-color:#a2a2a2;
+      height:100%;
+  }
+
+  .frame-container .frame-videocall video {
+      height:auto;
   }
 
   .frame-container .frame-videocall .guest-video {

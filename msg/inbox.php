@@ -160,5 +160,8 @@ $('.chat').hide();
   $('#nav-msg .filled').show();
   $('#nav-msg .stroked').hide();
 </script>
+
+
+
 </body>
 </html>
