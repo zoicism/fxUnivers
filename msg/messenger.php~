@@ -553,6 +553,16 @@ $('#video-call-btn').click( function() {
 		      video.setAttribute('id', 'guest-video');
 		      video.controls=false;
 		      video.muted=true;
+
+		      jQuery.ajax({
+			url:'/php/set_msg.php',
+			type:'POST',
+			data: {clientId: <?php echo $get_user_id?>, guestId: <?php echo $guest_id?>, msgBody: 'Video call ...', msgType: 'video call'},
+			success: function(response) {
+			  console.log(response);
+			}
+		      });
+		     
 		    } else {
 		      $('#calling-txt').hide();
 		      $('#guest-video').removeClass('guest-video').addClass('host-video');

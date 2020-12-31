@@ -129,7 +129,7 @@ if($get_unread_count>0) {
         <section class="chat">
           <div class="header-chat">
                 <p class="name"><?php echo $guest?></p>
-		<p><a id="video-call-btn">Video Call</a></p>
+		<img src="/images/icons/video_call.png" id="video-call-btn" style="height:40px;width:40px;margin-right:10px;cursor:pointer;">
               </div>
 
 
@@ -471,7 +471,7 @@ $(document).ready(function() {
 if(screen.width<629) {
   $('.footbar').hide();
   $('.discussions').hide();
-  $('#header-menu').html('<a id="video-call-btn">Video Call</a>');
+  $('#header-menu').html('<img src="/images/icons/video_call.png" id="video-call-btn" style="width:30px;height:30px;margin-right:10px;cursor:pointer;">');
   //$('#header-menu').css('visibility','hidden');
 }
 </script>
