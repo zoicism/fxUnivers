@@ -129,7 +129,9 @@ if($get_unread_count>0) {
         <section class="chat">
           <div class="header-chat">
                 <p class="name"><?php echo $guest?></p>
-		<img src="/images/icons/video_call.png" id="video-call-btn" style="height:40px;width:40px;margin-right:10px;cursor:pointer;">
+		<div class="msg-icon-cnt" id="video-call-btn">
+		<svg viewBox="0 0 32 32"><defs><style>.videocall-icon{fill:#212121;}</style></defs><path class="videocall-icon" d="M30,5.8a1.9,1.9,0,0,0-1,.3l-7.2,4.2v-2a4,4,0,0,0-4-4H4a4,4,0,0,0-4,4V23.7a4,4,0,0,0,4,4H17.8a4,4,0,0,0,4-4V21.6L29,25.9a1.9,1.9,0,0,0,1,.3,2,2,0,0,0,2-2V7.8A2,2,0,0,0,30,5.8ZM19.8,23.7a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V8.3a2,2,0,0,1,2-2H17.8a2,2,0,0,1,2,2Zm10.2.5-8.2-4.9V12.7L30,7.8Z"/></svg>
+		</div>
               </div>
 
 
@@ -174,7 +176,9 @@ if($get_unread_count>0) {
 		<input type="submit" style="display:none">
 		</form>
 		
-                <a id="sendImg"><img src="/images/background/send.svg" class="chat-icon"></a>
+                
+		<div class="msg-icon-cnt" id="send-btn"><svg id="SendIcon" viewBox="0 0 32 32"><defs><style>.send-icon{fill:#212121;}</style></defs><path class="send-icon" d="M30.9,14.5,2.9.5,2,.3A1.9,1.9,0,0,0,.1,2.8L3.2,16.4.1,29.2A2,2,0,0,0,2,31.7l.9-.2,28-13.4A2,2,0,0,0,30.9,14.5ZM2,29.7,5.1,17.4H15.8a1,1,0,0,0,1-1h0a.9.9,0,0,0-1-1H5.1L2,2.3l28,14Z"/></svg></div>
+		
               </div>
         </section>
       </div>
@@ -967,5 +971,15 @@ window.location.reload();
 });
 </script> 
 
+
+<script>
+$('#send-btn').click(function() {
+  if($('#inputMsgTxt').val()=='') {
+    
+  } else {
+    $('#sendMsg').submit();
+  }
+});
+</script>
 </body>
 </html>

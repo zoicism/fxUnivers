@@ -245,9 +245,7 @@ $('.header').html(`
        
         <nav>
             <ul class="nav__links">
-                <li><a  class="blur" onclick="goBack()"><svg aria-label="menu" viewBox="0 0 32 32">
-                      <rect class="cls-1" x="3" y="3" width="26" height="2" rx="1"/><rect class="cls-1" x="3" y="15" width="26" height="2" rx="1"/><rect class="cls-1" x="3" y="27" width="26" height="2" rx="1"/>
-                    </svg></a></li>
+                <li><a  class="blur" onclick="goBack()"><svg id="backIcon" viewBox="0 0 32 32"><defs><style>.back-icon{fill:#212121;}</style></defs><path class="back-icon" d="M24.2,32a1.2,1.2,0,0,1-.9-.3l-2.7-2.4-2.8-2.5L7.8,18l-.7-.6a1.9,1.9,0,0,1,0-2.8l.5-.4L12.3,10l5.5-4.8,2.8-2.5L23.3.3a1.2,1.2,0,0,1,.9-.3,1.3,1.3,0,0,1,.9,2.3l-.4.4L20.9,6,9.6,16,20.9,26l3.8,3.3.4.4A1.3,1.3,0,0,1,24.2,32Z"/></svg></a></li>
 <li><a href="" id="page-header"></a></li>
                 <li id="header-menu"><a href="#" class="openbtn" onclick="openNav()"><svg aria-label="menu" viewBox="0 0 32 32">
                       <rect class="cls-1" x="3" y="3" width="26" height="2" rx="1"/><rect class="cls-1" x="3" y="15" width="26" height="2" rx="1"/><rect class="cls-1" x="3" y="27" width="26" height="2" rx="1"/>
