@@ -64,10 +64,14 @@ $readd_result=mysqli_query($msg_connection,$readd_query) or die(mysqli_error($ms
         <div class="discussions">
           <ul>
             <li class="discussion search-chat">
-              <input type="text" placeholder="Search..."></input>
+              <input type="text" placeholder="Search friends" id="search-friends" name="fnd-srch-q">
             </li>
 
 <div id="disc-container">
+
+<div id="friend-search" style="display:none"></div>
+
+<div id="old-discs">
 	    <?php
           if($get_msg_count>0) {
             while($row = $get_msg_result->fetch_assoc()) {
@@ -88,7 +92,7 @@ if($get_guest['avatar']!=NULL) {
 
 
 
-	    echo '<li class="discussion" tabindex="1" onclick="location.href=\'/msg/messenger.php?guest='.$get_guest["username"].'\';">';
+	    echo '<li class="discussion" tabindex="1" onclick="location.href=\'/msg/'.$get_guest["username"].'\';">';
 	        echo '<div class="photo" style="background-image:url(\''.$avatar_url.'\');"></div>';
 	        echo '<div class="desc-contact">';
 
@@ -103,9 +107,10 @@ if($get_guest['avatar']!=NULL) {
 	      echo '</div></li>';
             }
           } else {
-                    echo '<p style="color:gray">No conversations started yet</p>';
+                    echo '<p class="gray" style="text-align:center">Search a friend</p>';
                 }
   ?>
+  </div>
 </div>
 	    
 	    
@@ -113,9 +118,9 @@ if($get_guest['avatar']!=NULL) {
           </ul>
         </div>
 
-        <section class="chat" >
+        <section class="chat">
 
-	<p class="gray">Choose a friend and continue messaging.</p>
+	<p class="gray">Choose a conversation</p>
               
         </section>
       </div>
@@ -136,8 +141,8 @@ $(document).ready(function() {
       url:'/php/disq_container.php',
       data: { user_id: <?php echo $get_user_id?> },
       success: function(response) {
-        $('#disc-container').load(window.location.href+' #disc-container');
-	console.log('ok');
+        $('#old-discs').load(window.location.href+' #old-discs');
+	//console.log('ok');
       }
     });
   }, 2000);
@@ -152,7 +157,9 @@ $(document).ready(function() {
   </script>
 
 <script>
-$('.chat').hide();
+if(screen.width<629) {
+  $('.chat').hide();
+}
 </script>
 
 
@@ -161,7 +168,42 @@ $('.chat').hide();
   $('#nav-msg .stroked').hide();
 </script>
 
+<script>
+$('#search-friends').each(function() {
+  var elem = $(this);
 
+  elem.data('oldVal', elem.val());
+
+  elem.bind("propertychange change click keyup input paste", function(event) {
+    if(elem.data('oldVal')!=elem.val()) {
+      elem.data('oldVal', elem.val());
+
+      if(elem.val()=='') {
+          $('#friend-search').hide();
+    	  $('#old-discs').show();
+      } else {
+          $('#friend-search').show();
+    	  $('#old-discs').hide()
+      }
+
+      jQuery.ajax({
+        type:'POST',
+	url:'/php/search_friends.php',
+	data: $(this).serialize() + '&hostUserId=<?php echo $get_user_id?>',
+	success: function(response) {
+	  console.log(response)
+	  if(response==0) {
+	    $('#friend-search').html('<p class="gray" style="text-align:center">No friends found</p>');
+	  } else {
+	    $('#friend-search').html(response);
+	  }
+	  
+	}
+      });
+    }
+  });
+});
+</script>
 
 </body>
 </html>

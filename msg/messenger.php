@@ -69,10 +69,14 @@ require('../php/get_messenger.php');
         <div class="discussions">
           <ul>
             <li class="discussion search-chat">
-              <input type="text" placeholder="Search..."></input>
+              <input type="text" placeholder="Search friends" id="search-friends" name="fnd-srch-q">
             </li>
 
 <div id="disc-container">
+
+<div id="friend-search" style="display:none"></div>
+
+<div id="old-discs">
 	    <?php
           if($get_msg_count>0) {
             while($row = $get_msg_result->fetch_assoc()) {
@@ -121,7 +125,7 @@ if($get_unread_count>0) {
                     echo '<p style="color:gray">No conversations started yet</p>';
                 }
   ?>
-
+</div>
 </div>
           </ul>
         </div>
@@ -454,7 +458,7 @@ $(document).ready(function() {
       url:'/php/disq_container.php',
       data: { user_id: <?php echo $get_user_id?> },
       success: function(response) {
-        $('#disc-container').load(window.location.href+' #disc-container');
+        $('#old-discs').load(window.location.href+' #old-discs');
       }
     });
   }, 2000);
@@ -475,7 +479,7 @@ $(document).ready(function() {
 if(screen.width<629) {
   $('.footbar').hide();
   $('.discussions').hide();
-  $('#header-menu').html('<img src="/images/icons/video_call.png" id="video-call-btn" style="width:30px;height:30px;margin-right:10px;cursor:pointer;">');
+  $('#header-menu').html('<div class="msg-icon-cnt"><svg style="width:100%" viewBox="0 0 32 32"><defs><style>.videocall-icon{fill:#212121;}</style></defs><path class="videocall-icon" d="M30,5.8a1.9,1.9,0,0,0-1,.3l-7.2,4.2v-2a4,4,0,0,0-4-4H4a4,4,0,0,0-4,4V23.7a4,4,0,0,0,4,4H17.8a4,4,0,0,0,4-4V21.6L29,25.9a1.9,1.9,0,0,0,1,.3,2,2,0,0,0,2-2V7.8A2,2,0,0,0,30,5.8ZM19.8,23.7a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V8.3a2,2,0,0,1,2-2H17.8a2,2,0,0,1,2,2Zm10.2.5-8.2-4.9V12.7L30,7.8Z"/></svg></div>');
   //$('#header-menu').css('visibility','hidden');
 }
 </script>
@@ -979,6 +983,43 @@ $('#send-btn').click(function() {
   } else {
     $('#sendMsg').submit();
   }
+});
+</script>
+
+<script>
+$('#search-friends').each(function() {
+  var elem = $(this);
+
+  elem.data('oldVal', elem.val());
+
+  elem.bind("propertychange change click keyup input paste", function(event) {
+    if(elem.data('oldVal')!=elem.val()) {
+      elem.data('oldVal', elem.val());
+
+      if(elem.val()=='') {
+          $('#friend-search').hide();
+    	  $('#old-discs').show();
+      } else {
+          $('#friend-search').show();
+    	  $('#old-discs').hide()
+      }
+
+      jQuery.ajax({
+        type:'POST',
+	url:'/php/search_friends.php',
+	data: $(this).serialize() + '&hostUserId=<?php echo $get_user_id?>',
+	success: function(response) {
+	  console.log(response)
+	  if(response==0) {
+	    $('#friend-search').html('<p class="gray" style="text-align:center">No friends found</p>');
+	  } else {
+	    $('#friend-search').html(response);
+	  }
+	  
+	}
+      });
+    }
+  });
 });
 </script>
 </body>

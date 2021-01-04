@@ -64,10 +64,14 @@ $readd_result=mysqli_query($msg_connection,$readd_query) or die(mysqli_error($ms
         <div class="discussions">
           <ul>
             <li class="discussion search-chat">
-              <input type="text" placeholder="Search..."></input>
+              <input type="text" placeholder="Search friends" id="search-friends" name="fnd-srch-q">
             </li>
 
 <div id="disc-container">
+
+<div id="friend-search" style="display:none"></div>
+
+<div id="old-discs">
 	    <?php
           if($get_msg_count>0) {
             while($row = $get_msg_result->fetch_assoc()) {
@@ -103,9 +107,10 @@ if($get_guest['avatar']!=NULL) {
 	      echo '</div></li>';
             }
           } else {
-                    echo '<p style="color:gray">No conversations started yet</p>';
+                    echo '<p class="gray" style="text-align:center">Search a friend</p>';
                 }
   ?>
+  </div>
 </div>
 	    
 	    
@@ -113,9 +118,9 @@ if($get_guest['avatar']!=NULL) {
           </ul>
         </div>
 
-        <section class="chat" >
+        <section class="chat">
 
-	<p class="gray">Choose a friend and continue messaging.</p>
+	<p class="gray">Choose a conversation</p>
               
         </section>
       </div>
@@ -136,8 +141,8 @@ $(document).ready(function() {
       url:'/php/disq_container.php',
       data: { user_id: <?php echo $get_user_id?> },
       success: function(response) {
-        $('#disc-container').load(window.location.href+' #disc-container');
-	console.log('ok');
+        $('#old-discs').load(window.location.href+' #old-discs');
+	//console.log('ok');
       }
     });
   }, 2000);
@@ -152,7 +157,9 @@ $(document).ready(function() {
   </script>
 
 <script>
-$('.chat').hide();
+if(screen.width<629) {
+  $('.chat').hide();
+}
 </script>
 
 
@@ -161,225 +168,42 @@ $('.chat').hide();
   $('#nav-msg .stroked').hide();
 </script>
 
-
-
-
 <script>
+$('#search-friends').each(function() {
+  var elem = $(this);
 
-                //var channel = location.href.replace(/\/|:|#|%|\.|\[|\]/g, '');
-		var channel = 'httplocalhostmsgmessengerphp'+'<?php echo $get_user_id?>';
-		console.log(channel);
-                var sender = Math.round(Math.random() * 999999999) + 999999999;
+  elem.data('oldVal', elem.val());
 
-                var SIGNALING_SERVER = 'https://socketio-over-nodejs2.herokuapp.com:443/';
-                io.connect(SIGNALING_SERVER).emit('new-channel', {
-                    channel: channel,
-                    sender: sender
-                });
+  elem.bind("propertychange change click keyup input paste", function(event) {
+    if(elem.data('oldVal')!=elem.val()) {
+      elem.data('oldVal', elem.val());
 
-                var socket = io.connect(SIGNALING_SERVER + channel);
-                socket.on('connect', function () {
-                    // setup peer connection & pass socket object over the constructor!
-                });
+      if(elem.val()=='') {
+          $('#friend-search').hide();
+    	  $('#old-discs').show();
+      } else {
+          $('#friend-search').show();
+    	  $('#old-discs').hide()
+      }
 
-                socket.send = function (message) {
-                    socket.emit('message', {
-                        sender: sender,
-                        data: message
-                    });
-                };
-
-                // var peer = new PeerConnection('http://socketio-signaling.jit.su:80');
-                var peer = new PeerConnection(socket);
-                peer.onUserFound = function(userid) {
-                    if (document.getElementById(userid)) return;
-                    var tr = document.createElement('tr');
-
-                    var td1 = document.createElement('td');
-                    var td2 = document.createElement('td');
-
-                    //td1.innerHTML = userid + ' has camera. Are you interested in video chat?';
-
-
-jQuery.ajax({
-  url:'/php/get_caller.php',
-  type:'POST',
-  data: {caller_username: userid},
-  success: function(response) {
-    console.log(response);
-    
-    if(response!='') {
-      var caller_avatar_path = '/userpgs/avatars/'+response;
-      $('.calling-content .photo img').prop('src', caller_avatar_path);
-      $('.guest-photo img').prop('src', caller_avatar_path);
+      jQuery.ajax({
+        type:'POST',
+	url:'/php/search_friends.php',
+	data: $(this).serialize() + '&hostUserId=<?php echo $get_user_id?>',
+	success: function(response) {
+	  console.log(response)
+	  if(response==0) {
+	    $('#friend-search').html('<p class="gray" style="text-align:center">No friends found</p>');
+	  } else {
+	    $('#friend-search').html(response);
+	  }
+	  
+	}
+      });
     }
-  }
+  });
 });
+</script>
 
-$('#video-income-overlay').show();
-$('#caller-username').html(userid);
-$('.guest-id').html(userid);
-$('#caller-accept').html(userid + ' is calling you.');
-
-
-
-                    var button = document.createElement('button');
-                    button.innerHTML = 'Join';
-                    button.id = userid;
-                    button.style.float = 'right';
-                    button.onclick = function() {
-                        button = this;
-                        getUserMedia(function(stream) {
-                            peer.addStream(stream);
-                            peer.sendParticipationRequest(button.id);
-                        });
-                        button.disabled = true;
-                    };
-                    td2.appendChild(button);
-
-                    tr.appendChild(td1);
-                    tr.appendChild(td2);
-                    roomsList.appendChild(tr);
-
-		    $('#accept-call').click(function() {
-		      button.click();
-		    });
-		    $('#guest-ignore').click(function() {
-		      $('#video-income-overlay').hide();
-		    });
-
-		    
-                };
-
-		var videoQueue = 0;
-                peer.onStreamAdded = function(e) {
-                    var video = e.mediaElement;
-                    video.setAttribute('width', 600);
-
-		    if(videoQueue==0) {
- 		      video.setAttribute('id', 'host-video');
-		      video.setAttribute('class', 'host-video');
-		      video.controls = false;
-		      video.muted=true;
-		    } else {
-		      video.setAttribute('id', 'guest-video');
-		      video.setAttribute('class', 'guest-video');
-		      video.controls = false;
-		    }
-		    videoQueue++;
-		    
-                    videosContainer.insertBefore(video, videosContainer.firstChild);
-
-		    // heeeeeeee
-
-                    video.play();
-                    rotateVideo(video);
-                    scaleVideos();
-
-		    $('#frame-calling-overlay').hide();
-		    $('#frame-video-overlay').show();
-		    
-                };
-
-                peer.onStreamEnded = function(e) {
-                    var video = e.mediaElement;
-                    if (video) {
-                        video.style.opacity = 0;
-                        rotateVideo(video);
-                        setTimeout(function() {
-                            video.parentNode.removeChild(video);
-                            scaleVideos();
-                        }, 1000);
-                    }
-                };
-
-                document.querySelector('#start-broadcasting').onclick = function() {
-                    this.disabled = true;
-                    getUserMedia(function(stream) {
-                        peer.addStream(stream);
-                        peer.startBroadcasting();
-                    });
-                };
-
-                document.querySelector('#your-name').onchange = function() {
-                    peer.userid = this.value;
-                };
-
-		peer.userid = "<?php echo $username?>";
-
-                var videosContainer = document.getElementById('receiving-videos-container') || document.body;
-                var btnSetupNewRoom = document.getElementById('setup-new-room');
-                var roomsList = document.getElementById('rooms-list');
-
-                if (btnSetupNewRoom) btnSetupNewRoom.onclick = setupNewRoomButtonClickHandler;
-
-                function rotateVideo(video) {
-                    video.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(0deg)';
-                    setTimeout(function() {
-                        video.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(360deg)';
-                    }, 1000);
-                }
-
-                function scaleVideos() {
-                    var videos = document.querySelectorAll('video'),
-                        length = videos.length, video;
-
-                    var minus = 130;
-                    var windowHeight = 700;
-                    var windowWidth = 600;
-                    var windowAspectRatio = windowWidth / windowHeight;
-                    var videoAspectRatio = 4 / 3;
-                    var blockAspectRatio;
-                    var tempVideoWidth = 0;
-                    var maxVideoWidth = 0;
-
-                    for (var i = length; i > 0; i--) {
-                        blockAspectRatio = i * videoAspectRatio / Math.ceil(length / i);
-                        if (blockAspectRatio <= windowAspectRatio) {
-                            tempVideoWidth = videoAspectRatio * windowHeight / Math.ceil(length / i);
-                        } else {
-                            tempVideoWidth = windowWidth / i;
-                        }
-                        if (tempVideoWidth > maxVideoWidth)
-                            maxVideoWidth = tempVideoWidth;
-                    }
-                    for (var i = 0; i < length; i++) {
-                        video = videos[i];
-                        if (video)
-                            video.width = maxVideoWidth - minus;
-                    }
-                }
-
-                window.onresize = scaleVideos;
-
-                // you need to capture getUserMedia yourself!
-                function getUserMedia(callback) {
-                    var hints = {audio:true,video:{
-                        optional: [],
-                        mandatory: {}
-                    }};
-                    navigator.getUserMedia(hints,function(stream) {
-                        var video = document.createElement('video');
-                        video.srcObject = stream;
-                        video.controls = false;
-                        video.muted = false;
-
-                        peer.onStreamAdded({
-                            mediaElement: video,
-                            userid: 'self',
-                            stream: stream
-                        });
-
-                        callback(stream);
-                    });
-                }
-
-                (function() {
-                    var uniqueToken = document.getElementById('unique-token');
-                    if (uniqueToken)
-                        if (location.hash.length > 2) uniqueToken.parentNode.parentNode.parentNode.innerHTML = '<h2 style="text-align:center;"><a href="' + location.href + '" target="_blank">Share this link</a></h2>';
-                        else uniqueToken.innerHTML = uniqueToken.parentNode.parentNode.href = '#' + (Math.random() * new Date().getTime()).toString(36).toUpperCase().replace( /\./g , '-');
-                })();
-            </script>
 </body>
 </html>

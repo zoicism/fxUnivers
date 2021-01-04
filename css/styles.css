@@ -3765,6 +3765,13 @@ input:checked + .slider:before {
 
   /********************** < video face call mobile **********************/
 
+  .footer-chat .msg-icon-cnt {
+      width:50px;
+  }
+
+  #header-menu .msg-icon-cnt {
+      margin:0;
+  }
 }
 
 @media (max-width: 374px) {
