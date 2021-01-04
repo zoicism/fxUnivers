@@ -69,10 +69,14 @@ require('../php/get_messenger.php');
         <div class="discussions">
           <ul>
             <li class="discussion search-chat">
-              <input type="text" placeholder="Search..."></input>
+              <input type="text" placeholder="Search friends" id="search-friends" name="fnd-srch-q">
             </li>
 
 <div id="disc-container">
+
+<div id="friend-search" style="display:none"></div>
+
+<div id="old-discs">
 	    <?php
           if($get_msg_count>0) {
             while($row = $get_msg_result->fetch_assoc()) {
@@ -121,7 +125,7 @@ if($get_unread_count>0) {
                     echo '<p style="color:gray">No conversations started yet</p>';
                 }
   ?>
-
+</div>
 </div>
           </ul>
         </div>
@@ -454,7 +458,7 @@ $(document).ready(function() {
       url:'/php/disq_container.php',
       data: { user_id: <?php echo $get_user_id?> },
       success: function(response) {
-        $('#disc-container').load(window.location.href+' #disc-container');
+        $('#old-discs').load(window.location.href+' #old-discs');
       }
     });
   }, 2000);
@@ -979,6 +983,43 @@ $('#send-btn').click(function() {
   } else {
     $('#sendMsg').submit();
   }
+});
+</script>
+
+<script>
+$('#search-friends').each(function() {
+  var elem = $(this);
+
+  elem.data('oldVal', elem.val());
+
+  elem.bind("propertychange change click keyup input paste", function(event) {
+    if(elem.data('oldVal')!=elem.val()) {
+      elem.data('oldVal', elem.val());
+
+      if(elem.val()=='') {
+          $('#friend-search').hide();
+    	  $('#old-discs').show();
+      } else {
+          $('#friend-search').show();
+    	  $('#old-discs').hide()
+      }
+
+      jQuery.ajax({
+        type:'POST',
+	url:'/php/search_friends.php',
+	data: $(this).serialize() + '&hostUserId=<?php echo $get_user_id?>',
+	success: function(response) {
+	  console.log(response)
+	  if(response==0) {
+	    $('#friend-search').html('<p class="gray" style="text-align:center">No friends found</p>');
+	  } else {
+	    $('#friend-search').html(response);
+	  }
+	  
+	}
+      });
+    }
+  });
 });
 </script>
 </body>
