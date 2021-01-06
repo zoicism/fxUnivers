@@ -30,10 +30,24 @@ $get_course_q = "SELECT * FROM teacher WHERE id=$course_id";
 $get_course_r = mysqli_query($connection,$get_course_q);
 $get_course = mysqli_fetch_array($get_course_r);
 $wanted_num = $get_course['test_num'];
+$total_time = $get_course['test_duration'];
 
 $get_question_q = "SELECT * FROM question WHERE course_id=$course_id ORDER BY RAND() LIMIT $wanted_num";
 $get_question_r = mysqli_query($fxinstructor_connection,$get_question_q);
 $get_question_c = mysqli_num_rows($get_question_r);
+
+$check_last_date_q = "SELECT last_exam FROM stucourse WHERE stu_id=$get_user_id AND course_id=$course_id";
+$check_last_date_r = mysqli_query($connection,$check_last_date_q);
+$check_last_date_f = mysqli_fetch_array($check_last_date_r);
+$past_date = $check_last_date_f['last_exam'];
+$now_date=date('Y-m-d');
+$date1 = new DateTime($past_date);
+$date2 = new DateTime($now_date);
+$interval = $date1->diff($date2);
+
+if($interval->days < 7) {
+  header('Location: /userpgs/instructor/course_management/course.php?course_id='.$course_id);
+}
 ?>
 
 <!DOCTYPE html>
@@ -94,7 +108,8 @@ $get_question_c = mysqli_num_rows($get_question_r);
 	  <h2>Course Test</h2>
 
 
-	  <p>A course may have at least 3 questions. Once a learner is taking the test a number of these questions will be provided to be answered.</p>
+	  <p style="color:red">Remaining Time: <span style="font-weight:bold" id="rem-time"></span> seconds</p>
+<p>Note that by leaving the page or reloading it, the exam will be submitted and scored, restricting you from taking the test again for a week.</p>
 
 
 
@@ -235,5 +250,45 @@ $('#goto-course').click(function(e) {
 });
 </script>
 
+<script>
+$(document).ready(function() {
+  var startTime = <?php echo $total_time?>;
+  startTime *= 60;
+  setInterval(function() {
+    $('#rem-time').html(startTime);
+    startTime--;
+    if(startTime<=0) {
+      $('#testForm').submit();
+      $('#rem-time').html("Time's Up");
+    }
+  }, 1000);
+});
+</script>
+
+<script>
+$(window).bind('beforeunload', function() {
+  return "The test will be submitted and scored if you leave the page. Want to leave the page?";
+});
+window.onunload = function() {
+  $('#testForm').submit();
+}
+</script>
+
+
+<script>
+$(window).on('load',function() {
+  jQuery.ajax({
+    url: '/php/exam_date.php',
+    type: 'POST',
+    data: {last_date: '<?php echo $past_date?>'},
+    success: function(response) {
+      console.log(response);
+      if(response<7) {
+        window.location.replace("/userpgs/instructor/course_management/course.php?course_id=<?php echo $course_id?>");
+      }
+    }
+  });
+});
+</script>
 </body>
 </html>
