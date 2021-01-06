@@ -57,10 +57,10 @@ if(isset($_FILES['theFile'])) {
 
 
     } else {
-      echo $file_size_mb;
+      echo 0;
     }
   } else {
-    echo 'not uploaded';
+    echo 0;
   }
   
 }
