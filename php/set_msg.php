@@ -1,5 +1,5 @@
 <?php
-require('../contact/message_connect.php');
+require_once('../contact/message_connect.php');
 
 if(isset($_POST['msgBody'])) {
     $msgBody = $_POST['msgBody'];

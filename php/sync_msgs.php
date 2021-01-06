@@ -16,10 +16,26 @@ if($sync_msgs_count>0) {
   $sync_fetch = mysqli_fetch_array($sync_msgs_r);
 
   $sent_time = new DateTime($sync_fetch['sent_dt']);
+
+  if($sync_fetch['msg_type']=='file') {
+
+    echo '
+        <div class="messages message-recieved upload-container" onclick="window.location.href=\'dl_msg_file.php?filename='.urlencode($sync_fetch['file_enc']).'\';">
+                  	      <div class="upload-recieved">
+                    	        <img src="/images/background/file-recieved.svg">
+                  	      </div>
+                  	      <div class="file-name">'.$sync_fetch['text'].'<div>'.$sync_fetch['file_size'].' MB</div></div>
+                  	      <span class="time">'.$sent_time->format('H:i').'</span>
+                	    </div>
+       ';
+
+  } else {
   
-  echo '<div class="messages message-recieved">
+    echo '<div class="messages message-recieved">
           <p>'.$sync_fetch['text'].'</p>
 	  <span class="time">'.$sent_time->format('H:i').'</span>
 	</div>';
+
+  }
 }
 ?>

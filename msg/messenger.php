@@ -45,6 +45,7 @@ require('../php/get_messenger.php');
   <link rel="stylesheet" href="/css/icons.css">
   <link rel="stylesheet" href="/css/logo.css">
   <script src="/js/jquery-3.4.1.min.js"></script>
+  <script src="/js/jquery.form.js"></script>
 
   <!-- scripts used for peers connection -->
         <script src="/js/webrtc/adapter-latest.js"></script>
@@ -146,17 +147,42 @@ if($get_unread_count>0) {
                 while($row = $get_messenger_result->fetch_assoc()) {
 
 		    $sent_time = new DateTime($row['sent_dt']);
+		    $msg_type = $row['msg_type'];
 
                     if($row['user2id']==$get_user_id) {
-                        echo '<div class="messages message-recieved">';
-                        echo '<p>'.$row['text'].'</p>';
-			echo '<span class="time">'.$sent_time->format('H:i').'</span>';
-                        echo '</div>';
+		        if($msg_type=='file') {
+			  echo '
+			    <div class="messages message-recieved upload-container" onclick="window.location.href=\'dl_msg_file.php?filename='.urlencode($row['file_enc']).'\';">
+                  	      <div class="upload-recieved">
+                    	        <img src="/images/background/file-recieved.svg">
+                  	      </div>
+                  	      <div class="file-name">'.$row['text'].'<div>'.$row['file_size'].' MB</div></div>
+                  	      <span class="time">'.$sent_time->format('H:i').'</span>
+                	    </div>
+			  ';
+			} else {
+			    echo '<div class="messages message-recieved">';
+			    echo '<p>'.$row['text'].'</p>';
+			    echo '<span class="time">'.$sent_time->format('H:i').'</span>';
+                            echo '</div>';
+			}
                     } else {
-                        echo '<div class="messages message-sent">';
-                        echo '<p>'.$row['text'].'</p>';
-			echo '<span class="time">'.$sent_time->format('H:i').'</span>';
-                        echo '</div>';
+		        if($msg_type=='file') {
+			  echo '
+			    <div class="messages message-sent upload-container" onclick="window.location.href=\'dl_msg_file.php?filename='.urlencode($row['file_enc']).'\';">
+                  	      <div class="upload-sent">
+                    	        <img src="/images/background/file-sent.svg">
+                              </div>
+                  	      <div class="file-name">'.$row['text'].'<div>'.$row['file_size'].' MB</div></div>
+                  	      <span class="time">'.$sent_time->format('H:i').'</span>
+                	    </div>
+			  ';
+			} else {
+                          echo '<div class="messages message-sent">';
+                          echo '<p>'.$row['text'].'</p>';
+			  echo '<span class="time">'.$sent_time->format('H:i').'</span>';
+                          echo '</div>';
+			}
                     }
                 }
   ?>
@@ -167,9 +193,19 @@ if($get_unread_count>0) {
 
                 <div class="image-upload">
                   <label for="file-input">
-                    <img src="/images/background/plus.svg" class="chat-icon">
+                    <img src="/images/background/plus.svg" class="chat-icon" id="file-btn">
                   </label>
-                  <input id="file-input" type="file" multiple>
+                  <!--<input id="file-input" type="file" multiple>-->
+		  
+<form method="POST" style="display:none" id="file-form" enctype="multipart/form-data" action="/php/messenger_file_send.php">
+  <input type="hidden" name="senderId" value="<?php echo $get_user_id?>">
+  <input type="hidden" name="recId" value="<?php echo $guest_id?>">
+  <input type="file" name="theFile" id="file-input">
+  <input type="submit">
+</form>
+
+
+		  
                 </div>
 
 <form id="sendMsg" autocomplete="off" style="width:100%">
@@ -397,7 +433,8 @@ if($get_unread_count>0) {
 
 
   <div class="footbar blur"></div>
-  <script src="/js/footbar.js"></script><script src="/js/notif_msg.js" id="notmsg" nmuid="<?php echo $get_user_id?>"></script>
+  <script src="/js/footbar.js"></script>
+  <!--<script src="/js/notif_msg.js" id="notmsg" nmuid="<?php echo $get_user_id?>"></script>-->
 
 
 
@@ -1022,5 +1059,34 @@ $('#search-friends').each(function() {
   });
 });
 </script>
+
+<script>
+$('#file-btn').click( function() {
+  $('#file-input').click();
+});
+
+$('#file-input').change(function() {
+  $('#file-form').submit();
+});
+</script>
+
+<!-- FILE UPLOAD -->
+<script>
+$(function() {
+  $('#file-form').ajaxForm(function(response) {
+    
+    if(response==0) {
+      alert('Failed to send the file. Please try again.');
+    } else {
+      $('#file-input').val('');
+      $('#inputMsgTxt').val('');
+      $('#inputMsgTxt').focus();
+      $('.message-chat').append(response);
+      $('.message-chat').scrollTop($('.message-chat')[0].scrollHeight);
+    }
+  });
+});
+</script>
+
 </body>
 </html>

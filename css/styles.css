@@ -2069,6 +2069,7 @@ margin-bottom:auto;
   display: flex;
   flex-flow: row nowrap;
   padding: 10px 60px 10px 20px;
+  cursor:pointer;  
 }
 
 .upload-container .upload-sent {
