@@ -2091,6 +2091,7 @@ margin-bottom:auto;
 .upload-container .file-name {
   margin-left: 10px;
   font-size: 14px;
+  word-break: break-all;
 }
 
 .message-chat .message-recieved .time {
