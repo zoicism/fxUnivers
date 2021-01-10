@@ -185,7 +185,7 @@ if(screen.width>628) {
     var sess_avatar=$('#upperbar-script').attr('sess_avatar');
     var sess_un=$('#upperbar-script').attr('sess_un');
 
-    if(sess_avatar!=null) {
+    if(sess_avatar!='') {
 	var avatar_div = `<a href="/user/`+sess_un+`" class="avatar-m" style="background-image:url('/userpgs/avatars/`+sess_avatar+`');"></a>`;
     } else {
 	var avatar_div = `<a href="/user/`+sess_un+`" class="avatar-m" style="background-image:url('/images/background/avatar.png');"></a>`;
@@ -199,7 +199,7 @@ $('.header').html(`
                       <rect class="cls-1" x="3" y="3" width="26" height="2" rx="1"/><rect class="cls-1" x="3" y="15" width="26" height="2" rx="1"/><rect class="cls-1" x="3" y="27" width="26" height="2" rx="1"/>
                     </svg></a></li>
 <li><a href="" class="blur" id="page-header"></a></li>
-                <li><a href="#" class="openbtn" onclick="openNav()"><svg aria-label="menu" viewBox="0 0 32 32">
+                <li><a class="openbtn" onclick="openNav()"><svg aria-label="menu" viewBox="0 0 32 32">
                       <rect class="cls-1" x="3" y="3" width="26" height="2" rx="1"/><rect class="cls-1" x="3" y="15" width="26" height="2" rx="1"/><rect class="cls-1" x="3" y="27" width="26" height="2" rx="1"/>
                     </svg></a></li>
             </ul>
@@ -215,11 +215,11 @@ $('.header').html(`
                     <a class="id-sidebar-m menu-info" href="/user/`+sess_un+`">@`+sess_un+`</a>
                     <div class="sidebar-m">
                         <div class="elements">
-                            <a href="#" class="fxstar-sidebar">fxStar</a>
-                            <a href="#" class="fxuniversity-sidebar">fxUniversity</a>
-                            <a href="#" class="fxpartner-sidebar">fxPartner</a>
-                            <a href="#" class="fxuniverse-sidebar">fxUniverse</a>
-                            <a href="#" class="fxsonet-sidebar">fxSonet</a>
+                            <a href="/wallet" class="sidebar-icon fxstar-sidebar">fxStar</a>
+                            <a href="/userpgs/fxuniversity" class="sidebar-icon fxuniversity-sidebar">fxUniversity</a>
+                            <a href="/userpgs/partner" class="sidebar-icon fxpartner-sidebar">fxPartner</a>
+                            <a href="/" class="sidebar-icon fxuniverse-sidebar">fxUniverse</a>
+                            <a href="/" class="sidebar-icon fxsonet-sidebar">fxSonet</a>
                         </div>
                     </div>
                     <div class="menu-info">
@@ -247,7 +247,7 @@ $('.header').html(`
             <ul class="nav__links">
                 <li><a  class="blur" onclick="goBack()"><svg id="backIcon" viewBox="0 0 32 32"><defs><style>.back-icon{fill:#212121;}</style></defs><path class="back-icon" d="M24.2,32a1.2,1.2,0,0,1-.9-.3l-2.7-2.4-2.8-2.5L7.8,18l-.7-.6a1.9,1.9,0,0,1,0-2.8l.5-.4L12.3,10l5.5-4.8,2.8-2.5L23.3.3a1.2,1.2,0,0,1,.9-.3,1.3,1.3,0,0,1,.9,2.3l-.4.4L20.9,6,9.6,16,20.9,26l3.8,3.3.4.4A1.3,1.3,0,0,1,24.2,32Z"/></svg></a></li>
 <li><a href="" id="page-header"></a></li>
-                <li id="header-menu"><a href="#" class="openbtn" onclick="openNav()"><svg aria-label="menu" viewBox="0 0 32 32">
+                <li id="header-menu"><a  class="openbtn" onclick="openNav()"><svg aria-label="menu" viewBox="0 0 32 32">
                       <rect class="cls-1" x="3" y="3" width="26" height="2" rx="1"/><rect class="cls-1" x="3" y="15" width="26" height="2" rx="1"/><rect class="cls-1" x="3" y="27" width="26" height="2" rx="1"/>
                     </svg></a></li>
             </ul>
@@ -265,9 +265,9 @@ $('.header').html(`
                         <div class="elements">
                             <a href="/wallet" class="sidebar-icon fxstar-sidebar">fxStar</a>
                             <a href="/userpgs/fxuniversity" class="sidebar-icon fxuniversity-sidebar">fxUniversity</a>
-                            <a href="/userpgs/partner" class="sidebar-icon fxpartner-sidebar" target="_blank">fxPartner</a>
-                            <a href="/" class="sidebar-icon fxuniverse-sidebar" target="_blank">fxUniverse</a>
-                            <a href="/" class="sidebar-icon fxsonet-sidebar" target="_blank">fxSonet</a>
+                            <a href="/userpgs/partner" class="sidebar-icon fxpartner-sidebar">fxPartner</a>
+                            <a href="/" class="sidebar-icon fxuniverse-sidebar">fxUniverse</a>
+                            <a href="/" class="sidebar-icon fxsonet-sidebar">fxSonet</a>
                         </div>
                     </div>
                     <div class="menu-info">
