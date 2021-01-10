@@ -2041,12 +2041,11 @@ margin-bottom:auto;
   width: fit-content;
   width: -moz-fit-content;
   margin: 10px 0;
-  position: relative;
-  max-width: 70%;
+  max-width: 80%;
 }
 
 .messages p {
-  padding: 10px 80px 10px 20px;
+  padding: 10px 20px;
   color: #393939;
   word-break:break-all;
 }
@@ -2095,18 +2094,18 @@ margin-bottom:auto;
 }
 
 .message-chat .message-recieved .time {
-  position: absolute;
-  bottom: 3px;
-  right: 6px;
+  display: block;
+  text-align: end;
+  text-align: -webkit-right;
   color: #919191;
   font-size: 14px;
   font-weight: 300;
 }
 
 .message-chat .message-sent .time {
-  position: absolute;
-  bottom: 3px;
-  right: 6px;
+  display: block;
+  text-align: end;
+  text-align: -webkit-right;
   color: #0092CC;
   font-size: 14px;
   font-weight: 300;
