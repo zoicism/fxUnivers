@@ -107,7 +107,7 @@ if($get_fxcoin_count>=$cost+$interest) {
             $trans_result=mysqli_query($wallet_connection, $trans_query) or die(mysqli_error($wallet_connection));
 
             // add the amount to his income in fxpartner db
-            $partner_income_q="UPDATE on_user SET income=income+$fxpartner_interest WHERE partner=$fxpartner_id";
+            $partner_income_q="UPDATE on_user SET income=income+$fxpartner_interest WHERE (partner=$fxpartner_id AND user=$stu_id)";
             //echo $partner_income_q.'<br>';
             $partner_income_r=mysqli_query($fxpartner_connection,$partner_income_q) or die(mysqli_error($fxpartner_connection));
         }

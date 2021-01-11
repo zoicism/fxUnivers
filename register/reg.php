@@ -31,9 +31,6 @@ if($signup_result) {
   $msg = 0;
 }
 
-//if(isset($_POST['partner'])) $partner=$_POST['partner'];
-
-
 
 ///////////// Activation Email /////////////
 

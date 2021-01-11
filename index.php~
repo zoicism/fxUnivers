@@ -76,7 +76,7 @@ if(isset($_COOKIE['username']) && isset($_COOKIE['password'])) {
 
 
 <!------ LOGIN OVERLAY ------->
-<div class="overlay-container" style="display:none" id=" login-overlay">
+<div class="overlay-container" style="display:none" id="login-overlay">
 <div class="overlay">
 <div class="close-btn" id="login-close-btn">×</div>
   <h1>Login</h1>
