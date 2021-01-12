@@ -4,6 +4,14 @@
   box-sizing:border-box;
 }
 
+body {
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+}
+html {
+  height: -webkit-fill-available;
+}
+
 html,body {
   background-color:#efefef;
   font-family: "roboto", sans-serif;
@@ -2019,6 +2027,7 @@ margin-bottom:auto;
   min-height: 70px;
   border-bottom: solid 1px #E0E0E0;
   display:flex;
+  flex-flow: row nowrap;
   align-items: center;
   justify-content: space-between;
 }
@@ -2041,12 +2050,11 @@ margin-bottom:auto;
   width: fit-content;
   width: -moz-fit-content;
   margin: 10px 0;
-  position: relative;
-  max-width: 70%;
+  max-width: 80%;
 }
 
 .messages p {
-  padding: 10px 80px 10px 20px;
+  padding: 10px 20px;
   color: #393939;
   word-break:break-all;
 }
@@ -2069,42 +2077,44 @@ margin-bottom:auto;
   display: flex;
   flex-flow: row nowrap;
   padding: 10px 60px 10px 20px;
+  cursor:pointer;  
 }
 
 .upload-container .upload-sent {
-  width: 38px;
+  min-width: 38px;
   height: 38px;
   padding: 10px;
-  border-radius: 50px;
+  border-radius: 50%;
   background-color: #6BBCF0;
 }
 
 .upload-container .upload-recieved {
-  width: 38px;
+  min-width: 38px;
   height: 38px;
   padding: 10px;
-  border-radius: 50px;
+  border-radius: 50%;
   background-color: #919191;
 }
 
 .upload-container .file-name {
   margin-left: 10px;
   font-size: 14px;
+  word-break: break-all;
 }
 
 .message-chat .message-recieved .time {
-  position: absolute;
-  bottom: 3px;
-  right: 6px;
+  display: block;
+  text-align: end;
+  text-align: -webkit-right;
   color: #919191;
   font-size: 14px;
   font-weight: 300;
 }
 
 .message-chat .message-sent .time {
-  position: absolute;
-  bottom: 3px;
-  right: 6px;
+  display: block;
+  text-align: end;
+  text-align: -webkit-right;
   color: #0092CC;
   font-size: 14px;
   font-weight: 300;
@@ -3635,17 +3645,12 @@ input:checked + .slider:before {
 
   .chat {
       width: 100%;
-      height:100%;
+      height: 100vh;
   }
 
   
-  .footer-chat {
-      position: fixed;
-      bottom:0;
-  }
-  
   .chat .header-chat {
-    display: none;
+    min-height: 50px;
   }
   
   .discussions {

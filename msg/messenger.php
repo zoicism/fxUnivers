@@ -60,7 +60,7 @@ require('../php/get_messenger.php');
 	<div class="header-sidebar"></div>
   <script id="upperbar-script" src="/js/upperbar.js" sess_avatar="<?php echo $session_avatar?>" sess_un="<?php echo $username?>"></script>
 
-  <div class="blur mobile-main" style="margin-bottom:0">
+  <div class="blur mobile-main" style="margin-bottom:0;">
 
    <div class="sidebar"></div>
 <?php require('../php/sidebar.php'); ?>
@@ -131,7 +131,7 @@ if($get_unread_count>0) {
           </ul>
         </div>
 
-        <section class="chat">
+        <section class="chat" style="/*height:calc(100 * var(--vh));*/">
           <div class="header-chat">
 	  <a id="back-butt" class="blur" onclick="goBack()" style="width: 16px;height: 16px;margin-left: 20px;display:none;"><svg id="backIcon" viewBox="0 0 32 32" style="width: 100%;height: 100%;"><defs><style>.back-icon{fill:#212121;}</style></defs><path class="back-icon" d="M24.2,32a1.2,1.2,0,0,1-.9-.3l-2.7-2.4-2.8-2.5L7.8,18l-.7-.6a1.9,1.9,0,0,1,0-2.8l.5-.4L12.3,10l5.5-4.8,2.8-2.5L23.3.3a1.2,1.2,0,0,1,.9-.3,1.3,1.3,0,0,1,.9,2.3l-.4.4L20.9,6,9.6,16,20.9,26l3.8,3.3.4.4A1.3,1.3,0,0,1,24.2,32Z"/></svg></a>
                 <a href="/user/<?php echo $guest?>" class="name" style="text-decoration:none;font-weight:bold;"><?php echo $guest?></a>
@@ -507,21 +507,28 @@ $(document).ready(function() {
     if(screen.width<629) {
       $('#page-header').html('<?php echo $guest?>');
       $('#page-header').attr('href','/user/<?php echo $guest?>');
+      $('.footbar').hide();
+      $('.discussions').hide();
+      $('.header-sidebar').css('display','none');
+      $('#back-butt').show();
+
+      $('.chat').css('height', window.innerHeight);
+
+      window.addEventListener('resize', () => {
+        $('.chat').css('height', window.innerHeight);
+      });
     } else {
       $('#page-header').html('Messages');
       $('#page-header').attr('href','/msg/inbox.php');
     }
   </script>
 
-<script>
+<script>/*
 if(screen.width<629) {
-  $('.footbar').hide();
-  $('.discussions').hide();
   //$('#header-menu').html('<div class="msg-icon-cnt" id="video-call-btn"><svg style="width:100%" viewBox="0 0 32 32"><defs><style>.videocall-icon{fill:#212121;}</style></defs><path class="videocall-icon" d="M30,5.8a1.9,1.9,0,0,0-1,.3l-7.2,4.2v-2a4,4,0,0,0-4-4H4a4,4,0,0,0-4,4V23.7a4,4,0,0,0,4,4H17.8a4,4,0,0,0,4-4V21.6L29,25.9a1.9,1.9,0,0,0,1,.3,2,2,0,0,0,2-2V7.8A2,2,0,0,0,30,5.8ZM19.8,23.7a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V8.3a2,2,0,0,1,2-2H17.8a2,2,0,0,1,2,2Zm10.2.5-8.2-4.9V12.7L30,7.8Z"/></svg></div>');
   //$('#header-menu').css('visibility','hidden');
-  $('.header-sidebar').css('display','none');
-  $('#back-butt').show();
-}
+  
+}*/
 </script>
 
 
@@ -1017,7 +1024,8 @@ window.location.reload();
 
 
 <script>
-$('#send-btn').click(function() {
+$('#send-btn').click(function(event) {
+  event.stopPropagation();
   if($('#inputMsgTxt').val()=='') {
     
   } else {
@@ -1090,6 +1098,7 @@ $(function() {
   });
 });
 </script>
+
 
 </body>
 </html>
