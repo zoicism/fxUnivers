@@ -99,7 +99,7 @@ require('../php/get_fxcoin_count.php');
                           <p>Your current balance: <strong><?php echo $get_fxcoin_count?> fxStars</strong></p>
                           <p>You need a minimum of 100 fxStars to request cash-out.</p>
 
-                          <form id="cform" method="POST" action="/wallet/php/cashout.php">
+                          <form id="cashout-form" method="POST">
                           <input type="hidden" name="user_id" value="<?php echo $get_user_id?>">
                           <input type="number" class="num-input" name="amnt" id="amntinput" placeholder="How many fxStars" min="100" max="<?php echo $get_fxcoin_count?>" value="100" required>
                           <input type="hidden" name="coin_count" value="<?php echo $get_fxcoin_count?>">
@@ -173,5 +173,25 @@ $('#page-header').attr('href','/wallet');
 $('.fxstar-sidebar').attr('id','sidebar-active');
 </script>
 
+
+<script>
+$('#cashout-form').submit(function(event) {
+  event.preventDefault();
+
+  jQuery.ajax({
+    url:'/wallet/php/cashout.php',
+    type:'POST',
+    data:$(this).serialize(),
+    success: function(response) {
+      if(response=='success') {
+        alert('Cash-out request submitted.');
+	window.location.reload();
+      } else {
+        alert('Insufficient fxStars.');
+      }
+    }
+  });
+});
+</script>
 </body>
 </html>
