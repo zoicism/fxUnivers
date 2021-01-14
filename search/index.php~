@@ -326,5 +326,10 @@ $(document).ready(function() {
   }, 2000);
 });
 </script>
+
+<script>
+  $('#nav-search .filled').show();
+  $('#nav-search .stroked').hide();
+</script>
 </body>
 </html>

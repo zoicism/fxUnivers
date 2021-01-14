@@ -264,8 +264,10 @@ if($type=='course') {
 
 		    echo '</div>';
                 } else {
-		  echo '<p class="gray">No users found</p>';
+		  if(isset($_GET['q']) && !empty($_GET['q'])) {
+		    echo '<p class="gray">No results found</p>';
 		  }
+		}
                 echo '</div>';
 }
 ?>

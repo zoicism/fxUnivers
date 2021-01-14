@@ -122,7 +122,6 @@ require('../php/get_fxcoin_count.php');
                           <input type="submit" class="submit-btn"  value="Request">
                           </form>
 
-<hr>
   </div>
 </div>
 </div>
@@ -163,7 +162,7 @@ $(function() {
       data: $(this).serialize(),
       success: function(response) {
         if(response=='success') {
-            alert(reqAmnt+' is requested from '+reqUname+'.');
+            alert(reqAmnt+' fxStars is requested from '+reqUname+'.');
             location.reload();
 	} else {
 	  alert('Failed to complete the request. Please select a friend and try again.');

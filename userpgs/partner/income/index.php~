@@ -31,11 +31,10 @@ require('../../../wallet/php/get_fxcoin_count.php');
 
 ?>
 
-
 <!DOCTYPE html>
 <html>
 <head>
-	<title>fxStar</title>
+	<title>fxPartner</title>
     <meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/styles.css">
@@ -65,7 +64,7 @@ require('../../../wallet/php/get_fxcoin_count.php');
                       </a>
                   </li>
                   <li class="main-items">
-                      <a href="/" class="link-main" id="active-main">
+                      <a href="/userpgs/partner/income" class="link-main" id="active-main">
                           <div class="head">Earnings History</div>
                       </a>
                   </li>
@@ -78,38 +77,52 @@ require('../../../wallet/php/get_fxcoin_count.php');
 
 
   <div class="relative-main-content">
-  <div class="content-box" id="txn-content-box">
+  <div class="content-box" >
                           <h2>Earnings</h2>
                           
-
-
 
                        
               <div class="row">
                           
                           <div class="col">
 
+
+
+
+
 <?php
-          if($get_trans_in_count>0) {
-              $trans_i=1;
-              while($trans_in_row=$get_trans_in->fetch_assoc()) {/*
-                  $trans_from_un_q='SELECT * FROM user WHERE id='.$trans_in_row['from_id'];
-                  $trans_from_un_r=mysqli_query($connection,$trans_from_un_q) or die(mysqli_error($connection));
-                  $trans_from_un_fetch=mysqli_fetch_array($trans_from_un_r);
-                  $trans_from_un=$trans_from_un_fetch['username'];*/
+                require('../../../php/get_partner.php');
+                if($get_partner_count>0) {
+                    while($row=$get_partner_result->fetch_assoc()) {
+                        $pun_query="SELECT * FROM user WHERE id=".$row['user'];
+                        $pun_result=mysqli_query($connection,$pun_query) or die(mysqli_error($connection));
+                        $pun_fetch=mysqli_fetch_array($pun_result);
+                        $pun_username=$pun_fetch['username'];
 
-                  $trans_to_un_q='SELECT * FROM user WHERE id='.$trans_in_row['to_id'];
-                  $trans_to_un_r=mysqli_query($connection,$trans_to_un_q) or die(mysqli_error($connection));
-                  $trans_to_un_fetch=mysqli_fetch_array($trans_to_un_r);
-                  $trans_to_un=$trans_to_un_fetch['username'];
 
-                  echo '<div style="border-bottom:1px solid gray"><p>To: <strong><a href="/user/'.$trans_to_un.'">@'.$trans_to_un.'</a></strong></p> <p>Amount: <strong>'.$trans_in_row['amnt'].' fxStars</strong></p> <p>Date & Time: <strong>'.$trans_in_row['dt'].' ET</strong></p></div>';
-                  $trans_i++;
-              }
-          } else {
-              echo '<div><p style="color:gray">No outgoing transaction yet</p></div>';
-          }
+                        // expire date
+                        $add_date=date($row['dt']);
+                        $exp_date_s=strtotime('+90 day',strtotime($add_date));
+                        $exp_date=date('Y-m-j',$exp_date_s);
+
+
+                        $date1 = new DateTime("today");
+                        $date2 = new DateTime($exp_date);
+                        $interval = $date1->diff($date2);
+
+                        
+                        echo '<div style="border-bottom:1px solid gray">';
+                        echo '<p>Amount: <strong>'.$row['income'].' fxStars</strong>';
+                        echo '<p>From: <strong>@'.$pun_username.'</strong>';
+                        echo '<p>Date & Time: <strong>'.$add_date.'</strong>';
+                        echo '<p>Remaining: <strong>'.$interval->days.'</strong>';
+                        echo '</div>';
+                  }
+                } else {
+                    echo '<p class="gray">No records yet</p>';
+                }
 ?>
+
 
                           </div>
 

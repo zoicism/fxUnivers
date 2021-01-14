@@ -84,7 +84,7 @@ require('../../../wallet/php/get_fxcoin_count.php');
                        
               <div class="row">
                           
-                          <div class="col">
+                          <div class="col" style="overflow-y:auto">
 
 
 
@@ -108,14 +108,19 @@ require('../../../wallet/php/get_fxcoin_count.php');
 
                         $date1 = new DateTime("today");
                         $date2 = new DateTime($exp_date);
-                        $interval = $date1->diff($date2);
+			if($date1>=$date2) {
+			  $remaining = '<span class="red">Expired</span>';
+			} else {
+                          $interval = $date1->diff($date2);
+			  $remaining = '<span style="color:green">'.$interval->days.' days</span>';
+			}
 
                         
                         echo '<div style="border-bottom:1px solid gray">';
                         echo '<p>Amount: <strong>'.$row['income'].' fxStars</strong>';
-                        echo '<p>From: <strong>@'.$pun_username.'</strong>';
-                        echo '<p>Date & Time: <strong>'.$add_date.'</strong>';
-                        echo '<p>Remaining: <strong>'.$interval->days.'</strong>';
+                        echo '<p>From: <strong><a href="/user/'.$pun_username.'">@'.$pun_username.'</a></strong>';
+                        echo '<p>Date & Time: <strong>'.date('M dS, Y', strtotime($add_date)).'</strong>';
+                        echo '<p>Remaining: <strong>'.$remaining.'</strong>';
                         echo '</div>';
                   }
                 } else {

@@ -122,7 +122,7 @@ require('../php/get_fxcoin_count.php');
                           <input type="submit" class="submit-btn"  value="Request">
                           </form>
 
-
+<hr>
   </div>
 </div>
 </div>
