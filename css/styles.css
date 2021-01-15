@@ -165,7 +165,8 @@ textarea:focus {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding: 30px 7%;
+  padding: 15px 2%;
+  height:7%;
 }
 
 .header-sidebar {
