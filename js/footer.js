@@ -1,5 +1,5 @@
 if(screen.width>628) {
-    $('.footer').html('With all due Reserves, &copy; fxUnivers 2017-2020 All rights reserved. <a href="/policy" style="color:#939393;">Policy</a>');
+    $('.footer').html('With all due Reserves, &copy; fxUnivers 2017-2021 All rights reserved. <a href="/policy" style="color:#939393;">Policy</a>');
 } else {/*	
     $('.footer').html('<div class="center" style="width:100%">With all due Reserves, &copy; fxUnivers 2017-2020 All rights reserved. <a href="/policy" style="color:#939393;border: 1px solid #939393;" id="policy">Policy</a></div>');
     
