@@ -233,11 +233,20 @@ $avatar_path=$_SERVER['DOCUMENT_ROOT'];
 	   if($get_tar_friends_count > 0) {
 	   
 	     while($fnd_row = $get_tar_friends_r -> fetch_assoc()) {
+
+	     if($session_id==$tarid) {
 	       if($fnd_row['user1'] == $get_user_id) {
 	         $fnd_user_id=$fnd_row['user2'];
 	       } else {
 	         $fnd_user_id=$fnd_row['user1'];
 	       }
+	     } else {
+	       if($fnd_row['user1'] == $tarid) {
+	         $fnd_user_id=$fnd_row['user2'];
+	       } else {
+	         $fnd_user_id=$fnd_row['user1'];
+	       }
+	     }
 
 	       $fnd_user_query = "SELECT * FROM user WHERE id=$fnd_user_id";
                $fnd_user_result = mysqli_query($connection, $fnd_user_query) or die(mysqli_error($connection));
@@ -255,7 +264,7 @@ if($fnd_user_fetch['avatar']!=NULL) {
 
 
 
-	       echo '<li class="friends">
+	       echo '<li class="friends" onclick="location.href=\'/user/'.$fnd_user_fetch['username'].'\';">
 	               <a class="photo-friends" style="background-image: url(\''.$avatar_url.'\');"></a>
 		       <div class="desc-contact">
 		         <a class="name">'.$fnd_user_fetch['fname'].' '.$fnd_user_fetch['lname'].'</a>
@@ -310,7 +319,7 @@ if($fnd_user_fetch['avatar']!=NULL) {
       </div>
       <div class="frame-header-fxuniversity">
         <div class="teach-word active-tab">
-          <a id="teach-tab">Teach (<?php echo $get_tar_courses_count?>)</a>
+          <a id="teach-tab">Teach (<?php if($get_tar_courses_count!='') echo $get_tar_courses_count; else echo 0;?>)</a>
         </div>
         <div class="learn-word">
           <a id="learn-tab">Learn (<span id="learn-count">0</span>)</a>
@@ -503,7 +512,7 @@ $total_courses=$get_tar_courses_count+$learn_count;
   <script>
     $('#page-header').html('fxUnivers');
     $('#page-header').attr('href','/');
-    $('#learn-count').html('<?php echo $learn_count?>');
+    $('#learn-count').html('<?php if($learn_count!='') echo $learn_count; else echo 0;?>');
     $('#total-courses').html('<?php echo $total_courses?>');
   </script>
 

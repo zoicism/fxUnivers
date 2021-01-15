@@ -2599,6 +2599,11 @@ margin-bottom:auto;
   display:flex;
   align-items: center;
   outline: none;
+  cursor:pointer;
+}
+
+.frame-container .frame .friends:hover {
+    background:#00000010;
 }
 
 .frame-container .frame .friends .photo-friends {
