@@ -220,7 +220,7 @@ echo '<div class="little-box gray-bg"><span>'.date("M jS, Y", strtotime($s_date)
 if($user_type=='instructor') {
 			     echo '<div class="options">';
 
-echo '<div class="add-box" id="live-add-box">Open Live Classroom</div>';
+echo '<div class="add-box" id="live-add-box">Start a Live Classroom</div>';
 echo '<div id="live-div" style="display:none"></div>';
 
 
