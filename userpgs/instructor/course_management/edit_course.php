@@ -106,7 +106,7 @@ if($user_type!='instructor') {
 				<input type="submit" class="submit-btn" value="Update">
 				
 			      </form>
-
+<hr class="hr-tct">
 			      
 			      <h3>Video</h3>
 			      
@@ -117,11 +117,12 @@ if($user_type!='instructor') {
                       <input type="submit" value="Upload" class="submit-btn">
                     </form>
 
-<form method="POST" action="delete_vid.php"><input type="hidden" name="course_id" value="<?php echo $course_id?>"><input type="submit" class="submit-btn" value="Delete Video"></form>
+<!--<form id="del-vid-id"><input type="hidden" name="course_id" value="<?php echo $course_id?>"><input type="submit" class="submit-btn" value="Delete Video"></form>-->
+<button id="del-vid-id" class="submit-btn">Delete Video</button>
 
 <p style="max-width:400px">You could link a video from websites like YouTube and Vimeo by embedding it here:</p>
 <form id="vid-embed" autocomplete="off">
-  <input type="text" class="txt-input" name="embed_link" placeholder="Copy embed link here" required>
+  <input type="text" class="txt-input" name="embed_link" placeholder="Paste embed link here" required>
   <input type="hidden" name="course_id" value="<?php echo $course_id?>">
   <input type="submit" class="submit-btn" value="Embed Video" id="embedBtn">
 </form>
@@ -130,7 +131,7 @@ if($user_type!='instructor') {
   <input type="submit" class="submit-btn" value="Remove Embed" id="delEmbedBtn">
 </form>
 
-
+<hr class="hr-tct">
 <h3>Delete Course</h3>
 <p style="max-width:400px">By deleting a course, all of the related sessions and videos will be lost permenantly, so think twice before deciding to do so.</p>
 			      <form id="delCourseForm"><input type="hidden" name="course_id" value="<?php echo $course_id?>"><input type="submit" class="submit-btn" value="Delete Course"></form>
@@ -176,6 +177,7 @@ $('#vid-embed').submit(function(event) {
     data: $(this).serialize(),
     success: function(response) {
       if(response==1) {
+        alert('Vide is embedded.');
         $('#embedBtn').css('opacity','0.8');
         $('#embedBtn').prop('disabled',true);
 	$('#embedBtn').val('Embedded');
@@ -225,5 +227,21 @@ $('#delCourseForm').submit(function(event) {
 });
 </script>
 
+<script>
+$('#del-vid-id').click(function() {
+  jQuery.ajax({
+    type:'POST',
+    url:'/userpgs/instructor/course_management/delete_vid.php',
+    data:{course_id:'<?php echo $course_id?>'},
+    success: function(response) {
+      if(response==1) {
+        alert('Course video is deleted.');
+      } else {
+        alert('This course does not have a video.');
+      }
+    }
+  });
+});
+</script>
 </body>
 </html>

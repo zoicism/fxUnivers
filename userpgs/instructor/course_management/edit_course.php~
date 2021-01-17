@@ -100,7 +100,9 @@ if($user_type!='instructor') {
 				<textarea name="description" rows="10" placeholder="Description" required><?php echo preg_replace('/\<br(\s*)?\/?\>/i', "",$get_course_fetch['description']) ?></textarea>
 				
 				<input type="number" class="num-input" name="course_fxstar" placeholder="Cost (fxStars)" id="newCost" min="0" value="<?php echo $get_course_fetch['cost'] ?>" required>
-				
+
+				<input type="hidden" name="course_id" value="<?php echo $course_id?>">
+
 				<input type="submit" class="submit-btn" value="Update">
 				
 			      </form>
@@ -115,7 +117,7 @@ if($user_type!='instructor') {
                       <input type="submit" value="Upload" class="submit-btn">
                     </form>
 
-<form><input type="submit" class="submit-btn" value="Delete Video"></form>
+<form method="POST" action="delete_vid.php"><input type="hidden" name="course_id" value="<?php echo $course_id?>"><input type="submit" class="submit-btn" value="Delete Video"></form>
 
 <p style="max-width:400px">You could link a video from websites like YouTube and Vimeo by embedding it here:</p>
 <form id="vid-embed" autocomplete="off">

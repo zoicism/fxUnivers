@@ -152,6 +152,7 @@ textarea:focus {
               -6px -6px 10px rgba(255, 255, 255, .5),
               6px 6px 8px rgba(255, 255, 255, .075),
               6px 6px 10px rgba(0, 0, 0, .15);
+	background:transparent;
 }
 
 .submit-btn:active {
@@ -3135,7 +3136,12 @@ input:checked + .slider:before {
 
 
 
-
+.hr-tct {
+        border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0));
+    margin:20px 0;
+}
 
 
 
