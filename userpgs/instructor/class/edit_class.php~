@@ -149,7 +149,7 @@ if($user_type!='instructor') {
 
 <h3>Delete Session</h3>
 <p style="max-width:400px">By deleting a session, all of the related videos and files will be lost permenantly, so think twice before deciding to do so.</p>
-<form action="/php/remove_class.php" method="POST">
+<form id="delClassForm">
                   <input type="hidden" name="rm_courseId" value="<?php echo $course_id ?>">
                   <input type="hidden" name="rm_classId"  value="<?php echo $class_id ?>">
                   <input type="submit" value="Delete Session" class="submit-btn">
@@ -240,6 +240,27 @@ $('#fileForm').ajaxForm(function(response) {
     $('#uploadMsg').hide();
   }, 5000);
 });
+});
+</script>
+
+
+<script>
+$('#delClassForm').submit(function(event) {
+  event.preventDefault();
+  if(confirm("Are you sure you want to delete this session?")) {
+    jQuery.ajax({
+      url:'/php/remove_class.php',
+      type:'POST',
+      data:$(this).serialize(),
+      success:function(response) {
+        if(response=='deleted') {
+	  window.location.replace('/userpgs/instructor/course_management/course.php?course_id=<?php echo $course_id?>');
+	} else {
+	  alert('Could not delete your session at this moment. Please try again.');
+	}
+      }
+    });
+  } else {}
 });
 </script>
 </body>

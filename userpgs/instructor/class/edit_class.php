@@ -104,7 +104,7 @@ if($user_type!='instructor') {
 
 
 
-
+<hr class="hr-tct">
 
 <h3>Video</h3>
   <form method="POST"  action="file_uploader.php" enctype="multipart/form-data" >
@@ -114,8 +114,8 @@ if($user_type!='instructor') {
     <input name="class_id" type="hidden" value="<?php echo $class_id?>">
     <input type="submit" value="Upload" class="submit-btn">
   </form>
-<form><input type="submit" class="submit-btn" value="Delete Video"></form>
-
+<!--<form><input type="submit" class="submit-btn" value="Delete Video"></form>-->
+<button id="del-vid-id" class="submit-btn">Delete Video</button>
 
 <p style="max-width:400px">You could link a video from websites like YouTube and Vimeo by embedding it here:</p>
 <form id="vid-embed" autocomplete="off">
@@ -131,7 +131,7 @@ if($user_type!='instructor') {
 
 
 
-
+<hr class="hr-tct">
 
 
 <h3>File upload</h3>
@@ -145,7 +145,7 @@ if($user_type!='instructor') {
     </form>
 
 
-
+<hr class="hr-tct">
 
 <h3>Delete Session</h3>
 <p style="max-width:400px">By deleting a session, all of the related videos and files will be lost permenantly, so think twice before deciding to do so.</p>
@@ -261,6 +261,23 @@ $('#delClassForm').submit(function(event) {
       }
     });
   } else {}
+});
+</script>
+
+<script>
+$('#del-vid-id').click(function() {
+  jQuery.ajax({
+    type:'POST',
+    url:'/userpgs/instructor/class/delete_vid.php',
+    data:{class_id:'<?php echo $class_id?>'},
+    success: function(response) {
+      if(response==1) {
+        alert('Session video is deleted.');
+      } else {
+        alert('This session does not have a video.');
+      }
+    }
+  });
 });
 </script>
 </body>
