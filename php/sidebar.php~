@@ -10,18 +10,17 @@ if(screen.width>628) {
 		<div>
 EOL;
 
-                    $path="../userpgs/avatars/";
-                    if(file_exists($path.$get_user_id.'.jpg')) {
-                        echo('<a href="/user/'.$username.'" class="link avatar-sidebar" style="background-image: url(\'../userpgs/avatars/'.$get_user_id.'.jpg\');"></a>');
-                    } elseif(file_exists($path.$get_user_id.'.jpeg')) {
-                        echo('<a href="/user/'.$username.'" class="link avatar-sidebar" style="background-image: url(\'../userpgs/avatars/'.$get_user_id.'.jpeg\');"></a>');
-                    } elseif(file_exists($path.$get_user_id.'.png')) {
-                        echo('<a href="/user/'.$username.'" class="link avatar-sidebar" style="background-image: url(\'../userpgs/avatars/'.$get_user_id.'.png\');"></a>');
-                    } elseif(file_exists($path.$get_user_id.'.gif')) {
-                        echo('<a href="/user/'.$username.'" class="link avatar-sidebar" style="background-image: url(\'../userpgs/avatars/'.$get_user_id.'.gif\');"></a>');
-                    } else {
-                        echo('<a href="/user/'.$username.'" class="link avatar-sidebar"></a>');
-                    }
+		    $avatar_path=$_SERVER['DOCUMENT_ROOT'];
+                    $avatar_path.='/userpgs/avatars/';
+		    $avatar_ex = glob($avatar_path.$get_user_id.'.*');
+		    if(count($avatar_ex) > 0) {
+		      $avatar_arr = explode('.', $avatar_ex[0]);
+		      $avatar_extension = end($avatar_arr);
+
+		      echo '<a href="/user/'.$username.'" class="link avatar-sidebar" style="background-image:url(\'/userpgs/avatars/'.$get_user_id.'.'.$avatar_extension.'\');"></a>';
+		    } else {
+		      echo '<a href="/user/'.$username.'" class="link avatar-sidebar"></a>';
+		    }
 
 echo <<<EOL
 			<a class="id-sidebar" href="/user/$username">@$username</a>
@@ -35,7 +34,7 @@ echo <<<EOL
 		    
 	    </div>
                           <div class="policy">
-                          With all due Reserves, © fxUnivers 2017-2020 All rights reserved. <a href="/policy">Policy</a>
+                          With all due Reserves, © fxUnivers 2017-2021 All rights reserved. <a href="/policy">Policy</a>
                           </div>
 
 

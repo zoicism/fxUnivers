@@ -4,13 +4,6 @@
   box-sizing:border-box;
 }
 
-body {
-  min-height: 100vh;
-  min-height: -webkit-fill-available;
-}
-html {
-  height: -webkit-fill-available;
-}
 
 html,body {
   background-color:#efefef;
@@ -172,7 +165,8 @@ textarea:focus {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding: 30px 7%;
+  padding: 15px 2%;
+  height:7%;
 }
 
 .header-sidebar {
@@ -1304,6 +1298,7 @@ background: linear-gradient(126deg, rgba(255,66,29,1) 0%, rgba(252,67,67,1) 50%,
   color: #000;
   text-decoration: none;
   opacity: 0.4;
+  padding: 0 10px;
 }
 
 .policy a {

@@ -184,23 +184,23 @@ $avatar_path=$_SERVER['DOCUMENT_ROOT'];
       <div class="profile-bottom">
         <ul class="flex-container">
           <li class="items">
-            <a href="#" class="link">
+            <div class="link" style="cursor:default;box-shadow:inset 15px 15px 78px #cecece,inset -15px -15px 78px #ffffff;">
               <div class="head">
                 fxStar
                 <p class="sub"><?php echo $get_fxcoin_count?> fxStars</p>
               </div>
-            </a>
+            </div>
           </li>
           <li class="items">
             <a id="open-fxuniversity" class="link">
               <div class="head">
                 fxUniversity
-                <p class="sub"><?php $total_courses=$$get_tar_courses_count+$gts_count; echo $total_courses?> courses</p>
+                <p class="sub"><span id="total-courses">0</span> courses</p>
               </div>
             </a>
           </li>
           <li class="items">
-            <a href="#" class="link">
+            <div class="link" style="cursor:default;box-shadow:inset 15px 15px 78px #cecece,inset -15px -15px 78px #ffffff;">
               <div class="head">
                 fxPartner
                 <p class="sub"><?php $pTotal=0;
@@ -209,7 +209,7 @@ $avatar_path=$_SERVER['DOCUMENT_ROOT'];
                   }
 		  echo $pTotal; ?> fxStars</p>
               </div>
-            </a>
+            </div>
           </li>
         </ul>
       </div>
@@ -233,11 +233,20 @@ $avatar_path=$_SERVER['DOCUMENT_ROOT'];
 	   if($get_tar_friends_count > 0) {
 	   
 	     while($fnd_row = $get_tar_friends_r -> fetch_assoc()) {
+
+	     if($session_id==$tarid) {
 	       if($fnd_row['user1'] == $get_user_id) {
 	         $fnd_user_id=$fnd_row['user2'];
 	       } else {
 	         $fnd_user_id=$fnd_row['user1'];
 	       }
+	     } else {
+	       if($fnd_row['user1'] == $tarid) {
+	         $fnd_user_id=$fnd_row['user2'];
+	       } else {
+	         $fnd_user_id=$fnd_row['user1'];
+	       }
+	     }
 
 	       $fnd_user_query = "SELECT * FROM user WHERE id=$fnd_user_id";
                $fnd_user_result = mysqli_query($connection, $fnd_user_query) or die(mysqli_error($connection));
@@ -255,7 +264,7 @@ if($fnd_user_fetch['avatar']!=NULL) {
 
 
 
-	       echo '<li class="friends">
+	       echo '<li class="friends" onclick="location.href=\'/user/'.$fnd_user_fetch['username'].'\';">
 	               <a class="photo-friends" style="background-image: url(\''.$avatar_url.'\');"></a>
 		       <div class="desc-contact">
 		         <a class="name">'.$fnd_user_fetch['fname'].' '.$fnd_user_fetch['lname'].'</a>
@@ -283,7 +292,7 @@ if($fnd_user_fetch['avatar']!=NULL) {
 
   <div class="frame-container" id="fxuniversity-overlay" style="display:none">
 <?php
-                $stu1_q="SELECT id FROM teacher WHERE user_id=$id";
+                $stu1_q="SELECT id FROM teacher WHERE user_id=$id AND alive=1";
                 $stu1_r=mysqli_query($connection,$stu1_q) or die(mysqli_error($connection));
 
                 $stu_count=0;
@@ -310,16 +319,16 @@ if($fnd_user_fetch['avatar']!=NULL) {
       </div>
       <div class="frame-header-fxuniversity">
         <div class="teach-word active-tab">
-          <a id="teach-tab">Teach</a>
+          <a id="teach-tab">Teach (<?php echo $get_tar_courses_count?>)</a>
         </div>
         <div class="learn-word">
-          <a id="learn-tab">Learn</a>
+          <a id="learn-tab">Learn (<span id="learn-count">0</span>)</a>
         </div>
       </div>
       <ul id="teach-tab-content">
-      <p><strong><?php echo $get_tar_courses_count?></strong> courses</p>
+      <!--<p><strong></strong> courses</p>
                 <p><strong><?php echo $stu_count ?></strong> students</p>
-                <p><strong><?php echo $acc_count ?></strong> accepted students</p>
+                <p><strong><?php echo $acc_count ?></strong> accepted students</p>-->
 
 
 
@@ -369,19 +378,28 @@ if($fnd_user_fetch['avatar']!=NULL) {
       </ul>
       <ul id="learn-tab-content" style="display:none">
   <?php
-       echo '<p style="text-align:right"><strong>'.$gss_count.'</strong> courses</p>';
-                echo '<p style="text-align:right"><b>'.$gmac_count.'</b> accepted courses</p>';
+       //echo '<p style="text-align:right"><strong>'.$gss_count.'</strong> courses</p>';
+                //echo '<p style="text-align:right"><b>'.$gmac_count.'</b> accepted courses</p>';
 
 
 	if($gss_count>0) {
+	$learn_count=0;
                     while($taken_row=$gss_result->fetch_assoc()) {
                         $taken_course_id=$taken_row['course_id'];
-                        $get_stus_course_query="SELECT * FROM teacher WHERE id=$taken_course_id";
+                        $get_stus_course_query="SELECT * FROM teacher WHERE id=$taken_course_id AND alive=1";
                         $get_stus_course_result=mysqli_query($connection,$get_stus_course_query) or die(mysqli_error($connection));
+
+
+			
+			
+			if($get_stus_course_result->num_rows>0) {
+
+			$learn_count++;
+			
                         $gsc_fetch=mysqli_fetch_array($get_stus_course_result);
                         $course_link="/userpgs/instructor/course_management/course.php?course_id=".$gsc_fetch['id'];
 
-
+			
 
 			$descrip=preg_replace("/<br\W*?\/>/"," ",$row3['description']);
 
@@ -394,16 +412,15 @@ if($fnd_user_fetch['avatar']!=NULL) {
             			    <p class="desc">'.$gsc_fetch['description'].'</p>
           			</div>
         		      </li>';
+			}
 
-/*
-                        echo '<div class="col-1 pointer" onclick="location.href=\''.$course_link.'\';">';
-                        echo '<h3>'.$gsc_fetch['header'].'</h3>';
-                        echo '<p>'.$gsc_fetch['description'].'</p>';
-                       echo '</div>';
-		       */
+
+
                     }
                     $gss_result->free();
-                }
+               }
+
+$total_courses=$get_tar_courses_count+$learn_count;
    ?>
       
       </ul>
@@ -495,6 +512,8 @@ if($fnd_user_fetch['avatar']!=NULL) {
   <script>
     $('#page-header').html('fxUnivers');
     $('#page-header').attr('href','/');
+    $('#learn-count').html('<?php echo $learn_count?>');
+    $('#total-courses').html('<?php echo $total_courses?>');
   </script>
 
 

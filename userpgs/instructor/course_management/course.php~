@@ -536,7 +536,7 @@ $(document).ready(function() {
 		      data:{last_date:'<?php echo $stucourse_fetch["last_exam"]?>'},
 		      success: function(report) {
 		        //console.log(report);
-			if(report>7) {
+			if(report>=7) {
 			  if(confirm('By starting the test for this course you will not be able to retake it for 7 days.')) {
 			    window.location.replace('/userpgs/student/exam?courseId=<?php echo $course_id?>');
 			  }

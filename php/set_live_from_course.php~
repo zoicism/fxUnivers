@@ -1,0 +1,37 @@
+<?php
+
+session_start();
+require_once('../register/connect.php');
+
+if(isset($_SESSION['username'])) {
+	$username = $_SESSION['username'];
+	$id_query = "SELECT * FROM user WHERE username='$username'";
+	$id_result = mysqli_query($connection, $id_query) or die(mysqli_error($connection));
+	$id_fetch = mysqli_fetch_array($id_result);
+	$id = $id_fetch['id'];
+}
+
+// if the values of the post is set, post it
+$header='Live Session';
+$description='';
+if(isset($_POST['course_id'])) $course_id = $_POST['course_id'];
+
+
+echo $query = "INSERT INTO `class` (teacher_id, course_id, title, body, dt) VALUES ($id, $course_id, '$header', '$description', NOW())";
+//$result = mysqli_query($connection, $query) or die(mysqli_error($connection));
+exit();
+$classId_query="SELECT * FROM class WHERE teacher_id=$id ORDER BY id DESC LIMIT 1";
+//$classId_result=mysqli_query($connection,$classId_query) or die(mysqli_error($connection));
+//$classId_fetch=mysqli_fetch_array($classId_result);
+//$classId=$classId_fetch['id'];
+
+
+if($result) {
+	//header("Location: /userpgs/instructor/class?course_id=$course_id&class_id=$classId");
+	echo 1;
+} else {
+        //echo "failed";
+	echo 0;
+}
+
+?>

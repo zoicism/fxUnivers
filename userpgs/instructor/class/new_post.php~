@@ -22,7 +22,7 @@ if(isset($_POST['description'])) {
 if(isset($_POST['course_id'])) $course_id = $_POST['course_id'];
 
 
-$query = "INSERT INTO `class` (teacher_id, course_id, title, body) VALUES ($id, $course_id, '$header', '$description')";
+$query = "INSERT INTO `class` (teacher_id, course_id, title, body, dt) VALUES ($id, $course_id, '$header', '$description', NOW())";
 //echo '>>'.$query;
 $result = mysqli_query($connection, $query) or die(mysqli_error($connection));
 

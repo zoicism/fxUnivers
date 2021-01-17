@@ -1,6 +1,7 @@
 <?php
+
 session_start();
-require('../../../register/connect.php');
+require_once('../register/connect.php');
 
 if(isset($_SESSION['username'])) {
 	$username = $_SESSION['username'];
@@ -11,20 +12,13 @@ if(isset($_SESSION['username'])) {
 }
 
 // if the values of the post is set, post it
-if(isset($_POST['header'])) {
-    $header = $_POST['header'];
-    $header=mysqli_real_escape_string($connection,$header);
-}
-if(isset($_POST['description'])) {
-    $description = nl2br($_POST['description']);
-    $description=mysqli_real_escape_string($connection,$description);
-}
-if(isset($_POST['course_id'])) $course_id = $_POST['course_id'];
+$header='Live Session';
+$description='';
+if(isset($_POST['courseId'])) $course_id = $_POST['courseId'];
 
 
 $query = "INSERT INTO `class` (teacher_id, course_id, title, body, dt) VALUES ($id, $course_id, '$header', '$description', NOW())";
-//echo '>>'.$query;
-$result = mysqli_query($connection, $query) or die(mysqli_error($connection));
+$result = mysqli_query($connection, $query);
 
 $classId_query="SELECT * FROM class WHERE teacher_id=$id ORDER BY id DESC LIMIT 1";
 $classId_result=mysqli_query($connection,$classId_query) or die(mysqli_error($connection));
@@ -32,11 +26,18 @@ $classId_fetch=mysqli_fetch_array($classId_result);
 $classId=$classId_fetch['id'];
 
 
-if($result) {    
-    //echo "successful";
-	header("Location: /userpgs/instructor/class?course_id=$course_id&class_id=$classId");
+if($result) {
+	//header("Location: /userpgs/instructor/class?course_id=$course_id&class_id=$classId");
+	$live_q="UPDATE class SET live=1 WHERE id=$classId";
+  	$live_r=mysqli_query($connection,$live_q);
+
+	if($live_r) {
+	  echo '<form action="/userpgs/instructor/class/live/#'.$classId.'" method="POST" id="LiveForm"><input type="hidden" name="course_id" value="'.$course_id.'"><input type="hidden" name="class_id" value="'.$classId.'"></form>';
+	} else {
+	  echo 0;
+	}
 } else {
-    //echo "failed";
+	echo 0;
 }
 
 ?>
