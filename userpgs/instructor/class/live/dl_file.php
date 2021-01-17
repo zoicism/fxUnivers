@@ -1,12 +1,11 @@
 <?php
 
+require_once('../../../../register/connect.php');
+
 if(isset($_REQUEST["file"])) {
     $file=urldecode($_REQUEST["file"]); // decode url-encoded string
 
-    // check for illegal characters
-    //if(preg_match('/^[^.][-a-z0-9_.]+[a-z]$/i',$file)) {
-
-
+    $file=mysqli_real_escape_string($connection,$file);
 
     $filepath="files/".$file;
 
@@ -28,10 +27,6 @@ if(isset($_REQUEST["file"])) {
     }
 
 
-
-/*} else {
-      die("invalid file name");
-      }*/
 }
 
 ?>
