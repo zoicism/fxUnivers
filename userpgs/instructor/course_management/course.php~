@@ -220,6 +220,10 @@ echo '<div class="little-box gray-bg"><span>'.date("M jS, Y", strtotime($s_date)
 if($user_type=='instructor') {
 			     echo '<div class="options">';
 
+echo '<div class="add-box" id="live-add-box">Open Live Classroom</div>';
+echo '<div id="live-div" style="display:none"></div>';
+
+
 
 
     if($course_biddable) {
@@ -267,6 +271,10 @@ if($user_type=='instructor') {
 			     echo '</div>';
 } elseif($user_type=='student') {
 echo '<div class="options">';
+
+echo '<div class="add-box" id="live-add-box">Open Live Classroom</div>';
+echo '<div id="live-div" style="display:none"></div>';
+
 echo '<div class="add-box">Take the Test <img src="/images/background/exam.svg" id="examId"></div>';
 if($stucourse_fetch['last_exam']!=null) {
   echo '<div class="add-box"><p>Your Score: '.round($stucourse_fetch['score']*10,1).'</p></div>';
@@ -599,6 +607,25 @@ $(document).ready(function() {
                         
                     });
                 });
+</script>
+
+<!-- LC -->
+<script>
+$('#live-add-box').on('click',function() {
+  jQuery.ajax({
+    url:'/php/set_live_from_course.php',
+    data:{'courseId':<?php echo $course_id?>},
+    type:'POST',
+    success: function(response) {
+      if(response==0) {
+        alert('Failed to create a live session. Please try again.');
+      } else {
+        $('#live-div').html(response);
+	$('#LiveForm').submit();
+      }
+    }
+  });
+});
 </script>
 </body>
 </html>
