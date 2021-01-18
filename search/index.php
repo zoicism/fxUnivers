@@ -11,7 +11,7 @@ if(isset($_SESSION['username'])) {
 
 if(isset($_GET['q'])) {
 
-        $kw = $_GET['q'];
+        $kw = mysqli_real_escape_string($connection,$_GET['q']);
 	
 
 	if(isset($_GET['type']) && !empty($_GET['type'])) {
@@ -19,20 +19,16 @@ if(isset($_GET['q'])) {
 }
 
 
-	      $course_q = 'SELECT * FROM teacher WHERE (header LIKE "%'.$kw.'%") OR (description LIKE "%'.$kw.'%") ORDER BY id DESC';
+	      $course_q = "SELECT * FROM teacher WHERE ((UPPER(header) LIKE UPPER('%$kw%')) OR (UPPER(description) LIKE UPPER('%$kw%'))) AND alive=1 ORDER BY id DESC";
     	      $course_result = mysqli_query($connection, $course_q);
     	      $course_count = mysqli_num_rows($course_result);
 
 
 
-  	  $user_q = "SELECT id,username,fname,lname FROM user WHERE (username LIKE '%$kw%') OR (fname LIKE '%$kw%') OR (lname LIKE '%$kw%') ORDER BY id DESC";
+  	  $user_q = "SELECT id,username,fname,lname FROM user WHERE (UPPER(username) LIKE UPPER('%$kw%')) OR (UPPER(fname) LIKE UPPER('%$kw%')) OR (UPPER(lname) LIKE UPPER('%$kw%')) ORDER BY id DESC";
 	  $user_r = mysqli_query($connection,$user_q) or die(mysqli_error($connection));
 	  $user_count = mysqli_num_rows($user_r);
 
-
-
-	
-// SELECT * FROM teacher WHERE (header LIKE '%$kw%') OR (description LIKE '%$kw%')
 }
 
 
@@ -212,7 +208,7 @@ if($type=='course') {
 				  </div>
 				  </div>';
 			}
-		  	    
+		  	 $course_result->free();   
 		 echo '</div>';	      
 
 		 } else {
