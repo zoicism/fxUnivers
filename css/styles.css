@@ -142,17 +142,19 @@ textarea:focus {
     
 .submit-btn {
     margin:10px;
-    padding:0 10px;
-	min-width: 100px;
-	height: 40px;
-	border-radius: 100px;
-	border: none;
-	cursor: pointer;
-	box-shadow: -6px -6px 14px rgba(255, 255, 255, .7),
-              -6px -6px 10px rgba(255, 255, 255, .5),
-              6px 6px 8px rgba(255, 255, 255, .075),
-              6px 6px 10px rgba(0, 0, 0, .15);
-	background:transparent;
+    padding:0 24px;
+    width: -moz-fit-content;
+    width: fit-content;
+    outline: none;
+    height: 40px;
+    border-radius: 100px;
+    border: none;
+    cursor: pointer;
+    box-shadow: -6px -6px 14px rgba(255, 255, 255, .7),
+                -6px -6px 10px rgba(255, 255, 255, .5),
+                6px 6px 8px rgba(255, 255, 255, .075),
+                6px 6px 10px rgba(0, 0, 0, .15);
+    background:transparent;
 }
 
 .submit-btn:active {
