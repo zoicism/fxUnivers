@@ -114,6 +114,11 @@ require('../../wallet/php/get_fxcoin_count.php');
                             $coursecounter_q="SELECT * FROM stucourse WHERE course_id=".$taken_row['course_id'];
                             $coursecounter_r=mysqli_query($connection,$coursecounter_q);
                             $coursecounts=mysqli_num_rows($coursecounter_r);
+
+			    $teacher_un_q = 'SELECT username FROM user WHERE id='.$gsc_fetch['user_id'];
+			    $teacher_un_r = mysqli_query($connection,$teacher_un_q);
+			    $teacher_un_f = mysqli_fetch_array($teacher_un_r);
+			    $teacher_un = $teacher_un_f['username'];
 			    
 			    echo '<div class="object" onclick="location.href=\''.$course_link.'\';">';
 
@@ -126,15 +131,26 @@ require('../../wallet/php/get_fxcoin_count.php');
 			    
 			    echo '<p><strong>';
 			    echo limited($ctitle,40).'</strong></p>';
-			    
+
+			    /*
 			    $descrip=preg_replace("/<br\W*?\/>/"," ",$gsc_fetch['description']);
 			    echo '<p>';
 			    echo limited($descrip,85).'</p>';
+			    */
+			    
 
+			    if($get_user_verified) {
+			      echo '<div class="little-box teacher-id">'.$teacher_un.' <img src="/images/background/verified.png" style="width:1rem; height:1rem;"></div>';
+			    } else {
+			      echo '<div class="little-box teacher-id">'.$teacher_un.'</div>';
+			    }
 			    
 			    echo '<div class="detail-bottom">
+			    	   <div class="detail-row">
 				    <div class="little-box blue-bg">
 				      '.$coursecounts.' <span>students</span>
+				    </div>
+				    <div class="little-box"><span>'.date("M jS, Y", strtotime($gsc_fetch['start_date'])).'</span></div>
 				    </div>';
 				    
 
@@ -149,27 +165,27 @@ if($gsc_fetch['biddable']) {
 			     if($locked_count>0) {
 			       $locked=mysqli_fetch_array($locked_r);
 			       if($locked['finalized']) {
-			         echo '<div class="little-box gold-bg">
+			         echo '<div class="price gray-bg">
 				      <span>Sold</span> '.$locked['raw_amount'].' <span>fxStars</span>
 				    </div>';
 		               } else {
-			         echo '<div class="little-box chocolate-bg">
+			         echo '<div class="price purple-bg">
 				      <span>High </span> '.$locked['raw_amount'].' <span>fxStars</span>
 				    </div>';
 		               }
 			     } else {
-			       echo '<div class="little-box chocolate-bg">
+			       echo '<div class="price purple-bg">
 				      <span>Base </span> '.$gsc_fetch['cost'].' <span>fxStars</span>
 				    </div>';
 		             }
 		           } else {
 
 			      if($gsc_fetch['cost']>0) {	  
-				    echo '<div class="little-box gold-bg">
+				    echo '<div class="price gold-bg">
 				      '.$gsc_fetch['cost'].' <span>fxStars</span>
 				    </div>';
 			      } else {
-			      	   echo '<div class="little-box green-bg" style="padding: 4px 20px;">
+			      	   echo '<div class="price green-bg" style="padding: 4px 20px;">
 				      Free
 				    </div>';
 			      }
@@ -178,7 +194,7 @@ if($gsc_fetch['biddable']) {
 
 
 
-			    echo '<div class="little-box gray-bg"><span>'.date("M jS, Y", strtotime($gsc_fetch['start_date'])).'</span></div>';
+			    
 
 			    echo ' </div>
 				  </div>

@@ -96,6 +96,16 @@ require('../../wallet/php/get_fxcoin_count.php');
 		 require('../../php/limit_str.php');
 
 		 if($course_count>0) {
+
+		    function get_string_between($string, $start, $end){
+    		      $string = ' ' . $string;
+    		      $ini = strpos($string, $start);
+    		      if ($ini == 0) return '';
+    		      $ini += strlen($start);
+    		      $len = strpos($string, $end, $ini) - $ini;
+    		      return substr($string, $ini, $len);
+		    }
+
 		 	while($row3=$course_result->fetch_assoc()) {
                             $coursecounter_q="SELECT * FROM stucourse WHERE course_id=".$row3['id'];
                             $coursecounter_r=mysqli_query($connection,$coursecounter_q);
@@ -103,10 +113,23 @@ require('../../wallet/php/get_fxcoin_count.php');
 
 			    echo '<div class="object" onclick="location.href=\'/userpgs/instructor/course_management/course.php?course_id='.$row3['id'].'\';">';
 
-			    echo '<div class="preview">
-				  <img src="/images/background/course.svg">
-				</div>
-				<div class="details">';
+
+			    
+
+			    if($row3['video_url']!=null) {
+			    $video_id = get_string_between($row3['video_url'],'embed/','" frameborder');
+			        echo '<div class="preview">
+				  <img src="https://img.youtube.com/vi/'.$video_id.'/0.jpg">
+				</div>';
+			    } else {
+			        echo '<div class="preview">
+				  <img src="/images/background/course.svg" style="height:50%;width:50%;">
+				</div>';
+			    }
+
+
+
+				echo '<div class="details">';
 
 			    $ctitle=preg_replace("/<br\W*?\/>/"," ",$row3['header']);
 			    

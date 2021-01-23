@@ -117,7 +117,11 @@ require('../../wallet/php/get_fxcoin_count.php');
 			    echo '<p>';
 			    echo limited($descrip,85).'</p>';*/
 
-			    echo '<div class="little-box teacher-id">'.$username.'</div>';
+			    if($get_user_verified) {
+			      echo '<div class="little-box teacher-id">'.$username.' <img src="/images/background/verified.png" style="width:1rem; height:1rem;"></div>';
+			    } else {
+			      echo '<div class="little-box teacher-id">'.$username.'</div>';
+			    }
 
 			    
 			    echo '
@@ -127,8 +131,8 @@ require('../../wallet/php/get_fxcoin_count.php');
 				    <div class="little-box blue-bg">
 				      '.$coursecounts.' <span>students</span>
 				    </div>
-
-				  <div class="little-box gray-bg"><span>'.date("M jS, Y", strtotime($row3['start_date'])).'</span></div>
+				    
+				  <div class="little-box"><span>'.date("M jS, Y", strtotime($row3['start_date'])).'</span></div>
 				  </div>';
 
 		           if($row3['biddable']) {
@@ -142,27 +146,27 @@ require('../../wallet/php/get_fxcoin_count.php');
 			     if($locked_count>0) {
 			       $locked=mysqli_fetch_array($locked_r);
 			       if($locked['finalized']) {
-			         echo '<div class="little-box gold-bg">
+			         echo '<div class="price gray-bg">
 				      <span>Sold</span> '.$locked['raw_amount'].' <span>fxStars</span>
 				    </div>';
 		               } else {
-			         echo '<div class="little-box chocolate-bg">
+			         echo '<div class="price purple-bg">
 				      <span>High </span> '.$locked['raw_amount'].' <span>fxStars</span>
 				    </div>';
 		               }
 			     } else {
-			       echo '<div class="little-box chocolate-bg">
+			       echo '<div class="price purple-bg">
 				      <span>Base </span> '.$row3['cost'].' <span>fxStars</span>
 				    </div>';
 		             }
 		           } else {
 
 			      if($row3['cost']>0) {	  
-				    echo '<div class="little-box gold-bg">
+				    echo '<div class="price gold-bg">
 				      '.$row3['cost'].' <span>fxStars</span>
 				    </div>';
 			      } else {
-			      	   echo '<div class="little-box green-bg" style="padding: 4px 20px;">
+			      	   echo '<div class="price green-bg" style="padding: 4px 20px;">
 				      Free
 				    </div>';
 			      }

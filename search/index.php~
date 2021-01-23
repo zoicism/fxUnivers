@@ -126,6 +126,14 @@ if($type=='course') {
                             $coursecounter_q="SELECT * FROM stucourse WHERE course_id=".$row3['id'];
                             $coursecounter_r=mysqli_query($connection,$coursecounter_q);
                             $coursecounts=mysqli_num_rows($coursecounter_r);
+
+
+			    $teacher_un_q = 'SELECT username,verified FROM user WHERE id='.$row3['user_id'];
+			    $teacher_un_r = mysqli_query($connection,$teacher_un_q);
+			    $teacher_un_f = mysqli_fetch_array($teacher_un_r);
+			    $teacher_un = $teacher_un_f['username'];
+			    $teacher_verified = $teacher_un_f['verified'];
+			    
 			    
 			    echo '<div class="object" onclick="location.href=\'/userpgs/instructor/course_management/course.php?course_id='.$row3['id'].'\';">';
 
@@ -139,14 +147,27 @@ if($type=='course') {
 			    echo '<p><strong>';
 			    echo limited($ctitle,40).'</strong></p>';
 			    
+			    /*
 			    $descrip=preg_replace("/<br\W*?\/>/"," ",$row3['description']);
 			    echo '<p>';
 			    echo limited($descrip,85).'</p>';
+			    */
+
+
+			    if($teacher_verified) {
+			      echo '<div class="little-box teacher-id">'.$teacher_un.' <img src="/images/background/verified.png" style="width:1rem; height:1rem;"></div>';
+			    } else {
+			      echo '<div class="little-box teacher-id">'.$teacher_un.'</div>';
+			    }
+
 
 			    
 			    echo '<div class="detail-bottom">
+			    	   <div class="detail-row">
 				    <div class="little-box blue-bg">
 				      '.$coursecounts.' <span>students</span>
+				    </div>
+				    <div class="little-box"><span>'.date("M jS, Y", strtotime($row3['start_date'])).'</span></div>
 				    </div>';
 				    
 			   /*if($row3['cost']>0) {	  
@@ -172,27 +193,27 @@ if($type=='course') {
 			     if($locked_count>0) {
 			       $locked=mysqli_fetch_array($locked_r);
 			       if($locked['finalized']) {
-			         echo '<div class="little-box gold-bg">
+			         echo '<div class="price gold-bg">
 				      <span>Sold</span> '.$locked['raw_amount'].' <span>fxStars</span>
 				    </div>';
 		               } else {
-			         echo '<div class="little-box chocolate-bg">
+			         echo '<div class="price chocolate-bg">
 				      <span>High </span> '.$locked['raw_amount'].' <span>fxStars</span>
 				    </div>';
 		               }
 			     } else {
-			       echo '<div class="little-box chocolate-bg">
+			       echo '<div class="price chocolate-bg">
 				      <span>Base </span> '.$row3['cost'].' <span>fxStars</span>
 				    </div>';
 		             }
 		           } else {
 
 			      if($row3['cost']>0) {	  
-				    echo '<div class="little-box gold-bg">
+				    echo '<div class="price gold-bg">
 				      '.$row3['cost'].' <span>fxStars</span>
 				    </div>';
 			      } else {
-			      	   echo '<div class="little-box green-bg" style="padding: 4px 20px;">
+			      	   echo '<div class="price green-bg" style="padding: 4px 20px;">
 				      Free
 				    </div>';
 			      }
@@ -202,7 +223,7 @@ if($type=='course') {
 
 
 
-			    echo '<div class="little-box gray-bg"><span>'.date("M jS, Y", strtotime($row3['start_date'])).'</span></div>';
+			    
 
 			    echo ' </div>
 				  </div>
