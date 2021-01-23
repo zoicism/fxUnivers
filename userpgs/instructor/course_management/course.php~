@@ -251,7 +251,7 @@ echo '<div id="live-div" style="display:none"></div>';
 	  </div>';
       } else {
         echo '<div class="add-box">
-               Accept Bid (<span id="highest-ins"></span>) <img src="/images/background/checkbox.svg" id="acceptBid">
+               Accept Bid (<div id="highest-ins"></div>) <img src="/images/background/checkbox.svg" id="acceptBid">
 	    </div>';
       }
     }
@@ -457,7 +457,6 @@ $(document).ready(function() {
       url:'/php/get_hi_bid.php',
       data:{courseId:<?php echo $course_id?>},
       success:function(response) {
-        
 	if(response=='no_offer') {
 	  $('#highest-ins').text('None');
 	} else {

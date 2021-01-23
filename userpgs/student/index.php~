@@ -104,7 +104,10 @@ require('../../wallet/php/get_fxcoin_count.php');
                         $get_stus_course_query="SELECT * FROM teacher WHERE id=$taken_course_id";
                         $get_stus_course_result=mysqli_query($connection,$get_stus_course_query) or die(mysqli_error($connection));
                         $gsc_fetch=mysqli_fetch_array($get_stus_course_result);
-                        $course_link="/userpgs/instructor/course_management/course.php?course_id=".$gsc_fetch['id'];
+
+			if($gsc_fetch['alive']==1) {
+
+                          $course_link="/userpgs/instructor/course_management/course.php?course_id=".$gsc_fetch['id'];
 
 
 
@@ -175,17 +178,6 @@ if($gsc_fetch['biddable']) {
 
 
 
-
-/*if($gsc_fetch['cost']>0) {	  
-				    echo '<div class="little-box gold-bg">
-				      '.$gsc_fetch['cost'].' <span>fxStars</span>
-				    </div>';
-			    } else {
-			      	   echo '<div class="little-box green-bg" style="padding: 4px 20px;">
-				      Free
-				    </div>';
-			    }*/
-
 			    echo '<div class="little-box gray-bg"><span>'.date("M jS, Y", strtotime($gsc_fetch['start_date'])).'</span></div>';
 
 			    echo ' </div>
@@ -193,7 +185,7 @@ if($gsc_fetch['biddable']) {
 				  </div>';
 			}
 		  	    
-			      
+			 }     
 
 		 } else {
 		   echo '<p class="gray">No courses added yet</p>';

@@ -113,7 +113,7 @@ require('../../../php/get_tar_id.php');
 	<div class="left-content">
 	  <!-- VIDEO -->
 	  <?php
-	   $path='videos/';
+	   $path='live/uploads/';
 	   $file_ex=glob($path.$class_id.'.*');
 	   if(count($file_ex)>0) {
 	      $vid_arr=explode('.', $file_ex[0]);
@@ -124,7 +124,7 @@ require('../../../php/get_tar_id.php');
 
 	  <div class="video-holder">
 	  <video width="560" height="315" controls>
-            <source src="<?php echo 'videos/'.$class_id.'.'.$vid_ext ?>" type="video/<?php echo $vid_ext?>"> 
+            <source src="<?php echo 'live/uploads/'.$class_id.'.'.$vid_ext ?>" type="video/<?php echo $vid_ext?>"> 
 	  </video>
 	  </div>
 

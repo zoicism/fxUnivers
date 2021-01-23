@@ -167,30 +167,28 @@ if($tar_user_fetch['avatar']!=NULL) {
              echo '<p>'.$description.'</p>';
 ?>
 	  
-<div class="detail-bottom">
+
 
 <?php
 $coursecounter_q="SELECT * FROM stucourse WHERE course_id=".$course_id;
                             $coursecounter_r=mysqli_query($connection,$coursecounter_q);
                             $coursecounts=mysqli_num_rows($coursecounter_r);
 ?>
-
-
-
-	  <div class="little-box gray-bg">
-	    <?php echo $class_num.' <span>sessions</span>'; ?>
-	  </div>
-
-	<div class="little-box blue-bg">
+<div class="little-box blue-bg">
 	  <?php echo $coursecounts.' <span>students</span>'; ?>
 	</div>
+<?php echo '<div class="little-box"><span>'.date("M jS, Y", strtotime($s_date)).'</span></div>';?>
+
+<div class="detail-bottom">
+
+	
 
 
 	  <?php
 	  if($course_biddable) {
 	  } else {
 	    if($cost>0) {	  
-				    echo '<div class="little-box gold-bg">
+				    echo '<div class="price gold-bg" style="width:0;min-width:100px;">
 				      '.$cost.' <span>fxStars</span>
 				    </div>';
 			    } else {
@@ -200,7 +198,7 @@ $coursecounter_q="SELECT * FROM stucourse WHERE course_id=".$course_id;
 	    }
 	  }
 
-echo '<div class="little-box gray-bg"><span>'.date("M jS, Y", strtotime($s_date)).'</span></div>';
+
 
 			    ?>
  </div>
@@ -340,7 +338,7 @@ echo '</div>';
 
 
 echo '<div class="sessions">';
-echo '<div class="sess-title"><h3>Sessions</h3></div>';
+echo '<div class="sess-title"><h3>Sessions ('.$class_num.')</h3></div>';
 echo '<div class="sess-list">';
 
                 if($class_result->num_rows>0) {
