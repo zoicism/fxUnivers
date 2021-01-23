@@ -337,6 +337,15 @@ if($fnd_user_fetch['avatar']!=NULL) {
 
 <?php
                 require('../php/limit_str.php');
+
+function get_string_between($string, $start, $end){
+    		      $string = ' ' . $string;
+    		      $ini = strpos($string, $start);
+    		      if ($ini == 0) return '';
+    		      $ini += strlen($start);
+    		      $len = strpos($string, $end, $ini) - $ini;
+    		      return substr($string, $ini, $len);
+		    }
                 
                 if($get_tar_courses_count>0) {
                     while($row3=$get_tar_courses_result->fetch_assoc()) {
@@ -346,9 +355,17 @@ if($fnd_user_fetch['avatar']!=NULL) {
 
 			$descrip=preg_replace("/<br\W*?\/>/"," ",$row3['description']);
 
+			if($row3['video_url']!=null) {
+			  $video_id = get_string_between($row3['video_url'],'embed/','" frameborder');
+			  $video_thumbnail = 'https://img.youtube.com/vi/'.$video_id.'/0.jpg';
+			} else {
+ 			  $video_thumbnail = '/images/background/course.svg';
+			}
+
 			echo '<li class="course-profile" onclick="location.href=\'/userpgs/instructor/course_management/course.php?course_id='.$row3['id'].'\';">
 			        <div class="photo-course-container">
-            			    <a class="photo-course" style="background-image: url(\'/images/background/course.png\');opacity:0.5;"></a>
+				
+            			    <a class="photo-course" style="background-image: url(\''.$video_thumbnail.'\');"></a>
 				</div>
 				<div class="course-text">
             			    <a class="name"><b>'.$row3['header'].'</b></a>
@@ -403,9 +420,19 @@ if($fnd_user_fetch['avatar']!=NULL) {
 
 			$descrip=preg_replace("/<br\W*?\/>/"," ",$row3['description']);
 
+
+if($gsc_fetch['video_url']!=null) {
+			  $video_id = get_string_between($gsc_fetch['video_url'],'embed/','" frameborder');
+			  $video_thumbnail = 'https://img.youtube.com/vi/'.$video_id.'/0.jpg';
+			} else {
+ 			  $video_thumbnail = '/images/background/course.svg';
+			}
+
+
 			echo '<li class="course-profile" onclick="location.href=\''.$course_link.'\';">
 			        <div class="photo-course-container">
-            			    <a class="photo-course" style="background-image: url(\'/images/background/course.png\');opacity:0.5;"></a>
+
+            			    <a class="photo-course" style="background-image: url(\''.$video_thumbnail.'\');"></a>
 				</div>
 				<div class="course-text">
             			    <a class="name"><b>'.$gsc_fetch['header'].'</b></a>
