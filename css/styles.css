@@ -3237,6 +3237,9 @@ input:checked + .slider:before {
     margin:20px 0;
 }
 
+.search-form {
+    width:auto;
+}
 
 
 /*** MOBILE VIEW ***/
@@ -3301,7 +3304,9 @@ input:checked + .slider:before {
 }
 
 @media (max-width: 628px) {
-
+.search-form {
+	width:90%;
+    }
 
     /********************** > profile mobile **********************/
 

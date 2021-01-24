@@ -99,13 +99,18 @@ require('../wallet/php/get_fxcoin_count.php');
   <div class="relative-main-content">
     
 
-<form method="GET" action="/search">
-      <input type="text" name="q" autofocus class="txt-input" placeholder="Search fxUnivers" <?php if(isset($_GET['q']) && !empty($_GET['q'])) echo 'value="'.$_GET['q'].'"';?> required>
+<form method="GET" action="/search" class="search-form">
+<div class="search-form" style="display:flex;flex-flow:row nowrap;margin-top:20px;">
+      <input type="text" name="q" style="margin:0;margin-right:20px;" autofocus class="txt-input" placeholder="Search fxUnivers" <?php if(isset($_GET['q']) && !empty($_GET['q'])) echo 'value="'.$_GET['q'].'"';?> required>
       <?php if(isset($_GET['type']) && !empty($_GET['type']))
       echo '<input type="hidden" name="type" value="'.$_GET['type'].'">';
       ?>
-      <input type="submit" value="Search" class="submit-btn">
-      
+      <a class="search-button" id="search-btn" style="min-width:38px;height:38px;box-shadow: -6px -6px 14px rgba(255, 255, 255, .7), -6px -6px 10px rgba(255, 255, 255, .5), 6px 6px 8px rgba(255, 255, 255, .075), 6px 6px 10px rgba(0, 0, 0, .15);border-radius:50px;padding:9px;"><svg aria-label="search" viewBox="0 0 32 32" style="width:100%;height:100%;">
+                      <path class="stroked" d="M24.3,22.8a13.8,13.8,0,0,0,3.2-10.3A13.9,13.9,0,0,0,14.7,0,13.9,13.9,0,0,0,0,14.8,14,14,0,0,0,12.5,27.6a14.1,14.1,0,0,0,10.3-3.3l7.5,7.4a1,1,0,0,0,1.4,0h0a1,1,0,0,0,0-1.4ZM13.8,25.6A11.8,11.8,0,1,1,25.6,13.8a11.3,11.3,0,0,1-2.8,7.6l-1.4,1.4A11.3,11.3,0,0,1,13.8,25.6Z" style="display: none;"></path>
+                      <path class="filled" d="M31.4,28.6l-6.5-6.5a14,14,0,0,0,2.7-8.3A13.8,13.8,0,1,0,13.8,27.6a14,14,0,0,0,8.3-2.7l6.5,6.5a1.9,1.9,0,0,0,2.8,0A1.9,1.9,0,0,0,31.4,28.6Zm-17.6-5a9.8,9.8,0,1,1,9.8-9.8A10.1,10.1,0,0,1,22,19.2,9.3,9.3,0,0,1,19.2,22,10.1,10.1,0,0,1,13.8,23.6Z" style="display: inline;"></path>
+                    </svg></a>
+      <input type="submit" style="display:none" value="Search" class="submit-btn">
+  </div>    
 </form>
 
 
@@ -377,6 +382,12 @@ $(document).ready(function() {
 <script>
   $('#nav-search .filled').show();
   $('#nav-search .stroked').hide();
+</script>
+
+<script>
+  $('#search-btn').click(function() {
+    $('.search-form').submit();
+  });
 </script>
 </body>
 </html>
