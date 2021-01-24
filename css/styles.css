@@ -660,6 +660,7 @@ textarea:focus {
     width:100%;
     margin:auto;
     border-radius:10px 10px 0 0;
+    object-fit:cover;
 }
 
 .obj-box .object .details {
@@ -812,6 +813,7 @@ textarea:focus {
 .obj-box .object-user .preview-user img {
     border-radius:500px;
     width: 100%;
+    object-fit:cover;
 }
 
 .obj-box .object-user .details-user {

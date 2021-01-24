@@ -153,7 +153,7 @@ if($row3['video_url']!=null) {
 				</div>';
 			    } else {
 			        echo '<div class="preview">
-				  <img src="/images/background/course.svg" style="height:50%;width:50%;">
+				  <img src="/images/background/course.svg" style="height:100px;width:100px;">
 				</div>';
 			    }
 
@@ -255,7 +255,7 @@ echo '<div class="details">';
 		   }
 
 } else {
-                echo '<div class="col-33 mid-col">';
+                //echo '<div class="col-33 mid-col">';
                 if($user_r->num_rows > 0) {
 		  require('../wallet/php/wallet_connect.php');
 		  require('../php/limit_str.php');
@@ -309,7 +309,7 @@ echo '<div class="details">';
 		    echo '<p class="gray">No results found</p>';
 		  }
 		}
-                echo '</div>';
+               // echo '</div>';
 }
 ?>
 
