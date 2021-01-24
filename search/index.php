@@ -25,7 +25,7 @@ if(isset($_GET['q'])) {
 
 
 
-  	  $user_q = "SELECT id,username,fname,lname FROM user WHERE (UPPER(username) LIKE UPPER('%$kw%')) OR (UPPER(fname) LIKE UPPER('%$kw%')) OR (UPPER(lname) LIKE UPPER('%$kw%')) ORDER BY id DESC";
+  	  $user_q = "SELECT id,username,fname,lname,avatar FROM user WHERE (UPPER(username) LIKE UPPER('%$kw%')) OR (UPPER(fname) LIKE UPPER('%$kw%')) OR (UPPER(lname) LIKE UPPER('%$kw%')) ORDER BY id DESC";
 	  $user_r = mysqli_query($connection,$user_q) or die(mysqli_error($connection));
 	  $user_count = mysqli_num_rows($user_r);
 
@@ -72,9 +72,9 @@ require('../wallet/php/get_fxcoin_count.php');
 
 <?php if(isset($_GET['q'])) { ?>
 
-<div class="main-content">
+<div class="main-content" style="display:block !important;">
 
-              <ul class="main-flex-container">
+              <ul class="main-flex-container" style="flex-flow:row nowrap;">
                   <li class="main-items">
                       <a href="<?php echo '/search?q='.$kw; ?>" class="link-main" <?php if(isset($_GET['q']) && !empty($_GET['q']) && !isset($_GET['type'])) echo 'id="active-main"'; ?>>
                           <div class="head">Users <?php if(isset($_GET['q']) && !empty($_GET['q'])) echo '('.$user_count.')'; ?></div>
@@ -271,24 +271,30 @@ echo '<div class="details">';
 		      
 
 
-                        echo '<div class="object" onclick="location.href=\'/user/'.$row['username'].'\';">';
+                        echo '<div class="object-user" onclick="location.href=\'/user/'.$row['username'].'\';">';
 
-                        echo '<div class="preview">
+			if($row['avatar']==NULL) {
+                          echo '<div class="preview-user">
 			       <img src="/images/background/avatar.png">
-			     </div>
+			     </div>';
+			} else {
+			  echo '<div class="preview-user">
+			          <img src="/userpgs/avatars/'.$row['avatar'].'">
+				</div>';
+		        }
 
-			     <div class="details">';
+			     echo '<div class="details-user">';
 
-			echo '<p><strong>'.$row['fname'].' '.$row['lname'].' @'.$row['username'].'</strong></p>';
+			echo '<p><strong>'.$row['username'].'</strong></p>';
 			echo '<p>'.$row['fname'].' '.$row['lname'].'</p>';
-			echo '<p>'.$row['bio'].'</p>';
+			//echo '<p>'.$row['bio'].'</p>';
 
 			echo '<div class="detail-bottom">';
 
 			if($fxstars>0) {
-			  echo '<div class="little-box gold-bg"><span>'.$fxstars.' fxStars</span></div>';
+			  echo '<div class="little-box"><span>'.$fxstars.' fxStars</span></div>';
 			} else {
-			  echo '<div class="little-box gray-bg"><span>0 fxStars</span></div>';
+			  echo '<div class="little-box"><span>0 fxStars</span></div>';
 			}
 			echo '</div>';
 			
@@ -314,12 +320,16 @@ echo '<div class="details">';
   <div class="footbar blur"></div>
   <script src="/js/footbar.js"></script><script src="/js/notif_msg.js" id="notmsg" nmuid="<?php echo $get_user_id?>"></script>
 
-
+<script>
+if(screen.width<629) {
+  $('.main-content').css('margin','0').css('padding','0');
+}
+</script>
 
 
   <script>
-    $('#page-header').html('Notifications');
-    $('#page-header').attr('href','/userpgs/notif');
+    $('#page-header').html('Search');
+    $('#page-header').attr('href','/search');
   </script>
 
   <div class="footbar"></div>

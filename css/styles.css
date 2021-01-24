@@ -775,6 +775,7 @@ textarea:focus {
 .obj-box .object-user {
     display: flex;
     flex-flow: row nowrap;
+    justify-content:center;
     border-radius: 200px;
     background: #efefef;
     box-shadow: 6px 6px 6px #d9d9d9, -6px -6px 6px #ffffff;
@@ -801,7 +802,7 @@ textarea:focus {
     display: flex;
     margin: auto 20px;
     max-width: 70px;
-    max-height: 70px;
+    min-height: 70px;
     text-align: center;
     background-color: #e6e8ef;
     border: 1px solid #31313124;
@@ -809,7 +810,7 @@ textarea:focus {
 }
 
 .obj-box .object-user .preview-user img {
-    height: 100%;
+    border-radius:500px;
     width: 100%;
 }
 
@@ -832,6 +833,7 @@ textarea:focus {
     text-overflow: ellipsis;
     white-space: normal;
     -webkit-line-clamp: 1;
+    margin:0;
 }
 
 /***< User Search ***/
@@ -3694,12 +3696,12 @@ input:checked + .slider:before {
 
     .obj-box {
 	margin-top:10px;
-	width:95%;
+	width:100%;
     }
 
     .obj-box .object {
-	width:100%;
-	margin: 2em 0;
+	width:90%;
+	margin: 1em 0;
     }
 
     .txt-input {
@@ -3872,6 +3874,11 @@ input:checked + .slider:before {
 
   #header-menu .msg-icon-cnt {
       margin:0;
+  }
+
+  .obj-box .object-user {
+      width:90%;
+      margin:1em 0;
   }
 }
 

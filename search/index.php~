@@ -116,9 +116,17 @@ if($type=='course') {
 
     require('../php/limit_str.php');
 
-    
+    function get_string_between($string, $start, $end){
+    		      $string = ' ' . $string;
+    		      $ini = strpos($string, $start);
+    		      if ($ini == 0) return '';
+    		      $ini += strlen($start);
+    		      $len = strpos($string, $end, $ini) - $ini;
+    		      return substr($string, $ini, $len);
+		    }
 
 		 if($course_count>0) {
+		 
 
 		   echo '<div class="obj-box">';
 
@@ -137,10 +145,20 @@ if($type=='course') {
 			    
 			    echo '<div class="object" onclick="location.href=\'/userpgs/instructor/course_management/course.php?course_id='.$row3['id'].'\';">';
 
-			    echo '<div class="preview">
-				  <img src="/images/background/course.svg">
-				</div>
-				<div class="details">';
+
+if($row3['video_url']!=null) {
+			    $video_id = get_string_between($row3['video_url'],'embed/','" frameborder');
+			        echo '<div class="preview">
+				  <img src="https://img.youtube.com/vi/'.$video_id.'/0.jpg">
+				</div>';
+			    } else {
+			        echo '<div class="preview">
+				  <img src="/images/background/course.svg" style="height:50%;width:50%;">
+				</div>';
+			    }
+
+echo '<div class="details">';
+
 
 			    $ctitle=preg_replace("/<br\W*?\/>/"," ",$row3['header']);
 			    
@@ -193,16 +211,16 @@ if($type=='course') {
 			     if($locked_count>0) {
 			       $locked=mysqli_fetch_array($locked_r);
 			       if($locked['finalized']) {
-			         echo '<div class="price gold-bg">
+			         echo '<div class="price gray-bg">
 				      <span>Sold</span> '.$locked['raw_amount'].' <span>fxStars</span>
 				    </div>';
 		               } else {
-			         echo '<div class="price chocolate-bg">
+			         echo '<div class="price purple-bg">
 				      <span>High </span> '.$locked['raw_amount'].' <span>fxStars</span>
 				    </div>';
 		               }
 			     } else {
-			       echo '<div class="price chocolate-bg">
+			       echo '<div class="price purple-bg">
 				      <span>Base </span> '.$row3['cost'].' <span>fxStars</span>
 				    </div>';
 		             }
