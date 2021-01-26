@@ -270,8 +270,7 @@ echo '<div id="live-div" style="display:none"></div>';
 } elseif($user_type=='student') {
 echo '<div class="options">';
 
-echo '<div class="add-box" id="live-add-box">Open Live Classroom</div>';
-echo '<div id="live-div" style="display:none"></div>';
+
 
 echo '<div class="add-box">Take the Test <img src="/images/background/exam.svg" id="examId"></div>';
 if($stucourse_fetch['last_exam']!=null) {
