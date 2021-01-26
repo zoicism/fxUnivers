@@ -118,10 +118,11 @@ if(isset($_COOKIE['username']) && isset($_COOKIE['password'])) {
         <input class="signup-input" type="password" name="password2" placeholder="Repeat Password" id="confpass">
 	<p class="tooltip red" class="tooltip" id="noMatch">Passwords do not match</p>
 	
-        <label class="checkbox">I agree to <a href="#">terms and conditions</a>
-        <input type="radio" name="policycb" required>
+        <label class="checkbox">I agree to <a href="/policy" target="_blank">terms and conditions</a>
+        <input type="checkbox" name="policycb" required>
         <span class="checkmark"></span>
         </label>
+	
 
 	<?php 
          if(isset($_GET['partner'])) {
