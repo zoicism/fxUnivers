@@ -532,6 +532,27 @@ textarea:focus {
     margin:0 auto 20px auto;
 }
 
+.course-upperleft {
+    display:flex;
+    justify-content:space-around;
+    max-height:360px;
+    margin:0 0 20px 20px;
+}
+
+.course-upperleft .bulletin {
+    box-shadow:  9px 9px 18px #cbcbcb, 
+		 -9px -9px 18px #ffffff;
+    border-radius: 20px;
+    padding:20px;
+    width:45%;
+    overflow-y:auto;
+}
+.course-content .course-upperleft .video-holder {
+    display:block;
+    margin:0;
+    max-width:45%;
+}
+
 .video-holder iframe {
     width:100%;
 }
@@ -599,6 +620,11 @@ textarea:focus {
     margin:0 auto 20px auto;
 }
 
+.course-content .course-upperleft .video-placeholder {
+    
+    margin:0;
+    width:45%;
+}
 
 .video-placeholder img {
     width:60px;

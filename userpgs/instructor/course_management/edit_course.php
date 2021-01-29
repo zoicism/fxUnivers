@@ -107,6 +107,24 @@ if($user_type!='instructor') {
 				
 			      </form>
 <hr class="hr-tct">
+
+
+
+<h3>Bulletin</h3>
+<p>Bulletins are available to the public in your course page. Adding a bulletin will infor your learners by notification and email.</p>
+
+<form id="bulletin-form">
+<input type="text" name="bulletin-body" class="txt-input" placeholder="Enter bulletin text here" required>
+<input type="hidden" name="course-id" value="<?php echo $course_id?>">
+<input type="hidden" name="teacher-id" value="<?php echo $get_user_id?>">
+<input type="hidden" name="course-header" value="<?php echo $get_course_fetch['header']?>">
+<input type="submit" class="submit-btn" value="Add Bulletin">
+</form>
+
+
+
+
+<hr class="hr-tct">
 			      
 			      <h3>Video</h3>
 			      
@@ -241,6 +259,25 @@ $('#del-vid-id').click(function() {
       }
     }
   });
+});
+</script>
+
+<script>
+$('#bulletin-form').submit(function(event) {
+	event.preventDefault();
+	jQuery.ajax({
+	  url:'/php/set_bulletin.php',
+	  data:$(this).serialize(),
+	  type:'POST',
+	  success: function(response) {
+	    console.log(response);
+	    if(response==1) {
+	      alert('Bulletin is added.');
+	    } else {
+	      alert('Failed to add the bulletin. Please try again.');
+	    }
+	  }
+	});
 });
 </script>
 </body>

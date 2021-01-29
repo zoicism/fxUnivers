@@ -2,9 +2,11 @@
 if(isset($_POST['course_id'])) $class_id=$_POST['course_id'];
 if(isset($_FILES['video_up'])) {
     $video_path='videos/';
-    //$prev_vid=glob($video_path.$class_id.'.webm');
+    //$prev_vid=glob($video_path.$class_id.'.*');
     //if(count($prev_vid)>0) unlink($prev_vid[0]);
-    
+
+    exec("rm videos/$class_id.*");
+
     $video_array=explode('.', $_FILES['video_up']['name']);
     $video_ext=end($video_array);
     $path="videos/".$class_id.'.'.$video_ext;

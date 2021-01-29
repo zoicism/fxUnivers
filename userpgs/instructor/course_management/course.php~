@@ -103,7 +103,9 @@ require('../../../php/get_tar_id.php');
 
       <div class="course-content">
       
-	<div class="left-content">
+	<div class="left-content" style="padding-top:0">
+
+<div class="course-upperleft" style="display:flex">
 	  <!-- VIDEO -->
 	  <?php
 	   $path='videos/';
@@ -112,10 +114,13 @@ require('../../../php/get_tar_id.php');
 	      $vid_arr=explode('.', $file_ex[0]);
 	      $vid_ext=end($vid_arr);
 	  ?>
+<div class="video-holder">
 
-	  <video width="560" height="315" controls>
+	  <video style="max-width:560px;max-height:315px;" controls>
             <source src="<?php echo 'videos/'.$course_id.'.'.$vid_ext ?>" type="video/<?php echo $vid_ext?>"> 
 	  </video>
+	  
+	  </div>
 
 	  <!-- Title, description, and info -->
 	  <?php
@@ -136,12 +141,27 @@ require('../../../php/get_tar_id.php');
 
 
 
-
 <?php
 
 	   }
 
+?>
 
+
+<div class="bulletin">
+<p style="font-weight:bold;text-align:center;font-size:1rem;">Bulletin</p>
+
+<div style="padding-top:9px">
+<p>lorem ipsum something something.</p>
+<p style="font-size:0.7rem;text-align:right;" class="gray">Feb 6th, 2021</p>
+<hr class="hr-tct">
+<p>something else that goes here.</p>
+</div>
+</div>
+
+</div>
+
+<?php
 
 if($tar_user_fetch['avatar']!=NULL) {
       $avatar_url='/userpgs/avatars/'.$tar_user_fetch['avatar'];
@@ -167,30 +187,28 @@ if($tar_user_fetch['avatar']!=NULL) {
              echo '<p>'.$description.'</p>';
 ?>
 	  
-<div class="detail-bottom">
+
 
 <?php
 $coursecounter_q="SELECT * FROM stucourse WHERE course_id=".$course_id;
                             $coursecounter_r=mysqli_query($connection,$coursecounter_q);
                             $coursecounts=mysqli_num_rows($coursecounter_r);
 ?>
-
-
-
-	  <div class="little-box gray-bg">
-	    <?php echo $class_num.' <span>sessions</span>'; ?>
-	  </div>
-
-	<div class="little-box blue-bg">
+<div class="little-box blue-bg">
 	  <?php echo $coursecounts.' <span>students</span>'; ?>
 	</div>
+<?php echo '<div class="little-box"><span>'.date("M jS, Y", strtotime($s_date)).'</span></div>';?>
+
+<div class="detail-bottom">
+
+	
 
 
 	  <?php
 	  if($course_biddable) {
 	  } else {
 	    if($cost>0) {	  
-				    echo '<div class="little-box gold-bg">
+				    echo '<div class="price gold-bg" style="width:0;min-width:100px;">
 				      '.$cost.' <span>fxStars</span>
 				    </div>';
 			    } else {
@@ -200,7 +218,7 @@ $coursecounter_q="SELECT * FROM stucourse WHERE course_id=".$course_id;
 	    }
 	  }
 
-echo '<div class="little-box gray-bg"><span>'.date("M jS, Y", strtotime($s_date)).'</span></div>';
+
 
 			    ?>
  </div>
@@ -272,8 +290,7 @@ echo '<div id="live-div" style="display:none"></div>';
 } elseif($user_type=='student') {
 echo '<div class="options">';
 
-echo '<div class="add-box" id="live-add-box">Open Live Classroom</div>';
-echo '<div id="live-div" style="display:none"></div>';
+
 
 echo '<div class="add-box">Take the Test <img src="/images/background/exam.svg" id="examId"></div>';
 if($stucourse_fetch['last_exam']!=null) {
@@ -340,7 +357,7 @@ echo '</div>';
 
 
 echo '<div class="sessions">';
-echo '<div class="sess-title"><h3>Sessions</h3></div>';
+echo '<div class="sess-title"><h3>Sessions ('.$class_num.')</h3></div>';
 echo '<div class="sess-list">';
 
                 if($class_result->num_rows>0) {

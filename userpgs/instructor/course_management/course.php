@@ -103,7 +103,9 @@ require('../../../php/get_tar_id.php');
 
       <div class="course-content">
       
-	<div class="left-content">
+	<div class="left-content" style="padding-top:0">
+
+<div class="course-upperleft" style="display:flex">
 	  <!-- VIDEO -->
 	  <?php
 	   $path='videos/';
@@ -112,10 +114,13 @@ require('../../../php/get_tar_id.php');
 	      $vid_arr=explode('.', $file_ex[0]);
 	      $vid_ext=end($vid_arr);
 	  ?>
+<div class="video-holder">
 
-	  <video width="560" height="315" controls>
+	  <video style="width:100%;" controls>
             <source src="<?php echo 'videos/'.$course_id.'.'.$vid_ext ?>" type="video/<?php echo $vid_ext?>"> 
 	  </video>
+	  
+	  </div>
 
 	  <!-- Title, description, and info -->
 	  <?php
@@ -136,12 +141,40 @@ require('../../../php/get_tar_id.php');
 
 
 
-
 <?php
 
 	   }
 
+?>
 
+
+<div class="bulletin">
+
+<p style="font-weight:bold;text-align:center;font-size:1rem;">Bulletin</p>
+<div style="padding-top:9px">
+<?php
+require_once('../../../php/conn/fxinstructor.php');
+$bulletin_q = "SELECT * FROM bulletin WHERE courseId=$course_id ORDER BY id DESC";
+$bulletin_r = mysqli_query($fxinstructor_connection,$bulletin_q);
+
+if($bulletin_r->num_rows > 0) {
+  while($bulletin_row = $bulletin_r->fetch_assoc()) {
+    $bulletin_date = $bulletin_row['theDate'];
+    echo '<p>'.$bulletin_row['body'].'</p>';
+    echo '<p style="font-size:0.7rem;text-align:right;" class="gray">'.date("M jS, Y", strtotime($bulletin_date)).'</p>';
+    echo '<hr class="hr-tct">';
+  }
+} else {
+  echo '<p class="gray" style="text-align:center">Empty</p>';
+}
+?>
+
+</div>
+</div>
+
+</div>
+
+<?php
 
 if($tar_user_fetch['avatar']!=NULL) {
       $avatar_url='/userpgs/avatars/'.$tar_user_fetch['avatar'];

@@ -532,6 +532,24 @@ textarea:focus {
     margin:0 auto 20px auto;
 }
 
+.course-upperleft {
+    display:flex;
+    justify-content:space-around;
+    max-height:360px;
+    margin:0 0 20px 20px;
+}
+
+.course-upperleft .bulletin {
+    box-shadow:  9px 9px 18px #cbcbcb, 
+		 -9px -9px 18px #ffffff;
+    border-radius: 20px;
+    padding:20px;
+}
+.course-content .course-upperleft .video-holder {
+    display:block;
+    margin:0;
+}
+
 .video-holder iframe {
     width:100%;
 }
@@ -1764,6 +1782,10 @@ background: linear-gradient(126deg, rgba(255,66,29,1) 0%, rgba(252,67,67,1) 50%,
 
 .checkbox input:checked ~ .checkmark {
   background-color: #00A1E0;
+}
+
+.checkbox input:not(:checked) ~ .checkmark {
+    background-color: #D2E6EE;
 }
 
 .checkmark:after {
@@ -3237,6 +3259,9 @@ input:checked + .slider:before {
     margin:20px 0;
 }
 
+.search-form {
+    width:auto;
+}
 
 
 /*** MOBILE VIEW ***/
@@ -3301,7 +3326,10 @@ input:checked + .slider:before {
 }
 
 @media (max-width: 628px) {
-
+.search-form {
+    width:100%;
+    padding:0 5%;
+    }
 
     /********************** > profile mobile **********************/
 

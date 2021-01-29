@@ -10,7 +10,7 @@ if(isset($_FILES['video_up'])) {
     $path="videos/".$class_id.'.'.$video_ext;
   
     if(move_uploaded_file($_FILES['video_up']['tmp_name'], $path)) {
-        echo $video_upload_ok=1;
+        $video_upload_ok=1;
         if($video_ext=='mp4') {
             //exec("ffmpeg -i $path -f webm -vcodec libvpx-vp9 -vb 1024k videos/$class_id.webm");
         } elseif($video_ext=='webm') {
@@ -21,9 +21,9 @@ if(isset($_FILES['video_up'])) {
             //exec("rm $path");
         }
     } else {
-        echo $video_upload_ok=0;
+        $video_upload_ok=0;
     }
 }
-//header('Location: /userpgs/instructor/course_management/course.php?course_id='.$class_id);
+header('Location: /userpgs/instructor/course_management/course.php?course_id='.$class_id);
 //echo $video_upload_ok;
 ?>

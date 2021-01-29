@@ -1,0 +1,11 @@
+<?php
+require_once('conn/fxinstructor.php');
+
+if(isset($_POST['bulletin-body'])) {
+  $body = mysqli_real_escape_string($fxinstructor_connection,$_POST['bulletin-body']);
+  $course_id = $_POST['course-id'];
+
+  $the_date = date("Y-m-d");
+  echo $bulletin_q = "INSERT INTO bulletin(courserId,body,theDate) VALUES($course_id, '$body', '$the_date');
+}
+?>
