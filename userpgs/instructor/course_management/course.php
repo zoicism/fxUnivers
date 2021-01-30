@@ -7,6 +7,7 @@
 }*/
   session_start();
   require('../../../register/connect.php');
+  require_once('../../../php/conn/fxinstructor.php');
 
 if(isset($_SESSION['username'])) {
     $username = $_SESSION['username'];
@@ -56,7 +57,21 @@ require('../../../php/get_stucourse.php');
 $tar_id=$get_course_teacher_id;
 require('../../../php/get_tar_id.php');
 
+$course_likes_q = "SELECT * FROM courseLikes WHERE courseId=$course_id";
+$course_likes_r = mysqli_query($fxinstructor_connection,$course_likes_q);
+$course_likes = mysqli_num_rows($course_likes_r);
 
+$my_like_q = "SELECT * FROM courseLikes WHERE courseId=$course_id AND userId=$get_user_id";
+$my_like_r = mysqli_query($fxinstructor_connection,$my_like_q);
+$my_like = mysqli_num_rows($my_like_r);
+
+$course_dislikes_q = "SELECT * FROM courseDislikes WHERE courseId=$course_id";
+$course_dislikes_r = mysqli_query($fxinstructor_connection,$course_dislikes_q);
+$course_dislikes = mysqli_num_rows($course_dislikes_r);
+
+$my_dislike_q = "SELECT * FROM courseDislikes WHERE courseId=$course_id AND userId=$get_user_id";
+$my_dislike_r = mysqli_query($fxinstructor_connection,$my_dislike_q);
+$my_dislike = mysqli_num_rows($my_dislike_r);
 ?>
 
 <!DOCTYPE html>
@@ -184,10 +199,11 @@ if($tar_user_fetch['avatar']!=NULL) {
 
 
 
- 	     echo '<div class="pub-avatar"  onclick="location.href=\'/user/'.$tar_user_fetch['username'].'\'">';
-	     	  echo '<div class="pub-img avatar" style="background-image:url(\''.$avatar_url.'\');">';
+ 	     echo '<div class="pub-avatar" style="cursor:auto">';
+	       
+	     	  echo '<div class="pub-img avatar" onclick="location.href=\'/user/'.$tar_user_fetch['username'].'\'" style="background-image:url(\''.$avatar_url.'\');cursor:pointer;">';
 		  echo '</div>';
-		  echo '<div class="pub-name">';
+		  echo '<div class="pub-name" style="cursor:pointer" onclick="location.href=\'/user/'.$tar_user_fetch['username'].'\'">';
 		  echo '<p class="fullname">'.$tar_user_fetch['fname'].' '.$tar_user_fetch['lname'].'</p>';
 		  if($tar_user_fetch['verified']) {
 		    echo '<p>@'.$tar_user_fetch['username'].' <img src="/images/background/verified.png" style="width:1rem; height:1rem;"></p>';
@@ -195,6 +211,20 @@ if($tar_user_fetch['avatar']!=NULL) {
 		    echo '<p>@'.$tar_user_fetch['username'].'</p>';
 		  }
 		  echo '</div>';
+
+
+if($my_like==1) $my_like_word='Liked'; else $my_like_word='Like';
+if($my_dislike==1) $my_dislike_word='Disliked'; else $my_dislike_word='Dislike';
+
+
+echo '<div style="margin-left:auto">';
+
+echo '<span style="color:blue;cursor:pointer;" id="likeBtn"><span id="like-num">'.$course_likes.'</span> <span id="like-word">'.$my_like_word.'</span></span>';
+      echo '       <span style="color:red;cursor:pointer;" id="dislikeBtn"><span id="dislike-word">'.$my_dislike_word.' </span> <span id="dislike-num">'.$course_dislikes.'</span></span>';
+
+echo '</div>';
+
+
 	     echo '</div>';
 	     echo '<h2>'.$header.'</h2>';
              echo '<p>'.$description.'</p>';
@@ -654,6 +684,83 @@ $('#live-add-box').on('click',function() {
       }
     }
   });
+});
+</script>
+
+<!-- LIKES/DISLIKE COURSE -->
+<script>
+var userType='<?php echo $user_type?>';
+
+$('#likeBtn').click(function() {
+ if(userType=='student' || userType=='instructor') {
+  jQuery.ajax({
+    url:'/php/set_course_like.php',
+    type:'POST',
+    data:{userId:'<?php echo $get_user_id?>', courseId:'<?php echo $course_id?>'},
+    success: function(response) {
+      var response = $.trim(response);
+      var likeNum = parseInt($('#like-num').text());
+      var dislikeNum = parseInt($('#dislike-num').text());
+      console.log(likeNum);
+      console.log(response);
+      if(response=='liked') {
+	var newLikeNum = likeNum+1;
+        $('#like-num').text(newLikeNum);
+	$('#like-word').text('Liked');
+      } else if(response=='unliked') {
+        var newLikeNum = likeNum-1;
+	$('#like-num').text(newLikeNum);
+	$('#like-word').text('Like');
+      } else if(response=='undisliked and liked') {
+        var newLikeNum = likeNum+1;
+        $('#like-num').text(newLikeNum);
+	$('#like-word').text('Liked');
+	var newDislikeNum = dislikeNum-1;
+	$('#dislike-num').text(newDislikeNum);
+	$('#dislike-word').text('Dislike');
+      }
+    }
+  });
+ } else {
+   alert('You need to be a student of this course to vote.');
+ }
+});
+</script>
+<script>
+var userType='<?php echo $user_type?>';
+$('#dislikeBtn').click(function() {
+ if(userType=='student' || userType=='instructor') {
+  jQuery.ajax({
+    url:'/php/set_course_dislike.php',
+    type:'POST',
+    data:{userId:'<?php echo $get_user_id?>', courseId:'<?php echo $course_id?>'},
+    success: function(response) {
+      var response = $.trim(response);
+      var dislikeNum = parseInt($('#dislike-num').text());
+      var likeNum = parseInt($('#like-num').text());
+      console.log(dislikeNum);
+      console.log(response);
+      if(response=='disliked') {
+	var newDislikeNum = dislikeNum+1;
+        $('#dislike-num').text(newDislikeNum);
+	$('#dislike-word').text('Disliked');
+      } else if(response=='undisliked') {
+        var newDislikeNum = dislikeNum-1;
+	$('#dislike-num').text(newDislikeNum);
+	$('#dislike-word').text('Dislike');
+      } else if(response=='unliked and disliked') {
+        var newDislikeNum = dislikeNum+1;
+        $('#dislike-num').text(newDislikeNum);
+	$('#dislike-word').text('Disliked');
+	var newLikeNum = likeNum-1;
+	$('#like-num').text(newLikeNum);
+	$('#like-word').text('Like');
+      }
+    }
+  });
+ } else {
+  alert('You need to be a student of this course to vote.');
+ }
 });
 </script>
 </body>

@@ -1,0 +1,10 @@
+<?php
+require_once('conn/fxinstructor.php');
+
+if(isset($_POST['courseId'])) {
+  echo $course_id = $_POST['courseId'];
+  echo $user_id = $_POST['userId'];
+}
+
+?>
+  

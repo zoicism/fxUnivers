@@ -116,7 +116,7 @@ require('../../../php/get_tar_id.php');
 	  ?>
 <div class="video-holder">
 
-	  <video style="max-width:560px;max-height:315px;" controls>
+	  <video style="width:100%;" controls>
             <source src="<?php echo 'videos/'.$course_id.'.'.$vid_ext ?>" type="video/<?php echo $vid_ext?>"> 
 	  </video>
 	  
@@ -149,13 +149,26 @@ require('../../../php/get_tar_id.php');
 
 
 <div class="bulletin">
-<p style="font-weight:bold;text-align:center;font-size:1rem;">Bulletin</p>
 
+<p style="font-weight:bold;text-align:center;font-size:1rem;">Bulletin</p>
 <div style="padding-top:9px">
-<p>lorem ipsum something something.</p>
-<p style="font-size:0.7rem;text-align:right;" class="gray">Feb 6th, 2021</p>
-<hr class="hr-tct">
-<p>something else that goes here.</p>
+<?php
+require_once('../../../php/conn/fxinstructor.php');
+$bulletin_q = "SELECT * FROM bulletin WHERE courseId=$course_id ORDER BY id DESC";
+$bulletin_r = mysqli_query($fxinstructor_connection,$bulletin_q);
+
+if($bulletin_r->num_rows > 0) {
+  while($bulletin_row = $bulletin_r->fetch_assoc()) {
+    $bulletin_date = $bulletin_row['theDate'];
+    echo '<p>'.$bulletin_row['body'].'</p>';
+    echo '<p style="font-size:0.7rem;text-align:right;" class="gray">'.date("M jS, Y", strtotime($bulletin_date)).'</p>';
+    echo '<hr class="hr-tct">';
+  }
+} else {
+  echo '<p class="gray" style="text-align:center">Empty</p>';
+}
+?>
+
 </div>
 </div>
 
