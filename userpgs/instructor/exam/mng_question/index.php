@@ -99,10 +99,10 @@ $get_question_c = mysqli_num_rows($get_question_r);
 
 	  <form id="testForm">
 <?php if($get_course['test_duration']==null) { ?>
-	    <input type="number" name="ask_num" class="num-input" placeholder="How many questions to ask a learner?" min="1" required>
+	    <input type="number" id="num-to-ask" name="ask_num" class="num-input" placeholder="How many questions to ask a learner?" min="1" required>
 	    <input type="number" name="duration" class="num-input" placeholder="Test duration in minutes" min="5" required>
 <?php } else {?>
-<input type="number" name="ask_num" value="<?php echo $get_course['test_num'] ?>" class="num-input" placeholder="How many questions to ask a learner?" min="1" required>
+<input type="number" id="num-to-ask" name="ask_num" value="<?php echo $get_course['test_num'] ?>" class="num-input" placeholder="How many questions to ask a learner?" min="1" required>
 	    <input type="number" name="duration"  value="<?php echo $get_course['test_duration'] ?>" class="num-input" placeholder="Test duration in minutes" min="5" required>
 	    <input type="hidden" name="course_id" value="<?php echo $course_id?>">
 	<?php } ?>
@@ -170,7 +170,7 @@ $i=1;
 
 	    
 	</div>
-            <button class="submit-btn" id="add-q-btn">Add Another Question</button>
+            <button class="submit-btn" id="add-q-btn">Add New Questions</button>
 	    <input type="submit" class="submit-btn" value="Apply Changes">
 		
 		
@@ -219,7 +219,9 @@ $('#testForm').submit(function(event) {
   event.preventDefault();
 
   var questionCount = $('.question').length;
+var numToAsk = $('#num-to-ask').val();
 
+ if(numToAsk <= questionCount) {
   jQuery.ajax({
     url:'/php/edit_question.php',
     type:'POST',
@@ -234,13 +236,17 @@ $('#testForm').submit(function(event) {
       
     }
   });
+ } else {
+   alert('There must be at least as many questions as you want to ask the learner. Either add more questions or change the number of questions to be asked.');
+ }
 });
 </script>
 
 <script>
 $('#add-q-btn').click(function(e) {
   e.preventDefault();
-  window.location.replace('/userpgs/instructor/exam/new_question?courseId=<?php echo $course_id?>'); 
+  var questionCount = $('.question').length;
+  window.location.replace('/userpgs/instructor/exam/new_question?courseId=<?php echo $course_id?>&qNum='+questionCount); 
 });
 </script>
 

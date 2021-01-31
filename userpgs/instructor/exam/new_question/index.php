@@ -28,6 +28,10 @@ require('../../../../php/get_rel.php');
 $get_course_q = "SELECT * FROM teacher WHERE id=$course_id";
 $get_course_r = mysqli_query($connection,$get_course_q);
 $get_course = mysqli_fetch_array($get_course_r);
+
+if(isset($_GET['qNum'])) {
+  $prev_q_num = $_GET['qNum'];
+}
 ?>
 
 <!DOCTYPE html>
@@ -85,7 +89,7 @@ $get_course = mysqli_fetch_array($get_course_r);
 		
 
 	<div class="simple-bg">
-	  <h2>Course Test</h2>
+	  <h2>Add New Questions</h2>
 
 
 	  <p>A course may have at least 1 question. Once a learner is taking the test, a number of these questions, specified by you below, will be asked the learner.</p>
@@ -94,10 +98,10 @@ $get_course = mysqli_fetch_array($get_course_r);
 
 	  <form id="testForm">
 <?php if($get_course['test_duration']==null) { ?>
-	    <input type="number" name="ask_num" class="num-input" placeholder="How many questions to ask a learner?" min="1" required>
+	    <input id="num-to-ask" type="number" name="ask_num" class="num-input" placeholder="How many questions to ask a learner?" min="1" required>
 	    <input type="number" name="duration" class="num-input" placeholder="Test duration in minutes" min="5" required>
 <?php } else {?>
-<input type="number" name="ask_num" value="<?php echo $get_course['test_num'] ?>" class="num-input" placeholder="How many questions to ask a learner?" min="1" required>
+<input type="number" id="num-to-ask" name="ask_num" value="<?php echo $get_course['test_num'] ?>" class="num-input" placeholder="How many questions to ask a learner?" min="1" required>
 	    <input type="number" name="duration"  value="<?php echo $get_course['test_duration'] ?>" class="num-input" placeholder="Test duration in minutes" min="5" required>
 	    <input type="hidden" name="course_id" value="<?php echo $course_id?>">
 	<?php } ?>
@@ -134,11 +138,11 @@ $get_course = mysqli_fetch_array($get_course_r);
 	  </form>
 
 
-<form id="del-test-form">
+<!--<form id="del-test-form">
 <input type="hidden" name="courseId" value="<?php echo $course_id?>">
 <input type="hidden" name="userType" value="<?php echo $user_type?>">
 <input type="submit" class="submit-btn" value="Remove Test">
-</form>
+</form>-->
 	</div>
 
 
@@ -176,8 +180,19 @@ $('#testForm').submit(function(event) {
   event.preventDefault();
 
   var questionCount = $('.question').length;
+  var numToAsk = $('#num-to-ask').val();
+  
+  if('<?php echo $_GET["qNum"]?>'!='') {
+    questionCount += parseInt('<?php echo $prev_q_num?>');
+  }
 
-  jQuery.ajax({
+  console.log(questionCount);
+
+  if(numToAsk <= questionCount) {
+
+   questionCount -= parseInt('<?php echo $prev_q_num?>');
+  
+   jQuery.ajax({
     url:'/php/add_question.php',
     type:'POST',
     data:$(this).serialize() + "&qCount=" + questionCount,
@@ -187,7 +202,11 @@ $('#testForm').submit(function(event) {
 	window.location.replace('/userpgs/instructor/course_management/course.php?course_id=<?php echo $course_id?>');
       }	
     }
-  });
+   });
+
+  } else {
+    alert('There must be at least as many questions as you want to ask the learner. Either add more questions or change the number of questions to be asked.');
+  }
 });
 </script>
 
