@@ -250,7 +250,7 @@ textarea:focus {
     width:60%;
     display:block;
     position:relative;
-    padding:10px;
+    padding-right:20px;
 }
 
 .left-content .pub-avatar {
@@ -528,16 +528,17 @@ textarea:focus {
     border-radius: 20px;
     padding: 20px;
     height: 207px;
-    overflow-y: hidden;
+    width:100%;
 }
 
 .course-upperleft .bulletin .bulletin-txt {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 7;
-    overflow: hidden;
-    white-space: normal;
-    text-overflow: ellipsis;
+    height:141px;
+    overflow-y:auto;
+    
+}
+.course-upperleft .bulletin .bulletin-txt::-webkit-scrollbar {
+  width: 4px;
+  height: 30px;
 }
 
 .course-content .course-upperleft .video-holder {
@@ -547,15 +548,22 @@ textarea:focus {
     margin-right: 20px;
 }
 
-.video-holder iframe {
+.course-content .video-holder {
+    display:block;
     width:100%;
-    height: 100%;
+}
+
+.video-holder iframe {
+    margin-bottom: 20px;
+    width: 100%;
+    height:100%;
 }
 
 .video-holder video {
-    max-width:560px;
-    height:315px;
+    width:100%;
+    height:100%;
     outline:none;
+    margin-bottom: 20px;
 }
 
 .video-holder .ctrl {
@@ -612,13 +620,14 @@ textarea:focus {
     justify-content:center;
     align-items:center;
     flex-flow:column;
-    margin:0 auto 20px auto;
+        margin-bottom: 20px;
+    width: 100%;
 }
 
 .course-content .course-upperleft .video-placeholder {
-    
-    margin:0;
-    width:45%;
+    min-width: 369px;
+    height: 207px;
+    margin: 0 20px 0 0;
 }
 
 .video-placeholder img {

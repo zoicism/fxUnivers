@@ -131,7 +131,7 @@ $my_dislike = mysqli_num_rows($my_dislike_r);
 	  ?>
 <div class="video-holder">
 
-	  <video style="width:100%;" controls>
+	  <video style="width:100%;height:100%;" controls>
             <source src="<?php echo 'videos/'.$course_id.'.'.$vid_ext ?>" type="video/<?php echo $vid_ext?>"> 
 	  </video>
 	  
@@ -166,7 +166,7 @@ $my_dislike = mysqli_num_rows($my_dislike_r);
 <div class="bulletin">
 
 <p style="font-weight:bold;text-align:center;font-size:1rem;">Bulletin</p>
-<div style="padding-top:9px">
+<div class="bulletin-txt">
 <?php
 require_once('../../../php/conn/fxinstructor.php');
 $bulletin_q = "SELECT * FROM bulletin WHERE courseId=$course_id ORDER BY id DESC";
