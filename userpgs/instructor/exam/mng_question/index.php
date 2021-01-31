@@ -93,16 +93,16 @@ $get_question_c = mysqli_num_rows($get_question_r);
 	  <h2>Course Test</h2>
 
 
-	  <p>A course may have at least 3 questions. Once a learner is taking the test a number of these questions will be provided to be answered.</p>
+	  <p>A course may have at least 1 question. Once a learner is taking the test, a number of these questions, specified by you below, will be asked the learner.</p>
 
 
 
 	  <form id="testForm">
 <?php if($get_course['test_duration']==null) { ?>
-	    <input type="number" name="ask_num" class="num-input" placeholder="How many questions to ask a learner?" min="3" required>
+	    <input type="number" name="ask_num" class="num-input" placeholder="How many questions to ask a learner?" min="1" required>
 	    <input type="number" name="duration" class="num-input" placeholder="Test duration in minutes" min="5" required>
 <?php } else {?>
-<input type="number" name="ask_num" value="<?php echo $get_course['test_num'] ?>" class="num-input" placeholder="How many questions to ask a learner?" min="3" required>
+<input type="number" name="ask_num" value="<?php echo $get_course['test_num'] ?>" class="num-input" placeholder="How many questions to ask a learner?" min="1" required>
 	    <input type="number" name="duration"  value="<?php echo $get_course['test_duration'] ?>" class="num-input" placeholder="Test duration in minutes" min="5" required>
 	    <input type="hidden" name="course_id" value="<?php echo $course_id?>">
 	<?php } ?>

@@ -88,16 +88,16 @@ $get_course = mysqli_fetch_array($get_course_r);
 	  <h2>Course Test</h2>
 
 
-	  <p>A course may have at least 3 questions. Once a learner is taking the test a number of these questions will be provided to be answered.</p>
+	  <p>A course may have at least 1 question. Once a learner is taking the test, a number of these questions, specified by you below, will be asked the learner.</p>
 
 
 
 	  <form id="testForm">
 <?php if($get_course['test_duration']==null) { ?>
-	    <input type="number" name="ask_num" class="num-input" placeholder="How many questions to ask a learner?" min="3" required>
+	    <input type="number" name="ask_num" class="num-input" placeholder="How many questions to ask a learner?" min="1" required>
 	    <input type="number" name="duration" class="num-input" placeholder="Test duration in minutes" min="5" required>
 <?php } else {?>
-<input type="number" name="ask_num" value="<?php echo $get_course['test_num'] ?>" class="num-input" placeholder="How many questions to ask a learner?" min="3" required>
+<input type="number" name="ask_num" value="<?php echo $get_course['test_num'] ?>" class="num-input" placeholder="How many questions to ask a learner?" min="1" required>
 	    <input type="number" name="duration"  value="<?php echo $get_course['test_duration'] ?>" class="num-input" placeholder="Test duration in minutes" min="5" required>
 	    <input type="hidden" name="course_id" value="<?php echo $course_id?>">
 	<?php } ?>
@@ -107,13 +107,13 @@ $get_course = mysqli_fetch_array($get_course_r);
 	 <div class="questions">
 	    <div class="question">
 	      <p>Question #<span class="q_num">1</span></p>
-	      <textarea name="q1" placeholder="Question"></textarea>
+	      <textarea name="q1" placeholder="Question" required></textarea>
 
 	      <p>Options</p>
-	      <textarea name="q1o1" placeholder="Option A"></textarea>
-	      <textarea name="q1o2" placeholder="Option B"></textarea>
-	      <textarea name="q1o3" placeholder="Option C"></textarea>
-	      <textarea name="q1o4" placeholder="Option D"></textarea>
+	      <textarea name="q1o1" placeholder="Option A" required></textarea>
+	      <textarea name="q1o2" placeholder="Option B" required></textarea>
+	      <textarea name="q1o3" placeholder="Option C" required></textarea>
+	      <textarea name="q1o4" placeholder="Option D" required></textarea>
 
 	      <p>Correct Option</p>
 	      <select name="corr1" class="select-input">
