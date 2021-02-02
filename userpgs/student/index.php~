@@ -98,6 +98,18 @@ require('../../wallet/php/get_fxcoin_count.php');
 		 require('../../php/limit_str.php');
 
 		 if($gss_count>0) {
+
+
+function get_string_between($string, $start, $end){
+    		      $string = ' ' . $string;
+    		      $ini = strpos($string, $start);
+    		      if ($ini == 0) return '';
+    		      $ini += strlen($start);
+    		      $len = strpos($string, $end, $ini) - $ini;
+    		      return substr($string, $ini, $len);
+		    }
+
+
 		 	while($taken_row=$gss_result->fetch_assoc()) {
 			
 			$taken_course_id=$taken_row['course_id'];
@@ -115,18 +127,27 @@ require('../../wallet/php/get_fxcoin_count.php');
                             $coursecounter_r=mysqli_query($connection,$coursecounter_q);
                             $coursecounts=mysqli_num_rows($coursecounter_r);
 
-			    $teacher_un_q = 'SELECT username FROM user WHERE id='.$gsc_fetch['user_id'];
+			    $teacher_un_q = 'SELECT username,verified FROM user WHERE id='.$gsc_fetch['user_id'];
 			    $teacher_un_r = mysqli_query($connection,$teacher_un_q);
 			    $teacher_un_f = mysqli_fetch_array($teacher_un_r);
 			    $teacher_un = $teacher_un_f['username'];
+			    $teacher_verified = $teacher_un_f['verified'];
 			    
 			    echo '<div class="object" onclick="location.href=\''.$course_link.'\';">';
 
-			    echo '<div class="preview">
-				  <img src="/images/background/course.svg">
-				</div>
-				<div class="details">';
+		
+		            if($gsc_fetch['video_url']!=null) {
+			    $video_id = get_string_between($gsc_fetch['video_url'],'embed/','" frameborder');
+			        echo '<div class="preview">
+				  <img src="https://img.youtube.com/vi/'.$video_id.'/0.jpg">
+				</div>';
+			    } else {
+			        echo '<div class="preview">
+				  <img src="/images/background/course.svg" style="height:50%;width:50%;">
+				</div>';
+			    }
 
+echo '<div class="details">';
 			    $ctitle=preg_replace("/<br\W*?\/>/"," ",$gsc_fetch['header']);
 			    
 			    echo '<p><strong>';
@@ -138,8 +159,9 @@ require('../../wallet/php/get_fxcoin_count.php');
 			    echo limited($descrip,85).'</p>';
 			    */
 			    
+			    
 
-			    if($get_user_verified) {
+			    if($teacher_verified) {
 			      echo '<div class="little-box teacher-id">'.$teacher_un.' <img src="/images/background/verified.png" style="width:1rem; height:1rem;"></div>';
 			    } else {
 			      echo '<div class="little-box teacher-id">'.$teacher_un.'</div>';

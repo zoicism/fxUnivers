@@ -151,11 +151,18 @@ if($type=='course') {
 			    echo '<div class="object" onclick="location.href=\'/userpgs/instructor/course_management/course.php?course_id='.$row3['id'].'\';">';
 
 
-if($row3['video_url']!=null) {
-			    $video_id = get_string_between($row3['video_url'],'embed/','" frameborder');
-			        echo '<div class="preview">
-				  <img src="https://img.youtube.com/vi/'.$video_id.'/0.jpg">
-				</div>';
+                            if($row3['video_url']!=null) {
+			      $link_text = $row3['video_url'];
+			      if(strpos($link_text,'youtube.com') !== false) {			    
+			        $video_id = get_string_between($link_text,'embed/','" frameborder');
+			        echo '<div class="preview"> <img src="https://img.youtube.com/vi/'.$video_id.'/0.jpg">	</div>';
+			      } elseif(strpos($link_text,'vimeo.com') !== false) {
+			        $video_id = get_string_between($link_text,'video/','" frameborder');
+				$hash = unserialize(file_get_contents("http://vimeo.com/api/v2/video/$video_id.php"));
+				
+				echo '<div class="preview"> <img src="'.$hash[0]['thumbnail_medium'].'"> </div>';
+			      }
+			    
 			    } else {
 			        echo '<div class="preview">
 				  <img src="/images/background/course.svg" style="height:100px;width:100px;">

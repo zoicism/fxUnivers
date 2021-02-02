@@ -137,10 +137,18 @@ function get_string_between($string, $start, $end){
 
 		
 		            if($gsc_fetch['video_url']!=null) {
-			    $video_id = get_string_between($gsc_fetch['video_url'],'embed/','" frameborder');
-			        echo '<div class="preview">
-				  <img src="https://img.youtube.com/vi/'.$video_id.'/0.jpg">
-				</div>';
+
+			      $link_text = $gsc_fetch['video_url'];
+			      if(strpos($link_text,'youtube.com') !== false) {			    
+			        $video_id = get_string_between($link_text,'embed/','" frameborder');
+			        echo '<div class="preview"> <img src="https://img.youtube.com/vi/'.$video_id.'/0.jpg">	</div>';
+			      } elseif(strpos($link_text,'vimeo.com') !== false) {
+			        $video_id = get_string_between($link_text,'video/','" frameborder');
+				$hash = unserialize(file_get_contents("http://vimeo.com/api/v2/video/$video_id.php"));
+				
+				echo '<div class="preview"> <img src="'.$hash[0]['thumbnail_medium'].'"> </div>';
+			      }
+			    
 			    } else {
 			        echo '<div class="preview">
 				  <img src="/images/background/course.svg" style="height:50%;width:50%;">
