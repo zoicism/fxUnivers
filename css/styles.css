@@ -230,13 +230,14 @@ textarea:focus {
 }
 
 .relative-main-content {
-    margin:0 0 50px 15%;
-    height:84%;
-    padding:0 2% 0 30px;
-    display:flex;
-    flex-flow:column nowrap;
-    align-items:center;
-    justify-content:center;
+    margin: 0 0 50px 15%;
+    width: calc(100% - 15%);
+    height: 84%;
+    padding: 0 2% 0 30px;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
 }
 
 .fxuniversity-edit {
@@ -246,17 +247,17 @@ textarea:focus {
 }
 
 .course-content {
-    width:95%;
-    display:flex;
-    flex-flow:row nowrap;
-    
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
 }
 
 .course-content .left-content {
-    width:60%;
-    display:block;
-    position:relative;
-    padding-right:20px;
+    width: calc( 100% - 33.333% );
+    display: block;
+    /* position: relative; */
+    padding-right: 20px;
 }
 
 .left-content .pub-avatar {
@@ -264,6 +265,24 @@ textarea:focus {
     flex-flow:row nowrap;
     cursor:pointer;
     margin-bottom:10px;
+}
+
+.left-content .pub-avatar .like-dislike {
+    width: 50%;
+    margin-left: auto;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    color: #333333bd;
+}
+
+.left-content .pub-avatar .like-dislike #dislikeB {
+    margin-left: 10px;
+}
+
+.course-name-desc {
+    overflow-wrap: break-word;
 }
 
 .left-content #live-session {
@@ -525,6 +544,7 @@ textarea:focus {
 
 .course-upperleft {
     display:flex;
+    width: 100%;
     justify-content:space-around;
     margin-bottom: 20px;
 }
@@ -534,7 +554,7 @@ textarea:focus {
     border-radius: 20px;
     padding: 20px;
     height: 207px;
-    width:100%;
+    width: 50%;
 }
 
 .course-upperleft .bulletin .bulletin-txt {
@@ -548,8 +568,8 @@ textarea:focus {
 }
 
 .course-content .course-upperleft .video-holder {
-    display:block;
-    min-width: 369px;
+    display: block;
+    width: 50%;
     height: 207px;
     margin-right: 20px;
 }
