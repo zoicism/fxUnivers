@@ -326,8 +326,11 @@ textarea:focus {
 
 .right-content .sessions {
     box-shadow: -4px -2px 4px 0px #ffffff, 4px 2px 6px 0px #DFE4EA;
-    border-radius:20px;
-    padding:0;
+    border-radius: 20px;
+    padding: 0;
+    height: 321px;
+    width: 100%;
+    overflow: hidden;
 }
 
 .sessions .file-list {
@@ -410,9 +413,10 @@ textarea:focus {
 }
 
 .sessions .sess-list {
-    overflow-y:scroll;
-    height:40em;
-    padding:10px;
+    overflow-y: scroll;
+    width: 100%;
+    height: calc(100% - 40px);
+    padding: 0 10px 10px 10px;
 }
 
 .sessions .chat-list {
@@ -466,28 +470,22 @@ textarea:focus {
 }
 
 .sessions .sess-title {
-    display:flex;
-    align-items:center;
-    justify-content:center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    border-bottom: 1px solid #3333331f;
 }
 
 
 .right-content .session {
-    display:flex;
-    flex-flow:row nowrap;
-    margin:15px 0;
-    border-radius: 20px;
-    background: #efefef;
+    display: flex;
+    flex-flow: row nowrap;
+    margin-top: 8px;
     cursor:pointer;
-    opacity:0.85;
-    border-bottom:1px solid #aee4ff59;;
 }
 
-.right-content .session:hover {
-    opacity:1;
-}
-
-.right-content .session:focus {
+/*.right-content #active {
     border-radius: 20px;
     background: linear-gradient(145deg, #d7d7d7, #ffffff);
     box-shadow: inset -4px -2px 4px 0px #fff,
@@ -495,17 +493,7 @@ textarea:focus {
         -4px -2px 4px 0px #ffffff,
         4px 2px 6px 0px #DFE4EA;
     opacity:1;
-}
-
-.right-content #active {
-    border-radius: 20px;
-    background: linear-gradient(145deg, #d7d7d7, #ffffff);
-    box-shadow: inset -4px -2px 4px 0px #fff,
-        inset 4px 2px 6px 0px #DFE4EA,
-        -4px -2px 4px 0px #ffffff,
-        4px 2px 6px 0px #DFE4EA;
-    opacity:1;
-}
+}*/
 
 .right-content .options {
     display: flex;
@@ -524,23 +512,32 @@ textarea:focus {
 }
 
 .session .session-prev {
-    width:30%;
-    height:7em;
-    display:flex;
-    text-align:center;
-    background-color:#aee4ff59;
-    border-radius:20px 0 0 20px;
+    width: 148px;
+    height: 83px;
+    display: flex;
+    text-align: center;
+    background-color: #33333317;
+    border-radius: 10px;
 }
 
 .session-prev img {
-    height:4em;
-    margin:auto;
-    opacity:0.4;
+    height: 3.2em;
+    margin: auto;
+    opacity: 0.4;
 }
 
 .session .session-desc {
     margin-left:10px;
     width:70%;
+}
+
+.session .session-desc p {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    -webkit-line-clamp: 2;
 }
 
 .course-upperleft {
