@@ -93,7 +93,7 @@ if($get_course_fetch['video_url']!='') $embed_exists=1; else $embed_exists=0;
 
 
 
-  <div class="relative-main-content fxuniversity-edit" style="">
+  <div class="relative-main-content fxuniversity-edit">
                             <div class="content-box" style="padding:10px;">
 			      <h2 style="text-align:center">Course Management</h2>
 

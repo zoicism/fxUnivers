@@ -230,13 +230,14 @@ textarea:focus {
 }
 
 .relative-main-content {
-    margin:0 0 50px 15%;
-    height:84%;
-    padding:0 2% 0 30px;
-    display:flex;
-    flex-flow:column nowrap;
-    align-items:center;
-    justify-content:center;
+    margin: 0 0 50px 15%;
+    width: calc(100% - 15%);
+    height: 84%;
+    padding: 0 2% 0 30px;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
 }
 
 .fxuniversity-edit {
@@ -246,17 +247,17 @@ textarea:focus {
 }
 
 .course-content {
-    width:95%;
-    display:flex;
-    flex-flow:row nowrap;
-    
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
 }
 
 .course-content .left-content {
-    width:60%;
-    display:block;
-    position:relative;
-    padding-right:20px;
+    width: calc( 100% - 33.333% );
+    display: block;
+    /* position: relative; */
+    padding-right: 20px;
 }
 
 .left-content .pub-avatar {
@@ -264,6 +265,24 @@ textarea:focus {
     flex-flow:row nowrap;
     cursor:pointer;
     margin-bottom:10px;
+}
+
+.left-content .pub-avatar .like-dislike {
+    width: 50%;
+    margin-left: auto;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    color: #333333bd;
+}
+
+.left-content .pub-avatar .like-dislike #dislikeB {
+    margin-left: 10px;
+}
+
+.course-name-desc {
+    overflow-wrap: break-word;
 }
 
 .left-content #live-session {
@@ -298,17 +317,20 @@ textarea:focus {
 }
 
 .course-content .right-content {
-    width:40%;
-    display:block;
-    position:relative;
-    border-radius:20px;
-    justify-content:space-between;
+    width: calc( 100% - 66.666% );
+    display: block;
+    position: relative;
+    border-radius: 20px;
+    justify-content: space-between;
 }
 
 .right-content .sessions {
     box-shadow: -4px -2px 4px 0px #ffffff, 4px 2px 6px 0px #DFE4EA;
-    border-radius:20px;
-    padding:0;
+    border-radius: 20px;
+    padding: 0;
+    height: 321px;
+    width: 100%;
+    overflow: hidden;
 }
 
 .sessions .file-list {
@@ -391,9 +413,10 @@ textarea:focus {
 }
 
 .sessions .sess-list {
-    overflow-y:scroll;
-    height:40em;
-    padding:10px;
+    overflow-y: scroll;
+    width: 100%;
+    height: calc(100% - 40px);
+    padding: 0 10px 10px 10px;
 }
 
 .sessions .chat-list {
@@ -447,28 +470,22 @@ textarea:focus {
 }
 
 .sessions .sess-title {
-    display:flex;
-    align-items:center;
-    justify-content:center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    border-bottom: 1px solid #3333331f;
 }
 
 
 .right-content .session {
-    display:flex;
-    flex-flow:row nowrap;
-    margin:15px 0;
-    border-radius: 20px;
-    background: #efefef;
+    display: flex;
+    flex-flow: row nowrap;
+    margin-top: 8px;
     cursor:pointer;
-    opacity:0.85;
-    border-bottom:1px solid #aee4ff59;;
 }
 
-.right-content .session:hover {
-    opacity:1;
-}
-
-.right-content .session:focus {
+/*.right-content #active {
     border-radius: 20px;
     background: linear-gradient(145deg, #d7d7d7, #ffffff);
     box-shadow: inset -4px -2px 4px 0px #fff,
@@ -476,25 +493,16 @@ textarea:focus {
         -4px -2px 4px 0px #ffffff,
         4px 2px 6px 0px #DFE4EA;
     opacity:1;
-}
-
-.right-content #active {
-    border-radius: 20px;
-    background: linear-gradient(145deg, #d7d7d7, #ffffff);
-    box-shadow: inset -4px -2px 4px 0px #fff,
-        inset 4px 2px 6px 0px #DFE4EA,
-        -4px -2px 4px 0px #ffffff,
-        4px 2px 6px 0px #DFE4EA;
-    opacity:1;
-}
+}*/
 
 .right-content .options {
-    display:flex;
-    padding:10px;
-    border-radius:20px;
-    margin-bottom:20px;
-    flex-flow:row wrap;
-    justify-content:center;
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 10px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    height: 207px;
+    justify-content: center;
     box-shadow: -4px -2px 4px 0px #ffffff, 4px 2px 6px 0px #DFE4EA;
 }
 
@@ -504,18 +512,18 @@ textarea:focus {
 }
 
 .session .session-prev {
-    width:30%;
-    height:7em;
-    display:flex;
-    text-align:center;
-    background-color:#aee4ff59;
-    border-radius:20px 0 0 20px;
+    width: 148px;
+    height: 83px;
+    display: flex;
+    text-align: center;
+    background-color: #33333317;
+    border-radius: 10px;
 }
 
 .session-prev img {
-    height:4em;
-    margin:auto;
-    opacity:0.4;
+    height: 3.2em;
+    margin: auto;
+    opacity: 0.4;
 }
 
 .session .session-desc {
@@ -523,8 +531,18 @@ textarea:focus {
     width:70%;
 }
 
+.session .session-desc p {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    -webkit-line-clamp: 2;
+}
+
 .course-upperleft {
     display:flex;
+    width: 100%;
     justify-content:space-around;
     margin-bottom: 20px;
 }
@@ -534,7 +552,7 @@ textarea:focus {
     border-radius: 20px;
     padding: 20px;
     height: 207px;
-    width:100%;
+    width: 50%;
 }
 
 .course-upperleft .bulletin .bulletin-txt {
@@ -548,8 +566,8 @@ textarea:focus {
 }
 
 .course-content .course-upperleft .video-holder {
-    display:block;
-    min-width: 369px;
+    display: block;
+    width: 50%;
     height: 207px;
     margin-right: 20px;
 }
@@ -562,7 +580,7 @@ textarea:focus {
 .video-holder iframe {
     margin-bottom: 20px;
     width: 100%;
-    height:100%;
+    /*height:100%;*/
 }
 
 .video-holder video {
@@ -902,15 +920,19 @@ textarea:focus {
 }
 
 .options #live-add-box {
-    width:90%;
-    box-shadow: -6px -6px 14px rgba(255, 255, 255, .7), -6px -6px 10px rgba(255, 255, 255, .5), 6px 6px 8px rgba(255, 255, 255, .075), 6px 6px 10px rgba(0, 0, 0, .15);
-    border-radius:50px;
-    color:#fff;
-     background: rgb(255,66,29);
-background: linear-gradient(126deg, rgba(255,66,29,1) 0%, rgba(252,67,67,1) 50%, rgba(249,67,104,1)
-100%);
-     height:3rem;
-     cursor:pointer;
+    margin: 0 auto;
+    width: 90%;
+    box-shadow: -6px -6px 14px rgba(255, 255, 255, .7),
+	        -6px -6px 10px rgba(255, 255, 255, .5),
+	        6px 6px 8px rgba(255, 255, 255, .075),
+	        6px 6px 10px rgba(0, 0, 0, .15);
+    border-radius: 50px;
+    color: #fff;
+    background: rgb(255,66,29);
+    background: linear-gradient(126deg, rgba(255,66,29,1) 0%, rgba(252,67,67,1) 50%, rgba(249,67,104,1) 100%);
+    height: 2.5rem;
+    cursor: pointer;
+    justify-content: center;
 }
 
 .options #live-add-box img {
@@ -918,33 +940,24 @@ background: linear-gradient(126deg, rgba(255,66,29,1) 0%, rgba(252,67,67,1) 50%,
 }
 
 .course-content .add-box {
-    margin:20px;
-    justify-content:center;
-    font-size:1rem;
+    font-size: 1rem;
+    margin-top: 20px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    font-weight: bold;
+    color: #393939;
 }
 
 .add-box img {
-    cursor:pointer;
-    border-radius:50px;
-    width: 45px;
-    height: 45px;
-    padding: 10px;
-    margin-left: 24px;
-    box-shadow: -6px -6px 14px rgba(255, 255, 255, .7),
-		-6px -6px 10px rgba(255, 255, 255, .5),
-		6px 6px 8px rgba(255, 255, 255, .075),
-		6px 6px 10px rgba(0, 0, 0, .15);
+    margin-right: 15px;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
 }
 
-.course-content .add-box img {
-    margin-left:10px;
-}
-
-.add-box img:active {
-    box-shadow: inset -2px -2px 14px rgba(255, 255, 255, .7),
-		inset -2px -2px 10px rgba(255, 255, 255, .5),
-		inset 6px 6px 6px rgba(255, 255, 255, .075),
-		inset 6px 6px 10px rgba(0, 0, 0, .15);
+.options .add-box-con {
+    margin: 0 auto;
 }
 
 .content-box {

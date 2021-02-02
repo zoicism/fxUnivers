@@ -38,7 +38,7 @@ if(isset($_SESSION['username'])) {
   $course_biddable=$course_fetch['biddable'];
   $test_exists = $course_fetch['test_duration'];
   
-
+  $totalCost = $cost + ceil(0.1*$cost);
 
   require('../../../php/get_user.php');
   $id = $get_user_id;
@@ -185,10 +185,15 @@ if($bulletin_r->num_rows > 0) {
 ?>
 
 </div>
-</div>
+
+
 
 </div>
 
+</div>
+
+
+<div class="course-des-con">
 <?php
 
 if($tar_user_fetch['avatar']!=NULL) {
@@ -213,21 +218,24 @@ if($tar_user_fetch['avatar']!=NULL) {
 		  echo '</div>';
 
 
-if($my_like==1) $my_like_word='Liked'; else $my_like_word='Like';
-if($my_dislike==1) $my_dislike_word='Disliked'; else $my_dislike_word='Dislike';
+if($my_like==1) $my_like_word='<span class="blue">▲</span>'; else $my_like_word='▲';
+if($my_dislike==1) $my_dislike_word='<span class="blue">▼</span>'; else $my_dislike_word='▼';
 
 
-echo '<div style="margin-left:auto">';
+echo '<div class="like-dislike">';
 
-echo '<span style="color:blue;cursor:pointer;" id="likeBtn"><span id="like-num">'.$course_likes.'</span> <span id="like-word">'.$my_like_word.'</span></span>';
-      echo '       <span style="color:red;cursor:pointer;" id="dislikeBtn"><span id="dislike-word">'.$my_dislike_word.' </span> <span id="dislike-num">'.$course_dislikes.'</span></span>';
+echo '<span style="cursor:pointer;" id="likeBtn"><span id="like-num">'.$course_likes.'</span> <span id="like-word">'.$my_like_word.'</span></span>';
+      echo '       <span style="cursor:pointer;" id="dislikeBtn"><span id="dislike-word">'.$my_dislike_word.' </span> <span id="dislike-num">'.$course_dislikes.'</span></span>';
 
 echo '</div>';
 
 
 	     echo '</div>';
+
+echo '<div class="course-name-desc">';
 	     echo '<h2>'.$header.'</h2>';
              echo '<p>'.$description.'</p>';
+	 echo '</div>';
 ?>
 	  
 
@@ -266,7 +274,7 @@ $coursecounter_q="SELECT * FROM stucourse WHERE course_id=".$course_id;
 			    ?>
  </div>
 
-
+</div>
 
 
 
@@ -281,11 +289,12 @@ $coursecounter_q="SELECT * FROM stucourse WHERE course_id=".$course_id;
 if($user_type=='instructor') {
 			     echo '<div class="options">';
 
+
 echo '<div class="add-box" id="live-add-box">Start a Live Classroom</div>';
 echo '<div id="live-div" style="display:none"></div>';
 
 
-
+echo '<div class="add-box-con">';
 
     if($course_biddable) {
 
@@ -312,7 +321,8 @@ echo '<div id="live-div" style="display:none"></div>';
 	  </div>';
       } else {
         echo '<div class="add-box">
-               Accept Bid (<div id="highest-ins"></div>) <img src="/images/background/checkbox.svg" id="acceptBid">
+	<img src="/images/background/checkbox.svg" id="acceptBid">
+               Accept Bid (<div id="highest-ins"></div>) 
 	    </div>';
       }
     }
@@ -321,32 +331,35 @@ echo '<div id="live-div" style="display:none"></div>';
 
 
 
-			     echo '<div class="add-box">Manage Course <img src="/images/background/manage.svg" onclick="location.href=\'/userpgs/instructor/course_management/edit_course.php?course_id='.$course_id.'\';"></div>';
+			     echo '<div class="add-box" onclick="location.href=\'/userpgs/instructor/course_management/edit_course.php?course_id='.$course_id.'\';"><img src="/images/background/manage.svg" >Manage Course</div>';
 
-			     echo '<div class="add-box">Add Session <img src="/images/background/add.svg" onclick="location.href=\'/userpgs/instructor/class/new_class.php?course_id='.$course_id.'\';"></div>';
+			     echo '<div class="add-box" onclick="location.href=\'/userpgs/instructor/class/new_class.php?course_id='.$course_id.'\';"><img src="/images/background/add.svg" >Add Session</div>';
 
 			     
-			     echo '<div class="add-box">Manage Test <img src="/images/background/exam.svg" id="manageTestId"></div>';
+			     echo '<div class="add-box" id="manageTestId"><img src="/images/background/exam.svg" >Manage Test</div>';
 			     
 
 			     echo '</div>';
+		echo '</div>';
 } elseif($user_type=='student') {
+
 echo '<div class="options">';
 
+echo '<div class="add-box-con">';
 
-
-echo '<div class="add-box">Take the Test <img src="/images/background/exam.svg" id="examId"></div>';
+echo '<div class="add-box" id="examId"><img src="/images/background/exam.svg"> Take the Test</div>';
 if($stucourse_fetch['last_exam']!=null) {
-  echo '<div class="add-box"><p>Your Score: '.round($stucourse_fetch['score']*10,1).'</p></div>';
+  echo '<div class="add-box" style="cursor:auto"><p>Your Score: '.round($stucourse_fetch['score']*10,1).'</p></div>';
 } else {
-  echo '<div class="add-box"><p>Your Score: Not Taken</p></div>';
+  echo '<div class="add-box" style="cursor:auto"><p>Your Score: Not Taken</p></div>';
 }
 echo '<form action="/userpgs/instructor/exam/take_exam.php" id="goToExam" method="POST" style="display:none"><input type="hidden" name="course_id" value="'.$course_id.'"></form>';
+echo '</div>';
 echo '</div>';
 } else {
   
     echo '<div class="options">';
-
+echo '<div class="add-box-con">';
     if($course_biddable) {
 
 
@@ -390,11 +403,11 @@ echo '</div>';
       }
     } else {
     
-        echo '<div class="add-box">Purchase Course <img src="/images/background/checkbox.svg" id="purchbutt"></div>';
+        echo '<div class="add-box"  id="purchbutt"><img src="/images/background/checkbox.svg">Purchase Course</div>';
 	
     }
     echo '</div>';
-  
+  echo '</div>';
 }
 
 
@@ -646,8 +659,12 @@ $(document).ready(function() {
                 $(document).ready(function() {
                     var courseId=<?php echo $course_id?>;
                     var stuId=<?php echo $get_user_id?>;
+		    var totalCost = <?php echo $totalCost?>;
+
+		   
                     $('#purchbutt').click(function(e) {
-                        
+		     if(confirm('Confirm spending '+totalCost+' fxStars to purchase this course.')) {
+		        
                         jQuery.ajax({
                           type:'POST',
                           url:'/wallet/php/purchase.php',
@@ -663,8 +680,9 @@ $(document).ready(function() {
 				}
                           }
                         });
-                        
+                     }   
                     });
+		    
                 });
 </script>
 
@@ -706,18 +724,18 @@ $('#likeBtn').click(function() {
       if(response=='liked') {
 	var newLikeNum = likeNum+1;
         $('#like-num').text(newLikeNum);
-	$('#like-word').text('Liked');
+	$('#like-word').html('<span class="blue">▲</span>');
       } else if(response=='unliked') {
         var newLikeNum = likeNum-1;
 	$('#like-num').text(newLikeNum);
-	$('#like-word').text('Like');
+	$('#like-word').html('▲');
       } else if(response=='undisliked and liked') {
         var newLikeNum = likeNum+1;
         $('#like-num').text(newLikeNum);
-	$('#like-word').text('Liked');
+	$('#like-word').html('<span class="blue">▲</span>');
 	var newDislikeNum = dislikeNum-1;
 	$('#dislike-num').text(newDislikeNum);
-	$('#dislike-word').text('Dislike');
+	$('#dislike-word').html('▼');
       }
     }
   });
@@ -743,18 +761,18 @@ $('#dislikeBtn').click(function() {
       if(response=='disliked') {
 	var newDislikeNum = dislikeNum+1;
         $('#dislike-num').text(newDislikeNum);
-	$('#dislike-word').text('Disliked');
+	$('#dislike-word').html('<span class="blue">▼</span>');
       } else if(response=='undisliked') {
         var newDislikeNum = dislikeNum-1;
 	$('#dislike-num').text(newDislikeNum);
-	$('#dislike-word').text('Dislike');
+	$('#dislike-word').html('▼');
       } else if(response=='unliked and disliked') {
         var newDislikeNum = dislikeNum+1;
         $('#dislike-num').text(newDislikeNum);
-	$('#dislike-word').text('Disliked');
+	$('#dislike-word').html('<span class="blue">▼</span>');
 	var newLikeNum = likeNum-1;
 	$('#like-num').text(newLikeNum);
-	$('#like-word').text('Like');
+	$('#like-word').html('▲');
       }
     }
   });
