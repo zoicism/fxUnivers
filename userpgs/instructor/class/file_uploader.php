@@ -19,6 +19,6 @@ if(isset($_FILES['video_up'])) {
         //$video_upload_ok=0;
     }
 }
-header('Location: /userpgs/instructor/class?course_id='.$course_id.'&class_id='.$class_id);
+header('Location: /userpgs/instructor/class/edit_class.php?course_id='.$course_id.'&class_id='.$class_id);
 //echo $video_upload_ok;
 ?>

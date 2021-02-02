@@ -35,6 +35,12 @@ if($user_type!='instructor') {
     header("Location: /");
     exit();
 }
+
+$video_path='live/uploads/';
+$prev_vid=glob($video_path.$class_id.'.*');
+if(count($prev_vid)>0) $video_exists=1; else $video_exists=0;
+
+if($get_class['video']!='') $embed_exists=1; else $embed_exists=0;
 ?>
 
 <!DOCTYPE html>
@@ -88,9 +94,9 @@ if($user_type!='instructor') {
 
 
 
-  <div class="relative-main-content">
-                            <div class="content-box">
-			      <h2>Session Management</h2>
+  <div class="relative-main-content fxuniversity-edit">
+                            <div class="content-box" style="padding:10px;">
+			      <h2 style="text-align:center">Session Management</h2>
 
 <h3>Title & Description
 <form method="POST" action="edit_post.php">
@@ -101,37 +107,50 @@ if($user_type!='instructor') {
 
                   <input type="submit" value="Update" class="submit-btn">
                 </form>
-
-
-
 <hr class="hr-tct">
+<h3>Delete Session</h3>
+<p style="max-width:400px">By deleting a session, all of the related videos and files will be lost permenantly, so think twice before deciding to do so.</p>
+<form id="delClassForm">
+                  <input type="hidden" name="rm_courseId" value="<?php echo $course_id ?>">
+                  <input type="hidden" name="rm_classId"  value="<?php echo $class_id ?>">
+                  <input type="submit" value="Delete Session" class="submit-btn">
+                </form>
+</div>
+<div class="content-box" style="padding:10px;">
 
 <h3>Video</h3>
-  <form method="POST"  action="file_uploader.php" enctype="multipart/form-data" >
+
+<p style="max-width:400px;display:none;" id="up-vid-p">Upload a video from your device.</p>
+<button class="submit-btn" id="up-vid-id" style="display:none">Upload</button>
+
+
+  <form method="POST" id="up-vid-form"  action="file_uploader.php" enctype="multipart/form-data" style="display:none">
     <p style="max-width:400px">Uploading a new video will replace the previous session video if there is one already.</p>
-    <input name="video_up" type="file" accept=".avchd, .avi, .flv, .mkv, .mov, .mp4, .webm, .wmv">
+    <input name="video_up" type="file" id="vid-file-up" accept=".avchd, .avi, .flv, .mkv, .mov, .mp4, .webm, .wmv">
     <input name="course_id" type="hidden" value="<?php echo $course_id?>">
     <input name="class_id" type="hidden" value="<?php echo $class_id?>">
     <input type="submit" value="Upload" class="submit-btn">
   </form>
-<!--<form><input type="submit" class="submit-btn" value="Delete Video"></form>-->
-<button id="del-vid-id" class="submit-btn">Delete Video</button>
 
-<p style="max-width:400px">You could link a video from websites like YouTube and Vimeo by embedding it here:</p>
-<form id="vid-embed" autocomplete="off">
-  <input type="text" class="txt-input" name="embed_link" placeholder="Copy embed link here" required>
+<p style="max-width:400px;display:none;" id="del-vid-p">Remove your uploaded video for the session.</p>
+<button id="del-vid-id" style="display:none" class="submit-btn">Delete Video</button>
+
+<form id="vid-embed" autocomplete="off" style="display:none">
+<p style="max-width:400px;">Paste a YouTube/Vimeo link here as your course video. In case you have already uploaded a video using the button above, that video will be shown instead of the link.</p>
+  <input type="text" class="txt-input" name="embed_link" id="link-text" placeholder="Video link" required>
   <input type="hidden" name="class_id" value="<?php echo $class_id?>">
   <input type="submit" class="submit-btn" value="Embed Video" id="embedBtn">
 </form>
-<form id="del-embed">
+<hr class="hr-tct">
+<form id="del-embed" style="display:none">
+  <p style="max-width:400px;">Remove your linked video.</p>
   <input type="hidden" name="class_id" value="<?php echo $class_id?>">
   <input type="submit" class="submit-btn" value="Remove Embed" id="delEmbedBtn">
 </form>
 
 
-
-
-<hr class="hr-tct">
+</div>
+<div class="content-box" style="padding:10px;">
 
 
 <h3>File upload</h3>
@@ -144,30 +163,9 @@ if($user_type!='instructor') {
     <input type="submit" value="Upload file" class="submit-btn">
     </form>
 
-
-<hr class="hr-tct">
-
-<h3>Delete Session</h3>
-<p style="max-width:400px">By deleting a session, all of the related videos and files will be lost permenantly, so think twice before deciding to do so.</p>
-<form id="delClassForm">
-                  <input type="hidden" name="rm_courseId" value="<?php echo $course_id ?>">
-                  <input type="hidden" name="rm_classId"  value="<?php echo $class_id ?>">
-                  <input type="submit" value="Delete Session" class="submit-btn">
-                </form>
-
-                            </div>
-
-
-
-
-
+</div>
 
     </div>
-
-
-
-    
-
 
 </div>
 
@@ -189,25 +187,75 @@ $('#page-header').attr('href','/userpgs/fxuniversity');
 $('.fxuniversity-sidebar').attr('id','sidebar-active');
 </script>
 
+<!-- VIDEO -->
+<script>
+var videoExists = <?php echo $video_exists ?>;
+if(videoExists) {
+  $('#del-vid-id').show();
+  $('#del-vid-p').show();
+} else {
+  $('#up-vid-id').show();
+  $('#up-vid-p').show();
+}
+var embedExists = <?php echo $embed_exists ?>;
+console.log(embedExists);
+if(embedExists) {
+  $('#del-embed').show();
+} else {
+  $('#vid-embed').show();
+}
+</script>
+
+<script>
+$('#up-vid-id').click(function() {
+  $('#vid-file-up').click();
+});
+
+$('#vid-file-up').change(function() {
+  $('#up-vid-form').submit();
+  $('#up-vid-id').html('Uploading...');
+  $('#up-vid-id').css('opacity','0.6');
+});
+</script>
+
 
 <!-- VIDEO EMBED -->
 <script>
+
+
 $('#vid-embed').submit(function(event) {
   event.preventDefault();
-  console.log('Submitting...');
-  jQuery.ajax({
+  
+  var uploadOk=0;
+
+  var embedLink = $('#link-text').val();
+  var vimeo = embedLink.match("vimeo.com/(.*)");
+  var yt = embedLink.match("v=(.*)");
+
+console.log(yt);
+  if(yt!==null) {
+    embedLink = '<iframe width="560" height="315" src="https://www.youtube.com/embed/'+yt[1]+'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+    uploadOk=1;
+  } else if(vimeo!==null) {
+    embedLink = '<iframe width="560" height="315" src="https://player.vimeo.com/video/'+vimeo[1]+'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+    uploadOk=1;
+  } else {
+    alert('Please paste a valid YouTube/Vimeo link.');
+  }
+  
+  if(uploadOk) {
+   jQuery.ajax({
     url:'embed.php',
     type:'POST',
-    data: $(this).serialize(),
+    data: {embed_link: embedLink, class_id: '<?php echo $class_id?>' },
     success: function(response) {
       if(response==1) {
-        $('#embedBtn').css('opacity','0.8');
-        $('#embedBtn').prop('disabled',true);
-	$('#embedBtn').val('Embedded');
-	console.log('Embed link updated.');
+        alert('Video is linked.');
+	window.location.reload();
       }
     }
-  });
+   });
+  }
 });
 
 $('#del-embed').submit(function(ev) {
@@ -219,10 +267,8 @@ $('#del-embed').submit(function(ev) {
     data:$(this).serialize(),
     success: function(res) {
       if(res==1) {
-        $('#delEmbedBtn').css('opacity','0.8');
-	$('#delEmbedBtn').prop('disabled',true);
-	$('#delEmbedBtn').val('Embed removed');
-	console.log('Embed link removed.');
+        alert('Video link is removed.');
+	window.location.reload();
       }
     }
   });
@@ -273,6 +319,7 @@ $('#del-vid-id').click(function() {
     success: function(response) {
       if(response==1) {
         alert('Session video is deleted.');
+	window.location.reload();
       } else {
         alert('This session does not have a video.');
       }

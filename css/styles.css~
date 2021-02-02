@@ -239,6 +239,12 @@ textarea:focus {
     justify-content:center;
 }
 
+.fxuniversity-edit {
+    flex-flow:row;
+    align-items:flex-start;
+    justify-content:space-around;
+}
+
 .course-content {
     width:95%;
     display:flex;
@@ -3581,6 +3587,9 @@ input:checked + .slider:before {
 	margin:0;
 	height:86%;
 	padding:0;
+	flex-flow:column nowrap;
+	align-items:center;
+	justify-content:space-between;
     }
     
     .content-box {

@@ -93,7 +93,7 @@ if($get_course_fetch['video_url']!='') $embed_exists=1; else $embed_exists=0;
 
 
 
-  <div class="relative-main-content fxuniversity-edit" style="">
+  <div class="relative-main-content fxuniversity-edit">
                             <div class="content-box" style="padding:10px;">
 			      <h2 style="text-align:center">Course Management</h2>
 
@@ -137,7 +137,7 @@ if($get_course_fetch['video_url']!='') $embed_exists=1; else $embed_exists=0;
 <p style="max-width:400px;display:none;" id="del-vid-p">Remove your uploaded video for the course.</p>
 <button id="del-vid-id" class="submit-btn" style="display:none">Delete Video</button>
 
-
+<hr class="hr-tct">
 <form id="vid-embed" autocomplete="off" style="display:none">
 <p style="max-width:400px;">Paste a YouTube/Vimeo link here as your course video. In case you have already uploaded a video using the button above, that video will be shown instead of the link.</p>
   <input type="text" class="txt-input" name="embed_link" placeholder="Video link" id="link-text" required>
