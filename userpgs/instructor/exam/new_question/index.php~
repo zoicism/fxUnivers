@@ -25,6 +25,9 @@ require('../../../../php/get_plans.php');
 
 require('../../../../php/get_rel.php');
 
+$get_course_q = "SELECT * FROM teacher WHERE id=$course_id";
+$get_course_r = mysqli_query($connection,$get_course_q);
+$get_course = mysqli_fetch_array($get_course_r);
 ?>
 
 <!DOCTYPE html>
@@ -85,25 +88,32 @@ require('../../../../php/get_rel.php');
 	  <h2>Course Test</h2>
 
 
-	  <p>A course may have at least 3 questions. Once a learner is taking the test a number of these questions will be provided to be answered.</p>
+	  <p>A course may have at least 1 question. Once a learner is taking the test, a number of these questions, specified by you below, will be asked the learner.</p>
+
 
 
 	  <form id="testForm">
-	    <input type="number" name="ask_num" class="num-input" placeholder="How many questions to ask a learner?" min="3" required>
+<?php if($get_course['test_duration']==null) { ?>
+	    <input type="number" name="ask_num" class="num-input" placeholder="How many questions to ask a learner?" min="1" required>
 	    <input type="number" name="duration" class="num-input" placeholder="Test duration in minutes" min="5" required>
+<?php } else {?>
+<input type="number" name="ask_num" value="<?php echo $get_course['test_num'] ?>" class="num-input" placeholder="How many questions to ask a learner?" min="1" required>
+	    <input type="number" name="duration"  value="<?php echo $get_course['test_duration'] ?>" class="num-input" placeholder="Test duration in minutes" min="5" required>
+	    <input type="hidden" name="course_id" value="<?php echo $course_id?>">
+	<?php } ?>
 	    <input type="hidden" name="course_id" value="<?php echo $course_id?>">
 
 	    <h3>Questions</h3>
 	 <div class="questions">
 	    <div class="question">
 	      <p>Question #<span class="q_num">1</span></p>
-	      <textarea name="q1" placeholder="Question"></textarea>
+	      <textarea name="q1" placeholder="Question" required></textarea>
 
 	      <p>Options</p>
-	      <textarea name="q1o1" placeholder="Option A"></textarea>
-	      <textarea name="q1o2" placeholder="Option B"></textarea>
-	      <textarea name="q1o3" placeholder="Option C"></textarea>
-	      <textarea name="q1o4" placeholder="Option D"></textarea>
+	      <textarea name="q1o1" placeholder="Option A" required></textarea>
+	      <textarea name="q1o2" placeholder="Option B" required></textarea>
+	      <textarea name="q1o3" placeholder="Option C" required></textarea>
+	      <textarea name="q1o4" placeholder="Option D" required></textarea>
 
 	      <p>Correct Option</p>
 	      <select name="corr1" class="select-input">
@@ -114,46 +124,6 @@ require('../../../../php/get_rel.php');
 	      </select>
 	    </div>
 
-
-
-	    <div class="question">
-	      <p>Question #<span class="q_num">2</span></p>
-	      <textarea name="q2" placeholder="Question"></textarea>
-
-	      <p>Options</p>
-	      <textarea name="q2o1" placeholder="Option A"></textarea>
-	      <textarea name="q2o2" placeholder="Option B"></textarea>
-	      <textarea name="q2o3" placeholder="Option C"></textarea>
-	      <textarea name="q2o4" placeholder="Option D"></textarea>
-
-	      <p>Correct Option</p>
-	      <select name="corr2" class="select-input">
-	        <option value="a">A</option>
-		<option value="b">B</option>
-		<option value="c">C</option>
-		<option value="d">D</option>
-	      </select>
-	    </div>
-
-
-	    <div class="question">
-	      <p>Question #<span class="q_num">3</span></p>
-	      <textarea name="q3" placeholder="Question"></textarea>
-
-	      <p>Options</p>
-	      <textarea name="q3o1" placeholder="Option A"></textarea>
-	      <textarea name="q3o2" placeholder="Option B"></textarea>
-	      <textarea name="q3o3" placeholder="Option C"></textarea>
-	      <textarea name="q3o4" placeholder="Option D"></textarea>
-
-	      <p>Correct Option</p>
-	      <select name="corr3" class="select-input">
-	        <option value="a">A</option>
-		<option value="b">B</option>
-		<option value="c">C</option>
-		<option value="d">D</option>
-	      </select>
-	    </div>
 
 	    
 	</div>
@@ -167,7 +137,7 @@ require('../../../../php/get_rel.php');
 <form id="del-test-form">
 <input type="hidden" name="courseId" value="<?php echo $course_id?>">
 <input type="hidden" name="userType" value="<?php echo $user_type?>">
-<input type="submit" value="Remove Test">
+<input type="submit" class="submit-btn" value="Remove Test">
 </form>
 	</div>
 
@@ -212,7 +182,10 @@ $('#testForm').submit(function(event) {
     type:'POST',
     data:$(this).serialize() + "&qCount=" + questionCount,
     success: function(response) {
-      console.log(response);
+      if(response==1) {
+        alert("New questions are added.");
+	window.location.replace('/userpgs/instructor/course_management/course.php?course_id=<?php echo $course_id?>');
+      }	
     }
   });
 });
@@ -224,18 +197,18 @@ $('#add-q-btn').click(function(e) {
   var oldNum = $('.question').length;
   var newNum = oldNum+1;
   
-  $('.questions').append(`<div class="question">
-	      <p>Question #<span class="q_num">`+newNum+`</span></p>
-	      <textarea name="q`+newNum+`" placeholder="Question"></textarea>
+  $('.questions').append(`<div class="question" id="qNum`+newNum+`">
+	      <p>Question #<span id="qnum">`+newNum+`</span></p>
+	      <textarea name="q`+newNum+`" placeholder="Question" id="question-num"></textarea>
 
 	      <p>Options</p>
-	      <textarea name="q`+newNum+`o1" placeholder="Option A"></textarea>
-	      <textarea name="q`+newNum+`o2" placeholder="Option B"></textarea>
-	      <textarea name="q`+newNum+`o3" placeholder="Option C"></textarea>
-	      <textarea name="q`+newNum+`o4" placeholder="Option D"></textarea>
+	      <textarea name="q`+newNum+`o1" placeholder="Option A" id="option-a"></textarea>
+	      <textarea name="q`+newNum+`o2" placeholder="Option B" id="option-b"></textarea>
+	      <textarea name="q`+newNum+`o3" placeholder="Option C" id="option-c"></textarea>
+	      <textarea name="q`+newNum+`o4" placeholder="Option D" id="option-d"></textarea>
 
 	      <p>Correct Option</p>
-	      <select name="corr`+newNum+`" class="select-input">
+	      <select name="corr`+newNum+`" class="select-input" id="select-num">
 	        <option value="a">A</option>
 		<option value="b">B</option>
 		<option value="c">C</option>
@@ -249,12 +222,27 @@ $('#add-q-btn').click(function(e) {
 
 <script>
 function delQuestion(element, num) {
-  var qElement = element.closest('.question');
+
+  //element.preventDefault();
+
+  var numQuestions = $('.question').length;
+
+  for(var i=num+1; i<=numQuestions; i++) {
+    var newCount = i-1;
+    console.log(newCount);
+    $('#qNum'+i+' #qnum').text(newCount);
+    $('#qNum'+i+' #question-num').attr('name','q'+newCount);
+    $('#qNum'+i+' #option-a').attr('name','q'+newCount+'o1');
+    $('#qNum'+i+' #option-b').attr('name','q'+newCount+'o2');
+    $('#qNum'+i+' #option-c').attr('name','q'+newCount+'o3');
+    $('#qNum'+i+' #option-d').attr('name','q'+newCount+'o4');
+    $('#qNum'+i+' #select-num').attr('name','corr'+newCount);
+    $('#qNum'+i+' #del-question').attr('onclick','delQuestion(this, '+newCount+')');
+    $('#qNum'+i).attr('id','qNum'+newCount);
+  }
   
-
-  //element.nextAll().find('span').text(num+1);
-
-qElement.remove();
+  
+  element.closest('.question').remove();
 }
 </script>
 

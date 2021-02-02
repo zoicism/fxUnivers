@@ -6,7 +6,8 @@
     exit;
 }*/
 session_start();
-require('../../../../register/connect.php');
+require_once('../../../../register/connect.php');
+require_once('../../../../php/conn/fxinstructor.php');
 
 if(isset($_SESSION['username'])) {
     $username = $_SESSION['username'];
@@ -28,6 +29,10 @@ require('../../../../php/get_rel.php');
 $get_course_q = "SELECT * FROM teacher WHERE id=$course_id";
 $get_course_r = mysqli_query($connection,$get_course_q);
 $get_course = mysqli_fetch_array($get_course_r);
+
+$get_question_q = "SELECT * FROM question WHERE course_id=$course_id";
+$get_question_r = mysqli_query($fxinstructor_connection,$get_question_q);
+$get_question_c = mysqli_num_rows($get_question_r);
 ?>
 
 <!DOCTYPE html>
@@ -88,47 +93,85 @@ $get_course = mysqli_fetch_array($get_course_r);
 	  <h2>Course Test</h2>
 
 
-	  <p>A course may have at least 3 questions. Once a learner is taking the test a number of these questions will be provided to be answered.</p>
+	  <p>A course may have at least 1 question. Once a learner is taking the test, a number of these questions, specified by you below, will be asked the learner.</p>
 
 
 
 	  <form id="testForm">
 <?php if($get_course['test_duration']==null) { ?>
-	    <input type="number" name="ask_num" class="num-input" placeholder="How many questions to ask a learner?" min="3" required>
+	    <input type="number" name="ask_num" class="num-input" placeholder="How many questions to ask a learner?" min="1" required>
 	    <input type="number" name="duration" class="num-input" placeholder="Test duration in minutes" min="5" required>
 <?php } else {?>
-<input type="number" name="ask_num" value="<?php echo $get_course['test_num'] ?>" class="num-input" placeholder="How many questions to ask a learner?" min="3" required>
+<input type="number" name="ask_num" value="<?php echo $get_course['test_num'] ?>" class="num-input" placeholder="How many questions to ask a learner?" min="1" required>
 	    <input type="number" name="duration"  value="<?php echo $get_course['test_duration'] ?>" class="num-input" placeholder="Test duration in minutes" min="5" required>
 	    <input type="hidden" name="course_id" value="<?php echo $course_id?>">
 	<?php } ?>
+	
 	    <input type="hidden" name="course_id" value="<?php echo $course_id?>">
-
-	    <h3>Questions</h3>
+<h3>Questions</h3>
 	 <div class="questions">
+<?php
+if($get_question_c>0) {
+$i=1;
+  while($row = $get_question_r -> fetch_assoc()) {
+  $selected_option = $row['correct'];
+  
+    
+    echo '	    
 	    <div class="question">
-	      <p>Question #<span class="q_num">1</span></p>
-	      <textarea name="q1" placeholder="Question"></textarea>
+	      <p>Question #<span class="q_num">'.$i.'</span></p>
+	      <textarea name="q'.$i.'" placeholder="Question">'.$row['question'].'</textarea>
 
 	      <p>Options</p>
-	      <textarea name="q1o1" placeholder="Option A"></textarea>
-	      <textarea name="q1o2" placeholder="Option B"></textarea>
-	      <textarea name="q1o3" placeholder="Option C"></textarea>
-	      <textarea name="q1o4" placeholder="Option D"></textarea>
+	      <textarea name="q'.$i.'o1" placeholder="Option A">'.$row['a'].'</textarea>
+	      <textarea name="q'.$i.'o2" placeholder="Option B">'.$row['b'].'</textarea>
+	      <textarea name="q'.$i.'o3" placeholder="Option C">'.$row['c'].'</textarea>
+	      <textarea name="q'.$i.'o4" placeholder="Option D">'.$row['d'].'</textarea>
 
 	      <p>Correct Option</p>
-	      <select name="corr1" class="select-input">
-	        <option value="a">A</option>
-		<option value="b">B</option>
-		<option value="c">C</option>
-		<option value="d">D</option>
-	      </select>
-	    </div>
+	      <select name="corr'.$i.'" class="select-input">';
 
+    if($selected_option=='a') {
+      echo '<option value="a" selected="selected">A</option>';
+    } else {
+      echo '<option value="a">A</option>';
+    }
+
+    if($selected_option=='b') {
+      echo '<option value="b" selected="selected">B</option>';
+    } else {
+      echo '<option value="b">B</option>';
+    }
+
+    if($selected_option=='c') {
+      echo '<option value="c" selected="selected">C</option>';
+    } else {
+      echo '<option value="c">C</option>';
+    }
+
+    if($selected_option=='d') {
+      echo '<option value="d" selected="selected">D</option>';
+    } else {
+      echo '<option value="d">D</option>';
+    }
+
+	echo '
+	    <input type="hidden" name="question_id'.$i.'" value="'.$row['id'].'">
+	      </select>
+
+<button id="del-question" onclick="delQuestion('.$row['id'].')" class="submit-btn">Delete this Question</button>
+	    </div>
+	';
+
+	$i++;
+  }
+}
+?>
 
 	    
 	</div>
-<button class="submit-btn" id="add-q-btn">Add Another Question</button>
-	    <input type="submit" class="submit-btn" value="Apply Questions">
+            <button class="submit-btn" id="add-q-btn">Add Another Question</button>
+	    <input type="submit" class="submit-btn" value="Apply Changes">
 		
 		
 	  </form>
@@ -161,7 +204,7 @@ $get_course = mysqli_fetch_array($get_course_r);
 
 <!-- SCRIPTS -->
 <script>
-                          $('#page-header').html('fxUniversity');
+$('#page-header').html('fxUniversity');
 $('#page-header').attr('href','/userpgs/fxuniversity');
 </script>
 
@@ -178,14 +221,17 @@ $('#testForm').submit(function(event) {
   var questionCount = $('.question').length;
 
   jQuery.ajax({
-    url:'/php/add_question.php',
+    url:'/php/edit_question.php',
     type:'POST',
     data:$(this).serialize() + "&qCount=" + questionCount,
     success: function(response) {
+      //console.log(response);
+    
       if(response==1) {
-        alert("New questions are added.");
+        alert("Changes are applied.");
 	window.location.replace('/userpgs/instructor/course_management/course.php?course_id=<?php echo $course_id?>');
-      }	
+      }
+      
     }
   });
 });
@@ -194,55 +240,24 @@ $('#testForm').submit(function(event) {
 <script>
 $('#add-q-btn').click(function(e) {
   e.preventDefault();
-  var oldNum = $('.question').length;
-  var newNum = oldNum+1;
-  
-  $('.questions').append(`<div class="question" id="qNum`+newNum+`">
-	      <p>Question #<span id="qnum">`+newNum+`</span></p>
-	      <textarea name="q`+newNum+`" placeholder="Question" id="question-num"></textarea>
-
-	      <p>Options</p>
-	      <textarea name="q`+newNum+`o1" placeholder="Option A" id="option-a"></textarea>
-	      <textarea name="q`+newNum+`o2" placeholder="Option B" id="option-b"></textarea>
-	      <textarea name="q`+newNum+`o3" placeholder="Option C" id="option-c"></textarea>
-	      <textarea name="q`+newNum+`o4" placeholder="Option D" id="option-d"></textarea>
-
-	      <p>Correct Option</p>
-	      <select name="corr`+newNum+`" class="select-input" id="select-num">
-	        <option value="a">A</option>
-		<option value="b">B</option>
-		<option value="c">C</option>
-		<option value="d">D</option>
-	      </select>
-
-<button id="del-question" onclick="delQuestion(this,`+newNum+`)" class="submit-btn">Delete this Question</button>
-	    </div>`);
+  window.location.replace('/userpgs/instructor/exam/new_question?courseId=<?php echo $course_id?>'); 
 });
 </script>
 
 <script>
-function delQuestion(element, num) {
+function delQuestion(q_id) {
 
-  //element.preventDefault();
+  console.log(q_id);
 
-  var numQuestions = $('.question').length;
-
-  for(var i=num+1; i<=numQuestions; i++) {
-    var newCount = i-1;
-    console.log(newCount);
-    $('#qNum'+i+' #qnum').text(newCount);
-    $('#qNum'+i+' #question-num').attr('name','q'+newCount);
-    $('#qNum'+i+' #option-a').attr('name','q'+newCount+'o1');
-    $('#qNum'+i+' #option-b').attr('name','q'+newCount+'o2');
-    $('#qNum'+i+' #option-c').attr('name','q'+newCount+'o3');
-    $('#qNum'+i+' #option-d').attr('name','q'+newCount+'o4');
-    $('#qNum'+i+' #select-num').attr('name','corr'+newCount);
-    $('#qNum'+i+' #del-question').attr('onclick','delQuestion(this, '+newCount+')');
-    $('#qNum'+i).attr('id','qNum'+newCount);
-  }
-  
-  
-  element.closest('.question').remove();
+/*
+  jQuery.ajax({
+    url:'/php/del_one_question.php',
+    type:'POST',
+    data:{questionId:q_id},
+    success: function(response) {
+      console.log(response);
+    }
+   });  */
 }
 </script>
 
