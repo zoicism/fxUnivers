@@ -317,11 +317,11 @@ textarea:focus {
 }
 
 .course-content .right-content {
-    width:40%;
-    display:block;
-    position:relative;
-    border-radius:20px;
-    justify-content:space-between;
+    width: calc( 100% - 66.666% );
+    display: block;
+    position: relative;
+    border-radius: 20px;
+    justify-content: space-between;
 }
 
 .right-content .sessions {
@@ -508,12 +508,13 @@ textarea:focus {
 }
 
 .right-content .options {
-    display:flex;
-    padding:10px;
-    border-radius:20px;
-    margin-bottom:20px;
-    flex-flow:row wrap;
-    justify-content:center;
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 10px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    height: 207px;
+    justify-content: center;
     box-shadow: -4px -2px 4px 0px #ffffff, 4px 2px 6px 0px #DFE4EA;
 }
 
@@ -922,15 +923,19 @@ textarea:focus {
 }
 
 .options #live-add-box {
-    width:90%;
-    box-shadow: -6px -6px 14px rgba(255, 255, 255, .7), -6px -6px 10px rgba(255, 255, 255, .5), 6px 6px 8px rgba(255, 255, 255, .075), 6px 6px 10px rgba(0, 0, 0, .15);
-    border-radius:50px;
-    color:#fff;
-     background: rgb(255,66,29);
-background: linear-gradient(126deg, rgba(255,66,29,1) 0%, rgba(252,67,67,1) 50%, rgba(249,67,104,1)
-100%);
-     height:3rem;
-     cursor:pointer;
+    margin: 0 auto;
+    width: 90%;
+    box-shadow: -6px -6px 14px rgba(255, 255, 255, .7),
+	        -6px -6px 10px rgba(255, 255, 255, .5),
+	        6px 6px 8px rgba(255, 255, 255, .075),
+	        6px 6px 10px rgba(0, 0, 0, .15);
+    border-radius: 50px;
+    color: #fff;
+    background: rgb(255,66,29);
+    background: linear-gradient(126deg, rgba(255,66,29,1) 0%, rgba(252,67,67,1) 50%, rgba(249,67,104,1) 100%);
+    height: 2.5rem;
+    cursor: pointer;
+    justify-content: center;
 }
 
 .options #live-add-box img {
@@ -938,33 +943,25 @@ background: linear-gradient(126deg, rgba(255,66,29,1) 0%, rgba(252,67,67,1) 50%,
 }
 
 .course-content .add-box {
-    margin:20px;
-    justify-content:center;
-    font-size:1rem;
+    font-size: 1rem;
+    margin-top: 20px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    font-weight: bold;
+    color: #393939;
 }
 
 .add-box img {
-    cursor:pointer;
-    border-radius:50px;
-    width: 45px;
-    height: 45px;
-    padding: 10px;
-    margin-left: 24px;
-    box-shadow: -6px -6px 14px rgba(255, 255, 255, .7),
-		-6px -6px 10px rgba(255, 255, 255, .5),
-		6px 6px 8px rgba(255, 255, 255, .075),
-		6px 6px 10px rgba(0, 0, 0, .15);
+    margin-right: 15px;
+    cursor: pointer;
+    border-radius: 50px;
+    width: 24px;
+    height: 24px;
 }
 
-.course-content .add-box img {
-    margin-left:10px;
-}
-
-.add-box img:active {
-    box-shadow: inset -2px -2px 14px rgba(255, 255, 255, .7),
-		inset -2px -2px 10px rgba(255, 255, 255, .5),
-		inset 6px 6px 6px rgba(255, 255, 255, .075),
-		inset 6px 6px 10px rgba(0, 0, 0, .15);
+.options .add-box-con {
+    margin: 0 auto;
 }
 
 .content-box {
