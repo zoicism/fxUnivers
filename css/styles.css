@@ -955,7 +955,6 @@ textarea:focus {
 .add-box img {
     margin-right: 15px;
     cursor: pointer;
-    border-radius: 50px;
     width: 24px;
     height: 24px;
 }
