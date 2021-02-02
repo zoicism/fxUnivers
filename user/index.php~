@@ -130,6 +130,19 @@ $avatar_path=$_SERVER['DOCUMENT_ROOT'];
 	    <?php if($session_id==$tarid) { ?>
               <a id="open-edit-profile" class="edit-profile">Edit Profile</a>
 	    <?php } else {
+
+
+
+	            if($get_fnd_count==1 && $get_fnd==0 && $get_fnd_fetch['user1']!=$session_id) {
+
+		      $friend_req_q = "SELECT id FROM notif WHERE from_id=$tarid AND user_id=$session_id AND reason='friendRequest'";
+		      $friend_req_r = mysqli_query($connection,$friend_req_q);
+		      //$friend_req_f = mysqli_fetch_array($friend_req_r);
+		      //$fnd_req_notif_id=$friend_req_f['id'];
+		      
+
+		      echo '<a class="edit-profile" id="accept-fnd">Accept Friend Request</a>';
+		    }
                     
                     echo '<a class="edit-profile" id="friendship">';
                     
@@ -139,10 +152,16 @@ $avatar_path=$_SERVER['DOCUMENT_ROOT'];
                         if($get_fnd==1) {
                             echo 'Unfriend';
                         } else {
-                            echo 'Cancel Friend Request';
+			    if($get_fnd_fetch['user1']==$session_id) {
+                              echo 'Cancel Friend Request';
+			    } else {
+			      echo 'Decline Friend Request';
+			    }
                         }
                     }
                     echo '</a>';
+		    
+		    
 
                     echo '<a class="edit-profile" id="send-msg-btn">Send Message</a>';
                 }
@@ -337,6 +356,15 @@ if($fnd_user_fetch['avatar']!=NULL) {
 
 <?php
                 require('../php/limit_str.php');
+
+function get_string_between($string, $start, $end){
+    		      $string = ' ' . $string;
+    		      $ini = strpos($string, $start);
+    		      if ($ini == 0) return '';
+    		      $ini += strlen($start);
+    		      $len = strpos($string, $end, $ini) - $ini;
+    		      return substr($string, $ini, $len);
+		    }
                 
                 if($get_tar_courses_count>0) {
                     while($row3=$get_tar_courses_result->fetch_assoc()) {
@@ -346,9 +374,26 @@ if($fnd_user_fetch['avatar']!=NULL) {
 
 			$descrip=preg_replace("/<br\W*?\/>/"," ",$row3['description']);
 
+			if($row3['video_url']!=null) {
+			  $link_text = $row3['video_url'];
+			      if(strpos($link_text,'youtube.com') !== false) {			    
+			        $video_id = get_string_between($link_text,'embed/','" frameborder');
+			        $video_thumbnail = 'https://img.youtube.com/vi/'.$video_id.'/0.jpg';
+			      } elseif(strpos($link_text,'vimeo.com') !== false) {
+			        $video_id = get_string_between($link_text,'video/','" frameborder');
+				$hash = unserialize(file_get_contents("http://vimeo.com/api/v2/video/$video_id.php"));
+				
+				$video_thumbnail = $hash[0]['thumbnail_medium'];
+			      }
+
+			} else {
+ 			  $video_thumbnail = '/images/background/course.svg';
+			}
+
 			echo '<li class="course-profile" onclick="location.href=\'/userpgs/instructor/course_management/course.php?course_id='.$row3['id'].'\';">
 			        <div class="photo-course-container">
-            			    <a class="photo-course" style="background-image: url(\'/images/background/course.png\');opacity:0.5;"></a>
+				
+            			    <a class="photo-course" style="background-image: url(\''.$video_thumbnail.'\');"></a>
 				</div>
 				<div class="course-text">
             			    <a class="name"><b>'.$row3['header'].'</b></a>
@@ -403,9 +448,30 @@ if($fnd_user_fetch['avatar']!=NULL) {
 
 			$descrip=preg_replace("/<br\W*?\/>/"," ",$row3['description']);
 
+
+if($gsc_fetch['video_url']!=null) {
+			  
+                         $link_text = $gsc_fetch['video_url'];
+			      if(strpos($link_text,'youtube.com') !== false) {			    
+			        $video_id = get_string_between($link_text,'embed/','" frameborder');
+			        $video_thumbnail = 'https://img.youtube.com/vi/'.$video_id.'/0.jpg';
+			      } elseif(strpos($link_text,'vimeo.com') !== false) {
+			        $video_id = get_string_between($link_text,'video/','" frameborder');
+				$hash = unserialize(file_get_contents("http://vimeo.com/api/v2/video/$video_id.php"));
+				
+				$video_thumbnail = $hash[0]['thumbnail_medium'];
+			      }
+
+
+			} else {
+ 			  $video_thumbnail = '/images/background/course.svg';
+			}
+
+
 			echo '<li class="course-profile" onclick="location.href=\''.$course_link.'\';">
 			        <div class="photo-course-container">
-            			    <a class="photo-course" style="background-image: url(\'/images/background/course.png\');opacity:0.5;"></a>
+
+            			    <a class="photo-course" style="background-image: url(\''.$video_thumbnail.'\');"></a>
 				</div>
 				<div class="course-text">
             			    <a class="name"><b>'.$gsc_fetch['header'].'</b></a>
@@ -611,6 +677,12 @@ $('#del-photo-btn').click(function() {
 </script>
 
 <!-- FRIEND REQUEST -->
+<script>
+$('#accept-fnd').click(function() {
+  //var notif-id = <?php echo $fnd_req_notif_id?>;
+  console.log("<?php echo $friend_req_q?>");
+});
+</script>
 <script>
 $('#friendship').click(function() {
     var requesterId=<?php echo $session_id ?>;

@@ -130,6 +130,19 @@ $avatar_path=$_SERVER['DOCUMENT_ROOT'];
 	    <?php if($session_id==$tarid) { ?>
               <a id="open-edit-profile" class="edit-profile">Edit Profile</a>
 	    <?php } else {
+
+
+
+	            if($get_fnd_count==1 && $get_fnd==0 && $get_fnd_fetch['user1']!=$session_id) {
+		    
+		      $friend_req_q = "SELECT * FROM notif WHERE from_id=$tarid AND user_id=$session_id AND reason='friendRequest'";
+		      $friend_req_r = mysqli_query($connection,$friend_req_q) or die(mysqli_error($connection));
+		      $friend_req_f = mysqli_fetch_array($friend_req_r);
+		      $fnd_req_notif_id=$friend_req_f['id'];
+		      
+
+		      echo '<a class="edit-profile" id="accept-fnd">Accept Friend Request</a>';
+		    }
                     
                     echo '<a class="edit-profile" id="friendship">';
                     
@@ -139,10 +152,16 @@ $avatar_path=$_SERVER['DOCUMENT_ROOT'];
                         if($get_fnd==1) {
                             echo 'Unfriend';
                         } else {
-                            echo 'Cancel Friend Request';
+			    if($get_fnd_fetch['user1']==$session_id) {
+                              echo 'Cancel Friend Request';
+			    } else {
+			      echo 'Decline Friend Request';
+			    }
                         }
                     }
                     echo '</a>';
+		    
+		    
 
                     echo '<a class="edit-profile" id="send-msg-btn">Send Message</a>';
                 }
@@ -159,7 +178,20 @@ $avatar_path=$_SERVER['DOCUMENT_ROOT'];
           <div class="edit-profile-con">
 	  <?php if($session_id==$tarid) { ?>
             <a id="open-edit-profile-mob" class="edit-profile">Edit Profile</a>
-	    <?php } else { 
+	    <?php } else {
+
+
+
+if($get_fnd_count==1 && $get_fnd==0 && $get_fnd_fetch['user1']!=$session_id) {
+		    
+		      $friend_req_q = "SELECT * FROM notif WHERE from_id=$tarid AND user_id=$session_id AND reason='friendRequest'";
+		      $friend_req_r = mysqli_query($connection,$friend_req_q) or die(mysqli_error($connection));
+		      $friend_req_f = mysqli_fetch_array($friend_req_r);
+		      $fnd_req_notif_id=$friend_req_f['id'];
+		      
+
+		      echo '<a class="edit-profile" id="accept-fnd-mob">Accept</a>';
+		    }
                     
                     echo '<a class="edit-profile" id="friendship-mob">';
                     
@@ -169,7 +201,11 @@ $avatar_path=$_SERVER['DOCUMENT_ROOT'];
                         if($get_fnd==1) {
                             echo 'Unfriend';
                         } else {
-                            echo 'Cancel Request';
+			    if($get_fnd_fetch['user1']==$session_id) {
+                              echo 'Cancel Friend Request';
+			    } else {
+			      echo 'Decline';
+			    }
                         }
                     }
                     echo '</a>';
@@ -356,8 +392,17 @@ function get_string_between($string, $start, $end){
 			$descrip=preg_replace("/<br\W*?\/>/"," ",$row3['description']);
 
 			if($row3['video_url']!=null) {
-			  $video_id = get_string_between($row3['video_url'],'embed/','" frameborder');
-			  $video_thumbnail = 'https://img.youtube.com/vi/'.$video_id.'/0.jpg';
+			  $link_text = $row3['video_url'];
+			      if(strpos($link_text,'youtube.com') !== false) {			    
+			        $video_id = get_string_between($link_text,'embed/','" frameborder');
+			        $video_thumbnail = 'https://img.youtube.com/vi/'.$video_id.'/0.jpg';
+			      } elseif(strpos($link_text,'vimeo.com') !== false) {
+			        $video_id = get_string_between($link_text,'video/','" frameborder');
+				$hash = unserialize(file_get_contents("http://vimeo.com/api/v2/video/$video_id.php"));
+				
+				$video_thumbnail = $hash[0]['thumbnail_medium'];
+			      }
+
 			} else {
  			  $video_thumbnail = '/images/background/course.svg';
 			}
@@ -422,8 +467,19 @@ function get_string_between($string, $start, $end){
 
 
 if($gsc_fetch['video_url']!=null) {
-			  $video_id = get_string_between($gsc_fetch['video_url'],'embed/','" frameborder');
-			  $video_thumbnail = 'https://img.youtube.com/vi/'.$video_id.'/0.jpg';
+			  
+                         $link_text = $gsc_fetch['video_url'];
+			      if(strpos($link_text,'youtube.com') !== false) {			    
+			        $video_id = get_string_between($link_text,'embed/','" frameborder');
+			        $video_thumbnail = 'https://img.youtube.com/vi/'.$video_id.'/0.jpg';
+			      } elseif(strpos($link_text,'vimeo.com') !== false) {
+			        $video_id = get_string_between($link_text,'video/','" frameborder');
+				$hash = unserialize(file_get_contents("http://vimeo.com/api/v2/video/$video_id.php"));
+				
+				$video_thumbnail = $hash[0]['thumbnail_medium'];
+			      }
+
+
 			} else {
  			  $video_thumbnail = '/images/background/course.svg';
 			}
@@ -638,12 +694,56 @@ $('#del-photo-btn').click(function() {
 </script>
 
 <!-- FRIEND REQUEST -->
+<?php if($fnd_req_notif_id!=null) { ?>
+<script>
+$('#accept-fnd').click(function() {
+
+    var myNotifId = <?php echo $fnd_req_notif_id ?>;
+  
+  
+  jQuery.ajax({
+    type:'POST',
+    url:'/php/acceptFndReq.php',
+    data: {notifId: myNotifId, requesteeUN: '<?php echo $username?>'},
+    success: function(response) {
+      if(response==1) {
+        alert('Friend request accepted.');
+        window.location.reload();
+      } else {
+        alert('Failed to accept friend request. Please try again.');
+      }
+    }
+  });
+});
+</script>
+<script>
+$('#accept-fnd-mob').click(function() {
+
+    var myNotifId = <?php echo $fnd_req_notif_id ?>;
+  
+  
+  jQuery.ajax({
+    type:'POST',
+    url:'/php/acceptFndReq.php',
+    data: {notifId: myNotifId, requesteeUN: '<?php echo $username?>'},
+    success: function(response) {
+      if(response==1) {
+        alert('Friend request accepted.');
+        window.location.reload();
+      } else {
+        alert('Failed to accept friend request. Please try again.');
+      }
+    }
+  });
+});
+</script>
+<?php } ?>
 <script>
 $('#friendship').click(function() {
     var requesterId=<?php echo $session_id ?>;
     var requesteeId=<?php echo $tar_id ?>;
     var requesterUn='<?php echo $username ?>';
-    $.ajax({
+    jQuery.ajax({
       type: 'POST',
       url: '/php/set_friend.php',
             data: {requester: requesterId, requestee: requesteeId, requesterU: requesterUn},
@@ -651,8 +751,10 @@ $('#friendship').click(function() {
             //var results=jQuery.parseJSON(result);
             if(result==0) {
                 document.getElementById('friendship').innerHTML='Cancel Friend Request';
+		window.location.reload();
             } else if(result==1) {
                 document.getElementById('friendship').innerHTML='Add Friend';
+		window.location.reload();
             }
       }
     });
@@ -671,8 +773,10 @@ $('#friendship-mob').click(function() {
             //var results=jQuery.parseJSON(result);
             if(result==0) {
                 document.getElementById('friendship-mob').innerHTML='Cancel Request';
+		window.location.reload();
             } else if(result==1) {
                 document.getElementById('friendship-mob').innerHTML='Add Friend';
+		window.location.reload();
             }
       }
     });
@@ -681,8 +785,13 @@ $('#friendship-mob').click(function() {
 
 <script>
 $('#send-msg-btn').click(function() {
-console.log('clicked');
-  if(<?php echo $get_fnd?>==1) {
+  
+  var getFnd=0;
+  <?php if($get_fnd!=null) {
+    echo 'getFnd = '.$get_fnd.';';
+  }?>
+  
+  if(getFnd) {
     window.location.replace('/msg/<?php echo $tarname?>');
   } else {
     alert('You can send messages to the friends only.');
@@ -691,8 +800,12 @@ console.log('clicked');
 </script>
 <script>
 $('#send-msg-btn-mob').click(function() {
-console.log('clicked');
-  if(<?php echo $get_fnd?>==1) {
+  var getFnd=0;
+  <?php if($get_fnd!=null) {
+    echo 'getFnd = '.$get_fnd.';';
+  }?>
+  
+  if(getFnd) {
     window.location.replace('/msg/<?php echo $tarname?>');
   } else {
     alert('You can send messages to the friends only.');
