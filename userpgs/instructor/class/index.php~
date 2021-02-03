@@ -181,7 +181,7 @@ if($tar_user_fetch['avatar']!=NULL) {
 
 	  <?php
 
-echo '<div class="little-box gray-bg"><span>'.date("M jS, Y", strtotime($dt)).'</span></div>';
+echo '<div class="little-box"><span>'.date("M jS, Y", strtotime($dt)).'</span></div>';
 
 			    ?>
  </div>
