@@ -87,7 +87,7 @@ $my_dislike = mysqli_num_rows($my_dislike_r);
 </head>
     
 <body>
-  <div class="header-sidebar"></div>
+  <div class="header-sidebar" style="margin-bottom:0;"></div>
   <script id="upperbar-script" src="/js/upperbar.js" sess_avatar="<?php echo $session_avatar?>" sess_un="<?php echo $username?>"></script>
   
   <div class="blur mobile-main">
@@ -131,7 +131,7 @@ $my_dislike = mysqli_num_rows($my_dislike_r);
 	  ?>
 <div class="video-holder">
 
-	  <video style="width:100%;height:100%;" controls>
+	  <video controls>
             <source src="<?php echo 'videos/'.$course_id.'.'.$vid_ext ?>" type="video/<?php echo $vid_ext?>"> 
 	  </video>
 	  
@@ -209,12 +209,16 @@ if($tar_user_fetch['avatar']!=NULL) {
 	     	  echo '<div class="pub-img avatar" onclick="location.href=\'/user/'.$tar_user_fetch['username'].'\'" style="background-image:url(\''.$avatar_url.'\');cursor:pointer;">';
 		  echo '</div>';
 		  echo '<div class="pub-name" style="cursor:pointer" onclick="location.href=\'/user/'.$tar_user_fetch['username'].'\'">';
-		  echo '<p class="fullname">'.$tar_user_fetch['fname'].' '.$tar_user_fetch['lname'].'</p>';
-		  if($tar_user_fetch['verified']) {
-		    echo '<p>@'.$tar_user_fetch['username'].' <img src="/images/background/verified.png" style="width:1rem; height:1rem;"></p>';
+
+
+if($tar_user_fetch['verified']) {
+		    echo '<p class="username">'.$tar_user_fetch['username'].' <img src="/images/background/verified.png" style="width:1rem; height:1rem;"></p>';
 		  } else {
-		    echo '<p>@'.$tar_user_fetch['username'].'</p>';
+		    echo '<p class="username">'.$tar_user_fetch['username'].'</p>';
 		  }
+
+		  echo '<p class="fullname">'.$tar_user_fetch['fname'].' '.$tar_user_fetch['lname'].'</p>';
+		  
 		  echo '</div>';
 
 
@@ -476,6 +480,15 @@ echo '<div class="sess-list">';
   <script>
     $('.fxuniversity-sidebar').attr('id','sidebar-active');
   </script>
+
+<script>
+if(screen.width < 629) {
+  $('.bulletin').hide();
+
+  var vhWidth = $('.video-holder').width();
+  $('.video-holder').height(vhWidth/1.78);
+}
+</script>
 
 <script>
 $('#bidForm').submit(function(event) {

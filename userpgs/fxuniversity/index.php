@@ -53,12 +53,12 @@ require('../../php/get_stu_stucourse.php');
               <ul class="main-flex-container">
                   <li class="main-items">
                       <a href="/userpgs/instructor" class="link-main">
-                          <div class="head">Teach</div>
+                          <div class="head">Teach (<?php echo $course_count ?>)</div>
                       </a>
                   </li>
                   <li class="main-items">
                       <a href="/userpgs/student" class="link-main">
-                          <div class="head">Learn</div>
+                          <div class="head">Learn (<?php echo $gss_count ?>)</div>
                       </a>
                   </li>
                   
@@ -71,12 +71,12 @@ require('../../php/get_stu_stucourse.php');
 
 
   <div class="relative-main-content">
-                            <div class="content-box">
+  <!--                          <div class="content-box">
 			    	 <h2>fxUniversity</h2>
-                              	 <p>Taught courses: <strong><?php echo $course_count ?></strong></p>
-				 <p>Learned courses: <strong><?php echo $gss_count ?></strong></p>
+                              	 <p>Teaching: <strong></strong></p>
+				 <p>Learning: <strong></strong></p>
                             </div>
-
+-->
 
 
 <div class="main-content-mob">
@@ -84,12 +84,12 @@ require('../../php/get_stu_stucourse.php');
 <ul class="main-flex-container">
                   <li class="main-items">
                       <a href="/userpgs/instructor" class="link-main">
-                          <div class="head">Teach</div>
+                          <div class="head">Teach (<?php echo $course_count ?>)</div>
                       </a>
                   </li>
                   <li class="main-items">
                       <a href="/userpgs/student" class="link-main">
-                          <div class="head">Learn</div>
+                          <div class="head">Learn (<?php echo $gss_count ?>)</div>
                       </a>
                   </li>
                   
@@ -102,7 +102,7 @@ require('../../php/get_stu_stucourse.php');
 
 
 			    <div class="description">
-			    <h3>fxUniversity Options</h3>
+			    <h3>Options</h3>
 			    <p><strong>Teach:</strong> Create courses, put a price on your courses, and gain fxStars as users purchase them.</p>
 			    <p><strong>Learn:</strong> Purchase courses with your fxStars and learn from various courses.</p>
     			    </div>

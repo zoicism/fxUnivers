@@ -82,7 +82,7 @@ require('../php/notify_students.php');
     <script src="../DetectRTC/DetectRTC.js"></script>
     <script src="../js/socket.io.js"> </script>
     <script src="../js/adapter-latest.js"></script>
-    <script src="../js/IceServersHandler.js"></script>
+    <script src="/js/webrtc/IceServersHandler.js"></script>
     <script src="../js/CodecsHandler.js"></script>
     <script src="../RTCPeerConnection/RTCPeerConnection-v1.5.js"> </script>
     <script src="../webrtc-broadcasting/broadcast.js"> </script>

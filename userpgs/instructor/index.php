@@ -26,6 +26,8 @@ require('../../php/get_plans.php');
 require('../../php/get_rel.php');
 
 require('../../wallet/php/get_fxcoin_count.php');
+
+require('../../php/get_stu_stucourse.php');
 ?>
 
 <!DOCTYPE html>
@@ -61,12 +63,12 @@ require('../../wallet/php/get_fxcoin_count.php');
               <ul class="main-flex-container">
                   <li class="main-items">
                       <a href="/userpgs/instructor" class="link-main" id="active-main">
-                          <div class="head">Teach</div>
+                          <div class="head">Teach (<?php echo $course_count ?>)</div>
                       </a>
                   </li>
                   <li class="main-items">
                       <a href="/userpgs/student" class="link-main">
-                          <div class="head">Learn</div>
+                          <div class="head">Learn (<?php echo $gss_count ?>)</div>
                       </a>
                   </li>
                   
@@ -82,7 +84,7 @@ require('../../wallet/php/get_fxcoin_count.php');
 
 		<div class="add-box">
 
-		 
+	 	
 		   Add New Course <img src="/images/background/add.svg" onclick="location.href='/userpgs/instructor/course_management/new_course.php';">
 
 		</div>

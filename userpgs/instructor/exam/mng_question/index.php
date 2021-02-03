@@ -159,7 +159,7 @@ $i=1;
 	    <input type="hidden" name="question_id'.$i.'" value="'.$row['id'].'">
 	      </select>
 
-<button id="del-question" onclick="delQuestion('.$row['id'].')" class="submit-btn">Delete this Question</button>
+<a id="del-question" questionId="'.$row['id'].'">Delete this Question</a>
 	    </div>
 	';
 
@@ -251,20 +251,26 @@ $('#add-q-btn').click(function(e) {
 </script>
 
 <script>
-function delQuestion(q_id) {
+$('#del-question').click(function(event) {
+  event.preventDefault();
 
-  console.log(q_id);
+  var q_id = $('#del-question').attr('questionId');
 
-/*
   jQuery.ajax({
     url:'/php/del_one_question.php',
     type:'POST',
     data:{questionId:q_id},
     success: function(response) {
-      console.log(response);
+      if(response==1) {
+        alert('Question is deleted.');
+        window.location.reload();
+      } else {
+        alert('Failed to delete the question. Please try again.');
+      }
     }
-   });  */
-}
+   });
+});
+
 </script>
 
 <script>
