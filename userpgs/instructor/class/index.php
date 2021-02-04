@@ -243,8 +243,16 @@ echo '<div class="sessions">';
 //echo '<div class="sess-title"><h3>Sessions</h3></div>';
 echo '<div class="sess-list">';
                 if($class_result->num_rows>0) {
-		
+
+
+		      // CHECK SESSIONS WHERE INSTRUCTOR IS LIVE
+		      $instructor_q = 'SELECT * FROM user WHERE id='.$get_course_teacher_id;
+		      $instructor_r = mysqli_query($connection,$instructor_q);
+		      $instructor = mysqli_fetch_array($instructor_r);
+
+
                     while($row=$class_result->fetch_assoc()) {
+
                         if($user_type=='instructor' || $user_type=='student') {
                             $onclickurl="location.href='/userpgs/instructor/class?course_id=".$course_id."&class_id=".$row['id']."'";
                         } else {
@@ -264,8 +272,15 @@ echo '<div class="sess-list">';
 			  <div class="session-desc">
 
 			<?php
-                        
-                        echo '<p><strong>'.$row['title'].'</strong></p>';
+
+
+
+if((time()-strtotime($instructor['lastseen']) < 3) && ($instructor['lsPage']=='live/#'.$row['id'])) {
+                        echo '<p><strong>'.$row['title'].'</strong> <span class="online"></span></p>';
+			} else {
+			echo '<p><strong>'.$row['title'].'</strong></p>';
+			}
+			
                         if($row['body']=='') {
                             $descrip='<span class="gray">(No description)</span>';
                         } else {

@@ -250,7 +250,15 @@ $coursecounter_q="SELECT * FROM stucourse WHERE course_id=".$course_id;
                             $coursecounts=mysqli_num_rows($coursecounter_r);
 ?>
 <div class="little-box blue-bg">
-	  <?php echo $coursecounts.' <span>students</span>'; ?>
+	  <?php
+	  if($coursecounts==0) {
+	    echo '<span>No students</span>';
+	  } else if($coursecounts==1) {
+	    echo $coursecounts.' <span>student</span>';
+	  } else {
+	    echo $coursecounts.' <span>students</span>';
+	  }
+	  ?>
 	</div>
 <?php echo '<div class="little-box"><span>'.date("M jS, Y", strtotime($s_date)).'</span></div>';?>
 

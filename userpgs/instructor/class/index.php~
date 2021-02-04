@@ -80,7 +80,7 @@ require('../../../php/get_tar_id.php');
 </head>
     
 <body>
-  <div class="header-sidebar"></div>
+  <div class="header-sidebar" style="margin-bottom:0"></div>
   <script id="upperbar-script" src="/js/upperbar.js" sess_avatar="<?php echo $session_avatar?>" sess_un="<?php echo $username?>"></script>
   
   <div class="blur mobile-main">
@@ -123,7 +123,7 @@ require('../../../php/get_tar_id.php');
 
 
 	  <div class="video-holder">
-	  <video width="560" height="315" controls>
+	  <video controls>
             <source src="<?php echo 'live/uploads/'.$class_id.'.'.$vid_ext ?>" type="video/<?php echo $vid_ext?>"> 
 	  </video>
 	  </div>
@@ -159,13 +159,20 @@ if($tar_user_fetch['avatar']!=NULL) {
 } else {
       $avatar_url='/images/background/avatar.png';
 }
-
- echo '<div class="pub-avatar" onclick="location.href=\'/user/'.$tar_user_fetch['username'].'\'">';
-	     	  echo '<div class="pub-img avatar" style="background-image:url(\''.$avatar_url.'\');">';
+echo '<div class="course-des-con">';
+ echo '<div class="pub-avatar" style="cursor:auto">';
+	     	  echo '<div class="pub-img avatar" onclick="location.href=\'/user/'.$tar_user_fetch['username'].'\'" style="background-image:url(\''.$avatar_url.'\');cursor:pointer;">';
 		  echo '</div>';
-		  echo '<div class="pub-name">';
+		  echo '<div class="pub-name" style="cursor:pointer" onclick="location.href=\'/user/'.$tar_user_fetch['username'].'\'">';
+
+if($tar_user_fetch['verified']) {
+		    echo '<p class="username">'.$tar_user_fetch['username'].' <img src="/images/background/verified.png" style="width:1rem; height:1rem;"></p>';
+		  } else {
+		    echo '<p class="username">'.$tar_user_fetch['username'].'</p>';
+		  }
+
 		  echo '<p class="fullname">'.$tar_user_fetch['fname'].' '.$tar_user_fetch['lname'].'</p>';
-		  echo '<p>@'.$tar_user_fetch['username'].'</p>';
+		  
 		  echo '</div>';
 	     echo '</div>';
 
@@ -185,7 +192,7 @@ echo '<div class="little-box"><span>'.date("M jS, Y", strtotime($dt)).'</span></
 
 			    ?>
  </div>
-
+</div>
 
 
 
@@ -198,13 +205,13 @@ echo '<div class="little-box"><span>'.date("M jS, Y", strtotime($dt)).'</span></
 
 if($user_type=='instructor') {
 
-			     echo '<div class="options">';
+			     echo '<div class="options session-options">';
 
 			     echo '<div class="add-box" id="live-add-box">Open Live Classroom</div>';
 
-
-			     echo '<div class="add-box">Manage Session <img src="/images/background/manage.svg" onclick="location.href=\'/userpgs/instructor/class/edit_class.php?course_id='.$course_id.'&class_id='.$class_id.'\';"></div>';
-
+echo '<div class="add-box-con">';
+			     echo '<div class="add-box" onclick="location.href=\'/userpgs/instructor/class/edit_class.php?course_id='.$course_id.'&class_id='.$class_id.'\';"><img src="/images/background/manage.svg" >Manage Session</div>';
+echo '</div>';
 			     
 			     echo '<form action="/userpgs/instructor/class/live/#'.$class_id.'" method="POST" id="LiveForm"><input type="hidden" name="course_id" value="'.$course_id.'"><input type="hidden" name="class_id" value="'.$class_id.'"></form>';
 
@@ -215,7 +222,7 @@ if($user_type=='instructor') {
 
 			     echo '</div>';
 } else {
-echo '<div class="options">';
+echo '<div class="options session-learn-options">';
 echo '<div class="add-box" id="live-add-box">Open Live Classroom</div>';
 echo '</div>';
 
@@ -314,7 +321,16 @@ echo '<div class="sess-list">';
     $('#page-header').attr('href','/userpgs/fxuniversity');
   </script>
   
-  
+
+
+<script>
+var vhWidth = $('.video-holder').width();
+$('.video-holder').height(vhWidth/1.78);
+</script>
+
+
+
+
   <!-- fxUniversity sidebar active -->
   <script>
     $('.fxuniversity-sidebar').attr('id','sidebar-active');

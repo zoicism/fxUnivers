@@ -375,7 +375,7 @@ textarea:focus {
 
 .sessions .online-list {
     overflow-y:scroll;
-    max-height:40em;
+    min-height:25em;
     padding:10px;
 }
 
@@ -959,8 +959,25 @@ textarea:focus {
     justify-content: center;
 }
 
+
+
 .options #live-add-box img {
     box-shadow:none;
+}
+
+.options #live-whiteboard-box {
+    margin: 0 auto;
+    width: 90%;
+    box-shadow: -6px -6px 14px rgba(255, 255, 255, .7),
+	        -6px -6px 10px rgba(255, 255, 255, .5),
+	        6px 6px 8px rgba(255, 255, 255, .075),
+	        6px 6px 10px rgba(0, 0, 0, .15);
+    border-radius: 50px;
+    color: #fff;
+    background: #00a1e0;
+    height: 2.5rem;
+    cursor: pointer;
+    justify-content: center;
 }
 
 .course-content .add-box {

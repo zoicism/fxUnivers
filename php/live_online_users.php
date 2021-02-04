@@ -6,7 +6,9 @@ if(isset($_POST['user_id']))  $user_id=$_POST['user_id'];
 if(isset($_POST['course_id'])) $course_id=$_POST['course_id'];
 if(isset($_POST['teacherId'])) $teacher_id = $_POST['teacherId'];
 
-$add_online_q='UPDATE user SET lsPage="live/#'.$class_id.'" , lastseen=NOW() WHERE id='.$user_id;
+$dt=date('Y-m-d H:i:s');
+
+$add_online_q='UPDATE user SET lsPage="live/#'.$class_id.'" , lastseen="'.$dt.'" WHERE id='.$user_id;
 $add_online_r=mysqli_query($connection,$add_online_q);
 
 
@@ -15,7 +17,7 @@ $online_num=0;
 
 
   // CHECK INSTRUCTOR'S PRESENCE
-  $instructor_q = 'SELECT * FROM user WHERE id='.$teacher_id.' AND lsPage="live/#'.$class_id.'"';
+  $instructor_q = 'SELECT * FROM user WHERE id='.$teacher_id;
   $instructor_r = mysqli_query($connection,$instructor_q);
   $instructor_count = mysqli_num_rows($instructor_r);
   $instructor = mysqli_fetch_array($instructor_r);
@@ -32,7 +34,7 @@ if($instructor_count>0) {
 
   
 
-    if(time()-strtotime($instructor['lastseen']) < 3) {
+    if((time()-strtotime($instructor['lastseen']) < 3) && ($instructor['lsPage']=="live/#$class_id")) {
      $teacher_stat = '
       <div class="user" onclick="window.location.replace(\'/user/'.$instructor['username'].'\');">
           <div class="user-img avatar" style="background-image:url(\''.$avatar_url.'\');"></div>
@@ -44,8 +46,7 @@ if($instructor_count>0) {
        </div>
        ';
        $online_num++;
-     } 
-} else {
+     } else {
       $teacher_stat = '
        <div class="user" onclick="window.location.replace(\'/user/'.$instructor['username'].'\');">
           <div class="user-img avatar" style="background-image:url(\''.$avatar_url.'\');"></div>
@@ -57,7 +58,8 @@ if($instructor_count>0) {
        </div>
        ';
        $offline_num++;
-}
+    }
+} 
 
 
 

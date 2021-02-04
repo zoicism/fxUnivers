@@ -397,7 +397,7 @@ textarea:focus {
     font-weight:bold;
 }
 
-.fullname .online {
+.online {
     display:inline-block;
     border-radius:50px;
     width:1rem;
