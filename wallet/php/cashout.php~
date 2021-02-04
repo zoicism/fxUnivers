@@ -17,7 +17,7 @@ if(isset($_POST['coin_count'])) $fxcoins=$_POST['coin_count'];
 date_default_timezone_set('America/New_York');
 $dt=date('Y-m-d H:i:s');
 
-if($fxcoins>$amnt && $amnt>100) {
+if($fxcoins>=$amnt && $amnt>=100) {
     $interest=ceil(0.1*$amnt);
     $valid_amnt=$amnt-$interest;
     
@@ -33,11 +33,13 @@ if($fxcoins>$amnt && $amnt>100) {
     $cashout_q="INSERT INTO cashout(userId,amnt,dt) VALUES($userId,$valid_amnt,'$dt')";
     $cashout_r=mysqli_query($wallet_connection,$cashout_q) or die(mysqli_error($wallet_connection));
 
-    header('Location: /wallet/cashout?res=success');
-    exit();
+    echo 'success';
+
+    //header('Location: /wallet/cashout?res=success');
+    
 } else {
-    header('Location: /wallet/cashout?res=insuff');
-    exit();
+    echo 'insuff';
+
 }
 
 
