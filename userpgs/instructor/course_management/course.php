@@ -348,7 +348,7 @@ echo '<div class="add-box-con">';
 			     echo '<div class="add-box" onclick="location.href=\'/userpgs/instructor/class/new_class.php?course_id='.$course_id.'\';"><img src="/images/background/add.svg" >Add Session</div>';
 
 			     
-			     echo '<div class="add-box" id="manageTestId"><img src="/images/background/exam.svg" >Manage Test</div>';
+			     echo '<div class="add-box" id="manageTestId"><img src="/images/background/exam.svg" >Manage Quiz</div>';
 			     
 
 			     echo '</div>';
@@ -359,7 +359,7 @@ echo '<div class="options">';
 
 echo '<div class="add-box-con">';
 
-echo '<div class="add-box" id="examId"><img src="/images/background/exam.svg"> Take the Test</div>';
+echo '<div class="add-box" id="examId"><img src="/images/background/exam.svg"> Take Quiz</div>';
 if($stucourse_fetch['last_exam']!=null) {
   echo '<div class="add-box" style="cursor:auto"><p>Your Score: '.round($stucourse_fetch['score']*10,1).'</p></div>';
 } else {
@@ -651,12 +651,12 @@ $(document).ready(function() {
 		      success: function(report) {
 		        //console.log(report);
 			if(report>=7) {
-			  if(confirm('By starting the test for this course you will not be able to retake it for 7 days.')) {
+			  if(confirm('By starting the quiz for this course you will not be able to retake it for 7 days.')) {
 			    window.location.replace('/userpgs/student/exam?courseId=<?php echo $course_id?>');
 			  }
 			} else {
 			  var wait_days = 7-report;
-               		  alert('You have taken the test '+report+' days ago. You have to wait '+wait_days+' days to be able to retake it.');
+               		  alert('You have taken the quiz '+report+' days ago. You have to wait '+wait_days+' days to be able to retake it.');
 			}
 	              }		    
 		    });
@@ -678,9 +678,9 @@ $(document).ready(function() {
   $('#manageTestId').click(function() {
     //console.log(testExists);
     if(testExists != '') {
-      window.location.replace('/userpgs/instructor/exam/mng_question?courseId=<?php echo $course_id?>');
+      window.location.href='/userpgs/instructor/exam/mng_question?courseId=<?php echo $course_id?>';
     } else {
-      window.location.replace('/userpgs/instructor/exam/new_question?courseId=<?php echo $course_id?>');
+      window.location.href='/userpgs/instructor/exam/new_question?courseId=<?php echo $course_id?>';
     }
   });  
 });

@@ -348,7 +348,7 @@ echo '<div class="add-box-con">';
 			     echo '<div class="add-box" onclick="location.href=\'/userpgs/instructor/class/new_class.php?course_id='.$course_id.'\';"><img src="/images/background/add.svg" >Add Session</div>';
 
 			     
-			     echo '<div class="add-box" id="manageTestId"><img src="/images/background/exam.svg" >Manage Test</div>';
+			     echo '<div class="add-box" id="manageTestId"><img src="/images/background/exam.svg" >Manage Quiz</div>';
 			     
 
 			     echo '</div>';
@@ -359,7 +359,7 @@ echo '<div class="options">';
 
 echo '<div class="add-box-con">';
 
-echo '<div class="add-box" id="examId"><img src="/images/background/exam.svg"> Take the Test</div>';
+echo '<div class="add-box" id="examId"><img src="/images/background/exam.svg"> Take Quiz</div>';
 if($stucourse_fetch['last_exam']!=null) {
   echo '<div class="add-box" style="cursor:auto"><p>Your Score: '.round($stucourse_fetch['score']*10,1).'</p></div>';
 } else {
@@ -429,8 +429,17 @@ echo '<div class="sess-title"><h3>Sessions ('.$class_num.')</h3></div>';
 echo '<div class="sess-list">';
 
                 if($class_result->num_rows>0) {
+
+		      // CHECK SESSIONS WHERE INSTRUCTOR IS LIVE
+		      $instructor_q = 'SELECT * FROM user WHERE id='.$get_course_teacher_id;
+		      $instructor_r = mysqli_query($connection,$instructor_q);
+		      $instructor = mysqli_fetch_array($instructor_r);
+		  
 		
                     while($row=$class_result->fetch_assoc()) {
+
+		      
+
                         if($user_type=='instructor' || $user_type=='student') {
                             $onclickurl="location.href='/userpgs/instructor/class?course_id=".$course_id."&class_id=".$row['id']."'";
                         } else {
@@ -446,8 +455,12 @@ echo '<div class="sess-list">';
 			  <div class="session-desc">
 
 			<?php
-                        
-                        echo '<p><strong>'.$row['title'].'</strong></p>';
+
+			if((time()-strtotime($instructor['lastseen']) < 3) && ($instructor['lsPage']=='live/#'.$row['id'])) {
+			  echo '<p><strong>'.$row['title'].'</strong> <span class="online"></span></p>';
+			} else {
+                          echo '<p><strong>'.$row['title'].'</strong></p>'.$row['lastseen'];
+			}
                         if($row['body']=='') {
                             $descrip='<span class="gray">(No description)</span>';
                         } else {
@@ -638,12 +651,12 @@ $(document).ready(function() {
 		      success: function(report) {
 		        //console.log(report);
 			if(report>=7) {
-			  if(confirm('By starting the test for this course you will not be able to retake it for 7 days.')) {
+			  if(confirm('By starting the quiz for this course you will not be able to retake it for 7 days.')) {
 			    window.location.replace('/userpgs/student/exam?courseId=<?php echo $course_id?>');
 			  }
 			} else {
 			  var wait_days = 7-report;
-               		  alert('You have taken the test '+report+' days ago. You have to wait '+wait_days+' days to be able to retake it.');
+               		  alert('You have taken the quiz '+report+' days ago. You have to wait '+wait_days+' days to be able to retake it.');
 			}
 	              }		    
 		    });

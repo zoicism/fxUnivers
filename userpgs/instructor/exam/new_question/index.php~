@@ -186,11 +186,12 @@ $('#testForm').submit(function(event) {
     questionCount += parseInt('<?php echo $prev_q_num?>');
   }
 
-  console.log(questionCount);
 
   if(numToAsk <= questionCount) {
 
-   questionCount -= parseInt('<?php echo $prev_q_num?>');
+   if('<?php echo $_GET["qNum"]?>'!='') {
+     questionCount -= parseInt('<?php echo $prev_q_num?>');
+   }
   
    jQuery.ajax({
     url:'/php/add_question.php',

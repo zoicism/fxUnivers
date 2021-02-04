@@ -89,20 +89,20 @@ if(isset($_GET['qNum'])) {
 		
 
 	<div class="simple-bg">
-	  <h2>Add New Questions</h2>
+	  <h2>Add Questions to Quiz</h2>
 
 
-	  <p>A course may have at least 1 question. Once a learner is taking the test, a number of these questions, specified by you below, will be asked the learner.</p>
+	  <p>A course may have at least 1 question. Once a learner is taking the quiz, a number of these questions, specified by you below, will be chosen randomly and asked the learner.</p>
 
 
 
 	  <form id="testForm">
 <?php if($get_course['test_duration']==null) { ?>
 	    <input id="num-to-ask" type="number" name="ask_num" class="num-input" placeholder="How many questions to ask a learner?" min="1" required>
-	    <input type="number" name="duration" class="num-input" placeholder="Test duration in minutes" min="5" required>
+	    <input type="number" name="duration" class="num-input" placeholder="Quiz duration in minutes" min="5" required>
 <?php } else {?>
 <input type="number" id="num-to-ask" name="ask_num" value="<?php echo $get_course['test_num'] ?>" class="num-input" placeholder="How many questions to ask a learner?" min="1" required>
-	    <input type="number" name="duration"  value="<?php echo $get_course['test_duration'] ?>" class="num-input" placeholder="Test duration in minutes" min="5" required>
+	    <input type="number" name="duration"  value="<?php echo $get_course['test_duration'] ?>" class="num-input" placeholder="Quiz duration in minutes" min="5" required>
 	    <input type="hidden" name="course_id" value="<?php echo $course_id?>">
 	<?php } ?>
 	    <input type="hidden" name="course_id" value="<?php echo $course_id?>">
@@ -131,8 +131,8 @@ if(isset($_GET['qNum'])) {
 
 	    
 	</div>
-<button class="submit-btn" id="add-q-btn">Add Another Question</button>
-	    <input type="submit" class="submit-btn" value="Apply Questions">
+<button class="submit-btn" id="add-q-btn">Add Question</button>
+	    <input type="submit" class="submit-btn" value="Apply to Quiz">
 		
 		
 	  </form>
@@ -141,7 +141,7 @@ if(isset($_GET['qNum'])) {
 <!--<form id="del-test-form">
 <input type="hidden" name="courseId" value="<?php echo $course_id?>">
 <input type="hidden" name="userType" value="<?php echo $user_type?>">
-<input type="submit" class="submit-btn" value="Remove Test">
+<input type="submit" class="submit-btn" value="Remove Quiz">
 </form>-->
 	</div>
 
