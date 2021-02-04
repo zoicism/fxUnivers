@@ -34,7 +34,7 @@ echo <<<EOL
 		    
 	    </div>
                           <div class="policy">
-                          <p>With all due Reserves,</p><p>© fxUnivers 2017-2021 All rights reserved. <a href="/policy">Policy</a></p>
+                          <p>With all due Reserves,</p><p>© fxUnivers 2017-2021</p><p>All rights reserved.</p><p><a href="/policy">Policy</a></p>
                           </div>
 
 
