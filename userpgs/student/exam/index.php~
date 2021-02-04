@@ -276,7 +276,7 @@ window.onunload = function() {
 
 
 <script>
-$(document).ready(function() {
+$(window).on('load',function() {
   jQuery.ajax({
     url: '/php/exam_date.php',
     type: 'POST',

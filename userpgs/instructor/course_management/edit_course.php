@@ -245,9 +245,15 @@ $('#vid-embed').submit(function(event) {
   var vimeo = embedLink.match("vimeo.com/(.*)");
   var yt = embedLink.match("v=(.*)");
 
-console.log(yt);
   if(yt!==null) {
-    embedLink = '<iframe width="560" height="315" src="https://www.youtube.com/embed/'+yt[1]+'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+    var ytHash = yt[1].match("(.*)&");
+    if(ytHash!==null) {
+      var ytLink = ytHash[1];
+    } else {
+      var ytLink = yt[1];
+    }
+    
+    embedLink = '<iframe width="560" height="315" src="https://www.youtube.com/embed/'+ytLink+'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
     uploadOk=1;
   } else if(vimeo!==null) {
     embedLink = '<iframe width="560" height="315" src="https://player.vimeo.com/video/'+vimeo[1]+'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';

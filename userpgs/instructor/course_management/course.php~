@@ -678,9 +678,9 @@ $(document).ready(function() {
   $('#manageTestId').click(function() {
     //console.log(testExists);
     if(testExists != '') {
-      window.location.replace('/userpgs/instructor/exam/mng_question?courseId=<?php echo $course_id?>');
+      window.location.href='/userpgs/instructor/exam/mng_question?courseId=<?php echo $course_id?>';
     } else {
-      window.location.replace('/userpgs/instructor/exam/new_question?courseId=<?php echo $course_id?>');
+      window.location.href='/userpgs/instructor/exam/new_question?courseId=<?php echo $course_id?>';
     }
   });  
 });

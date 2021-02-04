@@ -45,7 +45,7 @@ $date1 = new DateTime($past_date);
 $date2 = new DateTime($now_date);
 $interval = $date1->diff($date2);
 
-if($interval->days < 7) {
+if($past_date!=null && $interval->days < 7) {
   header('Location: /userpgs/instructor/course_management/course.php?course_id='.$course_id);
 }
 ?>
