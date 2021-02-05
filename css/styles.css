@@ -232,7 +232,7 @@ textarea:focus {
     margin: 0 0 50px 15%;
     width: calc(100% - 15%);
     height: 84%;
-    padding: 0 2% 0 30px;
+    padding: 0 30px 0 30px;
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
@@ -1043,7 +1043,7 @@ textarea:focus {
     color: #393939;
 }
 
-.add-box img {
+.add-box svg {
     margin-right: 15px;
     cursor: pointer;
     width: 24px;
