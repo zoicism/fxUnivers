@@ -162,12 +162,12 @@ require('../php/notify_students.php');
 </div>
 <div class="ctrl">
 <div class="ctrl-row">
-	      <strong>Start Record: </strong>
+	      <strong id="start-record-stop">Start Record: </strong>
+
+	      
 
 
-
-
-        <select class="recording-media select-input" >
+        <select class="recording-media select-input" id="record-inputs">
          <option value="record-screen">Screen</option>
          <option value="record-video">Video</option>
          <option value="record-audio">Audio</option>
@@ -189,8 +189,9 @@ require('../php/notify_students.php');
       <button id="upload-to-server" class="submit-btn">Upload to Session</button>
     </div>
 
-</div>
 
+</div>
+<p id="chrome-record-warning" style="display:none;text-align:center;">Since you are using Chrome, you need to install and use <a href="https://chrome.google.com/webstore/detail/screen-recorder/hniebljpgcogalllopnjokppmgbhaden" target="_blank">This Extension</a> for recording, or switch to another browser.</p>
 
 	      </div>
 
@@ -1040,8 +1041,11 @@ console.log('video stream stopped');
 
             function captureScreen(config) {
                 getScreenId(function(error, sourceId, screenConstraints) {
-                    if (error === 'not-installed') {
 		    console.log(error);
+		    
+                    if (error === 'not-installed') {
+		    
+		    
 			if(confirm('You need to install an extension to be able to record on this browser. Go to the extension page?')) {
 			  window.open('https://chrome.google.com/webstore/detail/recordrtc/ndcljioonkecdnaaihodjgiliohngojp?hl=en');
 			}
@@ -1059,7 +1063,7 @@ console.log('video stream stopped');
                         config.onMediaCapturingFailed(error);
                         return;
                     }
-
+		    
                     captureUserMedia(screenConstraints, function(screenStream) {
                         recordingPlayer.srcObject = screenStream;
 
@@ -1171,14 +1175,15 @@ console.log('video stream stopped');
                 console.info('This RecordRTC demo merely tries to playback recorded audio/video sync inside the browser. It still generates two separate files (WAV/WebM).');
             }
 
-            var MY_DOMAIN = 'webrtc-experiment.com';
+            var MY_DOMAIN = 'fxunivers.com';
 
             function isMyOwnDomain() {
-                // replace "webrtc-experiment.com" with your own domain name
                 return document.domain.indexOf(MY_DOMAIN) !== -1;
             }
 
             function saveToDiskOrOpenNewTab(recordRTC) {
+	        $('#recordImg').hide();
+		$('#start-record-stop').hide();
                 recordingDIV.querySelector('#save-to-disk').parentNode.style.display = 'block';
                 recordingDIV.querySelector('#save-to-disk').onclick = function() {
                     if(!recordRTC) return alert('No recording found.');
@@ -1336,12 +1341,19 @@ console.log('video stream stopped');
             
         </script>
 
-
+<script src="https://code.jquery.com/jquery-migrate-1.3.0.js"></script>
 <script>
 $('#recordImg').click(function() {
-  $('#recordBtn').click();
-  $('#recordImg').attr('src','/images/background/stop.svg');
-  $('#recordVid').show();
+  if($.browser.chrome) {
+    console.log('chrome');
+    $('#chrome-record-warning').show();
+  } else {
+    $('#recordBtn').click();
+    $('#recordImg').attr('src','/images/background/stop.svg');
+    $('#recordVid').show();
+    $('#record-inputs').hide();
+    $('#start-record-stop').text('Stop Record: ');
+  }
 });
 </script>
             <!-- EO RTC RECORD --> 
@@ -1358,7 +1370,7 @@ $('#wbForm').submit();
 <script>
 $(document).ready(function() {
   setInterval(function() {
-    console.log("<?php echo $tar_id?>");
+    //console.log("<?php echo $tar_id?>");
     jQuery.ajax({
       url:'/php/live_online_users.php',
       type:'POST',
