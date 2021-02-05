@@ -83,10 +83,10 @@ require('../../php/get_stu_stucourse.php');
     <div class="relative-main-content">
 
 		<div class="add-box">
-
-	 	
-		   Add New Course <img src="/images/background/add.svg" onclick="location.href='/userpgs/instructor/course_management/new_course.php';">
-
+		    Add New Course
+		    <span>
+		        <img src="/images/background/add.svg" onclick="location.href='/userpgs/instructor/course_management/new_course.php';">
+		    </span>
 		</div>
 
 
