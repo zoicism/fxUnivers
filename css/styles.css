@@ -4,7 +4,6 @@
   box-sizing:border-box;
 }
 
-
 html,body {
   background-color:#efefef;
   font-family: "roboto", sans-serif;
@@ -973,7 +972,15 @@ textarea:focus {
 }
 
 .add-box span {
-    width:45px;height:45px;padding:10px;border-radius:50px;box-shadow: -6px -6px 14px rgba(255, 255, 255, .7), -6px -6px 10px rgba(255, 255, 255, .5), 6px 6px 8px rgba(255, 255, 255, .075), 6px 6px 10px rgba(0, 0, 0, .15);margin-left:10px;
+    width: 38px;
+    height: 38px;
+    padding: 9px;
+    border-radius: 50px;
+    margin-left: 10px;
+    box-shadow: -6px -6px 14px rgba(255, 255, 255, .7),
+	        -6px -6px 10px rgba(255, 255, 255, .5),
+	        6px 6px 8px rgba(255, 255, 255, .075),
+	        6px 6px 10px rgba(0, 0, 0, .15);
 }
 
 .add-box span:active {
@@ -984,7 +991,9 @@ textarea:focus {
 }
 
 .add-box span img {
-    border-radius:0;width:100%;height:100%;padding:0;box-shadow:none;margin-left:0 !important;
+    display: block;
+    width:100%;
+    height:100%;
 }
 
 .options #live-add-box {
