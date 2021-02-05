@@ -568,20 +568,58 @@ textarea:focus {
 }
 
 .course-upperleft .bulletin {
+    display: flex;
+    flex-flow: column nowrap;
     box-shadow: -4px -2px 4px 0px #ffffff, 4px 2px 6px 0px #DFE4EA;
     border-radius: 20px;
     padding: 20px;
     height: 300px;
     width: 50%;
-    overflow:hidden;
+    overflow: hidden;
 }
 
 .course-upperleft .bulletin .bulletin-txt {
-    height:100%;
-    width:100%;
-    overflow-y:auto;
-    
+    border-bottom: 1px solid #666666a6;
+    line-height: 1.6;
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
 }
+
+.bulletin .course-info-con {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 100%;
+    text-align: center;
+    margin-top: 7px;
+    white-space: nowrap;
+}
+
+.bulletin .course-info-con .little-box-con {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    font-size: 14px;
+}
+
+.bulletin .course-info-con .little-box-con .little-box {
+    font-size: 14px;
+    font-weight: bold;
+    color: #313131a1;
+}
+
+.bulletin .course-info-con .detail-bottom {
+    margin-top: 7px;
+}
+
+.bulletin .course-info-con .detail-bottom .price {
+    width: 100%;
+    padding: 7px 0;
+    text-align: center;
+    border-radius: 50px;
+    color: #efefef;
+}
+
 .course-upperleft .bulletin .bulletin-txt::-webkit-scrollbar {
   width: 4px;
   height: 30px;
