@@ -278,11 +278,11 @@ if($tar_user_fetch['avatar']!=NULL) {
 
 if($user_type=='instructor') {
 
-			     echo '<div class="options">';
+			     echo '<div class="options session-options">';
 
 			     
 
-			     echo '<div class="add-box">Live Whiteboard <span><img src="/images/background/whiteboard.svg" id="wbImg"></span></div>';
+			     echo '<div class="add-box" id="live-whiteboard-box">Live Whiteboard </div>';
 
 
 			     
@@ -292,11 +292,11 @@ if($user_type=='instructor') {
 echo '<!-- list of all available broadcasting rooms -->
           <table style="display:none" id="rooms-list"></table>';
 
-			     echo '<div class="options">';
+			     echo '<div class="options session-learn-options">';
 
 			     
 
-			     echo '<div class="add-box">Live Whiteboard <img src="/images/background/whiteboard.svg" id="wbImg"></div>';
+			     echo '<div class="add-box" id="live-whiteboard-box">Live Whiteboard</div>';
 
 
 			     
@@ -1349,7 +1349,7 @@ $('#recordImg').click(function() {
 
 <!-- WHITEBOARD -->
 <script>
-$('#wbImg').click( function() {
+$('#live-whiteboard-box').click( function() {
 $('#wbForm').submit();
 });
 </script>
@@ -1358,10 +1358,11 @@ $('#wbForm').submit();
 <script>
 $(document).ready(function() {
   setInterval(function() {
+    console.log("<?php echo $tar_id?>");
     jQuery.ajax({
       url:'/php/live_online_users.php',
       type:'POST',
-      data: {class_id:"<?php echo $class_id?>", username:"<?php echo $username?>", user_id:"<?php echo $get_user_id?>",course_id:"<?php echo $course_id?>"},
+      data: {class_id:"<?php echo $class_id?>", username:"<?php echo $username?>", user_id:"<?php echo $get_user_id?>",course_id:"<?php echo $course_id?>", teacherId:"<?php echo $tar_id?>"},
       success: function(response) {
 	$('.online-list').html(response);
 	$('#online-num').html($('#get-online-num').text());

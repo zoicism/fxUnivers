@@ -72,6 +72,8 @@ $course_dislikes = mysqli_num_rows($course_dislikes_r);
 $my_dislike_q = "SELECT * FROM courseDislikes WHERE courseId=$course_id AND userId=$get_user_id";
 $my_dislike_r = mysqli_query($fxinstructor_connection,$my_dislike_q);
 $my_dislike = mysqli_num_rows($my_dislike_r);
+
+if($course_biddable) require_once('../../../wallet/php/wallet_connect.php');
 ?>
 
 <!DOCTYPE html>
@@ -164,8 +166,8 @@ $my_dislike = mysqli_num_rows($my_dislike_r);
 
 
 <div class="bulletin">
-
-<p style="font-weight:bold;text-align:center;font-size:1rem;">Bulletin</p>
+<div class="bulletin-txt-con">
+<p style="font-weight:bold;text-align:center;font-size:1rem;margin:0;">Bulletin</p>
 <div class="bulletin-txt">
 <?php
 require_once('../../../php/conn/fxinstructor.php');
@@ -185,6 +187,80 @@ if($bulletin_r->num_rows > 0) {
 ?>
 
 </div>
+
+</div>
+
+
+<?php
+$coursecounter_q="SELECT * FROM stucourse WHERE course_id=".$course_id;
+                            $coursecounter_r=mysqli_query($connection,$coursecounter_q);
+                            $coursecounts=mysqli_num_rows($coursecounter_r);
+?>
+<div class="course-info-con">
+<div class="little-box-con">
+<div class="little-box blue-bg">
+	  <?php
+	  if($coursecounts==0) {
+	    echo '<span>No students</span>';
+	  } else if($coursecounts==1) {
+	    echo $coursecounts.' <span>student</span>';
+	  } else {
+	    echo $coursecounts.' <span>students</span>';
+	  }
+	  ?>
+	</div>
+<?php echo '<div class="little-box"><span>'.date("M jS, Y", strtotime($s_date)).'</span></div>';?>
+</div>
+<div class="detail-bottom">
+
+	
+
+
+	  <?php
+	  if($course_biddable) {
+
+	      $locked_q = 'SELECT * FROM locked WHERE course_id='.$course_id;
+	      $locked_r = mysqli_query($wallet_connection,$locked_q);
+	      $locked_count = mysqli_num_rows($locked_r);
+
+	      if($locked_count>0) {
+	        $locked=mysqli_fetch_array($locked_r);
+	        if($locked['finalized']) {
+			         echo '<div class="price gray-bg">
+				      <span>Sold</span> '.$locked['raw_amount'].' <span>fxStars</span>
+				    </div>';
+	         } else {
+			         echo '<div class="price purple-bg">
+				         <span>High </span> '.$locked['raw_amount'].' <span>fxStars</span>
+				       </div>';
+	         }
+	     } else {
+			       echo '<div class="price purple-bg">
+				      <span>Base </span> '.$cost.' <span>fxStars</span>
+				    </div>';
+	      }
+
+	  } else {
+	    if($cost>0) {	  
+				    echo '<div class="price gold-bg" style="width:100%;">
+				      '.$cost.' <span>fxStars</span>
+				    </div>';
+			    } else {
+			      	   echo '<div class="price green-bg" style="width:100%;">
+				      Free
+		    </div>';
+	    }
+	  }
+
+
+
+			    ?>
+ </div>
+</div>
+
+
+
+
 
 
 
@@ -244,47 +320,8 @@ echo '<div class="course-name-desc">';
 	  
 
 
-<?php
-$coursecounter_q="SELECT * FROM stucourse WHERE course_id=".$course_id;
-                            $coursecounter_r=mysqli_query($connection,$coursecounter_q);
-                            $coursecounts=mysqli_num_rows($coursecounter_r);
-?>
-<div class="little-box blue-bg">
-	  <?php
-	  if($coursecounts==0) {
-	    echo '<span>No students</span>';
-	  } else if($coursecounts==1) {
-	    echo $coursecounts.' <span>student</span>';
-	  } else {
-	    echo $coursecounts.' <span>students</span>';
-	  }
-	  ?>
-	</div>
-<?php echo '<div class="little-box"><span>'.date("M jS, Y", strtotime($s_date)).'</span></div>';?>
-
-<div class="detail-bottom">
-
-	
 
 
-	  <?php
-	  if($course_biddable) {
-	  } else {
-	    if($cost>0) {	  
-				    echo '<div class="price gold-bg" style="width:0;min-width:100px;">
-				      '.$cost.' <span>fxStars</span>
-				    </div>';
-			    } else {
-			      	   echo '<div class="little-box green-bg" style="padding: 4px 20px;">
-				      Free
-		    </div>';
-	    }
-	  }
-
-
-
-			    ?>
- </div>
 
 </div>
 
@@ -310,7 +347,7 @@ echo '<div class="add-box-con">';
 
     if($course_biddable) {
 
-      require_once('../../../wallet/php/wallet_connect.php');
+      
       
       $bidding_q="SELECT * FROM locked WHERE course_id=$course_id";
       $bidding_r=mysqli_query($wallet_connection,$bidding_q) or die(mysqli_error($wallet_connection))
@@ -329,13 +366,13 @@ echo '<div class="add-box-con">';
 
       if($bidding_finalized) {
         echo '<div class="add-box">
-	  <p>Sold to <a href="/user/'.$sold2user['username'].'">@'.$sold2user['username'].'</a> for '.$bidding['raw_amount'].' fxStars</p>
+	  <p>Sold to <a href="/user/'.$sold2user['username'].'">'.$sold2user['username'].'</a> for '.$bidding['raw_amount'].' fxStars</p>
 	  </div>';
       } else {
         echo '<div class="add-box">
-	<img src="/images/background/checkbox.svg" id="acceptBid">
-               Accept Bid (<div id="highest-ins"></div>) 
-	    </div>';
+	        <img src="/images/background/checkbox.svg" id="acceptBid">
+                Accept Bid (<div id="highest-ins"></div>) 
+	      </div>';
       }
     }
 
@@ -375,7 +412,6 @@ echo '<div class="add-box-con">';
     if($course_biddable) {
 
 
-    require_once('../../../wallet/php/wallet_connect.php');
       
       $bidding_q="SELECT * FROM locked WHERE course_id=$course_id";
       $bidding_r=mysqli_query($wallet_connection,$bidding_q);
@@ -504,8 +540,6 @@ echo '<div class="sess-list">';
 
 <script>
 if(screen.width < 629) {
-  $('.bulletin').hide();
-
   var vhWidth = $('.video-holder').width();
   $('.video-holder').height(vhWidth/1.78);
 }

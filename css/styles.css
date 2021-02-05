@@ -321,6 +321,7 @@ textarea:focus {
 
 .pub-name .fullname {
     font-size:0.8rem;
+    white-space:nowrap;
 }
 .pub-avatar .pub-name a{
     text-decoration:none;
@@ -579,11 +580,16 @@ textarea:focus {
 }
 
 .course-upperleft .bulletin .bulletin-txt {
-    border-bottom: 1px solid #666666a6;
     line-height: 1.6;
     height: 100%;
     width: 100%;
     overflow-y: auto;
+}
+
+.bulletin .bulletin-txt-con {
+    height: 100%;
+    border-bottom: 1px solid #666666a6;
+    overflow:hidden;
 }
 
 .bulletin .course-info-con {
@@ -4052,8 +4058,30 @@ input:checked + .slider:before {
       padding:20px 10px;
   }
 
+  .course-content .course-upperleft {
+      flex-flow:column nowrap;
+  }
+
   .course-content .course-upperleft .video-holder {
       margin-right:0;
+      width:100%;
+      
+  }
+
+  .course-content .course-upperleft .video-placeholder {
+      width:100%;
+      border-radius:0;
+      height:150px;
+  }
+
+  .course-upperleft .bulletin {
+      width:100%;
+      box-shadow:none;
+      height:auto;
+  }
+
+  .bulletin .bulletin-txt-con {
+      display:none;
   }
 }
 
