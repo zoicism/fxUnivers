@@ -3855,11 +3855,53 @@ input:checked + .slider:before {
     .obj-box {
 	margin-top:10px;
 	width:100%;
+	padding: 0 15px;
     }
 
     .obj-box .object {
-	width:90%;
-	margin: 1em 0;
+	width: 100%;
+        margin: 0 0 1em 0;
+        flex-flow: row nowrap;
+        height: auto;
+        border-radius: 0;
+        box-shadow: none;
+    }
+	
+    .obj-box .object .preview {
+	width: 150px;
+        height: 84.27px;
+        position: relative;
+        border-radius: 0;
+    }
+	
+    .obj-box .object .preview img {
+	border-radius: 0;
+    }
+	
+    .obj-box .object .preview .price {
+	position: absolute;
+        bottom: 0;
+        width: 100%;
+        color: #fff;
+        opacity: 0.8;
+        font-size: 14px;
+    }
+	
+    .obj-box .object .preview .gold-bg {
+	background-color: #e0b000;
+    }
+	
+    .obj-box .object .preview .green-bg {
+	background-color: #3C7915;
+    }
+	
+    .obj-box .object .preview .gray-bg {
+	background-color: #313131;
+    }
+	
+    .obj-box .object .details {
+	padding: 0 0 0 10px;
+	height: auto;
     }
 
     .txt-input {
