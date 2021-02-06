@@ -774,6 +774,10 @@ textarea:focus {
     border-radius: 10px 10px 0 0;
 }
 
+.obj-box .object .preview .price {
+    display: none;
+}
+
 .obj-box .object .preview img {
     height:100%;
     width:100%;
@@ -3879,12 +3883,17 @@ input:checked + .slider:before {
     }
 	
     .obj-box .object .preview .price {
+	display: block;
 	position: absolute;
         bottom: 0;
         width: 100%;
         color: #fff;
         opacity: 0.8;
         font-size: 14px;
+    }
+	
+    .detail-bottom .price {
+	display: none;
     }
 	
     .obj-box .object .preview .gold-bg {
