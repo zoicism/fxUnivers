@@ -12,13 +12,10 @@ if(isset($_FILES['video_up'])) {
     $video_array=explode('.', $_FILES['video_up']['name']);
     $video_ext=end($video_array);
     $path="live/uploads/".$class_id.'.'.$video_ext;
-
-    //echo "./ffmpeg/ffmpeg -i $path -codec:v libtheora -qscale:v 3 -codec:a libvorbis -qscale:a 3 -f ogv live/uploads/$class_id.ogv";
-
     if(move_uploaded_file($_FILES['video_up']['tmp_name'], $path)) {
         /*$video_upload_ok=1;
-        //exec("ffmpeg -i $path -b:v 0 -crf 30 live/uploads/$class_id.webm");
-        //exec("rm $path");*/
+        exec("ffmpeg -i $path -b:v 0 -crf 30 live/uploads/$class_id.webm");
+        exec("rm $path");*/
 
 	if($video_ext=='mp4') {
 	  exec("./ffmpeg/ffmpeg -i $path -codec:v libtheora -qscale:v 3 -codec:a libvorbis -qscale:a 3 -f ogv live/uploads/$class_id.ogv");
