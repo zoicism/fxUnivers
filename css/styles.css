@@ -739,7 +739,8 @@ textarea:focus {
 }
 
 .obj-box .object {
-    display: inline-block;
+    display: flex;
+    flex-flow:column nowrap;
     border-radius: 10px;
     background: #efefef;
     box-shadow:  6px 6px 6px #d9d9d9, 
@@ -823,6 +824,7 @@ textarea:focus {
 .detail-bottom .detail-row {
     display: flex;
     flex-flow: row nowrap;
+    white-space:nowrap;
 }
 
 .detail-bottom .price {
@@ -843,7 +845,7 @@ textarea:focus {
 
 .blue-bg::after {
     content: "•";
-    margin: 0 4px;
+    margin: 0 2px;
 }
 
 .gold-bg {
@@ -3872,7 +3874,8 @@ input:checked + .slider:before {
     }
 	
     .obj-box .object .preview {
-	width: 150px;
+	min-width: 150px;
+	width: 0;
         height: 84.27px;
         position: relative;
         border-radius: 0;
@@ -4141,6 +4144,11 @@ input:checked + .slider:before {
 
   .bulletin .bulletin-txt-con {
       display:none;
+  }
+
+  .detail-bottom .detail-row .detail {
+      font-weight:normal;
+      font-size:12px;
   }
 }
 
