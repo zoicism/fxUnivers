@@ -72,6 +72,8 @@ $course_dislikes = mysqli_num_rows($course_dislikes_r);
 $my_dislike_q = "SELECT * FROM courseDislikes WHERE courseId=$course_id AND userId=$get_user_id";
 $my_dislike_r = mysqli_query($fxinstructor_connection,$my_dislike_q);
 $my_dislike = mysqli_num_rows($my_dislike_r);
+
+if($course_biddable) require_once('../../../wallet/php/wallet_connect.php');
 ?>
 
 <!DOCTYPE html>
@@ -130,11 +132,17 @@ $my_dislike = mysqli_num_rows($my_dislike_r);
 	      $vid_ext=end($vid_arr);
 	  ?>
 <div class="video-holder">
-
+<!--
 	  <video controls>
             <source src="<?php echo 'videos/'.$course_id.'.'.$vid_ext ?>" type="video/<?php echo $vid_ext?>"> 
 	  </video>
-	  
+-->
+
+<video controls>
+            <source src="<?php echo 'videos/'.$course_id.'.mp4'?>" type="video/mp4">
+   <source src="<?php echo 'videos/'.$course_id.'.ogv'?>" type="video/ogg">
+<source src="<?php echo 'videos/'.$course_id.'.webm'?>" type="video/webm">
+          </video>
 	  </div>
 
 	  <!-- Title, description, and info -->
@@ -164,8 +172,8 @@ $my_dislike = mysqli_num_rows($my_dislike_r);
 
 
 <div class="bulletin">
-
-<p style="font-weight:bold;text-align:center;font-size:1rem;">Bulletin</p>
+<div class="bulletin-txt-con">
+<p style="font-weight:bold;text-align:center;font-size:1rem;margin:0;">Bulletin</p>
 <div class="bulletin-txt">
 <?php
 require_once('../../../php/conn/fxinstructor.php');
@@ -185,6 +193,80 @@ if($bulletin_r->num_rows > 0) {
 ?>
 
 </div>
+
+</div>
+
+
+<?php
+$coursecounter_q="SELECT * FROM stucourse WHERE course_id=".$course_id;
+                            $coursecounter_r=mysqli_query($connection,$coursecounter_q);
+                            $coursecounts=mysqli_num_rows($coursecounter_r);
+?>
+<div class="course-info-con">
+<div class="little-box-con">
+<div class="little-box blue-bg">
+	  <?php
+	  if($coursecounts==0) {
+	    echo '<span>No students</span>';
+	  } else if($coursecounts==1) {
+	    echo $coursecounts.' <span>student</span>';
+	  } else {
+	    echo $coursecounts.' <span>students</span>';
+	  }
+	  ?>
+	</div>
+<?php echo '<div class="little-box"><span>'.date("M jS, Y", strtotime($s_date)).'</span></div>';?>
+</div>
+<div class="detail-bottom">
+
+	
+
+
+	  <?php
+	  if($course_biddable) {
+
+	      $locked_q = 'SELECT * FROM locked WHERE course_id='.$course_id;
+	      $locked_r = mysqli_query($wallet_connection,$locked_q);
+	      $locked_count = mysqli_num_rows($locked_r);
+
+	      if($locked_count>0) {
+	        $locked=mysqli_fetch_array($locked_r);
+	        if($locked['finalized']) {
+			         echo '<div class="price gray-bg">
+				      <span>Sold</span> '.$locked['raw_amount'].' <span>fxStars</span>
+				    </div>';
+	         } else {
+			         echo '<div class="price purple-bg">
+				         <span>High </span> '.$locked['raw_amount'].' <span>fxStars</span>
+				       </div>';
+	         }
+	     } else {
+			       echo '<div class="price purple-bg">
+				      <span>Base </span> '.$cost.' <span>fxStars</span>
+				    </div>';
+	      }
+
+	  } else {
+	    if($cost>0) {	  
+				    echo '<div class="price gold-bg" style="width:100%;">
+				      '.$cost.' <span>fxStars</span>
+				    </div>';
+			    } else {
+			      	   echo '<div class="price green-bg" style="width:100%;">
+				      Free
+		    </div>';
+	    }
+	  }
+
+
+
+			    ?>
+ </div>
+</div>
+
+
+
+
 
 
 
@@ -244,47 +326,8 @@ echo '<div class="course-name-desc">';
 	  
 
 
-<?php
-$coursecounter_q="SELECT * FROM stucourse WHERE course_id=".$course_id;
-                            $coursecounter_r=mysqli_query($connection,$coursecounter_q);
-                            $coursecounts=mysqli_num_rows($coursecounter_r);
-?>
-<div class="little-box blue-bg">
-	  <?php
-	  if($coursecounts==0) {
-	    echo '<span>No students</span>';
-	  } else if($coursecounts==1) {
-	    echo $coursecounts.' <span>student</span>';
-	  } else {
-	    echo $coursecounts.' <span>students</span>';
-	  }
-	  ?>
-	</div>
-<?php echo '<div class="little-box"><span>'.date("M jS, Y", strtotime($s_date)).'</span></div>';?>
-
-<div class="detail-bottom">
-
-	
 
 
-	  <?php
-	  if($course_biddable) {
-	  } else {
-	    if($cost>0) {	  
-				    echo '<div class="price gold-bg" style="width:0;min-width:100px;">
-				      '.$cost.' <span>fxStars</span>
-				    </div>';
-			    } else {
-			      	   echo '<div class="little-box green-bg" style="padding: 4px 20px;">
-				      Free
-		    </div>';
-	    }
-	  }
-
-
-
-			    ?>
- </div>
 
 </div>
 
@@ -310,7 +353,7 @@ echo '<div class="add-box-con">';
 
     if($course_biddable) {
 
-      require_once('../../../wallet/php/wallet_connect.php');
+      
       
       $bidding_q="SELECT * FROM locked WHERE course_id=$course_id";
       $bidding_r=mysqli_query($wallet_connection,$bidding_q) or die(mysqli_error($wallet_connection))
@@ -329,13 +372,13 @@ echo '<div class="add-box-con">';
 
       if($bidding_finalized) {
         echo '<div class="add-box">
-	  <p>Sold to <a href="/user/'.$sold2user['username'].'">@'.$sold2user['username'].'</a> for '.$bidding['raw_amount'].' fxStars</p>
+	  <p>Sold to <a href="/user/'.$sold2user['username'].'">'.$sold2user['username'].'</a> for '.$bidding['raw_amount'].' fxStars</p>
 	  </div>';
       } else {
         echo '<div class="add-box">
-	<img src="/images/background/checkbox.svg" id="acceptBid">
-               Accept Bid (<div id="highest-ins"></div>) 
-	    </div>';
+	        <img src="/images/background/checkbox.svg" id="acceptBid">
+                Accept Bid (<div id="highest-ins"></div>) 
+	      </div>';
       }
     }
 
@@ -343,12 +386,40 @@ echo '<div class="add-box-con">';
 
 
 
-			     echo '<div class="add-box" onclick="location.href=\'/userpgs/instructor/course_management/edit_course.php?course_id='.$course_id.'\';"><img src="/images/background/manage.svg" >Manage Course</div>';
+			     echo '<div class="add-box" onclick="location.href=\'/userpgs/instructor/course_management/edit_course.php?course_id='.$course_id.'\';">
+			              <svg viewBox="0 0 32 32">
+				          <path d="M16,11.5A4.5,4.5,0,1,1,11.5,16,4.5,4.5,0,0,1,16,11.5m0-2A6.5,6.5,0,1,0,22.5,16,6.5,6.5,0,0,0,16,9.5Z"></path>
+					  <path d="M21.5,2h.3a.7.7,0,0,1,.4.6l.4,3.5A3.1,3.1,0,0,0,23.5,8l.5.5a3.1,3.1,0,0,0,1.8.9l3.5.4a.7.7,0,0,1,.6.4.8.8,0,0,
+					  1-.1.8l-2.2,2.8a2.6,2.6,0,0,0-.7,1.8.9.9,0,0,1,0,.8,2.6,2.6,0,0,0,.7,1.8L29.8,21a.8.8,0,0,1,.1.8.7.7,0,0,1-.6.4l-3.5.4a3.1,
+					  3.1,0,0,0-1.8.9l-.5.5a3.1,3.1,0,0,0-.9,1.8l-.4,3.5a.7.7,0,0,1-.4.6h-.3l-.5-.2-2.8-2.2a2.8,2.8,0,0,0-1.7-.7h-1a2.8,2.8,0,0,
+					  0-1.7.7L11,29.8l-.5.2h-.3a.7.7,0,0,1-.4-.6l-.4-3.5A3.1,3.1,0,0,0,8.5,24L8,23.5a3.1,3.1,0,0,0-1.8-.9l-3.5-.4a.7.7,0,0,1-.6-.4.8.8,
+					  0,0,1,.1-.8l2.2-2.8A2.5,2.5,0,0,0,5,16.4v-.8a2.5,2.5,0,0,0-.6-1.8L2.2,11a.8.8,0,0,1-.1-.8.7.7,0,0,1,.6-.4l3.5-.4A3.1,3.1,0,0,0,8,
+					  8.5L8.5,8a3.1,3.1,0,0,0,.9-1.8l.4-3.5a.7.7,0,0,1,.4-.6h.3l.5.2,2.8,2.2a2.8,2.8,0,0,0,1.7.7h1a2.8,2.8,0,0,0,1.7-.7L21,2.2l.5-.2m-11-2L9.5.2h0A2.7,
+					  2.7,0,0,0,7.8,2.5L7.4,6a.8.8,0,0,1-.2.5l-.7.7L6,7.4l-3.5.4A2.7,2.7,0,0,0,.2,9.5h0a2.6,2.6,0,0,0,.4,2.7L2.9,15a1.3,1.3,0,0,1,.1.6V16H3v.4a1.3,1.3,0,0,
+					  1-.1.6L.6,19.8a2.6,2.6,0,0,0-.4,2.7h0a2.7,2.7,0,0,0,2.3,1.7l3.5.4.5.2a2.3,2.3,0,0,0,.7.7.8.8,0,0,1,.2.5l.4,3.5a2.7,2.7,0,0,0,1.7,2.3h0l1,.2a2.7,2.7,0,0,
+					  0,1.7-.6L15,29.1l.5-.2h1l.5.2,2.8,2.3a2.7,2.7,0,0,0,1.7.6l1-.2h0a2.7,2.7,0,0,0,1.7-2.3l.4-3.5a.8.8,0,0,1,.2-.5,2.3,2.3,0,0,0,.7-.7l.5-.2,3.5-.4a2.7,2.7,
+					  0,0,0,2.3-1.7h0a2.6,2.6,0,0,0-.4-2.7L29.1,17a1.4,1.4,0,0,1-.2-.6c.1-.1.1-.2.1-.4h0c0-.2,0-.3-.1-.4a1.4,1.4,0,0,1,.2-.6l2.3-2.8a2.6,2.6,0,0,0,.4-2.7h0a2.7,
+					  2.7,0,0,0-2.3-1.7L26,7.4l-.5-.2a2.3,2.3,0,0,0-.7-.7.8.8,0,0,1-.2-.5l-.4-3.5A2.7,2.7,0,0,0,22.5.2h0l-1-.2a2.7,2.7,0,0,0-1.7.6L17,2.9l-.5.2h-1L15,2.9,12.2.6A2.7,2.7,0,0,0,10.5,0Z"></path>
+			              </svg>
+				      Manage Course
+				   </div>';
 
-			     echo '<div class="add-box" onclick="location.href=\'/userpgs/instructor/class/new_class.php?course_id='.$course_id.'\';"><img src="/images/background/add.svg" >Add Session</div>';
+			     echo '<div class="add-box" onclick="location.href=\'/userpgs/instructor/class/new_class.php?course_id='.$course_id.'\';">
+			               <svg viewBox="0 0 32 32">
+				           <path d="M16,2A14,14,0,1,1,2,16,14,14,0,0,1,16,2m0-2A16,16,0,1,0,32,16,16,16,0,0,0,16,0Z"></path>
+					   <path d="M25.9,16h0a1,1,0,0,1-1,1H17v7.9a1,1,0,0,1-1,1h0a1,1,0,0,1-1-1V17H7.1a1,1,0,0,1-1-1h0a1,1,0,0,1,1-1H15V7.1a1,1,0,0,1,1-1h0a1,1,0,0,1,1,1V15h7.9A1,1,0,0,1,25.9,16Z"></path>
+				       </svg>
+				       Add Session
+				   </div>';
 
 			     
-			     echo '<div class="add-box" id="manageTestId"><img src="/images/background/exam.svg" >Manage Quiz</div>';
+			     echo '<div class="add-box" id="manageTestId">
+			               <svg viewBox="0 0 32 32">
+				           <path d="M16,2A14,14,0,1,1,2,16,14,14,0,0,1,16,2m0-2A16,16,0,1,0,32,16,16,16,0,0,0,16,0Z"></path>
+					   <path d="M13.4,22.4h0l-.7-.3L7.1,16.5a1.4,1.4,0,0,1,0-1.5,1.4,1.4,0,0,1,1.5,0l4.8,4.9,10-10a1.4,1.4,0,0,1,1.5,0,1.4,1.4,0,0,1,0,1.5L14.2,22.1A1.9,1.9,0,0,1,13.4,22.4Z"></path>
+				       </svg>
+			               Manage Quiz
+				   </div>';
 			     
 
 			     echo '</div>';
@@ -375,7 +446,6 @@ echo '<div class="add-box-con">';
     if($course_biddable) {
 
 
-    require_once('../../../wallet/php/wallet_connect.php');
       
       $bidding_q="SELECT * FROM locked WHERE course_id=$course_id";
       $bidding_r=mysqli_query($wallet_connection,$bidding_q);
@@ -504,8 +574,6 @@ echo '<div class="sess-list">';
 
 <script>
 if(screen.width < 629) {
-  $('.bulletin').hide();
-
   var vhWidth = $('.video-holder').width();
   $('.video-holder').height(vhWidth/1.78);
 }

@@ -132,11 +132,17 @@ if($course_biddable) require_once('../../../wallet/php/wallet_connect.php');
 	      $vid_ext=end($vid_arr);
 	  ?>
 <div class="video-holder">
-
+<!--
 	  <video controls>
             <source src="<?php echo 'videos/'.$course_id.'.'.$vid_ext ?>" type="video/<?php echo $vid_ext?>"> 
 	  </video>
-	  
+-->
+
+<video controls>
+            <source src="<?php echo 'videos/'.$course_id.'.mp4'?>" type="video/mp4">
+   <source src="<?php echo 'videos/'.$course_id.'.ogv'?>" type="video/ogg">
+<source src="<?php echo 'videos/'.$course_id.'.webm'?>" type="video/webm">
+          </video>
 	  </div>
 
 	  <!-- Title, description, and info -->
@@ -370,10 +376,10 @@ echo '<div class="add-box-con">';
 	  </div>';
       } else {
         echo '<div class="add-box" id="acceptBid">
-	        <svg viewBox="0 0 32 32">
-		    <path d="M16,2A14,14,0,1,1,2,16,14,14,0,0,1,16,2m0-2A16,16,0,1,0,32,16,16,16,0,0,0,16,0Z"></path>
-		    <path d="M13.4,22.4h0l-.7-.3L7.1,16.5a1.4,1.4,0,0,1,0-1.5,1.4,1.4,0,0,1,1.5,0l4.8,4.9,10-10a1.4,1.4,0,0,1,1.5,0,1.4,1.4,0,0,1,0,1.5L14.2,22.1A1.9,1.9,0,0,1,13.4,22.4Z"></path>
-		</svg>
+		<svg viewBox="0 0 32 32">
+				           <path d="M16,2A14,14,0,1,1,2,16,14,14,0,0,1,16,2m0-2A16,16,0,1,0,32,16,16,16,0,0,0,16,0Z"></path>
+					   <path d="M13.4,22.4h0l-.7-.3L7.1,16.5a1.4,1.4,0,0,1,0-1.5,1.4,1.4,0,0,1,1.5,0l4.8,4.9,10-10a1.4,1.4,0,0,1,1.5,0,1.4,1.4,0,0,1,0,1.5L14.2,22.1A1.9,1.9,0,0,1,13.4,22.4Z"></path>
+				       </svg>
                 Accept Bid (<div id="highest-ins"></div>) 
 	      </div>';
       }
