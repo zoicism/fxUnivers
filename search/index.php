@@ -165,7 +165,7 @@ if($type=='course') {
 			    
 			    } else {
 			        echo '<div class="preview">
-				  <img src="/images/background/course.svg" style="height:100px;width:100px;">
+				  <img src="/images/background/course.svg" style="width:50%;height:50%;">
 				</div>';
 			    }
 
