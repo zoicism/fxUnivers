@@ -80,15 +80,16 @@ input:focus, textarea:focus, select:focus{
 }
 
 .num-input {
-	background-color: #efefef;
 	width: 200px;
 	height: 40px;
 	border-radius: 200px;
-	box-shadow: inset 2px 2px 4px #d1d9e6, inset -2px -2px 4px #f9f9f9;
+	background-color: #e8e8e8;
+    	box-shadow: inset 2px 2px 4px #33333357, inset -2px -2px 4px #ffffff;
 }
 
 .num-input:focus {
-	box-shadow: inset 4px 4px 4px #d1d9e6, inset -4px -4px 4px #f9f9f9;
+	box-shadow: inset 4px 4px 4px #33333357, inset -4px -4px 4px #ffffff;
+        transition: 0.5s;
 }
 
 textarea {
@@ -97,12 +98,13 @@ textarea {
     padding: 15px;
     border:none;
     border-radius: 10px;
-    background-color: #efefef;
-    box-shadow: inset 2px 2px 4px #d1d9e6, inset -2px -2px 4px #f9f9f9;
+    background-color: #e8e8e8;
+    box-shadow: inset 2px 2px 4px #33333357, inset -2px -2px 4px #ffffff;
 }
 
 textarea:focus {
-	box-shadow: inset 4px 4px 4px #d1d9e6, inset -4px -4px 4px #f9f9f9;
+	box-shadow: inset 4px 4px 4px #33333357, inset -4px -4px 4px #ffffff;
+        transition: 0.5s;
 }
 
 .txt-input {
@@ -111,13 +113,14 @@ textarea:focus {
  	padding: 0 15px;
   	border:none;
   	border-radius: 100px;
-  	background-color: #efefef;
-  	box-shadow: inset 2px 2px 4px #d1d9e6, inset -2px -2px 4px #f9f9f9;
+  	background-color: #e8e8e8;
+  	box-shadow: inset 2px 2px 4px #33333357, inset -2px -2px 4px #ffffff;
 }
 
 
 .txt-input:focus {
-	box-shadow: inset 4px 4px 4px #d1d9e6, inset -4px -4px 4px #f9f9f9;
+	box-shadow: inset 4px 4px 4px #33333357, inset -4px -4px 4px #ffffff;
+        transition: 0.5s;
 }
 
 
@@ -149,18 +152,12 @@ textarea:focus {
     border-radius: 100px;
     border: none;
     cursor: pointer;
-    box-shadow: -6px -6px 14px rgba(255, 255, 255, .7),
-                -6px -6px 10px rgba(255, 255, 255, .5),
-                6px 6px 8px rgba(255, 255, 255, .075),
-                6px 6px 10px rgba(0, 0, 0, .15);
+    box-shadow: 5px 5px 10px #c6c6c6, -5px -5px 10px #ffffff;
     background:transparent;
 }
 
 .submit-btn:active {
-	box-shadow: inset -2px -2px 14px rgba(255, 255, 255, .7),
-              inset -2px -2px 10px rgba(255, 255, 255, .5),
-              inset 6px 6px 6px rgba(255, 255, 255, .075),
-              inset 6px 6px 10px rgba(0, 0, 0, .15);
+	box-shadow: inset 5px 5px 10px #c6c6c6, inset -5px -5px 10px #ffffff;
 }
 
 .header {
@@ -229,10 +226,10 @@ textarea:focus {
 }
 
 .relative-main-content {
-    margin: 0 0 50px 15%;
+    margin: 0 0 0 15%;
     width: calc(100% - 15%);
     height: 84%;
-    padding: 0 30px 0 30px;
+    padding: 50px 30px 30px 30px;
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
@@ -1066,14 +1063,88 @@ textarea:focus {
     margin: 0 auto;
 }
 
+.relative-main-content .course-management-con {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 100%;
+}
+
+.relative-main-content .course-management-con .course-management-txt {
+    text-align: center;
+}
+
+.relative-main-content .course-management-con .course-management-boxes {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.relative-main-content .course-management-con .course-management-boxes .left {
+    width: calc(50% - 30px);
+}
+
+.relative-main-content .course-management-con .course-management-boxes .left form {
+    width: 100%;
+    border-bottom: 1px solid #3333332e;
+}
+
+.relative-main-content .course-management-con .course-management-boxes .left form textarea {
+    height: 168px;
+    width: 100%;
+    resize: none;
+    line-height: 1.6;
+}
+
+.relative-main-content .course-management-con .course-management-boxes .left form .num-input {
+    background-color: #e8e8e8;
+    width: 50%;
+    margin: 0 auto;
+    box-shadow: inset 2px 2px 4px #33333357, inset -2px -2px 4px #ffffff;
+}
+
+.relative-main-content .course-management-con .course-management-boxes .content-box .txt-input {
+    width: 100%;
+}
+
+.relative-main-content .course-management-con .course-management-boxes .submit-btn {
+    width: 50%;
+    margin: 20px auto;
+    border: 1px solid #ffffffb0;
+}
+
+.relative-main-content .course-management-con .course-management-boxes .left .delete-course-con {
+    width: 100%;
+    text-align: center;
+}
+
+.relative-main-content .course-management-con .course-management-boxes .video-bulletin-con {
+    display: flex;
+    flex-flow: column nowrap;
+    width: calc(50% - 20px);
+}
+
+.relative-main-content .course-management-con .course-management-boxes .video-bulletin-con .video {
+    margin-bottom: 30px;
+}
+
+.relative-main-content .course-management-con .course-management-boxes .video-bulletin-con .content-box .upload-video-con, add-bulletin-con {
+    width: 100%;
+    text-align: center;
+}
+
 .content-box {
-    display:flex;
-    flex-flow:column nowrap;
-    justify-content:space-between;
-    border-radius: 40px;
-    background: linear-gradient(145deg, #d7d7d7, #fff);
-    box-shadow:  11px 11px 22px #d9d9d9, -11px -11px 22px #ffffff;
-    padding:5rem 10rem;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 20px;
+    border: 2px solid #fff;
+    padding: 20px;
+    box-shadow: inset -4px -4px 4px 0px #ffffff,
+	        inset 4px 4px 6px 0px #c2c2c2,
+	        -4px -4px 4px 0px #ffffff,
+	        4px 4px 6px 0px #c2c2c2;
 }
 
 .content-box p {
@@ -3427,10 +3498,10 @@ input:checked + .slider:before {
 
     
 
-    .content-box {
+    /*.content-box {
 	margin-top:50px;
 	margin-bottom:50px;
-    }
+    }*/
 
     
     
