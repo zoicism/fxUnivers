@@ -99,7 +99,7 @@ if($get_course_fetch['video_url']!='') $embed_exists=1; else $embed_exists=0;
 			<div class="course-management-boxes">
 				<div class="content-box left">
 					<h3>Title, Description, Cost</h3>
-					<form method="POST" action="edit_post.php" autocomplete="off">
+					<form class="form" method="POST" action="edit_post.php" autocomplete="off">
 						<input type="text" class="txt-input" name="header" placeholder="Course title" value="<?php echo $get_course_fetch['header']?>" required>
 						<textarea name="description" rows="10" placeholder="Description" required><?php echo preg_replace('/\<br(\s*)?\/?\>/i', "",$get_course_fetch['description']) ?></textarea>
 						<input type="number" class="num-input" name="course_fxstar" placeholder="Cost (fxStars)" id="newCost" min="0" value="<?php echo $get_course_fetch['cost'] ?>" required>
@@ -133,9 +133,9 @@ if($get_course_fetch['video_url']!='') $embed_exists=1; else $embed_exists=0;
 								<input type="submit" class="submit-btn" value="Link Video" id="embedBtn">
 							</form>
 							<form id="del-embed" style="display:none">
-							  <p>Remove your linked video.</p>
-							  <input type="hidden" name="course_id" value="<?php echo $course_id?>">
-							  <input type="submit" class="submit-btn" value="Remove Link" id="delEmbedBtn">
+								<p>Remove your linked video.</p>
+								<input type="hidden" name="course_id" value="<?php echo $course_id?>">
+								<input type="submit" class="submit-btn" value="Remove Link" id="delEmbedBtn">
 							</form>
 						</div>
 					</div>
