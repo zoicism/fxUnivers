@@ -94,79 +94,75 @@ if($get_class['video']!='') $embed_exists=1; else $embed_exists=0;
 
 
 
-  <div class="relative-main-content fxuniversity-edit">
-                            <div class="content-box" style="padding:10px;">
-			      <h2 style="text-align:center">Session Management</h2>
+	<div class="relative-main-content fxuniversity-edit">
+		<div class="course-management-con">
+			<h2 class="course-management-txt">Session Management</h2>
+			<div class="course-management-boxes">
+				<div class="content-box left">
+					<h3>Title & Description</h3>
+					<form class="form" method="POST" action="edit_post.php">
+						<input type="text" name="header" placeholder="Session title" value="<?php echo $get_class['title']?>" class="txt-input" required>
+						<textarea name="description" rows="10" placeholder="Description"><?php echo preg_replace('#<br\s*/?>#i',"",$get_class['body'])?></textarea>
+						<input type="hidden" name="class_id" value="<?php echo $class_id?>">
+						<input type="hidden" name="course_id" value="<?php echo $course_id?>">
+						<input type="submit" value="Update" class="submit-btn">
+					</form>
+					<div class="delete-course-con">
+						<h3>Delete Session</h3>
+						<p>By deleting a session, all of the related videos and files will be lost permenantly, so think twice before deciding to do so.</p>
+						<form id="delClassForm">
+							<input type="hidden" name="rm_courseId" value="<?php echo $course_id ?>">
+							<input type="hidden" name="rm_classId"  value="<?php echo $class_id ?>">
+							<input type="submit" value="Delete Session" class="submit-btn">
+						</form>
+					</div>
+				</div>
+				<div class="video-bulletin-con">
+					<div class="content-box video">
+						<div class="upload-video-con">
+							<h3>Video</h3>
+							<p style="display:none;" id="up-vid-p">Upload a video from your device.</p>
+							<button class="submit-btn" id="up-vid-id" style="display:none">Upload Video</button>
+							<form method="POST" id="up-vid-form"  action="file_uploader.php" enctype="multipart/form-data" style="display:none">
+								<p>Uploading a new video will replace the previous session video if there is one already.</p>
+								<input name="video_up" type="file" id="vid-file-up" accept=".avchd, .avi, .flv, .mkv, .mov, .mp4, .webm, .wmv">
+								<input name="course_id" type="hidden" value="<?php echo $course_id?>">
+								<input name="class_id" type="hidden" value="<?php echo $class_id?>">
+								<input type="submit" value="Upload" class="submit-btn">
+							</form>
 
-<h3>Title & Description
-<form method="POST" action="edit_post.php">
-                  <input type="text" name="header" placeholder="Session title" value="<?php echo $get_class['title']?>" class="txt-input" required>
-                  <textarea name="description" rows="10" placeholder="Description"><?php echo preg_replace('#<br\s*/?>#i',"",$get_class['body'])?></textarea>
-                  <input type="hidden" name="class_id" value="<?php echo $class_id?>">
-                  <input type="hidden" name="course_id" value="<?php echo $course_id?>">
-
-                  <input type="submit" value="Update" class="submit-btn">
-                </form>
-<hr class="hr-tct">
-<h3>Delete Session</h3>
-<p style="max-width:400px">By deleting a session, all of the related videos and files will be lost permenantly, so think twice before deciding to do so.</p>
-<form id="delClassForm">
-                  <input type="hidden" name="rm_courseId" value="<?php echo $course_id ?>">
-                  <input type="hidden" name="rm_classId"  value="<?php echo $class_id ?>">
-                  <input type="submit" value="Delete Session" class="submit-btn">
-                </form>
-</div>
-<div class="content-box" style="padding:10px;">
-
-<h3>Video</h3>
-
-<p style="max-width:400px;display:none;" id="up-vid-p">Upload a video from your device.</p>
-<button class="submit-btn" id="up-vid-id" style="display:none">Upload</button>
-
-
-  <form method="POST" id="up-vid-form"  action="file_uploader.php" enctype="multipart/form-data" style="display:none">
-    <p style="max-width:400px">Uploading a new video will replace the previous session video if there is one already.</p>
-    <input name="video_up" type="file" id="vid-file-up" accept=".avchd, .avi, .flv, .mkv, .mov, .mp4, .webm, .wmv">
-    <input name="course_id" type="hidden" value="<?php echo $course_id?>">
-    <input name="class_id" type="hidden" value="<?php echo $class_id?>">
-    <input type="submit" value="Upload" class="submit-btn">
-  </form>
-
-<p style="max-width:400px;display:none;" id="del-vid-p">Remove your uploaded video for the session.</p>
-<button id="del-vid-id" style="display:none" class="submit-btn">Delete Video</button>
-
-<form id="vid-embed" autocomplete="off" style="display:none">
-<p style="max-width:400px;">Paste a YouTube/Vimeo link here as your course video. In case you have already uploaded a video using the button above, that video will be shown instead of the link.</p>
-  <input type="text" class="txt-input" name="embed_link" id="link-text" placeholder="Video link" required>
-  <input type="hidden" name="class_id" value="<?php echo $class_id?>">
-  <input type="submit" class="submit-btn" value="Embed Video" id="embedBtn">
-</form>
-<hr class="hr-tct">
-<form id="del-embed" style="display:none">
-  <p style="max-width:400px;">Remove your linked video.</p>
-  <input type="hidden" name="class_id" value="<?php echo $class_id?>">
-  <input type="submit" class="submit-btn" value="Remove Embed" id="delEmbedBtn">
-</form>
-
-
-</div>
-<div class="content-box" style="padding:10px;">
-
-
-<h3>File upload</h3>
-    <form method="POST" id="fileForm" enctype="multipart/form-data" action="class_file_upload.php">
-    <input type="hidden" name="inst_id" value="<?php echo $get_user_id?>">
-    <input name="class_id" type="hidden" value="<?php echo $class_id?>">
-    <input name="course_id" type="hidden" value="<?php echo $course_id?>">
-    <input type="file" name="uploaded_file" id="fileToUpload">
-    <p id="uploadMsg" style="display:none">Uploaded. You can upload another now.</p>
-    <input type="submit" value="Upload file" class="submit-btn">
-    </form>
-
-</div>
-
-    </div>
-
+							<p style="display:none;" id="del-vid-p">Remove your uploaded video for the session.</p>
+							<button id="del-vid-id" style="display:none" class="submit-btn">Delete Video</button>
+							<form id="vid-embed" autocomplete="off" style="display:none">
+								<p>Paste a YouTube/Vimeo link here as your course video. In case you have already uploaded a video using the button above, that video will be shown instead of the link.</p>
+								<input type="text" class="txt-input" name="embed_link" id="link-text" placeholder="Video link" required>
+								<input type="hidden" name="class_id" value="<?php echo $class_id?>">
+								<input type="submit" class="submit-btn" value="Embed Video" id="embedBtn">
+							</form>
+							<form id="del-embed" style="display:none">
+								<p>Remove your linked video.</p>
+								<input type="hidden" name="class_id" value="<?php echo $class_id?>">
+								<input type="submit" class="submit-btn" value="Remove Link" id="delEmbedBtn">
+							</form>
+						</div>
+					</div>
+					<div class="content-box">
+						<div class="add-bulletin-con">
+							<h3>File upload</h3>
+							<form method="POST" id="fileForm" enctype="multipart/form-data" action="class_file_upload.php">
+								<input type="hidden" name="inst_id" value="<?php echo $get_user_id?>">
+								<input name="class_id" type="hidden" value="<?php echo $class_id?>">
+								<input name="course_id" type="hidden" value="<?php echo $course_id?>">
+								<input type="file" name="uploaded_file" id="fileToUpload">
+								<p id="uploadMsg" style="display:none">Uploaded. You can upload another now.</p>
+								<input type="submit" value="Upload file" class="submit-btn">
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 
 
