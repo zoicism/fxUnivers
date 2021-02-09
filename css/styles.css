@@ -1145,6 +1145,29 @@ textarea:focus {
     text-align: center;
 }
 
+/* * * > Add Session * * */
+
+.relative-main-content .add-session-box {
+    width: 40%;
+}
+
+.relative-main-content .content-box .add-session-con {
+    width: 100%;
+    text-align: center;
+}
+
+.relative-main-content .add-session-con input, textarea {
+    width: 100%;
+    resize: none;
+    margin-left: 0;
+}
+
+.add-session-box .submit-btn {
+    border: 1px solid #fff;
+}
+
+/* * * < Add Session * * */
+
 .content-box {
     display: flex;
     flex-flow: column nowrap;
