@@ -1096,19 +1096,19 @@ textarea:focus {
     width: calc(50% - 30px);
 }
 
-.relative-main-content .course-management-con .course-management-boxes .left form {
+.relative-main-content .course-management-con .course-management-boxes .left .form {
     width: 100%;
     border-bottom: 1px solid #3333332e;
 }
 
-.relative-main-content .course-management-con .course-management-boxes .left form textarea {
+.relative-main-content .course-management-con .course-management-boxes .left .form textarea {
     height: 168px;
     width: 100%;
     resize: none;
     line-height: 1.6;
 }
 
-.relative-main-content .course-management-con .course-management-boxes .left form .num-input {
+.relative-main-content .course-management-con .course-management-boxes .left .form .num-input {
     background-color: #e8e8e8;
     width: 50%;
     margin: 0 auto;
@@ -1137,7 +1137,7 @@ textarea:focus {
 }
 
 .relative-main-content .course-management-con .course-management-boxes .video-bulletin-con .video {
-    margin-bottom: 30px;
+    margin-bottom: 45px;
 }
 
 .relative-main-content .course-management-con .course-management-boxes .video-bulletin-con .content-box .upload-video-con, .add-bulletin-con {
