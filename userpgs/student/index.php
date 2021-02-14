@@ -137,8 +137,16 @@ function get_string_between($string, $start, $end){
 			    
 			    echo '<div class="object" onclick="location.href=\''.$course_link.'\';">';
 
-		
-		            if($gsc_fetch['video_url']!=null) {
+
+
+			    $thumb_path = '../instructor/course_management/thumbnails/';
+			      $thumb = glob($thumb_path.$gsc_fetch['id'].'.jpg');
+
+			      if(count($thumb)>0) {
+			        echo '<div class="preview">
+				  <img src="'.$thumb_path.$gsc_fetch['id'].'.jpg">
+				</div>';
+			      } elseif($gsc_fetch['video_url']!=null) {
 
 			      $link_text = $gsc_fetch['video_url'];
 			      if(strpos($link_text,'youtube.com') !== false) {			    
@@ -152,9 +160,12 @@ function get_string_between($string, $start, $end){
 			      }
 			    
 			    } else {
+				
+			       
 			        echo '<div class="preview">
 				  <img src="/images/background/course.svg" style="height:50%;width:50%;">
 				</div>';
+			      
 			    }
 
 echo '<div class="details">';
