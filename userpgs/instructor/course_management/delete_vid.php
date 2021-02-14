@@ -13,6 +13,7 @@ if(count($file_ex)>0) {
   //unlink('videos/'.$course_id.'.'.$vid_ext);
 
   exec("rm videos/$course_id.*");
+  exec("rm thumbnails/$course_id.*");
 
   //header('Location: /userpgs/instructor/course_management/course.php?course_id='.$course_id);
   echo 1;

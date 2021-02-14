@@ -153,7 +153,7 @@ if($get_class['video']!='') $embed_exists=1; else $embed_exists=0;
 								<input type="hidden" name="inst_id" value="<?php echo $get_user_id?>">
 								<input name="class_id" type="hidden" value="<?php echo $class_id?>">
 								<input name="course_id" type="hidden" value="<?php echo $course_id?>">
-								<input type="file" name="uploaded_file" id="fileToUpload">
+								<input type="file" name="uploaded_file" id="fileToUpload" style="margin:auto">
 								<p id="uploadMsg" style="display:none">Uploaded. You can upload another now.</p>
 								<input type="submit" value="Upload file" class="submit-btn">
 							</form>

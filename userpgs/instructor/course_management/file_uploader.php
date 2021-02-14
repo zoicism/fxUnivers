@@ -2,8 +2,6 @@
 if(isset($_POST['course_id'])) $class_id=$_POST['course_id'];
 if(isset($_FILES['video_up'])) {
     $video_path='videos/';
-    //$prev_vid=glob($video_path.$class_id.'.*');
-    //if(count($prev_vid)>0) unlink($prev_vid[0]);
 
     exec("rm videos/$class_id.*");
 
@@ -14,15 +12,9 @@ if(isset($_FILES['video_up'])) {
     if(move_uploaded_file($_FILES['video_up']['tmp_name'], $path)) {
         $video_upload_ok=1;
         if($video_ext=='mp4') {
-            //exec("ffmpeg -i $path -f webm -vcodec libvpx-vp9 -vb 1024k videos/$class_id.webm");
 	    exec("./ffmpeg/ffmpeg -i $path -codec:v libtheora -qscale:v 3 -codec:a libvorbis -qscale:a 3 -f ogv videos/$class_id.ogv");
-        } /*elseif($video_ext=='webm') {
-            exec("ffmpeg -i $path -vcodec libx264 -f mp4 -vb 1024k -preset slow videos/$class_id.mp4");
-        } else {
-            exec("ffmpeg -i $path -f webm -vcodec libvpx-vp9 -vb 1024k videos/$class_id.webm");
-            exec("ffmpeg -i $path -vcodec libx264 -f mp4 -vb 1024k -preset slow videos/$class_id.mp4");
-            exec("rm $path");
-        }*/
+        }
+	exec("./ffmpeg/ffmpeg -i $path -ss 00:00:01.000 -vframes 1 thumbnails/$class_id.jpg");
     } else {
         $video_upload_ok=0;
     }

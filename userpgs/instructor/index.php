@@ -117,10 +117,15 @@ require('../../php/get_stu_stucourse.php');
 
 
 
-
-
-
-			    if($row3['video_url']!=null) {
+			    $thumb_path = 'course_management/thumbnails/';
+			    $thumb = glob($thumb_path.$row3['id'].'.jpg');
+			    
+			    if(count($thumb)>0) {
+			      echo '<div class="preview">
+				  <img src="'.$thumb_path.$row3['id'].'.jpg">
+				</div>';
+			      
+			    } elseif($row3['video_url']!=null) {
 			      $link_text = $row3['video_url'];
 			      if(strpos($link_text,'youtube.com') !== false) {			    
 			        $video_id = get_string_between($link_text,'embed/','" frameborder');

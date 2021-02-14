@@ -528,14 +528,26 @@ echo '<div class="sess-list">';
                             $onclickurl="unpurchased()";
                         }
 			echo '<div class="session" onclick="'.$onclickurl.'">';
-			?>
+			
 
-			  <div class="session-prev">
-			   <img src="/images/background/course.svg">
-			  </div>
-			  <div class="session-desc">
 
-			<?php
+
+			$thumb_path = '../class/thumbnails/';
+			$thumb = glob($thumb_path.$row['id'].'.jpg');
+
+			if(count($thumb)>0) {
+			      echo '<div class="session-prev">
+				  <img src="'.$thumb_path.$row['id'].'.jpg" style="height:100%;width:100%;border-radius:10px;">
+				</div>';
+			      
+			} else {
+			  echo ' <div class="session-prev">
+			   <img src="/images/background/course.svg" style="opacity: 0.4;">
+			  </div>';
+			  
+			}
+
+			echo '<div class="session-desc">';
 
 			if((time()-strtotime($instructor['lastseen']) < 3) && ($instructor['lsPage']=='live/#'.$row['id'])) {
 			  echo '<p><strong>'.$row['title'].'</strong> <span class="online"></span></p>';

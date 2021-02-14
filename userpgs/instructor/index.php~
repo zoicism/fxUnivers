@@ -116,7 +116,9 @@ require('../../php/get_stu_stucourse.php');
 			    echo '<div class="object" onclick="location.href=\'/userpgs/instructor/course_management/course.php?course_id='.$row3['id'].'\';">';
 
 
-			    
+
+
+
 
 			    if($row3['video_url']!=null) {
 			      $link_text = $row3['video_url'];
@@ -159,11 +161,10 @@ require('../../php/get_stu_stucourse.php');
 			        
 			          <div class="detail-bottom">
 				  <div class="detail-row">
-				    <div class="little-box blue-bg">
-				      '.$coursecounts.' <span>students</span>
-				    </div>
+				    <div class="little-box blue-bg detail">
+				      '.$coursecounts.' <span>students</span></div>
 				    
-				  <div class="little-box"><span>'.date("M jS, Y", strtotime($row3['start_date'])).'</span></div>
+				  <div class="little-box detail"><span>'.date("M jS, Y", strtotime($row3['start_date'])).'</span></div>
 				  </div>';
 
 		           if($row3['biddable']) {
