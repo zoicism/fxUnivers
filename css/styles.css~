@@ -490,12 +490,24 @@ textarea:focus {
     flex-flow: row nowrap;
     margin-top: 8px;
     cursor:pointer;
+    border-radius:10px;
 }
 
 .right-content .session:active {
     background-color: #2c2c2c;
     transition: 0.3s;
     fill: #ffffff;
+    color: #fff;
+}
+
+.sessions .sess-list #active {
+    background-color: #2c2c2c;
+    transition: 0.3s;
+    fill: #ffffff ;
+    color: #fff;
+}
+
+.sessions .sess-list #active p {
     color: #fff;
 }
 
@@ -540,7 +552,7 @@ textarea:focus {
     height: 83px;
     display: flex;
     text-align: center;
-    background-color: #33333317;
+    background-color: #0003;
     border-radius: 10px;
 }
 
@@ -708,19 +720,19 @@ textarea:focus {
     background: #efefef;
     box-shadow:  9px 9px 18px #cbcbcb, 
 		 -9px -9px 18px #ffffff;
-    max-width:560px;
-    height:315px;
+    /*max-width:560px;*/
+    height:250px;
     display:flex;
     justify-content:center;
     align-items:center;
     flex-flow:column;
-        margin-bottom: 20px;
+    margin-bottom: 20px;
     width: 100%;
 }
 
 .course-content .course-upperleft .video-placeholder {
     width: 50%;
-    height: 300px;
+    height: 250px;
     margin: 0 20px 0 0;
 }
 
@@ -1084,19 +1096,19 @@ textarea:focus {
     width: calc(50% - 30px);
 }
 
-.relative-main-content .course-management-con .course-management-boxes .left form {
+.relative-main-content .course-management-con .course-management-boxes .left .form {
     width: 100%;
     border-bottom: 1px solid #3333332e;
 }
 
-.relative-main-content .course-management-con .course-management-boxes .left form textarea {
+.relative-main-content .course-management-con .course-management-boxes .left .form textarea {
     height: 168px;
     width: 100%;
     resize: none;
     line-height: 1.6;
 }
 
-.relative-main-content .course-management-con .course-management-boxes .left form .num-input {
+.relative-main-content .course-management-con .course-management-boxes .left .form .num-input {
     background-color: #e8e8e8;
     width: 50%;
     margin: 0 auto;
@@ -1125,13 +1137,36 @@ textarea:focus {
 }
 
 .relative-main-content .course-management-con .course-management-boxes .video-bulletin-con .video {
-    margin-bottom: 30px;
+    margin-bottom: 45px;
 }
 
 .relative-main-content .course-management-con .course-management-boxes .video-bulletin-con .content-box .upload-video-con, .add-bulletin-con {
     width: 100%;
     text-align: center;
 }
+
+/* * * > Add Session * * */
+
+.relative-main-content .add-session-box {
+    width: 40%;
+}
+
+.relative-main-content .content-box .add-session-con {
+    width: 100%;
+    text-align: center;
+}
+
+.relative-main-content .add-session-con input, textarea {
+    width: 100%;
+    resize: none;
+    margin-left: 0;
+}
+
+.add-session-box .submit-btn {
+    border: 1px solid #fff;
+}
+
+/* * * < Add Session * * */
 
 .content-box {
     display: flex;
@@ -4206,6 +4241,12 @@ input:checked + .slider:before {
   }
 
   .course-content .course-upperleft .video-placeholder {
+      width:100%;
+      border-radius:0;
+      height:150px;
+  }
+
+  .course-content .video-placeholder {
       width:100%;
       border-radius:0;
       height:150px;
