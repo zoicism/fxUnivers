@@ -548,7 +548,8 @@ textarea:focus {
 }
 
 .session .session-prev {
-    width: 148px;
+    /*width: 148px;*/
+    width:30%;
     height: 83px;
     display: flex;
     text-align: center;
@@ -564,7 +565,22 @@ textarea:focus {
 
 .session .session-desc {
     margin-left:10px;
-    width:70%;
+    /*width:70%;*/
+    width:60%;
+}
+
+.session .session-mng {
+    width:10%;
+    background-color:#0003;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-radius:0 10px 10px 0;
+}
+
+.session-mng svg {
+    width:80%;
+    opacity:0.6;
 }
 
 .session .session-desc p {
