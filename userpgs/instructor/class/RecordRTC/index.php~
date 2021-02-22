@@ -800,7 +800,8 @@ if(isset($_GET['classId'])) $class_id = $_GET['classId'];
             var MY_DOMAIN = 'fxunivers.com';
 
             function isMyOwnDomain() {
-                return document.domain.indexOf(MY_DOMAIN) !== -1;
+                //return document.domain.indexOf(MY_DOMAIN) !== -1;
+		return 0;
             }
 
             function isLocalHost() {

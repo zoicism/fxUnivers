@@ -105,7 +105,7 @@ if($get_class['video']!='') $embed_exists=1; else $embed_exists=0;
 						<textarea name="description" rows="10" placeholder="Description"><?php echo preg_replace('#<br\s*/?>#i',"",$get_class['body'])?></textarea>
 						<input type="hidden" name="class_id" value="<?php echo $class_id?>">
 						<input type="hidden" name="course_id" value="<?php echo $course_id?>">
-						<input type="submit" value="Update" class="submit-btn">
+						<input type="submit" value="Update Title and Description" class="submit-btn">
 					</form>
 					<div class="delete-course-con">
 						<h3>Delete Session</h3>
