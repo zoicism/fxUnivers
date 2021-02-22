@@ -335,7 +335,8 @@ textarea:focus {
     box-shadow: -4px -2px 4px 0px #ffffff, 4px 2px 6px 0px #DFE4EA;
     border-radius: 20px;
     padding: 0;
-    height: calc(100% - 130px);
+    /*height: calc(100% - 130px);*/
+    height:440px;
     width: 100%;
     overflow: hidden;
 }
@@ -422,7 +423,8 @@ textarea:focus {
 .sessions .sess-list {
     overflow-y: scroll;
     width: 100%;
-    height: calc(100% - 40px);
+    /*height: calc(100% - 40px);*/
+    height:400px;
     padding: 0 10px 10px 10px;
 }
 
@@ -448,6 +450,7 @@ textarea:focus {
     display:flex;
     flex-flow:row nowrap;
     justify-content:space-around;
+    height:40px;
 }
 
 .sessions .tabs .tab {
@@ -456,6 +459,10 @@ textarea:focus {
     box-shadow:-4px -2px 4px 0px #ffffff, 4px 2px 6px 0px #DFE4EA;
     opacity:0.5;
     cursor:pointer;
+}
+
+.sessions .tabs .tab h3 {
+    margin:10px 0 0 0;
 }
 
 .sessions .tabs .tab:hover {
