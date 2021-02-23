@@ -123,9 +123,17 @@ require('../../../php/get_tar_id.php');
 
 
 	  <div class="video-holder">
+	  <!--
 	  <video controls>
             <source src="<?php echo 'live/uploads/'.$class_id.'.'.$vid_ext ?>" type="video/<?php echo $vid_ext?>"> 
 	  </video>
+	  -->
+
+<video controls>
+            <source src="<?php echo 'live/uploads/'.$class_id.'.mp4'?>" type="video/mp4">
+   <source src="<?php echo 'live/uploads/'.$class_id.'.ogv'?>" type="video/ogg">
+<source src="<?php echo 'live/uploads/'.$class_id.'.webm'?>" type="video/webm">
+          </video>
 	  </div>
 
 
