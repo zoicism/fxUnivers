@@ -108,7 +108,6 @@ if(isset($_COOKIE['username']) && isset($_COOKIE['password'])) {
         <div class="fx-icon fxpartner-icon"><span>fxPartner</span><p>Partner us & make easy fxStars</p></div>
         <div class="fx-icon fxuniverse-icon"><span>fxUniverse</span><p>Universe of trading (Coming soon for public)</p></div>
         <div class="fx-icon fxsonet-icon"><span>fxSonet</span><p>Next level of worldwide connection (Coming soon for public)</p></div>
-	<div class="fx-icon fxsonet-icon" ><?php echo $uname.' '.$pass ?></div>
       </div>
     </div>
   </div>
