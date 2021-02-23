@@ -548,7 +548,8 @@ textarea:focus {
 }
 
 .session .session-prev {
-    width: 148px;
+    /*width: 148px;*/
+    width:30%;
     height: 83px;
     display: flex;
     text-align: center;
@@ -564,7 +565,22 @@ textarea:focus {
 
 .session .session-desc {
     margin-left:10px;
-    width:70%;
+    /*width:70%;*/
+    width:60%;
+}
+
+.session .session-mng {
+    width:10%;
+    background-color:#0003;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-radius:0 10px 10px 0;
+}
+
+.session-mng svg {
+    width:80%;
+    opacity:0.6;
 }
 
 .session .session-desc p {
@@ -1647,11 +1663,15 @@ textarea:focus {
     bottom: 0;
     margin-bottom: 5px;
     width: inherit;
-    font-size: 0.8em;
+    font-size: 0.5em;
     color: #000;
     text-decoration: none;
     opacity: 0.4;
     padding: 0 10px;
+}
+
+.policy p {
+    font-size:0.7rem;
 }
 
 .policy a {
