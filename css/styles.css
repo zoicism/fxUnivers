@@ -3788,7 +3788,7 @@ input:checked + .slider:before {
 	height: 100%;
     }
     
-    .login-form h2, .login-input, .login-forgot {
+    .login-form h2, .login-input, .login-forgot, .remember-me {
 	display: none;
     }
 
