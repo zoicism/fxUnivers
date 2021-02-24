@@ -31,7 +31,7 @@ require('../../wallet/php/get_fxcoin_count.php');
 <!DOCTYPE html>
 <html>
 <head>
-	<title>fxStar</title>
+	<title>fxPartner</title>
     <meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/styles.css">
