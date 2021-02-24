@@ -1,11 +1,9 @@
 <?php
 
-session_start();
-require('../register/connect.php');
+if(isset($_COOKIE['username']) && isset($_COOKIE['password'])) {
+    $username=$_COOKIE['username'];
+    $password=$_COOKIE['password'];
 
-if(isset($_POST['username']) and isset($_POST['password'])) {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
 
     $login_query = "SELECT * FROM user WHERE ((username='$username' and password='$password') or (email='$username' and password='$password'))";
     $login_result = mysqli_query($connection, $login_query);
@@ -23,22 +21,29 @@ if(isset($_POST['username']) and isset($_POST['password'])) {
 
 	$_SESSION['username'] = $username;
 
-	if(/*isset($_POST['rememberme']) && $_POST['rememberme']=='remember'*/ 1) {
-            setcookie('username',$_POST['username'],time()+60*60*24*30,'/');
-            setcookie('password',$_POST['password'],time()+60*60*24*30,'/');
+	if(1) {
+            setcookie('username',$username,time()+60*60*24*30,'/');
+            setcookie('password',$password,time()+60*60*24*30,'/');
 	} else {
             setcookie("username","");
             setcookie("password","");
 	}
 	
-	header('Location: /userpgs');
-	//exit;
-	
-    } else {
-	header('Location: /?err=wup&un='.$username);
     }
+    
 } else {
-    header('Location: /?err=nup');
+    
+    //header('Location: /register/logout.php');
+    session_start();
+    session_destroy();
+
+    if(isset($_COOKIE['password'])) {
+	setcookie('username','',time()-7000000,'/');
+	setcookie('password','',time()-7000000,'/');
+    }
+
+    header('Location: /');
+    
 }
 
 ?>
