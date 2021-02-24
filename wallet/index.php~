@@ -137,7 +137,7 @@ require('php/get_fxcoin_count.php');
 
 
                           <div class="description" style="font-size:0.6rem;">
-                          <h3>fxStar Functions</h3>
+                          <h3>fxStar Options</h3>
                           <p><strong>Buy fxStars:</strong> To use most parts of the fxUnivers you need fxStars and here is where you can buy some. 10 fxStars cost 11 USD.</p>
 
                           <p><strong>Cash-out fxStars:</strong> With a minimum number of 100 fxStars you can request cash-outs which may take place within 3 business days. Coming soon, you will also be able to request cash-outs with various cryptocurrencies.</p>

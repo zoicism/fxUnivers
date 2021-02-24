@@ -120,7 +120,7 @@ require('../php/get_fxcoin_count.php');
                               }
                               echo '</select>';
                           } else {
-                              echo '<p style="color:gray">You need to have at least oen friend.</p>';
+                              echo '<p style="color:gray">You need to have at least one friend.</p>';
                           }
 				 ?>
 <!--

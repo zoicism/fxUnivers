@@ -1,9 +1,9 @@
 <?php
 // Requiring https
 /*if($_SERVER['HTTPS'] != "on") {
-    $url = "https://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
-    header("Location: $url");
-    exit;
+   $url = "https://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+   header("Location: $url");
+   exit;
 }*/
 
 session_start();
@@ -12,7 +12,8 @@ require('../register/connect.php');
 if(isset($_SESSION['username'])) {
     $username = $_SESSION['username'];
 } else {
-        header("Location: /register/logout.php");
+    require_once($_SERVER['DOCUMENT_ROOT'].'/php/get_login_cookies.php');
+    //header("Location: /register/logout.php");
 }
 
 $user_query = "SELECT * FROM user WHERE username='$username'";
@@ -26,10 +27,10 @@ $verified = $user_fetch['verified'];
 $session_avatar=$user_fetch['avatar'];
 // add new post to the timeline
 if(isset($_POST['new_post'])) {
-        $raw_newpost = nl2br($_POST['new_post']);
-        $newpost = mysqli_real_escape_string($connection, $raw_newpost);
-        $newpost_query = "INSERT INTO sonet(uid, body) VALUES($id, '$newpost')";
-        $newpost_result = mysqli_query($connection, $newpost_query) or die(mysqli_error($connection));
+    $raw_newpost = nl2br($_POST['new_post']);
+    $newpost = mysqli_real_escape_string($connection, $raw_newpost);
+    $newpost_query = "INSERT INTO sonet(uid, body) VALUES($id, '$newpost')";
+    $newpost_result = mysqli_query($connection, $newpost_query) or die(mysqli_error($connection));
 }
 
 // fetch the sonet records

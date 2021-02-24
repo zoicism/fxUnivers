@@ -177,7 +177,7 @@ require('../php/get_fxcoin_count.php');
 	      url: '../php/buy_coin.php',
               method: 'POST',
 	      success: function(msg) {
-	        console.log(msg);
+	        
 	      }   
 	    });
 	    alert('Transaction completed by ' + details.payer.name.given_name);

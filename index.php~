@@ -24,8 +24,40 @@ if(isset($_GET['msg'])) {
 }
 
 if(isset($_COOKIE['username']) && isset($_COOKIE['password'])) {
-    $uname=$_COOKIE['username'];
-    $pass=$_COOKIE['password'];
+    $username=$_COOKIE['username'];
+    $password=$_COOKIE['password'];
+
+
+    $login_query = "SELECT * FROM user WHERE ((username='$username' and password='$password') or (email='$username' and password='$password'))";
+    $login_result = mysqli_query($connection, $login_query);
+
+    $login_count = mysqli_num_rows($login_result);
+
+    if($login_count == 1) {
+	
+	if(strpos($username, '@') !== false) {
+	    $uname_query = "SELECT * FROM user WHERE email='$username'";
+	    $uname_result = mysqli_query($connection, $uname_query) or die(mysqli_error($connection));
+	    $uname_fetch = mysqli_fetch_array($uname_result);
+	    $username = $uname_fetch['username'];
+	}
+
+	$_SESSION['username'] = $username;
+
+	if(1) {
+            setcookie('username',$username,time()+60*60*24*30,'/');
+            setcookie('password',$password,time()+60*60*24*30,'/');
+	} else {
+            setcookie("username","");
+            setcookie("password","");
+	}
+	
+	header('Location: /userpgs');
+	//exit;
+	
+    } else {
+	header('Location: /?err=wup&un='.$username);
+    }
 }
 ?>
 
@@ -50,6 +82,12 @@ if(isset($_COOKIE['username']) && isset($_COOKIE['password'])) {
 	<input class="login-input" type="text" placeholder="Username or Email" name="username" <?php if(isset($_GET['un'])) echo 'value="'.$_GET['un'].'"'; ?> required>
 	<input class="login-input" type="password" name="password" placeholder="Password" required>
 
+	<label class="checkbox remember-me">Remember me
+        <input type="checkbox" name="rememberme" value="remember">
+        <span class="checkmark"></span></label>
+
+
+	
 	<?php 
 	 if(isset($_GET['err']) && $_GET['err']=='wup') {
 	 echo '<p class="red">Wrong username or password.</p>';
@@ -70,6 +108,7 @@ if(isset($_COOKIE['username']) && isset($_COOKIE['password'])) {
         <div class="fx-icon fxpartner-icon"><span>fxPartner</span><p>Partner us & make easy fxStars</p></div>
         <div class="fx-icon fxuniverse-icon"><span>fxUniverse</span><p>Universe of trading (Coming soon for public)</p></div>
         <div class="fx-icon fxsonet-icon"><span>fxSonet</span><p>Next level of worldwide connection (Coming soon for public)</p></div>
+	<div class="fx-icon fxsonet-icon" ><?php echo $uname.' '.$pass ?></div>
       </div>
     </div>
   </div>
@@ -83,6 +122,10 @@ if(isset($_COOKIE['username']) && isset($_COOKIE['password'])) {
   <form action="/php/login.php" method="POST">
     <input class="txt-input" type="text" placeholder="Username or Email" name="username" <?php if(isset($_GET['un'])) echo 'value="'.$_GET['un'].'"'; ?> required>
     <input class="txt-input" type="password" name="password" placeholder="Password" required>
+
+    <label class="checkbox">Remember me
+        <input type="checkbox" name="rememberme" value="remember">
+        <span class="checkmark"></span></label>
     
     <?php 
 	 if(isset($_GET['err']) && $_GET['err']=='wup') {

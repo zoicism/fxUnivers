@@ -1,10 +1,10 @@
 <?php
 // Requiring https
 /*if($_SERVER['HTTPS'] != "on") {
-    $url = "https://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
-    header("Location: $url");
-    exit;
-}*/
+   $url = "https://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+   header("Location: $url");
+   exit;
+   }*/
 
 session_start();
 require('../../register/connect.php');
@@ -12,8 +12,7 @@ require('../../register/connect.php');
 if(isset($_SESSION['username'])) {
     $username = $_SESSION['username'];
 } else {
-    header('Location: /register/logout.php');
-    exit();
+    require_once($_SERVER['DOCUMENT_ROOT'].'/php/get_login_cookies.php');
 }
 
 require('../../php/get_user.php');
@@ -39,10 +38,10 @@ if(isset($_GET['item'])) {
 
 if($get_fxcoin_count>=$cost+ceil(0.1*$cost)) {
     $suff=1;
-  
+    
 } else {
     $suff=0;
-  
+    
 }
 ?>
 

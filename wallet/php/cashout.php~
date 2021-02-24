@@ -14,7 +14,7 @@ if(isset($_POST['user_id'])) $userId=$_POST['user_id'];
 if(isset($_POST['amnt'])) $amnt=$_POST['amnt'];
 if(isset($_POST['coin_count'])) $fxcoins=$_POST['coin_count'];
 
-date_default_timezone_set('America/New_York');
+//date_default_timezone_set('America/New_York');
 $dt=date('Y-m-d H:i:s');
 
 if($fxcoins>=$amnt && $amnt>=100) {

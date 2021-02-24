@@ -110,19 +110,19 @@ require('../../php/get_trans.php');
 <?php
           if($get_trans_in_count>0) {
               $trans_i=1;
-              while($trans_in_row=$get_trans_in->fetch_assoc()) {/*
-                  $trans_from_un_q='SELECT * FROM user WHERE id='.$trans_in_row['from_id'];
-                  $trans_from_un_r=mysqli_query($connection,$trans_from_un_q) or die(mysqli_error($connection));
-                  $trans_from_un_fetch=mysqli_fetch_array($trans_from_un_r);
-                  $trans_from_un=$trans_from_un_fetch['username'];*/
+              while($trans_in_row=$get_trans_in->fetch_assoc()) {
 
+	        if($trans_in_row['to_id']!=1) {
+		
                   $trans_to_un_q='SELECT * FROM user WHERE id='.$trans_in_row['to_id'];
                   $trans_to_un_r=mysqli_query($connection,$trans_to_un_q) or die(mysqli_error($connection));
                   $trans_to_un_fetch=mysqli_fetch_array($trans_to_un_r);
                   $trans_to_un=$trans_to_un_fetch['username'];
 
-                  echo '<div style="border-bottom:1px solid gray"><p>To: <strong><a href="/user/'.$trans_to_un.'">@'.$trans_to_un.'</a></strong></p> <p>Amount: <strong>'.$trans_in_row['amnt'].' fxStars</strong></p> <p>Date & Time: <strong>'.$trans_in_row['dt'].' ET</strong></p></div>';
+                  echo '<div style="border-bottom:1px solid gray"><p>To: <strong><a href="/user/'.$trans_to_un.'">@'.$trans_to_un.'</a></strong></p> <p>Amount: <strong>'.$trans_in_row['amnt'].' fxStars (+'.ceil($trans_in_row['amnt']*0.1).' interest)</strong></p> <p>Date & Time: <strong>'.$trans_in_row['dt'].' (GMT)</strong></p></div>';
                   $trans_i++;
+		  
+		}
               }
           } else {
               echo '<div><p style="color:gray">No outgoing transaction yet</p></div>';
@@ -150,7 +150,7 @@ require('../../php/get_trans.php');
                   $trans_to_un_fetch=mysqli_fetch_array($trans_to_un_r);
                   $trans_to_un=$trans_to_un_fetch['username'];
 */
-                  echo '<div style="border-bottom:1px solid gray"><p>From: <strong><a href="/user/'.$trans_from_un.'">@'.$trans_from_un.'</a></strong></p> <p>Amount: <strong>'.$trans_out_row['amnt'].' fxStars</strong></p><p>Date & Time: <strong>'.$trans_out_row['dt'].' (ET)</strong></p></div>';
+                  echo '<div style="border-bottom:1px solid gray"><p>From: <strong><a href="/user/'.$trans_from_un.'">@'.$trans_from_un.'</a></strong></p> <p>Amount: <strong>'.$trans_out_row['amnt'].' fxStars</strong></p><p>Date & Time: <strong>'.$trans_out_row['dt'].' (GMT)</strong></p></div>';
                   $trans_i++;
               }
           } else {
