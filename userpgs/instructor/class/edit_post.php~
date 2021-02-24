@@ -11,15 +11,20 @@ if(isset($_SESSION['username'])) {
 }
 
 // if the values of the post is set, post it
-if(isset($_POST['header']))	$header = $_POST['header'];
-if(isset($_POST['description'])) $description = nl2br($_POST['description']);
+if(isset($_POST['header']))	{
+    $header = $_POST['header'];
+    $header=mysqli_real_escape_string($connection,$header);
+}
+if(isset($_POST['description'])) {
+    $description = nl2br($_POST['description']);
+    $description=mysqli_real_escape_string($connection,$description);
+}
 
 
 if(isset($_POST['course_id'])) $course_id = $_POST['course_id'];
 if(isset($_POST['class_id'])) $class_id=$_POST['class_id'];
-echo $course_id.'<br>'.$class_id.'<br>'.$header.'<br>';
+//echo $course_id.'<br>'.$class_id.'<br>'.$header.'<br>';
 
-//$query = "INSERT INTO `class` (teacher_id, course_id, title, body, video) VALUES ($id, $course_id, '$header', '$description', '$video')";
 $query="UPDATE class SET title='$header', body='$description' WHERE id=$class_id";
 $result = mysqli_query($connection, $query) or die(mysqli_error($connection));
 
@@ -113,11 +118,7 @@ if($result) {
             
             if($uploadOK) {
                 if(move_uploaded_file($_FILES['uploaded_file']['tmp_name'], $path)) {
-                    //echo "The file ".  basename( $_FILES['uploaded_file']['name']). 
-                        " has been uploaded";
                     require('../../../php/conn/fxinstructor.php');
-                    //echo $id.' '.$classId.' '.$file_name.'<br>';
-                    //$file_db_query="INSERT INTO class_files(instId,classId,fileName) VALUES($id,$class_id,'$file_name')";
                     $file_db_query="UPDATE class_files SET fileName='$file_name' WHERE classId=$class_id";
                     $file_db_result=mysqli_query($fxinstructor_connection,$file_db_query) or die(mysqli_error($fxinstructor_connection));
                 } else {
@@ -133,6 +134,6 @@ if($result) {
     //echo "failed";
 }
 
-//header('Location: /userpgs/instructor/class/?course_id='.$course_id.'&class_id='.$class_id);
+header('Location: /userpgs/instructor/class?course_id='.$course_id.'&class_id='.$class_id);
 
 ?>

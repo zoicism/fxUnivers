@@ -1,49 +1,49 @@
 <?php
 // Requiring https
 /*if($_SERVER['HTTPS'] != "on") {
-    $url = "https://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
-    header("Location: $url");
-    exit;
-}*/
-  session_start();
-  require('../../../register/connect.php');
+   $url = "https://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+   header("Location: $url");
+   exit;
+   }*/
+session_start();
+require('../../../register/connect.php');
 
 if(isset($_SESSION['username'])) {
     $username = $_SESSION['username'];
 } else {
-	header("Location: /register/logout.php");
+    require_once($_SERVER['DOCUMENT_ROOT'].'/php/get_login_cookies.php');
 }
 
-  if(isset($_GET['course_id'])) $course_id = $_GET['course_id'];
+if(isset($_GET['course_id'])) $course_id = $_GET['course_id'];
 
-  $course_query = "SELECT * FROM `teacher` WHERE id=$course_id";
-  $course_result = mysqli_query($connection, $course_query) or die(mysqli_error($connection));
-  $course_fetch = mysqli_fetch_array($course_result);
+$course_query = "SELECT * FROM `teacher` WHERE id=$course_id";
+$course_result = mysqli_query($connection, $course_query) or die(mysqli_error($connection));
+$course_fetch = mysqli_fetch_array($course_result);
 
-  $user_id = $course_fetch['user_id'];
-  $get_course_teacher_id = $user_id;
-  $header = $course_fetch['header'];
-  $description = $course_fetch['description'];
-  $video = $course_fetch['video_url'];
-  $s_date = $course_fetch['start_date'];
-  $e_date = $course_fetch['exam_date'];
-  $cost = $course_fetch['cost'];
+$user_id = $course_fetch['user_id'];
+$get_course_teacher_id = $user_id;
+$header = $course_fetch['header'];
+$description = $course_fetch['description'];
+$video = $course_fetch['video_url'];
+$s_date = $course_fetch['start_date'];
+$e_date = $course_fetch['exam_date'];
+$cost = $course_fetch['cost'];
 
-  require('../php/classes.php');
+require('../php/classes.php');
 
 
-  require('../../../php/get_user.php');
-  $id = $get_user_id;
+require('../../../php/get_user.php');
+$id = $get_user_id;
 
-  require('../../php/notif.php');
+require('../../php/notif.php');
 
-  require('../../../php/get_user_type.php');
+require('../../../php/get_user_type.php');
 
-  require('../../../php/get_exam.php');
+require('../../../php/get_exam.php');
 
-  if(isset($_GET['q_id'])) {
+if(isset($_GET['q_id'])) {
     $q_id = $_GET['q_id'];
-  }
+}
 
 $i=0;
 while($formRow = $get_exam_result2->fetch_assoc()) {
@@ -53,7 +53,7 @@ while($formRow = $get_exam_result2->fetch_assoc()) {
     }
 }
 
-  require('../../../php/get_current_q.php');
+require('../../../php/get_current_q.php');
 
 if($user_type!='instructor') {
     header("Location: /");

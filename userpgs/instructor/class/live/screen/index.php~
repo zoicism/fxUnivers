@@ -102,7 +102,7 @@ require('../../../../../php/get_tar_id.php');
                     <?php if($user_type=='instructor') echo '<button id="share-screen" style="background-color:transparent" class="submit-btn">Start Screen Sharing</button>'; else echo '<p id="share-screen-p">Instructor\'s screen will appear here.</p>'; ?>
                 </section>
 
-<p>Watching: <span id="online-num">0</span></p>
+<!--<p>Watching: <span id="online-num">0</span></p>-->
 
 
                 <!-- local/remote videos container -->

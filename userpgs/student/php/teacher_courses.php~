@@ -3,8 +3,11 @@
 session_start();
 
 $username = $_SESSION['username'];
+if(isset($_GET['teacher_un'])) {
+  $teacher_un = $_GET['teacher_un'];
+}
 
-$query = "SELECT * FROM user WHERE username='$selected_user'";
+$query = "SELECT * FROM user WHERE username='$teacher_un'";
 $result = mysqli_query($connection, $query) or die(mysqli_error($connection));
 $fetch_user = mysqli_fetch_array($result);
 $id = $fetch_user['id'];

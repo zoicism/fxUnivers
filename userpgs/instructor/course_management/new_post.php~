@@ -29,9 +29,11 @@ if(isset($_POST['header']) && isset($_POST['description'])) {
     
 	$query = "INSERT INTO `teacher` (user_id, header, description, cost, start_date, biddable) VALUES ($id, '$header', '$description', $cost, NOW(), $biddable)";
 	$result = mysqli_query($connection, $query) or die(mysqli_error($connection));
+
 	
+
 	if($result) {
-		//echo "successful";
+		
 		header("Location: /userpgs/instructor");
 	} else {
 		//echo "failed";

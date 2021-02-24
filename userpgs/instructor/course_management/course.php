@@ -12,7 +12,7 @@ require_once('../../../php/conn/fxinstructor.php');
 if(isset($_SESSION['username'])) {
     $username = $_SESSION['username'];
 } else {
-    header("Location: /register/logout.php");
+    require_once($_SERVER['DOCUMENT_ROOT'].'/php/get_login_cookies.php');
 }
 
 if(isset($_GET['course_id'])) $course_id = $_GET['course_id'];

@@ -28,7 +28,7 @@ if(isset($_POST['header']) && isset($_POST['description'])) {
 	if(isset($_POST['course_fxstar'])) $cost = $_POST['course_fxstar'];
 
 
-	echo $query = "UPDATE `teacher` SET header='$header', description='$description', cost='$cost' WHERE id=$course_id";
+	$query = "UPDATE `teacher` SET header='$header', description='$description', cost='$cost' WHERE id=$course_id";
 	$result = mysqli_query($connection, $query) or die(mysqli_error($connection));
 	
 	if($result) {

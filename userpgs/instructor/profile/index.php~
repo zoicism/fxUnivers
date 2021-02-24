@@ -42,23 +42,24 @@ require('../../../wallet/php/get_fxcoin_count.php');
 <html lang="en">
     <head>
     <meta charset="utf-8">
-    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Condensed&display=swap" rel="stylesheet">   
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+       <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">   
+
     <title>fxUnivers</title>
     <link rel="stylesheet" href="/css/style.css">
-    <style>html{background:#D4B1FC}</style>
+    <link rel="stylesheet" href="/css/icons.css">
+    <link rel="stylesheet" href="/css/logo.css">
+    <link rel="stylesheet" href="/css/colors.css">
+    
     <script src="/js/jquery-3.4.1.min.js"></script>
     </head>
 
 <body>
-<div class="upperbar">
-    <span class="float-left">
-      <a href="/">fxUnivers</a> &#8250; <a href="/user/<?php echo $tarname?>">@<?php echo $tarname?></a> &#8250; instructor
-    </span>
-    <span class="float-right">
-      <a id="msg_bar" href="/msg/inbox.php">msg</a> &#8226; <a id="notif_a" href="/userpgs/notif">notif</a>
-    </span>
-</div>
+<div class="upperbar"></div>
+<script id="upperbar-script" src="/js/upperbar.js" sess_avatar="<?php echo $session_avatar?>" sess_un="<?php echo $username?>"></script>
 
+    
+    
 <?php
                 $stu1_q="SELECT id FROM teacher WHERE user_id=$tarid";
                 $stu1_r=mysqli_query($connection,$stu1_q) or die(mysqli_error($connection));
@@ -80,11 +81,15 @@ require('../../../wallet/php/get_fxcoin_count.php');
                     $acc_count+=mysqli_num_rows($acc_r);
                 }
 ?>
+</div>
 
 <div class="col-33 left-col">
-  <div class="col-1" id="oneone">
+                    <div class="col-1">
+    <div class="main fxuniversity-color"></div>
+    <div class="icon col-icon fxuniversity-bg"></div>
+  
                 <h3><?php echo $tarfname.' '.$tarlname.'<br>@'.$tarname ?></h3>
-                <p><b>instructor</b></p>
+                <p><b>Instructor</b></p>
                 <p><strong><?php echo $course_count ?></strong> courses</p>
                 <p><strong><?php echo $stu_count ?></strong> students</p>
                 <p><strong><?php echo $acc_count ?></strong> accepted students</p>
@@ -117,27 +122,17 @@ require('../../../wallet/php/get_fxcoin_count.php');
 </div>
 
 
+<div class="footer"></div>
+<script src="/js/footer.js"></script>
 
-<div class="footer">With all due Reserves, &copy; fxUnivers 2017-2020 All rights reserved.</div>
-
-
-
-
+<div class="footbar"></div>
+<script src="/js/footbar.js"></script><script src="/js/notif_msg.js" id="notmsg" nmuid="<?php echo $get_user_id?>"></script>
 
 <script>
-                if(screen.width>480) {
-                    /*var h11=$('#oneone').height();
-                    var h12=$('#onetwo').height();
-                    var row1=0;
-                    if(h11>row1) row1=h11;
-                    if(h12>row1) row1=h12;
-                    $('#oneone').height(row1);
-                    $('#onetwo').height(row1);*/
-                } else {
-                    $('#onetwo').show();
-                    $('#onethree').hide();
-                }
+    var notifUserId=<?php echo $get_user_id ?>;
 </script>
+
+
 
 </body>
 </html>

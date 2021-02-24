@@ -104,7 +104,7 @@ if($get_course_fetch['video_url']!='') $embed_exists=1; else $embed_exists=0;
 						<textarea name="description" rows="10" placeholder="Description" required><?php echo preg_replace('/\<br(\s*)?\/?\>/i', "",$get_course_fetch['description']) ?></textarea>
 						<input type="number" class="num-input" name="course_fxstar" placeholder="Cost (fxStars)" id="newCost" min="0" value="<?php echo $get_course_fetch['cost'] ?>" required>
 						<input type="hidden" name="course_id" value="<?php echo $course_id?>">
-						<input type="submit" class="submit-btn" value="Update">
+						<input type="submit" class="submit-btn" value="Update Details and Cost">
 					</form>
 					<div class="delete-course-con">
 						<h3>Delete Course</h3>

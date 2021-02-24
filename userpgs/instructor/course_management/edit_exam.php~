@@ -1,112 +1,58 @@
 <?php
 session_start();
-require('../../register/connect.php');
-
-if(isset($_POST['username']) and isset($_POST['password'])) {
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-
-        $query = "SELECT * FROM `user` WHERE username='$username' and password='$password'";
-
-        $result = mysqli_query($connection, $query) or die(mysqli_error($connection));
-        $count = mysqli_num_rows($result);
-
-        if($count == 1) {
-                $_SESSION['username'] = $username;
-        } else {
-                $fmsg = "invalid login credentials";
-        }
-}
+require('../../../register/connect.php');
 
 if(isset($_SESSION['username'])) {
         $username = $_SESSION['username'];
 	$smsg = "Successfully logged in!";
+
+	$id_query = "SELECT * FROM `user` WHERE username='$username'";
+	$id_result = mysqli_query($connection, $id_query) or die(mysqli_error($connection));
+	$id_fetch = mysqli_fetch_array($id_result);
+	$id = $id_fetch['id'];
 } else {}
 
-if(isset($_POST['search'])) {
-	$uname = $_POST['search'];
+$query = "SELECT * FROM user WHERE username='$username'";
+$result = mysqli_query($connection, $query) or die(mysqli_error($connection));
+$bio = mysqli_fetch_array($result);
+$bio_txt = $bio['bio'];
+$fname = $bio['fname'];
+$lname = $bio['lname'];
 
-	$query = "SELECT * FROM user WHERE username LIKE '$uname%'";
-	$search_result = mysqli_query($connection, $query) or die(mysqli_error($connection));
-}
-
-// fetch the first name of the user
-$fname_query = "SELECT * FROM user WHERE username='$username'";
-$fname_result = mysqli_query($connection, $fname_query) or die(mysqli_error($connection));
-$fname_fetch = mysqli_fetch_array($fname_result);
-$fname = $fname_fetch['fname'];
-$lname = $fname_fetch['lname'];
-$user_id = $fname_fetch['id'];
-
-// fetch the last name of the user
-/*$lname_query = "SELECT lname FROM user WHERE username='$username'";
-$lname_result = mysqli_query($connection, $lname_query) or die(mysqli_error($connection));
-$lname_fetch = mysqli_fetch_array($lname_result);
-$lname = $lname_fetch['lname'];*/
-
-$mess_query = "SELECT id2 FROM messenger WHERE id1=$user_id UNION SELECT id1 FROM messenger WHERE id2=$user_id";
-$mess_result = mysqli_query($connection, $mess_query) or die(mysqli_error($connection));
-$mess_fetch = mysqli_fetch_array($mess_result);
-$mess = $mess_fetch["id2"];
+// COURSES OF THE TEACHERS
+$course_query = "SELECT * FROM teacher WHERE user_id=$id";
+$course_result = mysqli_query($connection, $course_query) or die(mysqli_error($connection));
 
 ?>
 
 <!DOCTYPE HTML>
 <html>
 <head><meta name="viewport" content="width=device-width"/>
-<title>Workspace</title>
+<title>Course Management</title>
 <!-- STYLES & JQUERY 
 ================================================== -->
-<link rel="stylesheet" type="text/css" href="../css/style.css"/>
-<link rel="stylesheet" type="text/css" href="../css/icons.css"/>
-<link rel="stylesheet" type="text/css" href="../css/skinblue.css"/><!-- change skin color here -->
-<link rel="stylesheet" type="text/css" href="../css/responsive.css"/>
+<link rel="stylesheet" type="text/css" href="/userpgs/css/style.css"/>
+<link rel="stylesheet" type="text/css" href="/userpgs/css/icons.css"/>
+<link rel="stylesheet" type="text/css" href="/userpgs/css/skinblue.css"/><!-- change skin color here -->
+<link rel="stylesheet" type="text/css" href="/userpgs/css/responsive.css"/>
 <link rel="stylesheet" type="text/css" href="/css/list/rotated_nav.css"/>
 <link rel="stylesheet" type="text/css" href="/css/toptobottom.css"/>
 <script src="/js/jquery-1.9.0.min.js"></script><!-- the rest of the scripts at the bottom of the document -->
 </head>
 <body>
 <!-- UPPER BAR -->
-<section class="nav-bar">
-  <div class="nav-container">
-    <div class="brand">
-      <div class="logoimg toplogo"></div>
-    </div>
-    <nav>
-      <div class="nav-mobile"><a id="nav-toggle" href="#!"><span></span></a></div>
-      <ul class="nav-list">
-        <li>
-          <a href="/"><img src="/images/upperbar/home.png" style="height: 25px; width: 25px;" alt="Home"></a>
-        </li>
-        <li>
-          <a href="/search"><img src="/images/upperbar/search.png" style="height: 25px; width: 25px;" alt="Search"></a>
-        </li>
-	<li>
-          <a href="/userpgs/notif" id="notif_a"><img src="/images/upperbar/notif.png" style="height: 25px; width: 21px;" alt="Notifs"></a>
-        </li>
-        <li>
-          <a href="/msg/inbox.php"><img src="/images/upperbar/message.png" style="height: 21px; width: 25px;" alt="Messages"></a>
-	    <!--
-	    <ul class="nav-dropdown">
-            <li>
-              <a href="#">test1</a>
-            </li>
-            <li>
-              <a href="#">test2</a>
-            </li>
-            <li>
-              <a href="#">test3</a>
-            </li>
-          </ul>
-	  -->
-        </li>
-        <li>
-          <a href="/register/logout.php"><img src="/images/upperbar/logout.png" style="height:21px; width: 25px;" alt="Logout" ></a>
-        </li>
-      </ul>
-    </nav>
-  </div>
-</section>
+<div class="navbar">
+        <a href="/userpgs/general.php">Home</a>
+        <a href="/register/logout.php">Logout</a>
+        <div class="dropdownbar">
+                <button class="dropbtn">General User
+                <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdownbar-content">
+                <a href="/userpgs/general.php">General</a>
+                </div>
+        </div>
+</div> 
 
 <div class="boxedtheme">
 <!-- TOP LOGO & MENU
@@ -123,7 +69,7 @@ $mess = $mess_fetch["id2"];
                 <div class="c8">
                         <nav id="topNav">
                         <ul id="responsivemenu">
-                                <li class="active"><a href="/register/login.php"><font size="+1">SIGN IN</font><span class="showmobile">Sign Up</span></a></li>
+                                <li class="active"><a href="register.php"><font size="+1">SIGN IN</font><span class="showmobile">Sign Up</span></a></li>
                                 <li><a href="tutorials.html">FxUniversity</a>
                                 </li>
                                 <ul style="display: none;">
@@ -145,7 +91,15 @@ $mess = $mess_fetch["id2"];
                                         <li><a href="#">FAQ</a></li>
                                 </ul>
                                 </li>
-                        </ul>
+                                <li><a href="#">News</a>
+                                <ul style="display: none;">
+                                        <li><a href="https://www.wsj.com/" target="_blank">WSJ</a></li>
+                                        <li><a href="https://www.bloomberg.com/" target="_blank">Bloomberg</a></li>
+                                        <li><a href="https://www.cnbc.com/" target="_blank">CNBC</a></li>
+                                        <li><a href="money.cnn.com/" target="_blank">CNN Money</a></li>
+                                        <li><a href="https://www.ft.com/" target="_blank">Financial Times</a></li>
+                                        <li><a href="https://www.reuters.com/" target="_blank">Reuters</a></li>
+                                </ul>
                         </nav>
                 </div>
         </div>
@@ -159,7 +113,7 @@ $mess = $mess_fetch["id2"];
         <div class="grid">
                 <div class="row">
                         <div class="c8">
-                                <h1 class="titlehead">Welcome, <?php echo $username; ?>!</h1>
+                                <h1 class="titlehead">Manage Exams</h1>
                         </div>
                         <div class="c4">
                                 <h1 class="titlehead rightareaheader"><i class="icon-map-marker"></i> contact@fxunivers.com</h1>
@@ -197,42 +151,59 @@ $mess = $mess_fetch["id2"];
 					<li><a href="">Stars</a></li>
                                      </ul>
 				</div>
-
+				
 			</div>
 			
-			<!-- RIGHT BAR -->
+			<!-- SIDEBAR -->
 			<div class="c3">
                                 <div class="rightsidebar">
-                                        <h2 class="title stresstitle">Messages</h2>
+                                        <h2 class="title stresstitle">Exam List</h2>
                                         <hr class="hrtitle">
 					<div class="teamdescription">
-					<?php
-					if($mess_result->num_rows > 0) {
-					?>
-						<img src="/images/background/user.jpg" width="100px" height="100px" align="left">
-					<?php
-
-						echo $mess . "<br><br><br>";?><hr><?php
-
- 						while($row = $mess_result->fetch_assoc()) {
-					?>
-						<img src="/images/background/user.jpg" width="100px" height="100px" align="left">
-					<?php
-				        		echo $row["id2"] . "<br><br><br>";
-					?><hr><?php
-						}       
-					} else {
-						echo "0 results";
-					}
-					?>
-					</div>
-                                </div>			
+                                                <h1>Click to edit!</h1>
+						<!-- COURSE BOXES -->
+						<div class="row space-top">
+				                        <div id="content">
+			                                <!-- BOX 1 -->
+								<div class="boxthreecolumns cat1">
+				                                        <div class="boxcontainer">
+								
+				                                                <div class="mosaic-block cover">
+			                                                                <a href="/userpgs/teacher/singleproject_test.php"><img src="/images/training/billgates.jpg" alt=""></a>
+				                                                </div>
+				                                                <h1><a href="/userpgs/teacher/singleproject_test.php">Billie on Books</a></h1>
+				                                        </div>
+				                                </div>
+							<!-- EO BOX 1 -->
+							<?php
+							if($course_result->num_rows > 0) {
+								while($row = $course_result->fetch_assoc()) {
+							?>
+									<!-- BOX -->
+									<div class="boxthreecolumns cat1">
+										<div class="boxcontainer">
+											<div class="mosaic-block cover">
+												<a href="/userpgs/teacher/singleproject.php?course_id=<?php echo $row["id"] ?>"><img src="<?php echo $row["img"] ?>" alt=""></a>
+											</div>
+											<h1><a href="/userpgs/teacher/singleproject.php?course_id=<?php echo $row["id"] ?>"><?php echo $row["header"] ?></a></h1>
+										</div>
+									</div>
+							<?php
+								}
+							}
+							?>
+							</div>
+						</div>
+						<!-- EO COURSE BOXES -->
+                                        </div>
+                                </div>
                         </div>
 			<!-- end sidebar -->
 
                 </div>
 
 </div>
+
 
 <!-- FOOTER
 ================================================== -->
@@ -245,16 +216,9 @@ $mess = $mess_fetch["id2"];
                         </p>
                         <!-- 1st column -->
                         <div class="c3">
-                                <img src="/images/logo_small.png" style="padding-top: 70px;" alt="">
+                                <img src="/images/logo_small.png" style="padding-top: 20px;" alt="">
                         </div>
                         <!-- 2nd column -->
-                        <div class="c3">
-                                <h2 class="title">(c) Copyright Details</h2>
-                                <hr class="footerstress">
-                                <div id="ticker" class="query">
-                                </div>
-                        </div>
-                        <!-- 3rd column -->
                         <div class="c3">
                                 <h2 class="title"><i class="icon-envelope-alt"></i> Contact</h2>
                                 <hr class="footerstress">
@@ -263,9 +227,6 @@ $mess = $mess_fetch["id2"];
                                                 <br />3 1/2 Miles Philip S.W. Goldson Highway,
                                                 <br />Belize City, Belize,
                                                 <br />Central America</dt>
-                                        <dd><span>Telephone:</span>501-223-2144</dd>
-                                        <dd><span>Fax:</span>501-223-2143</dd>
-                                        <dd><span>P.O. Box</span>1922</dd>
                                         <dd>E-mail: <a href="#">contact@fxunivers.com</a></dd>
                                 </dl>
                                 <ul class="social-links" style="margin-top:15px;">
@@ -281,12 +242,9 @@ $mess = $mess_fetch["id2"];
                                         <li class="google-link smallrightmargin">
                                         <a href="#" class="google has-tip" title="Google +" target="_blank">Google</a>
                                         </li>
-                                        <li class="linkedin-link smallrightmargin">
-                                        <a href="#" class="linkedin has-tip" title="Linkedin" target="_blank">Linkedin</a>
-                                        </li>
                                 </ul>
-                        </div>
-                        <!-- 4th column -->
+			</div>
+                        <!-- 3rd column -->
                         <div class="c3">
                                 <h2 class="title"><i class="icon-link"></i> Links</h2>
                                 <hr class="footerstress">
@@ -302,6 +260,13 @@ $mess = $mess_fetch["id2"];
                                         <li>Home</li>
                                 </ul>
                         </div>
+                        <!-- 4th column -->
+                        <div class="c3">
+                                <h2 class="title">(c) Copyright Details</h2>
+                                <hr class="footerstress">
+                                <div id="ticker" class="query">
+                                </div>
+                        </div>
                         <!-- end 4th column -->
                 </div>
         </div>
@@ -311,34 +276,40 @@ $mess = $mess_fetch["id2"];
         <div class="grid">
                 <div class="row">
                         <div class="c6">
+                                With all due Reserves,
+                        </div>
+                </div>
+                <div class="row">
+                        <div class="c6">
                                  FXUNIVERS &copy; 2017. All Rights Reserved.
                         </div>
                         <div class="c6">
                                 <span class="right">
-                                <!-- by Milad, milad@fxunivers.com --></span>
+                                <!-- by Milad <milad@fxunivers.com> --> </span>
                         </div>
                 </div>
         </div>
 </div>
+
 
 </div>
 
 <!-- JAVASCRIPTS
 ================================================== -->
 <!-- all -->
-<script src="/js/modernizr-latest.js"></script>
+<script src="js/modernizr-latest.js"></script>
 
 <!-- menu & scroll to top -->
-<script src="/js/common.js"></script>
+<script src="js/common.js"></script>
 
 <!-- cycle -->
-<script src="/js/jquery.cycle.js"></script>
+<script src="js/jquery.cycle.js"></script>
 
 <!-- twitter -->
-<script src="/js/jquery.tweet.js"></script>
+<script src="js/jquery.tweet.js"></script>
 
 <!-- filtering -->
-<script src="/js/jquery.isotope.min.js"></script>
+<script src="js/jquery.isotope.min.js"></script>
 
 <!-- CALL filtering & masonry-->
 <script>

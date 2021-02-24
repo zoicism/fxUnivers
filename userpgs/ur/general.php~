@@ -1,14 +1,14 @@
 <?php
 session_start();
-require('../../register/connect.php');
+require('../register/connect.php');
 
 if(isset($_POST['username']) and isset($_POST['password'])) {
         $username = $_POST['username'];
         $password = $_POST['password'];
-
+	
         $query = "SELECT * FROM `user` WHERE username='$username' and password='$password'";
-
         $result = mysqli_query($connection, $query) or die(mysqli_error($connection));
+
         $count = mysqli_num_rows($result);
 
         if($count == 1) {
@@ -16,6 +16,7 @@ if(isset($_POST['username']) and isset($_POST['password'])) {
         } else {
                 $fmsg = "invalid login credentials";
         }
+
 }
 
 if(isset($_SESSION['username'])) {
@@ -23,32 +24,17 @@ if(isset($_SESSION['username'])) {
 	$smsg = "Successfully logged in!";
 } else {}
 
-if(isset($_POST['search'])) {
-	$uname = $_POST['search'];
-
-	$query = "SELECT * FROM user WHERE username LIKE '$uname%'";
-	$search_result = mysqli_query($connection, $query) or die(mysqli_error($connection));
-}
-
 // fetch the first name of the user
-$fname_query = "SELECT * FROM user WHERE username='$username'";
+$fname_query = "SELECT fname FROM user WHERE username='$username'";
 $fname_result = mysqli_query($connection, $fname_query) or die(mysqli_error($connection));
 $fname_fetch = mysqli_fetch_array($fname_result);
 $fname = $fname_fetch['fname'];
-$lname = $fname_fetch['lname'];
-$user_id = $fname_fetch['id'];
 
 // fetch the last name of the user
-/*$lname_query = "SELECT lname FROM user WHERE username='$username'";
+$lname_query = "SELECT lname FROM user WHERE username='$username'";
 $lname_result = mysqli_query($connection, $lname_query) or die(mysqli_error($connection));
 $lname_fetch = mysqli_fetch_array($lname_result);
-$lname = $lname_fetch['lname'];*/
-
-$mess_query = "SELECT id2 FROM messenger WHERE id1=$user_id UNION SELECT id1 FROM messenger WHERE id2=$user_id";
-$mess_result = mysqli_query($connection, $mess_query) or die(mysqli_error($connection));
-$mess_fetch = mysqli_fetch_array($mess_result);
-$mess = $mess_fetch["id2"];
-
+$lname = $lname_fetch['lname'];
 ?>
 
 <!DOCTYPE HTML>
@@ -57,56 +43,27 @@ $mess = $mess_fetch["id2"];
 <title>Workspace</title>
 <!-- STYLES & JQUERY 
 ================================================== -->
-<link rel="stylesheet" type="text/css" href="../css/style.css"/>
-<link rel="stylesheet" type="text/css" href="../css/icons.css"/>
-<link rel="stylesheet" type="text/css" href="../css/skinblue.css"/><!-- change skin color here -->
-<link rel="stylesheet" type="text/css" href="../css/responsive.css"/>
-<link rel="stylesheet" type="text/css" href="/css/list/rotated_nav.css"/>
-<link rel="stylesheet" type="text/css" href="/css/toptobottom.css"/>
-<script src="/js/jquery-1.9.0.min.js"></script><!-- the rest of the scripts at the bottom of the document -->
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
+<link rel="stylesheet" type="text/css" href="css/icons.css"/>
+<link rel="stylesheet" type="text/css" href="css/skinblue.css"/><!-- change skin color here -->
+<link rel="stylesheet" type="text/css" href="css/responsive.css"/>
+<script src="js/jquery-1.9.0.min.js"></script><!-- the rest of the scripts at the bottom of the document -->
 </head>
 <body>
 <!-- UPPER BAR -->
-<section class="nav-bar">
-  <div class="nav-container">
-    <div class="brand">
-      <div class="logoimg toplogo"></div>
-    </div>
-    <nav>
-      <div class="nav-mobile"><a id="nav-toggle" href="#!"><span></span></a></div>
-      <ul class="nav-list">
-        <li>
-          <a href="/"><img src="/images/upperbar/home.png" style="height: 25px; width: 25px;" alt="Home"></a>
-        </li>
-        <li>
-          <a href="/search"><img src="/images/upperbar/search.png" style="height: 25px; width: 25px;" alt="Search"></a>
-        </li>
-	<li>
-          <a href="/userpgs/notif" id="notif_a"><img src="/images/upperbar/notif.png" style="height: 25px; width: 21px;" alt="Notifs"></a>
-        </li>
-        <li>
-          <a href="/msg/inbox.php"><img src="/images/upperbar/message.png" style="height: 21px; width: 25px;" alt="Messages"></a>
-	    <!--
-	    <ul class="nav-dropdown">
-            <li>
-              <a href="#">test1</a>
-            </li>
-            <li>
-              <a href="#">test2</a>
-            </li>
-            <li>
-              <a href="#">test3</a>
-            </li>
-          </ul>
-	  -->
-        </li>
-        <li>
-          <a href="/register/logout.php"><img src="/images/upperbar/logout.png" style="height:21px; width: 25px;" alt="Logout" ></a>
-        </li>
-      </ul>
-    </nav>
-  </div>
-</section>
+<div class="navbar">
+        <a href="/userpgs/general.php">Home</a>
+        <a href="/register/logout.php">Logout</a>
+        <div class="dropdownbar">
+                <button class="dropbtn">General User
+                <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdownbar-content">
+                <a href="/userpgs/general.php">General</a>
+                </div>
+        </div>
+</div> 
+
 
 <div class="boxedtheme">
 <!-- TOP LOGO & MENU
@@ -116,19 +73,19 @@ $mess = $mess_fetch["id2"];
                 <!--Logo-->
                 <div class="c4">
                         <a href="../index1.html">
-                                <img src="/images/logo_small.png" class="logo" alt="">
+                                <img src="../images/logo_small.png" class="logo" alt="">
                         </a>
                 </div>
                 <!--Menu-->
                 <div class="c8">
                         <nav id="topNav">
                         <ul id="responsivemenu">
-                                <li class="active"><a href="/register/login.php"><font size="+1">SIGN IN</font><span class="showmobile">Sign Up</span></a></li>
+                                <li class="active"><a href="../register/register.php"><font size="+1">SIGN IN</font><span class="showmobile">Sign Up</span></a></li>
                                 <li><a href="tutorials.html">FxUniversity</a>
                                 </li>
                                 <ul style="display: none;">
                                 </ul>
-                                <li><a href="#">FxUnivers</a>
+                                <li><a href="#">FxUniverse</a>
                                 <ul style="display: none;">
                                         <li><a href="#">List of Traders</a></li>
                                         <li><a href="#">Top Traders</a></li>
@@ -151,7 +108,7 @@ $mess = $mess_fetch["id2"];
         </div>
 </div>
 
-<!-- LEFT PANEL
+<!-- HEADER
 ================================================== -->
 <div class="undermenuarea">
         <div class="boxedshadow">
@@ -186,49 +143,81 @@ $mess = $mess_fetch["id2"];
                         	
 				<h3><?php echo "@$username"; ?></h3>
 				
-				<div id="list4">
-				     <ul>
-					<li><a href="/userpgs/general.php">Timeline</a></li>
-				     	<li><a href="">Messenger</a></li>
-				     	<li><a href="/userpgs/search.php">Search</a></li>
-					<?php if($plan=="teacher") {?>
-					      <li><a href="/userpgs/teacher/course_management">Courses / Tests</a></li>
-					<?php } ?>
-					<li><a href="">Stars</a></li>
-                                     </ul>
+				<div id="list5">
+					<ol>
+						<li><a href="#">Home</a></li>
+						<li><a href="">Profile</a>
+							<ol>
+								<li><a href="profile.php">My Profile</a></li>
+								<li><a href="search.php">Search</a></li>
+							</ol>
+						</li>
+						<li><a href="">fxUniversity</a>
+							<ol>
+								<li><a href="../about/fxuniversity/student.php">Student</a></li>
+								<li><a href="instructor.php">Instructor</a></li>
+							</ol>
+						</li>
+						<li><a href="">fxUniverse</a>
+							<ol>
+								<li><a href="">SP</a></li>
+								<li><a href="">Subscriber</a></li>
+								<li><a href="">Demo</a></li></li>
+							</ol>
+						</li>
+						<li><a href="">fxPartner</a>
+							<ol>
+								<li><a href="">Brokerage</a></li>
+								<li><a href="">Academic Coordinator</a></li>
+								<li><a href="">Investment Partner</a></li>
+								<li><a href="">Marketing Partner</a></li>
+								<li><a href="">Referal</a></li>
+								<li><a href="">Organizations</a></li>
+							</ol>
+						</li>
+						<li><a href="">fxStar</a>
+							<ol>
+								<li><a href="">Load Stars</a></li>
+								<li><a href="">Transfer Stars to Pals</a></li>
+								<li><a href="">Cash Out</a></li>
+								<li><a href="">Insert</a></li>
+								<li><a href="">Shop</a></li>
+							</ol>
+						</li>
+					</ol>
 				</div>
 
+				<hr class="style18">
 			</div>
 			
-			<!-- RIGHT BAR -->
+			<!-- SIDEBAR -->
 			<div class="c3">
                                 <div class="rightsidebar">
-                                        <h2 class="title stresstitle">Messages</h2>
+                                        <h2 class="title stresstitle">Workspace</h2>
                                         <hr class="hrtitle">
-					<div class="teamdescription">
-					<?php
-					if($mess_result->num_rows > 0) {
-					?>
-						<img src="/images/background/user.jpg" width="100px" height="100px" align="left">
-					<?php
+                                        <div class="teamdescription">
+                                                <h1>fxStar</h1>
+                                                <p><a href="">fxStars</a></p>
+                                                <p><a href="">Ranking</a></p>
+                                                <p><a href="">Revenue</a></p>
 
-						echo $mess . "<br><br><br>";?><hr><?php
-
- 						while($row = $mess_result->fetch_assoc()) {
-					?>
-						<img src="/images/background/user.jpg" width="100px" height="100px" align="left">
-					<?php
-				        		echo $row["id2"] . "<br><br><br>";
-					?><hr><?php
-						}       
-					} else {
-						echo "0 results";
-					}
-					?>
-					</div>
-                                </div>			
-                        </div>
-			<!-- end sidebar -->
+                                        </div>
+                                        <br/>
+                                        <div class="teamdescription">
+                                                <h1>Mailbox</h1>
+                                                <p><a href="">Compose</a></p>
+						<p><a href="">Inbox(0)</a></p>
+                                                <p><a href="">Sent(0)</a></p>
+                                                <p><a href="">Outbox(0)</a></p>
+                                        </div>
+                                        <br/>
+                                        <div class="teamdescription">
+                                                <h1>Actions</h1>
+                                                <p><a href="">Uploaded Courses</a></p>
+                                                <p><a href="">New Project</a></p>
+                                        </div>
+                                </div>
+                        </div><!-- end sidebar -->
 
                 </div>
 
@@ -245,7 +234,7 @@ $mess = $mess_fetch["id2"];
                         </p>
                         <!-- 1st column -->
                         <div class="c3">
-                                <img src="/images/logo_small.png" style="padding-top: 70px;" alt="">
+                                <img src="../images/logo_small.png" style="padding-top: 70px;" alt="">
                         </div>
                         <!-- 2nd column -->
                         <div class="c3">
@@ -315,7 +304,7 @@ $mess = $mess_fetch["id2"];
                         </div>
                         <div class="c6">
                                 <span class="right">
-                                <!-- by Milad, milad@fxunivers.com --></span>
+                                by Milad, milad@fxunivers.com </span>
                         </div>
                 </div>
         </div>
@@ -326,19 +315,19 @@ $mess = $mess_fetch["id2"];
 <!-- JAVASCRIPTS
 ================================================== -->
 <!-- all -->
-<script src="/js/modernizr-latest.js"></script>
+<script src="../js/modernizr-latest.js"></script>
 
 <!-- menu & scroll to top -->
-<script src="/js/common.js"></script>
+<script src="../js/common.js"></script>
 
 <!-- cycle -->
-<script src="/js/jquery.cycle.js"></script>
+<script src="../js/jquery.cycle.js"></script>
 
 <!-- twitter -->
-<script src="/js/jquery.tweet.js"></script>
+<script src="../js/jquery.tweet.js"></script>
 
 <!-- filtering -->
-<script src="/js/jquery.isotope.min.js"></script>
+<script src="../js/jquery.isotope.min.js"></script>
 
 <!-- CALL filtering & masonry-->
 <script>

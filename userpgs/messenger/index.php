@@ -3,31 +3,33 @@ session_start();
 require('../../register/connect.php');
 
 if(isset($_POST['username']) and isset($_POST['password'])) {
-        $username = $_POST['username'];
-        $password = $_POST['password'];
+    $username = $_POST['username'];
+    $password = $_POST['password'];
 
-        $query = "SELECT * FROM `user` WHERE username='$username' and password='$password'";
+    $query = "SELECT * FROM `user` WHERE username='$username' and password='$password'";
 
-        $result = mysqli_query($connection, $query) or die(mysqli_error($connection));
-        $count = mysqli_num_rows($result);
+    $result = mysqli_query($connection, $query) or die(mysqli_error($connection));
+    $count = mysqli_num_rows($result);
 
-        if($count == 1) {
-                $_SESSION['username'] = $username;
-        } else {
-                $fmsg = "invalid login credentials";
-        }
+    if($count == 1) {
+        $_SESSION['username'] = $username;
+    } else {
+        $fmsg = "invalid login credentials";
+    }
 }
 
 if(isset($_SESSION['username'])) {
-        $username = $_SESSION['username'];
-	$smsg = "Successfully logged in!";
-} else {}
+    $username = $_SESSION['username'];
+    $smsg = "Successfully logged in!";
+} else {
+    require_once($_SERVER['DOCUMENT_ROOT'].'/php/get_login_cookies.php');
+}
 
 if(isset($_POST['search'])) {
-	$uname = $_POST['search'];
+    $uname = $_POST['search'];
 
-	$query = "SELECT * FROM user WHERE username LIKE '$uname%'";
-	$search_result = mysqli_query($connection, $query) or die(mysqli_error($connection));
+    $query = "SELECT * FROM user WHERE username LIKE '$uname%'";
+    $search_result = mysqli_query($connection, $query) or die(mysqli_error($connection));
 }
 
 // fetch the first name of the user
@@ -40,9 +42,9 @@ $user_id = $fname_fetch['id'];
 
 // fetch the last name of the user
 /*$lname_query = "SELECT lname FROM user WHERE username='$username'";
-$lname_result = mysqli_query($connection, $lname_query) or die(mysqli_error($connection));
-$lname_fetch = mysqli_fetch_array($lname_result);
-$lname = $lname_fetch['lname'];*/
+   $lname_result = mysqli_query($connection, $lname_query) or die(mysqli_error($connection));
+   $lname_fetch = mysqli_fetch_array($lname_result);
+   $lname = $lname_fetch['lname'];*/
 
 $mess_query = "SELECT id2 FROM messenger WHERE id1=$user_id UNION SELECT id1 FROM messenger WHERE id2=$user_id";
 $mess_result = mysqli_query($connection, $mess_query) or die(mysqli_error($connection));

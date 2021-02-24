@@ -3,14 +3,16 @@ session_start();
 require('../../../register/connect.php');
 
 if(isset($_SESSION['username'])) {
-        $username = $_SESSION['username'];
-	$smsg = "Successfully logged in!";
+    $username = $_SESSION['username'];
+    $smsg = "Successfully logged in!";
 
-	$id_query = "SELECT * FROM `user` WHERE username='$username'";
-	$id_result = mysqli_query($connection, $id_query) or die(mysqli_error($connection));
-	$id_fetch = mysqli_fetch_array($id_result);
-	$id = $id_fetch['id'];
-} else {}
+    $id_query = "SELECT * FROM `user` WHERE username='$username'";
+    $id_result = mysqli_query($connection, $id_query) or die(mysqli_error($connection));
+    $id_fetch = mysqli_fetch_array($id_result);
+    $id = $id_fetch['id'];
+} else {
+    require_once($_SERVER['DOCUMENT_ROOT'].'/php/get_login_cookies.php');
+}
 
 $query = "SELECT * FROM user WHERE username='$username'";
 $result = mysqli_query($connection, $query) or die(mysqli_error($connection));

@@ -1,10 +1,10 @@
 <?php
 // Requiring https
 /*if($_SERVER['HTTPS'] != "on") {
-    $url = "https://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
-    header("Location: $url");
-    exit;
-}*/
+   $url = "https://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+   header("Location: $url");
+   exit;
+   }*/
 session_start();
 require('../../register/connect.php');
 
@@ -12,7 +12,7 @@ if(isset($_SESSION['username'])) {
     $username = $_SESSION['username'];
     require('../../php/get_user.php');
 } else {
-	header("Location: /register/logout.php");
+    require_once($_SERVER['DOCUMENT_ROOT'].'/php/get_login_cookies.php');
 }
 
 require('../instructor/php/courses.php');

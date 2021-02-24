@@ -1,67 +1,67 @@
 <?php
 
-  session_start();
-  require('../../../../register/connect.php');
+session_start();
+require('../../../../register/connect.php');
 
-  if(isset($_SESSION['username'])) {
+if(isset($_SESSION['username'])) {
     $username = $_SESSION['username'];
-  } else {
-      header("Location: /");
-  }
+} else {
+    require_once($_SERVER['DOCUMENT_ROOT'].'/php/get_login_cookies.php');
+}
 
-  if(isset($_POST['course_id']))
+if(isset($_POST['course_id']))
     $course_id=$_POST['course_id'];
 
 
-  require('../../../../php/get_user.php');
-  $id = $get_user_id;
+require('../../../../php/get_user.php');
+$id = $get_user_id;
 
-  require('../../../php/notif.php');
+require('../../../php/notif.php');
 
-  if(isset($_POST['class_id']))
-   $class_id = $_POST['class_id'];
+if(isset($_POST['class_id']))
+    $class_id = $_POST['class_id'];
 
-  $class_query = "SELECT * FROM `class` WHERE id=$class_id";
-  $class_result = mysqli_query($connection, $class_query) or die(mysqli_error($connection));
-  $class_fetch = mysqli_fetch_array($class_result);
+$class_query = "SELECT * FROM `class` WHERE id=$class_id";
+$class_result = mysqli_query($connection, $class_query) or die(mysqli_error($connection));
+$class_fetch = mysqli_fetch_array($class_result);
 
-  /*$user_id = $class_fetch['teacher_id'];*/
-  $header = $class_fetch['title'];
-  $description = $class_fetch['body'];
-  $video = $class_fetch['video'];
+/*$user_id = $class_fetch['teacher_id'];*/
+$header = $class_fetch['title'];
+$description = $class_fetch['body'];
+$video = $class_fetch['video'];
 
 $tar_id=$class_fetch['teacher_id'];
 require('../../../../php/get_tar_id.php');
 
 
-  require('../../php/classes.php');
+require('../../php/classes.php');
 
-  require('../../../../php/get_course.php');
+require('../../../../php/get_course.php');
 
-  require('../../../../php/get_user_type.php');
+require('../../../../php/get_user_type.php');
 
 /*
-  if($user_type == 'neither') {
-    $go_home = "Location: /";
-    header($go_home);
-  }
-*/
+   if($user_type == 'neither') {
+   $go_home = "Location: /";
+   header($go_home);
+   }
+ */
 
-  function randHash($len) {
+function randHash($len) {
     return substr(md5(openssl_random_pseudo_bytes(20)), -$len);
-  }
+}
 
-  require('../../../../contact/message_connect.php');
-  if($user_type=='instructor') {
+require('../../../../contact/message_connect.php');
+if($user_type=='instructor') {
     
     $liveClassId = randHash(32);
     require('../../../../php/create_live_class.php');
-  } elseif($user_type=='student') {
+} elseif($user_type=='student') {
     require('../../../../php/join_live_class.php');
     $liveClassId = $join_live_class_roomid;
-  } else {
-      header('Location: /userpgs/instructor/course_management/course.php?course_id='.$course_id);
-  }
+} else {
+    header('Location: /userpgs/instructor/course_management/course.php?course_id='.$course_id);
+}
 
 require('../php/notify_students.php');
 

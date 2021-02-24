@@ -4,10 +4,10 @@ require('../../../register/connect.php');
 
 // fetch the username
 if(isset($_SESSION['username'])) {
-	$username = $_SESSION['username'];
-	$smsg = "successfully logged in";
+    $username = $_SESSION['username'];
+    $smsg = "successfully logged in";
 } else {
-	echo "failed login. could not fetch username.";
+    require_once($_SERVER['DOCUMENT_ROOT'].'/php/get_login_cookies.php');
 }
 
 // fetch id of the user
@@ -25,7 +25,7 @@ $plans_fxuniverse = $plans_fetch['fxuniverse'];
 $plans_fxpartner = $plans_fetch['fxpartner'];
 
 if(isset($_GET['plan'])) {
-        $plan = $_GET['plan'];
+    $plan = $_GET['plan'];
 }
 ?>
 

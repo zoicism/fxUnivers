@@ -5,30 +5,30 @@ require('../../../register/connect.php');
 if(isset($_SESSION['username'])) {
     $username = $_SESSION['username'];
 } else {
-	header("Location: /register/logout.php");
+    require_once($_SERVER['DOCUMENT_ROOT'].'/php/get_login_cookies.php');
 }
 
 if(isset($_POST['course_id'])) $course_id = $_POST['course_id'];
 
 
 
-  $course_query = "SELECT * FROM `teacher` WHERE id=$course_id";
-  $course_result = mysqli_query($connection, $course_query) or die(mysqli_error($connection));
-  $course_fetch = mysqli_fetch_array($course_result);
+$course_query = "SELECT * FROM `teacher` WHERE id=$course_id";
+$course_result = mysqli_query($connection, $course_query) or die(mysqli_error($connection));
+$course_fetch = mysqli_fetch_array($course_result);
 
-  $user_id = $course_fetch['user_id'];
-  $get_course_teacher_id = $user_id;
-  $header = $course_fetch['header'];
-  $description = $course_fetch['description'];
-  $video = $course_fetch['video_url'];
-  $s_date = $course_fetch['start_date'];
-  $e_date = $course_fetch['exam_date'];
-  $cost = $course_fetch['cost'];
+$user_id = $course_fetch['user_id'];
+$get_course_teacher_id = $user_id;
+$header = $course_fetch['header'];
+$description = $course_fetch['description'];
+$video = $course_fetch['video_url'];
+$s_date = $course_fetch['start_date'];
+$e_date = $course_fetch['exam_date'];
+$cost = $course_fetch['cost'];
 
-  require('../php/classes.php');
+require('../php/classes.php');
 
-  require('../../../php/get_user.php');
-  $id = $get_user_id;
+require('../../../php/get_user.php');
+$id = $get_user_id;
 
 // check if the user has taken the exam already
 require('../../../php/get_stucourse.php');
@@ -36,14 +36,14 @@ if(isset($stucourse_fetch['exam_accepted'])) {
     header('Location: /userpgs/instructor/exam/result.php?course_id='.$course_id);
 }
 
-  require('../../php/notif.php');
+require('../../php/notif.php');
 
-  require('../../../php/get_user_type.php');
+require('../../../php/get_user_type.php');
 
-  require('../../../php/get_exam.php');
+require('../../../php/get_exam.php');
 
 
-  //require('../../../php/get_current_q.php');
+//require('../../../php/get_current_q.php');
 ?>
 
 <!DOCTYPE html>

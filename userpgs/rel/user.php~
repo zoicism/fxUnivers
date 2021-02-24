@@ -4,9 +4,12 @@ require('../../register/connect.php');
 
 if(isset($_SESSION['username'])) {
     $username = $_SESSION['username'];
+    require('../../php/get_user.php');
+    $get_real_user_id=$get_user_id;
 } else {
 	header('Location: /');
 }
+
 
 if(isset($_GET['u'])) $username=$_GET['u'];
 
@@ -22,6 +25,8 @@ if(isset($_GET['act'])) {
   $act = $_GET['act'];
 }
 
+require('../../wallet/php/get_fxcoin_count.php');
+
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -36,6 +41,8 @@ if(isset($_GET['act'])) {
 <link rel="stylesheet" type="text/css" href="/css/list/rotated_nav.css"/>
 <link rel="stylesheet" type="text/css" href="/css/toptobottom.css"/>
 <link rel="stylesheet" type="text/css" href="/css/tabs.css"/>
+<link rel="stylesheet" type="text/css" href="/css/roundcorner.css"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
 
 <script src="/js/function.js"></script>
 <script src="/js/jquery-3.4.1.min.js"></script>
@@ -52,16 +59,16 @@ if(isset($_GET['act'])) {
       <div class="nav-mobile"><a id="nav-toggle" href="#!"><span></span></a></div>
       <ul class="nav-list">
         <li>
-          <a href="/"><img src="/images/upperbar/home.png" style="height: 25px; width: 25px;" alt="Home"></a>
+          <a href="/" id="ubHome"><img id="ubiHome" src="/images/upperbar/home_a.png" alt="Home"></a>
         </li>
         <li>
-          <a href="/search"><img src="/images/upperbar/search.png" style="height: 25px; width: 25px;" alt="Search"></a>
+          <a href="/search" id="ubSearch"><img id="ubiSearch" src="/images/upperbar/search_a.png" alt="Search"></a>
         </li>
 	<li>
-          <a href="/userpgs/notif" id="notif_a"><img src="/images/upperbar/notif.png" style="height: 25px; width: 21px;" alt="Notifs"></a>
+          <a href="/userpgs/notif" id="notif_a"><img id="ubiNotif" src="/images/upperbar/notification_a.png" style="height: 19px; width: 15.77px;" alt="Notifs"></a>
         </li>
         <li>
-          <a href="/msg/inbox.php"><img src="/images/upperbar/message.png" style="height: 21px; width: 25px;" alt="Messages"></a>
+          <a href="/msg/inbox.php" id="msg_bar"><img id="ubiMsg" src="/images/upperbar/message_a.png" style="height: 15.77px; width: 19px;" alt="Messages"></a>
 	    <!--
 	    <ul class="nav-dropdown">
             <li>
@@ -77,7 +84,7 @@ if(isset($_GET['act'])) {
 	  -->
         </li>
         <li>
-          <a href="/register/logout.php"><img src="/images/upperbar/logout.png" style="height:21px; width: 25px;" alt="Logout" ></a>
+          <a href="/register/logout.php" id="ubLogout"><img id="ubiLogout" src="/images/upperbar/logout_a.png" style="height: 15.77px; width: 19px;" alt="Logout" ></a>
         </li>
       </ul>
     </nav>
@@ -95,45 +102,52 @@ if(isset($_GET['act'])) {
 
 <!-- LEFT PANEL
 ================================================== -->
-
-
 <div class="grid">
                 <div class="shadowundertop">
                 </div>
                 <div class="row">
 
-                        <!-- LEFT SIDEBAR -->
+                        <!-- LEFT SIDE -->
                         <div class="c9">
-			  <div class="userpic avatarr">
-				</div><br/><br/>
-				<h2><?php echo "$get_user_fname $get_user_lname"; ?></h2>
-                        	
-				<h3><?php echo "@$username"; ?></h3>
 
-				<?php echo "$get_user_bio" ?>
+<?php
+    $path="../avatars/";
+    if(file_exists($path.$get_user_id.'.jpg')) {
+        echo('<div class="userpic lsb-sub" style="background-image: url(\'/userpgs/avatars/'.$get_user_id.'.jpg\');"></div>');
+    } elseif(file_exists($path.$get_user_id.'.jpeg')) {
+        echo('<div class="userpic lsb-sub" style="background-image: url(\'/userpgs/avatars/'.$get_user_id.'.jpeg\');"></div>');
+    } elseif(file_exists($path.$get_user_id.'.png')) {
+        echo('<div class="userpic lsb-sub" style="background-image: url(\'/userpgs/avatars/'.$get_user_id.'.png\');"></div>');
+    } elseif(file_exists($path.$get_user_id.'.gif')) {
+        echo('<div class="userpic lsb-sub" style="background-image: url(\'/userpgs/avatars/'.$get_user_id.'.gif\');"></div>');
+    } else {
+        echo('<button class="userpic avatarr" id="showUpButt"></button>');
+    }
+?>
+    
+			    <h2 style="text-align: center; font-size: 1rem; margin-top: 1px; margin-bottom: 0;" class="lsb-sub"><?php echo '<a href="/user/'.$username.'" style="color: black">'.$get_user_fname.' '.$get_user_lname.' <span style="font-size: 0.9rem">@'.$username.'</span></a>'; ?></h2>
+				<!--<?php echo "$bio" ?>-->
 
-				<table>
+          <p id="rcorners1" style="font-size: 1rem; font-weight: bold; margin-bottom: 0;" class="lsb-sub"><span style="float: left"><img src="/images/leftsidebar/fxcoin.png" style="height: 15px; width: 11.25px"></span><span style="float:right; font-family: courier;"><?php echo $get_fxcoin_count ?></span></p>
+
+
+			    <table style="margin-top: 10px; line-height: 0;" class="lsb-screensize">
+                  <tr>
+				    <td style="width: 33.3%; text-align: left;"><a href="/userpgs/rel?act=friends" style="color: black"><strong><?php echo $get_rel_friends_count ?></strong></a></td>
+				    <td style="width: 33.3%; text-align: center;"><a href="/userpgs/rel?act=following" style="color: black"><strong><?php echo $get_rel_following_count ?></strong></a></td>
+				    <td style="width: 33.3%; text-align: right;"><a href="/userpgs/rel?act=followers" style="color: black"><strong><?php echo $get_rel_followers_count ?></strong></a></td>
+				  </tr>
 				  <tr>
-				    <td style="width: 33.3%"><a href="/userpgs/rel?act=friends" style="color: black">Friends <strong><?php echo $get_rel_friends_count ?></strong></a></td>
-				    <td style="width: 33.3%"><a href="/userpgs/rel?act=following" style="color: black">Following <strong><?php echo $get_rel_following_count ?></strong></a></td>
-				    <td style="width: 33.3%"><a href="/userpgs/rel?act=followers" style="color: black">Followers <strong><?php echo $get_rel_followers_count ?></strong></a></td>
+				    <td style="width: 33.3%; text-align: left;"><a href="/userpgs/rel?act=friends" style="color: black">Friends</a></td>
+				    <td style="width: 33.3%; text-align: center;"><a href="/userpgs/rel?act=following" style="color: black">Following</a></td>
+				    <td style="width: 33.3%; text-align: right;"><a href="/userpgs/rel?act=followers" style="color: black">Followers</a></td>
 				  </tr>
 				</table>
-
-				<h7>Navigation</h7>
-				<div id="list4">
-				     <ul>
-				        <li><a href="/"><table><tr style="line-height: 2px;"><td style="width: 10%; text-align: center; padding-right: 0; padding-top: 3px;"><div class="smallicon toplogo"></div></td><td style="width: 90%; text-align: left;">Home</td></tr></table></a></li>
-					<li><a href="/wallet"><table><tr style="line-height: 2px;"><td style="width: 10%; text-align: center; padding-right: 0; padding-top: 3px;"><div class="smallicon smallicon_wallet"></div></td><td style="width: 90%; text-align: left;">Wallet</td></tr></table></a></li>
-                                     </ul>
-				</div>
-				<br/>
-				
-				<h7>Dashboards</h7>
-				<div id="list4">
-				     <ul>
-					<li><a href="/userpgs/trader"><table><tr style="line-height: 2px;"><td style="width: 10%; text-align: center; padding-right: 0; padding-top: 3px;"><div class="smallicon smallicon_trader"></div></td><td style="width: 90%; text-align: left;">Trader</td></tr></table></a></li>
-					<li><a href="<?php 
+          
+          <a href="/"><button class="taste taste-lsb-ss" id="homeBtn"><span class="lsblogoimg lsblogo" id="homeSpan"></span><span class="lsb-screensize">HOME</span></button></a>
+          <a href="/wallet"><button class="taste taste-lsb-ss" id="walletBtn"><span class="smallicon smallicon_wallet_a" id="walletSpan"></span><span class="lsb-screensize">WALLET</span></button></a>
+          <a href="/userpgs/trader"><button class="taste taste-lsb-ss" id="traderBtn"><span class="smallicon smallicon_trader_a" id="traderSpan"></span><span class="lsb-screensize">TRADER</span></button></a>
+          <a href="<?php 
 					if($plans_msg) {
 					  if($get_plans_fxuniversityins) {
 					      echo '/userpgs/instructor'; 
@@ -144,8 +158,8 @@ if(isset($_GET['act'])) {
 					    }
 					  } else {
 					    echo '/register/instructor_reg.php';
-					  } ?>"><table><tr style="line-height: 2px;"><td style="width: 10%; text-align: center; padding-right: 0; padding-top: 3px;"><div class="smallicon smallicon_instructor"></div></td><td style="width: 90%; text-align: left;">Instructor</td></tr></table></a></li>
-					<li><a href="<?php
+					  } ?>"><button class="taste taste-lsb-ss" id="instructorBtn"><span class="smallicon smallicon_instructor_a" id="instructorSpan"></span><span class="lsb-screensize">INSTRUCTOR</span></button></a>
+          <a href="<?php
 					if($plans_msg) {
 					  if($get_plans_fxuniversitystu) {
 					    echo '/userpgs/student';
@@ -156,11 +170,14 @@ if(isset($_GET['act'])) {
 					  }
 					} else {
 					  echo '/register/student_reg.php';
-					} ?>"><table><tr style="line-height: 2px;"><td style="width: 10%; text-align: center; padding-right: 0; padding-top: 3px;"><div class="smallicon smallicon_student"></div></td><td style="width: 90%; text-align: left;">Student</td></tr></table></a></li>
-					<li><a href="/userpgs/partner"><table><tr style="line-height: 2px"><td style="width: 10%; text-align: center; padding-right: 0; padding-top: 3px;"><div class="smallicon smallicon_partner"></div></td><td style="width: 90%; text-align: left;">Partner</td></tr></table></a></li>
-				     </ul>
-				</div>
+					} ?>"><button class="taste taste-lsb-ss" id="studentBtn"><span class="smallicon smallicon_student_a" id="studentSpan"></span><span class="lsb-screensize">STUDENT</span></button></a>
+          <a href="/userpgs/partner"><button class="taste taste-lsb-ss" id="partnerBtn"><span class="smallicon smallicon_partner_a" id="partnerSpan"></span><span class="lsb-screensize">PARTNER</span></button></a>
+          
+          <hr class="hrtitle" style="border-color: #25252533">
+          
+          
 			</div>
+			
 			
 			<!-- MAIN CONTENT -->
 			<div class="c3">
@@ -168,13 +185,13 @@ if(isset($_GET['act'])) {
                                         <div id="result"><h2 class="title stresstitle">Relationships</h2></div>
                                         <hr class="hrtitle">
 					  <div class="new-tab">
-					    <button class="tablinks <?php if((isset($_GET['act']) && $act=='friends')) { echo 'active'; } ?>" style="margin-bottom: 0; color: black;" onclick="openCity(event, 'friends')">Friends <?php echo $get_rel_friends_count ?></button>
-  			  		    <button class="tablinks <?php if((isset($_GET['act']) && $act=='following')) { echo 'active'; } ?>" style="margin-bottom: 0; color: black; padding-left: 33px; padding-right: 33px;" onclick="openCity(event, 'following')">Following <?php echo $get_rel_following_count ?></button>
-					    <button class="tablinks <?php if((isset($_GET['act']) && $act=='followers')) { echo 'active'; } ?>" style="margin-bottom: 0; color: black;" onclick="openCity(event, 'followers')">Followers <?php echo $get_rel_followers_count ?></button>
+					    <button class="tablinks <?php if((isset($_GET['act']) && $act=='friends')) { echo 'active'; } ?>" style="margin-bottom: 0;" onclick="openCity(event, 'friends')">Friends <?php echo $get_rel_friends_count ?></button>
+  			  		    <button class="tablinks <?php if((isset($_GET['act']) && $act=='following')) { echo 'active'; } ?>" style="margin-bottom: 0;" onclick="openCity(event, 'following')">Following <?php echo $get_rel_following_count ?></button>
+					    <button class="tablinks <?php if((isset($_GET['act']) && $act=='followers')) { echo 'active'; } ?>" style="margin-bottom: 0;" onclick="openCity(event, 'followers')">Followers <?php echo $get_rel_followers_count ?></button>
 					  </div>
 
 					  <div id="friends" class="tabcontent" style="<?php if((isset($_GET['act']) && $act=='friends')) { echo 'display: block'; } ?>">
-					    <table style="border: 1px solid #e8e8e8">
+					    <table>
 					    <?php if($get_rel_friends_count > 0) {
 					      while($row = $get_rel_friends_result->fetch_assoc()) {
 					        if($row['user1']==$get_user_id) {
@@ -186,9 +203,23 @@ if(isset($_GET['act'])) {
 						$fnd_user_result = mysqli_query($connection, $fnd_user_query) or die(mysqli_error($connection));
 						$fnd_user_fetch = mysqli_fetch_array($fnd_user_result);
 						?>
-					      <tr>
+					      <tr style="border-bottom:1px solid #25252533">
 					        <td style="width: 10%">
-						  <div class="avatarpic avatarr"></div>
+<?php
+    $path="../avatars/";
+    if(file_exists($path.$fnd_user_fetch['id'].'.jpg')) {
+        echo('<div class="avatarpic" style="background-image: url(\'../avatars/'.$fnd_user_fetch['id'].'.jpg\');"></div>');
+    } elseif(file_exists($path.$fnd_user_fetch['id'].'.jpeg')) {
+        echo('<div class="avatarpic" style="background-image: url(\'../avatars/'.$fnd_user_fetch['id'].'.jpeg\');"></div>');
+    } elseif(file_exists($path.$fnd_user_fetch['id'].'.png')) {
+        echo('<div class="avatarpic" style="background-image: url(\'../avatars/'.$fnd_user_fetch['id'].'.png\');"></div>');
+    } elseif(file_exists($path.$fnd_user_fetch['id'].'.gif')) {
+        echo('<div class="avatarpic" style="background-image: url(\'../avatars/'.$fnd_user_fetch['id'].'.gif\');"></div>');
+    } else {
+        echo('<div class="avatarpic avatarr"></div>');
+    }
+?>
+                            
 						</td>
 						<td style="width: 90%; padding-left: 20px;">
 						  <?php echo '<a href="/user/'.$fnd_user_fetch["username"].'" style="color: black"><b>'.$fnd_user_fetch["fname"].' '.$fnd_user_fetch["lname"].'</b> @'.$fnd_user_fetch["username"].'</a><br>'.$fnd_user_fetch["bio"]; ?>
@@ -200,7 +231,7 @@ if(isset($_GET['act'])) {
 					  </div>
 
 					  <div id="following" class="tabcontent" style="<?php if((isset($_GET['act']) && $act=='following')) { echo 'display: block'; } ?>">
-					    <table style="border: 1px solid #e8e8e8">
+					    <table>
 					    <?php if($get_rel_following_count > 0) {
 					      while($row = $get_rel_following_result->fetch_assoc()) {
 					        $following_user_id = $row['id2'];
@@ -208,9 +239,23 @@ if(isset($_GET['act'])) {
 						$following_user_result = mysqli_query($connection, $following_user_query) or die(mysqli_error($connection));
 						$following_user_fetch = mysqli_fetch_array($following_user_result);
 						?>
-					      <tr>
+					      <tr style="border-bottom:1px solid #25252533">
 					        <td style="width: 10%">
-						  <div class="avatarpic avatarr"></div>
+<?php
+    $path="../avatars/";
+    if(file_exists($path.$following_user_fetch['id'].'.jpg')) {
+        echo('<div class="avatarpic" style="background-image: url(\'../avatars/'.$following_user_fetch['id'].'.jpg\');"></div>');
+    } elseif(file_exists($path.$following_user_fetch['id'].'.jpeg')) {
+        echo('<div class="avatarpic" style="background-image: url(\'../avatars/'.$following_user_fetch['id'].'.jpeg\');"></div>');
+    } elseif(file_exists($path.$following_user_fetch['id'].'.png')) {
+        echo('<div class="avatarpic" style="background-image: url(\'../avatars/'.$following_user_fetch['id'].'.png\');"></div>');
+    } elseif(file_exists($path.$following_user_fetch['id'].'.gif')) {
+        echo('<div class="avatarpic" style="background-image: url(\'../avatars/'.$following_user_fetch['id'].'.gif\');"></div>');
+    } else {
+        echo('<div class="avatarpic avatarr"></div>');
+    }
+?>
+                            
 						</td>
 						<td style="width: 90%; padding-left: 20px;">
 						  <?php echo '<a href="/user/'.$following_user_fetch["username"].'" style="color: black"><b>'.$following_user_fetch["fname"].' '.$following_user_fetch["lname"].'</b> @'.$following_user_fetch["username"].'</a><br>'.$following_user_fetch["bio"]; ?>
@@ -222,7 +267,7 @@ if(isset($_GET['act'])) {
 					  </div>
 
 					  <div id="followers" class="tabcontent" style="<?php if((isset($_GET['act']) && $act=='followers')) { echo 'display: block'; } ?>">
-					    <table style="border: 1px solid #e8e8e8">
+					    <table>
 					    <?php if($get_rel_followers_count > 0) {
 					      while($row = $get_rel_followers_result->fetch_assoc()) {
 					        $followers_user_id = $row['id1'];
@@ -230,9 +275,23 @@ if(isset($_GET['act'])) {
 						$followers_user_result = mysqli_query($connection, $followers_user_query) or die(mysqli_error($connection));
 						$followers_user_fetch = mysqli_fetch_array($followers_user_result);
 						?>
-					      <tr>
+					      <tr style="border-bottom:1px solid #25252533">
 					        <td style="width: 10%">
-						  <div class="avatarpic avatarr"></div>
+<?php
+    $path="../avatars/";
+    if(file_exists($path.$followers_user_fetch['id'].'.jpg')) {
+        echo('<div class="avatarpic" style="background-image: url(\'../avatars/'.$followers_user_fetch['id'].'.jpg\');"></div>');
+    } elseif(file_exists($path.$followers_user_fetch['id'].'.jpeg')) {
+        echo('<div class="avatarpic" style="background-image: url(\'../avatars/'.$followers_user_fetch['id'].'.jpeg\');"></div>');
+    } elseif(file_exists($path.$followers_user_fetch['id'].'.png')) {
+        echo('<div class="avatarpic" style="background-image: url(\'../avatars/'.$followers_user_fetch['id'].'.png\');"></div>');
+    } elseif(file_exists($path.$followers_user_fetch['id'].'.gif')) {
+        echo('<div class="avatarpic" style="background-image: url(\'../avatars/'.$followers_user_fetch['id'].'.gif\');"></div>');
+    } else {
+        echo('<div class="avatarpic avatarr"></div>');
+    }
+?>
+                            
 						</td>
 						<td style="width: 90%; padding-left: 20px;">
 						  <?php echo '<a href="/user/'.$followers_user_fetch["username"].'" style="color: black"><b>'.$followers_user_fetch["fname"].' '.$followers_user_fetch["lname"].'</b> @'.$followers_user_fetch["username"].'</a><br>'.$followers_user_fetch["bio"]; ?>
@@ -404,6 +463,213 @@ function openCity(evt, cityName) {
   document.getElementById(cityName).style.display = "block";
   evt.currentTarget.className += " active";
 }
+</script>
+
+                          <!-- BUTTONS -->
+<script>
+$(document).ready(function() {
+    $('#traderBtn').hover(function() {
+        var imgUrl='../../images/leftsidebar/trader_b.png';
+        $('#traderSpan').css("background-image", "url(" + imgUrl + ")");
+    }, function() {
+        var imgUrl0='../../images/leftsidebar/trader_a.png';
+        $('#traderSpan').css("background-image", "url(" + imgUrl0 + ")");
+    });
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    $('#walletBtn').hover(function() {
+        var imgUrl='../../images/leftsidebar/wallet_b.png';
+        $('#walletSpan').css("background-image", "url(" + imgUrl + ")");
+    }, function() {
+        var imgUrl0='../../images/leftsidebar/wallet_a.png';
+        $('#walletSpan').css("background-image", "url(" + imgUrl0 + ")");
+    });
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    $('#instructorBtn').hover(function() {
+        var imgUrl='../../images/leftsidebar/instructor_b.png';
+        $('#instructorSpan').css("background-image", "url(" + imgUrl + ")");
+    }, function() {
+        var imgUrl0='../../images/leftsidebar/instructor_a.png';
+        $('#instructorSpan').css("background-image", "url(" + imgUrl0 + ")");
+    });
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    $('#partnerBtn').hover(function() {
+        var imgUrl='../../images/leftsidebar/partner_b.png';
+        $('#partnerSpan').css("background-image", "url(" + imgUrl + ")");
+    }, function() {
+        var imgUrl0='../../images/leftsidebar/partner_a.png';
+        $('#partnerSpan').css("background-image", "url(" + imgUrl0 + ")");
+    });
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    $('#studentBtn').hover(function() {
+        var imgUrl='../../images/leftsidebar/student_b.png';
+        $('#studentSpan').css("background-image", "url(" + imgUrl + ")");
+    }, function() {
+        var imgUrl0='../../images/leftsidebar/student_a.png';
+        $('#studentSpan').css("background-image", "url(" + imgUrl0 + ")");
+    });
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    $('#homeBtn').hover(function() {
+        var imgUrl='../../images/logos/fxlogo_a.png';
+        $('#homeSpan').css("background-image", "url(" + imgUrl + ")");
+    }, function() {
+        var imgUrl0='../../images/logos/fxlogo_b.png';
+        $('#homeSpan').css("background-image", "url(" + imgUrl0 + ")");
+    });
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    $('#notif_a').hover(function() {
+        var imgUrl='../../images/upperbar/notification_b.png';
+        $('#ubiNotif').attr("src", imgUrl);
+    }, function() {
+        var imgUrl0='../../images/upperbar/notification_a.png';
+        $('#ubiNotif').attr("src",imgUrl0);
+    });
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    $('#ubHome').hover(function() {
+        var imgUrl='../../images/upperbar/home_b.png';
+        $('#ubiHome').attr("src", imgUrl);
+    }, function() {
+        var imgUrl0='../../images/upperbar/home_a.png';
+        $('#ubiHome').attr("src",imgUrl0);
+    });
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    $('#ubLogout').hover(function() {
+        var imgUrl='../../images/upperbar/logout_b.png';
+        $('#ubiLogout').attr("src", imgUrl);
+    }, function() {
+        var imgUrl0='../../images/upperbar/logout_a.png';
+        $('#ubiLogout').attr("src",imgUrl0);
+    });
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    $('#msg_bar').hover(function() {
+        var imgUrl='../../images/upperbar/message_b.png';
+        $('#ubiMsg').attr("src", imgUrl);
+    }, function() {
+        var imgUrl0='../../images/upperbar/message_a.png';
+        $('#ubiMsg').attr("src",imgUrl0);
+    });
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    $('#ubSearch').hover(function() {
+        var imgUrl='../../images/upperbar/search_b.png';
+        $('#ubiSearch').attr("src", imgUrl);
+    }, function() {
+        var imgUrl0='../../images/upperbar/search_a.png';
+        $('#ubiSearch').attr("src",imgUrl0);
+    });
+});
+</script>
+
+
+<script>
+$(document).ready(function() {
+    $('#ads1').hover(function() {
+        $('#ads1').css({opacity:1});
+    }, function() {
+        $('#ads1').css({opacity:0.8});
+    });
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    $('#ads2').hover(function() {
+        $('#ads2').css({opacity:1});
+    }, function() {
+        $('#ads2').css({opacity:0.8});
+    });
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    $('#ads3').hover(function() {
+        $('#ads3').css({opacity:1});
+    }, function() {
+        $('#ads3').css({opacity:0.8});
+    });
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    $('#ads4').hover(function() {
+        $('#ads4').css({opacity:1});
+    }, function() {
+        $('#ads4').css({opacity:0.8});
+    });
+});
+</script>
+
+<script>
+$(document).ready(function() {
+  var notifUserId=<?php echo $get_real_user_id ?>;
+  setInterval(function() {
+    $.ajax({
+      type: 'POST',
+      url: '/php/notif_icon.php',
+      data: {notif_userId: notifUserId},
+      success: function(response) {
+            //var json=$.parseJSON(response);
+            //alert(json.last_notif);
+            //alert(response);
+            if(response==='1') {•••••••••••••••
+                //alert('its 1');
+                $('#notif_a').css('background-color', '#3282b8');
+            }
+
+            $.ajax({
+              type: 'POST',
+              url: '/php/msg_icon.php',
+              data: {msg_userId: notifUserId},
+              success: function(result) {
+                    if(result>0) {
+                        $('#msg_bar').css('background-color', '#3282b8');
+                    }
+              }
+            });
+      }
+    });
+  }, 2000);
+});
 </script>
 
 </body>

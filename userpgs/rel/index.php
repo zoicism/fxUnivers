@@ -7,7 +7,7 @@ if(isset($_SESSION['username'])) {
     require('../../php/get_user.php');
     $get_real_user_id=$get_user_id;
 } else {
-	header('Location: /');
+    require_once($_SERVER['DOCUMENT_ROOT'].'/php/get_login_cookies.php');
 }
 
 

@@ -515,11 +515,12 @@ if($course_biddable) require_once('../../../wallet/php/wallet_connect.php');
 	      $instructor_q = 'SELECT * FROM user WHERE id='.$get_course_teacher_id;
 	      $instructor_r = mysqli_query($connection,$instructor_q);
 	      $instructor = mysqli_fetch_array($instructor_r);
-	      
+
+	      $session_counter=0;
 	      
               while($row=$class_result->fetch_assoc()) {
 
-		  
+		  $session_counter++;
 
                   if($user_type=='instructor' || $user_type=='student') {
                       $onclickurl="location.href='/userpgs/instructor/class?course_id=".$course_id."&class_id=".$row['id']."'";
@@ -550,9 +551,9 @@ if($course_biddable) require_once('../../../wallet/php/wallet_connect.php');
 		  echo '<div class="session-desc" onclick="'.$onclickurl.'">';
 
 		  if((time()-strtotime($instructor['lastseen']) < 3) && ($instructor['lsPage']=='live/#'.$row['id'])) {
-		      echo '<p><strong>'.$row['title'].'</strong> <span class="online"></span></p>';
+		      echo '<p><strong><span class="gray-bg" style="color:white;padding:2px 5px;">'.$session_counter.'</span> '.$row['title'].'</strong> <img src="/images/background/live6.png" style="width:32px" class="blink_me"></p>';
 		  } else {
-                      echo '<p><strong>'.$row['title'].'</strong></p>'.$row['lastseen'];
+                      echo '<p><strong><span class="gray-bg" style="color:white;padding:2px 5px;">'.$session_counter.'</span> '.$row['title'].'</strong></p>'.$row['lastseen'];
 		  }
                   if($row['body']=='') {
                       $descrip='<span class="gray">(No description)</span>';

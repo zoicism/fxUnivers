@@ -62,11 +62,6 @@ if(isset($_GET['plan'])) {
         }
 
 
-
-    video {
-      border: 4px solid #252525;
-      border-radius: 37px;
-    }
     
 </style>
 

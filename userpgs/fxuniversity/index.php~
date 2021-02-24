@@ -1,10 +1,10 @@
 <?php
 // Requiring https
 /*if($_SERVER['HTTPS'] != "on") {
-    $url = "https://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
-    header("Location: $url");
-    exit;
-}*/
+   $url = "https://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+   header("Location: $url");
+   exit;
+   }*/
 session_start();
 require('../../register/connect.php');
 
@@ -12,7 +12,8 @@ if(isset($_SESSION['username'])) {
     $username = $_SESSION['username'];
     require('../../php/get_user.php');
 } else {
-	header("Location: /register/logout.php");
+    header("Location: /register/logout.php");
+    require_once($_SERVER['DOCUMENT_ROOT'].'/php/get_login_cookies.php');
 }
 
 require('../instructor/php/courses.php');
@@ -53,12 +54,12 @@ require('../../php/get_stu_stucourse.php');
               <ul class="main-flex-container">
                   <li class="main-items">
                       <a href="/userpgs/instructor" class="link-main">
-                          <div class="head">Teach</div>
+                          <div class="head">Teach (<?php echo $course_count ?>)</div>
                       </a>
                   </li>
                   <li class="main-items">
                       <a href="/userpgs/student" class="link-main">
-                          <div class="head">Learn</div>
+                          <div class="head">Learn (<?php echo $gss_count ?>)</div>
                       </a>
                   </li>
                   
@@ -71,12 +72,12 @@ require('../../php/get_stu_stucourse.php');
 
 
   <div class="relative-main-content">
-                            <div class="content-box">
+  <!--                          <div class="content-box">
 			    	 <h2>fxUniversity</h2>
-                              	 <p>Teaching: <strong><?php echo $course_count ?></strong></p>
-				 <p>Learning: <strong><?php echo $gss_count ?></strong></p>
+                              	 <p>Teaching: <strong></strong></p>
+				 <p>Learning: <strong></strong></p>
                             </div>
-
+-->
 
 
 <div class="main-content-mob">
@@ -84,12 +85,12 @@ require('../../php/get_stu_stucourse.php');
 <ul class="main-flex-container">
                   <li class="main-items">
                       <a href="/userpgs/instructor" class="link-main">
-                          <div class="head">Teach</div>
+                          <div class="head">Teach (<?php echo $course_count ?>)</div>
                       </a>
                   </li>
                   <li class="main-items">
                       <a href="/userpgs/student" class="link-main">
-                          <div class="head">Learn</div>
+                          <div class="head">Learn (<?php echo $gss_count ?>)</div>
                       </a>
                   </li>
                   
@@ -102,7 +103,7 @@ require('../../php/get_stu_stucourse.php');
 
 
 			    <div class="description">
-			    <h3>fxUniversity Options</h3>
+			    <h3>Options</h3>
 			    <p><strong>Teach:</strong> Create courses, put a price on your courses, and gain fxStars as users purchase them.</p>
 			    <p><strong>Learn:</strong> Purchase courses with your fxStars and learn from various courses.</p>
     			    </div>

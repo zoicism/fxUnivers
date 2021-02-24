@@ -3,26 +3,28 @@ session_start();
 require('../../register/connect.php');
 
 if(isset($_POST['username']) and isset($_POST['password'])) {
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-	
-        $query = "SELECT * FROM `user` WHERE username='$username' and password='$password'";
-        $result = mysqli_query($connection, $query) or die(mysqli_error($connection));
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    
+    $query = "SELECT * FROM `user` WHERE username='$username' and password='$password'";
+    $result = mysqli_query($connection, $query) or die(mysqli_error($connection));
 
-        $count = mysqli_num_rows($result);
+    $count = mysqli_num_rows($result);
 
-        if($count == 1) {
-                $_SESSION['username'] = $username;
-        } else {
-                $fmsg = "invalid login credentials";
-        }
+    if($count == 1) {
+        $_SESSION['username'] = $username;
+    } else {
+        $fmsg = "invalid login credentials";
+    }
 
 }
 
 if(isset($_SESSION['username'])) {
-        $username = $_SESSION['username'];
-	$smsg = "Successfully logged in!";
-} else {}
+    $username = $_SESSION['username'];
+    $smsg = "Successfully logged in!";
+} else {
+    require_once($_SERVER['DOCUMENT_ROOT'].'/php/get_login_cookies.php');
+}
 
 // fetch the first name of the user
 $fname_query = "SELECT fname FROM user WHERE username='$username'";

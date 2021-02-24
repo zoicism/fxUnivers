@@ -5,7 +5,7 @@ require('../../../register/connect.php');
 if(isset($_SESSION['username'])) {
     $username = $_SESSION['username'];
 } else {
-    header("Location: /register/logout.php");
+    require_once($_SERVER['DOCUMENT_ROOT'].'/php/get_login_cookies.php');
 }
 
 require('../../../php/get_user.php');

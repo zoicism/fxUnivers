@@ -59,12 +59,12 @@ require('../../../wallet/php/get_fxcoin_count.php');
 
               <ul class="main-flex-container">
                   <li class="main-items">
-                      <a href="/userpgs/partner/positions" class="link-main">
+                      <a href="/userpgs/partner/positions" class="link-main" id="active-main">
                           <div class="head">fxHR</div>
                       </a>
                   </li>
                   <li class="main-items">
-                      <a href="/userpgs/partner/income" class="link-main" id="active-main">
+                      <a href="/userpgs/partner/income" class="link-main">
                           <div class="head">Earnings History</div>
                       </a>
                   </li>
@@ -77,9 +77,13 @@ require('../../../wallet/php/get_fxcoin_count.php');
 
 
   <div class="relative-main-content">
-  <div class="content-box" id="txn-content-box">
-                          <h2>Earnings</h2>
+  <div class="content-box">
+                          <h2>fxHR</h2>
                           
+<p>Share the following link with your friends who are not an fxUnivers user yet. Right after they register, we will share 50% of the profit gained from those users from any fxUnivers platform for 90 days.</p>
+
+<input type="text" id="theLink" class="txt-input" value="https://fxunivers.com/?partner=<?php echo $username?>" readonly>
+<button class="submit-btn" id="cpLink">Copy</button>
 
 
 
@@ -107,4 +111,20 @@ $('#page-header').attr('href','/userpgs/partner');
 <script>
 $('.fxpartner-sidebar').attr('id','sidebar-active');
 </script>
+
+<script>
+$('#cpLink').click(function() {
+  var copyText=document.getElementById('theLink');
+  copyText.select();
+  copyText.setSelectionRange(0,99999);
+  document.execCommand('copy');
+
+  $('#cpLink').text('Copied');
+  $('#cpLink').css('opacity','0.6');
+});
+</script>
+
+
+
 </body>
+</html>

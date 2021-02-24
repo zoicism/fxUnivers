@@ -2,9 +2,14 @@
 
 session_start();
 
-$username = $_SESSION['username'];
+if(isset($_SESSION['username'])) {
+    $username = $_SESSION['username'];
+} else {
+    require_once($_SERVER['DOCUMENT_ROOT'].'/php/get_login_cookies.php');
+}
+
 if(isset($_GET['teacher_un'])) {
-  $teacher_un = $_GET['teacher_un'];
+    $teacher_un = $_GET['teacher_un'];
 }
 
 $query = "SELECT * FROM user WHERE username='$teacher_un'";
