@@ -60,7 +60,7 @@ $message = '
     
     <table style="font-size:0.9rem;margin-top:70px;background:#ececec;border-radius:12px;padding-left:20px;padding-right:20px;">
       <tr>
-	<td style="vertical-align:top;"><a href="https://fxunivers.com"><img src="https://fxunivers.com/images/logo/logo-100.png" style="width:100px;height:100px;margin-top:15px;"></a></td>
+	<td style="vertical-align:top;"><a href="https://fxunivers.com"><img src="https://fxunivers.com/images/logos/fxunivers-logo.svg" style="width:100px;height:100px;margin-top:15px;"></a></td>
 	<td style="padding-left:20px;">
 	  <p style="font-style:italic;font-weight:bold;font-size:1rem;">fxUnivers Team,</p>
 	  <p><span style="color:#0085b0">Address:</span><br>
