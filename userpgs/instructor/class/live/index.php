@@ -228,6 +228,9 @@ if($tar_user_fetch['avatar']!=NULL) {
 		echo '<div class="add-box" id="live-whiteboard-box"><img src="/images/background/whiteboard-sharing.svg" style="height:28px;width:28px;margin-right:8px;margin-left:19px;"> Whiteboard Broadcast</div>';
 		echo '<div class="add-box" id="record-btn"><img src="/images/background/record.png" style="height:28px;width:28px;margin-right:8px;margin-left:19px;"> Record</div>';
 
+		echo '<div class="add-box" id="reject-classroom"><img src="/images/background/trash.svg" style="height:28px;width:28px;margin-right:8px;margin-left:19px;"> Remove Classroom</div>';
+
+		
 		echo '</div>';
 	    } else {
 		echo '<!-- list of all available broadcasting rooms -->
@@ -784,9 +787,9 @@ $('#fileForm').ajaxForm(function(response) {
 	 window.location.reload();
 	 
 	 /*
-	 $('#audio-b-toggle').prop('disabled',false);
-	 $('#audio-b-toggle').css('opacity','1');
-	 */
+	    $('#audio-b-toggle').prop('disabled',false);
+	    $('#audio-b-toggle').css('opacity','1');
+	  */
      }
  });
 
@@ -811,8 +814,8 @@ $('#fileForm').ajaxForm(function(response) {
 	 window.location.reload();
 	 
 	 /*
-	 $('#video-audio-b-toggle').prop('disabled',false);
-	 $('#video-audio-b-toggle').css('opacity','1');
+	    $('#video-audio-b-toggle').prop('disabled',false);
+	    $('#video-audio-b-toggle').css('opacity','1');
 	  */
      }
  });
@@ -825,6 +828,26 @@ $('#fileForm').ajaxForm(function(response) {
      var left = ($(window).width()/2)-(900/2);
      var top = ($(window).width()/2)-(600/2);
      window.open("/userpgs/instructor/class/RecordRTC/?classId="+<?php echo $class_id?>, "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top="+top+",left="+left+",width=900,height=600"); 
+ });
+
+ $('#reject-classroom').click(function() {
+     if(confirm('By rejecting the classroom it will be deleted and not added as a session to your course. Continue?')) {
+	 
+	 jQuery.ajax({
+	     url: '/php/reject_classroom.php',
+	     data: {classId: "<?php echo $class_id ?>"},
+	     type: 'POST',
+	     success: function(response) {
+		 //console.log(response);
+		 if(response=='1') {
+		     window.location.replace('/userpgs/instructor/course_management/course.php?course_id=<?php echo $course_id ?>');
+		 } else {
+		     alert('Failed to reject the session. Please try again.');
+		 }
+		 
+	     }
+	 });
+     }
  });
 </script>
 
