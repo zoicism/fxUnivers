@@ -4,8 +4,8 @@
     $url = "https://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
     header("Location: $url");
     exit;
-    }*/
-
+}*/
+	
 session_start();
 require('register/connect.php');
 
@@ -146,7 +146,7 @@ if(isset($_COOKIE['username']) && isset($_COOKIE['password'])) {
     <div class="overlay">
     <div class="close-btn" id="signup-close-btn">×</div>
       <h1 id="overlay-title">Create Account</h1>
-      <form  method="POST" autocomplete="off" id="regForm">
+      <form autocomplete="off" id="regForm">
 
         <input class="signup-input" type="text" name="email" placeholder="Email" id="deskEmail">
 	<p class="tooltip red" id="dupEmail">This email is already used.</p>
@@ -175,7 +175,7 @@ if(isset($_COOKIE['username']) && isset($_COOKIE['password'])) {
 
         <input type="submit" value="Sign up" class="signup-button" id="sup-btn">
       </form>
-      <p id="overlay-text" style="display:none">Check your email inbox or spam folder for an activation email we just sent you.</p>
+      <p id="overlay-text" style="display:none">Check your email inbox or spam folder for an activation link we just sent you. It may take a few minutes for you to get the email.</p>
     </div>
   </div>
 
@@ -307,6 +307,8 @@ $('#regForm').submit(function(event) {
 	 url: '/register/reg.php',
 	 data: $(this).serialize(),
 	 success: function(response) {
+	     console.log(response);
+	     
 	   if(response==1) {
 	     $('#overlay-title').html('Confirm Your Email Address');
 	     $('#overlay-text').show();
