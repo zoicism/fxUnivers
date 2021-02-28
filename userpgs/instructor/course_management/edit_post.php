@@ -36,9 +36,11 @@ if(isset($_SESSION['username'])) {
 	
 	if($result) {
 	    //echo "successful";
-	    header("Location: /userpgs/instructor/course_management/course.php?course_id=".$course_id);
+	    //header("Location: /userpgs/instructor/course_management/course.php?course_id=".$course_id);
+	    echo 1;
 	} else {
 	    //echo "failed";
+	    echo 0;
 	}
     }
 ?>

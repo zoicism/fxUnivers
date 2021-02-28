@@ -105,7 +105,7 @@ if($get_class['video']!='') $embed_exists=1; else $embed_exists=0;
 		    <div class="course-management-boxes">
 			<div class="content-box left">
 			    <h3>Title & Description</h3>
-			    <form class="form" method="POST" action="edit_post.php">
+			    <form class="form" id="edit-post" autocomplete="off">
 				<input type="text" name="header" placeholder="Session title" value="<?php echo $get_class['title']?>" class="txt-input" required>
 				<textarea name="description" rows="10" placeholder="Description"><?php echo preg_replace('#<br\s*/?>#i',"",$get_class['body'])?></textarea>
 				<input type="hidden" name="class_id" value="<?php echo $class_id?>">
@@ -166,6 +166,7 @@ if($get_class['video']!='') $embed_exists=1; else $embed_exists=0;
 			    </div>
 			</div>
 		    </div>
+		    <button onclick="window.location.replace('/userpgs/instructor/class/?course_id=<?php echo $course_id ?>&class_id=<?php echo $class_id ?>')" class="submit-btn" style="margin-left:auto">Done</button>
 		</div>
 	    </div>
 	</div>
@@ -199,7 +200,7 @@ if($get_class['video']!='') $embed_exists=1; else $embed_exists=0;
 	     $('#up-vid-p').show();
 	 }
 	 var embedExists = <?php echo $embed_exists ?>;
-	 console.log(embedExists);
+	 //console.log(embedExists);
 	 if(embedExists) {
 	     $('#del-embed').show();
 	 } else {
@@ -328,5 +329,26 @@ if($get_class['video']!='') $embed_exists=1; else $embed_exists=0;
 	     });
 	 });
 	</script>
+
+	<script>
+	 $('#edit-post').submit(function(event) {
+	     event.preventDefault();
+
+	     jQuery.ajax({
+		 url: 'edit_post.php',
+		 data: $(this).serialize(),
+		 type: 'POST',
+		 success: function(response) {
+		     if(response==1) {
+			 alert('Session details are updated.');
+		     } else {
+			 alert('Failed to update the session details. Please try again.');
+		     }
+		 }
+	     });
+	 });
+	</script>
+
+	
     </body>
 </html>
