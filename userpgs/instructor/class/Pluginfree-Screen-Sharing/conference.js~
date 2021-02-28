@@ -30,6 +30,7 @@ var conference = function(config) {
         });
     }
 
+    //here
     function defaultSocketResponse(response) {
         if (response.userToken == self.userToken) return;
 
@@ -240,7 +241,7 @@ var conference = function(config) {
 
     window.addEventListener('keyup', function(e) {
         if (e.keyCode == 116)
-            leave();
+            leave(); 
     }, false);
 
     function startBroadcasting() {

@@ -108,6 +108,11 @@ require('../../../php/get_tar_id.php');
 
     <div class="relative-main-content">
 
+	<div class="fxuniversity-nav" style="margin-right:auto;opacity:0.6;">
+	    <p><?php echo '<a style="font-weight:bold" href="/userpgs/instructor/course_management/course.php?course_id='.$get_course_fetch['id'].'">'.$get_course_fetch['header'].'</a> / <span style="font-weight:bold">'.$header.'</span>' ?></p>
+	</div>
+
+	
       <div class="course-content">
 	<div class="left-content">
 	  <!-- VIDEO -->
@@ -214,7 +219,7 @@ echo '<div class="little-box"><span>'.date("M jS, Y", strtotime($dt)).'</span></
 
 		echo '<div class="options session-options">';
 
-		echo '<div class="add-box" id="live-add-box">Open Live Classroom</div>';
+		//echo '<div class="add-box" id="live-add-box">Open Live Classroom</div>';
 
 		echo '<div class="add-box-con">';
 		echo '<div class="add-box" onclick="location.href=\'/userpgs/instructor/class/edit_class.php?course_id='.$course_id.'&class_id='.$class_id.'\';"><svg viewBox="0 0 32 32">
@@ -241,7 +246,7 @@ echo '<div class="little-box"><span>'.date("M jS, Y", strtotime($dt)).'</span></
 		echo '</div>';
 	    } else {
 		echo '<div class="options session-learn-options">';
-		echo '<div class="add-box" id="live-add-box">Open Live Classroom</div>';
+		//echo '<div class="add-box" id="live-add-box">Open Live Classroom</div>';
 		echo '</div>';
 
 		//echo '<form action="/userpgs/instructor/class/live/#'.$class_id.'" method="POST" id="LiveForm"><input type="hidden" name="course_id" value="'.$course_id.'"><input type="hidden" name="class_id" value="'.$class_id.'"></form>';
@@ -392,11 +397,12 @@ $('.video-holder').height(vhWidth/1.78);
     }
   });
   
-});*/
+ });*/
+ /*
 $('#live-add-box').click(function() {
      //$('#LiveForm').submit();
      window.location.href = '/userpgs/instructor/class/live/?course_id=<?php echo $course_id ?>&class_id=<?php echo $class_id ?>';
-});
+});*/
 </script>
 
 <script>
