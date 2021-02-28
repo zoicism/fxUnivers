@@ -189,7 +189,10 @@ if(isset($_GET['classId'])) $class_id = $_GET['classId'];
 			</select>
 		    </h2>
 		</div>
+		<button id="new-rec-btn" style="display:none;font-size:15px;" >Set up New Recording</button>
 		<button id="btn-pause-recording" style="display: none; font-size: 15px;">Pause</button>
+		<button id="stop-button" style="display:none; font-size:15px;">Stop Recording</button>
+		<button id="stop-screen-button" style="display:none; font-size:15px;">Stop Recording</button>
 		<div style="text-align: center; display: none;">
 		    
                     <button id="save-to-disk">Download</button>
@@ -554,6 +557,7 @@ if(isset($_GET['classId'])) $class_id = $_GET['classId'];
 
                          button.recordRTC.startRecording();
                          btnPauseRecording.style.display = '';
+			 
                      };
                  }
 
@@ -1237,8 +1241,8 @@ if(isset($_GET['classId'])) $class_id = $_GET['classId'];
 
                              setVideoURL(fileURL);
 
-                             var html = 'Uploaded to PHP.<br>Download using below link:<br>';
-                             html += '<a href="'+fileURL+'" download="'+fileName+'" style="color: yellow; display: block; margin-top: 15px;">'+fileName+'</a>';
+                             var html = 'Uploaded to fxUnivers.';
+                             //html += '<a href="'+fileURL+'" download="'+fileName+'" style="color: yellow; display: block; margin-top: 15px;">'+fileName+'</a>';
                              recordingPlayer.parentNode.parentNode.querySelector('h2').innerHTML = html;
                              return;
                          }
@@ -1984,10 +1988,18 @@ if(isset($_GET['classId'])) $class_id = $_GET['classId'];
 		     $('#screen-audio-r-toggle').prop('disabled',true);
 		     $('#screen-add-box').css('opacity','0.6');
 		     $('#upload-to-php').html('Upload as Session Video');
+		     $('#stop-button').show();
 		 } else if(!this.checked) {
 		     $('#btn-start-recording').click();
-		     $('#screen-audio-r-toggle').prop('disabled',false);
+		     /*$('#screen-audio-r-toggle').prop('disabled',false);
 		     $('#screen-add-box').css('opacity','1');
+		     $('#stop-button').hide();*/
+		     $('#screen-audio-r-toggle').hide();
+		     $('#stop-button').hide();
+		     $('#video-audio-r-toggle').hide();
+		     $('#screen-add-box').hide()
+		     $('#video-add-box').hide();
+		     $('#new-rec-btn').show();
 		 }
 	     });
 
@@ -2001,13 +2013,34 @@ if(isset($_GET['classId'])) $class_id = $_GET['classId'];
 		     $('#video-audio-r-toggle').prop('disabled',true);
 		     $('#video-add-box').css('opacity','0.6');
 		     $('#upload-to-php').html('Upload as Session Video');
+		     $('#stop-screen-button').show();
 		 } else if(!this.checked) {
 		     $('#btn-start-recording').click();
-		     $('#video-audio-r-toggle').prop('disabled',false);
+		     /*$('#video-audio-r-toggle').prop('disabled',false);
 		     $('#video-add-box').css('opacity','1');
+			$('#stop-screen-button').hide();*/
+		     $('#screen-audio-r-toggle').hide();
+		     $('#stop-screen-button').hide();
+		     $('#video-audio-r-toggle').hide();
+		     $('#screen-add-box').hide();
+		     $('#video-add-box').hide();
+		     $('#new-rec-btn').show();
 		 }
 	     });
 	     
+	    </script>
+
+
+	    <script>
+	     $('#stop-button').click(function() {
+		 $('#video-audio-r-toggle').click();
+	     });
+	     $('#stop-screen-button').click(function() {
+		 $('#screen-audio-r-toggle').click();
+	     });
+	     $('#new-rec-btn').click(function() {
+		 window.location.reload();
+	     });
 	    </script>
 	    
 	</article>
