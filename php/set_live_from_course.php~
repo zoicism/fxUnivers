@@ -14,23 +14,29 @@ if(isset($_SESSION['username'])) {
 // if the values of the post is set, post it
 $header='Live Session';
 $description='';
-if(isset($_POST['course_id'])) $course_id = $_POST['course_id'];
+if(isset($_POST['courseId'])) $course_id = $_POST['courseId'];
 
 
-echo $query = "INSERT INTO `class` (teacher_id, course_id, title, body, dt) VALUES ($id, $course_id, '$header', '$description', NOW())";
-//$result = mysqli_query($connection, $query) or die(mysqli_error($connection));
-exit();
+$query = "INSERT INTO `class` (teacher_id, course_id, title, body, dt) VALUES ($id, $course_id, '$header', '$description', NOW())";
+$result = mysqli_query($connection, $query);
+
 $classId_query="SELECT * FROM class WHERE teacher_id=$id ORDER BY id DESC LIMIT 1";
-//$classId_result=mysqli_query($connection,$classId_query) or die(mysqli_error($connection));
-//$classId_fetch=mysqli_fetch_array($classId_result);
-//$classId=$classId_fetch['id'];
+$classId_result=mysqli_query($connection,$classId_query) or die(mysqli_error($connection));
+$classId_fetch=mysqli_fetch_array($classId_result);
+$classId=$classId_fetch['id'];
 
 
 if($result) {
 	//header("Location: /userpgs/instructor/class?course_id=$course_id&class_id=$classId");
-	echo 1;
+	$live_q="UPDATE class SET live=1 WHERE id=$classId";
+  	$live_r=mysqli_query($connection,$live_q);
+
+	if($live_r) {
+	  echo '<form action="/userpgs/instructor/class/live/#'.$classId.'" method="POST" id="LiveForm"><input type="hidden" name="course_id" value="'.$course_id.'"><input type="hidden" name="class_id" value="'.$classId.'"></form>';
+	} else {
+	  echo 0;
+	}
 } else {
-        //echo "failed";
 	echo 0;
 }
 

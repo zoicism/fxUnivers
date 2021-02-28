@@ -229,7 +229,7 @@ textarea:focus {
     margin: 0 0 0 15%;
     width: calc(100% - 15%);
     height: 84%;
-    padding: 50px 30px 30px 30px;
+    padding: 10px 30px 30px 30px;
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
@@ -3591,7 +3591,7 @@ input:checked + .slider:before {
 
 
 
-/*** MOBILE VIEW ***/
+
 
 @media (max-width:1454px) {
     .elements a {
@@ -3644,7 +3644,7 @@ input:checked + .slider:before {
     }
 
     .course-content {
-	margin-top:50px;
+	margin-top:15px;
     }
 
     #goto-login {
@@ -3652,6 +3652,9 @@ input:checked + .slider:before {
     }
 }
 
+
+
+/*** MOBILE VIEW ***/
 @media (max-width: 628px) {
     .search-form {
 	width:100%;
@@ -3788,7 +3791,7 @@ input:checked + .slider:before {
 	height: 100%;
     }
     
-    .login-form h2, .login-input, .login-forgot {
+    .login-form h2, .login-input, .login-forgot, .remember-me {
 	display: none;
     }
 
