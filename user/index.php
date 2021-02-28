@@ -57,8 +57,10 @@ require('../php/get_tar_rel.php');
 
 require('../php/get_tar_plans.php');
 
-if($get_tar_plans_fxuniversityins) require('../php/get_tar_courses.php');
-if($get_tar_plans_fxuniversitystu) require('../php/get_tar_stu.php');
+//if($get_tar_plans_fxuniversityins)
+require('../php/get_tar_courses.php');
+//if($get_tar_plans_fxuniversitystu)
+require('../php/get_tar_stu.php');
 
 require('../php/get_fxinstructor_profile.php');
 
