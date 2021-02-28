@@ -229,7 +229,7 @@ textarea:focus {
     margin: 0 0 0 15%;
     width: calc(100% - 15%);
     height: 84%;
-    padding: 50px 30px 30px 30px;
+    padding: 10px 30px 30px 30px;
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
@@ -3536,21 +3536,17 @@ input:checked + .slider:before {
     position: relative;
     -webkit-appearance: none;
     height: 40px;
-    min-width: 80px;
+    width: 80px;
+    box-shadow: -7px -7px 15px rgba(255, 255, 255, 0.65), 7px 7px 15px rgba(70, 70, 70, 0.12), inset -7px -7px 15px rgba(255, 255, 255, 0.65), inset 7px 7px 15px rgba(70, 70, 70, 0.12);
     border-radius: 40px;
-    border: 1px solid #efefef;
+    border: 5px solid #ececec;
     left: 15px;
     outline: none;
     cursor: pointer;
     margin-right:50px;
     margin-top:9px;
     margin-bottom:9px;
-    box-shadow: inset -4px -4px 4px 0px #ffffff,
-	        inset 4px 4px 6px 0px #c2c2c2,
-	        -4px -4px 4px 0px #ffffff,
-	        4px 4px 6px 0px #c2c2c2;
 }
-
 .toggle-btn:before,
 .toggle-btn:after{
     content: "";
@@ -3563,17 +3559,14 @@ input:checked + .slider:before {
 .toggle-btn:before{
     height: 25px;
     width: 25px;
+    box-shadow: -7px -7px 15px rgba(255, 255, 255, 0.65), 7px 7px 15px rgba(70, 70, 70, 0.12);
     border-radius: 50%;
     left: 7px;
-    border: 1px solid #fff
-    box-shadow: -4px -4px 4px 0px #ffffff,
-	        4px 4px 6px 0px #c2c2c2;
 }
 .toggle-btn:after{
     height: 15px;
     width: 15px;
-    box-shadow: inset -2px -2px 3px 5px #c2c2c2;
-    border: 1px solid #c2c2c2;
+    background-color: #7a7a7a;
     border-radius: 50%;
     right: -27.5px;
 }
@@ -3582,9 +3575,6 @@ input:checked + .slider:before {
 }
 .toggle-btn:checked:after{
     background-color: #55f696;
-    border: 1px solid #b5dda3;
-    webkit-box-shadow: inset -2px -2px 3px 5px #6cc841, 0px 0px 4px 1px rgb(108 200 65 / 80%);
-    box-shadow: inset -2px -2px 3px 5px #6cc841, 0px 0px 4px 1px rgb(108 200 65 / 80%);
 }
 
 
@@ -3601,7 +3591,7 @@ input:checked + .slider:before {
 
 
 
-/*** MOBILE VIEW ***/
+
 
 @media (max-width:1454px) {
     .elements a {
@@ -3654,7 +3644,7 @@ input:checked + .slider:before {
     }
 
     .course-content {
-	margin-top:50px;
+	margin-top:15px;
     }
 
     #goto-login {
@@ -3662,6 +3652,9 @@ input:checked + .slider:before {
     }
 }
 
+
+
+/*** MOBILE VIEW ***/
 @media (max-width: 628px) {
     .search-form {
 	width:100%;
@@ -4377,6 +4370,10 @@ input:checked + .slider:before {
 
     .relative-main-content .course-management-con .course-management-boxes .video-bulletin-con {
 	width:100%;
+    }
+
+    .relative-main-content .fxuniversity-nav {
+	display:none;
     }
 }
 
