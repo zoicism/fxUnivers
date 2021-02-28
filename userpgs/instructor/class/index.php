@@ -207,17 +207,17 @@ echo '<div class="little-box"><span>'.date("M jS, Y", strtotime($dt)).'</span></
 	  
 	</div>
 	<div class="right-content">
-	  <?php
-                require('../../../php/limit_str.php');
+	    <?php
+            require('../../../php/limit_str.php');
 
-if($user_type=='instructor') {
+	    if($user_type=='instructor') {
 
-			     echo '<div class="options session-options">';
+		echo '<div class="options session-options">';
 
-			     echo '<div class="add-box" id="live-add-box">Open Live Classroom</div>';
+		echo '<div class="add-box" id="live-add-box">Open Live Classroom</div>';
 
-echo '<div class="add-box-con">';
-			     echo '<div class="add-box" onclick="location.href=\'/userpgs/instructor/class/edit_class.php?course_id='.$course_id.'&class_id='.$class_id.'\';"><svg viewBox="0 0 32 32">
+		echo '<div class="add-box-con">';
+		echo '<div class="add-box" onclick="location.href=\'/userpgs/instructor/class/edit_class.php?course_id='.$course_id.'&class_id='.$class_id.'\';"><svg viewBox="0 0 32 32">
 				          <path d="M16,11.5A4.5,4.5,0,1,1,11.5,16,4.5,4.5,0,0,1,16,11.5m0-2A6.5,6.5,0,1,0,22.5,16,6.5,6.5,0,0,0,16,9.5Z"></path>
 					  <path d="M21.5,2h.3a.7.7,0,0,1,.4.6l.4,3.5A3.1,3.1,0,0,0,23.5,8l.5.5a3.1,3.1,0,0,0,1.8.9l3.5.4a.7.7,0,0,1,.6.4.8.8,0,0,
 					  1-.1.8l-2.2,2.8a2.6,2.6,0,0,0-.7,1.8.9.9,0,0,1,0,.8,2.6,2.6,0,0,0,.7,1.8L29.8,21a.8.8,0,0,1,.1.8.7.7,0,0,1-.6.4l-3.5.4a3.1,
@@ -231,28 +231,28 @@ echo '<div class="add-box-con">';
 					  0,0,0,2.3-1.7h0a2.6,2.6,0,0,0-.4-2.7L29.1,17a1.4,1.4,0,0,1-.2-.6c.1-.1.1-.2.1-.4h0c0-.2,0-.3-.1-.4a1.4,1.4,0,0,1,.2-.6l2.3-2.8a2.6,2.6,0,0,0,.4-2.7h0a2.7,
 					  2.7,0,0,0-2.3-1.7L26,7.4l-.5-.2a2.3,2.3,0,0,0-.7-.7.8.8,0,0,1-.2-.5l-.4-3.5A2.7,2.7,0,0,0,22.5.2h0l-1-.2a2.7,2.7,0,0,0-1.7.6L17,2.9l-.5.2h-1L15,2.9,12.2.6A2.7,2.7,0,0,0,10.5,0Z"></path>
 			              </svg>Manage Session</div>';
-echo '</div>';
-			     
-			     echo '<form action="/userpgs/instructor/class/live/#'.$class_id.'" method="POST" id="LiveForm"><input type="hidden" name="course_id" value="'.$course_id.'"><input type="hidden" name="class_id" value="'.$class_id.'"></form>';
+		echo '</div>';
+		
+		//echo '<form action="/userpgs/instructor/class/live/#'.$class_id.'" method="POST" id="LiveForm"><input type="hidden" name="course_id" value="'.$course_id.'"><input type="hidden" name="class_id" value="'.$class_id.'"></form>';
+
+		//echo '<form action="/userpgs/instructor/class/live" method="GET" id="LiveForm"><input type="hidden" name="course_id" value="'.$course_id.'"><input type="hidden" name="class_id" value="'.$class_id.'"><input type="hidden" name="hash" value="#'.$class_id.'"></form>';
 
 
+		echo '</div>';
+	    } else {
+		echo '<div class="options session-learn-options">';
+		echo '<div class="add-box" id="live-add-box">Open Live Classroom</div>';
+		echo '</div>';
+
+		//echo '<form action="/userpgs/instructor/class/live/#'.$class_id.'" method="POST" id="LiveForm"><input type="hidden" name="course_id" value="'.$course_id.'"><input type="hidden" name="class_id" value="'.$class_id.'"></form>';
+
+	//	echo '<form action="/userpgs/instructor/class/live" method="GET" id="LiveForm"><input type="hidden" name="course_id" value="'.$course_id.'"><input type="hidden" name="class_id" value="'.$class_id.'"><input type="hidden" name="hash" value="#'.$class_id.'"></form>';
 
 
+	    }
 
-
-			     echo '</div>';
-} else {
-echo '<div class="options session-learn-options">';
-echo '<div class="add-box" id="live-add-box">Open Live Classroom</div>';
-echo '</div>';
-
-echo '<form action="/userpgs/instructor/class/live/#'.$class_id.'" method="POST" id="LiveForm"><input type="hidden" name="course_id" value="'.$course_id.'"><input type="hidden" name="class_id" value="'.$class_id.'"></form>';
-
-
-}
-
-echo '<div class="sessions">';
-?>
+	    echo '<div class="sessions">';
+	    ?>
 
 <div class="tabs">
 <div class="tab active-tab" style="border-radius:20px 0 0 0;" id="sessions-tab"><h3>Sessions</h3></div>
@@ -377,7 +377,7 @@ $('.video-holder').height(vhWidth/1.78);
 
 <!-- LIVE CLASS -->
 <script>
-$("#live-add-box").on("click",function() {
+/*$("#live-add-box").on("click",function() {
   
   jQuery.ajax({
     url:'add_live.php',
@@ -392,6 +392,10 @@ $("#live-add-box").on("click",function() {
     }
   });
   
+});*/
+$('#live-add-box').click(function() {
+     //$('#LiveForm').submit();
+     window.location.href = '/userpgs/instructor/class/live/?course_id=<?php echo $course_id ?>&class_id=<?php echo $class_id ?>';
 });
 </script>
 

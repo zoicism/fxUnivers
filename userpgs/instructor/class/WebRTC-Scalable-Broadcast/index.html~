@@ -52,8 +52,8 @@ input, input:focus, input:active {
     background: white;    
 }
 </style>
-<script src="../js/socket.io.js"></script>
-<script src="RTCMultiConnection.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/RTCMultiConnection.js"></script>
 <script>
 var socket = io.connect();
 

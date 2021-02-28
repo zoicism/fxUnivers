@@ -565,8 +565,8 @@ if (location.hash.length && location.hash.indexOf('comment') !== -1) {
 }
 </script>
 
-<script src="https://rtcmulticonnection.herokuapp.com/dist/RTCMultiConnection.min.js"></script>
-<script src="https://rtcmulticonnection.herokuapp.com/socket.io/socket.io.js"></script>
+<script src="RTCMultiConnection.min.js"></script>
+<script src="socket.io.js"></script>
 
 <script>
 var connection = new RTCMultiConnection();
@@ -669,6 +669,6 @@ connection.onstreamended = function() {
 };
 </script>
 
-<script src="https://www.webrtc-experiment.com/common.js" async></script>
+<script src="common.js" async></script>
 </body>
 </html>

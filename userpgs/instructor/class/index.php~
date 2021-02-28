@@ -1,64 +1,63 @@
 <?php
 // Requiring https
 /*if($_SERVER['HTTPS'] != "on") {
-    $url = "https://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
-    header("Location: $url");
-    exit;
-}*/
+   $url = "https://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+   header("Location: $url");
+   exit;
+   }*/
 
-  session_start();
-  require('../../../register/connect.php');
+session_start();
+require('../../../register/connect.php');
 
-  if(isset($_SESSION['username'])) {
+if(isset($_SESSION['username'])) {
     $username = $_SESSION['username'];
-  } else {
-    // logout
-      header("Location: /register/logout.php");
-  }
+} else {
+    require_once($_SERVER['DOCUMENT_ROOT'].'/php/get_login_cookies.php');
+}
 
-  if(isset($_GET['course_id']))
+if(isset($_GET['course_id']))
     $course_id=$_GET['course_id'];
 
 
-  require('../../../php/get_user.php');
-  $id = $get_user_id;
+require('../../../php/get_user.php');
+$id = $get_user_id;
 
-  require('../../php/notif.php');
+require('../../php/notif.php');
 
-  if(isset($_GET['class_id']))
-   $class_id = $_GET['class_id'];
+if(isset($_GET['class_id']))
+    $class_id = $_GET['class_id'];
 
-  $class_query = "SELECT * FROM `class` WHERE id=$class_id AND alive=1";
-  $class_result = mysqli_query($connection, $class_query) or die(mysqli_error($connection));
-  $class_fetch = mysqli_fetch_array($class_result);
+$class_query = "SELECT * FROM `class` WHERE id=$class_id AND alive=1";
+$class_result = mysqli_query($connection, $class_query) or die(mysqli_error($connection));
+$class_fetch = mysqli_fetch_array($class_result);
 
-  $class_count = mysqli_num_rows($class_result);
-  if($class_count!=1) {
+$class_count = mysqli_num_rows($class_result);
+if($class_count!=1) {
     header('Location: /error');
-  }
+}
 
-  /*$user_id = $class_fetch['teacher_id'];*/
-  $header = $class_fetch['title'];
-  $description = $class_fetch['body'];
-  $video = $class_fetch['video'];
-  $dt = $class_fetch['dt'];
+/*$user_id = $class_fetch['teacher_id'];*/
+$header = $class_fetch['title'];
+$description = $class_fetch['body'];
+$video = $class_fetch['video'];
+$dt = $class_fetch['dt'];
 
-  require('../php/classes.php');
+require('../php/classes.php');
 
-  require('../../../php/get_course.php');
+require('../../../php/get_course.php');
 // includes $get_course_teacher_id
 
-  require('../../../php/get_user_type.php');
+require('../../../php/get_user_type.php');
 
-  if($user_type == 'neither') {
+if($user_type == 'neither') {
     $go_home = "Location: /userpgs/instructor/course_management/course.php?course_id=".$course_id."&class_id=".$class_id;
     header($go_home);
-  }
-  
+}
 
-  require('../../../contact/message_connect.php');
-  require('../../../php/check_live_class.php');
-  require('../../../php/get_class_files.php');
+
+require('../../../contact/message_connect.php');
+require('../../../php/check_live_class.php');
+require('../../../php/get_class_files.php');
 
 
 $tar_id=$class_fetch['teacher_id'];

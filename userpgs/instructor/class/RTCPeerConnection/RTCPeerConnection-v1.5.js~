@@ -1,3 +1,9 @@
+// Last time updated on: Dec 22, 2018
+
+// Muaz Khan     - github.com/muaz-khan
+// MIT License   - www.WebRTC-Experiment.com/licence
+// Documentation - github.com/muaz-khan/WebRTC-Experiment/tree/master/RTCPeerConnection
+
 if (typeof window.RTCPeerConnection !== 'undefined') {
     window.RTCPeerConnection00 = window.RTCPeerConnection;
 } else if (typeof mozRTCPeerConnection !== 'undefined') {
@@ -257,7 +263,7 @@ try {
 catch(e) {}
 
 // IceServersHandler.js
-/*
+
 var IceServersHandler = (function() {
     function getIceServers(connection) {
         // resiprocate: 3344+4433
@@ -309,4 +315,3 @@ var IceServersHandler = (function() {
         getIceServers: getIceServers
     };
 })();
-*/
