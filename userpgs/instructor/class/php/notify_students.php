@@ -15,7 +15,7 @@ if($user_type=='instructor') {
         $student_un=$student['username'];
 
         $header=mysqli_real_escape_string($connection,$header);
-        $live_notif='The instructor is live in class <b>'.$header.'</b>. Join in now. <form action="/userpgs/instructor/class/live/#'.$class_id.'" method="POST"><input type="hidden" name="course_id" value="'.$course_id.'"><input type="hidden" name="class_id" value="'.$class_id.'"><input type="submit" value="Enter"></form>';
+        $live_notif='The instructor has just created a live classroom: '.$header.'. Click Enter to join in now. <form action="/userpgs/instructor/class/live" method="GET"><input type="hidden" name="class_id" value="'.$class_id.'"><input type="hidden" name="course_id" value="'.$course_id.'"><input type="submit" value="Enter"></form>';
 
 
 	$utc_timestamp = date('Y-m-d H:i:s');

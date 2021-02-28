@@ -79,7 +79,8 @@ require('../php/notify_students.php');
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/icons.css">
     <link rel="stylesheet" href="/css/logo.css">
-    
+
+	
     <script src="/js/jquery-3.4.1.min.js"></script>
     <script src="/js/jquery.form.js"></script>
 
@@ -134,6 +135,12 @@ require('../php/notify_students.php');
 
     <div class="relative-main-content">
 
+
+	<div class="fxuniversity-nav" style="margin-right:auto;opacity:0.6;">
+	    <p><?php echo '<a style="font-weight:bold" href="/userpgs/instructor/course_management/course.php?course_id='.$get_course_fetch['id'].'">'.$get_course_fetch['header'].'</a> / <span style="font-weight:bold">'.$header.'</span>' ?></p>
+	</div>
+	
+
       <div class="course-content">
 	  <div class="left-content">
 
@@ -169,37 +176,37 @@ require('../php/notify_students.php');
 
 	  <!-- VIDEO -->
 	  <?php if($user_type=='instructor') { ?>
-	      <div class="video-holder" id="live-session">
-		  <div id="videos-container" class="ins-vid-cnt"></div>
+	      <div class="video-holder" id="live-session" style="display: flex;width: 100%;margin-bottom: 20px;justify-content: center;align-content: center;">
+		  <div id="videos-container" class="ins-vid-cnt" style="width:60%"></div>
 		  <!-- <div class="ctrl">
-	          hereee
-	          <div class="ctrl-row" id="before-stream-start" style=""><strong>Start Broadcast: </strong>
-		      <select id="broadcasting-option" class="select-input">
-			  <option id="audio-video-b">Audio + Video</option>
-			  <option id="audio-b">Only Audio</option>
-			  <option id="broadcasting-screen">Screen</option>
-		      </select>
-		      <img src="/images/background/live.svg" style="padding:5px;opacity:1;" id="setup-new-broadcast">
-		      <input type="hidden" id="broadcast-name">
-		  </div>
+	               hereee
+	               <div class="ctrl-row" id="before-stream-start" style=""><strong>Start Broadcast: </strong>
+		       <select id="broadcasting-option" class="select-input">
+		       <option id="audio-video-b">Audio + Video</option>
+		       <option id="audio-b">Only Audio</option>
+		       <option id="broadcasting-screen">Screen</option>
+		       </select>
+		       <img src="/images/background/live.svg" style="padding:5px;opacity:1;" id="setup-new-broadcast">
+		       <input type="hidden" id="broadcast-name">
+		       </div>
 
 
-		  <div class="ctrl-row" id="after-stream-start" style="display:none">
-		      <strong>Broadcasting: </strong>
-		      <img src="/images/background/pause.svg" id="pause">
-		      <img src="/images/background/stop.svg" id="stop">
-		  </div>
+		       <div class="ctrl-row" id="after-stream-start" style="display:none">
+		       <strong>Broadcasting: </strong>
+		       <img src="/images/background/pause.svg" id="pause">
+		       <img src="/images/background/stop.svg" id="stop">
+		       </div>
 
 
-	      </div>-->
-	  </div>
+		       </div>-->
+	      </div>
 
 
-<?php } else { ?>
+	  <?php } else { ?>
 
 
-<div class="video-holder" id="live-session">
-	   <div id="videos-container" id="stu-vid-cnt"></div>
+	      <div class="video-holder" id="live-session" style="display: flex;width: 100%;margin-bottom: 20px;justify-content: center;align-content: center;">
+	   <div id="videos-container" id="stu-vid-cnt" style="width:60%"></div>
 	   <div class="ctrl">
 	                     <div class="ctrl-row" id="before-stream-start">
 			       <p id="join-p">Live video hasn't started yet.</p>			       
@@ -594,10 +601,11 @@ echo '<div class="sess-list" style="display:none">';
    }
 
    function rotateInCircle(video) {
-       video.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(0deg)';
+       /*video.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(0deg)';
        setTimeout(function() {
            video.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(360deg)';
-       }, 1000);
+       }, 1000);*/
+       video.style='-moz-transform: scale(-1, 1); -webkit-transform: scale(-1, 1); -o-transform: scale(-1, 1); transform: scale(-1, 1); filter: FlipH;';
    }
 
   </script>

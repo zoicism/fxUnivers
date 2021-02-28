@@ -9,8 +9,10 @@ if(isset($_SESSION['username'])) {
     require_once($_SERVER['DOCUMENT_ROOT'].'/php/get_login_cookies.php');
 }
 
-if(isset($_POST['course_id']))
-    $course_id=$_POST['course_id'];
+
+
+if(isset($_GET['course_id']))
+    $course_id=$_GET['course_id'];
 
 
 require('../../../../php/get_user.php');
@@ -18,8 +20,8 @@ $id = $get_user_id;
 
 require('../../../php/notif.php');
 
-if(isset($_POST['class_id']))
-    $class_id = $_POST['class_id'];
+if(isset($_GET['class_id']))
+    $class_id = $_GET['class_id'];
 
 $class_query = "SELECT * FROM `class` WHERE id=$class_id";
 $class_result = mysqli_query($connection, $class_query) or die(mysqli_error($connection));
@@ -77,10 +79,18 @@ require('../php/notify_students.php');
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/icons.css">
     <link rel="stylesheet" href="/css/logo.css">
-    
+
+    <style>
+     .ins-vid-cnt video {
+	 transform: rotateY(180deg);
+	 -webkit-transform:rotateY(180deg); /* Safari and Chrome */
+	 -moz-transform:rotateY(180deg); /* Firefox */
+     }
+    </style>
+	
     <script src="/js/jquery-3.4.1.min.js"></script>
     <script src="/js/jquery.form.js"></script>
-<!--
+
     <script src="../DetectRTC/DetectRTC.js"></script>
     <script src="../js/socket.io.js"> </script>
     <script src="../js/adapter-latest.js"></script>
@@ -88,8 +98,8 @@ require('../php/notify_students.php');
     <script src="../js/CodecsHandler.js"></script>
     <script src="../RTCPeerConnection/RTCPeerConnection-v1.5.js"></script>
     <script src="../webrtc-broadcasting/broadcast.js"> </script>
--->
 
+<!--
     <script src="https://www.webrtc-experiment.com/DetectRTC.js"></script>
 
         <script src="https://www.webrtc-experiment.com/socket.io.js"> </script>
@@ -98,7 +108,7 @@ require('../php/notify_students.php');
         <script src="https://www.webrtc-experiment.com/CodecsHandler.js"></script>
         <script src="https://www.webrtc-experiment.com/RTCPeerConnection-v1.5.js"> </script>
         <script src="https://www.webrtc-experiment.com/webrtc-broadcasting/broadcast.js"> </script>
-    
+    -->
     
 </head>
     
@@ -132,17 +142,23 @@ require('../php/notify_students.php');
 
     <div class="relative-main-content">
 
+
+	<div class="fxuniversity-nav" style="margin-right:auto;opacity:0.6;">
+	    <p><?php echo '<a style="font-weight:bold" href="/userpgs/instructor/course_management/course.php?course_id='.$get_course_fetch['id'].'">'.$get_course_fetch['header'].'</a> / <span style="font-weight:bold">'.$header.'</span>' ?></p>
+	</div>
+	
+
       <div class="course-content">
 	  <div class="left-content">
 
 
 
 	      
-<section class="experiment">
+<section class="experiment" style="display:none">
                 <section>
                     <select id="broadcasting-option">
-                        <option>Audio + Video</option>
-                        <option>Only Audio</option>
+                        <option id="audio-video-b">Audio + Video</option>
+                        <option id="audio-b">Only Audio</option>
                         <option>Screen</option>
                     </select>
                     <input type="text" id="broadcast-name">
@@ -153,7 +169,7 @@ require('../php/notify_students.php');
                 <table style="width: 100%;" id="rooms-list"></table>
 
                 <!-- local/remote videos container -->
-                <div id="videos-container"></div>
+                <!--<div id="videos-container"></div>-->
             </section>
 
 
@@ -167,43 +183,43 @@ require('../php/notify_students.php');
 
 	  <!-- VIDEO -->
 	  <?php if($user_type=='instructor') { ?>
-	  <div class="video-holder" id="live-session">
-	   <div id="videos-container" class="ins-vid-cnt"></div>
-	   <div class="ctrl">
-	       <!-- hereee
-	                  <div class="ctrl-row" id="before-stream-start" style=""><strong>Start Broadcast: </strong>
-			       <select id="broadcasting-option" class="select-input">
-			         <option id="audio-video-b">Audio + Video</option>
-				 <option id="audio-b">Only Audio</option>
-				 <option id="broadcasting-screen">Screen</option>
-			       </select>
-			       <img src="/images/background/live.svg" style="padding:5px;opacity:1;" id="setup-new-broadcast">
-			       <input type="hidden" id="broadcast-name">
-		-->	     </div>
-
-<!--
-			     <div class="ctrl-row" id="after-stream-start" style="display:none">
-			     <strong>Broadcasting: </strong>
-	   <img src="/images/background/pause.svg" id="pause">
-	   <img src="/images/background/stop.svg" id="stop">
-	   </div>
--->
-
-	   </div>
-	  </div>
+	      <div class="video-holder" id="live-session" style="display: flex;width: 100%;margin-bottom: 20px;justify-content: center;align-content: center;">
+		  <div id="videos-container" class="ins-vid-cnt" style="width:60%"></div>
+		  <!-- <div class="ctrl">
+	               hereee
+	               <div class="ctrl-row" id="before-stream-start" style=""><strong>Start Broadcast: </strong>
+		       <select id="broadcasting-option" class="select-input">
+		       <option id="audio-video-b">Audio + Video</option>
+		       <option id="audio-b">Only Audio</option>
+		       <option id="broadcasting-screen">Screen</option>
+		       </select>
+		       <img src="/images/background/live.svg" style="padding:5px;opacity:1;" id="setup-new-broadcast">
+		       <input type="hidden" id="broadcast-name">
+		       </div>
 
 
-<?php } else { ?>
+		       <div class="ctrl-row" id="after-stream-start" style="display:none">
+		       <strong>Broadcasting: </strong>
+		       <img src="/images/background/pause.svg" id="pause">
+		       <img src="/images/background/stop.svg" id="stop">
+		       </div>
 
 
-<div class="video-holder" id="live-session">
-	   <div id="videos-container"></div>
+		       </div>-->
+	      </div>
+
+
+	  <?php } else { ?>
+
+
+	      <div class="video-holder" id="live-session" style="display: flex;width: 100%;margin-bottom: 20px;justify-content: center;align-content: center;">
+	   <div id="videos-container" id="stu-vid-cnt" style="width:60%"></div>
 	   <div class="ctrl">
 	                     <div class="ctrl-row" id="before-stream-start">
 			       <p id="join-p">Live video hasn't started yet.</p>			       
 			       <img src="/images/background/live.svg" style="padding:5px;opacity:0.5;cursor:not-allowed;" disabled id="join-img">
-			       <div style="display:none" id="setup-new-broadcast"></div>
-			       <input type="hidden" id="broadcast-name">
+			       <!-- <div style="display:none" id="setup-new-broadcast"></div>
+			       <input type="hidden" id="broadcast-name">-->
 			     </div>
 	   </div>
 </div>
@@ -406,7 +422,10 @@ echo '<div class="sess-list" style="display:none">';
        openSocket: function(config) {
            var SIGNALING_SERVER = 'https://socketio-over-nodejs2.herokuapp.com:443/';
 
-           config.channel = config.channel || location.href.replace(/\/|:|#|%|\.|\[|\]/g, '');
+	   
+           //config.channel = config.channel || location.href.replace(/\/|:|#|%|\.|\[|\]/g, '');
+	   config.channel = config.channel || 'fxuniversity<?php echo $class_id ?>';
+	   console.log(config.channel);
            var sender = Math.round(Math.random() * 999999999) + 999999999;
 
            io.connect(SIGNALING_SERVER).emit('new-channel', {
@@ -458,9 +477,12 @@ echo '<div class="sess-list" style="display:none">';
                });
                hideUnnecessaryStuff();
            };
+
+	   $('.join').click();
+	   $('.ctrl').hide();
        },
        onNewParticipant: function(numberOfViewers) {
-           document.title = 'Viewers: ' + numberOfViewers;
+           document.title = 'fxUniversity - Viewers: ' + numberOfViewers;
        },
        onReady: function() {
            console.log('now you can open or join rooms');
@@ -481,6 +503,8 @@ echo '<div class="sess-list" style="display:none">';
                    shared = 'screen';
                }
 
+	       document.getElementById('broadcast-name').value = '<?php echo $class_id ?>';
+	       
                broadcastUI.createRoom({
                    roomName: (document.getElementById('broadcast-name') || { }).value || 'Anonymous',
                    isAudio: shared === 'audio'
@@ -533,10 +557,13 @@ echo '<div class="sess-list" style="display:none">';
            htmlElement.setAttributeNode(document.createAttribute('autoplay'));
            htmlElement.setAttributeNode(document.createAttribute('playsinline'));
            htmlElement.setAttributeNode(document.createAttribute('controls'));
+	   htmlElement.setAttributeNode(document.createAttribute('id'));
+	   htmlElement.setAttribute('id','video-broadcast');
        } catch (e) {
            htmlElement.setAttribute('autoplay', true);
            htmlElement.setAttribute('playsinline', true);
            htmlElement.setAttribute('controls', true);
+	   
        }
 
        var mediaConfig = {
@@ -705,7 +732,7 @@ $(document).ready(function() {
 });
 </script>
 <!-- EO CHAT -->
-
+<!-- 
 <script>
 $('#join-img').click(function() {
   $('#join-btn').click();
@@ -715,7 +742,7 @@ $('#join-img').click(function() {
   $('#join-p').html('You are watching live session.');
 });
 </script>
-
+-->
 
 <!-- FILES -->
 <script>

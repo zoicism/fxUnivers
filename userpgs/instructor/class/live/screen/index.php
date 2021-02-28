@@ -117,7 +117,7 @@ if($user_type=='instructor') {
 
 
                 <!-- local/remote videos container -->
-                <div class="video-holder"><div id="videos-container"></div></div>
+                <div class="video-holder" style="display: flex;align-content: center;justify-content: center;"><div id="videos-container" style="width:60%"></div></div>
 
                 <section id="unique-token" style="display: none; text-align: center; padding: 20px;"></section>
             </section>
@@ -334,7 +334,7 @@ if($user_type=='instructor') {
                 function showPrivateLink() {
                     var uniqueToken = document.getElementById('unique-token');
                     uniqueToken.innerHTML = '<a href="' + location.href + '" target="_blank">Copy & Share This Private Room Link</a>';
-                    uniqueToken.style.display = 'block';
+                    //uniqueToken.style.display = 'block';
                 }
 
             </script>

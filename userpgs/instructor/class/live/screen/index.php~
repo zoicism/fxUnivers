@@ -1,67 +1,67 @@
 <?php
 
-  session_start();
-  require('../../../../../register/connect.php');
+session_start();
+require('../../../../../register/connect.php');
 
-  if(isset($_SESSION['username'])) {
+if(isset($_SESSION['username'])) {
     $username = $_SESSION['username'];
-  } else {
-      header("Location: /");
-  }
+} else {
+    require_once($_SERVER['DOCUMENT_ROOT'].'/php/get_login_cookies.php');
+}
 
-  if(isset($_POST['course_id']))
+if(isset($_POST['course_id']))
     $course_id=$_POST['course_id'];
 
 
-  require('../../../../../php/get_user.php');
-  $id = $get_user_id;
+require('../../../../../php/get_user.php');
+$id = $get_user_id;
 
-  require('../../../../php/notif.php');
+require('../../../../php/notif.php');
 
-  if(isset($_POST['class_id']))
-   $class_id = $_POST['class_id'];
+if(isset($_POST['class_id']))
+    $class_id = $_POST['class_id'];
 
-  $class_query = "SELECT * FROM `class` WHERE id=$class_id";
-  $class_result = mysqli_query($connection, $class_query) or die(mysqli_error($connection));
-  $class_fetch = mysqli_fetch_array($class_result);
+$class_query = "SELECT * FROM `class` WHERE id=$class_id";
+$class_result = mysqli_query($connection, $class_query) or die(mysqli_error($connection));
+$class_fetch = mysqli_fetch_array($class_result);
 
-  /*$user_id = $class_fetch['teacher_id'];*/
-  $header = $class_fetch['title'];
-  $description = $class_fetch['body'];
-  $video = $class_fetch['video'];
+/*$user_id = $class_fetch['teacher_id'];*/
+$header = $class_fetch['title'];
+$description = $class_fetch['body'];
+$video = $class_fetch['video'];
 
 $tar_id=$class_fetch['teacher_id'];
 require('../../../../../php/get_tar_id.php');
 
 
-  require('../../../php/classes.php');
+require('../../../php/classes.php');
 
-  require('../../../../../php/get_course.php');
+require('../../../../../php/get_course.php');
 
-  require('../../../../../php/get_user_type.php');
+require('../../../../../php/get_user_type.php');
 
 /*
-  if($user_type == 'neither') {
-    $go_home = "Location: /";
-    header($go_home);
-  }
-*/
+   if($user_type == 'neither') {
+   $go_home = "Location: /";
+   header($go_home);
+   }
+ */
 
-  function randHash($len) {
+function randHash($len) {
     return substr(md5(openssl_random_pseudo_bytes(20)), -$len);
-  }
+}
 
-  require('../../../../../contact/message_connect.php');
-  if($user_type=='instructor') {
+require('../../../../../contact/message_connect.php');
+if($user_type=='instructor') {
     
     $liveClassId = randHash(32);
     //require('../../../../../php/create_live_class.php');
-  } elseif($user_type=='student') {
+} elseif($user_type=='student') {
     require('../../../../../php/join_live_class.php');
     $liveClassId = $join_live_class_roomid;
-  } else {
-      header('Location: /userpgs/instructor/course_management/course.php?course_id='.$course_id);
-  }
+} else {
+    header('Location: /userpgs/instructor/course_management/course.php?course_id='.$course_id);
+}
 
 //require('../../php/notify_students.php');
 
@@ -78,14 +78,24 @@ require('../../../../../php/get_tar_id.php');
     <link rel="stylesheet" href="/css/icons.css">
     <link rel="stylesheet" href="/css/logo.css">
 
-    <script src="../../DetectRTC/DetectRTC.js"></script>
     <script src="../../js/socket.io.js"> </script>
+    <script src="../../DetectRTC/DetectRTC.js"></script>
     <script src="../../js/adapter-latest.js"></script>
-    <script src="/js/webrtc/IceServersHandler.js"></script>
-
-    <script src="../../Pluginfree-Screen-Sharing/conference.js"></script>
     <script src="../../js/CodecsHandler.js"></script>
     <script src="/js/webrtc/BandwidthHandler.js"></script>
+    <script src="/js/webrtc/IceServersHandler.js"></script>
+    <script src="../../Pluginfree-Screen-Sharing/conference.js"></script>
+
+    <!--
+    <script src="https://www.webrtc-experiment.com/socket.io.js"> </script>
+        <script src="https://www.webrtc-experiment.com/DetectRTC.js"></script>
+        <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+        <script src="https://www.webrtc-experiment.com/CodecsHandler.js"></script>
+        <script src="https://www.webrtc-experiment.com/BandwidthHandler.js"></script>
+        <script src="https://www.webrtc-experiment.com/IceServersHandler.js"></script>
+        <script src="https://www.webrtc-experiment.com/Pluginfree-Screen-Sharing/conference.js"> </script>
+	-->
+	
 
     <script src="/js/jquery-3.4.1.min.js"></script>
 </head>
@@ -99,7 +109,8 @@ require('../../../../../php/get_tar_id.php');
 <section class="experiment" style="flex-flow:column">
                 <section class="hide-after-join" style="text-align: center;">                    
                     <input type="text" id="room-name" placeholder="Enter " style="width: 80%; text-align: center; display: none;">
-                    <?php if($user_type=='instructor') echo '<button id="share-screen" style="background-color:transparent" class="submit-btn">Start Screen Sharing</button>'; else echo '<p id="share-screen-p">Instructor\'s screen will appear here.</p>'; ?>
+                    <?php if($user_type=='instructor') echo '<button id="share-screen" style="background-color:transparent" class="submit-btn">Start Screen Sharing</button>'; else echo '<p id="share-screen-p">Instructor\'s screen will appear here.</p>';
+		    //echo '<button id="share-screen" style="background-color:transparent" class="submit-btn">Start Screen Sharing</button>';?>
                 </section>
 
 <!--<p>Watching: <span id="online-num">0</span></p>-->
@@ -117,11 +128,14 @@ require('../../../../../php/get_tar_id.php');
 
 <script>
                 var config = {
-                    // via: https://github.com/muaz-khan/WebRTC-Experiment/tree/master/socketio-over-nodejs
                     openSocket: function(config) {
                         var SIGNALING_SERVER = 'https://socketio-over-nodejs2.herokuapp.com:443/';
 
-                        config.channel = config.channel || location.href.replace(/\/|:|#|%|\.|\[|\]/g, '');
+                        //config.channel = config.channel || location.href.replace(/\/|:|#|%|\.|\[|\]/g, '');
+
+			config.channel = config.channel || 'fxuniversityscreen<?php echo $class_id?>';
+
+										 console.log(config.channel);
                         var sender = Math.round(Math.random() * 999999999) + 999999999;
 
                         io.connect(SIGNALING_SERVER).emit('new-channel', {
@@ -173,22 +187,22 @@ require('../../../../../php/get_tar_id.php');
                             text = 'Only one user is viewing your screen!';
                         }
 
-                        //document.title = text;
-                        //showErrorMessage(document.title, 'green');
+                        document.title = text;
+                        showErrorMessage(document.title, 'green');
                     },
                     oniceconnectionstatechange: function(state) {
                         var text = '';
 
                         if(state == 'closed' || state == 'disconnected') {
                             text = 'One of the participants just left.';
-                            //document.title = text;
-                            //showErrorMessage(document.title);
+                            document.title = text;
+                            showErrorMessage(document.title);
                         }
 
                         if(state == 'failed') {
                             text = 'Failed to bypass Firewall rules. It seems that target user did not receive your screen. Please ask him reload the page and try again.';
-                            //document.title = text;
-                            //showErrorMessage(document.title);
+                            document.title = text;
+                            showErrorMessage(document.title);
                         }
 
                         if(state == 'connected' || state == 'completed') {
@@ -310,7 +324,7 @@ require('../../../../../php/get_tar_id.php');
                     this.disabled = true;
                 };
 
-                /*function rotateVideo(video) {
+                function rotateVideo(video) {
                     video.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(0deg)';
                     setTimeout(function() {
                         video.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(360deg)';
@@ -321,7 +335,7 @@ require('../../../../../php/get_tar_id.php');
                     var uniqueToken = document.getElementById('unique-token');
                     uniqueToken.innerHTML = '<a href="' + location.href + '" target="_blank">Copy & Share This Private Room Link</a>';
                     uniqueToken.style.display = 'block';
-                }*/
+                }
 
             </script>
 
