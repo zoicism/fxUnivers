@@ -844,8 +844,10 @@ if($course_biddable) require_once('../../../wallet/php/wallet_connect.php');
 		     if(response==0) {
 			 alert('Failed to create a live session. Please try again.');
 		     } else {
-			 $('#live-div').html(response);
-			 $('#LiveForm').submit();
+			 //$('#live-div').html(response);
+			 //$('#LiveForm').submit();
+			 
+			 window.location.href = '/userpgs/instructor/class/live/?course_id=<?php echo $course_id ?>&class_id='+response;
 		     }
 		 }
 	     });

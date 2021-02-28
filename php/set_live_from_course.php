@@ -32,7 +32,8 @@ if($result) {
   	$live_r=mysqli_query($connection,$live_q);
 
 	if($live_r) {
-	  echo '<form action="/userpgs/instructor/class/live/#'.$classId.'" method="POST" id="LiveForm"><input type="hidden" name="course_id" value="'.$course_id.'"><input type="hidden" name="class_id" value="'.$classId.'"></form>';
+	    //echo '<form action="/userpgs/instructor/class/live/#'.$classId.'" method="POST" id="LiveForm"><input type="hidden" name="course_id" value="'.$course_id.'"><input type="hidden" name="class_id" value="'.$classId.'"></form>';
+	    echo $classId;
 	} else {
 	  echo 0;
 	}
