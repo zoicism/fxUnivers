@@ -1087,6 +1087,19 @@ textarea:focus {
     color: #393939;
 }
 
+.add-box-con .add-box {
+    padding: 5px 40px;
+    border-radius: 100px;
+}
+
+.add-box-con .add-box:hover {
+    background-color: #e0e0e0;
+}
+
+.add-box-con .add-box:active {
+    background-color: #c0c0c0;
+}
+
 .add-box svg {
     margin-right: 15px;
     cursor: pointer;
