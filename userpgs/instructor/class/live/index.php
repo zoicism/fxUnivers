@@ -331,9 +331,9 @@ if($tar_user_fetch['avatar']!=NULL) {
 
 
 <div class="tabs">
-  <div class="tab active-tab" style="border-radius:20px 0 0 0;" id="users-tab"><h3>Online(<span id="online-num"></span>)</h3></div>
-  <div class="tab" style="border-radius:0 0 0 0;" id="chat-tab"><h3>Chat</h3></div>
-  <div class="tab" style="border-radius:0 0 0 0;" id="file-tab"><h3>Files(<span id="filesNum"></span>)</h3></div>
+  <div class="tab active-tab" id="users-tab"><div>Online(<span id="online-num"></span>)</div></div>
+  <div class="tab" id="chat-tab"><div>Chat</div></div>
+  <div class="tab" id="file-tab"><div>Files(<span id="filesNum"></span>)</div></div>
   <!--<div class="tab" style="border-radius:0 20px 0 0;" id="sessions-tab"><h3>Sessions</h3></div>-->
 
 </div>
