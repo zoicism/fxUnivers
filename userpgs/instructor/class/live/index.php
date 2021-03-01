@@ -269,14 +269,34 @@ if($tar_user_fetch['avatar']!=NULL) {
 		echo '<div id="video-audio-b-div" class="add-box" style="margin-top:0;"><input type="checkbox" class="toggle-btn" id="video-audio-b-toggle">Video & Audio Broadcast</div>';
 		echo '<div id="audio-b-div" class="add-box" style="margin-top:0;"><input type="checkbox" class="toggle-btn" id="audio-b-toggle">Audio-only Broadcast</div>';
 
+		echo '<div class="add-box-con">'
+			echo '<div class="add-box" id="screen-b">
+				   <svg viewBox="0 0 32 32" style="height: 20px;width: 20px;margin-right: 12px;">
+					<path d="M28,0H4A4,4,0,0,0,0,4V18.8a4,4,0,0,0,4,4H15V30H6.6a1.1,1.1,0,0,0-1,1,1,1,0,0,0,1,1H25.4a1,1,0,0,0,1-1,1.1,1.1,0,0,0-1-1H17V22.8H28a4,4,0,0,0,4-4V4A4,4,0,0,0,28,0Zm2,18.8a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V4A2,2,0,0,1,4,2H28a2,2,0,0,1,2,2Z"></path>
+				   </svg>
+				   Screen Broadcast
+			      </div>';
+			echo '<div class="add-box" id="live-whiteboard-box">
+				   <svg viewBox="0 0 32 32" style="height: 20px;width: 20px;margin-right: 12px;">
+					<path d="M28,0H4A4,4,0,0,0,0,4V18.8a4,4,0,0,0,4,4H9.6L5.7,30.5a1.2,1.2,0,0,0,.4,1.4,1.2,1.2,0,0,0,1.4-.4l4.3-8.7h8.4l4.3,8.7a1.1,1.1,0,0,0,.9.5h.4a1.1,1.1,0,0,0,.5-1.4l-3.9-7.7H28a3.9,3.9,0,0,0,2.8-1.1,4.2,4.2,0,0,0,1-1.7,4.3,4.3,0,0,0,.2-1.2V4A4,4,0,0,0,28,0Zm2,18.8a1.7,1.7,0,0,1-.6,1.4l-.3.3h0l-.3.2H3.4a1.4,1.4,0,0,1-.8-.5A1.7,1.7,0,0,1,2,18.8V4c0-.2,0-.3.1-.4A1.9,1.9,0,0,1,4,2H28a2,2,0,0,1,2,1.6V18.8Z"></path>
+				   </svg>
+				   Whiteboard Broadcast
+			      </div>';
+			echo '<div class="add-box" id="record-btn">
+				   <svg viewBox="0 0 32 32" style="height: 20px;width: 20px;margin-right: 12px;">
+					<path d="M16,2A14,14,0,1,1,2,16,14,14,0,0,1,16,2m0-2A16,16,0,1,0,32,16,16,16,0,0,0,16,0Z"></path><path d="M16,11.9A4.1,4.1,0,1,1,11.9,16,4.1,4.1,0,0,1,16,11.9m0-2A6.1,6.1,0,1,0,22.1,16,6.1,6.1,0,0,0,16,9.9Z"></path>
+				   </svg>
+				   Record
+			      </div>';
 
-		echo '<div class="add-box" id="screen-b"><img src="/images/background/screen-sharing.svg" style="height:28px;width:28px;margin-right:8px;margin-left:19px;"> Screen Broadcast</div>';
-		echo '<div class="add-box" id="live-whiteboard-box"><img src="/images/background/whiteboard-sharing.svg" style="height:28px;width:28px;margin-right:8px;margin-left:19px;"> Whiteboard Broadcast</div>';
-		echo '<div class="add-box" id="record-btn"><img src="/images/background/record.png" style="height:28px;width:28px;margin-right:8px;margin-left:19px;"> Record</div>';
+			echo '<div class="add-box" id="reject-classroom">
+				   <svg viewBox="0 0 32 32" style="height: 20px;width: 20px;margin-right: 12px;">
+					<path d="M31,5.1H22.1V4a4,4,0,0,0-4-4H13.9a4,4,0,0,0-4,4V5.1H1a1,1,0,0,0-1,1,.9.9,0,0,0,1,1H3.3L5.7,28.5a3.9,3.9,0,0,0,4,3.5H22.3a3.9,3.9,0,0,0,4-3.5L28.7,7.1H31a.9.9,0,0,0,1-1A1,1,0,0,0,31,5.1ZM11.9,4a2,2,0,0,1,2-2h4.2a2,2,0,0,1,2,2V5.1H11.9ZM24.3,28.2a2,2,0,0,1-2,1.8H9.7a2,2,0,0,1-2-1.8L5.3,7.1H26.7Z"></path><path d="M18.8,12.2V24.9a1,1,0,0,0,1,1h0a1.1,1.1,0,0,0,1-1V12.2a1.1,1.1,0,0,0-1-1h0A1,1,0,0,0,18.8,12.2ZM12.2,25.9h0a1,1,0,0,0,1-1V12.2a1,1,0,0,0-1-1h0a1.1,1.1,0,0,0-1,1V24.9A1.1,1.1,0,0,0,12.2,25.9Z"></path>
+				   </svg>
+				   Remove Classroom
+			      </div>';
 
-		echo '<div class="add-box" id="reject-classroom"><img src="/images/background/trash.svg" style="height:28px;width:28px;margin-right:8px;margin-left:19px;"> Remove Classroom</div>';
-
-		
+			echo '</div>';
 		echo '</div>';
 	    } else {
 		echo '<!-- list of all available broadcasting rooms -->
