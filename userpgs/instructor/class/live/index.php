@@ -334,7 +334,7 @@ if($tar_user_fetch['avatar']!=NULL) {
   <div class="tab active-tab" style="border-radius:20px 0 0 0;" id="users-tab"><h3>Online(<span id="online-num"></span>)</h3></div>
   <div class="tab" style="border-radius:0 0 0 0;" id="chat-tab"><h3>Chat</h3></div>
   <div class="tab" style="border-radius:0 0 0 0;" id="file-tab"><h3>Files(<span id="filesNum"></span>)</h3></div>
-  <div class="tab" style="border-radius:0 20px 0 0;" id="sessions-tab"><h3>Sessions</h3></div>
+  <!--<div class="tab" style="border-radius:0 20px 0 0;" id="sessions-tab"><h3>Sessions</h3></div>-->
 
 </div>
 
@@ -342,6 +342,7 @@ if($tar_user_fetch['avatar']!=NULL) {
 
 
 <?php
+/*
 echo '<div class="sess-list" style="display:none">';
                 if($class_result->num_rows>0) {
 		
@@ -379,9 +380,12 @@ echo '<div class="sess-list" style="display:none">';
                     $class_result->free();
                 } else {
                     echo '<p class="gray" style="text-align:center;">No sessions yet.</p>';
-                }
+			}
+
+			echo '</div>';
+			*/
  ?>
-</div> <!-- sess-list -->
+ <!-- sess-list -->
 
 
 <!-- CHAT -->
@@ -675,23 +679,24 @@ echo '<div class="sess-list" style="display:none">';
 
 <!-- TABS -->
 <script>
+ /*
 $('#sessions-tab').click(function() {
   $('#sessions-tab').addClass('active-tab');
   $('#chat-tab').removeClass('active-tab');
   $('#users-tab').removeClass('active-tab');
   $('#file-tab').removeClass('active-tab');
   $('.file-list').hide();
-  $('.sess-list').show();
+  //$('.sess-list').show();
   $('.chat-list').hide();
   $('.online-list').hide();
-});
+});*/
 $('#chat-tab').click(function() {
   $('#sessions-tab').removeClass('active-tab');
   $('#chat-tab').addClass('active-tab');
   $('#users-tab').removeClass('active-tab');
   $('#file-tab').removeClass('active-tab');
   $('.file-list').hide();
-  $('.sess-list').hide();
+  //$('.sess-list').hide();
   $('.chat-list').show();
   $('.online-list').hide();
 });
@@ -701,7 +706,7 @@ $('#users-tab').click(function() {
   $('#users-tab').addClass('active-tab');
   $('#file-tab').removeClass('active-tab');
   $('.file-list').hide();
-  $('.sess-list').hide();
+  //$('.sess-list').hide();
   $('.chat-list').hide();
   $('.online-list').show();
 });
@@ -711,7 +716,7 @@ $('#file-tab').click(function() {
   $('#users-tab').removeClass('active-tab');
   $('#file-tab').addClass('active-tab');
   $('.file-list').show();
-  $('.sess-list').hide();
+  //$('.sess-list').hide();
   $('.chat-list').hide();
   $('.online-list').hide();
 });
