@@ -306,8 +306,18 @@ if($tar_user_fetch['avatar']!=NULL) {
 
 		
 
-		echo '<div class="add-box" id="live-whiteboard-box" style="justify-content:center"><img src="/images/background/whiteboard-sharing.svg" style="height:28px;width:28px;margin-right:8px;"> Live Whiteboard</div>';
-		echo '<div class="add-box" id="student-screen" style="justify-content:center"><img src="/images/background/screen-sharing.svg" style="height:28px;width:28px;margin-right:8px;"> Live Screen</div>';
+		echo '<div class="add-box" id="live-whiteboard-box" style="justify-content:center">
+			           <svg viewBox="0 0 32 32" style="height: 20px;width: 20px;margin-right: 12px;">
+					<path d="M28,0H4A4,4,0,0,0,0,4V18.8a4,4,0,0,0,4,4H9.6L5.7,30.5a1.2,1.2,0,0,0,.4,1.4,1.2,1.2,0,0,0,1.4-.4l4.3-8.7h8.4l4.3,8.7a1.1,1.1,0,0,0,.9.5h.4a1.1,1.1,0,0,0,.5-1.4l-3.9-7.7H28a3.9,3.9,0,0,0,2.8-1.1,4.2,4.2,0,0,0,1-1.7,4.3,4.3,0,0,0,.2-1.2V4A4,4,0,0,0,28,0Zm2,18.8a1.7,1.7,0,0,1-.6,1.4l-.3.3h0l-.3.2H3.4a1.4,1.4,0,0,1-.8-.5A1.7,1.7,0,0,1,2,18.8V4c0-.2,0-.3.1-.4A1.9,1.9,0,0,1,4,2H28a2,2,0,0,1,2,1.6V18.8Z"></path>
+				   </svg>
+				   Live Whiteboard
+		      </div>';
+		echo '<div class="add-box" id="student-screen" style="justify-content:center">
+		 		   <svg viewBox="0 0 32 32" style="height: 20px;width: 20px;margin-right: 12px;">
+					<path d="M28,0H4A4,4,0,0,0,0,4V18.8a4,4,0,0,0,4,4H15V30H6.6a1.1,1.1,0,0,0-1,1,1,1,0,0,0,1,1H25.4a1,1,0,0,0,1-1,1.1,1.1,0,0,0-1-1H17V22.8H28a4,4,0,0,0,4-4V4A4,4,0,0,0,28,0Zm2,18.8a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V4A2,2,0,0,1,4,2H28a2,2,0,0,1,2,2Z"></path>
+				   </svg>
+				   Live Screen
+		      </div>';
 		
 
 
