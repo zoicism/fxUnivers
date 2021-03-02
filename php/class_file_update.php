@@ -9,7 +9,7 @@ echo '<div id="getFilesNum" style="display:none">'.$select_file_count.'</div>';
 if($select_file_count>0) {
     while($lifi_row=$select_file_r->fetch_assoc()) {
         echo '<div class="file"><a class="blue" href="dl_file.php?file=' . urlencode($lifi_row['fileName']) . '"><img src="/images/background/files.svg"></a>';
-        echo '<div class="file-name"><a class="blue" href="dl_file.php?file=' . urlencode($lifi_row['fileName']) . '">' . $lifi_row['fileName'] . '</a></div>';
+        echo '<div class="file-name"><a class="blue" href="dl_file.php?file=' . urlencode($lifi_row['fileName']) . '">' . substr($lifi_row['fileName'],11) . '</a></div>';
         if($user_type=='instructor') {
             echo '<div class="del"><a target="hidden-del" href="/php/del_live_file.php?file_name='.$lifi_row['fileName'].'" class="red">DELETE</a><br></div>';
         }
