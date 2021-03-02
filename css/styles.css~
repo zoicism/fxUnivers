@@ -342,13 +342,60 @@ textarea:focus {
 }
 
 .sessions .file-list {
-    overflow-y:scroll;
-    max-height:40em;
-    padding:20px;
     display:flex;
     flex-flow:column;
     justify-content:center;
     align-items:center;
+    width: 100%;
+    height: calc( 100% - 40px );
+    overflow-y:auto;
+    padding: 20px 10px 0 10px;
+}
+
+.sessions .file-list form {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    border: 1px solid #c2c2c2;
+    border-radius: 34px;
+    padding: 14px;
+}
+
+.sessions .file-list form .uploadfile-con {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sessions .file-list form img {
+    width: 38px;
+    margin-right: 14px;
+    padding: 10px;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 5px 5px 10px #c6c6c6, -5px -5px 10px #ffffff;
+}
+
+.sessions .file-list form img:active {
+    box-shadow: inset -4px -2px 4px 0px #fff, inset 4px 2px 6px 0px #DFE4EA, -4px -2px 4px 0px #ffffff, 4px 2px 6px 0px #DFE4EA;
+}
+
+.sessions .file-list .submit-btn {
+    margin: 0;
+    height: 38px;
+}
+
+.sessions .file-list .uploaded-files {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding-top: 20px;
 }
 
 .file-list .file {
@@ -372,9 +419,9 @@ textarea:focus {
 }
 
 .sessions .online-list {
-    overflow-y:scroll;
-    min-height:25em;
-    padding:10px;
+    overflow-y: auto;
+    min-height: 25em;
+    padding: 10px;
 }
 
 .online-list .user {
@@ -383,7 +430,6 @@ textarea:focus {
     cursor:pointer;
     margin-bottom:10px;
     margin-top:10px;
-    margin-left:15px;
 }
 
 .user .user-name {
@@ -429,7 +475,26 @@ textarea:focus {
 }
 
 .sessions .chat-list {
-    padding:20px;
+    padding: 20px 10px 0 10px;
+    width: 100%;
+    height: calc( 100% - 40px );
+}
+
+.sessions .chat-list .live-chat-con {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.sessions .chat-list .live-chat-con .msg-icon-cnt {
+    margin: 0 0 0 14px;
+    box-shadow: 5px 5px 10px #c6c6c6, -5px -5px 10px #ffffff;
+}
+
+.sessions .chat-list .live-chat-con .msg-icon-cnt:active {
+    box-shadow: inset -4px -2px 4px 0px #fff, inset 4px 2px 6px 0px #DFE4EA, -4px -2px 4px 0px #ffffff, 4px 2px 6px 0px #DFE4EA;
 }
 
 .chat-list .txt-input {
@@ -437,7 +502,14 @@ textarea:focus {
 }
 
 .chat-list .msgs {
-    overflow-y:scroll;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+    width: 100%;
+    height: calc( 100% - 40px );
+    padding-top: 20px;
 }
 
 .msgs .one-msg {
@@ -447,40 +519,24 @@ textarea:focus {
 }
 
 .sessions .tabs {
-    display:flex;
-    flex-flow:row nowrap;
-    justify-content:space-around;
-    height:40px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    max-height: 40px;
+    border-bottom: 1px solid #c2c2c2;
 }
 
 .sessions .tabs .tab {
-    width:50%;
-    border-radius:20px 20px 0 0;
-    box-shadow:-4px -2px 4px 0px #ffffff, 4px 2px 6px 0px #DFE4EA;
-    opacity:0.5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc( 100% - 66.666% );
+    height: 40px;
     cursor:pointer;
 }
 
-.sessions .tabs .tab h3 {
-    margin:10px 0 0 0;
-}
-
-.sessions .tabs .tab:hover {
-    opacity:0.9;
-}
-
-.sessions .tabs .tab:active {
-    box-shadow:inset -4px -2px 4px 0px #ffffff, inset 4px 2px 6px 0px #DFE4EA;
-    opacity:1;
-}
-
 .sessions .tabs .active-tab {
-    box-shadow:none;
-    opacity:1;
-}
-
-.sessions h3 {
-    text-align:center;
+    border-bottom: 2px solid #393939;
 }
 
 .sessions .sess-title {
@@ -1085,6 +1141,19 @@ textarea:focus {
     align-items: center;
     font-weight: bold;
     color: #393939;
+}
+
+.add-box-con .add-box {
+    padding: 5px 40px;
+    border-radius: 100px;
+}
+
+.add-box-con .add-box:hover {
+    background-color: #e0e0e0;
+}
+
+.add-box-con .add-box:active {
+    background-color: #c0c0c0;
 }
 
 .add-box svg {
@@ -2002,6 +2071,14 @@ textarea:focus {
     box-shadow: inset 4px 4px 4px #d1d9e6, inset -4px -4px 4px #f9f9f9;
 }
 
+.login-container .login-form .remember-me {
+    display: flex;
+    height: 25px;
+    align-items: center;
+    margin-bottom: 0;
+    margin-top: 4px;
+}
+
 .checkbox {
     display: block;
     position: relative;
@@ -2066,8 +2143,8 @@ textarea:focus {
 }
 
 .checkbox .checkmark:after {
-    left: 9px;
-    top: 5px;
+    left: 6.25px;
+    top: 3.25px;
     width: 5px;
     height: 10px;
     border: solid white;
@@ -3535,18 +3612,22 @@ input:checked + .slider:before {
 .toggle-btn {
     position: relative;
     -webkit-appearance: none;
-    height: 40px;
-    width: 80px;
-    box-shadow: -7px -7px 15px rgba(255, 255, 255, 0.65), 7px 7px 15px rgba(70, 70, 70, 0.12), inset -7px -7px 15px rgba(255, 255, 255, 0.65), inset 7px 7px 15px rgba(70, 70, 70, 0.12);
+    height: 32px;
+    min-width: 72px;
     border-radius: 40px;
-    border: 5px solid #ececec;
+    border: 1px solid #efefef;
     left: 15px;
     outline: none;
     cursor: pointer;
     margin-right:50px;
     margin-top:9px;
     margin-bottom:9px;
+    box-shadow: inset -4px -4px 4px 0px #ffffff,
+	        inset 4px 4px 6px 0px #c2c2c2,
+	        -4px -4px 4px 0px #ffffff,
+	        4px 4px 6px 0px #c2c2c2;
 }
+
 .toggle-btn:before,
 .toggle-btn:after{
     content: "";
@@ -3556,27 +3637,34 @@ input:checked + .slider:before {
     bottom: 0;
     transition: 0.3s;
 }
+
 .toggle-btn:before{
-    height: 25px;
-    width: 25px;
-    box-shadow: -7px -7px 15px rgba(255, 255, 255, 0.65), 7px 7px 15px rgba(70, 70, 70, 0.12);
+    height: 20px;
+    width: 20px;
     border-radius: 50%;
     left: 7px;
+    border: 1px solid #fff;
+    box-shadow: -4px -4px 4px 0px #ffffff, 4px 4px 6px 0px #c2c2c2;
 }
+
 .toggle-btn:after{
     height: 15px;
     width: 15px;
-    background-color: #7a7a7a;
+    box-shadow: inset -2px -2px 3px 5px #c2c2c2;
+    border: 1px solid #c2c2c2;
     border-radius: 50%;
     right: -27.5px;
 }
+
 .toggle-btn:checked:before{
     left: 42px;
 }
-.toggle-btn:checked:after{
-    background-color: #55f696;
-}
 
+.toggle-btn:checked:after{
+    border: 1px solid #b5dda3;
+    -webkit-box-shadow: inset -2px -2px 3px 5px #6cc841, 0px 0px 4px 1px rgb(108 200 65 / 80%);
+    box-shadow: inset -2px -2px 3px 5px #6cc841, 0px 0px 4px 1px rgb(108 200 65 / 80%);
+}
 
 .blink_me {
     animation: blinker 1.5s linear infinite;
@@ -4370,6 +4458,10 @@ input:checked + .slider:before {
 
     .relative-main-content .course-management-con .course-management-boxes .video-bulletin-con {
 	width:100%;
+    }
+
+    .relative-main-content .fxuniversity-nav {
+	display:none;
     }
 }
 

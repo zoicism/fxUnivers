@@ -379,6 +379,10 @@ textarea:focus {
     box-shadow: 5px 5px 10px #c6c6c6, -5px -5px 10px #ffffff;
 }
 
+.sessions .file-list form img:active {
+    box-shadow: inset -4px -2px 4px 0px #fff, inset 4px 2px 6px 0px #DFE4EA, -4px -2px 4px 0px #ffffff, 4px 2px 6px 0px #DFE4EA;
+}
+
 .sessions .file-list .submit-btn {
     margin: 0;
     height: 38px;
@@ -487,6 +491,10 @@ textarea:focus {
 .sessions .chat-list .live-chat-con .msg-icon-cnt {
     margin: 0 0 0 14px;
     box-shadow: 5px 5px 10px #c6c6c6, -5px -5px 10px #ffffff;
+}
+
+.sessions .chat-list .live-chat-con .msg-icon-cnt:active {
+    box-shadow: inset -4px -2px 4px 0px #fff, inset 4px 2px 6px 0px #DFE4EA, -4px -2px 4px 0px #ffffff, 4px 2px 6px 0px #DFE4EA;
 }
 
 .chat-list .txt-input {
@@ -1088,7 +1096,7 @@ textarea:focus {
     height:100%;
 }
 
-.options #live-add-box {
+.options #live-add-box, #student-live-add-box {
     margin: 0 auto;
     width: 90%;
     box-shadow: -6px -6px 14px rgba(255, 255, 255, .7),
