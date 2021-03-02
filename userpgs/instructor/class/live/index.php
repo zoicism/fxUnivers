@@ -405,14 +405,22 @@ echo '<div class="sess-list" style="display:none">';
     
     <input name="classId" type="hidden" value="<?php echo $class_id?>">
     
-    <input type="file" name="class_file" id="fileToUpload">
+    <!--<input type="file" name="class_file" id="fileToUpload">-->
+    <div class="uploadfile-con">
+        <div class="image-upload">
+    	    <label for="file-input" id="fileToUpload">
+                <img src="/images/background/plus.svg" class="chat-icon" id="file-btn">
+            </label>
+        </div>
+        <div>Choose File</div>
+    </div>
     <p id="uploadMsg" style="display:none">Uploaded. You can upload another now.</p>
     <input type="submit" value="Upload file" class="submit-btn">
     </form>
 
 <iframe name="hidden-del" style="display:none"></iframe>
     <?php } ?>
-<div id="newFiles"></div>
+<div class="uploaded-files" id="newFiles"></div>
 
 </div>
   </div>
