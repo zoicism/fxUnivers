@@ -342,13 +342,56 @@ textarea:focus {
 }
 
 .sessions .file-list {
-    overflow-y:scroll;
-    max-height:40em;
-    padding:20px;
     display:flex;
     flex-flow:column;
     justify-content:center;
     align-items:center;
+    width: 100%;
+    height: calc( 100% - 40px );
+    overflow-y:auto;
+    padding: 20px 10px 0 10px;
+}
+
+.sessions .file-list form {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    border: 1px solid #c2c2c2;
+    border-radius: 34px;
+    padding: 14px;
+}
+
+.sessions .file-list form .uploadfile-con {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sessions .file-list form img {
+    width: 38px;
+    margin-right: 14px;
+    padding: 10px;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 5px 5px 10px #c6c6c6, -5px -5px 10px #ffffff;
+}
+
+.sessions .file-list .submit-btn {
+    margin: 0;
+    height: 38px;
+}
+
+.sessions .file-list .uploaded-files {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding-top: 20px;
 }
 
 .file-list .file {
