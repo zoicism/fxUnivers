@@ -345,7 +345,7 @@ if($course_biddable) require_once('../../../wallet/php/wallet_connect.php');
 	      echo '<div class="options">';
 
 
-	      echo '<div class="add-box" id="live-add-box">Start a Live Classroom</div>';
+	      echo '<div class="add-box" id="live-add-box" >Start a Live Classroom</div>';
 	      echo '<div id="live-div" style="display:none"></div>';
 
 
@@ -375,6 +375,7 @@ if($course_biddable) require_once('../../../wallet/php/wallet_connect.php');
 	  <p>Sold to <a href="/user/'.$sold2user['username'].'">'.$sold2user['username'].'</a> for '.$bidding['raw_amount'].' fxStars</p>
 	  </div>';
 		  } else {
+		      
 		      echo '<div class="add-box" id="acceptBid">
 		<svg viewBox="0 0 32 32">
 				           <path d="M16,2A14,14,0,1,1,2,16,14,14,0,0,1,16,2m0-2A16,16,0,1,0,32,16,16,16,0,0,0,16,0Z"></path>
@@ -431,8 +432,14 @@ if($course_biddable) require_once('../../../wallet/php/wallet_connect.php');
 
 	      echo '<div class="options">';
 
+	      echo '<div class="add-box" id="student-live-add-box" style="display:none;">Live Classroom Now. Click!</div>';
+
 	      echo '<div class="add-box-con">';
 
+
+	      
+
+	      
 	      echo '<div class="add-box" id="examId"><svg viewBox="0 0 32 32">
 				           <path d="M16,2A14,14,0,1,1,2,16,14,14,0,0,1,16,2m0-2A16,16,0,1,0,32,16,16,16,0,0,0,16,0Z"></path>
 					   <path d="M13.4,22.4h0l-.7-.3L7.1,16.5a1.4,1.4,0,0,1,0-1.5,1.4,1.4,0,0,1,1.5,0l4.8,4.9,10-10a1.4,1.4,0,0,1,1.5,0,1.4,1.4,0,0,1,0,1.5L14.2,22.1A1.9,1.9,0,0,1,13.4,22.4Z"></path>
@@ -449,7 +456,12 @@ if($course_biddable) require_once('../../../wallet/php/wallet_connect.php');
 	  } else {
 	      
 	      echo '<div class="options">';
+	      
 	      echo '<div class="add-box-con">';
+
+
+	      
+	      
 	      if($course_biddable) {
 
 
@@ -550,8 +562,11 @@ if($course_biddable) require_once('../../../wallet/php/wallet_connect.php');
 
 		  echo '<div class="session-desc" onclick="'.$onclickurl.'">';
 
-		  if((time()-strtotime($instructor['lastseen']) < 3) && ($instructor['lsPage']=='live/#'.$row['id'])) {
+		  if((time()-strtotime($instructor['lastseen']) < 15) && ($instructor['lsPage']=='live/#'.$row['id'])) {
+		      
 		      echo '<p><strong><span class="gray-bg" style="color:white;padding:2px 5px;">'.$session_counter.'</span> '.$row['title'].'</strong> <img src="/images/background/live6.png" style="width:32px" class="blink_me"></p>';
+		      $liveExists=1;
+		      $liveSession=$row['id'];
 		  } else {
                       echo '<p><strong><span class="gray-bg" style="color:white;padding:2px 5px;">'.$session_counter.'</span> '.$row['title'].'</strong></p>'.$row['lastseen'];
 		  }
@@ -852,6 +867,16 @@ if($course_biddable) require_once('../../../wallet/php/wallet_connect.php');
 		 }
 	     });
 	 });
+
+	 var liveExists=<?php echo $liveExists ?>;
+	 if(liveExists==1) {
+	     $('#student-live-add-box').show();
+	     $('#student-live-add-box').click(function() {
+		 var liveSession=<?php echo $liveSession ?>;
+		 window.location.href='/userpgs/instructor/class/live/?course_id=<?php echo $course_id ?>&class_id='+liveSession;
+	     });
+	 }
+	     
 	</script>
 
 	<!-- LIKES/DISLIKE COURSE -->
