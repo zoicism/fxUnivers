@@ -471,7 +471,22 @@ textarea:focus {
 }
 
 .sessions .chat-list {
-    padding:20px;
+    padding: 20px 10px 0 10px;
+    width: 100%;
+    height: calc( 100% - 40px );
+}
+
+.sessions .chat-list .live-chat-con {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.sessions .chat-list .live-chat-con .msg-icon-cnt {
+    margin: 0 0 0 14px;
+    box-shadow: 5px 5px 10px #c6c6c6, -5px -5px 10px #ffffff;
 }
 
 .chat-list .txt-input {
@@ -479,7 +494,14 @@ textarea:focus {
 }
 
 .chat-list .msgs {
-    overflow-y:scroll;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+    width: 100%;
+    height: calc( 100% - 40px );
+    padding-top: 20px;
 }
 
 .msgs .one-msg {
