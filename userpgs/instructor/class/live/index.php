@@ -393,7 +393,7 @@ echo '<div class="sess-list" style="display:none">';
     <div class="live-chat-con">
         <input name="msgBody" type="text" id="chatInput" class="txt-input" placeholder="Type here">
 	<div class="msg-icon-cnt" id="send-btn">
-	    <svg id="SendIcon" viewBox="0 0 32 32"><defs><style>.send-icon{fill:#212121;}</style></defs>
+	    <svg id="SendIcon" viewBox="0 0 32 32""><defs><style>.send-icon{fill:#212121;}</style></defs>
 	        <path class="send-icon" d="M30.9,14.5,2.9.5,2,.3A1.9,1.9,0,0,0,.1,2.8L3.2,16.4.1,29.2A2,2,0,0,0,2,31.7l.9-.2,28-13.4A2,2,0,0,0,30.9,14.5ZM2,29.7,5.1,17.4H15.8a1,1,0,0,0,1-1h0a.9.9,0,0,0-1-1H5.1L2,2.3l28,14Z"></path>
 	    </svg>
         </div>
@@ -412,16 +412,15 @@ echo '<div class="sess-list" style="display:none">';
     
     <input name="classId" type="hidden" value="<?php echo $class_id?>">
     
-    <!--<input type="file" name="class_file" id="fileToUpload">-->
+    <input type="file" name="class_file" id="fileToUpload" style="display:none">
     <div class="uploadfile-con">
         <div class="image-upload">
     	    <label for="file-input" id="fileToUpload">
                 <img src="/images/background/plus.svg" class="chat-icon" id="file-btn">
             </label>
         </div>
-        <div>Choose File</div>
+        <div id="filename-b4-upload">Choose File</div>
     </div>
-    <p id="uploadMsg" style="display:none">Uploaded. You can upload another now.</p>
     <input type="submit" value="Upload file" class="submit-btn">
     </form>
 
@@ -675,6 +674,16 @@ echo '<div class="sess-list" style="display:none">';
 <!-- ONLINE USERS -->
 <script>
  $(document).ready(function() {
+     jQuery.ajax({
+	     url:'/php/live_online_users.php',
+	     type:'POST',
+	     data: {class_id:"<?php echo $class_id?>", username:"<?php echo $username?>", user_id:"<?php echo $get_user_id?>",course_id:"<?php echo $course_id?>", teacherId:"<?php echo $tar_id?>"},
+	     success: function(response) {
+		 $('.online-list').html(response);
+		 $('#online-num').html($('#get-online-num').text());
+		 //console.log(response);
+	     }
+     });
      setInterval(function() {
 	 //console.log("<?php echo $tar_id?>");
 	 jQuery.ajax({
@@ -687,7 +696,7 @@ echo '<div class="sess-list" style="display:none">';
 		 //console.log(response);
 	     }
 	 });
-     }, 2000);
+     }, 10000);
  });
 </script>
 
@@ -740,24 +749,39 @@ $('#file-tab').click(function() {
 
 <!-- CHATS -->
 <script>
-$('#chatInput').keypress(function(event) {
-    var keycode=(event.keyCode ? event.keyCode : event.which);
-    if(keycode == '13') {
-        var msgbody = $('#chatInput').val();
-        var msguserid = <?php echo $get_user_id ?>;
-        var msgclassid = <?php echo $class_id ?>;
-        jQuery.ajax({
-          type: 'POST',
-          url: '/php/set_class_chat.php',
-                data: {msgBody: msgbody, msgUserId: msguserid, msgClassId: msgclassid},
-          success: function(response) {
-                //alert(response);
-                $('#chatInput').val('');
-                $('#chatInput').focus();
-          }
-        });
-    }
-});
+ $('#chatInput').keypress(function(event) {
+     var keycode=(event.keyCode ? event.keyCode : event.which);
+     if(keycode == '13') {
+         var msgbody = $('#chatInput').val();
+         var msguserid = <?php echo $get_user_id ?>;
+         var msgclassid = <?php echo $class_id ?>;
+         jQuery.ajax({
+             type: 'POST',
+             url: '/php/set_class_chat.php',
+             data: {msgBody: msgbody, msgUserId: msguserid, msgClassId: msgclassid},
+             success: function(response) {
+                 //alert(response);
+                 $('#chatInput').val('');
+                 $('#chatInput').focus();
+             }
+         });
+     }
+ });
+ $('#SendIcon').click(function() {
+     var msgbody = $('#chatInput').val();
+     var msguserid = <?php echo $get_user_id ?>;
+     var msgclassid = <?php echo $class_id ?>;
+     jQuery.ajax({
+         type: 'POST',
+         url: '/php/set_class_chat.php',
+         data: {msgBody: msgbody, msgUserId: msguserid, msgClassId: msgclassid},
+         success: function(response) {
+             //alert(response);
+             $('#chatInput').val('');
+             $('#chatInput').focus();
+         }
+     });
+ });
 </script>
 <script>
 $(document).ready(function() {
@@ -799,16 +823,13 @@ $(document).ready(function() {
 </script>
 <!-- FILE UPLOAD -->
 <script>
-$(function() {
-$('#fileForm').ajaxForm(function(response) {
-  //console.log('file is uploaded');
-  $('#fileToUpload').val('');
-  $('#uploadMsg').show();
-  setTimeout(function() {
-    $('#uploadMsg').hide();
-  }, 5000);
-});
-});
+ $(function() {
+     $('#fileForm').ajaxForm(function(response) {
+	 //console.log('file is uploaded');
+	 $('#fileToUpload').val('');
+	 $('#filename-b4-upload').html('Choose File');
+     });
+ });
 </script>
 
 <script>
@@ -901,9 +922,33 @@ $('#fileForm').ajaxForm(function(response) {
 
 <!-- STUDENT ADD BOXES -->
 <script>
-$('#student-screen').click(function() {
-  $('#live-screen').submit();
-});
+ $('#student-screen').click(function() {
+     $('#live-screen').submit();
+ });
+</script>
+
+<script>
+ $('#file-btn').click(function() {
+     $('#fileToUpload').click();
+     
+     //$('#filename-b4-upload').html('');
+ });
+ $('#fileToUpload').change(function() {
+     var fileFullPath = $('#fileToUpload').val();
+     //console.log(fileFullPath);
+     if(fileFullPath) {
+	 var startIndex = (fileFullPath.indexOf('\\') >= 0 ? fileFullPath.lastIndexOf('\\') : fileFullPath.lastIndexOf('/'));
+	 var filename = fileFullPath.substring(startIndex);
+	 if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
+             filename = filename.substring(1);
+	 }
+	 //console.log(filename);
+	 $('#filename-b4-upload').html(filename);
+     } else {
+	 $('#filename-b4-upload').html('File is ready to upload');
+	 //console.log('File is ready to upload');
+     }
+ });
 </script>
 
 </body>

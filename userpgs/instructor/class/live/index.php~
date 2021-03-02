@@ -80,13 +80,6 @@ require('../php/notify_students.php');
     <link rel="stylesheet" href="/css/icons.css">
     <link rel="stylesheet" href="/css/logo.css">
 
-    <style>
-     .ins-vid-cnt video {
-	 transform: rotateY(180deg);
-	 -webkit-transform:rotateY(180deg); /* Safari and Chrome */
-	 -moz-transform:rotateY(180deg); /* Firefox */
-     }
-    </style>
 	
     <script src="/js/jquery-3.4.1.min.js"></script>
     <script src="/js/jquery.form.js"></script>
@@ -276,14 +269,34 @@ if($tar_user_fetch['avatar']!=NULL) {
 		echo '<div id="video-audio-b-div" class="add-box" style="margin-top:0;"><input type="checkbox" class="toggle-btn" id="video-audio-b-toggle">Video & Audio Broadcast</div>';
 		echo '<div id="audio-b-div" class="add-box" style="margin-top:0;"><input type="checkbox" class="toggle-btn" id="audio-b-toggle">Audio-only Broadcast</div>';
 
+		echo '<div class="add-box-con">';
+			echo '<div class="add-box" id="screen-b">
+				   <svg viewBox="0 0 32 32" style="height: 20px;width: 20px;margin-right: 12px;">
+					<path d="M28,0H4A4,4,0,0,0,0,4V18.8a4,4,0,0,0,4,4H15V30H6.6a1.1,1.1,0,0,0-1,1,1,1,0,0,0,1,1H25.4a1,1,0,0,0,1-1,1.1,1.1,0,0,0-1-1H17V22.8H28a4,4,0,0,0,4-4V4A4,4,0,0,0,28,0Zm2,18.8a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V4A2,2,0,0,1,4,2H28a2,2,0,0,1,2,2Z"></path>
+				   </svg>
+				   Screen Broadcast
+			      </div>';
+			echo '<div class="add-box" id="live-whiteboard-box">
+				   <svg viewBox="0 0 32 32" style="height: 20px;width: 20px;margin-right: 12px;">
+					<path d="M28,0H4A4,4,0,0,0,0,4V18.8a4,4,0,0,0,4,4H9.6L5.7,30.5a1.2,1.2,0,0,0,.4,1.4,1.2,1.2,0,0,0,1.4-.4l4.3-8.7h8.4l4.3,8.7a1.1,1.1,0,0,0,.9.5h.4a1.1,1.1,0,0,0,.5-1.4l-3.9-7.7H28a3.9,3.9,0,0,0,2.8-1.1,4.2,4.2,0,0,0,1-1.7,4.3,4.3,0,0,0,.2-1.2V4A4,4,0,0,0,28,0Zm2,18.8a1.7,1.7,0,0,1-.6,1.4l-.3.3h0l-.3.2H3.4a1.4,1.4,0,0,1-.8-.5A1.7,1.7,0,0,1,2,18.8V4c0-.2,0-.3.1-.4A1.9,1.9,0,0,1,4,2H28a2,2,0,0,1,2,1.6V18.8Z"></path>
+				   </svg>
+				   Whiteboard Broadcast
+			      </div>';
+			echo '<div class="add-box" id="record-btn">
+				   <svg viewBox="0 0 32 32" style="height: 20px;width: 20px;margin-right: 12px;">
+					<path d="M16,2A14,14,0,1,1,2,16,14,14,0,0,1,16,2m0-2A16,16,0,1,0,32,16,16,16,0,0,0,16,0Z"></path><path d="M16,11.9A4.1,4.1,0,1,1,11.9,16,4.1,4.1,0,0,1,16,11.9m0-2A6.1,6.1,0,1,0,22.1,16,6.1,6.1,0,0,0,16,9.9Z"></path>
+				   </svg>
+				   Record
+			      </div>';
 
-		echo '<div class="add-box" id="screen-b"><img src="/images/background/screen-sharing.svg" style="height:28px;width:28px;margin-right:8px;margin-left:19px;"> Screen Broadcast</div>';
-		echo '<div class="add-box" id="live-whiteboard-box"><img src="/images/background/whiteboard-sharing.svg" style="height:28px;width:28px;margin-right:8px;margin-left:19px;"> Whiteboard Broadcast</div>';
-		echo '<div class="add-box" id="record-btn"><img src="/images/background/record.png" style="height:28px;width:28px;margin-right:8px;margin-left:19px;"> Record</div>';
+			echo '<div class="add-box" id="reject-classroom">
+				   <svg viewBox="0 0 32 32" style="height: 20px;width: 20px;margin-right: 12px;">
+					<path d="M31,5.1H22.1V4a4,4,0,0,0-4-4H13.9a4,4,0,0,0-4,4V5.1H1a1,1,0,0,0-1,1,.9.9,0,0,0,1,1H3.3L5.7,28.5a3.9,3.9,0,0,0,4,3.5H22.3a3.9,3.9,0,0,0,4-3.5L28.7,7.1H31a.9.9,0,0,0,1-1A1,1,0,0,0,31,5.1ZM11.9,4a2,2,0,0,1,2-2h4.2a2,2,0,0,1,2,2V5.1H11.9ZM24.3,28.2a2,2,0,0,1-2,1.8H9.7a2,2,0,0,1-2-1.8L5.3,7.1H26.7Z"></path><path d="M18.8,12.2V24.9a1,1,0,0,0,1,1h0a1.1,1.1,0,0,0,1-1V12.2a1.1,1.1,0,0,0-1-1h0A1,1,0,0,0,18.8,12.2ZM12.2,25.9h0a1,1,0,0,0,1-1V12.2a1,1,0,0,0-1-1h0a1.1,1.1,0,0,0-1,1V24.9A1.1,1.1,0,0,0,12.2,25.9Z"></path>
+				   </svg>
+				   Remove Classroom
+			      </div>';
 
-		echo '<div class="add-box" id="reject-classroom"><img src="/images/background/trash.svg" style="height:28px;width:28px;margin-right:8px;margin-left:19px;"> Remove Classroom</div>';
-
-		
+			echo '</div>';
 		echo '</div>';
 	    } else {
 		echo '<!-- list of all available broadcasting rooms -->
@@ -293,8 +306,18 @@ if($tar_user_fetch['avatar']!=NULL) {
 
 		
 
-		echo '<div class="add-box" id="live-whiteboard-box" style="justify-content:center"><img src="/images/background/whiteboard-sharing.svg" style="height:28px;width:28px;margin-right:8px;"> Live Whiteboard</div>';
-		echo '<div class="add-box" id="student-screen" style="justify-content:center"><img src="/images/background/screen-sharing.svg" style="height:28px;width:28px;margin-right:8px;"> Live Screen</div>';
+		echo '<div class="add-box" id="live-whiteboard-box" style="justify-content:center">
+			           <svg viewBox="0 0 32 32" style="height: 20px;width: 20px;margin-right: 12px;">
+					<path d="M28,0H4A4,4,0,0,0,0,4V18.8a4,4,0,0,0,4,4H9.6L5.7,30.5a1.2,1.2,0,0,0,.4,1.4,1.2,1.2,0,0,0,1.4-.4l4.3-8.7h8.4l4.3,8.7a1.1,1.1,0,0,0,.9.5h.4a1.1,1.1,0,0,0,.5-1.4l-3.9-7.7H28a3.9,3.9,0,0,0,2.8-1.1,4.2,4.2,0,0,0,1-1.7,4.3,4.3,0,0,0,.2-1.2V4A4,4,0,0,0,28,0Zm2,18.8a1.7,1.7,0,0,1-.6,1.4l-.3.3h0l-.3.2H3.4a1.4,1.4,0,0,1-.8-.5A1.7,1.7,0,0,1,2,18.8V4c0-.2,0-.3.1-.4A1.9,1.9,0,0,1,4,2H28a2,2,0,0,1,2,1.6V18.8Z"></path>
+				   </svg>
+				   Live Whiteboard
+		      </div>';
+		echo '<div class="add-box" id="student-screen" style="justify-content:center">
+		 		   <svg viewBox="0 0 32 32" style="height: 20px;width: 20px;margin-right: 12px;">
+					<path d="M28,0H4A4,4,0,0,0,0,4V18.8a4,4,0,0,0,4,4H15V30H6.6a1.1,1.1,0,0,0-1,1,1,1,0,0,0,1,1H25.4a1,1,0,0,0,1-1,1.1,1.1,0,0,0-1-1H17V22.8H28a4,4,0,0,0,4-4V4A4,4,0,0,0,28,0Zm2,18.8a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V4A2,2,0,0,1,4,2H28a2,2,0,0,1,2,2Z"></path>
+				   </svg>
+				   Live Screen
+		      </div>';
 		
 
 
@@ -308,10 +331,10 @@ if($tar_user_fetch['avatar']!=NULL) {
 
 
 <div class="tabs">
-  <div class="tab active-tab" style="border-radius:20px 0 0 0;" id="users-tab"><h3>Online(<span id="online-num"></span>)</h3></div>
-  <div class="tab" style="border-radius:0 0 0 0;" id="chat-tab"><h3>Chat</h3></div>
-  <div class="tab" style="border-radius:0 0 0 0;" id="file-tab"><h3>Files(<span id="filesNum"></span>)</h3></div>
-  <div class="tab" style="border-radius:0 20px 0 0;" id="sessions-tab"><h3>Sessions</h3></div>
+  <div class="tab active-tab" id="users-tab"><div>Online(<span id="online-num"></span>)</div></div>
+  <div class="tab" id="chat-tab"><div>Chat</div></div>
+  <div class="tab" id="file-tab"><div>Files(<span id="filesNum"></span>)</div></div>
+  <!--<div class="tab" style="border-radius:0 20px 0 0;" id="sessions-tab"><h3>Sessions</h3></div>-->
 
 </div>
 
@@ -319,6 +342,7 @@ if($tar_user_fetch['avatar']!=NULL) {
 
 
 <?php
+/*
 echo '<div class="sess-list" style="display:none">';
                 if($class_result->num_rows>0) {
 		
@@ -356,15 +380,25 @@ echo '<div class="sess-list" style="display:none">';
                     $class_result->free();
                 } else {
                     echo '<p class="gray" style="text-align:center;">No sessions yet.</p>';
-                }
+			}
+
+			echo '</div>';
+			*/
  ?>
-</div> <!-- sess-list -->
+ <!-- sess-list -->
 
 
 <!-- CHAT -->
 <div class="chat-list" style="display:none">
-  <input name="msgBody" type="text" id="chatInput" class="txt-input" placeholder="Type here">
-  <div class="msgs" id="newMsgs"></div>
+    <div class="live-chat-con">
+        <input name="msgBody" type="text" id="chatInput" class="txt-input" placeholder="Type here">
+	<div class="msg-icon-cnt" id="send-btn">
+	    <svg id="SendIcon" viewBox="0 0 32 32"><defs><style>.send-icon{fill:#212121;}</style></defs>
+	        <path class="send-icon" d="M30.9,14.5,2.9.5,2,.3A1.9,1.9,0,0,0,.1,2.8L3.2,16.4.1,29.2A2,2,0,0,0,2,31.7l.9-.2,28-13.4A2,2,0,0,0,30.9,14.5ZM2,29.7,5.1,17.4H15.8a1,1,0,0,0,1-1h0a.9.9,0,0,0-1-1H5.1L2,2.3l28,14Z"></path>
+	    </svg>
+        </div>
+    </div>
+    <div class="msgs" id="newMsgs"></div>
 </div>
 
 <!-- ONLINE LIST -->
@@ -378,14 +412,22 @@ echo '<div class="sess-list" style="display:none">';
     
     <input name="classId" type="hidden" value="<?php echo $class_id?>">
     
-    <input type="file" name="class_file" id="fileToUpload">
+    <!--<input type="file" name="class_file" id="fileToUpload">-->
+    <div class="uploadfile-con">
+        <div class="image-upload">
+    	    <label for="file-input" id="fileToUpload">
+                <img src="/images/background/plus.svg" class="chat-icon" id="file-btn">
+            </label>
+        </div>
+        <div>Choose File</div>
+    </div>
     <p id="uploadMsg" style="display:none">Uploaded. You can upload another now.</p>
     <input type="submit" value="Upload file" class="submit-btn">
     </form>
 
 <iframe name="hidden-del" style="display:none"></iframe>
     <?php } ?>
-<div id="newFiles"></div>
+<div class="uploaded-files" id="newFiles"></div>
 
 </div>
   </div>
@@ -608,10 +650,11 @@ echo '<div class="sess-list" style="display:none">';
    }
 
    function rotateInCircle(video) {
-       video.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(0deg)';
+       /*video.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(0deg)';
        setTimeout(function() {
            video.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(360deg)';
-       }, 1000);
+       }, 1000);*/
+       video.style='-moz-transform: scale(-1, 1); -webkit-transform: scale(-1, 1); -o-transform: scale(-1, 1); transform: scale(-1, 1); filter: FlipH;';
    }
 
   </script>
@@ -651,23 +694,24 @@ echo '<div class="sess-list" style="display:none">';
 
 <!-- TABS -->
 <script>
+ /*
 $('#sessions-tab').click(function() {
   $('#sessions-tab').addClass('active-tab');
   $('#chat-tab').removeClass('active-tab');
   $('#users-tab').removeClass('active-tab');
   $('#file-tab').removeClass('active-tab');
   $('.file-list').hide();
-  $('.sess-list').show();
+  //$('.sess-list').show();
   $('.chat-list').hide();
   $('.online-list').hide();
-});
+});*/
 $('#chat-tab').click(function() {
   $('#sessions-tab').removeClass('active-tab');
   $('#chat-tab').addClass('active-tab');
   $('#users-tab').removeClass('active-tab');
   $('#file-tab').removeClass('active-tab');
   $('.file-list').hide();
-  $('.sess-list').hide();
+  //$('.sess-list').hide();
   $('.chat-list').show();
   $('.online-list').hide();
 });
@@ -677,7 +721,7 @@ $('#users-tab').click(function() {
   $('#users-tab').addClass('active-tab');
   $('#file-tab').removeClass('active-tab');
   $('.file-list').hide();
-  $('.sess-list').hide();
+  //$('.sess-list').hide();
   $('.chat-list').hide();
   $('.online-list').show();
 });
@@ -687,7 +731,7 @@ $('#file-tab').click(function() {
   $('#users-tab').removeClass('active-tab');
   $('#file-tab').addClass('active-tab');
   $('.file-list').show();
-  $('.sess-list').hide();
+  //$('.sess-list').hide();
   $('.chat-list').hide();
   $('.online-list').hide();
 });

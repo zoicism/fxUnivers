@@ -63,7 +63,7 @@ require('../../../php/get_class_files.php');
 $tar_id=$class_fetch['teacher_id'];
 require('../../../php/get_tar_id.php');
 
-
+$mustRedirect=0;
 ?>
 
 <!DOCTYPE html>
@@ -219,7 +219,7 @@ echo '<div class="little-box"><span>'.date("M jS, Y", strtotime($dt)).'</span></
 
 		echo '<div class="options session-options">';
 
-		//echo '<div class="add-box" id="live-add-box">Open Live Classroom</div>';
+		echo '<div class="add-box" id="live-add-box">Go Live in This Session</div>';
 
 		echo '<div class="add-box-con">';
 		echo '<div class="add-box" onclick="location.href=\'/userpgs/instructor/class/edit_class.php?course_id='.$course_id.'&class_id='.$class_id.'\';"><svg viewBox="0 0 32 32">
@@ -245,14 +245,16 @@ echo '<div class="little-box"><span>'.date("M jS, Y", strtotime($dt)).'</span></
 
 		echo '</div>';
 	    } else {
-		echo '<div class="options session-learn-options">';
+		//echo '<div class="options session-learn-options">';
 		//echo '<div class="add-box" id="live-add-box">Open Live Classroom</div>';
-		echo '</div>';
+		//echo '</div>';
 
 		//echo '<form action="/userpgs/instructor/class/live/#'.$class_id.'" method="POST" id="LiveForm"><input type="hidden" name="course_id" value="'.$course_id.'"><input type="hidden" name="class_id" value="'.$class_id.'"></form>';
 
 	//	echo '<form action="/userpgs/instructor/class/live" method="GET" id="LiveForm"><input type="hidden" name="course_id" value="'.$course_id.'"><input type="hidden" name="class_id" value="'.$class_id.'"><input type="hidden" name="hash" value="#'.$class_id.'"></form>';
 
+		// Go directly to live if this is a live session as of now
+		
 
 	    }
 
@@ -299,30 +301,31 @@ echo '<div class="sess-list">';
 			  </div>
 			  <div class="session-desc">
 
-			<?php
+			      <?php
 
 
 
-if((time()-strtotime($instructor['lastseen']) < 3) && ($instructor['lsPage']=='live/#'.$row['id'])) {
-                        echo '<p><strong><span class="gray-bg" style="color:white;padding:2px 5px;">'.$session_counter.'</span> '.$row['title'].'</strong> <img src="/images/background/live6.png" style="width:32px" class="blink_me"></p>';
-			} else {
-			echo '<p><strong><span class="gray-bg" style="color:white;padding:2px 5px;">'.$session_counter.'</span> '.$row['title'].'</strong></p>';
-			}
-			
-                        if($row['body']=='') {
-                            $descrip='<span class="gray">(No description)</span>';
-                        } else {
-                            $descrip=preg_replace("/<br\W*?\/>/", " ", $row['body']);
-                        }
-                        echo '<p>';
-			echo limited($descrip,70).'</p>';
-                        echo '</div></div>';
-                    }
-                    $class_result->free();
-                } else {
-                    echo '<p class="gray" style="text-align:center;">No sessions yet.</p>';
-                }
- ?>
+			      if((time()-strtotime($instructor['lastseen']) < 15) && ($instructor['lsPage']=='live/#'.$row['id'])) {
+				  echo '<p><strong><span class="gray-bg" style="color:white;padding:2px 5px;">'.$session_counter.'</span> '.$row['title'].'</strong> <img src="/images/background/live6.png" style="width:32px" class="blink_me"></p>';
+				  if(($user_type!='instructor') && ($class_id==$row['id'])) $mustRedirect=1;
+			      } else {
+				  echo '<p><strong><span class="gray-bg" style="color:white;padding:2px 5px;">'.$session_counter.'</span> '.$row['title'].'</strong></p>';
+			      }
+			      
+                              if($row['body']=='') {
+				  $descrip='<span class="gray">(No description)</span>';
+                              } else {
+				  $descrip=preg_replace("/<br\W*?\/>/", " ", $row['body']);
+                              }
+                              echo '<p>';
+			      echo limited($descrip,70).'</p>';
+                              echo '</div></div>';
+			      }
+			      $class_result->free();
+			      } else {
+				  echo '<p class="gray" style="text-align:center;">No sessions yet.</p>';
+			      }
+			      ?>
  </div>
  <div class="files-list" style="display:none">
    <?php
@@ -360,11 +363,13 @@ if((time()-strtotime($instructor['lastseen']) < 3) && ($instructor['lsPage']=='l
 
   <!-- SCRIPTS -->
   <script>
-    $('#page-header').html('fxUniversity');
-    $('#page-header').attr('href','/userpgs/fxuniversity');
+   $('#page-header').html('fxUniversity');
+   $('#page-header').attr('href','/userpgs/fxuniversity');
+   var mustRedir = <?php echo $mustRedirect ?>;
+   if(mustRedir) {
+       window.location.replace('/userpgs/instructor/class/live/?course_id=<?php echo $course_id ?>&class_id=<?php echo $class_id ?>');
+   }
   </script>
-  
-
 
 <script>
 var vhWidth = $('.video-holder').width();
@@ -398,11 +403,11 @@ $('.video-holder').height(vhWidth/1.78);
   });
   
  });*/
- /*
+ 
 $('#live-add-box').click(function() {
      //$('#LiveForm').submit();
      window.location.href = '/userpgs/instructor/class/live/?course_id=<?php echo $course_id ?>&class_id=<?php echo $class_id ?>';
-});*/
+});
 </script>
 
 <script>
