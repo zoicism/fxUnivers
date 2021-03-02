@@ -34,7 +34,7 @@ if($instructor_count>0) {
 
   
 
-    if((time()-strtotime($instructor['lastseen']) < 3) && ($instructor['lsPage']=="live/#$class_id")) {
+    if((time()-strtotime($instructor['lastseen']) < 30) && ($instructor['lsPage']=="live/#$class_id")) {
      $teacher_stat = '
       <div class="user" onclick="window.location.replace(\'/user/'.$instructor['username'].'\');">
           <div class="user-img avatar" style="background-image:url(\''.$avatar_url.'\');"></div>
@@ -87,7 +87,7 @@ if($stucourse_count>0) {
 
 
 
-     if(time()-strtotime($slct['lastseen'])<3) {
+     if(time()-strtotime($slct['lastseen'])<30) {
       $on_users .= '
         <div class="user" onclick="window.location.replace(\'/user/'.$slct['username'].'\');">
           <div class="user-img avatar" style="background-image:url(\''.$avatar_url.'\');"></div>
@@ -99,7 +99,7 @@ if($stucourse_count>0) {
        </div>
        ';
        $online_num++;
-     } else {
+     } /* else {
       $off_users .= '
        <div class="user" onclick="window.location.replace(\'/user/'.$slct['username'].'\');">
           <div class="user-img avatar" style="background-image:url(\''.$avatar_url.'\');"></div>
@@ -111,7 +111,7 @@ if($stucourse_count>0) {
        </div>
        ';
        $offline_num++;
-      }
+      }*/
     }
   }
 
@@ -120,7 +120,7 @@ if($stucourse_count>0) {
   
     
 
-  echo $teacher_stat.$on_users.$off_users.'<div style="display:none" id="get-online-num">'.$online_num.'</div>';
+  echo $teacher_stat.$on_users.'<div style="display:none" id="get-online-num">'.$online_num.'</div>';
   
 } else {
   echo '<p class="gray">This course has no students yet</p>';
