@@ -6,8 +6,8 @@ if(screen.width>628) {
     $('.sidebar').html(`
 
 <div class="sidebar-logo-con">
-   <div class="logo-sidebar logo-25"></div>
-   <div>
+  <div class="logo-sidebar logo-25" onclick="window.location.href='/'" style="cursor:pointer"></div>
+   <div onclick="window.location.href='/'" style="cursor:pointer">
        <svg viewBox="0 0 1004.44287 228.02734">
 	  <g>
 	    <path d="M169.87939,440.29a17.98355,17.98355,0,0,1,5.3711-13.123,17.25885,17.25885,0,0,1,12.69531-5.43164,12.45463,12.45463,0,0,1,8.728,3.17383,10.85018,10.85018,0,0,1,3.479,8.42285q0,11.22949-10.98633,16.23535,5.49316,2.19728,7.69043,2.19727,7.69044,0,11.71875-13.36719,4.02833-13.3667,13.06153-62.92676l12.10791-65.18554H212.3999l-.24609.24414h-.73633q-6.99243,0-6.99219-5.354,0-6.85181,7.45752-6.853h23.84033l.24415.00976q5.73339-38.21191,14.15039-50.05664a35.56364,35.56364,0,0,1,13.66064-11.23047,39.19214,39.19214,0,0,1,17.07813-4.03027q12.05933,0,20.18164,5.85937,8.12256,5.85938,8.12353,14.89258,0,8.5459-5.53906,13.54981a18.06684,18.06684,0,0,1-12.42822,5.00488,12.56024,12.56024,0,0,1-8.79834-3.19873,10.94216,10.94216,0,0,1-3.50782-8.49317q0-10.82884,10.83008-16.123a18.47365,18.47365,0,0,0-7.75342-2.21436q-6.30028,0-9.63427,6.64307-.98951,2.0061-3.36231,14.34912-2.37523,12.34571-4.52637,23.55225-2.15112,11.206-2.0332,11.48584h27.08985q6.9873,0,6.98681,5.10986,0,7.0979-7.50537,7.09717c-.16406,0-.24609-.04-.24609-.12207,0-.08008-.082-.12207-.2461-.12207H259.93848q-13.57545,78.22045-19.19922,99.93945a140.47836,140.47836,0,0,1-8.99512,24.9209,53.01138,53.01138,0,0,1-14.46533,17.834q-9.96753,8.0625-20.42188,8.0625a33.72612,33.72612,0,0,1-18.61572-5.37109A17.22735,17.22735,0,0,1,169.87939,440.29Z" transform="translate(-169.87939 -233.01465)"></path>
@@ -26,17 +26,17 @@ if(screen.width>628) {
 		<div>
 EOL;
 
-		    $avatar_path=$_SERVER['DOCUMENT_ROOT'];
-                    $avatar_path.='/userpgs/avatars/';
-		    $avatar_ex = glob($avatar_path.$get_user_id.'.*');
-		    if(count($avatar_ex) > 0) {
-		      $avatar_arr = explode('.', $avatar_ex[0]);
-		      $avatar_extension = end($avatar_arr);
+$avatar_path=$_SERVER['DOCUMENT_ROOT'];
+$avatar_path.='/userpgs/avatars/';
+$avatar_ex = glob($avatar_path.$get_user_id.'.*');
+if(count($avatar_ex) > 0) {
+    $avatar_arr = explode('.', $avatar_ex[0]);
+    $avatar_extension = end($avatar_arr);
 
-		      echo '<a href="/user/'.$username.'" class="link avatar-sidebar" style="background-image:url(\'/userpgs/avatars/'.$get_user_id.'.'.$avatar_extension.'\');"></a>';
-		    } else {
-		      echo '<a href="/user/'.$username.'" class="link avatar-sidebar"></a>';
-		    }
+    echo '<a href="/user/'.$username.'" class="link avatar-sidebar" style="background-image:url(\'/userpgs/avatars/'.$get_user_id.'.'.$avatar_extension.'\');"></a>';
+} else {
+    echo '<a href="/user/'.$username.'" class="link avatar-sidebar"></a>';
+}
 
 echo <<<EOL
 			<a class="id-sidebar" href="/user/$username">@$username</a>
