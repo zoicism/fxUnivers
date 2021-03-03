@@ -193,11 +193,26 @@ textarea:focus {
 }
 
 .logo-sidebar {
-    margin: 15px auto 15px 15px;
-    margin-right: auto;
+    margin-right: 10px;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
+}
+
+.sidebar .sidebar-logo-con {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 40px;
+    padding: 0 11px;
+}
+
+.sidebar .sidebar-logo-con svg {
+    display: block;
+    height: 19px;
+    fill: #00a1e0;
 }
 
 .sidebar {
@@ -1312,7 +1327,6 @@ textarea:focus {
 .logo-25 {
     width:25px;
     height:25px;
-    margin-right:auto;
     background-image:url('../images/logo/fxunivers-logo.svg');
 }
 
@@ -1838,10 +1852,11 @@ textarea:focus {
     width: 100px;
 }
 
-.fxunivers-logo span {
-    margin-top: 7px;
-    font-size: 25px;
-    color: #00A1E0;
+.login-form .fxunivers-logo svg {
+    display: block;
+    height: 25px;
+    fill: #00a1e0;
+    margin-top: 10px;
 }
 
 .fxunivers-logo p {
