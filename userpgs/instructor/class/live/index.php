@@ -526,7 +526,7 @@ echo '<div class="sess-list" style="display:none">';
            document.title = 'fxUniversity - Viewers: ' + numberOfViewers;
        },
        onReady: function() {
-           console.log('now you can open or join rooms');
+           console.log('ready to make connections');
        }
    };
 
@@ -785,8 +785,8 @@ $('#file-tab').click(function() {
 </script>
 <script>
 $(document).ready(function() {
-    
-    setInterval(function() {
+    // here
+      setInterval(function() {
         jQuery.ajax({
           type: "POST",
           url: "/php/get_class_chat.php",
@@ -796,7 +796,7 @@ $(document).ready(function() {
                 $("#newMsgs").load('/php/class_chat_update.php', {class_id: <?php echo $class_id ?>});
           }
         });
-        }, 1000);
+         }, 1000);
 });
 </script>
 <!-- EO CHAT -->
@@ -814,12 +814,13 @@ $('#join-img').click(function() {
 
 <!-- FILES -->
 <script>
+    // here
 $(document).ready(function() {
-    setInterval(function() {
+   setInterval(function() {
         $('#newFiles').load('/php/class_file_update.php', {class_id: <?php echo $class_id ?>, user_type: '<?php echo $user_type ?>'});
 	$('#filesNum').html($('#getFilesNum').text());
-    }, 1000);
-});
+	  }, 1000);
+    });
 </script>
 <!-- FILE UPLOAD -->
 <script>
