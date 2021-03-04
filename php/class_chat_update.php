@@ -11,8 +11,8 @@ if($getclasschat_count>0) {
         $fetch_username=mysqli_fetch_array($get_username_r);
         $chat_username=$fetch_username['username'];
         echo '<div class="one-msg">';
+        echo '<p class="id-time-con"><span>'.$chat_username.'</span> '.$chatrow['dt'].'</p>';
         echo '<p>'.$chatrow["txt"].'</p>';
-        echo '<p style="font-size:0.8rem;text-align:right;color:#6d6875;margin-bottom:0;">@'.$chat_username.' '.$chatrow['dt'].'</p><br>';
         echo '</div>';
     }
 } else {
