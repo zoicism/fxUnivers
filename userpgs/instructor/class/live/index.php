@@ -597,13 +597,13 @@ echo '<div class="sess-list" style="display:none">';
        try {
            htmlElement.setAttributeNode(document.createAttribute('autoplay'));
            htmlElement.setAttributeNode(document.createAttribute('playsinline'));
-           htmlElement.setAttributeNode(document.createAttribute('controls'));
+           if(option==='Only Audio') htmlElement.setAttributeNode(document.createAttribute('controls'));
 	   htmlElement.setAttributeNode(document.createAttribute('id'));
 	   htmlElement.setAttribute('id','video-broadcast');
        } catch (e) {
            htmlElement.setAttribute('autoplay', true);
            htmlElement.setAttribute('playsinline', true);
-           htmlElement.setAttribute('controls', true);
+           if(option==='Only Audio') htmlElement.setAttribute('controls', true);
 	   
        }
 
@@ -653,7 +653,9 @@ echo '<div class="sess-list" style="display:none">';
        setTimeout(function() {
            video.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(360deg)';
        }, 1000);*/
+     if(option!=='Only Audio') {
        video.style='-moz-transform: scale(-1, 1); -webkit-transform: scale(-1, 1); -o-transform: scale(-1, 1); transform: scale(-1, 1); filter: FlipH;';
+     }
    }
 
   </script>
@@ -819,7 +821,7 @@ $(document).ready(function() {
    setInterval(function() {
         $('#newFiles').load('/php/class_file_update.php', {class_id: <?php echo $class_id ?>, user_type: '<?php echo $user_type ?>'});
 	$('#filesNum').html($('#getFilesNum').text());
-	  }, 1000);
+	  }, 5000);
     });
 </script>
 <!-- FILE UPLOAD -->
