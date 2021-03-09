@@ -53,10 +53,16 @@ $(document).ready(function() {
 			});
 
 			if(classroomReason !== null) {
-			    console.log(classroomReason);
-			    newNotifNotif.onclick=function() {
-				window.open('/userpgs/instructor/class/live/'+classroomReason[1]);
-				newNotifNotif.close();
+			    //console.log(classroomReason);
+			    //console.log(window.location.href);
+			    if(window.location.href == 'http://localhost/userpgs/instructor/class/live/'+classroomReason[1]) {
+				alert('Broadcast ended.');
+				window.location.reload();
+			    } else {
+				newNotifNotif.onclick=function() {
+				    window.open('/userpgs/instructor/class/live/'+classroomReason[1]);
+				    newNotifNotif.close();
+				}
 			    }
 			} else {
 			    newNotifNotif.onclick = function() {
@@ -108,9 +114,9 @@ $(document).ready(function() {
 			    }, false);*/
 
 			newMsgNotif.onclick = function() {
-			    console.log('clicked');
+			    //console.log('clicked');
 			    $(document.body).append('<a href="/msg/'+lastFrom+'" id="openThisNotif" target="_blank" style="display:none"></a>');
-			    console.log($('#openThisNotif').attr('href'));
+			    //console.log($('#openThisNotif').attr('href'));
 			    $('#openThisNotif')[0].click();
 			}
 		    }

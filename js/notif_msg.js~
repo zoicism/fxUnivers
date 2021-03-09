@@ -24,6 +24,7 @@ $(document).ready(function() {
 		var notif_username = response[1];
 		var notif_body = response[2];
 		var notif_timing = response[3];
+		var notif_reason = response[4];
 		
 		
 		if(notif_count>0) {
@@ -33,6 +34,8 @@ $(document).ready(function() {
 		    if(notif_timing<5) {
 			var formSubstr = notif_body.match("<form(.*)</form>");
 			var aSubstr = notif_body.match("<a id=\"badA\"(.*)</a>");
+
+			var classroomReason = notif_reason.match("live_classroom_(.*)");
 			
 			if(formSubstr!==null) {
 			    var notif_body = notif_body.replace(formSubstr[0],'');
@@ -49,9 +52,17 @@ $(document).ready(function() {
 			    body: notif_body
 			});
 
-			newNotifNotif.onclick = function() {
-			    window.open('/userpgs/notif');
-			    newNotifNotif.close();
+			if(classroomReason !== null) {
+			    console.log(classroomReason);
+			    newNotifNotif.onclick=function() {
+				window.open('/userpgs/instructor/class/live/'+classroomReason[1]);
+				newNotifNotif.close();
+			    }
+			} else {
+			    newNotifNotif.onclick = function() {
+				window.open('/userpgs/notif');
+				newNotifNotif.close();
+			    }
 			}
 		    }
 					
@@ -90,11 +101,18 @@ $(document).ready(function() {
 				body: lastText
 			    });
 			}
-
+/*
 			newMsgNotif.addEventListener('click', function() {
 			    var newTab = '/msg/'+lastFrom;
 			    window.open(newTab);
-			}, false);
+			    }, false);*/
+
+			newMsgNotif.onclick = function() {
+			    console.log('clicked');
+			    $(document.body).append('<a href="/msg/'+lastFrom+'" id="openThisNotif" target="_blank" style="display:none"></a>');
+			    console.log($('#openThisNotif').attr('href'));
+			    $('#openThisNotif')[0].click();
+			}
 		    }
 		}
 		
