@@ -868,14 +868,14 @@ if($course_biddable) require_once('../../../wallet/php/wallet_connect.php');
 	     });
 	 });
 
-	 var liveExists=<?php echo $liveExists ?>;
-	 if(liveExists==1) {
+	 <?php if($liveExists) { ?>
+	 
 	     $('#student-live-add-box').show();
 	     $('#student-live-add-box').click(function() {
 		 var liveSession=<?php echo $liveSession ?>;
 		 window.location.href='/userpgs/instructor/class/live/?course_id=<?php echo $course_id ?>&class_id='+liveSession;
 	     });
-	 }
+	 <?php } ?>
 	     
 	</script>
 

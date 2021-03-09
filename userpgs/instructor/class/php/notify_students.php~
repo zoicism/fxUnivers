@@ -15,7 +15,7 @@ if($user_type=='instructor') {
         $student_un=$student['username'];
 
         $header=mysqli_real_escape_string($connection,$header);
-        $live_notif='The instructor is live in class <b>'.$header.'</b>. Join in now. <form action="/userpgs/instructor/class/live/#'.$class_id.'" method="POST"><input type="hidden" name="course_id" value="'.$course_id.'"><input type="hidden" name="class_id" value="'.$class_id.'"><input type="submit" value="Enter"></form>';
+        $live_notif='The instructor has just created a live classroom: '.$header.'. Click Enter to join in now. <form action="/userpgs/instructor/class/live" method="GET"><input type="hidden" name="class_id" value="'.$class_id.'"><input type="hidden" name="course_id" value="'.$course_id.'"><input type="submit" value="Enter"></form>';
 
 
 	$utc_timestamp = date('Y-m-d H:i:s');
@@ -68,7 +68,7 @@ if($user_type=='instructor') {
     
     <table style="font-size:0.9rem;margin-top:70px;background:#ececec;border-radius:12px;padding-left:20px;padding-right:20px;">
       <tr>
-	<td style="vertical-align:top;"><a href="https://fxunivers.com"><img src="https://fxunivers.com/images/logo/logo-100.png" style="width:100px;height:100px;margin-top:15px;"></a></td>
+	<td style="vertical-align:top;"><a href="https://fxunivers.com"><img src="https://fxunivers.com/images/logos/fxunivers-logo.svg" style="width:100px;height:100px;margin-top:15px;"></a></td>
 	<td style="padding-left:20px;">
 	  <p style="font-style:italic;font-weight:bold;font-size:1rem;">fxUnivers Team,</p>
 	  <p><span style="color:#0085b0">Address:</span><br>

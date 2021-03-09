@@ -193,11 +193,26 @@ textarea:focus {
 }
 
 .logo-sidebar {
-    margin: 15px auto 15px 15px;
-    margin-right: auto;
+    margin-right: 10px;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
+}
+
+.sidebar .sidebar-logo-con {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 40px;
+    padding: 0 11px;
+}
+
+.sidebar .sidebar-logo-con svg {
+    display: block;
+    height: 19px;
+    fill: #00a1e0;
 }
 
 .sidebar {
@@ -348,7 +363,6 @@ textarea:focus {
     align-items:center;
     width: 100%;
     height: calc( 100% - 40px );
-    overflow-y:auto;
     padding: 20px 10px 0 10px;
 }
 
@@ -391,8 +405,8 @@ textarea:focus {
 .sessions .file-list .uploaded-files {
     display: flex;
     flex-flow: column nowrap;
-    align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    overflow-y: auto;
     width: 100%;
     height: 100%;
     padding-top: 20px;
@@ -401,21 +415,47 @@ textarea:focus {
 .file-list .file {
     display:flex;
     flex-flow:row nowrap;
-    border-bottom:1px solid gray;
-    padding:10px;
+    align-items: center;
+    width: 100%;
+    padding:10px 0;
+}
+
+.file-list .file .file-icon-con {
+    display: block;
+    width: 24px;
+    height: 24px;
 }
 
 .file-list .file .file-name {
-    padding:10px;
+    padding: 0 10px;
+    overflow: hidden;
 }
 
-.file-list .file .del {
-    padding:10px;
+.file-list .file .file-name .file-name-txt {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.file-list .file img {
-    width:3rem;
-    height:3rem;
+.file-list .file .download-delete-con {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+.file-list .file .download-delete-con .download-file svg {
+    width: 24px;
+    height: 24px;
+}
+
+.file-list .file .download-delete-con .del svg {
+    width: 24px;
+    height: 24px;
+    fill: #e02723;
+}
+
+.file-list .file .download-delete-con .del {
+    margin-left: 10px;
 }
 
 .sessions .online-list {
@@ -486,6 +526,7 @@ textarea:focus {
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    margin-bottom: 20px;
 }
 
 .sessions .chat-list .live-chat-con .msg-icon-cnt {
@@ -504,18 +545,32 @@ textarea:focus {
 .chat-list .msgs {
     display: flex;
     flex-flow: column nowrap;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
     overflow-y: auto;
     width: 100%;
-    height: calc( 100% - 40px );
-    padding-top: 20px;
+    height: calc( 100% - 58px);
 }
 
 .msgs .one-msg {
-    border-bottom:1px solid gray;
-    margin:10px 0;
-    padding:10px;
+    border-bottom: 1px solid #c2c2c2;
+    padding: 10px 0;
+}
+
+.sessions .chat-list .one-msg .id-time-con {
+    color: #393939b0;
+    font-size: 0.8rem;
+    width: 100%;
+}
+
+.sessions .chat-list .one-msg .id-time-con span {
+    font-weight: bold;
+    color: #393939;
+    margin-right: 8px;
+    font-size: 0.9rem;
+}
+
+.sessions .chat-list .msgs p {
+    margin: 0;
 }
 
 .sessions .tabs {
@@ -1096,7 +1151,7 @@ textarea:focus {
     height:100%;
 }
 
-.options #live-add-box {
+.options #live-add-box, #student-live-add-box {
     margin: 0 auto;
     width: 90%;
     box-shadow: -6px -6px 14px rgba(255, 255, 255, .7),
@@ -1312,7 +1367,6 @@ textarea:focus {
 .logo-25 {
     width:25px;
     height:25px;
-    margin-right:auto;
     background-image:url('../images/logo/fxunivers-logo.svg');
 }
 
@@ -1838,10 +1892,11 @@ textarea:focus {
     width: 100px;
 }
 
-.fxunivers-logo span {
-    margin-top: 7px;
-    font-size: 25px;
-    color: #00A1E0;
+.login-form .fxunivers-logo svg {
+    display: block;
+    height: 25px;
+    fill: #00a1e0;
+    margin-top: 10px;
 }
 
 .fxunivers-logo p {
