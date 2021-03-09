@@ -529,6 +529,10 @@ textarea:focus {
     margin-bottom: 20px;
 }
 
+.sessions .chat-list .live-chat-con .txt-input {
+    margin:0;
+}
+
 .sessions .chat-list .live-chat-con .msg-icon-cnt {
     margin: 0 0 0 14px;
     box-shadow: 5px 5px 10px #c6c6c6, -5px -5px 10px #ffffff;
