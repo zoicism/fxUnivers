@@ -84,13 +84,13 @@ require('../php/notify_students.php');
     <script src="/js/jquery-3.4.1.min.js"></script>
     <script src="/js/jquery.form.js"></script>
 
-    <script src="../DetectRTC/DetectRTC.js"></script>
-    <script src="../js/socket.io.js"> </script>
-    <script src="../js/adapter-latest.js"></script>
-    <script src="/js/webrtc/IceServersHandler.js"></script>
-    <script src="../js/CodecsHandler.js"></script>
-    <script src="../RTCPeerConnection/RTCPeerConnection-v1.5.js"></script>
-    <script src="../webrtc-broadcasting/broadcast.js"> </script>
+    <script src="../DetectRTC/DetectRTC.js" id="detectrtc" ></script>
+    <script src="../js/socket.io.js" id="socketio"> </script>
+    <script src="../js/adapter-latest.js" id="adapter" ></script>
+    <script src="/js/webrtc/IceServersHandler.js" id="iceServersHandler"></script>
+    <script src="../js/CodecsHandler.js" id="codecsHandlers"></script>
+    <script src="../RTCPeerConnection/RTCPeerConnection-v1.5.js" id="RtcPeerConnection"></script>
+    <script src="../webrtc-broadcasting/broadcast.js" id="broadcast"> </script>
 
 <!--
     <script src="https://www.webrtc-experiment.com/DetectRTC.js"></script>
@@ -106,6 +106,10 @@ require('../php/notify_students.php');
 </head>
     
 <body>
+
+    <div style="height:100%;width:100%;display:flex;align-items:center;justify-content:center;position:fixed;background-color:black;opacity:0.3;cursor:auto;z-index:2;" id="loading"><img src="/images/background/loading.gif" style="z-index:3"></div>
+
+    
   <div class="header-sidebar"></div>
   <script id="upperbar-script" src="/js/upperbar.js" sess_avatar="<?php echo $session_avatar?>" sess_un="<?php echo $username?>"></script>
   
@@ -306,7 +310,7 @@ if($tar_user_fetch['avatar']!=NULL) {
 
 		
 
-		echo '<div class="add-box" id="live-whiteboard-box" style="justify-content:center">
+		echo '<div class="add-box" id="live-whiteboard-box" style="justify-content:center;opacity:0.5;">
 			           <svg viewBox="0 0 32 32" style="height: 20px;width: 20px;margin-right: 12px;">
 					<path d="M28,0H4A4,4,0,0,0,0,4V18.8a4,4,0,0,0,4,4H9.6L5.7,30.5a1.2,1.2,0,0,0,.4,1.4,1.2,1.2,0,0,0,1.4-.4l4.3-8.7h8.4l4.3,8.7a1.1,1.1,0,0,0,.9.5h.4a1.1,1.1,0,0,0,.5-1.4l-3.9-7.7H28a3.9,3.9,0,0,0,2.8-1.1,4.2,4.2,0,0,0,1-1.7,4.3,4.3,0,0,0,.2-1.2V4A4,4,0,0,0,28,0Zm2,18.8a1.7,1.7,0,0,1-.6,1.4l-.3.3h0l-.3.2H3.4a1.4,1.4,0,0,1-.8-.5A1.7,1.7,0,0,1,2,18.8V4c0-.2,0-.3.1-.4A1.9,1.9,0,0,1,4,2H28a2,2,0,0,1,2,1.6V18.8Z"></path>
 				   </svg>
@@ -393,7 +397,7 @@ echo '<div class="sess-list" style="display:none">';
     <div class="live-chat-con">
         <input name="msgBody" type="text" id="chatInput" class="txt-input" placeholder="Type here">
 	<div class="msg-icon-cnt" id="send-btn">
-	    <svg id="SendIcon" viewBox="0 0 32 32"><defs><style>.send-icon{fill:#212121;}</style></defs>
+	    <svg id="SendIcon" viewBox="0 0 32 32""><defs><style>.send-icon{fill:#212121;}</style></defs>
 	        <path class="send-icon" d="M30.9,14.5,2.9.5,2,.3A1.9,1.9,0,0,0,.1,2.8L3.2,16.4.1,29.2A2,2,0,0,0,2,31.7l.9-.2,28-13.4A2,2,0,0,0,30.9,14.5ZM2,29.7,5.1,17.4H15.8a1,1,0,0,0,1-1h0a.9.9,0,0,0-1-1H5.1L2,2.3l28,14Z"></path>
 	    </svg>
         </div>
@@ -412,16 +416,15 @@ echo '<div class="sess-list" style="display:none">';
     
     <input name="classId" type="hidden" value="<?php echo $class_id?>">
     
-    <!--<input type="file" name="class_file" id="fileToUpload">-->
+    <input type="file" name="class_file" id="fileToUpload" style="display:none">
     <div class="uploadfile-con">
         <div class="image-upload">
     	    <label for="file-input" id="fileToUpload">
                 <img src="/images/background/plus.svg" class="chat-icon" id="file-btn">
             </label>
         </div>
-        <div>Choose File</div>
+        <div id="filename-b4-upload">Choose File</div>
     </div>
-    <p id="uploadMsg" style="display:none">Uploaded. You can upload another now.</p>
     <input type="submit" value="Upload file" class="submit-btn">
     </form>
 
@@ -460,208 +463,213 @@ echo '<div class="sess-list" style="display:none">';
   
 <!-- WebRTC Broadcasting -->
   <script>
-   var config = {
-       openSocket: function(config) {
-           var SIGNALING_SERVER = 'https://socketio-over-nodejs2.herokuapp.com:443/';
+   function loadWebrtc() {
+       var config = {
+	   openSocket: function(config) {
+               var SIGNALING_SERVER = 'https://socketio-over-nodejs2.herokuapp.com:443/';
 
-	   
-           //config.channel = config.channel || location.href.replace(/\/|:|#|%|\.|\[|\]/g, '');
-	   config.channel = config.channel || 'fxuniversity<?php echo $class_id ?>';
-	   console.log(config.channel);
-           var sender = Math.round(Math.random() * 999999999) + 999999999;
-
-           io.connect(SIGNALING_SERVER).emit('new-channel', {
-               channel: config.channel,
-               sender: sender
-           });
-
-           var socket = io.connect(SIGNALING_SERVER + config.channel);
-           socket.channel = config.channel;
-           socket.on('connect', function () {
-               if (config.callback) config.callback(socket);
-           });
-
-           socket.send = function (message) {
-               socket.emit('message', {
-                   sender: sender,
-                   data: message
-               });
-           };
-
-           socket.on('message', config.onmessage);
-       },
-       onRemoteStream: function(htmlElement) {
-           videosContainer.appendChild(htmlElement);
-           rotateInCircle(htmlElement);
-       },
-       onRoomFound: function(room) {
-           var alreadyExist = document.querySelector('button[data-broadcaster="' + room.broadcaster + '"]');
-           if (alreadyExist) return;
-
-           if (typeof roomsList === 'undefined') roomsList = document.body;
-
-           var tr = document.createElement('tr');
-           tr.innerHTML = '<td><strong>' + room.roomName + '</strong> is broadcasting his media!</td>' +
-                          '<td><button class="join">Join</button></td>';
-           roomsList.appendChild(tr);
-
-           var joinRoomButton = tr.querySelector('.join');
-           joinRoomButton.setAttribute('data-broadcaster', room.broadcaster);
-           joinRoomButton.setAttribute('data-roomToken', room.broadcaster);
-           joinRoomButton.onclick = function() {
-               this.disabled = true;
-
-               var broadcaster = this.getAttribute('data-broadcaster');
-               var roomToken = this.getAttribute('data-roomToken');
-               broadcastUI.joinRoom({
-                   roomToken: roomToken,
-                   joinUser: broadcaster
-               });
-               hideUnnecessaryStuff();
-           };
-
-	   $('.join').click();
-	   $('.ctrl').hide();
-       },
-       onNewParticipant: function(numberOfViewers) {
-           document.title = 'fxUniversity - Viewers: ' + numberOfViewers;
-       },
-       onReady: function() {
-           console.log('now you can open or join rooms');
-       }
-   };
-
-   function setupNewBroadcastButtonClickHandler() {
-       document.getElementById('broadcast-name').disabled = true;
-       document.getElementById('setup-new-broadcast').disabled = true;
-
-       DetectRTC.load(function() {
-           captureUserMedia(function() {
-               var shared = 'video';
-               if (window.option == 'Only Audio') {
-                   shared = 'audio';
-               }
-               if (window.option == 'Screen') {
-                   shared = 'screen';
-               }
-
-	       document.getElementById('broadcast-name').value = '<?php echo $class_id ?>';
 	       
-               broadcastUI.createRoom({
-                   roomName: (document.getElementById('broadcast-name') || { }).value || 'Anonymous',
-                   isAudio: shared === 'audio'
+               //config.channel = config.channel || location.href.replace(/\/|:|#|%|\.|\[|\]/g, '');
+	       config.channel = config.channel || 'fxuniversity<?php echo $class_id ?>';
+	       console.log(config.channel);
+               var sender = Math.round(Math.random() * 999999999) + 999999999;
+
+               io.connect(SIGNALING_SERVER).emit('new-channel', {
+		   channel: config.channel,
+		   sender: sender
                });
-           });
-           hideUnnecessaryStuff();
-       });
-   }
 
-   function captureUserMedia(callback) {
-       var constraints = null;
-       window.option = broadcastingOption ? broadcastingOption.value : '';
-       if (option === 'Only Audio') {
-           constraints = {
-               audio: true,
-               video: false
-           };
+               var socket = io.connect(SIGNALING_SERVER + config.channel);
+               socket.channel = config.channel;
+               socket.on('connect', function () {
+		   if (config.callback) config.callback(socket);
+               });
 
-           if(DetectRTC.hasMicrophone !== true) {
-               alert('DetectRTC library is unable to find microphone; maybe you denied microphone access once and it is still denied or maybe microphone device is not attached to your system or another app is using same microphone.');
-           }
-       }
-       if (option === 'Screen') {
-           var video_constraints = {
-               mandatory: {
-                   chromeMediaSource: 'screen'
-               },
-               optional: []
-           };
-           constraints = {
-               audio: false,
-               video: video_constraints
-           };
+               socket.send = function (message) {
+		   socket.emit('message', {
+                       sender: sender,
+                       data: message
+		   });
+               };
 
-           if(DetectRTC.isScreenCapturingSupported !== true) {
-               alert('DetectRTC library is unable to find screen capturing support. You MUST run chrome with command line flag "chrome --enable-usermedia-screen-capturing"');
-           }
-       }
-
-       if (option != 'Only Audio' && option != 'Screen' && DetectRTC.hasWebcam !== true) {
-           alert('DetectRTC library is unable to find webcam; maybe you denied webcam access once and it is still denied or maybe webcam device is not attached to your system or another app is using same webcam.');
-       }
-
-       var htmlElement = document.createElement(option === 'Only Audio' ? 'audio' : 'video');
-
-       htmlElement.muted = true;
-       htmlElement.volume = 0;
-
-       try {
-           htmlElement.setAttributeNode(document.createAttribute('autoplay'));
-           htmlElement.setAttributeNode(document.createAttribute('playsinline'));
-           htmlElement.setAttributeNode(document.createAttribute('controls'));
-	   htmlElement.setAttributeNode(document.createAttribute('id'));
-	   htmlElement.setAttribute('id','video-broadcast');
-       } catch (e) {
-           htmlElement.setAttribute('autoplay', true);
-           htmlElement.setAttribute('playsinline', true);
-           htmlElement.setAttribute('controls', true);
-	   
-       }
-
-       var mediaConfig = {
-           video: htmlElement,
-           onsuccess: function(stream) {
-               config.attachStream = stream;
-               
+               socket.on('message', config.onmessage);
+	   },
+	   onRemoteStream: function(htmlElement) {
                videosContainer.appendChild(htmlElement);
                rotateInCircle(htmlElement);
-               
-               callback && callback();
-           },
-           onerror: function() {
-               if (option === 'Only Audio') alert('unable to get access to your microphone');
-               else if (option === 'Screen') {
-                   if (location.protocol === 'http:') alert('Please test this WebRTC experiment on HTTPS.');
-                   else alert('Screen capturing is either denied or not supported. Are you enabled flag: "Enable screen capture support in getUserMedia"?');
-               } else alert('unable to get access to your webcam');
-           }
+	   },
+	   onRoomFound: function(room) {
+               var alreadyExist = document.querySelector('button[data-broadcaster="' + room.broadcaster + '"]');
+               if (alreadyExist) return;
+
+               if (typeof roomsList === 'undefined') roomsList = document.body;
+
+               var tr = document.createElement('tr');
+               tr.innerHTML = '<td><strong>' + room.roomName + '</strong> is broadcasting his media!</td>' +
+                              '<td><button class="join">Join</button></td>';
+               roomsList.appendChild(tr);
+
+               var joinRoomButton = tr.querySelector('.join');
+               joinRoomButton.setAttribute('data-broadcaster', room.broadcaster);
+               joinRoomButton.setAttribute('data-roomToken', room.broadcaster);
+               joinRoomButton.onclick = function() {
+		   this.disabled = true;
+
+		   var broadcaster = this.getAttribute('data-broadcaster');
+		   var roomToken = this.getAttribute('data-roomToken');
+		   broadcastUI.joinRoom({
+                       roomToken: roomToken,
+                       joinUser: broadcaster
+		   });
+		   hideUnnecessaryStuff();
+               };
+
+	       $('.join').click();
+	       $('.ctrl').hide();
+	   },
+	   onNewParticipant: function(numberOfViewers) {
+               document.title = 'fxUniversity - Viewers: ' + numberOfViewers;
+	   },
+	   onReady: function() {
+               console.log('ready to make connections');
+	       $('#loading').remove();
+	   }
        };
-       if (constraints) mediaConfig.constraints = constraints;
-       getUserMedia(mediaConfig);
-   }
 
-   var broadcastUI = broadcast(config);
+       function setupNewBroadcastButtonClickHandler() {
+	   document.getElementById('broadcast-name').disabled = true;
+	   document.getElementById('setup-new-broadcast').disabled = true;
 
-   /* UI specific */
-   var videosContainer = document.getElementById('videos-container') || document.body;
-   var setupNewBroadcast = document.getElementById('setup-new-broadcast');
-   var roomsList = document.getElementById('rooms-list');
+	   DetectRTC.load(function() {
+               captureUserMedia(function() {
+		   var shared = 'video';
+		   if (window.option == 'Only Audio') {
+                       shared = 'audio';
+		   }
+		   if (window.option == 'Screen') {
+                       shared = 'screen';
+		   }
 
-   var broadcastingOption = document.getElementById('broadcasting-option');
+		   document.getElementById('broadcast-name').value = '<?php echo $class_id ?>';
+		   
+		   broadcastUI.createRoom({
+                       roomName: (document.getElementById('broadcast-name') || { }).value || 'Anonymous',
+                       isAudio: shared === 'audio'
+		   });
+               });
+               hideUnnecessaryStuff();
+	   });
+       }
 
-   if (setupNewBroadcast) setupNewBroadcast.onclick = setupNewBroadcastButtonClickHandler;
+       function captureUserMedia(callback) {
+	   var constraints = null;
+	   window.option = broadcastingOption ? broadcastingOption.value : '';
+	   if (option === 'Only Audio') {
+               constraints = {
+		   audio: true,
+		   video: false
+               };
 
-   function hideUnnecessaryStuff() {
-       var visibleElements = document.getElementsByClassName('visible'),
-           length = visibleElements.length;
-       for (var i = 0; i < length; i++) {
-           visibleElements[i].style.display = 'none';
+               if(DetectRTC.hasMicrophone !== true) {
+		   alert('DetectRTC library is unable to find microphone; maybe you denied microphone access once and it is still denied or maybe microphone device is not attached to your system or another app is using same microphone.');
+               }
+	   }
+	   if (option === 'Screen') {
+               var video_constraints = {
+		   mandatory: {
+                       chromeMediaSource: 'screen'
+		   },
+		   optional: []
+               };
+               constraints = {
+		   audio: false,
+		   video: video_constraints
+               };
+
+               if(DetectRTC.isScreenCapturingSupported !== true) {
+		   alert('DetectRTC library is unable to find screen capturing support. You MUST run chrome with command line flag "chrome --enable-usermedia-screen-capturing"');
+               }
+	   }
+
+	   if (option != 'Only Audio' && option != 'Screen' && DetectRTC.hasWebcam !== true) {
+               alert('DetectRTC library is unable to find webcam; maybe you denied webcam access once and it is still denied or maybe webcam device is not attached to your system or another app is using same webcam.');
+	   }
+
+	   var htmlElement = document.createElement(option === 'Only Audio' ? 'audio' : 'video');
+
+	   htmlElement.muted = true;
+	   htmlElement.volume = 0;
+	   
+	   try {
+               htmlElement.setAttributeNode(document.createAttribute('autoplay'));
+               htmlElement.setAttributeNode(document.createAttribute('playsinline'));
+               if(option==='Only Audio') htmlElement.setAttributeNode(document.createAttribute('controls'));
+	       htmlElement.setAttributeNode(document.createAttribute('id'));
+	       htmlElement.setAttribute('id','video-broadcast');
+	   } catch (e) {
+               htmlElement.setAttribute('autoplay', true);
+               htmlElement.setAttribute('playsinline', true);
+               if(option==='Only Audio') htmlElement.setAttribute('controls', true);
+	       
+	   }
+
+	   var mediaConfig = {
+               video: htmlElement,
+               onsuccess: function(stream) {
+		   config.attachStream = stream;
+		   
+		   videosContainer.appendChild(htmlElement);
+		   rotateInCircle(htmlElement);
+		   //stream.getVideoTracks()[0].addEventListener('ended', () => 
+		   //    console.log('screensharing has ended'));
+
+		   
+		   callback && callback();
+               },
+               onerror: function() {
+		   if (option === 'Only Audio') alert('unable to get access to your microphone');
+		   else if (option === 'Screen') {
+                       if (location.protocol === 'http:') alert('Please test this WebRTC experiment on HTTPS.');
+                       else alert('Screen capturing is either denied or not supported. Are you enabled flag: "Enable screen capture support in getUserMedia"?');
+		   } else alert('unable to get access to your webcam');
+               }
+	   };
+	   if (constraints) mediaConfig.constraints = constraints;
+	   getUserMedia(mediaConfig);
+       }
+
+       var broadcastUI = broadcast(config);
+
+       /* UI specific */
+       var videosContainer = document.getElementById('videos-container') || document.body;
+       var setupNewBroadcast = document.getElementById('setup-new-broadcast');
+       var roomsList = document.getElementById('rooms-list');
+
+       var broadcastingOption = document.getElementById('broadcasting-option');
+
+       if (setupNewBroadcast) setupNewBroadcast.onclick = setupNewBroadcastButtonClickHandler;
+
+       function hideUnnecessaryStuff() {
+	   var visibleElements = document.getElementsByClassName('visible'),
+               length = visibleElements.length;
+	   for (var i = 0; i < length; i++) {
+               visibleElements[i].style.display = 'none';
+	   }
+       }
+
+       function rotateInCircle(video) {
+	   /*video.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(0deg)';
+	      setTimeout(function() {
+              video.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(360deg)';
+	      }, 1000);*/
+	   if(option!=='Only Audio') {
+	       video.style='-moz-transform: scale(-1, 1); -webkit-transform: scale(-1, 1); -o-transform: scale(-1, 1); transform: scale(-1, 1); filter: FlipH;';
+	   }
        }
    }
-
-   function rotateInCircle(video) {
-       /*video.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(0deg)';
-       setTimeout(function() {
-           video.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(360deg)';
-       }, 1000);*/
-       video.style='-moz-transform: scale(-1, 1); -webkit-transform: scale(-1, 1); -o-transform: scale(-1, 1); transform: scale(-1, 1); filter: FlipH;';
-   }
-
   </script>
 <script>
-// jQuery(function() {
-  //   jQuery('#setup-new-broadcast').click();
-// });
+loadWebrtc();
 </script>
 <!-- EO WebRTC Broadcasting -->
 
@@ -675,6 +683,16 @@ echo '<div class="sess-list" style="display:none">';
 <!-- ONLINE USERS -->
 <script>
  $(document).ready(function() {
+     jQuery.ajax({
+	     url:'/php/live_online_users.php',
+	     type:'POST',
+	     data: {class_id:"<?php echo $class_id?>", username:"<?php echo $username?>", user_id:"<?php echo $get_user_id?>",course_id:"<?php echo $course_id?>", teacherId:"<?php echo $tar_id?>"},
+	     success: function(response) {
+		 $('.online-list').html(response);
+		 $('#online-num').html($('#get-online-num').text());
+		 //console.log(response);
+	     }
+     });
      setInterval(function() {
 	 //console.log("<?php echo $tar_id?>");
 	 jQuery.ajax({
@@ -687,7 +705,7 @@ echo '<div class="sess-list" style="display:none">';
 		 //console.log(response);
 	     }
 	 });
-     }, 2000);
+     }, 10000);
  });
 </script>
 
@@ -740,29 +758,44 @@ $('#file-tab').click(function() {
 
 <!-- CHATS -->
 <script>
-$('#chatInput').keypress(function(event) {
-    var keycode=(event.keyCode ? event.keyCode : event.which);
-    if(keycode == '13') {
-        var msgbody = $('#chatInput').val();
-        var msguserid = <?php echo $get_user_id ?>;
-        var msgclassid = <?php echo $class_id ?>;
-        jQuery.ajax({
-          type: 'POST',
-          url: '/php/set_class_chat.php',
-                data: {msgBody: msgbody, msgUserId: msguserid, msgClassId: msgclassid},
-          success: function(response) {
-                //alert(response);
-                $('#chatInput').val('');
-                $('#chatInput').focus();
-          }
-        });
-    }
-});
+ $('#chatInput').keypress(function(event) {
+     var keycode=(event.keyCode ? event.keyCode : event.which);
+     if(keycode == '13') {
+         var msgbody = $('#chatInput').val();
+         var msguserid = <?php echo $get_user_id ?>;
+         var msgclassid = <?php echo $class_id ?>;
+         jQuery.ajax({
+             type: 'POST',
+             url: '/php/set_class_chat.php',
+             data: {msgBody: msgbody, msgUserId: msguserid, msgClassId: msgclassid},
+             success: function(response) {
+                 //alert(response);
+                 $('#chatInput').val('');
+                 $('#chatInput').focus();
+             }
+         });
+     }
+ });
+ $('#SendIcon').click(function() {
+     var msgbody = $('#chatInput').val();
+     var msguserid = <?php echo $get_user_id ?>;
+     var msgclassid = <?php echo $class_id ?>;
+     jQuery.ajax({
+         type: 'POST',
+         url: '/php/set_class_chat.php',
+         data: {msgBody: msgbody, msgUserId: msguserid, msgClassId: msgclassid},
+         success: function(response) {
+             //alert(response);
+             $('#chatInput').val('');
+             $('#chatInput').focus();
+         }
+     });
+ });
 </script>
 <script>
 $(document).ready(function() {
-    
-    setInterval(function() {
+    // here
+      setInterval(function() {
         jQuery.ajax({
           type: "POST",
           url: "/php/get_class_chat.php",
@@ -772,43 +805,47 @@ $(document).ready(function() {
                 $("#newMsgs").load('/php/class_chat_update.php', {class_id: <?php echo $class_id ?>});
           }
         });
-        }, 1000);
+         }, 2000);
 });
 </script>
 <!-- EO CHAT -->
-<!-- 
-<script>
-$('#join-img').click(function() {
-  $('#join-btn').click();
-
-
-  $('#join-img').css({'opacity':'0.6', 'cursor':'not-allowed'});
-  $('#join-p').html('You are watching live session.');
-});
-</script>
--->
 
 <!-- FILES -->
 <script>
-$(document).ready(function() {
-    setInterval(function() {
-        $('#newFiles').load('/php/class_file_update.php', {class_id: <?php echo $class_id ?>, user_type: '<?php echo $user_type ?>'});
-	$('#filesNum').html($('#getFilesNum').text());
-    }, 1000);
-});
+ $(document).ready(function() {     
+     setInterval(function() {
+         $('#newFiles').load('/php/class_file_update.php', {class_id: <?php echo $class_id ?>, user_type: '<?php echo $user_type ?>'});
+	 $('#filesNum').html($('#getFilesNum').text());
+     }, 2000);
+ });
+
+</script>
+
+<!-- SCREEN / WHITEBOARD SHARING -->
+<script>
+ $(document).ready(function() {
+     setInterval(function() {
+	 $.ajax({
+	     url: '/php/check_screen_wb.php',
+	     type: 'POST',
+	     data: {classId: '<?php echo $class_id ?>'},
+	     dataType: 'json',
+	     success: function(response) {
+		 console.log(response);
+	     }
+	 });
+     }, 2000);
+ });
 </script>
 <!-- FILE UPLOAD -->
 <script>
-$(function() {
-$('#fileForm').ajaxForm(function(response) {
-  //console.log('file is uploaded');
-  $('#fileToUpload').val('');
-  $('#uploadMsg').show();
-  setTimeout(function() {
-    $('#uploadMsg').hide();
-  }, 5000);
-});
-});
+ $(function() {
+     $('#fileForm').ajaxForm(function(response) {
+	 //console.log('file is uploaded');
+	 $('#fileToUpload').val('');
+	 $('#filename-b4-upload').html('Choose File');
+     });
+ });
 </script>
 
 <script>
@@ -830,13 +867,26 @@ $('#fileForm').ajaxForm(function(response) {
 	 console.log('video stream stopped');
 	 $('.ins-vid-cnt #video-broadcast').remove();
 
+	 $('body').prepend('<div style="height:100%;width:100%;display:flex;align-items:center;justify-content:center;position:fixed;background-color:black;opacity:0.3;cursor:auto;z-index:2;" id="loading"><img src="/images/background/loading.gif" style="z-index:3"></div>');
+
 	 window.location.reload();
-	 
-	 /*
-	    $('#audio-b-toggle').prop('disabled',false);
-	    $('#audio-b-toggle').css('opacity','1');
-	  */
-     }
+
+/*
+	 $('#socketio').remove();
+	 $('#detectrtc').remove();
+	 $('#adapter').remove();
+	 $('#iceServersHandler').remove();
+	 $('#codecsHandlers').remove();
+	 $('#RtcPeerConnection').remove();
+	 $('#broadcast').remove();
+
+	 $('head').append('<script src="../DetectRTC/DetectRTC.js" id="detectrtc" ><\/script><script src="../js/socket.io.js" id="socketio"> <\/script><script src="../js/adapter-latest.js" id="adapter" ><\/script><script src="/js/webrtc/IceServersHandler.js" id="iceServersHandler"><\/script><script src="../js/CodecsHandler.js" id="codecsHandlers"><\/script><script src="../RTCPeerConnection/RTCPeerConnection-v1.5.js" id="RtcPeerConnection"><\/script><script src="../webrtc-broadcasting/broadcast.js" id="broadcast"> <\/script>');
+
+	 loadWebrtc();
+*/
+    }
+	
+
  });
 
  $('#audio-b-toggle').change(function() {
@@ -856,6 +906,8 @@ $('#fileForm').ajaxForm(function(response) {
 	 });
 
 	 $('.ins-vid-cnt #video-broadcast').remove();
+
+	 $('body').prepend('<div style="height:100%;width:100%;display:flex;align-items:center;justify-content:center;position:fixed;background-color:black;opacity:0.3;cursor:auto;z-index:2;" id="loading"><img src="/images/background/loading.gif" style="z-index:3"></div>');
 
 	 window.location.reload();
 	 
@@ -889,7 +941,7 @@ $('#fileForm').ajaxForm(function(response) {
 		     window.location.replace('/userpgs/instructor/course_management/course.php?course_id=<?php echo $course_id ?>');
 		 } else {
 		     alert('Failed to reject the session. Please try again.');
-		 }
+     }
 		 
 	     }
 	 });
@@ -901,9 +953,33 @@ $('#fileForm').ajaxForm(function(response) {
 
 <!-- STUDENT ADD BOXES -->
 <script>
-$('#student-screen').click(function() {
-  $('#live-screen').submit();
-});
+ $('#student-screen').click(function() {
+     $('#live-screen').submit();
+ });
+</script>
+
+<script>
+ $('#file-btn').click(function() {
+     $('#fileToUpload').click();
+     
+     //$('#filename-b4-upload').html('');
+ });
+ $('#fileToUpload').change(function() {
+     var fileFullPath = $('#fileToUpload').val();
+     //console.log(fileFullPath);
+     if(fileFullPath) {
+	 var startIndex = (fileFullPath.indexOf('\\') >= 0 ? fileFullPath.lastIndexOf('\\') : fileFullPath.lastIndexOf('/'));
+	 var filename = fileFullPath.substring(startIndex);
+	 if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
+             filename = filename.substring(1);
+	 }
+	 //console.log(filename);
+	 $('#filename-b4-upload').html(filename);
+     } else {
+	 $('#filename-b4-upload').html('File is ready to upload');
+	 //console.log('File is ready to upload');
+     }
+ });
 </script>
 
 </body>
