@@ -2,7 +2,7 @@
 
 session_start();
 require('../../../../../register/connect.php');
-
+require_once($_SERVER['DOCUMENT_ROOT'].'/php/conn/fxinstructor.php');
 if(isset($_SESSION['username'])) {
     $username = $_SESSION['username'];
 } else {
@@ -66,279 +66,312 @@ if($user_type=='instructor') {
 //require('../../php/notify_students.php');
 
 //require('../../../../../php/get_class_chat.php');
+
+
 ?>
 
 <!DOCTYPE html>
 <html>
-<head>
-<title>Live Screen fxUniversity</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/styles.css">
-    <link rel="stylesheet" href="/css/icons.css">
-    <link rel="stylesheet" href="/css/logo.css">
+    <head>
+	<title>Live Screen fxUniversity</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/css/styles.css">
+	<link rel="stylesheet" href="/css/icons.css">
+	<link rel="stylesheet" href="/css/logo.css">
 
-    <script src="../../js/socket.io.js"> </script>
-    <script src="../../DetectRTC/DetectRTC.js"></script>
-    <script src="../../js/adapter-latest.js"></script>
-    <script src="../../js/CodecsHandler.js"></script>
-    <script src="/js/webrtc/BandwidthHandler.js"></script>
-    <script src="/js/webrtc/IceServersHandler.js"></script>
-    <script src="../../Pluginfree-Screen-Sharing/conference.js"></script>
+	<script src="/js/jquery-3.4.1.min.js"></script>
 
-    <!--
-    <script src="https://www.webrtc-experiment.com/socket.io.js"> </script>
-        <script src="https://www.webrtc-experiment.com/DetectRTC.js"></script>
-        <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
-        <script src="https://www.webrtc-experiment.com/CodecsHandler.js"></script>
-        <script src="https://www.webrtc-experiment.com/BandwidthHandler.js"></script>
-        <script src="https://www.webrtc-experiment.com/IceServersHandler.js"></script>
-        <script src="https://www.webrtc-experiment.com/Pluginfree-Screen-Sharing/conference.js"> </script>
-	-->
+	<script src="../../js/socket.io.js"> </script>
+	<script src="../../DetectRTC/DetectRTC.js"></script>
+	<script src="../../js/adapter-latest.js"></script>
+	<script src="../../js/CodecsHandler.js"></script>
+	<script src="/js/webrtc/BandwidthHandler.js"></script>
+	<script src="/js/webrtc/IceServersHandler.js"></script>
+	<script src="../../Pluginfree-Screen-Sharing/conference.js"></script>
+
+    </head>
+    <body>
 	
+	<article style="padding:20px;background:white;border: 1px solid black;margin:20px;">
 
-    <script src="/js/jquery-3.4.1.min.js"></script>
-</head>
-<body>
+	    <h2 style="text-align:center"><?php echo $header?></h2>
+	    <h3 style="text-align:center">fxUniversity Live Screen Sharing</h3>
 
-<article style="padding:20px;background:white;border: 1px solid black;margin:20px;">
-
-<h2 style="text-align:center"><?php echo $header?></h2>
-<h3 style="text-align:center">fxUniversity Live Screen Sharing</h3>
-
-<section class="experiment" style="flex-flow:column">
+	    <section class="experiment" style="flex-flow:column">
                 <section class="hide-after-join" style="text-align: center;">                    
                     <input type="text" id="room-name" placeholder="Enter " style="width: 80%; text-align: center; display: none;">
                     <?php if($user_type=='instructor') echo '<button id="share-screen" style="background-color:transparent" class="submit-btn">Start Screen Sharing</button>'; else echo '<p id="share-screen-p">Instructor\'s screen will appear here.</p>';
 		    //echo '<button id="share-screen" style="background-color:transparent" class="submit-btn">Start Screen Sharing</button>';?>
                 </section>
 
-<!--<p>Watching: <span id="online-num">0</span></p>-->
-
+		<!--<p>Watching: <span id="online-num">0</span></p>-->
 
                 <!-- local/remote videos container -->
                 <div class="video-holder" style="display: flex;align-content: center;justify-content: center;"><div id="videos-container" style="width:60%"></div></div>
 
                 <section id="unique-token" style="display: none; text-align: center; padding: 20px;"></section>
             </section>
+	    
+	</article>
+	
+	 
 
-</article>
+	<script>
+	 var config = {
+             openSocket: function(config) {
+                 var SIGNALING_SERVER = 'https://socketio-over-nodejs2.herokuapp.com:443/';
 
+                 //config.channel = config.channel || location.href.replace(/\/|:|#|%|\.|\[|\]/g, '');
 
+		 config.channel = config.channel || 'fxuniversityscreen<?php echo $class_id?>';
 
-<script>
-                var config = {
-                    openSocket: function(config) {
-                        var SIGNALING_SERVER = 'https://socketio-over-nodejs2.herokuapp.com:443/';
+		 console.log(config.channel);
+                 var sender = Math.round(Math.random() * 999999999) + 999999999;
 
-                        //config.channel = config.channel || location.href.replace(/\/|:|#|%|\.|\[|\]/g, '');
+                 io.connect(SIGNALING_SERVER).emit('new-channel', {
+                     channel: config.channel,
+                     sender: sender
+                 });
 
-			config.channel = config.channel || 'fxuniversityscreen<?php echo $class_id?>';
+                 var socket = io.connect(SIGNALING_SERVER + config.channel);
+                 socket.channel = config.channel;
+                 socket.on('connect', function () {
+                     if (config.callback) config.callback(socket);
+                 });
 
-										 console.log(config.channel);
-                        var sender = Math.round(Math.random() * 999999999) + 999999999;
+                 socket.send = function (message) {
+                     socket.emit('message', {
+                         sender: sender,
+                         data: message
+                     });
+                 };
 
-                        io.connect(SIGNALING_SERVER).emit('new-channel', {
-                            channel: config.channel,
-                            sender: sender
-                        });
+                 socket.on('message', config.onmessage);
+             },
+             onRemoteStream: function(media) {
+                 if(isbroadcaster) return;
 
-                        var socket = io.connect(SIGNALING_SERVER + config.channel);
-                        socket.channel = config.channel;
-                        socket.on('connect', function () {
-                            if (config.callback) config.callback(socket);
-                        });
+                 var video = media.video;
+                 videosContainer.insertBefore(video, videosContainer.firstChild);
+                 rotateVideo(video);
 
-                        socket.send = function (message) {
-                            socket.emit('message', {
-                                sender: sender,
-                                data: message
-                            });
-                        };
+                 document.querySelector('.hide-after-join').style.display = 'none';
+             },
+             onRoomFound: function(room) {
+                 if(isbroadcaster) return;
 
-                        socket.on('message', config.onmessage);
-                    },
-                    onRemoteStream: function(media) {
-                        if(isbroadcaster) return;
+                 conferenceUI.joinRoom({
+                     roomToken: room.roomToken,
+                     joinUser: room.broadcaster
+                 });
 
-                        var video = media.video;
-                        videosContainer.insertBefore(video, videosContainer.firstChild);
-                        rotateVideo(video);
+                 
+             },
+             onNewParticipant: function(numberOfParticipants) {
+                 var text = numberOfParticipants + ' users are viewing your screen!';
+                 
+                 if(numberOfParticipants <= 0) {
+                     text = 'No one is viewing your screen YET.';
+                 }
+                 else if(numberOfParticipants == 1) {
+                     text = 'Only one user is viewing your screen!';
+                 }
 
-                        document.querySelector('.hide-after-join').style.display = 'none';
-                    },
-                    onRoomFound: function(room) {
-                        if(isbroadcaster) return;
+                 document.title = text;
+                 showErrorMessage(document.title, 'green');
+             },
+             oniceconnectionstatechange: function(state) {
+                 var text = '';
 
-                        conferenceUI.joinRoom({
-                            roomToken: room.roomToken,
-                            joinUser: room.broadcaster
-                        });
+                 if(state == 'closed' || state == 'disconnected') {
+                     text = 'One of the participants just left.';
+                     document.title = text;
+                     showErrorMessage(document.title);
+                 }
 
-                        
-                    },
-                    onNewParticipant: function(numberOfParticipants) {
-                        var text = numberOfParticipants + ' users are viewing your screen!';
-                        
-                        if(numberOfParticipants <= 0) {
-                            text = 'No one is viewing your screen YET.';
-                        }
-                        else if(numberOfParticipants == 1) {
-                            text = 'Only one user is viewing your screen!';
-                        }
+                 if(state == 'failed') {
+                     text = 'Failed to bypass Firewall rules. It seems that target user did not receive your screen. Please ask him reload the page and try again.';
+                     document.title = text;
+                     showErrorMessage(document.title);
+                 }
 
-                        document.title = text;
-                        showErrorMessage(document.title, 'green');
-                    },
-                    oniceconnectionstatechange: function(state) {
-                        var text = '';
+                 if(state == 'connected' || state == 'completed') {
+                     text = 'A user successfully received your screen.';
+                     //document.title = text;
+                     //showErrorMessage(document.title, 'green');
+		     //$('#online-num').text(text);
+                 }
 
-                        if(state == 'closed' || state == 'disconnected') {
-                            text = 'One of the participants just left.';
-                            document.title = text;
-                            showErrorMessage(document.title);
-                        }
+                 if(state == 'new' || state == 'checking') {
+                     text = 'Someone is trying to join you.';
+                     //document.title = text;
+                     //showErrorMessage(document.title, 'green');
+                 }
+             }
+         };
 
-                        if(state == 'failed') {
-                            text = 'Failed to bypass Firewall rules. It seems that target user did not receive your screen. Please ask him reload the page and try again.';
-                            document.title = text;
-                            showErrorMessage(document.title);
-                        }
+         function showErrorMessage(error, color) {
+             var errorMessage = document.querySelector('#logs-message');
+             errorMessage.style.color = color || 'red';
+             errorMessage.innerHTML = error;
+             errorMessage.style.display = 'block';
+         }
 
-                        if(state == 'connected' || state == 'completed') {
-                            text = 'A user successfully received your screen.';
-                            //document.title = text;
-                            //showErrorMessage(document.title, 'green');
-			    //$('#online-num').text(text);
-                        }
+         function getDisplayMediaError(error) {
+             if (location.protocol === 'http:') {
+                 showErrorMessage('Please test this WebRTC experiment on HTTPS.');
+             } else {
+                 showErrorMessage(error.toString());
+             }
+         }
 
-                        if(state == 'new' || state == 'checking') {
-                            text = 'Someone is trying to join you.';
-                            //document.title = text;
-                            //showErrorMessage(document.title, 'green');
-                        }
-                    }
-                };
+         function captureUserMedia(callback) {
+             var video = document.createElement('video');
+             video.muted = true;
+             video.volume = 0;
+             try {
+                 video.setAttributeNode(document.createAttribute('autoplay'));
+                 video.setAttributeNode(document.createAttribute('playsinline'));
+                 video.setAttributeNode(document.createAttribute('controls'));
+             } catch (e) {
+                 video.setAttribute('autoplay', true);
+                 video.setAttribute('playsinline', true);
+                 video.setAttribute('controls', true);
+             }
 
-                function showErrorMessage(error, color) {
-                    var errorMessage = document.querySelector('#logs-message');
-                    errorMessage.style.color = color || 'red';
-                    errorMessage.innerHTML = error;
-                    errorMessage.style.display = 'block';
-                }
+             if(navigator.getDisplayMedia || navigator.mediaDevices.getDisplayMedia) {
+                 function onGettingSteam(stream) {
+                     video.srcObject = stream;
+                     videosContainer.insertBefore(video, videosContainer.firstChild);
 
-                function getDisplayMediaError(error) {
-                    if (location.protocol === 'http:') {
-                        showErrorMessage('Please test this WebRTC experiment on HTTPS.');
-                    } else {
-                        showErrorMessage(error.toString());
-                    }
-                }
+                     addStreamStopListener(stream, function() {
+                         location.reload();
+                     });
 
-                function captureUserMedia(callback) {
-                    var video = document.createElement('video');
-                    video.muted = true;
-                    video.volume = 0;
-                    try {
-                        video.setAttributeNode(document.createAttribute('autoplay'));
-                        video.setAttributeNode(document.createAttribute('playsinline'));
-                        video.setAttributeNode(document.createAttribute('controls'));
-                    } catch (e) {
-                        video.setAttribute('autoplay', true);
-                        video.setAttribute('playsinline', true);
-                        video.setAttribute('controls', true);
-                    }
+                     config.attachStream = stream;
+                     callback && callback();
+                     rotateVideo(video);
 
-                    if(navigator.getDisplayMedia || navigator.mediaDevices.getDisplayMedia) {
-                        function onGettingSteam(stream) {
-                            video.srcObject = stream;
-                            videosContainer.insertBefore(video, videosContainer.firstChild);
+                     addStreamStopListener(stream, function() {
+                         location.reload();
+                     });
 
-                            addStreamStopListener(stream, function() {
-                                location.reload();
-                            });
+                     showPrivateLink();
 
-                            config.attachStream = stream;
-                            callback && callback();
-                            rotateVideo(video);
+                     document.querySelector('.hide-after-join').style.display = 'none';
+                 }
 
-                            addStreamStopListener(stream, function() {
-                                location.reload();
-                            });
+                 if(navigator.mediaDevices.getDisplayMedia) {
+                     navigator.mediaDevices.getDisplayMedia({video: true}).then(stream => {
+                         onGettingSteam(stream);
+                     }, getDisplayMediaError).catch(getDisplayMediaError);
+                 }
+                 else if(navigator.getDisplayMedia) {
+                     navigator.getDisplayMedia({video: true}).then(stream => {
+                         onGettingSteam(stream);
+                     }, getDisplayMediaError).catch(getDisplayMediaError);
+                 }
+             }
+             else {
+                 if (DetectRTC.browser.name === 'Chrome') {
+                     if (DetectRTC.browser.version == 71) {
+                         showErrorMessage('Please enable "Experimental WebPlatform" flag via chrome://flags.');
+                     } else if (DetectRTC.browser.version < 71) {
+                         showErrorMessage('Please upgrade your Chrome browser.');
+                     } else {
+                         showErrorMessage('Please make sure that you are not using Chrome on iOS.');
+                     }
+                 }
 
-                            showPrivateLink();
+                 if (DetectRTC.browser.name === 'Firefox') {
+                     showErrorMessage('Please upgrade your Firefox browser.');
+                 }
 
-                            document.querySelector('.hide-after-join').style.display = 'none';
-                        }
+                 if (DetectRTC.browser.name === 'Edge') {
+                     showErrorMessage('Please upgrade your Edge browser.');
+                 }
 
-                        if(navigator.mediaDevices.getDisplayMedia) {
-                            navigator.mediaDevices.getDisplayMedia({video: true}).then(stream => {
-                                onGettingSteam(stream);
-                            }, getDisplayMediaError).catch(getDisplayMediaError);
-                        }
-                        else if(navigator.getDisplayMedia) {
-                            navigator.getDisplayMedia({video: true}).then(stream => {
-                                onGettingSteam(stream);
-                            }, getDisplayMediaError).catch(getDisplayMediaError);
-                        }
-                    }
-                    else {
-                        if (DetectRTC.browser.name === 'Chrome') {
-                            if (DetectRTC.browser.version == 71) {
-                                showErrorMessage('Please enable "Experimental WebPlatform" flag via chrome://flags.');
-                            } else if (DetectRTC.browser.version < 71) {
-                                showErrorMessage('Please upgrade your Chrome browser.');
-                            } else {
-                                showErrorMessage('Please make sure that you are not using Chrome on iOS.');
-                            }
-                        }
+                 if (DetectRTC.browser.name === 'Safari') {
+                     showErrorMessage('Safari does NOT supports getDisplayMedia API yet.');
+                 }
+             }
+         }
 
-                        if (DetectRTC.browser.name === 'Firefox') {
-                            showErrorMessage('Please upgrade your Firefox browser.');
-                        }
+         /* on page load: get public rooms */
+         var conferenceUI = conference(config);
 
-                        if (DetectRTC.browser.name === 'Edge') {
-                            showErrorMessage('Please upgrade your Edge browser.');
-                        }
+         /* UI specific */
+         var videosContainer = document.getElementById("videos-container") || document.body;
 
-                        if (DetectRTC.browser.name === 'Safari') {
-                            showErrorMessage('Safari does NOT supports getDisplayMedia API yet.');
-                        }
-                    }
-                }
+         document.getElementById('share-screen').onclick = function() {
+             var roomName = document.getElementById('room-name') || { };
+             roomName.disabled = true;
+             captureUserMedia(function() {
+                 conferenceUI.createRoom({
+                     roomName: (roomName.value || 'Anonymous') + ' shared his screen with you'
+                 });
+             });
+             this.disabled = true;
+         };
 
-                /* on page load: get public rooms */
-                var conferenceUI = conference(config);
+         function rotateVideo(video) {
+             video.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(0deg)';
+             setTimeout(function() {
+                 video.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(360deg)';
+             }, 1000);
+         }
 
-                /* UI specific */
-                var videosContainer = document.getElementById("videos-container") || document.body;
+         function showPrivateLink() {
+             var uniqueToken = document.getElementById('unique-token');
+             uniqueToken.innerHTML = '<a href="' + location.href + '" target="_blank">Copy & Share This Private Room Link</a>';
+             //uniqueToken.style.display = 'block';
+         }
 
-                document.getElementById('share-screen').onclick = function() {
-                    var roomName = document.getElementById('room-name') || { };
-                    roomName.disabled = true;
-                    captureUserMedia(function() {
-                        conferenceUI.createRoom({
-                            roomName: (roomName.value || 'Anonymous') + ' shared his screen with you'
-                        });
-                    });
-                    this.disabled = true;
-                };
+        </script>
 
-                function rotateVideo(video) {
-                    video.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(0deg)';
-                    setTimeout(function() {
-                        video.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(360deg)';
-                    }, 1000);
-                }
+	<?php if($user_type=='instructor') { ?>
+	<script>
+	 $.ajax({
+	     url: '/php/set_screen_db_on.php',
+	     type: 'POST',
+	     data: {classId: '<?php echo $class_id ?>'},
+	     success: function(response) {
+		 //console.log(response);
+	     }
+	 });
+	 
+	</script>
 
-                function showPrivateLink() {
-                    var uniqueToken = document.getElementById('unique-token');
-                    uniqueToken.innerHTML = '<a href="' + location.href + '" target="_blank">Copy & Share This Private Room Link</a>';
-                    //uniqueToken.style.display = 'block';
-                }
+	<script>
+	 //window.addEventListener('beforeunload', function(event) {
+	 window.addEventListener('unload', function(event) {
+	     jQuery.ajax({
+		 url: '/php/set_screen_db_off.php',
+		 type: 'POST',
+		 data: {classId: '<?php echo $class_id ?>'},
+		 success: function(response) {
+		     //console.log(response);
+		     return response;
+		 }
+	     });
+	 });
+	</script>
 
-            </script>
+	<script>
+	 window.addEventListener('beforeunload', function(event) {
+	     jQuery.ajax({
+		 url: '/php/set_screen_db_off.php',
+		 type: 'POST',
+		 data: {classId: '<?php echo $class_id ?>'},
+		 success: function(response) {
+		     //console.log(response);
+		     return response;
+		 }
+	     });
+	 });
+	</script>
+	<?php } ?>
 
-
-</body>
+    </body>
 </html>
