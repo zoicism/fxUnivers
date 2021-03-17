@@ -27,7 +27,9 @@ if(isset($_POST['courseId'])) {
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0, user-scalable=no">
 
-	<title>Whiteboard</title>
+	<script src="/js/jquery-3.4.1.min.js"></script>
+
+	<title>fxUniversity</title>
     
 
 	<meta name="author" content="neo">
@@ -669,6 +671,50 @@ connection.onstreamended = function() {
     video.style.display = 'none';
 };
 </script>
+
+<?php if($user_type=='instructor') { ?>
+<script>
+ $.ajax({
+     url: '/php/set_wb_db_on.php',
+     type: 'POST',
+     data: {classId: '<?php echo $class_id ?>'},
+     success: function(response) {
+	 console.log(response);
+     }
+ });
+ 
+</script>
+
+<script>
+ //window.addEventListener('beforeunload', function(event) {
+ window.addEventListener('unload', function(event) {
+     jQuery.ajax({
+	 url: '/php/set_wb_db_off.php',
+	 type: 'POST',
+	 data: {classId: '<?php echo $class_id ?>'},
+	 success: function(response) {
+	     //console.log(response);
+	     return response;
+	 }
+     });
+ });
+</script>
+
+<script>
+ window.addEventListener('beforeunload', function(event) {
+     jQuery.ajax({
+	 url: '/php/set_wb_db_off.php',
+	 type: 'POST',
+	 data: {classId: '<?php echo $class_id ?>'},
+	 success: function(response) {
+	     //console.log(response);
+	     return response;
+	 }
+     });
+ });
+</script>
+<?php } ?>
+
 
 <script src="common.js" async></script>
 </body>
