@@ -85,7 +85,8 @@ require('../php/notify_students.php');
     <script src="/js/jquery.form.js"></script>
 
     <script src="../DetectRTC/DetectRTC.js" id="detectrtc" ></script>
-    <script src="../js/socket.io.js" id="socketio"> </script>
+    <!--<script src="../js/socket.io.js" id="socketio"> </script>-->
+    <script src="https://www.webrtc-experiment.com/socket.io.js"> </script>
     <script src="../js/adapter-latest.js" id="adapter" ></script>
     <script src="/js/webrtc/IceServersHandler.js" id="iceServersHandler"></script>
     <script src="../js/CodecsHandler.js" id="codecsHandlers"></script>
@@ -175,7 +176,6 @@ require('../php/notify_students.php');
 
 	      
 
-<?php echo '<form action="/userpgs/instructor/class/live/screen/#'.$class_id.'" method="POST" id="live-screen" target="_blank" style="display:none"><input type="hidden" name="course_id" value="'.$course_id.'"><input type="hidden" name="class_id" value="'.$class_id.'"><input type="submit" value="sub"></form>'; ?>
 
 
 	  <!-- VIDEO -->
@@ -943,7 +943,8 @@ $(document).ready(function() {
  });
 
  $('#screen-b').click(function() {
-     $('#live-screen').submit();
+     //$('#live-screen').submit();
+     window.open('screen/?class_id=<?php echo $class_id?>');
  });
  
  $('#record-btn').click(function() {
@@ -979,7 +980,8 @@ $(document).ready(function() {
 <script>
  $('#student-screen').click(function() {
      if($('#student-screen').css('opacity')==1) {
-	 $('#live-screen').submit();
+       //$('#live-screen').submit();
+       window.open('screen/?roomid=<?php echo $class_id?>');
      } else {
 	 alert("Screen is not shared.");
      }
