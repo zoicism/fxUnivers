@@ -1231,11 +1231,12 @@ textarea:focus {
     margin: 0 auto;
 }
 
-.add-box .blinking {
+.blinking {
     animation-name: blinking;
     animation-duration: 0.5s;
-    animation-iteration-count: 5;
+    animation-iteration-count: 9;
     animation-direction: alternate;
+    border:1px solid #00a1e0;
 }
 
 .relative-main-content .course-management-con {
