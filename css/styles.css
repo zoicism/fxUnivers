@@ -1233,6 +1233,21 @@ textarea:focus {
     border-radius: 100px;
 }
 
+.options .add-box-con #reject-classroom {
+    color: #d41f1f;
+    fill: #d41f1f;
+}
+
+.options .add-box-con #reject-classroom {
+    color: #d41f1f;
+    fill: #d41f1f;
+}
+
+.options .add-box-con #save-classroom {
+    color: #0093d1;
+    fill: #0093d1;
+}
+
 .add-box-con .add-box:hover {
     background-color: #e0e0e0;
 }
