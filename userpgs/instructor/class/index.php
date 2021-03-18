@@ -334,9 +334,9 @@ echo '<div class="sess-list">';
         while($class_fs=$gcf_result->fetch_assoc()) {
 	
             if($user_type=='instructor') {
-                echo '<p><a href="dl_file.php?file=' . urlencode($class_fs['fileName']) . '">' . $class_fs['fileName'] . '</a> <a href="del_file.php?file_name='.$class_fs['fileName'].'&course_id='.$course_id.'&class_id='.$class_id.'" style="color:red">[delete]</a></p>';
+                echo '<p><a href="dl_file.php?file=' . urlencode($class_fs['fileName']) . '">' . substr($class_fs['fileName'],11) . '</a> <a href="del_file.php?file_name='.$class_fs['fileName'].'&course_id='.$course_id.'&class_id='.$class_id.'" style="color:red">[delete]</a></p>';
             } else {
-                echo '<p><a href="dl_file.php?file=' . urlencode($class_fs['fileName']) . '">' . $class_fs['fileName'] . '</a></p>';
+                echo '<p><a href="dl_file.php?file=' . urlencode($class_fs['fileName']) . '">' . substr($class_fs['fileName'],11) . '</a></p>';
             }
         }
     } else {

@@ -7,7 +7,7 @@ if(isset($_REQUEST["file"])) {
 
     $file=mysqli_real_escape_string($connection,$file);
 
-    $filepath="files/".$file;
+    $filepath="../uploads/".$file;
 
     // download process
     if(file_exists($filepath)) {

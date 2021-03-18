@@ -1,8 +1,8 @@
 <?php 
-require('conn/fxinstructor.php');
+require_once('conn/fxinstructor.php');
 if(isset($_POST['class_id'])) $class_id=$_POST['class_id'];
 if(isset($_POST['user_type'])) $user_type=$_POST['user_type'];
-$select_files_q="SELECT * FROM live_files WHERE classId=$class_id";
+$select_files_q="SELECT * FROM class_files WHERE classId=$class_id";
 $select_file_r=mysqli_query($fxinstructor_connection,$select_files_q);
 $select_file_count=mysqli_num_rows($select_file_r);
 echo '<div id="getFilesNum" style="display:none">'.$select_file_count.'</div>';

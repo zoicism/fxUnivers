@@ -8,11 +8,13 @@ if(isset($_POST['course_id'])) $courseid=$_POST['course_id'];
 if(isset($_FILES['uploaded_file'])) {
     $uploadOK=1;
     $path1 = "uploads/";
-    $path = $path1 . basename( $_FILES['uploaded_file']['name']);
+    $microt=round(microtime(true));
+    $path = $path1 . $microt . ' ' . basename( $_FILES['uploaded_file']['name']);
     $file_type=strtolower(pathinfo($path,PATHINFO_EXTENSION));
+    $file_name = $microt . ' ' . basename( $_FILES['uploaded_file']['name']);
     
     // rename if file already exists
-    if(file_exists($path)) {
+    /*if(file_exists($path)) {
         //$temp=explode(".",$_FILES['uploaded_file']['name']);
         //$path=round(microtime(true)) . '.' . end($temp);
         $add2temp=round(microtime(true));
@@ -20,12 +22,12 @@ if(isset($_FILES['uploaded_file'])) {
         $file_name=$add2temp . basename($_FILES['uploaded_file']['name']);
     } else {
         $file_name=basename( $_FILES['uploaded_file']['name']);
-    }
+    }*/
     
     // limit file sized
-    if($_FILES['uploaded_file']['size'] > 5000000) {
-        $uploadOK=0;
-    }
+    //if($_FILES['uploaded_file']['size'] > 5000000) {
+    //    $uploadOK=0;
+    //}
     
     // limit file type
     if($file_type!='jpg' && $file_type!='jpeg' && $file_type!='png' && $file_type!='gif' && $file_type!='ppt' && $file_type!='pptx' && $file_type!='docx' && $file_type!='doc' && $file_type!='pdf' && $file_type!='txt' && $file_type!='xps' && $file_type!='csv' && $file_type!='xls' && $file_type!='xlsx' && $file_type!='zip') $uploadOK=0;

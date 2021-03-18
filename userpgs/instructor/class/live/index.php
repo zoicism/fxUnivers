@@ -94,7 +94,7 @@ require('../php/notify_students.php');
     <script src="../webrtc-broadcasting/broadcast.js" id="broadcast"> </script>
 
 <!--
-    <script src="https://www.webrtc-experiment.com/DetectRTC.js"></script>
+        <script src="https://www.webrtc-experiment.com/DetectRTC.js"></script>
 
         <script src="https://www.webrtc-experiment.com/socket.io.js"> </script>
         <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
@@ -417,6 +417,7 @@ echo '<div class="sess-list" style="display:none">';
     <form method="POST" id="fileForm" enctype="multipart/form-data" action="/php/upload_class_file.php">
     
     <input name="classId" type="hidden" value="<?php echo $class_id?>">
+    <input name="instId" type="hidden" value="<?php echo $tar_id ?>">
     
     <input type="file" name="class_file" id="fileToUpload" style="display:none">
     <div class="uploadfile-con">
