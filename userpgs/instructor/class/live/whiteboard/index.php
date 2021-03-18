@@ -31,6 +31,7 @@ if(isset($_POST['courseId'])) {
     
 
 	<meta name="author" content="neo">
+<script src="/js/jquery-3.4.1.min.js"></script>
 </head>
 <body>
 <script src="canvas-designer-widget.js"></script>
@@ -670,6 +671,47 @@ connection.onstreamended = function() {
 };
 </script>
 
-<script src="common.js" async></script>
+<?php if($user_type=='instructor') { ?>
+      <script>
+      $.ajax({
+	url: '/php/set_wb_db_on.php',
+	    type: 'POST',
+	    data: {classId: '<?php echo $class_id ?>'},
+	    success: function(response) {
+	    //console.log(response);
+	  }
+	});
+       
+      </script>
+
+	      <script>
+	  //window.addEventListener('beforeunload', function(event) {
+	  window.addEventListener('unload', function(event) {
+	      jQuery.ajax({
+		url: '/php/set_wb_db_off.php',
+		    type: 'POST',
+		    data: {classId: '<?php echo $class_id ?>'},
+		    success: function(response) {
+		    //console.log(response);
+		    return response;
+		  }
+		});
+	    });
+      </script>
+
+	      <script>
+	  window.addEventListener('beforeunload', function(event) {
+	      jQuery.ajax({
+		url: '/php/set_wb_db_off.php',
+		    type: 'POST',
+		    data: {classId: '<?php echo $class_id ?>'},
+		    success: function(response) {
+		    //console.log(response);
+		    return response;
+		  }
+		});
+	    });
+      </script>
+	  <?php } ?>
 </body>
 </html>
