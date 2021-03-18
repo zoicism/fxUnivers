@@ -660,6 +660,9 @@ textarea:focus {
 }
 
 .right-content .session-options {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
     height:auto;
     padding:20px 0;
 }
@@ -1197,6 +1200,23 @@ textarea:focus {
     justify-content: center;
 }
 */
+
+.options .video-audio-bc-con {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    width: 100%;
+}
+
+.options .video-audio-bc-con .video-audio-bc .video-audio-b-div {
+    margin-top: 0;
+}
+
+.options .video-audio-bc-con .video-audio-bc input {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 .course-content .add-box {
     font-size: 1rem;
     margin-top: 20px;
@@ -1208,6 +1228,7 @@ textarea:focus {
 }
 
 .add-box-con .add-box {
+    margin: 10px 0;
     padding: 5px 40px;
     border-radius: 100px;
 }
@@ -1220,17 +1241,22 @@ textarea:focus {
     background-color: #c0c0c0;
 }
 
+.add-box-con .remove-save-con {
+    border: 1px solid #c2c2c2;
+    border-radius: 20px;
+}
+
 .add-box svg {
     margin-right: 15px;
     cursor: pointer;
     width: 24px;
     height: 24px;
 }
-
+/*
 .options .add-box-con {
     margin: 0 auto;
 }
-
+*/
 .blinking {
     animation-name: blinking;
     animation-duration: 0.5s;
