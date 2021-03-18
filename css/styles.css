@@ -10,6 +10,11 @@ html,body {
     height:100%;
 }
 
+@-webkit-keyframes blinking{
+    0%{border: 1px solid #efefef}
+    100%{border: 1px solid #00a1e0}
+}
+
 section {
     width: 100%;
     display:flex;
@@ -1224,6 +1229,13 @@ textarea:focus {
 
 .options .add-box-con {
     margin: 0 auto;
+}
+
+.add-box .blinking {
+    animation-name: blinking;
+    animation-duration: 0.5s;
+    animation-iteration-count: 5;
+    animation-direction: alternate;
 }
 
 .relative-main-content .course-management-con {
