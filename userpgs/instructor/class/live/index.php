@@ -296,7 +296,7 @@ if($tar_user_fetch['avatar']!=NULL) {
 			      </div>';
 		    
 		    	echo '<div class="remove-save-con">';
-				echo '<div class="add-box" id="reject-classroom">
+				echo '<div class="add-box" id="save-classroom">
 					   <svg viewBox="0 0 32 32" style="height: 20px;width: 20px;margin-right: 12px;">
 					   	<rect y="30" width="32" height="2" rx="1"></rect><path d="M24.2,15.9l-6.6,7.8a2,2,0,0,1-1.6.7h0a2,2,0,0,1-1.6-.7L7.8,15.9a1.1,1.1,0,0,1,.1-1.5h0a1,1,0,0,1,1.4.2L15,21.3V1a.9.9,0,0,1,1-1h0a.9.9,0,0,1,1,1V21.3l5.7-6.7a1,1,0,0,1,1.4-.2h0A1.1,1.1,0,0,1,24.2,15.9Z"></path>
 					   </svg>
