@@ -29,7 +29,11 @@ $(document).ready(function() {
 		
 		if(notif_count>0) {
                     $('#notif-bar').show();
-                    $('#notif-bar').html(notif_count);
+		    if(notif_count > 9) {
+			$('#notif-bar').html('9+');
+		    } else {
+			$('#notif-bar').html(notif_count);
+		    }
 
 		    if(notif_timing<5) {
 			var formSubstr = notif_body.match("<form(.*)</form>");
@@ -92,7 +96,12 @@ $(document).ready(function() {
 		
 		if(msgCount>0) {
 		    $('#msg-bar').show();
-		    $('#msg-bar').html(msgCount);
+
+		    if(msgCount > 9) {
+			$('#msg-bar').html('9+');
+		    } else {
+			$('#msg-bar').html(msgCount);
+		    }
 		    
 		    if(msgTime<5) {
 
