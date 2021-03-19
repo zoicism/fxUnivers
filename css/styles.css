@@ -1486,9 +1486,8 @@ textarea:focus {
 
 .newnum {
     display:none;
-    background: red;
-    height: 15px;
-    width: 15px;
+    background-color: #d41f1f;
+    padding: 2px;
     float: right;
     border-radius: 8px;
     text-align: center;
@@ -1497,7 +1496,6 @@ textarea:focus {
     font-weight: bold;
     margin-top: -34px;
     margin-right:-9px;
-    
     position: relative;
     z-index: 2;
 }
