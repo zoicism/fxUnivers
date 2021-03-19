@@ -344,7 +344,7 @@ if($course_biddable) require_once('../../../wallet/php/wallet_connect.php');
 	  if($user_type=='instructor') {
 	      echo '<div class="options">';
 
-
+	      echo '<div class="course-addbox-con">';
 	      echo '<div class="add-box" id="live-add-box" >Start a Live Classroom</div>';
 	      echo '<div id="live-div" style="display:none"></div>';
 
