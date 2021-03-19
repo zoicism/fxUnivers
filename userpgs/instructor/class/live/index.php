@@ -65,7 +65,7 @@ if($user_type=='instructor') {
     header('Location: /userpgs/instructor/course_management/course.php?course_id='.$course_id);
 }
 
-require('../php/notify_students.php');
+//require('../php/notify_students.php');
 
 //require('../../../../php/get_class_chat.php');
 ?>
@@ -269,48 +269,58 @@ if($tar_user_fetch['avatar']!=NULL) {
 	    if($user_type=='instructor') {
 
 		echo '<div class="options session-options" style="">';
-			echo '<div class="video-audio-bc-con">';
-		    		echo '<div class="video-audio-bc">';
-					echo '<div id="video-audio-b-div" class="add-box" style="margin-top:0;"><input type="checkbox" class="toggle-btn" id="video-audio-b-toggle">Video & Audio Broadcast</div>';
-					echo '<div id="audio-b-div" class="add-box" style="margin-top:0;"><input type="checkbox" class="toggle-btn" id="audio-b-toggle">Audio-only Broadcast</div>';
-		    		echo '</div>';
-			echo '</div>';
+		echo '<div class="video-audio-bc-con">';
+		echo '<div class="video-audio-bc">';
+		echo '<div id="video-audio-b-div" class="add-box" style="margin-top:0;"><input type="checkbox" class="toggle-btn" id="video-audio-b-toggle">Video & Audio Broadcast</div>';
+		echo '<div id="audio-b-div" class="add-box" style="margin-top:0;"><input type="checkbox" class="toggle-btn" id="audio-b-toggle">Audio-only Broadcast</div>';
+		echo '</div>';
+		echo '</div>';
 		echo '<div class="add-box-con">';
-			echo '<div class="add-box" id="screen-b">
+		echo '<div class="add-box" id="screen-b">
 				   <svg viewBox="0 0 32 32" style="height: 20px;width: 20px;margin-right: 12px;">
 					<path d="M28,0H4A4,4,0,0,0,0,4V18.8a4,4,0,0,0,4,4H15V30H6.6a1.1,1.1,0,0,0-1,1,1,1,0,0,0,1,1H25.4a1,1,0,0,0,1-1,1.1,1.1,0,0,0-1-1H17V22.8H28a4,4,0,0,0,4-4V4A4,4,0,0,0,28,0Zm2,18.8a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V4A2,2,0,0,1,4,2H28a2,2,0,0,1,2,2Z"></path>
 				   </svg>
 				   Screen Broadcast
 			      </div>';
-			echo '<div class="add-box" id="live-whiteboard-box">
+		echo '<div class="add-box" id="live-whiteboard-box">
 				   <svg viewBox="0 0 32 32" style="height: 20px;width: 20px;margin-right: 12px;">
 					<path d="M28,0H4A4,4,0,0,0,0,4V18.8a4,4,0,0,0,4,4H9.6L5.7,30.5a1.2,1.2,0,0,0,.4,1.4,1.2,1.2,0,0,0,1.4-.4l4.3-8.7h8.4l4.3,8.7a1.1,1.1,0,0,0,.9.5h.4a1.1,1.1,0,0,0,.5-1.4l-3.9-7.7H28a3.9,3.9,0,0,0,2.8-1.1,4.2,4.2,0,0,0,1-1.7,4.3,4.3,0,0,0,.2-1.2V4A4,4,0,0,0,28,0Zm2,18.8a1.7,1.7,0,0,1-.6,1.4l-.3.3h0l-.3.2H3.4a1.4,1.4,0,0,1-.8-.5A1.7,1.7,0,0,1,2,18.8V4c0-.2,0-.3.1-.4A1.9,1.9,0,0,1,4,2H28a2,2,0,0,1,2,1.6V18.8Z"></path>
 				   </svg>
 				   Whiteboard Broadcast
 			      </div>';
-			echo '<div class="add-box" id="record-btn">
+		echo '<div class="add-box" id="record-btn">
 				   <svg viewBox="0 0 32 32" style="height: 20px;width: 20px;margin-right: 12px;">
 					<path d="M16,2A14,14,0,1,1,2,16,14,14,0,0,1,16,2m0-2A16,16,0,1,0,32,16,16,16,0,0,0,16,0Z"></path><path d="M16,11.9A4.1,4.1,0,1,1,11.9,16,4.1,4.1,0,0,1,16,11.9m0-2A6.1,6.1,0,1,0,22.1,16,6.1,6.1,0,0,0,16,9.9Z"></path>
 				   </svg>
 				   Record
 			      </div>';
-		    
-		    	echo '<div class="remove-save-con">';
-				echo '<div class="add-box" id="save-classroom">
+
+		echo '<div class="add-box" id="notifystu-btn">
+<svg aria-label="notification" viewBox="0 0 32 32">
+                      <path class="stroked" d="M27.6,16.9V11.6a11.6,11.6,0,0,0-23.2,0v5.3L0,24.5H8.4A7.6,7.6,0,0,0,16,32a7.5,7.5,0,0,0,7.5-7.5H32ZM16,30a5.6,5.6,0,0,1-5.6-5.5H21.5A5.5,5.5,0,0,1,16,30ZM3.5,22.5l2.6-4.6.3-.5V11.6a9.6,9.6,0,1,1,19.2,0v5.8l.3.5,2.6,4.6Z"/>
+                      <path class="filled" d="M27.6,16.9V11.6a11.6,11.6,0,0,0-23.2,0v5.3L0,24.4H8.4A7.6,7.6,0,0,0,16,32a7.5,7.5,0,0,0,7.5-7.6H32ZM16,28a3.6,3.6,0,0,1-3.6-3.6h7.1A3.5,3.5,0,0,1,16,28Z"/>
+                    </svg>
+Notify Students
+			      </div>';
+
+		
+		
+		echo '<div class="remove-save-con">';
+		echo '<div class="add-box" id="save-classroom">
 					   <svg viewBox="0 0 32 32" style="height: 20px;width: 20px;margin-right: 12px;">
 					   	<rect y="30" width="32" height="2" rx="1"></rect><path d="M24.2,15.9l-6.6,7.8a2,2,0,0,1-1.6.7h0a2,2,0,0,1-1.6-.7L7.8,15.9a1.1,1.1,0,0,1,.1-1.5h0a1,1,0,0,1,1.4.2L15,21.3V1a.9.9,0,0,1,1-1h0a.9.9,0,0,1,1,1V21.3l5.7-6.7a1,1,0,0,1,1.4-.2h0A1.1,1.1,0,0,1,24.2,15.9Z"></path>
 					   </svg>
 					   Save & Leave
 				      </div>';
-		    		echo '<div class="add-box" id="reject-classroom">
+		echo '<div class="add-box" id="reject-classroom">
 					   <svg viewBox="0 0 32 32" style="height: 20px;width: 20px;margin-right: 12px;">
 						<path d="M31,5.1H22.1V4a4,4,0,0,0-4-4H13.9a4,4,0,0,0-4,4V5.1H1a1,1,0,0,0-1,1,.9.9,0,0,0,1,1H3.3L5.7,28.5a3.9,3.9,0,0,0,4,3.5H22.3a3.9,3.9,0,0,0,4-3.5L28.7,7.1H31a.9.9,0,0,0,1-1A1,1,0,0,0,31,5.1ZM11.9,4a2,2,0,0,1,2-2h4.2a2,2,0,0,1,2,2V5.1H11.9ZM24.3,28.2a2,2,0,0,1-2,1.8H9.7a2,2,0,0,1-2-1.8L5.3,7.1H26.7Z"></path><path d="M18.8,12.2V24.9a1,1,0,0,0,1,1h0a1.1,1.1,0,0,0,1-1V12.2a1.1,1.1,0,0,0-1-1h0A1,1,0,0,0,18.8,12.2ZM12.2,25.9h0a1,1,0,0,0,1-1V12.2a1,1,0,0,0-1-1h0a1.1,1.1,0,0,0-1,1V24.9A1.1,1.1,0,0,0,12.2,25.9Z"></path>
 					   </svg>
 					   Discard
 				      </div>';
-		    	echo '</div>';
+		echo '</div>';
 
-			echo '</div>';
+		echo '</div>';
 		echo '</div>';
 	    } else {
 		echo '<!-- list of all available broadcasting rooms -->
@@ -994,6 +1004,27 @@ $('#save-classroom').click(function() {
      alert('Live Classroom is saved as a Session.');
      window.location.replace('/userpgs/instructor/class/?course_id=<?php echo $course_id ?>&class_id=<?php echo $class_id ?>');
 });
+
+ $('#notifystu-btn').click(function() {
+     $.ajax({
+	 url:'../php/notify_students.php',
+	 data: {userType: '<?php echo $user_type ?>',
+		courseId: '<?php echo $course_id ?>',
+		header: '<?php echo $header ?>',
+		classId: '<?php echo $class_id ?>',
+		getUserId: '<?php echo $get_user_id ?>'},
+	 type: 'POST',
+	 success: function(response) {
+	     if(response==1) {
+		 alert('Students are informed by email and notification.');
+	     } else {
+		 alert('Failed to notify students. Please try again.');
+	     }
+	 }
+     });
+ });
+
+
 </script>
 
 

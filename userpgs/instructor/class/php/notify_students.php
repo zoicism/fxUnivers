@@ -1,4 +1,17 @@
 <?php
+require_once($_SERVER['DOCUMENT_ROOT'].'/register/connect.php');
+
+if(isset($_POST['userType'])) {
+    $user_type = $_POST['userType'];
+    $course_id = $_POST['courseId'];
+    $header = $_POST['header'];
+    $class_id = $_POST['classId'];
+    $get_user_id = $_POST['getUserId'];
+} else {
+    echo 0;
+    exit();
+}
+
 if($user_type=='instructor') {
     $stu_q="SELECT * FROM stucourse WHERE course_id=$course_id";
     $stu_r=mysqli_query($connection,$stu_q) or die(mysqli_error($connection));
@@ -108,7 +121,10 @@ if($user_type=='instructor') {
         
         ////////////////////////////////////////////
     }
-    
+
+    echo 1;
+} else {
+    echo 0;
 }
         
 ?>
