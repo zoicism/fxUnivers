@@ -599,6 +599,15 @@ textarea:focus {
     cursor:pointer;
 }
 
+.sessions .tabs .tab-student {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 40px;
+    cursor:pointer;
+}
+
 .sessions .tabs .active-tab {
     border-bottom: 2px solid #393939;
 }
@@ -609,6 +618,10 @@ textarea:focus {
     justify-content: center;
     height: 40px;
     border-bottom: 1px solid #3333331f;
+}
+
+.sessions .sess-title h3 {
+    margin: 0;
 }
 
 
@@ -686,8 +699,9 @@ textarea:focus {
 }
 
 .session .session-prev {
-    /*width: 148px;*/
-    width:30%;
+    min-width: 148px;
+    max-width: 148px;
+    /*width:30%;*/
     height: 83px;
     display: flex;
     text-align: center;
