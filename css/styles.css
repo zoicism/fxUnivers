@@ -651,12 +651,20 @@ textarea:focus {
 .right-content .options {
     display: flex;
     flex-flow: column nowrap;
+    align-items: center;
     padding: 10px;
     border-radius: 20px;
     margin-bottom: 20px;
     height: 300px;
     justify-content: center;
     box-shadow: -4px -2px 4px 0px #ffffff, 4px 2px 6px 0px #DFE4EA;
+}
+
+.right-content .options .course-addbox-con {
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
 }
 
 .right-content .session-options {
@@ -1228,9 +1236,12 @@ textarea:focus {
 }
 
 .add-box-con .add-box {
-    margin: 10px 0;
     padding: 5px 40px;
     border-radius: 100px;
+}
+
+.add-box-con .add-box:not(:last-child) {
+    margin: 10px 0;
 }
 
 .options .add-box-con #reject-classroom {
