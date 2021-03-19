@@ -262,8 +262,8 @@ echo '<div class="little-box"><span>'.date("M jS, Y", strtotime($dt)).'</span></
 	    ?>
 
 <div class="tabs">
-<div class="tab active-tab" style="border-radius:20px 0 0 0;" id="sessions-tab"><h3>Sessions</h3></div>
-<div class="tab" style="border-radius:0 20px 0 0;" id="file-tab"><h3>Files(<?php echo $gcf_count?>)</h3></div>
+<div class="tab-student active-tab" id="sessions-tab"><div>Sessions</div></div>
+<div class="tab-student" id="file-tab"><div>Files(<?php echo $gcf_count?>)</div></div>
 </div>
 
 <?php
