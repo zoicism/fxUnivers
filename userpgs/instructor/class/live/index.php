@@ -445,7 +445,9 @@ echo '<div class="sess-list" style="display:none">';
                 <img src="/images/background/plus.svg" class="chat-icon" id="file-btn">
             </label>
         </div>
-        <div id="filename-b4-upload">Choose File</div>
+	<div class="filename-b4-upload-con">
+            <div id="filename-b4-upload">Choose File</div>
+	</div>
     </div>
     <input type="submit" value="Upload file" class="submit-btn">
     </form>
