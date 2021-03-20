@@ -515,7 +515,7 @@ if($course_biddable) require_once('../../../wallet/php/wallet_connect.php');
 	      echo '</div>';
 	  }
 
-
+	  echo '</div>';
 
 	  echo '<div class="sessions">';
 	  echo '<div class="sess-title"><h3>Sessions ('.$class_num.')</h3></div>';
@@ -605,7 +605,7 @@ if($course_biddable) require_once('../../../wallet/php/wallet_connect.php');
               echo '<p class="gray" style="text-align:center;">No sessions yet.</p>';
           }
 	  ?>
-		    </div>
+		    
 		</div>
 	    </div>     </div> 
             

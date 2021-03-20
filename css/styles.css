@@ -373,7 +373,7 @@ textarea:focus {
 
 .sessions .file-list form {
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: row nowrap;
     align-items: center;
     justify-content: space-between;
     width: 100%;
@@ -387,6 +387,13 @@ textarea:focus {
     flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center;
+    overflow:hidden;
+}
+
+.sessions .file-list form .uploadfile-con #filename-b4-upload {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .sessions .file-list form img {
@@ -429,6 +436,7 @@ textarea:focus {
 .file-list .file .file-icon-con {
     display: block;
     min-width: 24px;
+    max-width:24px;
     height: 24px;
 }
 
@@ -1242,7 +1250,7 @@ textarea:focus {
 
 .course-content .add-box {
     font-size: 1rem;
-    margin-top: 20px;
+    margin-top: 10px;
     display: flex;
     flex-flow: row nowrap;
     align-items: center;

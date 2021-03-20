@@ -340,7 +340,7 @@ echo '<div class="sess-list">';
             }
         }
     } else {
-        echo '<p style="color:gray">No files yet</p>';
+        echo '<p style="color:gray;text-align:center;">No files yet</p>';
     }
    echo '</div>';
 ?>
