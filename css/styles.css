@@ -387,10 +387,13 @@ textarea:focus {
     flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center;
-    overflow:hidden;
 }
 
-.sessions .file-list form .uploadfile-con #filename-b4-upload {
+.sessions .file-list form .uploadfile-con .filename-b4-upload-con {
+    display: grid;
+}
+
+.sessions .file-list form .uploadfile-con .filename-b4-upload-con #filename-b4-upload {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -423,6 +426,10 @@ textarea:focus {
     width: 100%;
     height: 100%;
     padding-top: 20px;
+}
+
+.sessions .file-list .uploaded-files .gray {
+    text-align: center;
 }
 
 .file-list .file {
