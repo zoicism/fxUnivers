@@ -392,6 +392,7 @@ textarea:focus {
 .sessions .file-list form img {
     width: 38px;
     margin-right: 14px;
+    margin-left: 0;
     padding: 10px;
     border-radius: 50px;
     cursor: pointer;
@@ -427,7 +428,7 @@ textarea:focus {
 
 .file-list .file .file-icon-con {
     display: block;
-    width: 24px;
+    min-width: 24px;
     height: 24px;
 }
 
