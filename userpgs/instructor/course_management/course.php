@@ -428,6 +428,7 @@ if($course_biddable) require_once('../../../wallet/php/wallet_connect.php');
 
 	      echo '</div>';
 	      echo '</div>';
+	      echo '</div>';
 	  } elseif($user_type=='student') {
 
 	      echo '<div class="options">';
@@ -515,7 +516,6 @@ if($course_biddable) require_once('../../../wallet/php/wallet_connect.php');
 	      echo '</div>';
 	  }
 
-	  echo '</div>';
 
 	  echo '<div class="sessions">';
 	  echo '<div class="sess-title"><h3>Sessions ('.$class_num.')</h3></div>';
