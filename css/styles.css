@@ -162,7 +162,10 @@ textarea:focus {
 }
 
 .submit-btn:active {
-    box-shadow: inset 5px 5px 10px #c6c6c6, inset -5px -5px 10px #ffffff;
+    box-shadow: inset -4px -2px 4px 0px #fff,
+	    	inset 4px 2px 6px 0px #dfe4ea,
+	    	-4px -2px 4px 0px #ffffff,
+	    	4px 2px 6px 0px #dfe4ea;
 }
 
 .header {
@@ -414,7 +417,7 @@ textarea:focus {
 }
 
 .sessions .file-list .submit-btn {
-    margin: 0;
+    margin: 0 0 0 14px;
     height: 38px;
 }
 
@@ -428,7 +431,7 @@ textarea:focus {
     padding-top: 20px;
 }
 
-.sessions .file-list .uploaded-files .gray {
+.sessions .file-list .gray {
     text-align: center;
 }
 
@@ -3807,12 +3810,13 @@ input:checked + .slider:before {
 }
 
 .toggle-btn:after{
-    height: 15px;
-    width: 15px;
-    box-shadow: inset -2px -2px 3px 5px #c2c2c2;
-    border: 1px solid #c2c2c2;
+    height: 10px;
+    width: 10px;
     border-radius: 50%;
     right: -27.5px;
+    background-color: #393939;
+    box-shadow: 0 0 0pt 2pt #39393961;
+    -webkit-box-shadow: 0 0 0pt 2pt #39393961;
 }
 
 .toggle-btn:checked:before{
@@ -3820,9 +3824,9 @@ input:checked + .slider:before {
 }
 
 .toggle-btn:checked:after{
-    border: 1px solid #b5dda3;
-    -webkit-box-shadow: inset -2px -2px 3px 5px #6cc841, 0px 0px 4px 1px rgb(108 200 65 / 80%);
-    box-shadow: inset -2px -2px 3px 5px #6cc841, 0px 0px 4px 1px rgb(108 200 65 / 80%);
+    box-shadow: 0 0 0pt 2pt #00a1e061;
+    -webkit-box-shadow: 0 0 0pt 2pt #00a1e061;
+    background-color: #00a1e0;
 }
 
 .blink_me {
