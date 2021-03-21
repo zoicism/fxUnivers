@@ -327,10 +327,10 @@ echo '<div class="sess-list">';
 			      }
 			      ?>
  </div>
- <div class="files-list" style="display:none">
+ <div class="file-list" style="display:none">
    <?php
     if($gcf_count>0) {
-       echo '<div style="margin:1rem 3rem">';
+       echo '<div class="uploaded-files" style="padding-top:0">';
         while($class_fs=$gcf_result->fetch_assoc()) {
 	
             if($user_type=='instructor') {
@@ -415,7 +415,7 @@ $('#file-tab').click(function() {
   $('#file-tab').addClass('active-tab');
   $('#sessions-tab').removeClass('active-tab');
 
-  $('.files-list').show();
+  $('.file-list').show();
   $('.sess-list').hide();
 });
 $('#sessions-tab').click(function() {
@@ -423,7 +423,7 @@ $('#sessions-tab').click(function() {
   $('#sessions-tab').addClass('active-tab');
 
   $('.sess-list').show();
-  $('.files-list').hide();
+  $('.file-list').hide();
 });
 </script>
 </body>
