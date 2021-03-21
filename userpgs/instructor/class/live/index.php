@@ -306,17 +306,11 @@ if($tar_user_fetch['avatar']!=NULL) {
 		
 		echo '<div class="remove-save-con">';
 		echo '<div class="add-box" id="save-classroom">
-					   <svg viewBox="0 0 32 32" style="height: 20px;width: 20px;margin-right: 12px;">
-					   	<rect y="30" width="32" height="2" rx="1"></rect><path d="M24.2,15.9l-6.6,7.8a2,2,0,0,1-1.6.7h0a2,2,0,0,1-1.6-.7L7.8,15.9a1.1,1.1,0,0,1,.1-1.5h0a1,1,0,0,1,1.4.2L15,21.3V1a.9.9,0,0,1,1-1h0a.9.9,0,0,1,1,1V21.3l5.7-6.7a1,1,0,0,1,1.4-.2h0A1.1,1.1,0,0,1,24.2,15.9Z"></path>
-					   </svg>
-					   Save & Leave
-				      </div>';
+		            Save & Leave
+		      </div>';
 		echo '<div class="add-box" id="reject-classroom">
-					   <svg viewBox="0 0 32 32" style="height: 20px;width: 20px;margin-right: 12px;">
-						<path d="M31,5.1H22.1V4a4,4,0,0,0-4-4H13.9a4,4,0,0,0-4,4V5.1H1a1,1,0,0,0-1,1,.9.9,0,0,0,1,1H3.3L5.7,28.5a3.9,3.9,0,0,0,4,3.5H22.3a3.9,3.9,0,0,0,4-3.5L28.7,7.1H31a.9.9,0,0,0,1-1A1,1,0,0,0,31,5.1ZM11.9,4a2,2,0,0,1,2-2h4.2a2,2,0,0,1,2,2V5.1H11.9ZM24.3,28.2a2,2,0,0,1-2,1.8H9.7a2,2,0,0,1-2-1.8L5.3,7.1H26.7Z"></path><path d="M18.8,12.2V24.9a1,1,0,0,0,1,1h0a1.1,1.1,0,0,0,1-1V12.2a1.1,1.1,0,0,0-1-1h0A1,1,0,0,0,18.8,12.2ZM12.2,25.9h0a1,1,0,0,0,1-1V12.2a1,1,0,0,0-1-1h0a1.1,1.1,0,0,0-1,1V24.9A1.1,1.1,0,0,0,12.2,25.9Z"></path>
-					   </svg>
-					   Discard
-				      </div>';
+		            Discard
+		      </div>';
 		echo '</div>';
 
 		echo '</div>';
