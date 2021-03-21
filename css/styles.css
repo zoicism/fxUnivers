@@ -1280,13 +1280,21 @@ textarea:focus {
 }
 
 .options .add-box-con #reject-classroom {
-    color: #d41f1f;
-    fill: #d41f1f;
+    color: #efefef;
+    fill: #efefef;
+    background-color: #393939;
+    font-weight: normal;
+    display: flex;
+    justify-content: center;
 }
 
 .options .add-box-con #save-classroom {
-    color: #0093d1;
-    fill: #0093d1;
+    color: #efefef;
+    fill: #efefef;
+    background-color: #0093d1;
+    font-weight: normal;
+    display: flex;
+    justify-content: center;
 }
 
 .add-box-con .add-box:hover {
@@ -1297,10 +1305,9 @@ textarea:focus {
     background-color: #c0c0c0;
 }
 
-.add-box-con .remove-save-con {
-    border: 1px solid #c2c2c2;
-    border-radius: 20px;
-}
+/*dd-box-con .remove-save-con {
+    
+}*/
 
 .add-box svg {
     margin-right: 15px;
