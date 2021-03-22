@@ -738,6 +738,15 @@ textarea:focus {
     margin: 5px 0 5px 10px;
 }
 
+.session .session-desc .gray-bg {
+    display: inline-block;
+    text-align: center;
+    color: #393939;
+    padding: 0 2px;
+    border-radius: 3px;
+    background-color: #d2d3d4;
+}
+
 .session .session-mng {
     width:10%;
     background-color:#0003;
