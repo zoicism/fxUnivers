@@ -564,11 +564,11 @@ if($course_biddable) require_once('../../../wallet/php/wallet_connect.php');
 
 		  if((time()-strtotime($instructor['lastseen']) < 15) && ($instructor['lsPage']=='live/#'.$row['id'])) {
 		      
-		      echo '<p><strong><span class="gray-bg" style="color:white;padding:2px 5px;">'.$session_counter.'</span> '.$row['title'].'</strong> <img src="/images/background/live6.png" style="width:32px" class="blink_me"></p>';
+		      echo '<p><strong><span class="gray-bg">'.$session_counter.'</span> '.$row['title'].'</strong> <img src="/images/background/live6.png" style="width:32px" class="blink_me"></p>';
 		      $liveExists=1;
 		      $liveSession=$row['id'];
 		  } else {
-                      echo '<p><strong><span class="gray-bg" style="color:white;padding:2px 5px;">'.$session_counter.'</span> '.$row['title'].'</strong></p>'.$row['lastseen'];
+                      echo '<p><strong><span class="gray-bg">'.$session_counter.'</span> '.$row['title'].'</strong></p>'.$row['lastseen'];
 		  }
                   if($row['body']=='') {
                       $descrip='<span class="gray">(No description)</span>';
