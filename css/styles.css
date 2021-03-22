@@ -653,14 +653,14 @@ textarea:focus {
 }
 
 .right-content .session:active {
-    background-color: #2c2c2c;
+    background-color: #000E14;
     transition: 0.3s;
     fill: #ffffff;
     color: #fff;
 }
 
 .sessions .sess-list #active {
-    background-color: #2c2c2c;
+    background-color: #000E14;
     transition: 0.3s;
     fill: #ffffff ;
     color: #fff;
@@ -720,24 +720,22 @@ textarea:focus {
 .session .session-prev {
     min-width: 148px;
     max-width: 148px;
-    /*width:30%;*/
     height: 83px;
     display: flex;
-    text-align: center;
-    background-color: #0003;
+    background-color: #000e141f;
     border-radius: 10px;
 }
 
 .session-prev img {
     height: 3.2em;
     margin: auto;
-    opacity: 0.4;
 }
 
 .session .session-desc {
-    margin-left:10px;
-    /*width:70%;*/
-    width:60%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    margin: 5px 0 5px 10px;
 }
 
 .session .session-mng {
@@ -761,6 +759,7 @@ textarea:focus {
     text-overflow: ellipsis;
     white-space: normal;
     -webkit-line-clamp: 2;
+    margin: 0;
 }
 
 .course-upperleft {
