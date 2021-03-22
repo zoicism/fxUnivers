@@ -294,7 +294,7 @@ if($course_biddable) require_once('../../../wallet/php/wallet_connect.php');
 
 
 			    if($tar_user_fetch['verified']) {
-				echo '<p class="username">'.$tar_user_fetch['username'].' <img src="/images/background/verified.png" style="width:1rem; height:1rem;"></p>';
+				echo '<p class="username">'.$tar_user_fetch['username'].' <svg viewBox="0 0 18 18" style="width: 14px;height: 14px;"><defs><style>.cls-1{fill:#00a1e0;}</style></defs><title>verified-12</title><path class="cls-1" d="M15.4,2.6a9.2,9.2,0,0,0-12.8,0A9.3,9.3,0,0,0,0,9a9,9,0,0,0,9,9,9.3,9.3,0,0,0,6.4-2.6,9.2,9.2,0,0,0,0-12.8ZM13,8.4,8.6,12.9,6.2,10.5,5,9.3,6.2,8.1l2.4,2.3L13,6l1.2,1.2Z"></path></svg> style="width:1rem; height:1rem;"></p>';
 			    } else {
 				echo '<p class="username">'.$tar_user_fetch['username'].'</p>';
 			    }
