@@ -3907,6 +3907,10 @@ input:checked + .slider:before {
 
 /*** MOBILE VIEW ***/
 @media (max-width: 628px) {
+    html, body {
+       min-height: 100vh;
+    }
+	
     .search-form {
 	width:100%;
 	padding:0 5%;
@@ -4062,7 +4066,8 @@ input:checked + .slider:before {
     
     
     .mobile-main {
-	margin-bottom:70px;
+	margin-bottom: 50px;
+	overflow: hidden;
     }
     .upperbar {
 	display: flex;
