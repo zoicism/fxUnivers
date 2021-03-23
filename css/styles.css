@@ -736,6 +736,7 @@ textarea:focus {
     flex-flow: column nowrap;
     justify-content: space-between;
     margin: 5px 0 5px 10px;
+    width:100%;
 }
 
 .session .session-desc .gray-bg {
