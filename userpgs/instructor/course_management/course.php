@@ -294,7 +294,7 @@ if($course_biddable) require_once('../../../wallet/php/wallet_connect.php');
 
 
 			    if($tar_user_fetch['verified']) {
-				echo '<p class="username">'.$tar_user_fetch['username'].' <svg viewBox="0 0 18 18" style="width: 14px;height: 14px;"><defs><style>.cls-1{fill:#00a1e0;}</style></defs><title>verified-12</title><path class="cls-1" d="M15.4,2.6a9.2,9.2,0,0,0-12.8,0A9.3,9.3,0,0,0,0,9a9,9,0,0,0,9,9,9.3,9.3,0,0,0,6.4-2.6,9.2,9.2,0,0,0,0-12.8ZM13,8.4,8.6,12.9,6.2,10.5,5,9.3,6.2,8.1l2.4,2.3L13,6l1.2,1.2Z"></path></svg> style="width:1rem; height:1rem;"></p>';
+				echo '<p class="username">'.$tar_user_fetch['username'].' <img src="/images/background/verified.png" style="width:1rem; height:1rem;"></p>';
 			    } else {
 				echo '<p class="username">'.$tar_user_fetch['username'].'</p>';
 			    }
@@ -345,9 +345,20 @@ if($course_biddable) require_once('../../../wallet/php/wallet_connect.php');
 	      echo '<div class="options">';
 
 	      echo '<div class="course-addbox-con">';
-	      echo '<div class="add-box" id="live-add-box" >Start a Live Classroom</div>';
+	      echo '<div class="add-box" id="live-add-box">Start/Schedule a Live Classroom</div>';
 	      echo '<div id="live-div" style="display:none"></div>';
 
+	      echo '<div style="display:none" id="schedule-div">
+
+<form id="schedule-form" >
+Date: <input name="theDate" type="date" class="txt-input" required style="display:inline;width:150px;">
+Time(UTC): <input name="theTime" type="time" class="txt-input" required style="display:inline;width:150px;">
+<input type="hidden" name="courseId" value="'.$course_id.'">
+<input type="submit" class="submit-btn" value="Schedule">
+</form>
+
+                      <button id="live-now" class="submit-btn" >Create Now</button>
+                    </div>';
 
 	      echo '<div class="add-box-con">';
 
@@ -562,7 +573,11 @@ if($course_biddable) require_once('../../../wallet/php/wallet_connect.php');
 
 		  echo '<div class="session-desc" onclick="'.$onclickurl.'">';
 
-		  if((time()-strtotime($instructor['lastseen']) < 15) && ($instructor['lsPage']=='live/#'.$row['id'])) {
+		  if((time()-strtotime($row['dt'].' '.$row['theTime']) < 0)) {
+		      echo '<p><strong><span class="gray-bg">'.$session_counter.'</span> '.$row['title'].'</strong> [SCHEDULED]</p>';
+		      $liveExists=1;
+		      $liveSession=$row['id'];
+		  } elseif((time()-strtotime($instructor['lastseen']) < 15) && ($instructor['lsPage']=='live/#'.$row['id'])) {
 		      
 		      echo '<p><strong><span class="gray-bg">'.$session_counter.'</span> '.$row['title'].'</strong> <img src="/images/background/live6.png" style="width:32px" class="blink_me"></p>';
 		      $liveExists=1;
@@ -851,21 +866,44 @@ if($course_biddable) require_once('../../../wallet/php/wallet_connect.php');
 	<!-- LC -->
 	<script>
 	 $('#live-add-box').on('click',function() {
+	     $('.add-box-con').toggle();
+	     $('#schedule-div').toggle();
+	 });
+	 
+	 $('#schedule-form').submit(function(event) {
+	     event.preventDefault();
 	     jQuery.ajax({
 		 url:'/php/set_live_from_course.php',
-		 data:{'courseId':<?php echo $course_id?>},
+		 data:$(this).serialize(),
+		 type:'POST',
+		 success: function(response) {
+		     if(response==0) {
+			 alert('Failed to create a live session. Please try again.');
+		     } else if(response=='in_the_past') {
+			 alert('Choose a date and time in the future.');
+		     } else {
+			 window.location.href = '/userpgs/instructor/class/live/?course_id=<?php echo $course_id ?>&class_id='+response;
+		     }
+		 }
+	     });
+	     
+	 });
+
+	 $('#live-now').click(function() {
+	     event.preventDefault();
+	     jQuery.ajax({
+		 url:'/php/set_live_from_course.php',
+		 data:{courseId: '<?php echo $course_id?>'},
 		 type:'POST',
 		 success: function(response) {
 		     if(response==0) {
 			 alert('Failed to create a live session. Please try again.');
 		     } else {
-			 //$('#live-div').html(response);
-			 //$('#LiveForm').submit();
-			 
 			 window.location.href = '/userpgs/instructor/class/live/?course_id=<?php echo $course_id ?>&class_id='+response;
 		     }
 		 }
 	     });
+	     
 	 });
 
 	 <?php if($liveExists) { ?>
@@ -954,6 +992,29 @@ if($course_biddable) require_once('../../../wallet/php/wallet_connect.php');
 		 alert('You need to be a student of this course to vote.');
 	     }
 	 });
+	</script>
+
+	<script>/*
+	 $('#schedule-form').submit(function(event) {
+	     event.preventDefault();
+
+	     $.ajax({
+		 url: '/php/live_classroom_schedule.php',
+		 data: $(this).serialize(),
+		 type: 'POST',
+		 success: function(response) {
+		     //console.log(response);
+		     if(response=='in_the_past') {
+			 alert('Choose a date and time in the future.');
+		     } else if(response==1) {
+			 alert('A live classroom is scheduled.');
+			 window.location.reload();
+		     } else {
+			 alert('Failed to schedule a live classroom. Please try again.');
+		     }
+		 }
+	     });
+	 });*/
 	</script>
     </body>
 </html>
