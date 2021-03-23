@@ -1,0 +1,50 @@
+<?php
+require_once($_SERVER['DOCUMENT_ROOT'].'/php/conn/fxinstructor.php');
+
+$theDate = $_POST['theDate'];
+$theTime = $_POST['theTime'];
+$courseId = $_POST['courseId'];
+$teacherId = $_POST['teacherId'];
+
+$dt = $_POST['theDate'].' '.$_POST['theTime'];
+$dt_timestamp = strtotime($dt);
+$time_diff = $dt_timestamp - time();
+
+
+if($time_diff > 0) {
+
+    require_once($_SERVER['DOCUMENT_ROOT'].'/register/connect.php');
+
+
+    // if the values of the post is set, post it
+    $header='Scheduled Live Session';
+    $description='';
+
+
+    $query = "INSERT INTO `class` (teacher_id, course_id, title, body, dt) VALUES ($teacherId, $courseId, '$header', '$description', NOW())";
+    $result = mysqli_query($connection, $query);
+
+
+    $classId_query="SELECT * FROM class WHERE teacher_id=$teacherId ORDER BY id DESC LIMIT 1";
+    $classId_result=mysqli_query($connection,$classId_query) or die(mysqli_error($connection));
+    $classId_fetch=mysqli_fetch_array($classId_result);
+    $classId=$classId_fetch['id'];
+
+
+
+
+
+
+
+    
+    echo    $live_schedule_q = "INSERT INTO live_schedule(class_id, the_date, the_time) VALUES($classId, '$theDate', '$theTime')";
+    //$live_schedule_r = mysqli_query($fxinstructor_connection, $live_schedule_q);
+    if($live_schedule_r) {
+	echo 1;
+    } else {
+	echo 0;
+    }
+} else {
+    echo 'in_the_past';
+}
+?>

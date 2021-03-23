@@ -12,12 +12,34 @@ if(isset($_SESSION['username'])) {
 }
 
 // if the values of the post is set, post it
-$header='Live Session';
+if($_POST['theTime']) {
+    $header = 'Scheduled Live Classroom';
+} else {
+    $header='Live Classroom';
+}
 $description='';
 if(isset($_POST['courseId'])) $course_id = $_POST['courseId'];
+if(isset($_POST['theTime'])) {
+    $theTime = $_POST['theTime'];
+} else {
+    $theTime = date('H:i');
+}
+if(isset($_POST['theDate'])) {
+    $theDate = $_POST['theDate'];
 
+    $dt = $_POST['theDate'].' '.$_POST['theTime'];
+    $dt_timestamp = strtotime($dt);
+    $time_diff = $dt_timestamp - time();
 
-$query = "INSERT INTO `class` (teacher_id, course_id, title, body, dt) VALUES ($id, $course_id, '$header', '$description', NOW())";
+    if($time_diff<=0) {
+	echo 'in_the_past';
+	exit();
+    }
+} else {
+    $theDate = date('Y-m-d');
+}
+
+$query = "INSERT INTO `class` (teacher_id, course_id, title, body, dt, theTime) VALUES ($id, $course_id, '$header', '$description', '$theDate', '$theTime')";
 $result = mysqli_query($connection, $query);
 
 $classId_query="SELECT * FROM class WHERE teacher_id=$id ORDER BY id DESC LIMIT 1";

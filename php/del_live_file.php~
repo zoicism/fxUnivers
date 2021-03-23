@@ -1,6 +1,6 @@
 <?php
 if(isset($_GET['file_name'])) $fileName=$_GET['file_name'];
-echo $fileName.'<br>';
+//echo $fileName.'<br>';
 require('conn/fxinstructor.php');
 
 $dropFile_q="DELETE FROM `live_files` WHERE fileName='$fileName'";
