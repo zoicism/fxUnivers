@@ -31,6 +31,14 @@ $class_fetch = mysqli_fetch_array($class_result);
 $header = $class_fetch['title'];
 $description = $class_fetch['body'];
 $video = $class_fetch['video'];
+$theDate = $class_fetch['dt'];
+if($class_fetch['theTime']!=null) {
+    $theTime = $class_fetch['theTime'];
+
+    $actualTime = $theDate.' '.$theTime;
+    $epochTime = strtotime($actualTime);
+    $epochDiff = $epochTime - time();
+}
 
 $tar_id=$class_fetch['teacher_id'];
 require('../../../../php/get_tar_id.php');
@@ -65,7 +73,7 @@ if($user_type=='instructor') {
     header('Location: /userpgs/instructor/course_management/course.php?course_id='.$course_id);
 }
 
-require('../php/notify_students.php');
+//require('../php/notify_students.php');
 
 //require('../../../../php/get_class_chat.php');
 ?>
@@ -94,7 +102,7 @@ require('../php/notify_students.php');
     <script src="../webrtc-broadcasting/broadcast.js" id="broadcast"> </script>
 
 <!--
-    <script src="https://www.webrtc-experiment.com/DetectRTC.js"></script>
+        <script src="https://www.webrtc-experiment.com/DetectRTC.js"></script>
 
         <script src="https://www.webrtc-experiment.com/socket.io.js"> </script>
         <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
@@ -107,7 +115,10 @@ require('../php/notify_students.php');
 </head>
     
 <body>
-
+<?php echo $user_type.' '.$class_fetch['theTime'].' '.$epochDiff; ?>
+    <?php if(($user_type=='student') && ($class_fetch['theTime']!=null) && ($epochDiff > 0)) { ?>
+	<div style="height:100%;width:100%;display:flex;align-items:center;justify-content:center;position:fixed;background-color:black;opacity:0.3;cursor:auto;z-index:2;"><span style="background:black;z-index:3;color:white;font-weight:bold;opacity:1;">Live Classroom will begin on <?php echo date("M jS, Y", strtotime($theDate)).' at '.$theTime ?></span></div>
+    <?php } ?>
     <div style="height:100%;width:100%;display:flex;align-items:center;justify-content:center;position:fixed;background-color:black;opacity:0.3;cursor:auto;z-index:2;" id="loading"><img src="/images/background/loading.gif" style="z-index:3"></div>
 
     
@@ -176,7 +187,6 @@ require('../php/notify_students.php');
 
 	      
 
-<?php echo '<form action="/userpgs/instructor/class/live/screen/#'.$class_id.'" method="POST" id="live-screen" target="_blank" style="display:none"><input type="hidden" name="course_id" value="'.$course_id.'"><input type="hidden" name="class_id" value="'.$class_id.'"><input type="submit" value="sub"></form>'; ?>
 
 
 	  <!-- VIDEO -->
@@ -248,13 +258,26 @@ if($tar_user_fetch['avatar']!=NULL) {
 	  
 <div class="detail-bottom"></div>
 
+<div style="display:none" >
 
+    <button id="enableAudio" >Enable Audio</button>
+    <button id="disableAudio" >Disable Audio</button>
+    <button id="btnStart">START RECORDING</button> 
+    <button id="btnStop">STOP RECORDING</button>
+    <button id="save">Save</button>
 
+    <!--for record--> 
+    <audio controls muted id="studentAudio"></audio> 
+    
+    <!--for play the audio--> 
 
-
+    
+    <!-- from server -->
+    <!--<audio controls src="audio/test.wav"></audio>-->
+</div>
 	  
-	</div>
-	<div class="right-content">
+	  </div>
+	  <div class="right-content">
 	    <?php
             require('../../../../php/limit_str.php');
 	    ?>
@@ -270,38 +293,51 @@ if($tar_user_fetch['avatar']!=NULL) {
 	    if($user_type=='instructor') {
 
 		echo '<div class="options session-options" style="">';
-		
+		echo '<div class="video-audio-bc-con">';
+		echo '<div class="video-audio-bc">';
 		echo '<div id="video-audio-b-div" class="add-box" style="margin-top:0;"><input type="checkbox" class="toggle-btn" id="video-audio-b-toggle">Video & Audio Broadcast</div>';
 		echo '<div id="audio-b-div" class="add-box" style="margin-top:0;"><input type="checkbox" class="toggle-btn" id="audio-b-toggle">Audio-only Broadcast</div>';
-
+		echo '</div>';
+		echo '</div>';
 		echo '<div class="add-box-con">';
-			echo '<div class="add-box" id="screen-b">
+		echo '<div class="add-box" id="screen-b">
 				   <svg viewBox="0 0 32 32" style="height: 20px;width: 20px;margin-right: 12px;">
 					<path d="M28,0H4A4,4,0,0,0,0,4V18.8a4,4,0,0,0,4,4H15V30H6.6a1.1,1.1,0,0,0-1,1,1,1,0,0,0,1,1H25.4a1,1,0,0,0,1-1,1.1,1.1,0,0,0-1-1H17V22.8H28a4,4,0,0,0,4-4V4A4,4,0,0,0,28,0Zm2,18.8a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V4A2,2,0,0,1,4,2H28a2,2,0,0,1,2,2Z"></path>
 				   </svg>
 				   Screen Broadcast
 			      </div>';
-			echo '<div class="add-box" id="live-whiteboard-box">
+		echo '<div class="add-box" id="live-whiteboard-box">
 				   <svg viewBox="0 0 32 32" style="height: 20px;width: 20px;margin-right: 12px;">
 					<path d="M28,0H4A4,4,0,0,0,0,4V18.8a4,4,0,0,0,4,4H9.6L5.7,30.5a1.2,1.2,0,0,0,.4,1.4,1.2,1.2,0,0,0,1.4-.4l4.3-8.7h8.4l4.3,8.7a1.1,1.1,0,0,0,.9.5h.4a1.1,1.1,0,0,0,.5-1.4l-3.9-7.7H28a3.9,3.9,0,0,0,2.8-1.1,4.2,4.2,0,0,0,1-1.7,4.3,4.3,0,0,0,.2-1.2V4A4,4,0,0,0,28,0Zm2,18.8a1.7,1.7,0,0,1-.6,1.4l-.3.3h0l-.3.2H3.4a1.4,1.4,0,0,1-.8-.5A1.7,1.7,0,0,1,2,18.8V4c0-.2,0-.3.1-.4A1.9,1.9,0,0,1,4,2H28a2,2,0,0,1,2,1.6V18.8Z"></path>
 				   </svg>
 				   Whiteboard Broadcast
 			      </div>';
-			echo '<div class="add-box" id="record-btn">
+		echo '<div class="add-box" id="record-btn">
 				   <svg viewBox="0 0 32 32" style="height: 20px;width: 20px;margin-right: 12px;">
 					<path d="M16,2A14,14,0,1,1,2,16,14,14,0,0,1,16,2m0-2A16,16,0,1,0,32,16,16,16,0,0,0,16,0Z"></path><path d="M16,11.9A4.1,4.1,0,1,1,11.9,16,4.1,4.1,0,0,1,16,11.9m0-2A6.1,6.1,0,1,0,22.1,16,6.1,6.1,0,0,0,16,9.9Z"></path>
 				   </svg>
 				   Record
 			      </div>';
 
-			echo '<div class="add-box" id="reject-classroom">
-				   <svg viewBox="0 0 32 32" style="height: 20px;width: 20px;margin-right: 12px;">
-					<path d="M31,5.1H22.1V4a4,4,0,0,0-4-4H13.9a4,4,0,0,0-4,4V5.1H1a1,1,0,0,0-1,1,.9.9,0,0,0,1,1H3.3L5.7,28.5a3.9,3.9,0,0,0,4,3.5H22.3a3.9,3.9,0,0,0,4-3.5L28.7,7.1H31a.9.9,0,0,0,1-1A1,1,0,0,0,31,5.1ZM11.9,4a2,2,0,0,1,2-2h4.2a2,2,0,0,1,2,2V5.1H11.9ZM24.3,28.2a2,2,0,0,1-2,1.8H9.7a2,2,0,0,1-2-1.8L5.3,7.1H26.7Z"></path><path d="M18.8,12.2V24.9a1,1,0,0,0,1,1h0a1.1,1.1,0,0,0,1-1V12.2a1.1,1.1,0,0,0-1-1h0A1,1,0,0,0,18.8,12.2ZM12.2,25.9h0a1,1,0,0,0,1-1V12.2a1,1,0,0,0-1-1h0a1.1,1.1,0,0,0-1,1V24.9A1.1,1.1,0,0,0,12.2,25.9Z"></path>
-				   </svg>
-				   Remove Classroom
-			      </div>';
+		echo '<div class="add-box" id="notifystu-btn">
+				<svg viewBox="0 0 32 32" style="height: 20px;width: 20px;margin-right: 12px;">
+					<path d="M32,16a1.1,1.1,0,0,1-1,1H22.2a1,1,0,0,1,0-2H31A1.1,1.1,0,0,1,32,16Z"></path><path d="M30.2,7.6,22.6,12h-.5a.9.9,0,0,1-.9-.5.9.9,0,0,1,.4-1.3l7.6-4.4.5-.2a1.2,1.2,0,0,1,.9.5A1.1,1.1,0,0,1,30.2,7.6Z"></path><path d="M30.7,25.3a4.3,4.3,0,0,0-.1.5,1.2,1.2,0,0,1-.9.5l-.5-.2-7.6-4.4a.9.9,0,0,1-.4-1.3.9.9,0,0,1,.9-.5h.5l7.6,4.4A1.1,1.1,0,0,1,30.7,25.3Z"></path><path d="M15.5,2.9a2,2,0,0,0-1.4.6L9,8.6a.8.8,0,0,1-.7.3H4a4,4,0,0,0-4,4v6.2a4,4,0,0,0,4,4H8.3a.8.8,0,0,1,.7.3l5.1,5.1a2,2,0,0,0,1.4.6,2,2,0,0,0,2-2V4.9A2,2,0,0,0,15.5,2.9Zm0,24.2-5-5.1a3.1,3.1,0,0,0-2.2-.9H4a2,2,0,0,1-2-2V12.9a2,2,0,0,1,2-2H8.3a3.1,3.1,0,0,0,2.2-.9l5-5.1Z"></path>
+				</svg>
+				Notify Students
+			</div>';
 
-			echo '</div>';
+		
+		
+		echo '<div class="remove-save-con">';
+		echo '<div class="add-box" id="save-classroom">
+		            Save & Leave
+		      </div>';
+		echo '<div class="add-box" id="reject-classroom">
+		            Discard
+		      </div>';
+		echo '</div>';
+
+		echo '</div>';
 		echo '</div>';
 	    } else {
 		echo '<!-- list of all available broadcasting rooms -->
@@ -311,7 +347,8 @@ if($tar_user_fetch['avatar']!=NULL) {
 
 		
 
-		echo '<div class="add-box student-whiteboard" id="live-whiteboard-box" style="justify-content:center;opacity:0.5;">
+		echo '<div class="add-box-con">
+<div class="add-box student-whiteboard" id="live-whiteboard-box" style="justify-content:center;opacity:0.5;">
 			           <svg viewBox="0 0 32 32" style="height: 20px;width: 20px;margin-right: 12px;">
 					<path d="M28,0H4A4,4,0,0,0,0,4V18.8a4,4,0,0,0,4,4H9.6L5.7,30.5a1.2,1.2,0,0,0,.4,1.4,1.2,1.2,0,0,0,1.4-.4l4.3-8.7h8.4l4.3,8.7a1.1,1.1,0,0,0,.9.5h.4a1.1,1.1,0,0,0,.5-1.4l-3.9-7.7H28a3.9,3.9,0,0,0,2.8-1.1,4.2,4.2,0,0,0,1-1.7,4.3,4.3,0,0,0,.2-1.2V4A4,4,0,0,0,28,0Zm2,18.8a1.7,1.7,0,0,1-.6,1.4l-.3.3h0l-.3.2H3.4a1.4,1.4,0,0,1-.8-.5A1.7,1.7,0,0,1,2,18.8V4c0-.2,0-.3.1-.4A1.9,1.9,0,0,1,4,2H28a2,2,0,0,1,2,1.6V18.8Z"></path>
 				   </svg>
@@ -322,7 +359,8 @@ if($tar_user_fetch['avatar']!=NULL) {
 					<path d="M28,0H4A4,4,0,0,0,0,4V18.8a4,4,0,0,0,4,4H15V30H6.6a1.1,1.1,0,0,0-1,1,1,1,0,0,0,1,1H25.4a1,1,0,0,0,1-1,1.1,1.1,0,0,0-1-1H17V22.8H28a4,4,0,0,0,4-4V4A4,4,0,0,0,28,0Zm2,18.8a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V4A2,2,0,0,1,4,2H28a2,2,0,0,1,2,2Z"></path>
 				   </svg>
 				   Live Screen
-		      </div>';
+		      </div>
+		</div>';
 		
 
 
@@ -396,8 +434,23 @@ echo '<div class="sess-list" style="display:none">';
 <!-- CHAT -->
 <div class="chat-list" style="display:none">
     <div class="live-chat-con">
+
+	<div class="msg-icon-cnt" id="voice-btn" recording="false" style="margin: 0 14px 0 0">
+	    <svg viewBox="0 0 32 32""><defs><style>.send-icon{fill:#212121;}</style></defs>
+		<path class="send-icon" d="M30.9,14.5,2.9.5,2,.3A1.9,1.9,0,0,0,.1,2.8L3.2,16.4.1,29.2A2,2,0,0,0,2,31.7l.9-.2,28-13.4A2,2,0,0,0,30.9,14.5ZM2,29.7,5.1,17.4H15.8a1,1,0,0,0,1-1h0a.9.9,0,0,0-1-1H5.1L2,2.3l28,14Z"></path>
+	    </svg>
+	</div>
+
+	<div class="msg-icon-cnt" id="trash-voice-btn" style="margin: 0 14px 0 0;display:none;">
+	    <svg viewBox="0 0 32 32""><defs><style>.send-icon{fill:#212121;}</style></defs>
+		<path class="send-icon" d="M30.9,14.5,2.9.5,2,.3A1.9,1.9,0,0,0,.1,2.8L3.2,16.4.1,29.2A2,2,0,0,0,2,31.7l.9-.2,28-13.4A2,2,0,0,0,30.9,14.5ZM2,29.7,5.1,17.4H15.8a1,1,0,0,0,1-1h0a.9.9,0,0,0-1-1H5.1L2,2.3l28,14Z"></path>
+	    </svg>
+	</div>
+
+
+	<audio id="adioPlay" controls style="display:none"></audio>
         <input name="msgBody" type="text" id="chatInput" class="txt-input" placeholder="Type here">
-	<div class="msg-icon-cnt" id="send-btn">
+	<div class="msg-icon-cnt" id="send-btn" isAudio="false">
 	    <svg id="SendIcon" viewBox="0 0 32 32""><defs><style>.send-icon{fill:#212121;}</style></defs>
 	        <path class="send-icon" d="M30.9,14.5,2.9.5,2,.3A1.9,1.9,0,0,0,.1,2.8L3.2,16.4.1,29.2A2,2,0,0,0,2,31.7l.9-.2,28-13.4A2,2,0,0,0,30.9,14.5ZM2,29.7,5.1,17.4H15.8a1,1,0,0,0,1-1h0a.9.9,0,0,0-1-1H5.1L2,2.3l28,14Z"></path>
 	    </svg>
@@ -416,6 +469,7 @@ echo '<div class="sess-list" style="display:none">';
     <form method="POST" id="fileForm" enctype="multipart/form-data" action="/php/upload_class_file.php">
     
     <input name="classId" type="hidden" value="<?php echo $class_id?>">
+    <input name="instId" type="hidden" value="<?php echo $tar_id ?>">
     
     <input type="file" name="class_file" id="fileToUpload" style="display:none">
     <div class="uploadfile-con">
@@ -424,7 +478,9 @@ echo '<div class="sess-list" style="display:none">';
                 <img src="/images/background/plus.svg" class="chat-icon" id="file-btn">
             </label>
         </div>
-        <div id="filename-b4-upload">Choose File</div>
+	<div class="filename-b4-upload-con">
+            <div id="filename-b4-upload">Choose File</div>
+	</div>
     </div>
     <input type="submit" value="Upload file" class="submit-btn">
     </form>
@@ -726,50 +782,252 @@ loadWebrtc();
 <!-- TABS -->
 <script>
  /*
-$('#sessions-tab').click(function() {
-  $('#sessions-tab').addClass('active-tab');
-  $('#chat-tab').removeClass('active-tab');
-  $('#users-tab').removeClass('active-tab');
-  $('#file-tab').removeClass('active-tab');
-  $('.file-list').hide();
-  //$('.sess-list').show();
-  $('.chat-list').hide();
-  $('.online-list').hide();
-});*/
-$('#chat-tab').click(function() {
-  $('#sessions-tab').removeClass('active-tab');
-  $('#chat-tab').addClass('active-tab');
-  $('#users-tab').removeClass('active-tab');
-  $('#file-tab').removeClass('active-tab');
-  $('.file-list').hide();
-  //$('.sess-list').hide();
-  $('.chat-list').show();
-  $('.online-list').hide();
-});
-$('#users-tab').click(function() {
-  $('#sessions-tab').removeClass('active-tab');
-  $('#chat-tab').removeClass('active-tab');
-  $('#users-tab').addClass('active-tab');
-  $('#file-tab').removeClass('active-tab');
-  $('.file-list').hide();
-  //$('.sess-list').hide();
-  $('.chat-list').hide();
-  $('.online-list').show();
-});
-$('#file-tab').click(function() {
-  $('#sessions-tab').removeClass('active-tab');
-  $('#chat-tab').removeClass('active-tab');
-  $('#users-tab').removeClass('active-tab');
-  $('#file-tab').addClass('active-tab');
-  $('.file-list').show();
-  //$('.sess-list').hide();
-  $('.chat-list').hide();
-  $('.online-list').hide();
-});
+    $('#sessions-tab').click(function() {
+    $('#sessions-tab').addClass('active-tab');
+    $('#chat-tab').removeClass('active-tab');
+    $('#users-tab').removeClass('active-tab');
+    $('#file-tab').removeClass('active-tab');
+    $('.file-list').hide();
+    //$('.sess-list').show();
+    $('.chat-list').hide();
+    $('.online-list').hide();
+    });*/
+ $('#chat-tab').click(function() {
+     $('#sessions-tab').removeClass('active-tab');
+     $('#chat-tab').addClass('active-tab');
+     $('#users-tab').removeClass('active-tab');
+     $('#file-tab').removeClass('active-tab');
+     $('.file-list').hide();
+     //$('.sess-list').hide();
+     $('.chat-list').show();
+     $('.online-list').hide();
+ });
+ $('#users-tab').click(function() {
+     $('#sessions-tab').removeClass('active-tab');
+     $('#chat-tab').removeClass('active-tab');
+     $('#users-tab').addClass('active-tab');
+     $('#file-tab').removeClass('active-tab');
+     $('.file-list').hide();
+     //$('.sess-list').hide();
+     $('.chat-list').hide();
+     $('.online-list').show();
+ });
+ $('#file-tab').click(function() {
+     $('#sessions-tab').removeClass('active-tab');
+     $('#chat-tab').removeClass('active-tab');
+     $('#users-tab').removeClass('active-tab');
+     $('#file-tab').addClass('active-tab');
+     $('.file-list').show();
+     //$('.sess-list').hide();
+     $('.chat-list').hide();
+     $('.online-list').hide();
+ });
 </script>
 
+<!-- AUDIO MSG -->
+<script>
+ function startAudio() {
+     //$('#enableAudio').click(function() {
+     let audioIN = { audio: true }; 
+     // audio is true, for recording 
 
-<!-- CHATS -->
+     // Access the permission for use 
+     // the microphone 
+     navigator.mediaDevices.getUserMedia(audioIN) 
+
+     // 'then()' method returns a Promise 
+	      .then(function (mediaStreamObj) { 
+
+		  // Connect the media stream to the 
+		  // first audio element 
+		  //let audio = document.querySelector('audio'); 
+		  let audio = document.getElementById('studentAudio');
+		  //returns the recorded audio via 'audio' tag 
+
+		  // 'srcObject' is a property which 
+		  // takes the media object 
+		  // This is supported in the newer browsers 
+		  if ("srcObject" in audio) { 
+		      audio.srcObject = mediaStreamObj; 
+		  } 
+		  else { // Old version 
+		      audio.src = window.URL 
+					.createObjectURL(mediaStreamObj); 
+		  } 
+
+		  // It will play the audio 
+		  audio.onloadedmetadata = function (ev) { 
+
+		      // Play the audio in the 2nd audio 
+		      // element what is being recorded 
+		      audio.play(); 
+		  }; 
+
+		  // Start record 
+		  //let start = document.getElementById('btnStart'); 
+
+		  // Stop record 
+		  //let stop = document.getElementById('btnStop'); 
+
+		  // 2nd audio tag for play the audio 
+		  let playAudio = document.getElementById('adioPlay'); 
+
+		  // This is the main thing to recorde 
+		  // the audio 'MediaRecorder' API 
+		  let mediaRecorder = new MediaRecorder(mediaStreamObj); 
+		  // Pass the audio stream 
+
+		  // Start event 
+		  document.getElementById('btnStart').addEventListener('click', function (ev) { 
+		      mediaRecorder.start(); 
+		      // console.log(mediaRecorder.state);
+		      //console.log('started');
+
+		      $('#chatInput').val('Recording...').prop('disabled', true);
+		      //$('#voice-btn').attr('id','voice-btn-stop');
+		      $('#voice-btn').attr('recording', 'true');
+		  });
+
+		  // Stop event 
+		  document.getElementById('btnStop').addEventListener('click', function (ev) { 
+		      mediaRecorder.stop(); 
+		      // console.log(mediaRecorder.state);
+		      //console.log('stopped');
+		  }); 
+
+		  // If audio data available then push 
+		  // it to the chunk array 
+		  mediaRecorder.ondataavailable = function (ev) { 
+		      dataArray.push(ev.data); 
+		  } 
+
+		  // Chunk array to store the audio data 
+		  let dataArray = []; 
+
+		  // Convert the audio data in to blob 
+		  // after stopping the recording 
+		  mediaRecorder.onstop = function (ev) { 
+		      let audioData = [];
+		      // blob of type mp3 
+		      audioData = new Blob(dataArray, 
+					   { 'type': 'audio/mp3;' }); 
+
+		      console.log(audioData);
+		      
+		      // After fill up the chunk 
+		      // array make it empty 
+		      dataArray = []; 
+
+		      // Creating audio url with reference 
+		      // of created blob named 'audioData' 
+		      let audioSrc = window.URL 
+					   .createObjectURL(audioData); 
+
+		      console.log(audioSrc);
+
+		      // Pass the audio url to the 2nd video tag 
+		      playAudio.src = audioSrc;
+
+		      disableAudioTracks();
+		      
+		      $('#save').click(function() {
+			  uploadBlob(audioData);
+			  //audioData=[];
+		      });
+		  }
+		  $('#btnStart').click();
+
+		  
+	      }) 
+	      .catch(function (err) {  // If any error occurs then handles the error 
+		  console.log(err.name, err.message); 
+	      });
+
+     
+     
+
+ }
+
+ 
+
+</script>
+
+<script>
+ function uploadBlob(audioD) {
+     // create a blob here for testing
+     //var blob = new Blob(["i am a blob"]);
+     var blob = audioD;
+     //var blob = yourAudioBlobCapturedFromWebAudioAPI;// for example   
+     var reader = new FileReader();
+     // this function is triggered once a call to readAsDataURL returns
+     reader.onload = function(event) {
+	 var fd = new FormData();
+	 //fd.append('audioname', '.wav');
+	 fd.append('msgUserId', '<?php echo $get_user_id?>');
+	 fd.append('msgClassId', '<?php echo $class_id ?>');
+	 fd.append('data', event.target.result);
+	 $.ajax({
+	     type: 'POST',
+	     url: 'audio_upload.php',
+	     data: fd,
+	     processData: false,
+	     contentType: false
+	 }).done(function(data) {
+	     // print the output from the upload.php script
+	     console.log(data);
+	     
+	 });
+     };      
+     // trigger the read from the reader...
+     reader.readAsDataURL(blob);	 
+ }
+</script>
+<script>
+ $('#voice-btn').click(function() {
+     var recordingStu = $('#voice-btn').attr('recording');
+     //console.log(recordingStu);
+     if(recordingStu=='false') {
+
+	 startAudio();
+	 $('#chatInput').show();
+	 $('#adioPlay').hide();
+	 $('#send-btn').attr('isAudio','false');
+	 $('#trash-voice-btn').hide();
+
+     } else if(recordingStu=='true') {
+
+	 $('#btnStop').click();
+	 $('#voice-btn').attr('recording', 'false');
+	 $('#chatInput').hide();
+	 $('#adioPlay').show();
+	 $('#send-btn').attr('isAudio','true');
+	 $('#trash-voice-btn').show();
+	 
+     }
+ });
+
+ $('#trash-voice-btn').click(function() {
+     $('#send-btn').attr('isAudio','false');
+     $('#chatInput').show().prop('disabled',false).val('');
+     $('#adioPlay').hide();
+     $('#trash-voice-btn').hide();
+ });
+</script>
+
+ <script>
+  function disableAudioTracks() {
+      //var studentAudio = document.querySelector('audio');
+      var studentAudio = document.getElementById('studentAudio');
+      const studentStream = studentAudio.srcObject;
+      const tracks = studentStream.getTracks();
+      
+      tracks.forEach(function(track) {
+	  track.stop();
+      });
+      
+ }
+</script>
+    <!-- CHATS -->
 <script>
  $('#chatInput').keypress(function(event) {
      var keycode=(event.keyCode ? event.keyCode : event.which);
@@ -789,33 +1047,55 @@ $('#file-tab').click(function() {
          });
      }
  });
- $('#SendIcon').click(function() {
-     var msgbody = $('#chatInput').val();
-     var msguserid = <?php echo $get_user_id ?>;
-     var msgclassid = <?php echo $class_id ?>;
-     jQuery.ajax({
-         type: 'POST',
-         url: '/php/set_class_chat.php',
-         data: {msgBody: msgbody, msgUserId: msguserid, msgClassId: msgclassid},
-         success: function(response) {
-             //alert(response);
-             $('#chatInput').val('');
-             $('#chatInput').focus();
-         }
-     });
+ $('#send-btn').click(function() {
+     var isAudio = $('#send-btn').attr('isAudio');
+     if(isAudio=='false') {
+	 var msgbody = $('#chatInput').val();
+	 var msguserid = <?php echo $get_user_id ?>;
+	 var msgclassid = <?php echo $class_id ?>;
+	 jQuery.ajax({
+             type: 'POST',
+             url: '/php/set_class_chat.php',
+             data: {msgBody: msgbody, msgUserId: msguserid, msgClassId: msgclassid},
+             success: function(response) {
+		 //alert(response);
+		 $('#chatInput').val('');
+		 $('#chatInput').focus();
+             }
+	 });
+     } else if(isAudio=='true') {
+	 $('#save').click();
+	 $('#send-btn').attr('isAudio','false');
+	 $('#chatInput').show().prop('disabled',false).val('');
+	 $('#adioPlay').hide();
+	 $('#trash-voice-btn').hide();
+     }
  });
+    
 </script>
 <script>
-$(document).ready(function() {
-    // here
-      setInterval(function() {
+ $(document).ready(function() {
+     // here
+     setInterval(function() {
+	 var numberOfMsgs = $('.one-msg').length;
+	 //console.log(numberOfMsgs);
+
         jQuery.ajax({
           type: "POST",
-          url: "/php/get_class_chat.php",
-          data: {class_id: <?php echo $class_id ?>},
+          url: "/php/class_chat_update.php",
+          data: {class_id: <?php echo $class_id ?>, numOfMsgs: numberOfMsgs},
           success: function(response) {
+	      //console.log(response);
+
+	      if(response!='') {
+		  if(response=='empty') {
+		      $('.msgs').html('<p style="color:gray;text-align:center;">Empty</p>');
+		  } else {
+		      $('.msgs').prepend(response);
+		  } 
+	      }
                 //alert(response);
-                $("#newMsgs").load('/php/class_chat_update.php', {class_id: <?php echo $class_id ?>});
+                //$("#newMsgs").load('/php/class_chat_update.php', {class_id: <?php echo $class_id ?>});
           }
         });
          }, 2000);
@@ -846,14 +1126,18 @@ $(document).ready(function() {
 	     success: function(response) {
 		 if(response[0]==1) {
 		     $('#student-screen').css('opacity','1');
+		     $('#student-screen').addClass('blinking');
 		 } else {
-		     $('#student-screen').css('opacity','0.5');
+		     $('#student-screen').css('opacity','0.5');//.css('border', 'none');
+		     $('#student-screen').removeClass('blinking');
 		 }
 
 		 if(response[1]==1) {
 		     $('.student-whiteboard').css('opacity','1');
+		     $('.student-whiteboard').addClass('blinking');
 		 } else {
 		     $('.student-whiteboard').css('opacity','0.5');
+		     $('.student-whiteboard').removeClass('blinking');
 		 }
 
 		 //console.log(response);
@@ -944,7 +1228,8 @@ $(document).ready(function() {
  });
 
  $('#screen-b').click(function() {
-     $('#live-screen').submit();
+     //$('#live-screen').submit();
+     window.open('screen/?class_id=<?php echo $class_id?>');
  });
  
  $('#record-btn').click(function() {
@@ -954,7 +1239,7 @@ $(document).ready(function() {
  });
 
  $('#reject-classroom').click(function() {
-     if(confirm('By rejecting the classroom it will be deleted and not added as a session to your course. Continue?')) {
+     if(confirm('By rejecting the classroom it will be deleted and not added as a session to your course. Files and recordings will be lost. Continue?')) {
 	 
 	 jQuery.ajax({
 	     url: '/php/reject_classroom.php',
@@ -972,6 +1257,32 @@ $(document).ready(function() {
 	 });
      }
  });
+
+$('#save-classroom').click(function() {
+     alert('Live Classroom is saved as a Session.');
+     window.location.replace('/userpgs/instructor/class/?course_id=<?php echo $course_id ?>&class_id=<?php echo $class_id ?>');
+});
+
+ $('#notifystu-btn').click(function() {
+     $.ajax({
+	 url:'../php/notify_students.php',
+	 data: {userType: '<?php echo $user_type ?>',
+		courseId: '<?php echo $course_id ?>',
+		header: '<?php echo $header ?>',
+		classId: '<?php echo $class_id ?>',
+		getUserId: '<?php echo $get_user_id ?>'},
+	 type: 'POST',
+	 success: function(response) {
+	     if(response==1) {
+		 alert('Students are informed by email and notification.');
+	     } else {
+		 alert('Failed to notify students. Please try again.');
+	     }
+	 }
+     });
+ });
+
+
 </script>
 
 
@@ -980,7 +1291,8 @@ $(document).ready(function() {
 <script>
  $('#student-screen').click(function() {
      if($('#student-screen').css('opacity')==1) {
-	 $('#live-screen').submit();
+       //$('#live-screen').submit();
+       window.open('screen/?roomid=<?php echo $class_id?>');
      } else {
 	 alert("Screen is not shared.");
      }

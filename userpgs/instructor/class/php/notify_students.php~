@@ -20,7 +20,7 @@ if($user_type=='instructor') {
 
 	$utc_timestamp = date('Y-m-d H:i:s');
 
-        $student_notif_q="INSERT INTO notif(user_id,body,from_id, sent_dt) VALUES($stu_id,'$live_notif',$get_user_id, '$utc_timestamp')";
+        $student_notif_q="INSERT INTO notif(user_id,body,from_id, sent_dt, reason) VALUES($stu_id,'$live_notif',$get_user_id, '$utc_timestamp', 'live_classroom_?course_id=$course_id&class_id=$class_id')";
         $student_notif_r=mysqli_query($connection,$student_notif_q) or die(mysqli_error($connection));
 
 

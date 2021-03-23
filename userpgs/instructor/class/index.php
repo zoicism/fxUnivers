@@ -64,6 +64,10 @@ $tar_id=$class_fetch['teacher_id'];
 require('../../../php/get_tar_id.php');
 
 $mustRedirect=0;
+
+if((time()-strtotime($class_fetch['dt'].' '.$class_fetch['theTime']) < 0)) {
+    $mustRedirect=1;
+}
 ?>
 
 <!DOCTYPE html>
@@ -332,12 +336,38 @@ echo '<div class="sess-list">';
     if($gcf_count>0) {
        echo '<div class="uploaded-files" style="padding-top:0">';
         while($class_fs=$gcf_result->fetch_assoc()) {
-	
+
+	    echo '<div class="file">
+		<div class="file-icon-con" href="dl_file.php?file=' . urlencode($class_fs['fileName']) . '">
+			<svg viewBox="0 0 32 32">
+				<path d="M26,8.6,19.4,2l-2-2H8A4,4,0,0,0,4,4V28a4,4,0,0,0,4,4H24a4,4,0,0,0,4-4V10.6ZM18,3.4,24.6,10H20a2,2,0,0,1-2-2ZM26,28a2,2,0,0,1-2,2H8a2,2,0,0,1-2-2V4A2,2,0,0,1,8,2h8V8a4,4,0,0,0,4,4h6Z"></path>
+			</svg>
+		</div>';
+	echo '<div class="file-name"><div class="file-name-txt" href="dl_file.php?file=' . urlencode($class_fs['fileName']) . '">' . substr($class_fs['fileName'],11) . '</div></div>';
             if($user_type=='instructor') {
-                echo '<p><a href="dl_file.php?file=' . urlencode($class_fs['fileName']) . '">' . substr($class_fs['fileName'],11) . '</a> <a href="del_file.php?file_name='.$class_fs['fileName'].'&course_id='.$course_id.'&class_id='.$class_id.'" style="color:red">[delete]</a></p>';
+                //echo '<p><a href="dl_file.php?file=' . urlencode($class_fs['fileName']) . '">' . substr($class_fs['fileName'],11) . '</a> <a href="del_file.php?file_name='.$class_fs['fileName'].'&course_id='.$course_id.'&class_id='.$class_id.'" style="color:red">[delete]</a></p>';
+		echo '<div class="download-delete-con">';
+	    echo '<div class="download-file">
+	    		<a target="hidden-del" href="dl_file.php?file=' . urlencode($class_fs['fileName']) . '">
+				<svg viewBox="0 0 32 32"><rect y="30" width="32" height="2" rx="1"/><path d="M24.2,15.9l-6.6,7.8a2,2,0,0,1-1.6.7h0a2,2,0,0,1-1.6-.7L7.8,15.9a1.1,1.1,0,0,1,.1-1.5h0a1,1,0,0,1,1.4.2L15,21.3V1a.9.9,0,0,1,1-1h0a.9.9,0,0,1,1,1V21.3l5.7-6.7a1,1,0,0,1,1.4-.2h0A1.1,1.1,0,0,1,24.2,15.9Z"/></svg>
+			</a><br>
+		</div>';
+            echo '<div class="del">
+	    		<a target="hidden-del" href="del_file.php?file_name='.$class_fs['fileName'].'&course_id='.$course_id.'&class_id='.$class_id.'">
+				<svg viewBox="0 0 32 32"><path d="M31,5.1H22.1V4a4,4,0,0,0-4-4H13.9a4,4,0,0,0-4,4V5.1H1a1,1,0,0,0-1,1,.9.9,0,0,0,1,1H3.3L5.7,28.5a3.9,3.9,0,0,0,4,3.5H22.3a3.9,3.9,0,0,0,4-3.5L28.7,7.1H31a.9.9,0,0,0,1-1A1,1,0,0,0,31,5.1ZM11.9,4a2,2,0,0,1,2-2h4.2a2,2,0,0,1,2,2V5.1H11.9ZM24.3,28.2a2,2,0,0,1-2,1.8H9.7a2,2,0,0,1-2-1.8L5.3,7.1H26.7Z"></path><path d="M18.8,12.2V24.9a1,1,0,0,0,1,1h0a1.1,1.1,0,0,0,1-1V12.2a1.1,1.1,0,0,0-1-1h0A1,1,0,0,0,18.8,12.2ZM12.2,25.9h0a1,1,0,0,0,1-1V12.2a1,1,0,0,0-1-1h0a1.1,1.1,0,0,0-1,1V24.9A1.1,1.1,0,0,0,12.2,25.9Z"></path></svg>
+			</a><br>
+		</div></div>';
             } else {
-                echo '<p><a href="dl_file.php?file=' . urlencode($class_fs['fileName']) . '">' . substr($class_fs['fileName'],11) . '</a></p>';
+                //echo '<p><a href="dl_file.php?file=' . urlencode($class_fs['fileName']) . '">' . substr($class_fs['fileName'],11) . '</a></p>';
+		echo '<div class="download-delete-con">';
+	    echo '<div class="download-file">
+	    		<a target="hidden-del" href="dl_file.php?file=' . urlencode($class_fs['fileName']) . '">
+				<svg viewBox="0 0 32 32"><rect y="30" width="32" height="2" rx="1"/><path d="M24.2,15.9l-6.6,7.8a2,2,0,0,1-1.6.7h0a2,2,0,0,1-1.6-.7L7.8,15.9a1.1,1.1,0,0,1,.1-1.5h0a1,1,0,0,1,1.4.2L15,21.3V1a.9.9,0,0,1,1-1h0a.9.9,0,0,1,1,1V21.3l5.7-6.7a1,1,0,0,1,1.4-.2h0A1.1,1.1,0,0,1,24.2,15.9Z"/></svg>
+			</a><br>
+		</div>';
+	    echo '</div>';
             }
+	    echo '</div>';
         }
     } else {
         echo '<p style="color:gray;text-align:center;">No files yet</p>';

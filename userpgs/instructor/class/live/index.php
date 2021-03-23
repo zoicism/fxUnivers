@@ -31,6 +31,14 @@ $class_fetch = mysqli_fetch_array($class_result);
 $header = $class_fetch['title'];
 $description = $class_fetch['body'];
 $video = $class_fetch['video'];
+$theDate = $class_fetch['dt'];
+if($class_fetch['theTime']!=null) {
+    $theTime = $class_fetch['theTime'];
+
+    $actualTime = $theDate.' '.$theTime;
+    $epochTime = strtotime($actualTime);
+    $epochDiff = $epochTime - time();
+}
 
 $tar_id=$class_fetch['teacher_id'];
 require('../../../../php/get_tar_id.php');
@@ -107,7 +115,9 @@ if($user_type=='instructor') {
 </head>
     
 <body>
-
+    <?php if(($user_type=='student') && ($class_fetch['theTime']!=null) && ($epochDiff > 0)) { ?>
+	<div style="height:100%;width:100%;display:flex;align-items:center;justify-content:center;position:fixed;background-color:black;opacity:0.3;cursor:auto;z-index:2;"><span style="background:black;z-index:3;color:white;font-weight:bold;opacity:1;">Live Classroom will begin on <?php echo date("M jS, Y", strtotime($theDate)).' at '.$theTime ?></span></div>
+    <?php } ?>
     <div style="height:100%;width:100%;display:flex;align-items:center;justify-content:center;position:fixed;background-color:black;opacity:0.3;cursor:auto;z-index:2;" id="loading"><img src="/images/background/loading.gif" style="z-index:3"></div>
 
     
@@ -231,10 +241,10 @@ if($tar_user_fetch['avatar']!=NULL) {
       $avatar_url='/images/background/avatar.png';
 }
 
- echo '<div class="pub-avatar" onclick="location.href=\'/user/'.$tar_user_fetch['username'].'\'">';
-	     	  echo '<div class="pub-img avatar" style="background-image:url(\''.$avatar_url.'\');">';
+ echo '<div class="pub-avatar" style="cursor:auto">';
+	     	  echo '<div class="pub-img avatar" style="cursor:pointer;background-image:url(\''.$avatar_url.'\');" onclick="location.href=\'/user/'.$tar_user_fetch['username'].'\'">';
 		  echo '</div>';
-		  echo '<div class="pub-name">';
+		  echo '<div class="pub-name" style="cursor:pointer;" onclick="location.href=\'/user/'.$tar_user_fetch['username'].'\'">';
 		  echo '<p class="fullname">'.$tar_user_fetch['fname'].' '.$tar_user_fetch['lname'].'</p>';
 		  echo '<p>@'.$tar_user_fetch['username'].'</p>';
 		  echo '</div>';
@@ -247,13 +257,26 @@ if($tar_user_fetch['avatar']!=NULL) {
 	  
 <div class="detail-bottom"></div>
 
+<div style="display:none" >
 
+    <button id="enableAudio" >Enable Audio</button>
+    <button id="disableAudio" >Disable Audio</button>
+    <button id="btnStart">START RECORDING</button> 
+    <button id="btnStop">STOP RECORDING</button>
+    <button id="save">Save</button>
 
+    <!--for record--> 
+    <audio controls muted id="studentAudio"></audio> 
+    
+    <!--for play the audio--> 
 
-
+    
+    <!-- from server -->
+    <!--<audio controls src="audio/test.wav"></audio>-->
+</div>
 	  
-	</div>
-	<div class="right-content">
+	  </div>
+	  <div class="right-content">
 	    <?php
             require('../../../../php/limit_str.php');
 	    ?>
@@ -410,8 +433,23 @@ echo '<div class="sess-list" style="display:none">';
 <!-- CHAT -->
 <div class="chat-list" style="display:none">
     <div class="live-chat-con">
+
+	<div class="msg-icon-cnt" id="voice-btn" recording="false" style="margin: 0 14px 0 0">
+	    <svg viewBox="0 0 32 32""><defs><style>.send-icon{fill:#212121;}</style></defs>
+		<path class="send-icon" d="M30.9,14.5,2.9.5,2,.3A1.9,1.9,0,0,0,.1,2.8L3.2,16.4.1,29.2A2,2,0,0,0,2,31.7l.9-.2,28-13.4A2,2,0,0,0,30.9,14.5ZM2,29.7,5.1,17.4H15.8a1,1,0,0,0,1-1h0a.9.9,0,0,0-1-1H5.1L2,2.3l28,14Z"></path>
+	    </svg>
+	</div>
+
+	<div class="msg-icon-cnt" id="trash-voice-btn" style="margin: 0 14px 0 0;display:none;">
+	    <svg viewBox="0 0 32 32""><defs><style>.send-icon{fill:#212121;}</style></defs>
+		<path class="send-icon" d="M30.9,14.5,2.9.5,2,.3A1.9,1.9,0,0,0,.1,2.8L3.2,16.4.1,29.2A2,2,0,0,0,2,31.7l.9-.2,28-13.4A2,2,0,0,0,30.9,14.5ZM2,29.7,5.1,17.4H15.8a1,1,0,0,0,1-1h0a.9.9,0,0,0-1-1H5.1L2,2.3l28,14Z"></path>
+	    </svg>
+	</div>
+
+
+	<audio id="adioPlay" controls style="display:none"></audio>
         <input name="msgBody" type="text" id="chatInput" class="txt-input" placeholder="Type here">
-	<div class="msg-icon-cnt" id="send-btn">
+	<div class="msg-icon-cnt" id="send-btn" isAudio="false">
 	    <svg id="SendIcon" viewBox="0 0 32 32""><defs><style>.send-icon{fill:#212121;}</style></defs>
 	        <path class="send-icon" d="M30.9,14.5,2.9.5,2,.3A1.9,1.9,0,0,0,.1,2.8L3.2,16.4.1,29.2A2,2,0,0,0,2,31.7l.9-.2,28-13.4A2,2,0,0,0,30.9,14.5ZM2,29.7,5.1,17.4H15.8a1,1,0,0,0,1-1h0a.9.9,0,0,0-1-1H5.1L2,2.3l28,14Z"></path>
 	    </svg>
@@ -743,50 +781,252 @@ loadWebrtc();
 <!-- TABS -->
 <script>
  /*
-$('#sessions-tab').click(function() {
-  $('#sessions-tab').addClass('active-tab');
-  $('#chat-tab').removeClass('active-tab');
-  $('#users-tab').removeClass('active-tab');
-  $('#file-tab').removeClass('active-tab');
-  $('.file-list').hide();
-  //$('.sess-list').show();
-  $('.chat-list').hide();
-  $('.online-list').hide();
-});*/
-$('#chat-tab').click(function() {
-  $('#sessions-tab').removeClass('active-tab');
-  $('#chat-tab').addClass('active-tab');
-  $('#users-tab').removeClass('active-tab');
-  $('#file-tab').removeClass('active-tab');
-  $('.file-list').hide();
-  //$('.sess-list').hide();
-  $('.chat-list').show();
-  $('.online-list').hide();
-});
-$('#users-tab').click(function() {
-  $('#sessions-tab').removeClass('active-tab');
-  $('#chat-tab').removeClass('active-tab');
-  $('#users-tab').addClass('active-tab');
-  $('#file-tab').removeClass('active-tab');
-  $('.file-list').hide();
-  //$('.sess-list').hide();
-  $('.chat-list').hide();
-  $('.online-list').show();
-});
-$('#file-tab').click(function() {
-  $('#sessions-tab').removeClass('active-tab');
-  $('#chat-tab').removeClass('active-tab');
-  $('#users-tab').removeClass('active-tab');
-  $('#file-tab').addClass('active-tab');
-  $('.file-list').show();
-  //$('.sess-list').hide();
-  $('.chat-list').hide();
-  $('.online-list').hide();
-});
+    $('#sessions-tab').click(function() {
+    $('#sessions-tab').addClass('active-tab');
+    $('#chat-tab').removeClass('active-tab');
+    $('#users-tab').removeClass('active-tab');
+    $('#file-tab').removeClass('active-tab');
+    $('.file-list').hide();
+    //$('.sess-list').show();
+    $('.chat-list').hide();
+    $('.online-list').hide();
+    });*/
+ $('#chat-tab').click(function() {
+     $('#sessions-tab').removeClass('active-tab');
+     $('#chat-tab').addClass('active-tab');
+     $('#users-tab').removeClass('active-tab');
+     $('#file-tab').removeClass('active-tab');
+     $('.file-list').hide();
+     //$('.sess-list').hide();
+     $('.chat-list').show();
+     $('.online-list').hide();
+ });
+ $('#users-tab').click(function() {
+     $('#sessions-tab').removeClass('active-tab');
+     $('#chat-tab').removeClass('active-tab');
+     $('#users-tab').addClass('active-tab');
+     $('#file-tab').removeClass('active-tab');
+     $('.file-list').hide();
+     //$('.sess-list').hide();
+     $('.chat-list').hide();
+     $('.online-list').show();
+ });
+ $('#file-tab').click(function() {
+     $('#sessions-tab').removeClass('active-tab');
+     $('#chat-tab').removeClass('active-tab');
+     $('#users-tab').removeClass('active-tab');
+     $('#file-tab').addClass('active-tab');
+     $('.file-list').show();
+     //$('.sess-list').hide();
+     $('.chat-list').hide();
+     $('.online-list').hide();
+ });
 </script>
 
+<!-- AUDIO MSG -->
+<script>
+ function startAudio() {
+     //$('#enableAudio').click(function() {
+     let audioIN = { audio: true }; 
+     // audio is true, for recording 
 
-<!-- CHATS -->
+     // Access the permission for use 
+     // the microphone 
+     navigator.mediaDevices.getUserMedia(audioIN) 
+
+     // 'then()' method returns a Promise 
+	      .then(function (mediaStreamObj) { 
+
+		  // Connect the media stream to the 
+		  // first audio element 
+		  //let audio = document.querySelector('audio'); 
+		  let audio = document.getElementById('studentAudio');
+		  //returns the recorded audio via 'audio' tag 
+
+		  // 'srcObject' is a property which 
+		  // takes the media object 
+		  // This is supported in the newer browsers 
+		  if ("srcObject" in audio) { 
+		      audio.srcObject = mediaStreamObj; 
+		  } 
+		  else { // Old version 
+		      audio.src = window.URL 
+					.createObjectURL(mediaStreamObj); 
+		  } 
+
+		  // It will play the audio 
+		  audio.onloadedmetadata = function (ev) { 
+
+		      // Play the audio in the 2nd audio 
+		      // element what is being recorded 
+		      audio.play(); 
+		  }; 
+
+		  // Start record 
+		  //let start = document.getElementById('btnStart'); 
+
+		  // Stop record 
+		  //let stop = document.getElementById('btnStop'); 
+
+		  // 2nd audio tag for play the audio 
+		  let playAudio = document.getElementById('adioPlay'); 
+
+		  // This is the main thing to recorde 
+		  // the audio 'MediaRecorder' API 
+		  let mediaRecorder = new MediaRecorder(mediaStreamObj); 
+		  // Pass the audio stream 
+
+		  // Start event 
+		  document.getElementById('btnStart').addEventListener('click', function (ev) { 
+		      mediaRecorder.start(); 
+		      // console.log(mediaRecorder.state);
+		      //console.log('started');
+
+		      $('#chatInput').val('Recording...').prop('disabled', true);
+		      //$('#voice-btn').attr('id','voice-btn-stop');
+		      $('#voice-btn').attr('recording', 'true');
+		  });
+
+		  // Stop event 
+		  document.getElementById('btnStop').addEventListener('click', function (ev) { 
+		      mediaRecorder.stop(); 
+		      // console.log(mediaRecorder.state);
+		      //console.log('stopped');
+		  }); 
+
+		  // If audio data available then push 
+		  // it to the chunk array 
+		  mediaRecorder.ondataavailable = function (ev) { 
+		      dataArray.push(ev.data); 
+		  } 
+
+		  // Chunk array to store the audio data 
+		  let dataArray = []; 
+
+		  // Convert the audio data in to blob 
+		  // after stopping the recording 
+		  mediaRecorder.onstop = function (ev) { 
+		      let audioData = [];
+		      // blob of type mp3 
+		      audioData = new Blob(dataArray, 
+					   { 'type': 'audio/mp3;' }); 
+
+		      console.log(audioData);
+		      
+		      // After fill up the chunk 
+		      // array make it empty 
+		      dataArray = []; 
+
+		      // Creating audio url with reference 
+		      // of created blob named 'audioData' 
+		      let audioSrc = window.URL 
+					   .createObjectURL(audioData); 
+
+		      console.log(audioSrc);
+
+		      // Pass the audio url to the 2nd video tag 
+		      playAudio.src = audioSrc;
+
+		      disableAudioTracks();
+		      
+		      $('#save').click(function() {
+			  uploadBlob(audioData);
+			  //audioData=[];
+		      });
+		  }
+		  $('#btnStart').click();
+
+		  
+	      }) 
+	      .catch(function (err) {  // If any error occurs then handles the error 
+		  console.log(err.name, err.message); 
+	      });
+
+     
+     
+
+ }
+
+ 
+
+</script>
+
+<script>
+ function uploadBlob(audioD) {
+     // create a blob here for testing
+     //var blob = new Blob(["i am a blob"]);
+     var blob = audioD;
+     //var blob = yourAudioBlobCapturedFromWebAudioAPI;// for example   
+     var reader = new FileReader();
+     // this function is triggered once a call to readAsDataURL returns
+     reader.onload = function(event) {
+	 var fd = new FormData();
+	 //fd.append('audioname', '.wav');
+	 fd.append('msgUserId', '<?php echo $get_user_id?>');
+	 fd.append('msgClassId', '<?php echo $class_id ?>');
+	 fd.append('data', event.target.result);
+	 $.ajax({
+	     type: 'POST',
+	     url: 'audio_upload.php',
+	     data: fd,
+	     processData: false,
+	     contentType: false
+	 }).done(function(data) {
+	     // print the output from the upload.php script
+	     console.log(data);
+	     
+	 });
+     };      
+     // trigger the read from the reader...
+     reader.readAsDataURL(blob);	 
+ }
+</script>
+<script>
+ $('#voice-btn').click(function() {
+     var recordingStu = $('#voice-btn').attr('recording');
+     //console.log(recordingStu);
+     if(recordingStu=='false') {
+
+	 startAudio();
+	 $('#chatInput').show();
+	 $('#adioPlay').hide();
+	 $('#send-btn').attr('isAudio','false');
+	 $('#trash-voice-btn').hide();
+
+     } else if(recordingStu=='true') {
+
+	 $('#btnStop').click();
+	 $('#voice-btn').attr('recording', 'false');
+	 $('#chatInput').hide();
+	 $('#adioPlay').show();
+	 $('#send-btn').attr('isAudio','true');
+	 $('#trash-voice-btn').show();
+	 
+     }
+ });
+
+ $('#trash-voice-btn').click(function() {
+     $('#send-btn').attr('isAudio','false');
+     $('#chatInput').show().prop('disabled',false).val('');
+     $('#adioPlay').hide();
+     $('#trash-voice-btn').hide();
+ });
+</script>
+
+ <script>
+  function disableAudioTracks() {
+      //var studentAudio = document.querySelector('audio');
+      var studentAudio = document.getElementById('studentAudio');
+      const studentStream = studentAudio.srcObject;
+      const tracks = studentStream.getTracks();
+      
+      tracks.forEach(function(track) {
+	  track.stop();
+      });
+      
+ }
+</script>
+    <!-- CHATS -->
 <script>
  $('#chatInput').keypress(function(event) {
      var keycode=(event.keyCode ? event.keyCode : event.which);
@@ -806,33 +1046,55 @@ $('#file-tab').click(function() {
          });
      }
  });
- $('#SendIcon').click(function() {
-     var msgbody = $('#chatInput').val();
-     var msguserid = <?php echo $get_user_id ?>;
-     var msgclassid = <?php echo $class_id ?>;
-     jQuery.ajax({
-         type: 'POST',
-         url: '/php/set_class_chat.php',
-         data: {msgBody: msgbody, msgUserId: msguserid, msgClassId: msgclassid},
-         success: function(response) {
-             //alert(response);
-             $('#chatInput').val('');
-             $('#chatInput').focus();
-         }
-     });
+ $('#send-btn').click(function() {
+     var isAudio = $('#send-btn').attr('isAudio');
+     if(isAudio=='false') {
+	 var msgbody = $('#chatInput').val();
+	 var msguserid = <?php echo $get_user_id ?>;
+	 var msgclassid = <?php echo $class_id ?>;
+	 jQuery.ajax({
+             type: 'POST',
+             url: '/php/set_class_chat.php',
+             data: {msgBody: msgbody, msgUserId: msguserid, msgClassId: msgclassid},
+             success: function(response) {
+		 //alert(response);
+		 $('#chatInput').val('');
+		 $('#chatInput').focus();
+             }
+	 });
+     } else if(isAudio=='true') {
+	 $('#save').click();
+	 $('#send-btn').attr('isAudio','false');
+	 $('#chatInput').show().prop('disabled',false).val('');
+	 $('#adioPlay').hide();
+	 $('#trash-voice-btn').hide();
+     }
  });
+    
 </script>
 <script>
-$(document).ready(function() {
-    // here
-      setInterval(function() {
+ $(document).ready(function() {
+     // here
+     setInterval(function() {
+	 var numberOfMsgs = $('.one-msg').length;
+	 //console.log(numberOfMsgs);
+
         jQuery.ajax({
           type: "POST",
-          url: "/php/get_class_chat.php",
-          data: {class_id: <?php echo $class_id ?>},
+          url: "/php/class_chat_update.php",
+          data: {class_id: <?php echo $class_id ?>, numOfMsgs: numberOfMsgs},
           success: function(response) {
+	      //console.log(response);
+
+	      if(response!='') {
+		  if(response=='empty') {
+		      $('.msgs').html('<p style="color:gray;text-align:center;">Empty</p>');
+		  } else {
+		      $('.msgs').prepend(response);
+		  } 
+	      }
                 //alert(response);
-                $("#newMsgs").load('/php/class_chat_update.php', {class_id: <?php echo $class_id ?>});
+                //$("#newMsgs").load('/php/class_chat_update.php', {class_id: <?php echo $class_id ?>});
           }
         });
          }, 2000);

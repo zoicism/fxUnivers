@@ -63,7 +63,7 @@ require('../../../php/get_class_files.php');
 $tar_id=$class_fetch['teacher_id'];
 require('../../../php/get_tar_id.php');
 
-
+$mustRedirect=0;
 ?>
 
 <!DOCTYPE html>
@@ -219,7 +219,7 @@ echo '<div class="little-box"><span>'.date("M jS, Y", strtotime($dt)).'</span></
 
 		echo '<div class="options session-options">';
 
-		//echo '<div class="add-box" id="live-add-box">Open Live Classroom</div>';
+		echo '<div class="add-box" id="live-add-box">Go Live in This Session</div>';
 
 		echo '<div class="add-box-con">';
 		echo '<div class="add-box" onclick="location.href=\'/userpgs/instructor/class/edit_class.php?course_id='.$course_id.'&class_id='.$class_id.'\';"><svg viewBox="0 0 32 32">
@@ -245,14 +245,16 @@ echo '<div class="little-box"><span>'.date("M jS, Y", strtotime($dt)).'</span></
 
 		echo '</div>';
 	    } else {
-		echo '<div class="options session-learn-options">';
+		//echo '<div class="options session-learn-options">';
 		//echo '<div class="add-box" id="live-add-box">Open Live Classroom</div>';
-		echo '</div>';
+		//echo '</div>';
 
 		//echo '<form action="/userpgs/instructor/class/live/#'.$class_id.'" method="POST" id="LiveForm"><input type="hidden" name="course_id" value="'.$course_id.'"><input type="hidden" name="class_id" value="'.$class_id.'"></form>';
 
 	//	echo '<form action="/userpgs/instructor/class/live" method="GET" id="LiveForm"><input type="hidden" name="course_id" value="'.$course_id.'"><input type="hidden" name="class_id" value="'.$class_id.'"><input type="hidden" name="hash" value="#'.$class_id.'"></form>';
 
+		// Go directly to live if this is a live session as of now
+		
 
 	    }
 
@@ -260,8 +262,8 @@ echo '<div class="little-box"><span>'.date("M jS, Y", strtotime($dt)).'</span></
 	    ?>
 
 <div class="tabs">
-<div class="tab active-tab" style="border-radius:20px 0 0 0;" id="sessions-tab"><h3>Sessions</h3></div>
-<div class="tab" style="border-radius:0 20px 0 0;" id="file-tab"><h3>Files(<?php echo $gcf_count?>)</h3></div>
+<div class="tab-student active-tab" id="sessions-tab"><div>Sessions</div></div>
+<div class="tab-student" id="file-tab"><div>Files(<?php echo $gcf_count?>)</div></div>
 </div>
 
 <?php
@@ -299,45 +301,72 @@ echo '<div class="sess-list">';
 			  </div>
 			  <div class="session-desc">
 
-			<?php
+			      <?php
 
 
 
-if((time()-strtotime($instructor['lastseen']) < 3) && ($instructor['lsPage']=='live/#'.$row['id'])) {
-                        echo '<p><strong><span class="gray-bg" style="color:white;padding:2px 5px;">'.$session_counter.'</span> '.$row['title'].'</strong> <img src="/images/background/live6.png" style="width:32px" class="blink_me"></p>';
-			} else {
-			echo '<p><strong><span class="gray-bg" style="color:white;padding:2px 5px;">'.$session_counter.'</span> '.$row['title'].'</strong></p>';
-			}
-			
-                        if($row['body']=='') {
-                            $descrip='<span class="gray">(No description)</span>';
-                        } else {
-                            $descrip=preg_replace("/<br\W*?\/>/", " ", $row['body']);
-                        }
-                        echo '<p>';
-			echo limited($descrip,70).'</p>';
-                        echo '</div></div>';
-                    }
-                    $class_result->free();
-                } else {
-                    echo '<p class="gray" style="text-align:center;">No sessions yet.</p>';
-                }
- ?>
+			      if((time()-strtotime($instructor['lastseen']) < 15) && ($instructor['lsPage']=='live/#'.$row['id'])) {
+				  echo '<p><strong><span class="gray-bg" style="color:white;padding:2px 5px;">'.$session_counter.'</span> '.$row['title'].'</strong> <img src="/images/background/live6.png" style="width:32px" class="blink_me"></p>';
+				  if(($user_type!='instructor') && ($class_id==$row['id'])) $mustRedirect=1;
+			      } else {
+				  echo '<p><strong><span class="gray-bg" style="color:white;padding:2px 5px;">'.$session_counter.'</span> '.$row['title'].'</strong></p>';
+			      }
+			      
+                              if($row['body']=='') {
+				  $descrip='<span class="gray">(No description)</span>';
+                              } else {
+				  $descrip=preg_replace("/<br\W*?\/>/", " ", $row['body']);
+                              }
+                              echo '<p>';
+			      echo limited($descrip,70).'</p>';
+                              echo '</div></div>';
+			      }
+			      $class_result->free();
+			      } else {
+				  echo '<p class="gray" style="text-align:center;">No sessions yet.</p>';
+			      }
+			      ?>
  </div>
- <div class="files-list" style="display:none">
+ <div class="file-list" style="display:none">
    <?php
     if($gcf_count>0) {
-       echo '<div style="margin:1rem 3rem">';
+       echo '<div class="uploaded-files" style="padding-top:0">';
         while($class_fs=$gcf_result->fetch_assoc()) {
-	
+
+	    echo '<div class="file">
+		<div class="file-icon-con" href="dl_file.php?file=' . urlencode($class_fs['fileName']) . '">
+			<svg viewBox="0 0 32 32">
+				<path d="M26,8.6,19.4,2l-2-2H8A4,4,0,0,0,4,4V28a4,4,0,0,0,4,4H24a4,4,0,0,0,4-4V10.6ZM18,3.4,24.6,10H20a2,2,0,0,1-2-2ZM26,28a2,2,0,0,1-2,2H8a2,2,0,0,1-2-2V4A2,2,0,0,1,8,2h8V8a4,4,0,0,0,4,4h6Z"></path>
+			</svg>
+		</div>';
+	echo '<div class="file-name"><div class="file-name-txt" href="dl_file.php?file=' . urlencode($class_fs['fileName']) . '">' . substr($class_fs['fileName'],11) . '</div></div>';
             if($user_type=='instructor') {
-                echo '<p><a href="dl_file.php?file=' . urlencode($class_fs['fileName']) . '">' . $class_fs['fileName'] . '</a> <a href="del_file.php?file_name='.$class_fs['fileName'].'&course_id='.$course_id.'&class_id='.$class_id.'" style="color:red">[delete]</a></p>';
+                //echo '<p><a href="dl_file.php?file=' . urlencode($class_fs['fileName']) . '">' . substr($class_fs['fileName'],11) . '</a> <a href="del_file.php?file_name='.$class_fs['fileName'].'&course_id='.$course_id.'&class_id='.$class_id.'" style="color:red">[delete]</a></p>';
+		echo '<div class="download-delete-con">';
+	    echo '<div class="download-file">
+	    		<a target="hidden-del" href="dl_file.php?file=' . urlencode($class_fs['fileName']) . '">
+				<svg viewBox="0 0 32 32"><rect y="30" width="32" height="2" rx="1"/><path d="M24.2,15.9l-6.6,7.8a2,2,0,0,1-1.6.7h0a2,2,0,0,1-1.6-.7L7.8,15.9a1.1,1.1,0,0,1,.1-1.5h0a1,1,0,0,1,1.4.2L15,21.3V1a.9.9,0,0,1,1-1h0a.9.9,0,0,1,1,1V21.3l5.7-6.7a1,1,0,0,1,1.4-.2h0A1.1,1.1,0,0,1,24.2,15.9Z"/></svg>
+			</a><br>
+		</div>';
+            echo '<div class="del">
+	    		<a target="hidden-del" href="del_file.php?file_name='.$class_fs['fileName'].'&course_id='.$course_id.'&class_id='.$class_id.'">
+				<svg viewBox="0 0 32 32"><path d="M31,5.1H22.1V4a4,4,0,0,0-4-4H13.9a4,4,0,0,0-4,4V5.1H1a1,1,0,0,0-1,1,.9.9,0,0,0,1,1H3.3L5.7,28.5a3.9,3.9,0,0,0,4,3.5H22.3a3.9,3.9,0,0,0,4-3.5L28.7,7.1H31a.9.9,0,0,0,1-1A1,1,0,0,0,31,5.1ZM11.9,4a2,2,0,0,1,2-2h4.2a2,2,0,0,1,2,2V5.1H11.9ZM24.3,28.2a2,2,0,0,1-2,1.8H9.7a2,2,0,0,1-2-1.8L5.3,7.1H26.7Z"></path><path d="M18.8,12.2V24.9a1,1,0,0,0,1,1h0a1.1,1.1,0,0,0,1-1V12.2a1.1,1.1,0,0,0-1-1h0A1,1,0,0,0,18.8,12.2ZM12.2,25.9h0a1,1,0,0,0,1-1V12.2a1,1,0,0,0-1-1h0a1.1,1.1,0,0,0-1,1V24.9A1.1,1.1,0,0,0,12.2,25.9Z"></path></svg>
+			</a><br>
+		</div></div>';
             } else {
-                echo '<p><a href="dl_file.php?file=' . urlencode($class_fs['fileName']) . '">' . $class_fs['fileName'] . '</a></p>';
+                //echo '<p><a href="dl_file.php?file=' . urlencode($class_fs['fileName']) . '">' . substr($class_fs['fileName'],11) . '</a></p>';
+		echo '<div class="download-delete-con">';
+	    echo '<div class="download-file">
+	    		<a target="hidden-del" href="dl_file.php?file=' . urlencode($class_fs['fileName']) . '">
+				<svg viewBox="0 0 32 32"><rect y="30" width="32" height="2" rx="1"/><path d="M24.2,15.9l-6.6,7.8a2,2,0,0,1-1.6.7h0a2,2,0,0,1-1.6-.7L7.8,15.9a1.1,1.1,0,0,1,.1-1.5h0a1,1,0,0,1,1.4.2L15,21.3V1a.9.9,0,0,1,1-1h0a.9.9,0,0,1,1,1V21.3l5.7-6.7a1,1,0,0,1,1.4-.2h0A1.1,1.1,0,0,1,24.2,15.9Z"/></svg>
+			</a><br>
+		</div>';
+	    echo '</div>';
             }
+	    echo '</div>';
         }
     } else {
-        echo '<p style="color:gray">No files yet</p>';
+        echo '<p style="color:gray;text-align:center;">No files yet</p>';
     }
    echo '</div>';
 ?>
@@ -360,11 +389,13 @@ if((time()-strtotime($instructor['lastseen']) < 3) && ($instructor['lsPage']=='l
 
   <!-- SCRIPTS -->
   <script>
-    $('#page-header').html('fxUniversity');
-    $('#page-header').attr('href','/userpgs/fxuniversity');
+   $('#page-header').html('fxUniversity');
+   $('#page-header').attr('href','/userpgs/fxuniversity');
+   var mustRedir = <?php echo $mustRedirect ?>;
+   if(mustRedir) {
+       window.location.replace('/userpgs/instructor/class/live/?course_id=<?php echo $course_id ?>&class_id=<?php echo $class_id ?>');
+   }
   </script>
-  
-
 
 <script>
 var vhWidth = $('.video-holder').width();
@@ -398,11 +429,11 @@ $('.video-holder').height(vhWidth/1.78);
   });
   
  });*/
- /*
+ 
 $('#live-add-box').click(function() {
      //$('#LiveForm').submit();
      window.location.href = '/userpgs/instructor/class/live/?course_id=<?php echo $course_id ?>&class_id=<?php echo $class_id ?>';
-});*/
+});
 </script>
 
 <script>
@@ -410,7 +441,7 @@ $('#file-tab').click(function() {
   $('#file-tab').addClass('active-tab');
   $('#sessions-tab').removeClass('active-tab');
 
-  $('.files-list').show();
+  $('.file-list').show();
   $('.sess-list').hide();
 });
 $('#sessions-tab').click(function() {
@@ -418,7 +449,7 @@ $('#sessions-tab').click(function() {
   $('#sessions-tab').addClass('active-tab');
 
   $('.sess-list').show();
-  $('.files-list').hide();
+  $('.file-list').hide();
 });
 </script>
 </body>
