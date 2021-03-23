@@ -4075,7 +4075,7 @@ input:checked + .slider:before {
     
     
     .mobile-main {
-	margin-bottom: 50px;
+	/*margin-bottom: 100px;*/
 	overflow: hidden;
     }
     .upperbar {

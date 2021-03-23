@@ -1,4 +1,8 @@
 if(screen.width<628) {
+
+    
+
+
     var loc = window.location.pathname;
     var footbar = `
 <div class="footbar-icon home" style="margin-left:30px;cursor:pointer;" onclick="location.href='/';">
@@ -51,5 +55,7 @@ if(screen.width<628) {
 	$('.footbar .msg .stroked').hide();
 	$('.footbar .msg .filled').show();
     }
+
+    $('<div style="width:100%;display:block;background:transparent;height:50px;"></div>').insertAfter('.footbar');
 }
 	
