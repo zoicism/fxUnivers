@@ -1332,6 +1332,93 @@ textarea:focus {
     margin: 0 auto;
 }
 */
+
+
+
+
+.options .course-addbox-con .start-schedule-con {
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+}
+
+.options .course-addbox-con .start-schedule-con .start-live-back-con {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.options .course-addbox-con .start-schedule-con .start-live-back-con .back-icon-cnt {
+    margin: 0;
+    width: 32px;
+    height: 32px;
+    padding: 9px;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: -4px -2px 4px 0px #ffffff, 4px 2px 6px 0px #dfe4ea;
+}
+
+.options .course-addbox-con .start-schedule-con .start-live-back-con .back-icon-cnt:active {
+    box-shadow: inset -4px -2px 4px 0px #fff,
+	    	inset 4px 2px 6px 0px #dfe4ea,
+	    	-4px -2px 4px 0px #ffffff,
+	    	4px 2px 6px 0px #dfe4ea;
+}
+
+.options .course-addbox-con .start-schedule-con .start-live-back-con .back-icon-cnt svg {
+    display: block;
+}
+
+.options .course-addbox-con .start-schedule-con .start-live-back-con #live-now {
+    background: linear-gradient( 126deg, rgba(255,66,29,1) 0%,
+	    	rgba(252,67,67,1) 50%,
+	    	rgba(249,67,104,1) 100%);
+    color: #fff;
+    height: 38px;
+    margin: 0;
+}
+
+.options .course-addbox-con .start-schedule-con .date-time-live-con .date-input, .time-input {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.options .course-addbox-con .start-schedule-con .date-time-live-con .time-input {
+    margin: 10px 0 18px 0;
+}
+
+.options .course-addbox-con .start-schedule-con .date-time-live-con .txt-input {
+    width:153px;
+}
+
+.date-time-live-con .date-input input, .time-input input {
+    margin: 0;
+}
+
+.options .course-addbox-con .start-schedule-con .date-time-live-con .submit-btn {
+    margin: 0 auto;
+    height: 38px;
+    border: 1px solid #fc4344;
+}
+
+.options .course-addbox-con .start-schedule-con .date-time-live-con .submit-btn:hover {
+    background: linear-gradient( 126deg,
+	    	rgba(255,66,29,1) 0%,
+	    	rgba(252,67,67,1) 50%,
+	    	rgba(249,67,104,1) 100%);
+    color: #fff;
+    transition: 0.3s;
+}
+
+
+
+
 .blinking {
     animation-name: blinking;
     animation-duration: 0.5s;
