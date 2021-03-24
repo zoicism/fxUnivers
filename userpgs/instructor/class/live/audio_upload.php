@@ -16,8 +16,8 @@ function generateRandomString($length = 10) {
 
 // pull the raw binary data from the POST array
 $data = substr($_POST['data'], strpos($_POST['data'], ",") + 1);
-$msgUserId = $_POST['msgUserId'];
-$msgClassId = $_POST['msgClassId'];
+$msgUserId = 144; //$_POST['msgUserId'];
+$msgClassId = 159; //$_POST['msgClassId'];
 $msgtxt = 'fxuniversityaudio'.generateRandomString();
 
 // decode it

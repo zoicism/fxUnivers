@@ -93,8 +93,8 @@ if($user_type=='instructor') {
     <script src="/js/jquery.form.js"></script>
 
     <script src="../DetectRTC/DetectRTC.js" id="detectrtc" ></script>
-    <!--<script src="../js/socket.io.js" id="socketio"> </script>-->
-    <script src="https://www.webrtc-experiment.com/socket.io.js"> </script>
+    <script src="../js/socket.io.js" id="socketio"> </script>
+    <!--<script src="https://www.webrtc-experiment.com/socket.io.js"> </script>-->
     <script src="../js/adapter-latest.js" id="adapter" ></script>
     <script src="/js/webrtc/IceServersHandler.js" id="iceServersHandler"></script>
     <script src="../js/CodecsHandler.js" id="codecsHandlers"></script>
@@ -118,7 +118,7 @@ if($user_type=='instructor') {
     <?php if(($user_type=='student') && ($class_fetch['theTime']!=null) && ($epochDiff > 0)) { ?>
 	<div style="height:100%;width:100%;display:flex;align-items:center;justify-content:center;position:fixed;background-color:black;opacity:0.3;cursor:auto;z-index:2;"><span style="background:black;z-index:3;color:white;font-weight:bold;opacity:1;">Live Classroom will begin on <?php echo date("M jS, Y", strtotime($theDate)).' at '.$theTime ?></span></div>
     <?php } ?>
-    <div style="height:100%;width:100%;display:flex;align-items:center;justify-content:center;position:fixed;background-color:black;opacity:0.3;cursor:auto;z-index:2;" id="loading"><img src="/images/background/loading.gif" style="z-index:3"></div>
+    <!--<div style="height:100%;width:100%;display:flex;align-items:center;justify-content:center;position:fixed;background-color:black;opacity:0.3;cursor:auto;z-index:2;" id="loading"><img src="/images/background/loading.gif" style="z-index:3"></div>-->
 
     
   <div class="header-sidebar"></div>
@@ -257,7 +257,7 @@ if($tar_user_fetch['avatar']!=NULL) {
 	  
 <div class="detail-bottom"></div>
 
-<div style="display:none" >
+<div  style="display:none">
 
     <button id="enableAudio" >Enable Audio</button>
     <button id="disableAudio" >Disable Audio</button>
@@ -825,7 +825,10 @@ loadWebrtc();
 
 <!-- AUDIO MSG -->
 <script>
+ var audioData = [];
  function startAudio() {
+     
+
      //$('#enableAudio').click(function() {
      let audioIN = { audio: true }; 
      // audio is true, for recording 
@@ -906,7 +909,7 @@ loadWebrtc();
 		  // Convert the audio data in to blob 
 		  // after stopping the recording 
 		  mediaRecorder.onstop = function (ev) { 
-		      let audioData = [];
+		      audioData = [];
 		      // blob of type mp3 
 		      audioData = new Blob(dataArray, 
 					   { 'type': 'audio/mp3;' }); 
@@ -929,10 +932,7 @@ loadWebrtc();
 
 		      disableAudioTracks();
 		      
-		      $('#save').click(function() {
-			  uploadBlob(audioData);
-			  //audioData=[];
-		      });
+		      
 		  }
 		  $('#btnStart').click();
 
@@ -942,9 +942,6 @@ loadWebrtc();
 		  console.log(err.name, err.message); 
 	      });
 
-     
-     
-
  }
 
  
@@ -952,6 +949,33 @@ loadWebrtc();
 </script>
 
 <script>
+ $('#save').click(function() {
+     uploadBlob(audioData);
+     //audioData=[];
+ });
+</script>
+
+
+<script>
+ function uploadBlob(audioD) {
+     var xhr = new XMLHttpRequest();
+     
+     
+     
+     var fd = new FormData();
+     fd.append('audio_data', audioD, 'fxuniversityaudio.mp3');
+     fd.append('msgUserId', '<?php echo $get_user_id?>');
+     fd.append('msgClassId', '<?php echo $class_id ?>');
+     xhr.open('POST', 'upload_audio.php', true);
+     xhr.send(fd);
+
+ }
+</script>
+
+
+
+<script>
+/*
  function uploadBlob(audioD) {
      // create a blob here for testing
      //var blob = new Blob(["i am a blob"]);
@@ -962,8 +986,8 @@ loadWebrtc();
      reader.onload = function(event) {
 	 var fd = new FormData();
 	 //fd.append('audioname', '.wav');
-	 fd.append('msgUserId', '<?php echo $get_user_id?>');
-	 fd.append('msgClassId', '<?php echo $class_id ?>');
+	 //fd.append('msgUserId', '<?php echo $get_user_id?>');
+	 //fd.append('msgClassId', '<?php echo $class_id ?>');
 	 fd.append('data', event.target.result);
 	 $.ajax({
 	     type: 'POST',
@@ -979,7 +1003,7 @@ loadWebrtc();
      };      
      // trigger the read from the reader...
      reader.readAsDataURL(blob);	 
- }
+ }*/
 </script>
 <script>
  $('#voice-btn').click(function() {
@@ -1001,6 +1025,7 @@ loadWebrtc();
 	 $('#adioPlay').show();
 	 $('#send-btn').attr('isAudio','true');
 	 $('#trash-voice-btn').show();
+	 $(this).hide();
 	 
      }
  });
@@ -1010,6 +1035,7 @@ loadWebrtc();
      $('#chatInput').show().prop('disabled',false).val('');
      $('#adioPlay').hide();
      $('#trash-voice-btn').hide();
+     $('#voice-btn').show();
  });
 </script>
 
@@ -1068,6 +1094,7 @@ loadWebrtc();
 	 $('#chatInput').show().prop('disabled',false).val('');
 	 $('#adioPlay').hide();
 	 $('#trash-voice-btn').hide();
+	 $('#voice-btn').show();
      }
  });
     
