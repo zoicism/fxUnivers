@@ -363,11 +363,11 @@ if($course_biddable) require_once('../../../wallet/php/wallet_connect.php');
 	      echo '<form class="date-time-live-con" id="schedule-form" >
 				<div  class="date-input">
 					<div class="date-txt">Date</div>
-					<input name="theDate" type="date" class="txt-input" required>
+					<input name="theDate" type="date" class="txt-input" id="theDateId" required>
 				</div>
 				<div class="time-input">
 					<div class="time-txt">Time(UTC)</div>
-					<input name="theTime" type="time" class="txt-input" required>
+					<input name="theTime" type="time" class="txt-input" id="theTimeId" required>
 				</div>
 				<input type="hidden" name="courseId" value="'.$course_id.'">
 				<input type="submit" class="submit-btn" value="Schedule">
@@ -907,7 +907,26 @@ if($course_biddable) require_once('../../../wallet/php/wallet_connect.php');
 		     } else if(response=='in_the_past') {
 			 alert('Choose a date and time in the future.');
 		     } else {
-			 window.location.href = '/userpgs/instructor/class/live/?course_id=<?php echo $course_id ?>&class_id='+response;
+			 var theTimeVal = $('#theTimeId').val();
+			 var theDateVal = $('#theDateId').val();
+
+			 console.log(theTimeVal+theDateVal);
+
+			 $.ajax({
+			     url: '/php/set_bulletin.php',
+			     type: 'POST',
+			     data: {'bulletin-body': 'A live classroom is scheduled for <b>'+ theDateVal +'</b> at <b>'+ theTimeVal +' (UTC)</b>',
+				    'course-id': '<?php echo $course_id?>',
+				    'teacher-id': '<?php echo $get_course_teacher_id?>',
+				    'course-header': '<?php echo $header?>' },
+			     success: function(bulletinResponse) {
+				 console.log(bulletinResponse);
+
+				 window.location.href = '/userpgs/instructor/class/live/?course_id=<?php echo $course_id ?>&class_id='+response;
+			     }
+			 });
+			 
+			 
 		     }
 		 }
 	     });
