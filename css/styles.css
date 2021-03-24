@@ -1349,10 +1349,12 @@ textarea:focus {
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    margin-bottom:18px;
 }
 
 .options .course-addbox-con .start-schedule-con .start-live-back-con .back-icon-cnt {
     margin: 0;
+    margin-right:10px;
     width: 32px;
     height: 32px;
     padding: 9px;

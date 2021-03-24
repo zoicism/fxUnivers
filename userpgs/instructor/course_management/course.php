@@ -343,20 +343,24 @@ if($course_biddable) require_once('../../../wallet/php/wallet_connect.php');
 
 	  if($user_type=='instructor') {
 	      echo '<div class="options">';
+	      echo '<div class="add-box" id="live-add-box">Live Classroom</div>';
 
 	      echo '<div class="course-addbox-con">';
-		  	echo '<div class="start-schedule-con">';
-		  		echo '<div class="start-live-back-con">';
-					echo '<div class="back-icon-cnt" id="send-btn" isaudio="false">
-					      <svg viewBox="0 0 32 32"><path d="M32,16a1.1,1.1,0,0,1-1,1H3.1l4,3.3,2.8,2.4,6.7,5.6a1,1,0,0,1,0,1.5h0a.9.9,0,0,1-1.3,0L8.6,24.2,5.1,21.3.8,17.6a2,2,0,0,1,0-3.2l4.3-3.7L8.6,7.8l6.7-5.6a.9.9,0,0,1,1.3,0h0a1,1,0,0,1,0,1.5L9.9,9.3,7.1,11.7,3.1,15H31A1.1,1.1,0,0,1,32,16Z"></path></svg>
-					      </div>';
-					echo '<button id="live-now" class="submit-btn" >Start Live Classroom Now</button>';
-		  		evho '</div>';
+	      echo '<div class="start-schedule-con">';
+	      
+	      
 	      echo '<div id="live-div" style="display:none"></div>';
 
-	      echo '<div style="display:none" id="schedule-div">
+	      echo '<div style="display:none" id="schedule-div">';
 
-			<form class="date-time-live-con" id="schedule-form" >
+	      echo '<div class="start-live-back-con">';
+	      echo '<div class="back-icon-cnt" id="schedule-back" isaudio="false">
+	      <svg viewBox="0 0 32 32"><path d="M32,16a1.1,1.1,0,0,1-1,1H3.1l4,3.3,2.8,2.4,6.7,5.6a1,1,0,0,1,0,1.5h0a.9.9,0,0,1-1.3,0L8.6,24.2,5.1,21.3.8,17.6a2,2,0,0,1,0-3.2l4.3-3.7L8.6,7.8l6.7-5.6a.9.9,0,0,1,1.3,0h0a1,1,0,0,1,0,1.5L9.9,9.3,7.1,11.7,3.1,15H31A1.1,1.1,0,0,1,32,16Z"></path></svg>
+	      </div>';
+	      echo '<button id="live-now" class="submit-btn" >Start Live Classroom Now</button>';
+	      echo '</div>';
+
+	      echo '<form class="date-time-live-con" id="schedule-form" >
 				<div  class="date-input">
 					<div class="date-txt">Date</div>
 					<input name="theDate" type="date" class="txt-input" required>
@@ -371,6 +375,7 @@ if($course_biddable) require_once('../../../wallet/php/wallet_connect.php');
 
                       
                     </div>';
+	      echo '</div></div>';
 
 	      echo '<div class="add-box-con">';
 
@@ -451,7 +456,7 @@ if($course_biddable) require_once('../../../wallet/php/wallet_connect.php');
 
 	      echo '</div>';
 	      echo '</div>';
-	      echo '</div>';
+	      
 	  } elseif($user_type=='student') {
 
 	      echo '<div class="options">';
@@ -536,9 +541,9 @@ if($course_biddable) require_once('../../../wallet/php/wallet_connect.php');
 		  
 	      }
 	      echo '</div>';
+	      //echo '</div>';
 	      echo '</div>';
-	      echo '</div>';
-		  
+	      
 	  }
 
 
@@ -880,8 +885,14 @@ if($course_biddable) require_once('../../../wallet/php/wallet_connect.php');
 	<!-- LC -->
 	<script>
 	 $('#live-add-box').on('click',function() {
-	     $('.add-box-con').toggle();
-	     $('#schedule-div').toggle();
+	     $('.add-box-con').hide();
+	     $('#schedule-div').show();
+	     $(this).hide();
+	 });
+	 $('#schedule-back').click(function() {
+	     $('.add-box-con').show();
+	     $('#schedule-div').hide();
+	     $('#live-add-box').show();
 	 });
 	 
 	 $('#schedule-form').submit(function(event) {
