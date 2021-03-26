@@ -57,17 +57,12 @@ $(document).ready(function() {
 			});
 
 			if(classroomReason !== null) {
-			    //console.log(classroomReason);
-			    //console.log(window.location.href);
-			    if(window.location.href == 'http://localhost/userpgs/instructor/class/live/'+classroomReason[1]) {
-				alert('Broadcast ended.');
-				window.location.reload();
-			    } else {
-				newNotifNotif.onclick=function() {
-				    window.open('/userpgs/instructor/class/live/'+classroomReason[1]);
-				    newNotifNotif.close();
-				}
+			    
+			    newNotifNotif.onclick=function() {
+				window.open('/userpgs/instructor/class/live/'+classroomReason[1]);
+				newNotifNotif.close();	
 			    }
+			    
 			} else {
 			    newNotifNotif.onclick = function() {
 				window.open('/userpgs/notif');

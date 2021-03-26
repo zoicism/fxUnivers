@@ -1142,6 +1142,7 @@ loadWebrtc();
 
 </script>
 
+<?php if($user_type=='student') { ?>
 <!-- SCREEN / WHITEBOARD SHARING -->
 <script>
  $(document).ready(function() {
@@ -1152,6 +1153,7 @@ loadWebrtc();
 	     data: {classId: '<?php echo $class_id ?>'},
 	     dataType: 'json',
 	     success: function(response) {
+		 console.log(response);
 		 if(response[0]==1) {
 		     $('#student-screen').css('opacity','1');
 		     $('#student-screen').addClass('blinking');
@@ -1168,12 +1170,21 @@ loadWebrtc();
 		     $('.student-whiteboard').removeClass('blinking');
 		 }
 
-		 //console.log(response);
-	     }
+		 if(response[2]==0) {
+		     alert('Broadcast ended.');
+		     $('body').prepend('<div style="height:100%;width:100%;display:flex;align-items:center;justify-content:center;position:fixed;background-color:black;opacity:0.3;cursor:auto;z-index:2;" id="loading"><img src="/images/background/loading.gif" style="z-index:3"></div>');
+		     window.location.reload();
+		 }
+
+		     //console.log(response);
+		 }
 	 });
      }, 2000);
  });
 </script>
+<?php } ?>
+
+
 <!-- FILE UPLOAD -->
 <script>
  $(function() {
@@ -1203,6 +1214,7 @@ loadWebrtc();
 
 	 console.log('video stream stopped');
 	 $('.ins-vid-cnt #video-broadcast').remove();
+
 
 	 $('body').prepend('<div style="height:100%;width:100%;display:flex;align-items:center;justify-content:center;position:fixed;background-color:black;opacity:0.3;cursor:auto;z-index:2;" id="loading"><img src="/images/background/loading.gif" style="z-index:3"></div>');
 
@@ -1353,15 +1365,16 @@ $('#save-classroom').click(function() {
 
 <?php if($user_type=='instructor') { ?>
     <script>
-     $.ajax({
-	 url: '/php/set_ins_live_on.php',
-	 type: 'POST',
-	 data: {classId: '<?php echo $class_id ?>'},
-	 success: function(response) {
-	     //console.log(response);
-	 }
-     });
-     
+     setTimeout( function() {
+	 $.ajax({
+	     url: '/php/set_ins_live_on.php',
+	     type: 'POST',
+	     data: {classId: '<?php echo $class_id ?>'},
+	     success: function(response) {
+		 //console.log(response);
+	     }
+	 });
+     }, 3000);     
     </script>
 
     <script>
