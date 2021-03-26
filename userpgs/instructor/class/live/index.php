@@ -118,7 +118,7 @@ if($user_type=='instructor') {
     <?php if(($user_type=='student') && ($class_fetch['theTime']!=null) && ($epochDiff > 0)) { ?>
 	<div style="height:100%;width:100%;display:flex;align-items:center;justify-content:center;position:fixed;background-color:black;opacity:0.3;cursor:auto;z-index:2;"><span style="background:black;z-index:3;color:white;font-weight:bold;opacity:1;">Live Classroom will begin on <?php echo date("M jS, Y", strtotime($theDate)).' at '.$theTime ?></span></div>
     <?php } ?>
-    <div style="height:100%;width:100%;display:flex;align-items:center;justify-content:center;position:fixed;background-color:black;opacity:0.3;cursor:auto;z-index:2;" id="loading"><img src="/images/background/loading.gif" style="z-index:3"></div>
+    <!--<div style="height:100%;width:100%;display:flex;align-items:center;justify-content:center;position:fixed;background-color:black;opacity:0.3;cursor:auto;z-index:2;" id="loading"><img src="/images/background/loading.gif" style="z-index:3"></div>-->
 
     
   <div class="header-sidebar"></div>
@@ -974,6 +974,7 @@ loadWebrtc();
 
 
 <script>
+var directVoiceSend=false;
 /*
  function uploadBlob(audioD) {
      // create a blob here for testing
@@ -1025,6 +1026,19 @@ loadWebrtc();
 	 $('#send-btn').attr('isAudio','true');
 	 $('#trash-voice-btn').show();
 	 $(this).hide();
+
+	 console.log(directVoiceSend);
+
+	 if(directVoiceSend==true) {
+	     directVoiceSend=false;
+	     $('#adioPlay').hide();
+	     $('#chatInput').show();
+	     $('#trash-voice-btn').hide();
+	     $('#voice-btn').show();
+	     setTimeout(function() {
+		 $('#send-btn').click();
+	     }, 1000);
+	 }
 	 
      }
  });
@@ -1074,20 +1088,33 @@ loadWebrtc();
  });
  $('#send-btn').click(function() {
      var isAudio = $('#send-btn').attr('isAudio');
+
      if(isAudio=='false') {
-	 var msgbody = $('#chatInput').val();
-	 var msguserid = <?php echo $get_user_id ?>;
-	 var msgclassid = <?php echo $class_id ?>;
-	 jQuery.ajax({
-             type: 'POST',
-             url: '/php/set_class_chat.php',
-             data: {msgBody: msgbody, msgUserId: msguserid, msgClassId: msgclassid},
-             success: function(response) {
-		 //alert(response);
-		 $('#chatInput').val('');
-		 $('#chatInput').focus();
-             }
-	 });
+
+	 if($('#chatInput').val()=='Recording...') {
+	     directVoiceSend = true;
+	     $('#voice-btn').click();
+	 } else {
+
+	     var msgbody = $('#chatInput').val();
+
+	     if(msgbody!='') {
+		 var msguserid = <?php echo $get_user_id ?>;
+		 var msgclassid = <?php echo $class_id ?>;
+		 jQuery.ajax({
+		     type: 'POST',
+		     url: '/php/set_class_chat.php',
+		     data: {msgBody: msgbody, msgUserId: msguserid, msgClassId: msgclassid},
+		     success: function(response) {
+			 //alert(response);
+			 $('#chatInput').val('');
+			 $('#chatInput').focus();
+		     }
+		 });
+	     } else {
+		 alert('Type something or record audio to send.');
+	     }
+	 }
      } else if(isAudio=='true') {
 	 $('#save').click();
 	 $('#send-btn').attr('isAudio','false');
@@ -1171,15 +1198,17 @@ loadWebrtc();
 		 }
 
 		 if(response[2]==0) {
+		     <?php if(($class_fetch['theTime']==null) || ($epochDiff <= 0)) { ?>
 		     alert('Broadcast ended.');
 		     $('body').prepend('<div style="height:100%;width:100%;display:flex;align-items:center;justify-content:center;position:fixed;background-color:black;opacity:0.3;cursor:auto;z-index:2;" id="loading"><img src="/images/background/loading.gif" style="z-index:3"></div>');
 		     window.location.reload();
+		     <?php } ?>
 		 }
 
 		     //console.log(response);
 		 }
 	 });
-     }, 2000);
+     }, 5000);
  });
 </script>
 <?php } ?>
