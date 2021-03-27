@@ -56,6 +56,6 @@ if(screen.width<628) {
 	$('.footbar .msg .filled').show();
     }
 
-    $('<div style="width:100%;display:block;background:transparent;height:50px;"></div>').insertAfter('.footbar');
+    $('<div style="width:100%;display:block;background:transparent;height:50px;" id="lower50"></div>').insertAfter('.footbar');
 }
 	

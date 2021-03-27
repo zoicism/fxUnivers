@@ -439,7 +439,11 @@ if($get_unread_count>0) {
 
 
 
-<!-- SCRIPTS -->
+  <!-- SCRIPTS -->
+
+  <script>
+   $('#lower50').remove();
+  </script>
 
 
 <!-- SEND MSG -->
