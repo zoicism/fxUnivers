@@ -15,6 +15,9 @@ html,body {
     100%{border: 1px solid #00a1e0}
 }
 
+
+
+
 section {
     width: 100%;
     display:flex;
@@ -1471,6 +1474,16 @@ textarea:focus {
     animation-iteration-count: 9;
     animation-direction: alternate;
     border:1px solid #00a1e0;
+}
+
+.bg-blink-in {
+    background-color: #00a1e0;
+    transition: background-color 2s ease;
+}
+
+.bg-blink-out {
+    background-color: #efefef;
+    transition: background-color 2s ease;
 }
 
 .relative-main-content .course-management-con {
@@ -2936,7 +2949,8 @@ textarea:focus {
 }
 
 .msg-icon-cnt {
-    width: 38px;
+    min-width: 38px;
+    max-width: 38px;
     margin: 0 20px;
     padding: 10px;
     border-radius: 50px;
@@ -4773,6 +4787,8 @@ input:checked + .slider:before {
     .relative-main-content .fxuniversity-nav {
 	display:none;
     }
+
+
 }
 
 @media (max-width: 374px) {

@@ -1146,12 +1146,21 @@ var directVoiceSend=false;
 		  if(response=='empty') {
 		      $('.msgs').html('<p style="color:gray;text-align:center;">Empty</p>');
 		  } else {
+		      
 		      $('.msgs').prepend(response);
+		      $('#chat-tab').addClass('bg-blink-in');
+		      setTimeout( function() {
+			  $('#chat-tab').addClass('bg-blink-out');
+		      }, 2000);
+		      setTimeout(function() {
+			  $('#chat-tab').removeClass('bg-blink-in');
+			  $('#chat-tab').removeClass('bg-blink-out');
+		      }, 4000);
 		  } 
 	      }
                 //alert(response);
                 //$("#newMsgs").load('/php/class_chat_update.php', {class_id: <?php echo $class_id ?>});
-          }
+		      }
         });
          }, 2000);
 });
