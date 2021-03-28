@@ -4203,7 +4203,7 @@ input:checked + .slider:before {
     }
     
     .login-form h2, .login-input, .login-forgot, .remember-me {
-	display: none;
+	display: none !important;
     }
 
     .mob-login-forgot {
