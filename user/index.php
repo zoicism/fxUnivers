@@ -222,7 +222,7 @@ if($get_fnd_count==1 && $get_fnd==0 && $get_fnd_fetch['user1']!=$session_id) {
       <div class="profile-bottom">
         <ul class="flex-container">
           <li class="items">
-            <div class="link" style="cursor:default;box-shadow:inset 15px 15px 78px #cecece,inset -15px -15px 78px #ffffff;">
+            <div class="link">
               <div class="head">
                 fxStar
                 <p class="sub"><?php echo $get_fxcoin_count?> fxStars</p>
@@ -238,7 +238,7 @@ if($get_fnd_count==1 && $get_fnd==0 && $get_fnd_fetch['user1']!=$session_id) {
             </a>
           </li>
           <li class="items">
-            <div class="link" style="cursor:default;box-shadow:inset 15px 15px 78px #cecece,inset -15px -15px 78px #ffffff;">
+            <div class="link">
               <div class="head">
                 fxPartner
                 <p class="sub"><?php $pTotal=0;
