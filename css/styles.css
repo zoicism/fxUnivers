@@ -101,6 +101,7 @@ input:focus, textarea:focus, select:focus{
 }
 
 textarea {
+    font-family: roboto;
     height:200px;
     width:400px;
     padding: 15px;
@@ -974,7 +975,7 @@ textarea:focus {
 }
 
 .obj-box .object:active {
-    border-radius: 25px;
+    border-radius: 10px;
     background: #efefef;
     box-shadow: inset 6px 6px 12px #d9d9d9, 
 		inset -6px -6px 12px #ffffff;
@@ -987,7 +988,7 @@ textarea:focus {
     text-align: center;
     width: 100%;
     height: 150px;
-    background-color: #e6e8ef;
+    background-color: #3939390d;
     border-radius: 10px 10px 0 0;
 }
 
@@ -1254,10 +1255,10 @@ textarea:focus {
 }
 
 .add-box span:active {
-    box-shadow: inset -2px -2px 14px rgba(255, 255, 255, .7),
-		inset -2px -2px 10px rgba(255, 255, 255, .5),
-		inset 6px 6px 6px rgba(255, 255, 255, .075),
-		inset 6px 6px 10px rgba(0, 0, 0, .15);
+    box-shadow: inset -4px -2px 4px 0px #fff,
+	    	inset 4px 2px 6px 0px #dfe4ea,
+	    	-4px -2px 4px 0px #ffffff,
+	    	4px 2px 6px 0px #dfe4ea;
 }
 
 .add-box span img {
