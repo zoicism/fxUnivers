@@ -915,7 +915,7 @@ if($course_biddable) require_once('../../../wallet/php/wallet_connect.php');
 			 $.ajax({
 			     url: '/php/set_bulletin.php',
 			     type: 'POST',
-			     data: {'bulletin-body': 'A live classroom is scheduled for <b>'+ theDateVal +'</b> at <b>'+ theTimeVal +' (UTC)</b>',
+			     data: {'bulletin-body': 'Live classroom scheduled for <b>'+ theDateVal +'</b> at <b>'+ theTimeVal +' (UTC)</b>',
 				    'course-id': '<?php echo $course_id?>',
 				    'teacher-id': '<?php echo $get_course_teacher_id?>',
 				    'course-header': '<?php echo $header?>' },
