@@ -68,6 +68,14 @@ $mustRedirect=0;
 if((time()-strtotime($class_fetch['dt'].' '.$class_fetch['theTime']) < 0)) {
     $mustRedirect=1;
 }
+
+
+require_once($_SERVER['DOCUMENT_ROOT'].'/php/conn/fxinstructor.php');
+$dual_live_q = "SELECT * FROM ins_live WHERE class_id=$class_id";
+$dual_live_r = mysqli_query($fxinstructor_connection, $dual_live_q);
+$dual_live = mysqli_num_rows($dual_live_r);
+
+
 ?>
 
 <!DOCTYPE html>
@@ -223,7 +231,7 @@ echo '<div class="little-box"><span>'.date("M jS, Y", strtotime($dt)).'</span></
 
 		echo '<div class="options session-options">';
 
-		echo '<div class="add-box" id="live-add-box">Go Live in This Session</div>';
+		echo '<div class="add-box" id="live-add-box">Go Live in This Session </div>';
 
 		echo '<div class="add-box-con">';
 		echo '<div class="add-box" onclick="location.href=\'/userpgs/instructor/class/edit_class.php?course_id='.$course_id.'&class_id='.$class_id.'\';"><svg viewBox="0 0 32 32">
@@ -435,8 +443,14 @@ $('.video-holder').height(vhWidth/1.78);
  });*/
  
 $('#live-add-box').click(function() {
-     //$('#LiveForm').submit();
-     window.location.href = '/userpgs/instructor/class/live/?course_id=<?php echo $course_id ?>&class_id=<?php echo $class_id ?>';
+     var dual_live = <?php echo $dual_live ?>;
+     
+     
+     if(dual_live > 0) {
+	 window.location.href = '/userpgs/instructor/class/live/dual.php?course_id=<?php echo $course_id ?>&class_id=<?php echo $class_id ?>';
+     } else {
+	 window.location.href = '/userpgs/instructor/class/live/?course_id=<?php echo $course_id ?>&class_id=<?php echo $class_id ?>';
+     }
 });
 </script>
 

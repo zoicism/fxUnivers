@@ -115,10 +115,7 @@ if($user_type=='instructor') {
 </head>
     
 <body>
-    <?php if(($user_type=='student') && ($class_fetch['theTime']!=null) && ($epochDiff > 0)) { ?>
-	<div style="height:100%;width:100%;display:flex;align-items:center;justify-content:center;position:fixed;background-color:black;opacity:0.3;cursor:auto;z-index:2;"><span style="background:black;z-index:3;color:white;font-weight:bold;opacity:1;">Live Classroom will begin on <?php echo date("M jS, Y", strtotime($theDate)).' at '.$theTime ?></span></div>
-    <?php } ?>
-    <div style="height:100%;width:100%;display:flex;align-items:center;justify-content:center;position:fixed;background-color:black;opacity:0.3;cursor:auto;z-index:2;" id="loading"><img src="/images/background/loading.gif" style="z-index:3"></div>
+    
 
     
   <div class="header-sidebar"></div>
@@ -152,7 +149,7 @@ if($user_type=='instructor') {
 
 
 	<div class="fxuniversity-nav" style="margin-right:auto;opacity:0.6;">
-	    <p><?php echo '<a style="font-weight:bold" href="/userpgs/instructor/course_management/course.php?course_id='.$get_course_fetch['id'].'">'.$get_course_fetch['header'].'</a> / <span style="font-weight:bold">'.$header.'</span>' ?></p>
+	    <p><?php echo '<a style="font-weight:bold" href="/userpgs/instructor/course_management/course.php?course_id='.$get_course_fetch['id'].'">'.$get_course_fetch['header'].'</a> / <span style="font-weight:bold">'.$header.'</span> [Dual Page]' ?></p>
 	</div>
 	
 
@@ -251,7 +248,7 @@ if($tar_user_fetch['avatar']!=NULL) {
 	     echo '</div>';
 
 
-	     echo '<h2>'.$header.'</h2>';
+	     echo '<h2>'.$header.' <span style="font-size:0.9rem;opacity:0.7;">[Dual Page]</span></h2>';
              echo '<p>'.$description.'</p>';
 ?>
 	  
@@ -291,13 +288,13 @@ if($tar_user_fetch['avatar']!=NULL) {
 
 	    if($user_type=='instructor') {
 
-		echo '<div class="options session-options" style="">';
-		echo '<div class="video-audio-bc-con">';
+		echo '<div class="options session-options" >';
+		echo '<div id="not-allowed-vid"><div class="video-audio-bc-con" style="pointer-events:none;cursor:not-allowed !important;opacity:0.5;">';
 		echo '<div class="video-audio-bc">';
-		echo '<div id="video-audio-b-div" class="add-box" style="margin-top:0;"><input type="checkbox" class="toggle-btn" id="video-audio-b-toggle">Video & Audio Broadcast</div>';
-		echo '<div id="audio-b-div" class="add-box" style="margin-top:0;"><input type="checkbox" class="toggle-btn" id="audio-b-toggle">Audio-only Broadcast</div>';
+		echo '<div id="video-audio-b-div" class="add-box" style="margin-top:0"><input type="checkbox" class="toggle-btn" id="video-audio-b-toggle" style="cursor:not-allowed">Video & Audio Broadcast</div>';
+		echo '<div id="audio-b-div" class="add-box" style="margin-top:0"><input type="checkbox" class="toggle-btn" id="audio-b-toggle">Audio-only Broadcast</div>';
 		echo '</div>';
-		echo '</div>';
+		echo '</div></div>';
 		echo '<div class="add-box-con">';
 		echo '<div class="add-box" id="screen-b">
 				   <svg viewBox="0 0 32 32" style="height: 20px;width: 20px;margin-right: 12px;">
@@ -327,11 +324,11 @@ if($tar_user_fetch['avatar']!=NULL) {
 
 		
 		
-		echo '<div class="remove-save-con">';
-		echo '<div class="add-box" id="save-classroom">
+		echo '<div class="remove-save-con" style="opacity:0.5;">';
+		echo '<div class="add-box" id="save-classroom" style="pointer-events:none;">
 		            Save & Leave
 		      </div>';
-		echo '<div class="add-box" id="reject-classroom">
+		echo '<div class="add-box" id="reject-classroom" style="pointer-events:none;">
 		            Discard
 		      </div>';
 		echo '</div>';
@@ -513,217 +510,6 @@ echo '<div class="sess-list" style="display:none">';
     $('.fxuniversity-sidebar').attr('id','sidebar-active');
   </script>
   
-<!-- WebRTC Broadcasting -->
-  <script>
-   function loadWebrtc() {
-       var config = {
-	   openSocket: function(config) {
-               var SIGNALING_SERVER = 'https://socketio-over-nodejs2.herokuapp.com:443/';
-
-	       
-               //config.channel = config.channel || location.href.replace(/\/|:|#|%|\.|\[|\]/g, '');
-	       config.channel = config.channel || 'fxuniversity<?php echo $class_id ?>';
-	       console.log(config.channel);
-               var sender = Math.round(Math.random() * 999999999) + 999999999;
-
-               io.connect(SIGNALING_SERVER).emit('new-channel', {
-		   channel: config.channel,
-		   sender: sender
-               });
-
-               var socket = io.connect(SIGNALING_SERVER + config.channel);
-               socket.channel = config.channel;
-               socket.on('connect', function () {
-		   if (config.callback) config.callback(socket);
-               });
-
-               socket.send = function (message) {
-		   socket.emit('message', {
-                       sender: sender,
-                       data: message
-		   });
-               };
-
-               socket.on('message', config.onmessage);
-	   },
-	   onRemoteStream: function(htmlElement) {
-               videosContainer.appendChild(htmlElement);
-               rotateInCircle(htmlElement);
-	   },
-	   onRoomFound: function(room) {
-               var alreadyExist = document.querySelector('button[data-broadcaster="' + room.broadcaster + '"]');
-               if (alreadyExist) return;
-
-               if (typeof roomsList === 'undefined') roomsList = document.body;
-
-               var tr = document.createElement('tr');
-               tr.innerHTML = '<td><strong>' + room.roomName + '</strong> is broadcasting his media!</td>' +
-                              '<td><button class="join">Join</button></td>';
-               roomsList.appendChild(tr);
-
-               var joinRoomButton = tr.querySelector('.join');
-               joinRoomButton.setAttribute('data-broadcaster', room.broadcaster);
-               joinRoomButton.setAttribute('data-roomToken', room.broadcaster);
-               joinRoomButton.onclick = function() {
-		   this.disabled = true;
-
-		   var broadcaster = this.getAttribute('data-broadcaster');
-		   var roomToken = this.getAttribute('data-roomToken');
-		   broadcastUI.joinRoom({
-                       roomToken: roomToken,
-                       joinUser: broadcaster
-		   });
-		   hideUnnecessaryStuff();
-               };
-
-	       $('.join').click();
-	       $('.ctrl').hide();
-	   },
-	   onNewParticipant: function(numberOfViewers) {
-               document.title = 'fxUniversity - Viewers: ' + numberOfViewers;
-	   },
-	   onReady: function() {
-               console.log('ready to make connections');
-	       $('#loading').remove();
-	   }
-       };
-
-       function setupNewBroadcastButtonClickHandler() {
-	   document.getElementById('broadcast-name').disabled = true;
-	   document.getElementById('setup-new-broadcast').disabled = true;
-
-	   DetectRTC.load(function() {
-               captureUserMedia(function() {
-		   var shared = 'video';
-		   if (window.option == 'Only Audio') {
-                       shared = 'audio';
-		   }
-		   if (window.option == 'Screen') {
-                       shared = 'screen';
-		   }
-
-		   document.getElementById('broadcast-name').value = '<?php echo $class_id ?>';
-		   
-		   broadcastUI.createRoom({
-                       roomName: (document.getElementById('broadcast-name') || { }).value || 'Anonymous',
-                       isAudio: shared === 'audio'
-		   });
-               });
-               hideUnnecessaryStuff();
-	   });
-       }
-
-       function captureUserMedia(callback) {
-	   var constraints = null;
-	   window.option = broadcastingOption ? broadcastingOption.value : '';
-	   if (option === 'Only Audio') {
-               constraints = {
-		   audio: true,
-		   video: false
-               };
-
-               if(DetectRTC.hasMicrophone !== true) {
-		   alert('DetectRTC library is unable to find microphone; maybe you denied microphone access once and it is still denied or maybe microphone device is not attached to your system or another app is using same microphone.');
-               }
-	   }
-	   if (option === 'Screen') {
-               var video_constraints = {
-		   mandatory: {
-                       chromeMediaSource: 'screen'
-		   },
-		   optional: []
-               };
-               constraints = {
-		   audio: false,
-		   video: video_constraints
-               };
-
-               if(DetectRTC.isScreenCapturingSupported !== true) {
-		   alert('DetectRTC library is unable to find screen capturing support. You MUST run chrome with command line flag "chrome --enable-usermedia-screen-capturing"');
-               }
-	   }
-
-	   if (option != 'Only Audio' && option != 'Screen' && DetectRTC.hasWebcam !== true) {
-               alert('DetectRTC library is unable to find webcam; maybe you denied webcam access once and it is still denied or maybe webcam device is not attached to your system or another app is using same webcam.');
-	   }
-
-	   var htmlElement = document.createElement(option === 'Only Audio' ? 'audio' : 'video');
-
-	   htmlElement.muted = true;
-	   htmlElement.volume = 0;
-	   
-	   try {
-               htmlElement.setAttributeNode(document.createAttribute('autoplay'));
-               htmlElement.setAttributeNode(document.createAttribute('playsinline'));
-               if(option==='Only Audio') htmlElement.setAttributeNode(document.createAttribute('controls'));
-	       htmlElement.setAttributeNode(document.createAttribute('id'));
-	       htmlElement.setAttribute('id','video-broadcast');
-	   } catch (e) {
-               htmlElement.setAttribute('autoplay', true);
-               htmlElement.setAttribute('playsinline', true);
-               if(option==='Only Audio') htmlElement.setAttribute('controls', true);
-	       
-	   }
-
-	   var mediaConfig = {
-               video: htmlElement,
-               onsuccess: function(stream) {
-		   config.attachStream = stream;
-		   
-		   videosContainer.appendChild(htmlElement);
-		   rotateInCircle(htmlElement);
-		   //stream.getVideoTracks()[0].addEventListener('ended', () => 
-		   //    console.log('screensharing has ended'));
-
-		   
-		   callback && callback();
-               },
-               onerror: function() {
-		   if (option === 'Only Audio') alert('unable to get access to your microphone');
-		   else if (option === 'Screen') {
-                       if (location.protocol === 'http:') alert('Please test this WebRTC experiment on HTTPS.');
-                       else alert('Screen capturing is either denied or not supported. Are you enabled flag: "Enable screen capture support in getUserMedia"?');
-		   } else alert('unable to get access to your webcam');
-               }
-	   };
-	   if (constraints) mediaConfig.constraints = constraints;
-	   getUserMedia(mediaConfig);
-       }
-
-       var broadcastUI = broadcast(config);
-
-       /* UI specific */
-       var videosContainer = document.getElementById('videos-container') || document.body;
-       var setupNewBroadcast = document.getElementById('setup-new-broadcast');
-       var roomsList = document.getElementById('rooms-list');
-
-       var broadcastingOption = document.getElementById('broadcasting-option');
-
-       if (setupNewBroadcast) setupNewBroadcast.onclick = setupNewBroadcastButtonClickHandler;
-
-       function hideUnnecessaryStuff() {
-	   var visibleElements = document.getElementsByClassName('visible'),
-               length = visibleElements.length;
-	   for (var i = 0; i < length; i++) {
-               visibleElements[i].style.display = 'none';
-	   }
-       }
-
-       function rotateInCircle(video) {
-	   /*video.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(0deg)';
-	      setTimeout(function() {
-              video.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(360deg)';
-	      }, 1000);*/
-	   if(option!=='Only Audio') {
-	       video.style='-moz-transform: scale(-1, 1); -webkit-transform: scale(-1, 1); -o-transform: scale(-1, 1); transform: scale(-1, 1); filter: FlipH;';
-	   }
-       }
-   }
-  </script>
-<script>
-loadWebrtc();
-</script>
-<!-- EO WebRTC Broadcasting -->
 
 <!-- WHITEBOARD -->
 <?php if($user_type=='instructor') { ?>
@@ -1256,30 +1042,22 @@ var directVoiceSend=false;
 
 	 $('body').prepend('<div style="height:100%;width:100%;display:flex;align-items:center;justify-content:center;position:fixed;background-color:black;opacity:0.3;cursor:auto;z-index:2;" id="loading"><img src="/images/background/loading.gif" style="z-index:3"></div>');
 
-	 jQuery.ajax({
-	     url: '/php/set_ins_live_off.php',
-	     type: 'POST',
-	     data: {classId: '<?php echo $class_id ?>'},
-	     success: function(response) {
-		 window.location.reload();
-	     }
-	 });
+	 window.location.reload();
 
+/*
+	 $('#socketio').remove();
+	 $('#detectrtc').remove();
+	 $('#adapter').remove();
+	 $('#iceServersHandler').remove();
+	 $('#codecsHandlers').remove();
+	 $('#RtcPeerConnection').remove();
+	 $('#broadcast').remove();
 
-	 /*
-	    $('#socketio').remove();
-	    $('#detectrtc').remove();
-	    $('#adapter').remove();
-	    $('#iceServersHandler').remove();
-	    $('#codecsHandlers').remove();
-	    $('#RtcPeerConnection').remove();
-	    $('#broadcast').remove();
+	 $('head').append('<script src="../DetectRTC/DetectRTC.js" id="detectrtc" ><\/script><script src="../js/socket.io.js" id="socketio"> <\/script><script src="../js/adapter-latest.js" id="adapter" ><\/script><script src="/js/webrtc/IceServersHandler.js" id="iceServersHandler"><\/script><script src="../js/CodecsHandler.js" id="codecsHandlers"><\/script><script src="../RTCPeerConnection/RTCPeerConnection-v1.5.js" id="RtcPeerConnection"><\/script><script src="../webrtc-broadcasting/broadcast.js" id="broadcast"> <\/script>');
 
-	    $('head').append('<script src="../DetectRTC/DetectRTC.js" id="detectrtc" ><\/script><script src="../js/socket.io.js" id="socketio"> <\/script><script src="../js/adapter-latest.js" id="adapter" ><\/script><script src="/js/webrtc/IceServersHandler.js" id="iceServersHandler"><\/script><script src="../js/CodecsHandler.js" id="codecsHandlers"><\/script><script src="../RTCPeerConnection/RTCPeerConnection-v1.5.js" id="RtcPeerConnection"><\/script><script src="../webrtc-broadcasting/broadcast.js" id="broadcast"> <\/script>');
-
-	    loadWebrtc();
-	  */
-     }
+	 loadWebrtc();
+*/
+    }
 	
 
  });
@@ -1345,16 +1123,8 @@ var directVoiceSend=false;
  });
 
 $('#save-classroom').click(function() {
-     jQuery.ajax({
-	 url: '/php/set_ins_live_off.php',
-	 type: 'POST',
-	 data: {classId: '<?php echo $class_id ?>'},
-	 success: function(response) {
-	     alert('Live Classroom is saved as a Session.');
-	     window.location.replace('/userpgs/instructor/class/?course_id=<?php echo $course_id ?>&class_id=<?php echo $class_id ?>');
-	 }
-     });
-     
+     alert('Live Classroom is saved as a Session.');
+     window.location.replace('/userpgs/instructor/class/?course_id=<?php echo $course_id ?>&class_id=<?php echo $class_id ?>');
 });
 
  $('#notifystu-btn').click(function() {
@@ -1417,45 +1187,13 @@ $('#save-classroom').click(function() {
  });
 </script>
 
-<?php if($user_type=='instructor') { ?>
-    <script>
-     setTimeout( function() {
-	 $.ajax({
-	     url: '/php/set_ins_live_on.php',
-	     type: 'POST',
-	     data: {classId: '<?php echo $class_id ?>'},
-	     success: function(response) {
-		 //console.log(response);
-	     }
-	 });
-     }, 5000);     
-    </script>
-
-    <script>
-     //window.addEventListener('beforeunload', function(event) {
-     window.addEventListener('unload', function(event) {
-	 jQuery.ajax({
-	     url: '/php/set_ins_live_off.php',
-	     type: 'POST',
-	     data: {classId: '<?php echo $class_id ?>'},
-	     success: function(response) {
-	     }
-	 });
-     });
-    </script>
-
-    <script>
-     window.addEventListener('beforeunload', function(event) {
-	 jQuery.ajax({
-	     url: '/php/set_ins_live_off.php',
-	     type: 'POST',
-	     data: {classId: '<?php echo $class_id ?>'},
-	     success: function(response) {
-	     }
-	 });
-     });
-    </script>
-<?php } ?>
-
+<script>
+$('#not-allowed-vid').click(function() {
+     alert('You may broadcast video and audio from your first device only. However you can still record or broadcast whiteboard and screen from this page.');
+});
+$('.remove-save-con').click(function() {
+     alert('Save or discard this classroom from your first device.');
+});
+</script>
 </body>
 </html>

@@ -1,0 +1,7 @@
+<?php
+if(isset($_POST['classId'])) {
+    require_once($_SERVER['DOCUMENT_ROOT'].'/php/conn/fxinstructor.php');
+    $class_id = $_POST['classId'];
+
+    $query = "UPDATE 
+?>
