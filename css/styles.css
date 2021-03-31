@@ -557,6 +557,10 @@ textarea:focus {
     margin-bottom: 20px;
 }
 
+.live-chat-con audio {
+    width:68%;
+}
+
 .sessions .chat-list .live-chat-con .txt-input {
     margin:0;
 }
@@ -571,7 +575,7 @@ textarea:focus {
 }
 
 .chat-list .txt-input {
-    width:100%;
+    width:68%;
 }
 
 .chat-list .msgs {
@@ -4043,11 +4047,57 @@ input:checked + .slider:before {
 }
 
 
-@media (max-width:1036px) {
+@media (max-width:1036px) and (min-width:629px) {
     .link-main {
 	font-size:0.8rem;
     }
+
+    .session .session-desc p {
+	font-size:0.7rem;
+	-webkit-line-clamp: 3;
+    }
+
+    .course-content .add-box {
+	font-size: 0.7rem;
+    }
+
+    .session .session-prev {
+	min-width:70px;
+	max-width:70px;
+    }
+
+    .user-name p, .user-name .fullname {
+	font-size:0.7rem;
+    }
+    
+    .sessions .chat-list .msgs p {
+	font-size:0.7rem;
+    }
+
+    .sessions .chat-list .msgs p audio {
+	width:100%;
+    }
+
+    .live-chat-con audio {
+	width:50%;
+    }
+
+    .sessions .file-list form .uploadfile-con .filename-b4-upload-con #filename-b4-upload {
+	font-size:12px;
+    }
+
+    .sessions .file-list .submit-btn {
+	padding: 0 5px;
+	font-size:13px;
+    }
+
+    .file-list .file {
+	font-size: 12px;
+    }
+	
 }
+
+
 
 @media (min-width:629px) {
 
