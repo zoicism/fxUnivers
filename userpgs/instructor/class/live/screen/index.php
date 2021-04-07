@@ -467,7 +467,17 @@ if($user_type=='instructor') {
 	      $('#open-room').click();
 	      $('#share-screen').text('Stop Screen Sharing');
 	    } else {
-	      window.top.close();
+		jQuery.ajax({
+		     url: '/php/set_screen_db_off.php',
+		     type: 'POST',
+		     data: {classId: '<?php echo $class_id ?>'},
+		     success: function(response) {
+			 //console.log(response);
+			 return response;
+			 window.top.close();
+		     }
+		});
+		
 	    }
 
 	  });
