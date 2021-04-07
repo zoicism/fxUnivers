@@ -474,13 +474,13 @@ if($user_type=='instructor') {
 		     success: function(response) {
 			 //console.log(response);
 			 return response;
-			 window.top.close();
+			 
 		     }
 		});
-		
+		window.top.close();
 	    }
 
-	  });
+	 });
 </script>    
     </body>
 </html>
