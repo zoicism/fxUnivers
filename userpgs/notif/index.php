@@ -125,7 +125,7 @@ $dns_result=mysqli_query($connection,$dns_query) or die(mysqli_error($connection
                                 <form class="reqFxCoinForm">
                                   <input type="hidden" name="reason" value="<?php echo $row['reason'] ?>">
                                   <input type="hidden" name="sender" value="<?php echo $fxCoinReq_fetch['sender'] ?>">
-                                  <input type="hidden" name="reciever" value="<?php echo $fxCoinReq_fetch['reciever'] ?>">
+                                  <input type="hidden" name="receiver" value="<?php echo $fxCoinReq_fetch['reciever'] ?>">
                                   <input type="hidden" name="amnt" value="<?php echo $fxCoinReq_fetch['amnt'] ?>">
                                   <input type="hidden" name="notif" value="<?php echo $fxCoinReq_fetch['notif'] ?>">
                                   <input type="hidden" name="accepted" value="1">
@@ -134,7 +134,7 @@ $dns_result=mysqli_query($connection,$dns_query) or die(mysqli_error($connection
                                 <form class="reqFxCoinFormDecline">
                                   <input type="hidden" name="reason" value="<?php echo $row['reason'] ?>">
                                   <input type="hidden" name="sender" value="<?php echo $fxCoinReq_fetch['sender'] ?>">
-                                  <input type="hidden" name="reciever" value="<?php echo $fxCoinReq_fetch['reciever'] ?>">
+                                  <input type="hidden" name="receiver" value="<?php echo $fxCoinReq_fetch['reciever'] ?>">
                                   <input type="hidden" name="amnt" value="<?php echo $fxCoinReq_fetch['amnt'] ?>">
                                   <input type="hidden" name="notif" value="<?php echo $fxCoinReq_fetch['notif'] ?>">
                                   <input type="hidden" name="accepted" value="0">
