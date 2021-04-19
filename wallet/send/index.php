@@ -178,11 +178,12 @@ $(function() {
       type: 'POST',
       url: '/wallet/php/fxCoinFnd.php',
       data: $(this).serialize(),
-      success: function(result) {
+	success: function(result) {
+	    console.log(result);
             if(result=='success') {
                 alert(recepientAmnt+' fxStars is sent to '+recepientUname+'.');
                 location.reload();
-            } else if(result=='failed') {
+            } else if(result=='insuff') {
                 alert('Insufficient fxStars!');
             } else {
 	        alert('Failed to send fxStars. Please select a friend and try again.');

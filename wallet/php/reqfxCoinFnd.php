@@ -7,7 +7,7 @@ if(isset($_POST['reqFrom'])) $reqFrom = $_POST['reqFrom'];
 if(isset($_POST['reqAmnt'])) $reqAmnt = $_POST['reqAmnt'];
 $tarname=$reqFrom;
 require('../../php/get_tar_user.php');
-$body = "@$username has requested $reqAmnt fxCoins from you. Do you want to send $get_user_fname $get_user_lname, $reqAmnt fxCoins?";
+$body = "$get_user_fname $get_user_lname has requested $reqAmnt fxCoins from you. Do you want to send them $reqAmnt fxCoins?";
 
 $utc_timestamp = date('Y-m-d H:i:s');
 
