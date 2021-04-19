@@ -34,7 +34,6 @@ require('../php/get_fxcoin_count.php');
 <head>
 	<title>Buy fxStar</title>
     <meta charset="utf-8">
-	<link rel="stylesheet" href="sidebarstyle.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/icons.css">
@@ -172,19 +171,20 @@ require('../php/get_fxcoin_count.php');
       var amntToBase10 = parseInt(amntTxt, 10);
       return actions.order.capture().then(function(details) {
           jQuery.ajax({
-	      data: 'numOfFxCoins=' + amntToBase10,
+	      data: {'amnt': details.purchase_units[0].amount.value, 'requested': amntToBase10},
 	      url: '../php/buy_coin.php',
               method: 'POST',
 	      success: function(msg) {
-	        
+	          console.log(msg);
+		  alert('Transaction completed by ' + details.payer.name.given_name + ' ' + details.payer.name.surname);
+		  window.location.reload();
 	      }   
-	    });
-	    alert('Transaction completed by ' + details.payer.name.given_name);
-        
-	    
-	    location.reload();
+	  });
+	            
+	  
+	  //location.reload();
         // Call your server to save the transaction
-        return fetch('/paypal-transaction-complete', {
+        /*return fetch('/paypal-transaction-complete', {
           method: 'post',
           headers: {
             'content-type': 'application/json'
@@ -192,7 +192,7 @@ require('../php/get_fxcoin_count.php');
           body: JSON.stringify({
             orderID: data.orderID
           })
-        });
+        });*/
       });
     }
   }).render('#paypal-button-container');
