@@ -480,7 +480,7 @@ if($user_type=='instructor') {
 		window.top.close();
 	    }
 
-	 });
+	  });
 </script>    
     </body>
 </html>
