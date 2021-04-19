@@ -866,6 +866,8 @@ if($course_biddable) require_once('../../../wallet/php/wallet_connect.php');
                          url:'/wallet/php/purchase.php',
                          data: {item:'course', course_id:courseId, stu_id:stuId},
                          success: function(response) {
+			     console.log(response);
+			     
                              if(response=='success') {
                                  alert('Course purchased successfully.');
                                  window.location.reload();
