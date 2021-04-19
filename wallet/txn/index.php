@@ -118,7 +118,7 @@ require('../../php/get_trans.php');
                   $trans_to_un_fetch=mysqli_fetch_array($trans_to_un_r);
                   $trans_to_un=$trans_to_un_fetch['username'];
 
-                  echo '<div style="border-bottom:1px solid gray"><p>To: <strong><a href="/user/'.$trans_to_un.'">@'.$trans_to_un.'</a></strong></p> <p>Amount: <strong>'.$trans_in_row['amnt'].' fxStars (+'.ceil($trans_in_row['amnt']*0.1).' interest)</strong></p> <p>Date & Time: <strong>'.$trans_in_row['dt'].' (GMT)</strong></p></div>';
+                  echo '<div style="border-bottom:1px solid gray"><p>To: <strong><a href="/user/'.$trans_to_un.'">@'.$trans_to_un.'</a></strong></p> <p>Amount: <strong>'.$trans_in_row['amnt'].' fxStars (+'.ceil($trans_in_row['amnt']*0.1).' interest)</strong></p> <p>Date & Time: <strong>'.date("M jS, Y H:i", strtotime($trans_in_row['dt'])).' (UTC)</strong></p></div>';
                   $trans_i++;
 		  
 		}
@@ -149,7 +149,7 @@ require('../../php/get_trans.php');
                   $trans_to_un_fetch=mysqli_fetch_array($trans_to_un_r);
                   $trans_to_un=$trans_to_un_fetch['username'];
 */
-                  echo '<div style="border-bottom:1px solid gray"><p>From: <strong><a href="/user/'.$trans_from_un.'">@'.$trans_from_un.'</a></strong></p> <p>Amount: <strong>'.$trans_out_row['amnt'].' fxStars</strong></p><p>Date & Time: <strong>'.$trans_out_row['dt'].' (GMT)</strong></p></div>';
+                  echo '<div style="border-bottom:1px solid gray"><p>From: <strong><a href="/user/'.$trans_from_un.'">@'.$trans_from_un.'</a></strong></p> <p>Amount: <strong>'.$trans_out_row['amnt'].' fxStars</strong></p><p>Date & Time: <strong>'.date("M jS, Y H:i", strtotime($trans_out_row['dt'])).' (UTC)</strong></p></div>';
                   $trans_i++;
               }
           } else {
