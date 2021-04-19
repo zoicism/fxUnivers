@@ -100,8 +100,8 @@ require('../php/get_fxcoin_count.php');
 
                           <form id="cashout-form" method="POST">
                           <input type="hidden" name="user_id" value="<?php echo $get_user_id?>">
-                          <input type="number" class="num-input" name="amnt" id="amntinput" placeholder="How many fxStars" min="100" max="<?php echo $get_fxcoin_count?>" value="100" required>
-                          <input type="hidden" name="coin_count" value="<?php echo $get_fxcoin_count?>">
+                          <input type="number" class="num-input" name="amnt" id="amntinput" placeholder="123 fxStars" min="100" max="<?php echo $get_fxcoin_count?>" value="100" required>
+                          
                           <p>Total cash-out amount: <strong><span id="totalCash">90</span> USD</strong></p>
                           <input type="submit" class="submit-btn" id="reqButt" value="Request" <?php if($get_fxcoin_count<100) echo 'style="opacity:0.5" disabled'?>>
                           </form>
@@ -115,11 +115,11 @@ if($cashout_r->num_rows>0) {
  while($cashout_f=$cashout_r->fetch_assoc()) {
   $cashout_fxstars = $cashout_f['amnt'];
   $cashout_dt = date("M jS, Y", strtotime($cashout_f['dt']));
-  $cashout_usd = $cashout_fxstars-(ceil($cashout_fxstars*0.1));
+  //$cashout_usd = $cashout_fxstars-(ceil($cashout_fxstars*0.1));
   
   echo '
     <div style="border-bottom:1px solid #00000020">
-      <p>Amount: <strong>'.$cashout_fxstars.' fxStars ('.$cashout_usd.' USD)</strong></p>
+      <p>Amount: <strong>'.$cashout_fxstars.' USD</strong></p>
       <p>Date of Request: <strong>'.$cashout_dt.'</strong></p>
     </div>
   ';
@@ -179,14 +179,6 @@ $('#amntinput').keydown(function (e) {
 });
 </script>
 
-<?php
-if(isset($_GET['res']) && $_GET['res']=='success') {
-    echo '<script>';
-    echo 'alert("Request submitted successfully");';
-    echo '</script>';
-}
-?>
-
 <script>
                           $('#page-header').html('fxStar');
 $('#page-header').attr('href','/wallet');
@@ -199,23 +191,25 @@ $('.fxstar-sidebar').attr('id','sidebar-active');
 
 
 <script>
-$('#cashout-form').submit(function(event) {
-  event.preventDefault();
+ $('#cashout-form').submit(function(event) {
+     event.preventDefault();
 
-  jQuery.ajax({
-    url:'/wallet/php/cashout.php',
-    type:'POST',
-    data:$(this).serialize(),
-    success: function(response) {
-      if(response=='success') {
-        alert('Cash-out request is submitted and will be applied within 3 days.');
-	window.location.reload();
-      } else {
-        alert('Insufficient fxStars.');
-      }
-    }
-  });
-});
+     jQuery.ajax({
+	 url:'/wallet/php/cashout.php',
+	 type:'POST',
+	 data:$(this).serialize(),
+	 success: function(response) {
+	     if(response=='success') {
+		 alert('Cash-out request is submitted and will be applied within 3 days.');
+		 window.location.reload();
+	     } else if(response=='insuff') {
+		 alert('Insufficient fxStars.');
+	     } else {
+		 alert('Failed to submit your request. Please try again.');
+	     }
+	 }
+     });
+ });
 </script>
 </body>
 </html>
