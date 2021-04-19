@@ -281,10 +281,14 @@ echo '<div class="details">';
 		    while($row = $user_r->fetch_assoc()) {
 
 
-		      $fxstar_q = 'SELECT * FROM link WHERE userId='.$row['id'];
-		      $fxstar_r = mysqli_query($wallet_connection, $fxstar_q) or die(mysqli_error($wallet_connection));
-		      $fxstars = mysqli_num_rows($fxstar_r);
-		      
+		      //$fxstar_q = 'SELECT * FROM link WHERE userId='.$row['id'];
+		      //$fxstar_r = mysqli_query($wallet_connection, $fxstar_q) or die(mysqli_error($wallet_connection));
+		      //$fxstars = mysqli_num_rows($fxstar_r);
+
+			$fxstars_q = 'SELECT * FROM fxstars WHERE user_id ='. $row['id'];
+			$fxstars_r = mysqli_query($wallet_connection, $fxstars_q);
+			$fxstars_f = mysqli_fetch_array($fxstars_r);
+			$fxstars = $fxstars_f['balance'];
 
 
                         echo '<div class="object-user" onclick="location.href=\'/user/'.$row['username'].'\';">';
