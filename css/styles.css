@@ -288,6 +288,9 @@ textarea:focus {
     flex-flow:row nowrap;
     cursor:pointer;
     margin-bottom:10px;
+    background-color: #95d2e969;
+    border-radius: 30px;
+    height: 3.5rem;
 }
 
 .left-content .pub-avatar .like-dislike {
