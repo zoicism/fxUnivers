@@ -37,6 +37,7 @@ $cost = $course_fetch['cost'];
 $test_date = $course_fetch['test_date'];
 $course_biddable=$course_fetch['biddable'];
 $test_exists = $course_fetch['test_duration'];
+$course_subbable = $course_fetch['subbable'];
 
 $totalCost = $cost + ceil(0.1*$cost);
 
@@ -74,6 +75,25 @@ $my_dislike_r = mysqli_query($fxinstructor_connection,$my_dislike_q);
 $my_dislike = mysqli_num_rows($my_dislike_r);
 
 if($course_biddable) require_once('../../../wallet/php/wallet_connect.php');
+
+$subcourse_of_q = "SELECT * FROM subcourses WHERE course_id = $course_id";
+$subcourse_of_r = mysqli_query($fxinstructor_connection, $subcourse_of_q);
+$subcourse_of_count = mysqli_num_rows($subcourse_of_r);
+
+$subcourses_q = "SELECT * FROM subcourses WHERE sub_of_id = $course_id";
+$subcourses_r = mysqli_query($fxinstructor_connection, $subcourses_q);
+$subcourses_count = mysqli_num_rows($subcourses_r);
+
+require_once($_SERVER['DOCUMENT_ROOT'].'/php/limit_str.php');
+
+function get_string_between($string, $start, $end){
+    $string = ' ' . $string;
+    $ini = strpos($string, $start);
+    if ($ini == 0) return '';
+    $ini += strlen($start);
+    $len = strpos($string, $end, $ini) - $ini;
+    return substr($string, $ini, $len);
+}
 ?>
 
 <!DOCTYPE html>
@@ -321,6 +341,256 @@ if($course_biddable) require_once('../../../wallet/php/wallet_connect.php');
 			    echo '<div class="course-name-desc">';
 			    echo '<h2>'.$header.'</h2>';
 			    echo '<p>'.$description.'</p>';
+
+
+			    if($subcourse_of_count > 0) {
+				
+				$subcourse_of_f = mysqli_fetch_array($subcourse_of_r);
+				$subcourse_of = $subcourse_of_f['sub_of_id'];
+
+				$subcourse_of_course_q = "SELECT * FROM teacher WHERE id = $subcourse_of";
+				$subcourse_of_course_r = mysqli_query($connection, $subcourse_of_course_q);
+				$subcourse_of_course = mysqli_fetch_array($subcourse_of_course_r);
+
+				$super_user_q = 'SELECT * FROM user WHERE id = '.$subcourse_of_course['user_id'];
+				$super_user_r = mysqli_query($connection, $super_user_q);
+				$super_user = mysqli_fetch_array($super_user_r);
+
+				$course_counts_q = 'SELECT * FROM stucourse WHERE course_id = '.$subcourse_of_course['id'];
+				$course_counts_r = mysqli_query($connection, $course_counts_q);
+				$course_counts = mysqli_num_rows($course_counts_r);
+
+				
+				echo '<hr class="hr-tct">';
+				echo '<h3>fxSuperCourse:</h3>';				
+				
+				echo '<div class="obj-box" style="margin-top:0; justify-content:left;">';
+				echo '<div class="object" onclick="location.href=\'/userpgs/instructor/course_management/course.php?course_id='.$subcourse_of.'\';">';
+				$thumb_path = 'course_management/thumbnails/';
+				$thumb = glob($thumb_path.$subcourse_of.'.jpg');
+
+				if(count($thumb)>0) {
+				    echo '<div class="preview">
+				            <img src="'.$thumb_path.$subcourse_of.'.jpg">
+				          </div>';
+				} elseif($subcourse_of_course['video_url']!=null) {
+				    $link_text = $subcourse_of_course['video_url'];
+				    if(strpos($link_text,'youtube.com') !== false) {			    
+					$video_id = get_string_between($link_text,'embed/','" frameborder');
+					echo '<div class="preview"> <img src="https://img.youtube.com/vi/'.$video_id.'/0.jpg">	</div>';
+				    } elseif(strpos($link_text,'vimeo.com') !== false) {
+					$video_id = get_string_between($link_text,'video/','" frameborder');
+					$hash = unserialize(file_get_contents("http://vimeo.com/api/v2/video/$video_id.php"));
+					
+					echo '<div class="preview"> <img src="'.$hash[0]['thumbnail_medium'].'"> </div>';
+				    }
+				} else {
+			            echo '<div class="preview">
+				  <svg viewBox="0 0 70 50.8">
+				  	<path class="cls-1" d="M659.7,889.3l-1.8-1.1v1.4l-25.4,16a.6.6,0,0,1-.9-.4V895a1.6,1.6,0,0,1,.8-1.4l26.8-16.3a1.1,1.1,0,0,0,.6-1.1h0a1.2,1.2,0,0,0-.7-1l-37.2-18a5.4,5.4,0,0,0-4.8.1l-25.8,13.6a2.2,2.2,0,0,0-1.2,2v12.9a1.1,1.1,0,0,0,.6,1.1L628.5,907a4.5,4.5,0,0,0,4.6-.2l26.6-16.3a.7.7,0,0,0,.4-.6h0A.9.9,0,0,0,659.7,889.3Zm-31,4.8-36.4-19.7a.7.7,0,0,1-.3-1h0a.8.8,0,0,1,1-.3l36.4,19.8a.6.6,0,0,1,.3.9h0A.6.6,0,0,1,628.7,894.1Z" transform="translate(-590.1 -856.7)"></path>
+				  </svg>
+				</div>';
+				}
+
+				echo '<div class="details">';
+
+				$ctitle=preg_replace("/<br\W*?\/>/"," ",$subcourse_of_course['header']);
+				
+				echo '<p><strong>';
+				echo limited($ctitle,40).'</strong></p>';
+				
+				/*$descrip=preg_replace("/<br\W*?\/>/"," ",$subcourse_of_course['description']);
+				   echo '<p>';
+				   echo limited($descrip,85).'</p>';*/
+
+				if($get_user_verified) {
+				    echo '<div class="little-box teacher-id">'.$super_user['username'].' <img src="/images/background/verified.png" style="width:1rem; height:1rem;"></div>';
+				} else {
+				    echo '<div class="little-box teacher-id">'.$super_user['username'].'</div>';
+				}
+
+				
+				echo '
+			        
+			          <div class="detail-bottom">
+				  <div class="detail-row">
+				    <div class="little-box blue-bg detail">
+				'.$course_counts.' <span>students</span></div>
+				    
+				  <div class="little-box detail"><span>'.date("M jS, Y", strtotime($subcourse_of_course['start_date'])).'</span></div>
+				  </div>';
+
+				if($subcourse_of_course['biddable']) {
+				    require_once('../../wallet/php/wallet_connect.php');
+				    $locked_q = 'SELECT * FROM locked WHERE course_id='.$subcourse_of_course['id'];
+				    $locked_r = mysqli_query($wallet_connection,$locked_q);
+				    $locked_count = mysqli_num_rows($locked_r);
+				    
+				    
+
+				    if($locked_count>0) {
+					$locked=mysqli_fetch_array($locked_r);
+					if($locked['finalized']) {
+					    echo '<div class="price gray-bg">
+				      <span>Sold</span> '.$locked['raw_amount'].' <span>fxStars</span>
+				    </div>';
+					} else {
+					    echo '<div class="price purple-bg">
+				      <span>High </span> '.$locked['raw_amount'].' <span>fxStars</span>
+				    </div>';
+					}
+				    } else {
+					echo '<div class="price purple-bg">
+				      <span>Base </span> '.$subcourse_of_course['cost'].' <span>fxStars</span>
+				    </div>';
+				    }
+				} else {
+
+				    if($subcourse_of_course['cost']>0) {	  
+					echo '<div class="price gold-bg">
+					'.$subcourse_of_course['cost'].' <span>fxStars</span>
+				    </div>';
+				    } else {
+			      		echo '<div class="price green-bg" style="padding: 4px 20px;">
+				      Free
+				    </div>';
+				    }
+
+				}
+
+				echo '</div></div></div></div>';
+				
+			    }
+
+			    if($subcourses_count > 0) {
+				echo '<hr class="hr-tct">';
+				echo '<h3>fxSubCourses</h3>';
+				echo '<div class="obj-box" style="flex-flow: row nowrap; margin-top:0; justify-content:left;overflow-x:auto;">';
+				while($subcourse = $subcourses_r -> fetch_assoc()) {
+				    $subcourse_q = 'SELECT * FROM teacher WHERE id ='.$subcourse['course_id'];
+				    $subcourse_r = mysqli_query($connection, $subcourse_q);
+				    $subcourse_f = mysqli_fetch_array($subcourse_r);
+				    
+				    $sub_user_q = 'SELECT * FROM user WHERE id='.$subcourse_f['user_id'];
+				    $sub_user_r = mysqli_query($connection, $sub_user_q);
+				    $sub_user = mysqli_fetch_array($sub_user_r);
+				    
+				    $sub_course_counts_q = 'SELECT * FROM stucourse WHERE course_id = '.$subcourse_f['id'];
+				    $sub_course_counts_r = mysqli_query($connection, $sub_course_counts_q);
+				    $sub_course_counts = mysqli_num_rows($sub_course_counts_r);
+				    
+				    
+				    echo '<div class="object" onclick="location.href=\'/userpgs/instructor/course_management/course.php?course_id='.$subcourse_f['id'].'\';">';
+				    $thumb_path = 'course_management/thumbnails/';
+				    $thumb = glob($thumb_path.$subcourse_f['id'].'.jpg');
+
+				    if(count($thumb)>0) {
+					echo '<div class="preview">
+				            <img src="'.$thumb_path.$subcourse_f['id'].'.jpg">
+				          </div>';
+				    } elseif($subcourse_f['video_url']!=null) {
+					$link_text = $subcourse_f['video_url'];
+					if(strpos($link_text,'youtube.com') !== false) {			    
+					    $video_id = get_string_between($link_text,'embed/','" frameborder');
+					    echo '<div class="preview"> <img src="https://img.youtube.com/vi/'.$video_id.'/0.jpg">	</div>';
+					} elseif(strpos($link_text,'vimeo.com') !== false) {
+					    $video_id = get_string_between($link_text,'video/','" frameborder');
+					    $hash = unserialize(file_get_contents("http://vimeo.com/api/v2/video/$video_id.php"));
+					    
+					    echo '<div class="preview"> <img src="'.$hash[0]['thumbnail_medium'].'"> </div>';
+					}
+				    } else {
+					echo '<div class="preview">
+				  <svg viewBox="0 0 70 50.8">
+				  	<path class="cls-1" d="M659.7,889.3l-1.8-1.1v1.4l-25.4,16a.6.6,0,0,1-.9-.4V895a1.6,1.6,0,0,1,.8-1.4l26.8-16.3a1.1,1.1,0,0,0,.6-1.1h0a1.2,1.2,0,0,0-.7-1l-37.2-18a5.4,5.4,0,0,0-4.8.1l-25.8,13.6a2.2,2.2,0,0,0-1.2,2v12.9a1.1,1.1,0,0,0,.6,1.1L628.5,907a4.5,4.5,0,0,0,4.6-.2l26.6-16.3a.7.7,0,0,0,.4-.6h0A.9.9,0,0,0,659.7,889.3Zm-31,4.8-36.4-19.7a.7.7,0,0,1-.3-1h0a.8.8,0,0,1,1-.3l36.4,19.8a.6.6,0,0,1,.3.9h0A.6.6,0,0,1,628.7,894.1Z" transform="translate(-590.1 -856.7)"></path>
+				  </svg>
+				</div>';
+				    }
+
+				    echo '<div class="details">';
+
+				    $ctitle=preg_replace("/<br\W*?\/>/"," ",$subcourse_f['header']);
+				    
+				    echo '<p><strong>';
+				    echo limited($ctitle,40).'</strong></p>';
+				    
+				    /*$descrip=preg_replace("/<br\W*?\/>/"," ",$subcourse_f['description']);
+				       echo '<p>';
+				       echo limited($descrip,85).'</p>';*/
+
+				    if($get_user_verified) {
+					echo '<div class="little-box teacher-id">'.$sub_user['username'].' <img src="/images/background/verified.png" style="width:1rem; height:1rem;"></div>';
+				    } else {
+					echo '<div class="little-box teacher-id">'.$sub_user['username'].'</div>';
+				    }
+
+				    
+				    echo '
+			        
+			          <div class="detail-bottom">
+				  <div class="detail-row">
+				    <div class="little-box blue-bg detail">
+				    '.$sub_course_counts.' <span>students</span></div>
+				    
+				  <div class="little-box detail"><span>'.date("M jS, Y", strtotime($subcourse_f['start_date'])).'</span></div>
+				  </div>';
+
+				    if($subcourse_f['biddable']) {
+					require_once('../../wallet/php/wallet_connect.php');
+					$locked_q = 'SELECT * FROM locked WHERE course_id='.$subcourse_f['id'];
+					$locked_r = mysqli_query($wallet_connection,$locked_q);
+					$locked_count = mysqli_num_rows($locked_r);
+					
+					
+
+					if($locked_count>0) {
+					    $locked=mysqli_fetch_array($locked_r);
+					    if($locked['finalized']) {
+						echo '<div class="price gray-bg">
+				      <span>Sold</span> '.$locked['raw_amount'].' <span>fxStars</span>
+				    </div>';
+					    } else {
+						echo '<div class="price purple-bg">
+				      <span>High </span> '.$locked['raw_amount'].' <span>fxStars</span>
+				    </div>';
+					    }
+					} else {
+					    echo '<div class="price purple-bg">
+				      <span>Base </span> '.$subcourse_f['cost'].' <span>fxStars</span>
+				    </div>';
+					}
+				    } else {
+
+					if($subcourse_f['cost']>0) {	  
+					    echo '<div class="price gold-bg">
+					    '.$subcourse_f['cost'].' <span>fxStars</span>
+				    </div>';
+					} else {
+			      		    echo '<div class="price green-bg" style="padding: 4px 20px;">
+				      Free
+				    </div>';
+					}
+
+				    }
+
+				    echo '</div></div></div>';
+
+
+
+
+
+
+
+
+
+
+				    
+				}
+				echo '</div>';
+			    }
+
+
+			    
 			    echo '</div>';
 			    ?>
 			    
@@ -337,7 +607,7 @@ if($course_biddable) require_once('../../../wallet/php/wallet_connect.php');
 		    </div>
 		    <div class="right-content">
 	  <?php
-          require('../../../php/limit_str.php');
+          require_once('../../../php/limit_str.php');
 
 
 
@@ -465,7 +735,13 @@ if($course_biddable) require_once('../../../wallet/php/wallet_connect.php');
 
 	      echo '<div class="add-box-con">';
 
-
+	      if($course_subbable) {
+		  echo '<div class="add-box" id="addSub"><svg viewBox="0 0 32 32">
+				           <path d="M16,2A14,14,0,1,1,2,16,14,14,0,0,1,16,2m0-2A16,16,0,1,0,32,16,16,16,0,0,0,16,0Z"></path>
+					   <path d="M13.4,22.4h0l-.7-.3L7.1,16.5a1.4,1.4,0,0,1,0-1.5,1.4,1.4,0,0,1,1.5,0l4.8,4.9,10-10a1.4,1.4,0,0,1,1.5,0,1.4,1.4,0,0,1,0,1.5L14.2,22.1A1.9,1.9,0,0,1,13.4,22.4Z"></path>
+				       </svg>
+				       Create fxSubCourse</div>';
+	      }
 	      
 
 	      
@@ -865,9 +1141,10 @@ if($course_biddable) require_once('../../../wallet/php/wallet_connect.php');
                          type:'POST',
                          url:'/wallet/php/purchase.php',
                          data: {item:'course', course_id:courseId, stu_id:stuId},
+			 //dataType: 'json',
                          success: function(response) {
 			     console.log(response);
-			     
+			    
                              if(response=='success') {
                                  alert('Course purchased successfully.');
                                  window.location.reload();
@@ -1040,27 +1317,18 @@ if($course_biddable) require_once('../../../wallet/php/wallet_connect.php');
 	 });
 	</script>
 
-	<script>/*
-	 $('#schedule-form').submit(function(event) {
-	     event.preventDefault();
+	<script>
+	 var lastExam = "<?php echo $stucourse_fetch['last_exam']; ?>";
 
-	     $.ajax({
-		 url: '/php/live_classroom_schedule.php',
-		 data: $(this).serialize(),
-		 type: 'POST',
-		 success: function(response) {
-		     //console.log(response);
-		     if(response=='in_the_past') {
-			 alert('Choose a date and time in the future.');
-		     } else if(response==1) {
-			 alert('A live classroom is scheduled.');
-			 window.location.reload();
-		     } else {
-			 alert('Failed to schedule a live classroom. Please try again.');
-		     }
-		 }
-	     });
-	 });*/
+	 $('#addSub').click(function() {
+	     if(lastExam=='') {
+		 alert('You need to take and pass the Certification Exam first.');
+	     } else if(lastExam < 5) {
+		 alert('You need to pass the Certification Exam by scoring more than 5.');
+	     } else {
+		 window.location.href = '/userpgs/instructor/course_management/new_course.php?sub=<?php echo $course_id ?>';
+	     }
+	 });
 	</script>
     </body>
 </html>
