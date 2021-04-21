@@ -24,6 +24,8 @@ require('../../../php/get_plans.php');
 require('../../../php/get_rel.php');
 require('../../../wallet/php/get_fxcoin_count.php');
 
+$get_courses_q = "SELECT * FROM stucourse WHERE stu_id = $get_user_id";
+$get_courses_r = mysqli_query($connection, $get_courses_q);
 ?>
 
 <!DOCTYPE html>
@@ -78,22 +80,53 @@ require('../../../wallet/php/get_fxcoin_count.php');
 
   <div class="relative-main-content">
                             <div class="content-box">
-			      <h2 id="titleId">Add Course</h2>
+			      <h2 id="titleId">Add fxCourse</h2>
 
 			      <form method="POST" action="new_post.php" autocomplete="off">
-<?php if($get_user_verified) { ?>
-			      <p>Make this course biddable:</p>
-				<label class="switch">
-  				<input type="checkbox" name="biddable" id="checkedId">
- 				 <span class="slider round"></span>
-				 </label>
-<?php } ?>
+				  
 
 				<input type="text" class="txt-input" name="header" placeholder="Course title" required>
 				<textarea name="description" rows="10" placeholder="Description" required></textarea>
 				<input type="number" class="num-input" name="course_fxstar" placeholder="Cost (fxStars)" id="costIn" min="0" required>
 
-				
+				<p>Can students with certificate from this fxCourse create fxSubCourses?</p>
+				 <label class="switch" >
+				     <input type="checkbox"  name="subbable" id="subbableId" >
+				     <span class="slider round" ></span>
+				 </label>
+
+				 <p>Is this an fxSubCourse?</p>
+				 <select name="subOf" id="subOfId" class="select-input" style="margin-left:0; width:260px;" >
+				     <option value="" disabled selected>Select a Certified Course</option>
+				     <?php
+				     while($course = $get_courses_r -> fetch_assoc()) {
+					 $c_id = $course['course_id'];
+					 $cert = $course['exam_accepted'];
+					 $get_sub_q = "SELECT * FROM teacher WHERE id = $c_id";
+					 $get_sub_r = mysqli_query($connection, $get_sub_q);
+					 $get_sub_f = mysqli_fetch_array($get_sub_r);
+					 $subbable = $get_sub_f['subbable'];
+
+					 if($cert && $subbable) {
+					     if(isset($_GET['sub']) && !empty($_GET['sub'])) {
+						 if($c_id == $_GET['sub']) {
+						     echo '<option value="'.$c_id.'" selected="selected">'.$get_sub_f['header'].'</option>';
+						 } else {
+						     echo '<option value="'.$c_id.'">'.$get_sub_f['header'].'</option>';
+						 }
+					     } else {
+						 echo '<option value="'.$c_id.'">'.$get_sub_f['header'].'</option>';
+					     }
+					 }
+				     }
+				     ?>
+				 </select>
+				 
+				 <p>Can underprivileged students ask for lower price for this fxCourse?</p>
+				 <label class="switch">
+  				     <input type="checkbox" name="biddable" id="checkedId">
+ 				     <span class="slider round"></span>
+				 </label>
 
 				<input type="submit" class="submit-btn" value="Publish">
 				
