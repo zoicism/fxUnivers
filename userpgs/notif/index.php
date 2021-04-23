@@ -99,7 +99,7 @@ $dns_result=mysqli_query($connection,$dns_query) or die(mysqli_error($connection
 	      
 
 	      echo '<div class="desc-contact">';
-		echo '<a class="name" href="/user/'.$notif_from_un.'">'.$notif_from_un.'</a> <span style="opacity:0.6;font-size:0.8rem;">'.date("M jS, Y @ H:i", strtotime($notif_dt)).'</span>';
+		echo '<a class="name" href="/user/'.$notif_from_un.'">'.$notif_from_un.'</a> <span style="opacity:0.6;font-size:0.8rem;">'.date("M jS, Y @ H:i", strtotime($notif_dt)).'(UTC)</span>';
 		
                         if($row['reason']=='friendRequest') {
                             echo '<p class="notif-message">'.$row['body'].'</p>';
