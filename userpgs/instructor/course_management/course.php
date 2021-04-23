@@ -749,7 +749,7 @@ function get_string_between($string, $start, $end){
 				           <path d="M16,2A14,14,0,1,1,2,16,14,14,0,0,1,16,2m0-2A16,16,0,1,0,32,16,16,16,0,0,0,16,0Z"></path>
 					   <path d="M13.4,22.4h0l-.7-.3L7.1,16.5a1.4,1.4,0,0,1,0-1.5,1.4,1.4,0,0,1,1.5,0l4.8,4.9,10-10a1.4,1.4,0,0,1,1.5,0,1.4,1.4,0,0,1,0,1.5L14.2,22.1A1.9,1.9,0,0,1,13.4,22.4Z"></path>
 				       </svg>
-				       Take Quiz</div>';
+				       Certificate Exam</div>';
 	      if($stucourse_fetch['last_exam']!=null) {
 		  echo '<div class="add-box" style="cursor:auto"><p>Your Score: '.round($stucourse_fetch['score']*10,1).'</p></div>';
 	      } else {
@@ -762,7 +762,7 @@ function get_string_between($string, $start, $end){
 	      
 	      echo '<div class="options">';
 	      
-	      echo '<div class="add-box-con">';
+	      echo '<div class="add-box-con" style="width:100%">';
 
 
 	      
@@ -809,11 +809,7 @@ function get_string_between($string, $start, $end){
 		  }
 	      } else {
 		  
-		  echo '<div class="add-box"  id="purchbutt"><svg viewBox="0 0 32 32">
-				           <path d="M16,2A14,14,0,1,1,2,16,14,14,0,0,1,16,2m0-2A16,16,0,1,0,32,16,16,16,0,0,0,16,0Z"></path>
-					   <path d="M13.4,22.4h0l-.7-.3L7.1,16.5a1.4,1.4,0,0,1,0-1.5,1.4,1.4,0,0,1,1.5,0l4.8,4.9,10-10a1.4,1.4,0,0,1,1.5,0,1.4,1.4,0,0,1,0,1.5L14.2,22.1A1.9,1.9,0,0,1,13.4,22.4Z"></path>
-				       </svg>
-				       Purchase Course</div>';
+		  echo '<div class="add-box blue-button"  id="purchbutt">Enroll</div>';
 		  
 	      }
 	      echo '</div>';

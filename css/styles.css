@@ -1283,14 +1283,34 @@ textarea:focus {
 	        6px 6px 10px rgba(0, 0, 0, .15);
     border-radius: 50px;
     color: #fff;
-    /*background: rgb(255,66,29);
-    background: linear-gradient(126deg, rgba(255,66,29,1) 0%, rgba(252,67,67,1) 50%, rgba(249,67,104,1) 100%);*/
     background: #0093d1;
     height: 2.5rem;
     cursor: pointer;
     justify-content: center;
 }
 
+.options .blue-button {
+    margin: 0 auto !important;
+    width: 90% !important;
+    box-shadow: -6px -6px 14px rgba(255, 255, 255, .7),
+	        -6px -6px 10px rgba(255, 255, 255, .5),
+	        6px 6px 8px rgba(255, 255, 255, .075),
+	        6px 6px 10px rgba(0, 0, 0, .15);
+    border-radius: 50px;
+    color: #fff !important;
+    background: #0093d1;
+    height: 2.5rem;
+    cursor: pointer;
+    justify-content: center;
+}
+
+.options .blue-button:hover {
+    background: #0093d1 !important;
+}
+
+.options .blue-button:focus {
+    background: #0093d1 !important;
+}
 
 
 .options #live-add-box img {
