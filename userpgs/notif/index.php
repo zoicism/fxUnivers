@@ -83,7 +83,7 @@ $dns_result=mysqli_query($connection,$dns_query) or die(mysqli_error($connection
 	    $notif_from_r = mysqli_query($connection,$notif_from_q) or die(mysqli_error($connection));
 	    $notif_from_fetch = mysqli_fetch_array($notif_from_r);
 	    $notif_from_un=$notif_from_fetch['username'];
-	    
+	    $notif_dt = $row['sent_dt'];
 	    
             echo '<li class="notification" tabindex="1">';
 
@@ -99,7 +99,7 @@ $dns_result=mysqli_query($connection,$dns_query) or die(mysqli_error($connection
 	      
 
 	      echo '<div class="desc-contact">';
-		echo '<a class="name" href="/user/'.$notif_from_un.'">'.$notif_from_un.'</a>';
+		echo '<a class="name" href="/user/'.$notif_from_un.'">'.$notif_from_un.'</a> <span style="opacity:0.6;font-size:0.8rem;">'.date("M jS, Y @ H:i", strtotime($notif_dt)).'</span>';
 		
                         if($row['reason']=='friendRequest') {
                             echo '<p class="notif-message">'.$row['body'].'</p>';
