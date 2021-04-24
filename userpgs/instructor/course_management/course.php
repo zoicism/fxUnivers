@@ -942,7 +942,7 @@ $stucourse_count = mysqli_num_rows($stucourse_result);
 		      }
 
 		      echo '
-		      <div class="user" onclick="window.location.replace(\'/user/'.$student_user['username'].'\');">
+		      <div class="user" onclick="window.location.href = \'/user/'.$student_user['username'].'\';">
                       <div class="user-img avatar" style="background-image:url(\''.$avatar_url.'\');"></div>
     	              <div class="user-name">
 	              <p class="fullname">'.$student_user['username'].'</p>
