@@ -936,7 +936,7 @@ $stucourse_count = mysqli_num_rows($stucourse_result);
 		      $student_user = mysqli_fetch_array($student_user_r);
 
 		      if($student_user['avatar'] != NULL) {
-			  $avatar_url = '/userpgs/avatars/'.$stud_i['avatar'];
+			  $avatar_url = '/userpgs/avatars/'.$student_user['avatar'];
 		      } else {
 			  $avatar_url='/images/background/avatar.png';
 		      }
