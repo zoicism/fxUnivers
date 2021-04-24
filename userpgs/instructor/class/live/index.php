@@ -1206,7 +1206,10 @@ var directVoiceSend=false;
 		     $('.student-whiteboard').removeClass('blinking');
 		 }
 
-		 if(response[2]==0) {
+		 if(response[3]==0) {
+		     alert('Live class ended.');
+		     window.location.replace('/userpgs/instructor/course_management/course.php?course_id=<?php echo $course_id ?>');
+		 } else if(response[2]==0) {
 		     <?php if(($class_fetch['theTime']==null) || ($epochDiff <= 0)) { ?>
 		     alert('Broadcast ended.');
 		     $('body').prepend('<div style="height:100%;width:100%;display:flex;align-items:center;justify-content:center;position:fixed;background-color:black;opacity:0.3;cursor:auto;z-index:2;" id="loading"><img src="/images/background/loading.gif" style="z-index:3"></div>');
@@ -1346,7 +1349,7 @@ var directVoiceSend=false;
 
 $('#save-classroom').click(function() {
      jQuery.ajax({
-	 url: '/php/set_ins_live_off.php',
+	 url: '/php/save_live_classroom.php',
 	 type: 'POST',
 	 data: {classId: '<?php echo $class_id ?>'},
 	 success: function(response) {
