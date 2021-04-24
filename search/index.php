@@ -2,6 +2,7 @@
 session_start();
 require_once('../register/connect.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/php/conn/fxinstructor.php');
+require_once('../wallet/php/wallet_connect.php');
 header("Cache-Control: no cache");
 
 if(isset($_SESSION['username'])) {
@@ -23,9 +24,6 @@ if(isset($_GET['q'])) {
     $course_q = "SELECT * FROM teacher WHERE ((UPPER(header) LIKE UPPER('%$kw%')) OR (UPPER(description) LIKE UPPER('%$kw%'))) AND alive=1 ORDER BY id DESC";
     $course_result = mysqli_query($connection, $course_q);
     $course_count = mysqli_num_rows($course_result);
-
-
-
 
     $user_q = "SELECT id,username,fname,lname,avatar FROM user WHERE (UPPER(username) LIKE UPPER('%$kw%')) OR (UPPER(fname) LIKE UPPER('%$kw%')) OR (UPPER(lname) LIKE UPPER('%$kw%')) ORDER BY id DESC";
     $user_r = mysqli_query($connection,$user_q) or die(mysqli_error($connection));
@@ -182,13 +180,7 @@ if($type=='course') {
 
 	    $ctitle=preg_replace("/<br\W*?\/>/"," ",$row3['header']);
 	    $obj_div[$course_j] .= '<p><strong>'.$ctitle.'</strong></p>';
-	    //$obj_div[$course_j] .= '<p><strong>'.limited($ctitle,40).'</strong></p>';
 	    
-	    /*
-	       $descrip=preg_replace("/<br\W*?\/>/"," ",$row3['description']);
-	       echo '<p>';
-	       echo limited($descrip,85).'</p>';
-	     */
 
 
 	    if($teacher_verified) {
@@ -207,20 +199,8 @@ if($type=='course') {
 				    <div class="little-box"><span>'.date("M jS, Y", strtotime($row3['start_date'])).'</span></div>
 				    </div>';
 	    
-	    /*if($row3['cost']>0) {	  
-	       echo '<div class="little-box gold-bg">
-	       '.$row3['cost'].' <span>fxStars</span>
-	       </div>';
-	       } else {
-	       echo '<div class="little-box green-bg" style="padding: 4px 20px;">
-	       Free
-	       </div>';
-	       }*/
-
-
 
 	    if($row3['biddable']) {
-		require_once('../wallet/php/wallet_connect.php');
 		$locked_q = 'SELECT * FROM locked WHERE course_id='.$row3['id'];
 		$locked_r = mysqli_query($wallet_connection,$locked_q);
 		$locked_count = mysqli_num_rows($locked_r);
@@ -307,7 +287,6 @@ if($type=='course') {
 } else {
     
     if($user_r->num_rows > 0) {
-	require('../wallet/php/wallet_connect.php');
 	require('../php/limit_str.php');
 	
 	echo '<div class="obj-box">';
@@ -381,7 +360,242 @@ if($type=='course') {
 	    echo '<p class="gray">No results found</p>';
 	}
     }
-    // echo '</div>';
+}
+
+if(!isset($_GET['q'])) {
+    $top_fxstars_q = "SELECT * FROM fxstars ORDER BY balance DESC LIMIT 5";
+    $top_fxstars_r = mysqli_query($wallet_connection, $top_fxstars_q) or die(mysqli_error($wallet_connection));
+
+    if($top_fxstars_r->num_rows > 0) {
+	echo '<hr class="hr-tct" style="width:100%">';
+	echo '<h3 style="text-align:left;width:100%;margin-bottom:0;">Top fxUsers</h3>';
+	require('../php/limit_str.php');
+	
+	echo '<div class="obj-box">';
+
+	while($top_row = $top_fxstars_r->fetch_assoc()) {
+	    /*
+	       $fxstars_q = 'SELECT * FROM fxstars WHERE user_id ='. $top_row['id'];
+	       $fxstars_r = mysqli_query($wallet_connection, $fxstars_q);
+	       $fxstars_f = mysqli_fetch_array($fxstars_r);
+	       $fxstars = $fxstars_f['balance'];
+	     */
+
+	    $top_user_q = 'SELECT * FROM user WHERE id = '.$top_row['user_id'];
+	    $top_user_r = mysqli_query($connection, $top_user_q);
+	    $top_user = mysqli_fetch_array($top_user_r);
+	    
+            echo '<div class="object-user" onclick="location.href=\'/user/'.$top_user['username'].'\';">';
+
+	    if($top_user['avatar']==NULL) {
+                echo '<div class="preview-user">
+			       <img src="/images/background/avatar.png">
+			     </div>';
+	    } else {
+		echo '<div class="preview-user">
+			          <img src="/userpgs/avatars/'.$top_user['avatar'].'">
+				</div>';
+	    }
+
+	    echo '<div class="details-user">';
+
+	    echo '<p><strong>'.$top_user['username'].'</strong></p>';
+	    echo '<p>'.$top_user['fname'].' '.$top_user['lname'].'</p>';
+
+	    echo '<div class="detail-bottom">';
+
+	    if($top_row['balance']>0) {
+		echo '<div class="little-box"><span>'.$top_row['balance'].' fxStars</span></div>';
+	    } else {
+		echo '<div class="little-box"><span>0 fxStars</span></div>';
+	    }
+	    echo '</div>';
+	    
+            echo '</div></div>';
+
+	    
+        }
+        $top_fxstars_r->free();
+	echo '</div>';
+    }
+
+
+
+    echo '<hr class="hr-tct" style="width:100%">';
+    echo '<h3 style="text-align:left;width:100%;margin-bottom:0;">Top fxCourses</h3>';
+    echo '<div class="obj-box">';
+    
+    $courses_q = "SELECT * FROM teacher";
+    $courses_r = mysqli_query($connection, $courses_q);
+    $courses_count = mysqli_num_rows($courses_r);
+
+    $top_votes = array(0,0,0,0,0);
+    $top_courses = array(0,0,0,0,0);
+
+    $top_course_user_id = array(); $top_course_video_url = array(); $top_course_header = array();
+    $top_course_start_date = array(); $top_course_biddable = array(); $top_course_cost = array();
+    if($courses_count > 0) {
+
+
+	//require('../php/limit_str.php');
+
+	function get_string_between($string, $start, $end){
+    	    $string = ' ' . $string;
+    	    $ini = strpos($string, $start);
+    	    if ($ini == 0) return '';
+    	    $ini += strlen($start);
+    	    $len = strpos($string, $end, $ini) - $ini;
+    	    return substr($string, $ini, $len);
+	}
+
+
+	
+	while($course = $courses_r -> fetch_assoc()) {
+	    
+	    $upvotes_q = "SELECT * FROM courseLikes WHERE courseId = ".$course['id'];
+	    $upvotes_r = mysqli_query($fxinstructor_connection, $upvotes_q);
+	    $upvotes = mysqli_num_rows($upvotes_r);
+
+	    $downvotes_q = "SELECT * FROM courseDislikes WHERE courseId = ".$course['id'];
+	    $downvotes_r = mysqli_query($fxinstructor_connection, $downvotes_q);
+	    $downvotes = mysqli_num_rows($downvotes_r);
+
+	    $total_votes = $upvotes - $downvotes;
+	    
+	    for($i = 0; $i < 5; $i++) {
+		if($total_votes > $top_votes[$i]) {
+		    
+		    for($j = 3; $j >= $i; $j--) {
+			$top_votes[$j+1] = $top_votes[$j];
+			$top_courses[$j+1] = $top_courses[$j];
+			
+			$top_course_user_id[$j+1] = $top_course_user_id[$j];
+			$top_course_video_url[$j+1] = $top_course_video_url[$j];
+			$top_course_header[$j+1] = $top_course_header[$j];
+			$top_course_start_date[$j+1] = $top_course_start_date[$j];
+			$top_course_biddable[$j+1] = $top_course_biddable[$j];
+			$top_course_cost[$j+1] = $top_course_cost[$j];
+		    }
+
+		    $top_votes[$i] = $total_votes;
+		    $top_courses[$i] = $course['id'];
+		    
+		    $top_course_user_id[$i] = $course['user_id'];
+		    $top_course_video_url[$i] = $course['video_url'];
+		    $top_course_header[$i] = $course['header'];
+		    $top_course_start_date[$i] = $course['start_date'];
+		    $top_course_biddable[$i] = $course['biddable'];
+		    $top_course_cost[$i] = $course['cost'];
+		    
+		    break;
+		}
+	    }
+	}
+
+
+	for($i = 0; $i < 5; $i++) {
+
+	    if($top_courses[$i]==0) continue;
+	    
+	    $coursecounter_q="SELECT * FROM stucourse WHERE course_id=".$top_courses[$i];
+            $coursecounter_r=mysqli_query($connection,$coursecounter_q);
+            $coursecounts=mysqli_num_rows($coursecounter_r);
+
+
+	    $teacher_un_q = 'SELECT username,verified FROM user WHERE id='.$top_course_user_id[$i];
+	    $teacher_un_r = mysqli_query($connection,$teacher_un_q);
+	    $teacher_un_f = mysqli_fetch_array($teacher_un_r);
+	    $teacher_un = $teacher_un_f['username'];
+	    $teacher_verified = $teacher_un_f['verified'];
+	    
+	    echo '<div class="object" onclick="location.href=\'/userpgs/instructor/course_management/course.php?course_id='.$top_courses[$i].'\';">';
+
+
+            if($top_course_video_url[$i]!=null) {
+		$link_text = $top_course_video_url[$i];
+		if(strpos($link_text,'youtube.com') !== false) {			    
+		    $video_id = get_string_between($link_text,'embed/','" frameborder');
+		    echo '<div class="preview"> <img src="https://img.youtube.com/vi/'.$video_id.'/0.jpg">	</div>';
+		} elseif(strpos($link_text,'vimeo.com') !== false) {
+		    $video_id = get_string_between($link_text,'video/','" frameborder');
+		    $hash = unserialize(file_get_contents("http://vimeo.com/api/v2/video/$video_id.php"));
+		    
+		    echo '<div class="preview"> <img src="'.$hash[0]['thumbnail_medium'].'"> </div>';
+		}
+		
+	    } else {
+		echo '<div class="preview">
+				  <svg viewBox="0 0 70 50.8">
+				  	<path class="cls-1" d="M659.7,889.3l-1.8-1.1v1.4l-25.4,16a.6.6,0,0,1-.9-.4V895a1.6,1.6,0,0,1,.8-1.4l26.8-16.3a1.1,1.1,0,0,0,.6-1.1h0a1.2,1.2,0,0,0-.7-1l-37.2-18a5.4,5.4,0,0,0-4.8.1l-25.8,13.6a2.2,2.2,0,0,0-1.2,2v12.9a1.1,1.1,0,0,0,.6,1.1L628.5,907a4.5,4.5,0,0,0,4.6-.2l26.6-16.3a.7.7,0,0,0,.4-.6h0A.9.9,0,0,0,659.7,889.3Zm-31,4.8-36.4-19.7a.7.7,0,0,1-.3-1h0a.8.8,0,0,1,1-.3l36.4,19.8a.6.6,0,0,1,.3.9h0A.6.6,0,0,1,628.7,894.1Z" transform="translate(-590.1 -856.7)"/>
+				  </svg>
+				</div>';
+	    }
+
+	    echo '<div class="details">';
+
+
+	    $ctitle=preg_replace("/<br\W*?\/>/"," ",$top_course_header[$i]);
+	    echo '<p><strong>'.$ctitle.'</strong></p>';
+	    
+
+
+	    if($teacher_verified) {
+		echo '<div class="little-box teacher-id">'.$teacher_un.' <img src="/images/background/verified.png" style="width:1rem; height:1rem;"></div>';
+	    } else {
+		echo '<div class="little-box teacher-id">'.$teacher_un.'</div>';
+	    }
+
+
+	    
+	    echo '<div class="detail-bottom">
+			    	   <div class="detail-row">
+				    <div class="little-box blue-bg">
+	    '.$coursecounts.' <span>students</span>
+				    </div>
+				    <div class="little-box"><span>'.date("M jS, Y", strtotime($top_course_start_date[$i])).'</span></div>
+				    </div>';
+	    
+
+	    if($top_course_biddable[$i]) {
+		$locked_q = 'SELECT * FROM locked WHERE course_id='.$top_courses[$i];
+		$locked_r = mysqli_query($wallet_connection,$locked_q);
+		$locked_count = mysqli_num_rows($locked_r);
+		
+		
+
+		if($locked_count>0) {
+		    $locked=mysqli_fetch_array($locked_r);
+		    if($locked['finalized']) {
+			echo '<div class="price gray-bg">
+				      <span>Sold</span> '.$locked['raw_amount'].' <span>fxStars</span>
+				    </div>';
+		    } else {
+			echo '<div class="price purple-bg">
+				      <span>High </span> '.$locked['raw_amount'].' <span>fxStars</span>
+				    </div>';
+		    }
+		} else {
+		    echo '<div class="price purple-bg">
+				      <span>Base </span> '.$top_course_cost[$i].' <span>fxStars</span>
+				    </div>';
+		}
+	    } else {
+
+		if($top_course_cost[$i]>0) {	  
+		    echo '<div class="price gold-bg">
+		    '.$top_course_cost[$i].' <span>fxStars</span>
+				    </div>';
+		} else {
+		    echo '<div class="price green-bg" style="padding: 4px 20px;">
+				      Free
+				    </div>';
+		}
+
+	    }
+	    echo '</div></div></div>';  
+	}
+	echo '</div></div>';
+    }   
 }
 ?>
 
