@@ -94,6 +94,10 @@ function get_string_between($string, $start, $end){
     $len = strpos($string, $end, $ini) - $ini;
     return substr($string, $ini, $len);
 }
+
+$stucourse_query = "SELECT * FROM stucourse WHERE course_id = $course_id";
+$stucourse_result = mysqli_query($connection, $stucourse_query);
+$stucourse_count = mysqli_num_rows($stucourse_result);
 ?>
 
 <!DOCTYPE html>
@@ -820,7 +824,15 @@ function get_string_between($string, $start, $end){
 
 
 	  echo '<div class="sessions">';
-	  echo '<div class="sess-title"><h3>Sessions ('.$class_num.')</h3></div>';
+?>
+
+<div class="tabs">
+<div class="tab-student active-tab" id="sessions-tab"><div>Sessions(<?php echo $class_num ?>)</div></div>
+<div class="tab-student" id="students-tab"><div>Students(<?php echo $coursecounts ?>)</div></div>
+</div>
+
+<?php 	  
+	  //echo '<div class="sess-title"><h3>Sessions ('.$class_num.')</h3></div>';
 	  echo '<div class="sess-list">';
 
           if($class_result->num_rows>0) {
@@ -912,10 +924,48 @@ function get_string_between($string, $start, $end){
           }
 	  ?>
 		    
-		</div>
-	    </div>     </div> 
-            
-	</div>
+	  </div>
+
+
+	  <div class="online-list" style="display:none">
+	      <?php
+	      if($stucourse_count > 0) {
+		  while($stud_i = $stucourse_result -> fetch_assoc()) {
+		      $student_user_q = 'SELECT * FROM user WHERE id = '.$stud_i['stu_id'];
+		      $student_user_r = mysqli_query($connection, $student_user_q);
+		      $student_user = mysqli_fetch_array($student_user_r);
+
+		      if($student_user['avatar'] != NULL) {
+			  $avatar_url = '/userpgs/avatars/'.$stud_i['avatar'];
+		      } else {
+			  $avatar_url='/images/background/avatar.png';
+		      }
+
+		      echo '
+		      <div class="user" onclick="window.location.replace(\'/user/'.$student_user['username'].'\');">
+                      <div class="user-img avatar" style="background-image:url(\''.$avatar_url.'\');"></div>
+    	              <div class="user-name">
+	              <p class="fullname">'.$student_user['username'].'</p>
+      	              <p>'.$student_user['fname'].' '.$student_user['lname'].' </p>
+      		      
+		      </div>
+		      </div>
+		      ';
+		  }
+		  $stucourse_result->free();
+	      } else {
+		  echo '<p class="gray" style="text-align:center;">No students yet.</p>';
+	      }
+	      ?>
+	  </div>
+
+
+
+	  
+		    </div>
+		</div> 
+		
+	    </div>
 
 
 	</div>
@@ -931,7 +981,21 @@ function get_string_between($string, $start, $end){
 	 $('#page-header').html('fxUniversity');
 	 $('#page-header').attr('href','/userpgs/fxuniversity');
 	</script>
-	
+
+	<script>
+	 $('#students-tab').click(function() {
+	     $('#sessions-tab').removeClass('active-tab');
+	     $('#students-tab').addClass('active-tab');
+	     $('.sess-list').hide();
+	     $('.online-list').show();
+	 });
+	 $('#sessions-tab').click(function() {
+	     $('#sessions-tab').addClass('active-tab');
+	     $('#students-tab').removeClass('active-tab');
+	     $('.sess-list').show();
+	     $('.online-list').hide();
+	 });
+	</script>
 	
 	<!-- fxUniversity sidebar active -->
 	<script>
