@@ -8,7 +8,7 @@ header("Cache-Control: no cache");
 if(isset($_SESSION['username'])) {
     $username = $_SESSION['username'];
 } else {
-    header('Location: /');
+    require_once($_SERVER['DOCUMENT_ROOT'].'/php/get_login_cookies.php');
 }
 
 if(isset($_GET['q'])) {
