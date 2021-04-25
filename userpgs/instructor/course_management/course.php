@@ -39,7 +39,7 @@ $course_biddable=$course_fetch['biddable'];
 $test_exists = $course_fetch['test_duration'];
 $course_subbable = $course_fetch['subbable'];
 
-$totalCost = $cost + ceil(0.1*$cost);
+//$totalCost = $cost + ceil(0.1*$cost);
 
 require('../../../php/get_user.php');
 $id = $get_user_id;
@@ -1191,7 +1191,7 @@ $stucourse_count = mysqli_num_rows($stucourse_result);
          $(document).ready(function() {
              var courseId=<?php echo $course_id?>;
              var stuId=<?php echo $get_user_id?>;
-	     var totalCost = <?php echo $totalCost?>;
+	     var totalCost = <?php echo $cost?>;
 
 	     
              $('#purchbutt').click(function(e) {

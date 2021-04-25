@@ -36,9 +36,9 @@ require('get_fxcoin_count.php');
 
 $fxunivers_id = 1;
 $trans_dt=date('Y-m-d H:i:s');
-$interest=ceil(0.1*$cost);
+$interest=0.1*$cost;
 
-if($get_fxcoin_count>=$cost+$interest) {
+if($get_fxcoin_count>=$cost) {
     
     // Check `subcourses` for `sub_of`
     $get_subcourses_q = "SELECT * FROM subcourses WHERE course_id = $course_id";
@@ -47,30 +47,35 @@ if($get_fxcoin_count>=$cost+$interest) {
 
     // Buyer's old and new balance
     $buyer_old_balance = $get_fxcoin_count;
-    $buyer_new_balance = $get_fxcoin_count - $cost - $interest;
+    $buyer_new_balance = $get_fxcoin_count - $cost; // balance - n
 
     // Seller's old balance
     $seller_ob_q = "SELECT * FROM fxstars WHERE user_id = $seller_id";
     $seller_ob_r = mysqli_query($wallet_connection, $seller_ob_q);
     $seller_ob_f = mysqli_fetch_array($seller_ob_r);
     $seller_old_balance = $seller_ob_f['balance'];
-    
+
+    // If there are NO fxReInstructors
     if($subcourses_count == 0) {
-	$seller_new_balance = $seller_old_balance + $cost;
+	$seller_share = $cost - $interest; // (0.9)n
+	$seller_new_balance = $seller_old_balance + $seller_share;
 
 	
 	// 1. Update buyer's balance.
 	// 2. Update seller's balance.
 	// 3. Add a transaction(buyer->seller). 
-	$purchase_q = "UPDATE fxstars SET balance = $buyer_new_balance WHERE user_id = $buyer_id; UPDATE fxstars SET balance = $seller_new_balance WHERE user_id = $seller_id; INSERT INTO fxstar_txn(amnt, from_id, to_id, dt) VALUES($cost, $buyer_id, $seller_id, '$trans_dt');";
+	$purchase_q = "UPDATE fxstars SET balance = $buyer_new_balance WHERE user_id = $buyer_id; UPDATE fxstars SET balance = $seller_new_balance WHERE user_id = $seller_id; INSERT INTO fxstar_txn(amnt, from_id, to_id, dt) VALUES($seller_share, $buyer_id, $seller_id, '$trans_dt');";
 	$purchase_r = mysqli_multi_query($wallet_connection, $purchase_q);
-	while($wallet_connection->next_result()) {;} // Flushing multi_queries
-    } else {
+	while($wallet_connection->next_result()) {;}
+
+
 	
-	$super_shares_sum = $cost * 0.1;
-	$seller_share = $cost - $super_shares_sum;
-	$grandparent_share = $super_shares_sum * 0.5;
-	$parents_share = $super_shares_sum - $grandparent_share;
+    } else { // If there are fxReInstructor(s)
+	
+	$super_shares_sum = $cost * 0.1; // (0.1)n
+	$seller_share = $cost - $super_shares_sum - $interest; // (0.8)n
+	$grandparent_share = $super_shares_sum * 0.5; // (0.5)(0.1)n
+	$parents_share = $super_shares_sum - $grandparent_share; // (0.5)(0.1)n for all
 
 	$seller_new_balance = $seller_old_balance + $seller_share;
 	$purchase_q = "UPDATE fxstars SET balance = $buyer_new_balance WHERE user_id = $buyer_id; UPDATE fxstars SET balance = $seller_new_balance WHERE user_id = $seller_id; INSERT INTO fxstar_txn(amnt, from_id, to_id, dt) VALUES($seller_share, $buyer_id, $seller_id, '$trans_dt');";
@@ -129,7 +134,7 @@ if($get_fxcoin_count>=$cost+$interest) {
     }
     
     require('../../php/conn/fxpartner.php');
-    $check_partner_q="SELECT * FROM on_user WHERE user=$get_user_id";
+    $check_partner_q="SELECT * FROM on_user WHERE user=$seller_id";
     $check_partner_r=mysqli_query($fxpartner_connection,$check_partner_q) or die(mysqli_error($fxpartner_connection));
     $check_partner=mysqli_fetch_array($check_partner_r);
     $check_partner_count=mysqli_num_rows($check_partner_r);
@@ -154,7 +159,7 @@ if($get_fxcoin_count>=$cost+$interest) {
 
 	// Interest goes to fxUnivers
 	// 1. Add interest as transaction to fxUnivers
-	$fxunivers_share_q = "INSERT INTO fxstar_txn(amnt, from_id, to_id, dt) VALUES($interest, $buyer_id, $fxunivers_id, '$trans_dt')";
+	$fxunivers_share_q = "INSERT INTO fxstar_txn(amnt, from_id, to_id, dt) VALUES($interest, $seller_id, $fxunivers_id, '$trans_dt')";
 	$fxunivers_share_r = mysqli_query($wallet_connection, $fxunivers_share_q) or die(mysqli_error($wallet_connection));
 	
     } else { 
@@ -174,11 +179,11 @@ if($get_fxcoin_count>=$cost+$interest) {
 	// 1. Insert fxUnivers txn
 	// 2. Update fxPartner balance
 	// 3. Insert fxPartner txn
-	$partner_share_q = "INSERT INTO fxstar_txn(amnt, from_id, to_id, dt) VALUES($fxunivers_share, $buyer_id, $fxunivers_id, '$trans_dt'); UPDATE fxstars SET balance = $partner_new_balance WHERE user_id = $fxpartner_id; INSERT INTO fxstar_txn(amnt, from_id, to_id, dt) VALUES($fxpartner_share, $buyer_id, $fxpartner_id, '$trans_dt');";
+	$partner_share_q = "INSERT INTO fxstar_txn(amnt, from_id, to_id, dt) VALUES($fxunivers_share, $seller_id, $fxunivers_id, '$trans_dt'); UPDATE fxstars SET balance = $partner_new_balance WHERE user_id = $fxpartner_id; INSERT INTO fxstar_txn(amnt, from_id, to_id, dt) VALUES($fxpartner_share, $seller_id, $fxpartner_id, '$trans_dt');";
 	$partner_share_r = mysqli_multi_query($wallet_connection, $partner_share_q);
 
 	// Add the amount to his income in fxpartner db
-        $partner_income_q="UPDATE on_user SET income=income+$fxpartner_share WHERE (partner=$fxpartner_id AND user=$buyer_id)";
+        $partner_income_q="UPDATE on_user SET income=income+$fxpartner_share WHERE (partner=$fxpartner_id AND user=$seller_id)";
         $partner_income_r=mysqli_query($fxpartner_connection,$partner_income_q) or die(mysqli_error($fxpartner_connection));
 
     }
