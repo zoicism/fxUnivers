@@ -38,7 +38,7 @@ $test_date = $course_fetch['test_date'];
 $course_biddable=$course_fetch['biddable'];
 $test_exists = $course_fetch['test_duration'];
 $course_subbable = $course_fetch['subbable'];
-
+$course_private = $course_fetch['private'];
 //$totalCost = $cost + ceil(0.1*$cost);
 
 require('../../../php/get_user.php');
@@ -98,6 +98,31 @@ function get_string_between($string, $start, $end){
 $stucourse_query = "SELECT * FROM stucourse WHERE course_id = $course_id";
 $stucourse_result = mysqli_query($connection, $stucourse_query);
 $stucourse_count = mysqli_num_rows($stucourse_result);
+
+if($course_private && $user_type != 'instructor' && $user_type != 'student') {
+    $private_students_q = "SELECT * FROM private WHERE course_id = $course_id AND student_id = $get_user_id";
+    $private_students_r = mysqli_query($fxinstructor_connection, $private_students_q);
+    if($private_students_r -> num_rows == 0) {
+	echo '<!DOCTYPE html>
+      <head>
+	<title>fxUniversity</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/css/styles.css">
+	<link rel="stylesheet" href="/css/icons.css">
+	<link rel="stylesheet" href="/css/logo.css">
+	<script src="/js/jquery-3.4.1.min.js"></script>
+      </head>
+    
+      <body>
+         <div style="display:flex; align-items:center; width:100%; height:100%; justify-content:center;flex-flow:column wrap;">
+           <p>This course is private and students can enroll by invitation-only.</p>
+           <button onclick="window.history.back()" class="submit-btn">Go Back</button>
+         </div>
+      </body>';
+	exit();
+    }
+}
 ?>
 
 <!DOCTYPE html>

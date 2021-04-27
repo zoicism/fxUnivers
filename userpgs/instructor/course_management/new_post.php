@@ -34,8 +34,14 @@ if(isset($_SESSION['username'])) {
 	} else {
 	    $subbable = 0;
 	}
+
+	if(isset($_POST['private'])) {
+	    $private = 1;
+	} else {
+	    $private = 0;
+	}
 	
-	$query = "INSERT INTO `teacher` (user_id, header, description, cost, start_date, biddable, subbable) VALUES ($id, '$header', '$description', $cost, NOW(), $biddable, $subbable)";
+	$query = "INSERT INTO `teacher` (user_id, header, description, cost, start_date, biddable, subbable, private) VALUES ($id, '$header', '$description', $cost, NOW(), $biddable, $subbable, $private)";
 	$result = mysqli_query($connection, $query) or die(mysqli_error($connection));
 
 	$sub_check = 1;

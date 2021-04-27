@@ -106,6 +106,38 @@ if($get_course_fetch['video_url']!='') $embed_exists=1; else $embed_exists=0;
 				<input type="hidden" name="course_id" value="<?php echo $course_id?>">
 				<input type="submit" class="submit-btn" value="Update Details and Cost">
 			    </form>
+			    <h3>Privacy</h3>
+			    
+			    <?php
+			    if($get_course_fetch['private']) {
+				echo '<div style="width:100%; border-bottom: 1px solid #3333332e;display:flex; align-items:center; justify-content:center; padding-bottom:20px; flex-flow:wrap;">';
+				echo '<div style="display:flex; width:100%;align-items:center;justify-content:center;padding-bottom:20px;flex-flow:wrap;">';
+				echo '<p style="padding-right:15px" id="privateP">This course is private. Make it public:</p> <label class="switch" >
+				<input type="checkbox" name="private" id="privateId" checked>
+				<span class="slider round" ></span>
+				</label>';
+				echo '</div>';
+				echo '<div>';
+				echo '<!--<p>Invite fxUsers:</p>-->
+				<div  style="display:flex; flex-flow:row wrap; justify-content:space-between;">
+                                <input type="text" list="fxUsersList" name="query" id="fxInvitee" class="txt-input" placeholder="fxUser">
+<div id="datalistDiv">
+                                <datalist id="fxUsersList">
+                                  
+                                </datalist>
+</div>
+                                <button class="submit-btn" id="private-invite">Invite</button></div>';
+				echo '</div></div>';
+			    } else {
+				echo '<div style="display:flex; border-bottom: 1px solid #3333332e; width:100%;align-items:center;justify-content:center;padding-bottom:20px;flex-flow:wrap;">';
+				echo '<p style="padding-right:15px" id="privateP">This course is public. Make it private:</p> <label class="switch" >
+				<input type="checkbox" name="private" id="privateId">
+				<span class="slider round" ></span>
+				</label>';
+				echo '</div>';
+			    }
+			    ?>
+			    
 			    <div class="delete-course-con">
 				<h3>Delete Course</h3>
 				<p>By deleting a course, all of the related sessions and videos will be lost permenantly, so think twice before deciding to do so.</p>
@@ -346,6 +378,84 @@ if($get_course_fetch['video_url']!='') $embed_exists=1; else $embed_exists=0;
 			 alert('Course details are updated.');
 		     } else {
 			 alert('Failed to update the course details. Please try again.');
+		     }
+		 }
+	     });
+	 });
+	</script>
+
+	<script>
+	 $('#privateId').click(function() {
+	     if($('#privateId').prop('checked') == true) {
+		 var currentPrivacy = 0;
+	     } else {
+		 var currentPrivacy = 1;
+	     }
+	     
+	     $.ajax({
+		 url: '/php/set_fxcourse_privacy.php',
+		 data: {courseId: '<?php echo $course_id ?>', privacy: currentPrivacy},
+		 type: 'POST',
+		 success: function(response) {
+		     if(response == 1) {
+			 if(currentPrivacy == 0) {
+			     $('#privateP').html('This course is private. Make it public:');
+			 } else if(currentPrivacy == 1) {
+			     $('#privateP').html('This course is public. Make it private:');
+			 }
+		     } else {
+			 alert('Failed to change the privacy. Please try again.');
+			 window.location.reload();
+		     }
+		 }
+	     });
+	 });
+	</script>
+
+	<script>
+	 $('#fxInvitee').each(function() {
+	     var elem = $(this);
+	     elem.data('oldVal', elem.val());
+	     elem.bind("propertychange change click keyup input paste", function(event) {
+		 if(elem.data('oldVal')!=elem.val()) {
+		     elem.data('oldVal', elem.val());
+
+		     $.ajax({
+			 url: '/php/search_fxusers.php',
+			 type: 'POST',
+			 data: $(this).serialize(),
+			 success: function(response) {
+			     if(response != 0) {
+				 $('#datalistDiv').html(response);
+			     }
+			 }
+		     });
+		 }
+	     });
+	 });	 
+	</script>
+
+	<script>
+	 $('#private-invite').click(function() {
+	     var fxUserName = $('#fxInvitee').val();
+	     var fxCourse_id = '<?php echo $course_id ?>';
+	     var fxCourse_header = "<?php echo $get_course_fetch['header']?>";
+	     var instructor_id = '<?php echo $get_user_id ?>';
+	     var instructor_un = '<?php echo $username ?>';
+	     $.ajax({
+		 url: '/php/set_private_course_invitation.php',
+		 type: 'POST',
+		 data: {inviteeUsername: fxUserName, courseId: fxCourse_id, courseHeader: fxCourse_header, instructorId: instructor_id, instructorUn: instructor_un},
+		 success: function(response) {
+		     console.log(response);
+		     if(response == 1) {
+			 alert(fxUserName + ' is invited to join the fxCourse.');
+		     } else if(response == 'not_found') {
+			 alert('No user by the username of ' + fxUserName + ' is found.');
+		     } else if(response == 'dup') {
+			 alert('You have already sent an invitation to this user.');
+		     } else {
+			 alert('Failed to send the invitation. Please try again.');
 		     }
 		 }
 	     });

@@ -88,13 +88,19 @@ $get_courses_r = mysqli_query($connection, $get_courses_q);
 				<input type="text" class="txt-input" name="header" placeholder="Course title" required>
 				<textarea name="description" rows="10" placeholder="Description" required></textarea>
 				<input type="number" class="num-input" name="course_fxstar" placeholder="Cost (fxStars)" id="costIn" min="0" required>
-
+				<hr class="hr-tct" >
+				<p>Make this fxCourse private:</p>
+				<label class="switch" >
+				    <input type="checkbox" name="private" id="privateId" >
+				    <span class="slider round" ></span>
+				</label>
+				<hr class="hr-tct" >
 				<p>Can students with certificate from this fxCourse create fxSubCourses?</p>
 				 <label class="switch" >
 				     <input type="checkbox"  name="subbable" id="subbableId" >
 				     <span class="slider round" ></span>
 				 </label>
-
+				 <hr class="hr-tct" >
 				 <p>Is this an fxSubCourse?</p>
 				 <select name="subOf" id="subOfId" class="select-input" style="margin-left:0; width:260px;" >
 				     <option value="" disabled selected>Select a Certified Course</option>
@@ -121,7 +127,7 @@ $get_courses_r = mysqli_query($connection, $get_courses_q);
 				     }
 				     ?>
 				 </select>
-				 
+				 <hr class="hr-tct" >
 				 <p>Can underprivileged students ask for lower price for this fxCourse?</p>
 				 <label class="switch">
   				     <input type="checkbox" name="biddable" id="checkedId">
