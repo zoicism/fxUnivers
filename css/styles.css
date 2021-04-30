@@ -1399,6 +1399,15 @@ textarea:focus {
     background-color: #c0c0c0;
 }
 
+.info-box {
+    flex-flow: row wrap !important;
+    cursor: auto;
+}
+
+.info-box:hover {
+    background-color: transparent !important;
+}
+
 /*dd-box-con .remove-save-con {
     
 }*/
