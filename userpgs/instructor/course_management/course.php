@@ -1047,8 +1047,8 @@ if($course_negotiable) {
 		      ';
 
 		      echo '<p style="font-weight:bold">'.$bargain['fxstars'].' fxStars</p>';
-		      echo '<button class="submit-btn" style="background: #86fab3;" bargainId="'.$bargain['id'].'" id="accept-bargain" studentId="'.$bargain['student_id'].'">Accept</button>';
-		      echo '<button class="submit-btn" style="background: #faa386;" bargainId="'.$bargain['id'].'" id="reject-bargain" studentId="'.$bargain['student_id'].'">Decline</button>';
+		      echo '<button class="submit-btn accept-bargain" style="background: #86fab3;" bargainId="'.$bargain['id'].'" id="accept-bargain" studentId="'.$bargain['student_id'].'">Accept</button>';
+		      echo '<button class="submit-btn reject-bargain" style="background: #faa386;" bargainId="'.$bargain['id'].'" id="reject-bargain" studentId="'.$bargain['student_id'].'">Decline</button>';
 
 		      echo '</div>';
 		  }
@@ -1509,7 +1509,7 @@ if($course_negotiable) {
 	<!-- BARGAINING -->
 	<?php if($user_type=='instructor') { ?>
 	<script>
-	 $('#accept-bargain').click(function() {
+	 $('.accept-bargain').click(function() {
 	     var bargain_id = $(this).attr('bargainId');
 	     var student_id = $(this).attr('studentId');
 	     var course_id = '<?php echo $course_id ?>';
@@ -1533,7 +1533,7 @@ if($course_negotiable) {
 	 });
 	</script>
 	<script>
-	 $('#reject-bargain').click(function() {
+	 $('.reject-bargain').click(function() {
 	     var bargain_id = $(this).attr('bargainId');
 	     var student_id = $(this).attr('studentId');
 	     var course_id = '<?php echo $course_id ?>';
