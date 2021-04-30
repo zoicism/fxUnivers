@@ -130,7 +130,7 @@ $get_courses_r = mysqli_query($connection, $get_courses_q);
 				 <hr class="hr-tct" >
 				 <p>Can underprivileged students ask for lower price for this fxCourse?</p>
 				 <label class="switch">
-  				     <input type="checkbox" name="biddable" id="checkedId">
+  				     <input type="checkbox" name="negotiable" id="checkedId">
  				     <span class="slider round"></span>
 				 </label>
 
@@ -177,6 +177,7 @@ $('.fxuniversity-sidebar').attr('id','sidebar-active');
 
 
 <script>
+ /*
 $('#checkedId').click(function() {
   if($('#checkedId').is(':checked')) {
     $('#costIn').attr('placeholder', 'Reserve (fxStars)');
@@ -185,7 +186,7 @@ $('#checkedId').click(function() {
     $('#costIn').attr('placeholder', 'Cost (fxStars)');
     $('#titleId').text('Add Course');
   }
-});
+});*/
 </script>
 
 
