@@ -137,6 +137,26 @@ if($get_course_fetch['video_url']!='') $embed_exists=1; else $embed_exists=0;
 				echo '</div>';
 			    }
 			    ?>
+
+
+			    <div>
+				<div  style="display:flex; flex-flow:row wrap; justify-content:center; border-bottom: 1px solid #3333332e;padding-bottom:20px;">
+				<h3>Negotiable Cost</h3>
+				<p>Do you want the cost of this course be negotiable? It will help attract underprivileged students.</p>
+				<label class="switch" >
+				    <?php
+				    if($get_course_fetch['negotiable']) {
+					echo '<input type="checkbox" name="negotiable" id="negotiableId" checked>';
+				    } else {
+					echo '<input type="checkbox" name="negotiable" id="negotiableId">';
+				    }
+				    ?>
+				    
+				    <span class="slider round" ></span>
+				</label>
+				</div>
+			    </div>
+
 			    
 			    <div class="delete-course-con">
 				<h3>Delete Course</h3>
@@ -400,8 +420,10 @@ if($get_course_fetch['video_url']!='') $embed_exists=1; else $embed_exists=0;
 		     if(response == 1) {
 			 if(currentPrivacy == 0) {
 			     $('#privateP').html('This course is private. Make it public:');
+			     window.location.reload();
 			 } else if(currentPrivacy == 1) {
 			     $('#privateP').html('This course is public. Make it private:');
+			     window.location.reload();
 			 }
 		     } else {
 			 alert('Failed to change the privacy. Please try again.');
@@ -459,6 +481,32 @@ if($get_course_fetch['video_url']!='') $embed_exists=1; else $embed_exists=0;
 		     }
 		 }
 	     });
+	 });
+	</script>
+
+	<!-- NEGOTIABLE -->
+	<script>
+	 $('#negotiableId').click(function() {
+	     var courseId = '<?php echo $course_id ?>';
+	     if($(this).prop('checked') == true) {
+		 $.ajax({
+		     url: '/php/set_negotiable_course.php',
+		     type: 'POST',
+		     data: {course_id: courseId, negotiable: '1'},
+		     success: function(response) {
+			 //console.log(response);
+		     }
+		 });
+	     } else {
+		 $.ajax({
+		     url: '/php/set_negotiable_course.php',
+		     type: 'POST',
+		     data: {course_id: courseId, negotiable: '0'},
+		     success: function(response) {
+			 //console.log(response);
+		     }
+		 });
+	     }
 	 });
 	</script>
     </body>
