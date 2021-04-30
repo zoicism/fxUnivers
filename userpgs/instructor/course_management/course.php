@@ -39,6 +39,7 @@ $course_biddable=$course_fetch['biddable'];
 $test_exists = $course_fetch['test_duration'];
 $course_subbable = $course_fetch['subbable'];
 $course_private = $course_fetch['private'];
+$course_negotiable = $course_fetch['negotiable'];
 //$totalCost = $cost + ceil(0.1*$cost);
 
 require('../../../php/get_user.php');
@@ -95,6 +96,7 @@ function get_string_between($string, $start, $end){
     return substr($string, $ini, $len);
 }
 
+
 $stucourse_query = "SELECT * FROM stucourse WHERE course_id = $course_id";
 $stucourse_result = mysqli_query($connection, $stucourse_query);
 $stucourse_count = mysqli_num_rows($stucourse_result);
@@ -123,6 +125,13 @@ if($course_private && $user_type != 'instructor' && $user_type != 'student') {
 	exit();
     }
 }
+
+if($course_negotiable) {
+    $bargain_q = "SELECT * FROM bargains WHERE course_id = $course_id ORDER BY fxstars DESC";
+    $bargain_r = mysqli_query($fxinstructor_connection, $bargain_q);
+    $bargain_count = mysqli_num_rows($bargain_r);
+}
+    
 ?>
 
 <!DOCTYPE html>
@@ -839,6 +848,28 @@ if($course_private && $user_type != 'instructor' && $user_type != 'student') {
 	      } else {
 		  
 		  echo '<div class="add-box blue-button"  id="purchbutt">Enroll</div>';
+
+		  if($course_negotiable) {
+		      $check_prev_bargains_q = "SELECT * FROM bargains WHERE course_id = $course_id AND student_id = $get_user_id";
+		      $check_prev_bargains_r = mysqli_query($fxinstructor_connection, $check_prev_bargains_q);
+		      $check_prev_bargains = 0;
+		      if($check_prev_bargains_r) {
+			  $check_prev_bargains = mysqli_num_rows($check_prev_bargains_r);
+			  if($check_prev_bargains > 0) {
+			      $check_prev_bargains_f = mysqli_fetch_array($check_prev_bargains_r);
+			  }
+		      }
+		      echo '<div class="add-box info-box">';
+		      echo '<p>If you cannot pay this course in full, you can request to enroll for a reasonable cost. The instructor may or may not approve your suggestion, in which case your fxStars will be returned.</p>';
+		      if($check_prev_bargains == 0) {
+			  echo '<input type="number" class="num-input" name="myBargain" min="0" max="'.($cost-1).'" placeholder="fxStars" id="myBargainId">';
+			  echo '<button class="submit-btn" id="applyBargain">Apply</button>';
+		      } else {
+			  echo '<input type="number" class="num-input" name="myBargain" min="0" max="'.($cost-1).'" placeholder="fxStars" value="'.$check_prev_bargains_f['fxstars'].'" id="myBargainId" disabled>';
+			  echo '<button class="submit-btn" id="withdrawBargain" bargainId="'.$check_prev_bargains_f['id'].'">Withdraw</button>';
+		      }
+		      echo '</div>';
+		  }
 		  
 	      }
 	      echo '</div>';
@@ -849,11 +880,14 @@ if($course_private && $user_type != 'instructor' && $user_type != 'student') {
 
 
 	  echo '<div class="sessions">';
-?>
+	  ?>
 
 <div class="tabs">
 <div class="tab-student active-tab" id="sessions-tab"><div>Sessions(<?php echo $class_num ?>)</div></div>
 <div class="tab-student" id="students-tab"><div>Students(<?php echo $coursecounts ?>)</div></div>
+<?php if($course_negotiable && $user_type == 'instructor') { ?>
+    <div class="tab-student" id="bargains-tab"><div id="bargains-count">Bargains(<?php echo $bargain_count ?>)</div></div>
+<?php } ?>
 </div>
 
 <?php 	  
@@ -952,7 +986,7 @@ if($course_private && $user_type != 'instructor' && $user_type != 'student') {
 	  </div>
 
 
-	  <div class="online-list" style="display:none">
+	  <div class="online-list" id="online-list" style="display:none">
 	      <?php
 	      if($stucourse_count > 0) {
 		  while($stud_i = $stucourse_result -> fetch_assoc()) {
@@ -984,6 +1018,47 @@ if($course_private && $user_type != 'instructor' && $user_type != 'student') {
 	      ?>
 	  </div>
 
+	  <?php
+	  if($course_negotiable && $user_type == 'instructor') {
+	      echo '<div class="online-list" id="bargains">';
+	      if($bargain_count > 0) {
+		  while($bargain = $bargain_r -> fetch_assoc()) {
+		      $bargainer_q = 'SELECT * FROM user WHERE id = '.$bargain['student_id'];
+		      $bargainer_r = mysqli_query($connection, $bargainer_q);
+		      $bargainer = mysqli_fetch_array($bargainer_r);
+
+		      if($bargainer['avatar'] != NULL) {
+			  $avatar_url = '/userpgs/avatars/'.$bargainer['avatar'];
+		      } else {
+			  $avatar_url='/images/background/avatar.png';
+		      }
+
+		      echo '<div style="display:flex; justify-content: space-around; width:100%;flex-flow: row nowrap; align-items:center;border-bottom:1px solid #00000020;" id="bargain'.$bargain['id'].'">';
+		      
+		      echo '
+		      <div class="user" onclick="window.location.href = \'/user/'.$bargainer['username'].'\';" style="width:25%">
+                      <div class="user-img avatar" style="background-image:url(\''.$avatar_url.'\');"></div>
+    	              <div class="user-name" >
+	              <p class="fullname" style="margin-top:revert">'.$bargainer['username'].'</p>
+      	              
+      		      
+		      </div>
+		      </div>
+		      ';
+
+		      echo '<p style="font-weight:bold">'.$bargain['fxstars'].' fxStars</p>';
+		      echo '<button class="submit-btn" style="background: #86fab3;" bargainId="'.$bargain['id'].'" id="accept-bargain" studentId="'.$bargain['student_id'].'">Accept</button>';
+		      echo '<button class="submit-btn" style="background: #faa386;" bargainId="'.$bargain['id'].'" id="reject-bargain" studentId="'.$bargain['student_id'].'">Decline</button>';
+
+		      echo '</div>';
+		  }
+	      } else {
+		  echo '<p class="gray" style="text-align:center;">No bargains yet.</p>';
+	      }
+	      echo '</div>';
+	  }
+	  ?>
+
 
 
 	  
@@ -1010,15 +1085,30 @@ if($course_private && $user_type != 'instructor' && $user_type != 'student') {
 	<script>
 	 $('#students-tab').click(function() {
 	     $('#sessions-tab').removeClass('active-tab');
+	     $('#bargains-tab').removeClass('active-tab');
 	     $('#students-tab').addClass('active-tab');
+
+	     $('#bargains').hide();
 	     $('.sess-list').hide();
-	     $('.online-list').show();
+	     $('#online-list').show();
 	 });
-	 $('#sessions-tab').click(function() {
-	     $('#sessions-tab').addClass('active-tab');
+	 $('#sessions-tab').click(function() {	     
 	     $('#students-tab').removeClass('active-tab');
+	     $('#bargains-tab').removeClass('active-tab');
+	     $('#sessions-tab').addClass('active-tab');
+
+	     $('#online-list').hide();
+	     $('#bargains').hide();
 	     $('.sess-list').show();
-	     $('.online-list').hide();
+	 });
+	 $('#bargains-tab').click(function() {
+	     $('#sessions-tab').removeClass('active-tab');
+	     $('#students-tab').removeClass('active-tab');
+	     $('#bargains-tab').addClass('active-tab');
+	     
+	     $('.sess-list').hide();
+	     $('#online-list').hide();
+	     $('#bargains').show();
 	 });
 	</script>
 	
@@ -1415,5 +1505,113 @@ if($course_private && $user_type != 'instructor' && $user_type != 'student') {
 	     }
 	 });
 	</script>
+
+	<!-- BARGAINING -->
+	<?php if($user_type=='instructor') { ?>
+	<script>
+	 $('#accept-bargain').click(function() {
+	     var bargain_id = $(this).attr('bargainId');
+	     var student_id = $(this).attr('studentId');
+	     var course_id = '<?php echo $course_id ?>';
+	     var bargains_count = '<?php echo $bargain_count ?>';
+	     
+	     $.ajax({
+		 url: '/wallet/php/accept_course_bargain.php',
+		 type: 'POST',
+		 data: {courseId: course_id, bargainId: bargain_id, stuId: student_id, item: 'course'},
+		 success: function(response) {
+		     console.log(response);
+		     if(response == 1) {
+			 var newBargainsCount = bargains_count - 1;
+			 $('#bargain'+bargain_id).remove();
+			 $('#bargains-count').html('Bargains('+newBargainsCount+')');
+		     } else {
+			 alert('Failed to accept. Please try again.');
+		     }
+		 }
+	     });
+	 });
+	</script>
+	<script>
+	 $('#reject-bargain').click(function() {
+	     var bargain_id = $(this).attr('bargainId');
+	     var student_id = $(this).attr('studentId');
+	     var course_id = '<?php echo $course_id ?>';
+	     var bargains_count = '<?php echo $bargain_count ?>';
+	     
+	     $.ajax({
+		 url: '/wallet/php/reject_course_bargain.php',
+		 type: 'POST',
+		 data: {courseId: course_id, bargainId: bargain_id, stuId: student_id, item: 'course'},
+		 success: function(response) {
+		     console.log(response);
+		     if(response == 1) {
+			 var newBargainsCount = bargains_count - 1;
+			 $('#bargain'+bargain_id).remove();
+			 $('#bargains-count').html('Bargains('+newBargainsCount+')');
+		     } else {
+			 alert('Failed to accept. Please try again.');
+		     }
+		 }
+	     });
+	 });
+	</script>
+	<?php } else { ?>
+
+	    <script>
+	     $('#applyBargain').click(function() {
+		 var myBargain = $('#myBargainId').val();
+		 var courseId = '<?php echo $course_id ?>';
+		 var studentId = '<?php echo $get_user_id ?>';
+		 var realCost = '<?php echo $cost ?>';
+
+		 $.ajax({
+		     url: '/php/set_bargain.php',
+		     type: 'POST',
+		     data: {my_bargain: myBargain, course_id: courseId, student_id: studentId, real_cost: realCost},
+		     success: function(response) {
+			 if(response == 1) {
+			     alert('Your request is sent. We will let you know when the instructor accepts or rejects your offer.');
+			     window.location.reload();
+			 } else if(response == 'insuff') {
+			     alert('You have insufficient fxStars.');
+			 } else if(response == 'more_than_real_cost') {
+			     alert('Your request must be less than the original cost of the course.');
+			 } else if(response == 'invalid') {
+			     alert('Please enter a valid number of fxStars.');
+			 } else {
+			     alert('Failed to apply the request. Please try again.');
+			 }
+		     }
+		 });
+	     });
+	    </script>
+
+	    <script>
+	     $('#withdrawBargain').click(function() {
+		 var bargain_id = $(this).attr('bargainId');
+		 var student_id = '<?php echo $get_user_id ?>';
+		 var course_id = '<?php echo $course_id ?>';
+		 var user_type = '<?php echo $user_type ?>';
+		     
+		 $.ajax({
+		     url: '/wallet/php/reject_course_bargain.php',
+		     type: 'POST',
+		     data: {courseId: course_id, bargainId: bargain_id, stuId: student_id, item: 'course', user_type: userType},
+		     success: function(response) {
+			 console.log(response);
+			 if(response == 1) {
+			     alert('Request is widthdrawn and your fxStars are returned.');
+			     window.location.reload();
+			 } else {
+			     alert('Failed to withdraw the request. Please try again.');
+			 }
+		     }
+		 });
+	     });
+	    </script>
+
+	    
+	<?php } ?>
     </body>
 </html>
