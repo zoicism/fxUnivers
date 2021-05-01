@@ -16,19 +16,21 @@ $dup_email_query = "SELECT email FROM user WHERE email='$email'";
 $dup_email_result = mysqli_query($connection,$dup_email_query) or die(mysqli_error($connection));
 $dup_email_count = mysqli_num_rows($dup_email_result);
 if($dup_email_count>0) {
-  header("Location: /");
-  exit();
-}
-
-$hash = md5(rand(0,1000)); // Random 32-char hash
-
-$signup_query = "INSERT INTO `user`(email, password, hash) VALUES('$email', '$password', '$hash')";
-$signup_result = mysqli_query($connection, $signup_query) or die(mysqli_error($connection));
-
-if($signup_result) {
-  $msg = 1;
+    //header("Location: /");
+    $dup_email = fetch_array($dup_email_result);
+    $hash = $dup_email['hash'];
+    //exit();
 } else {
-  $msg = 0;
+    $hash = md5(rand(0,1000)); // Random 32-char hash
+
+    $signup_query = "INSERT INTO `user`(email, password, hash) VALUES('$email', '$password', '$hash')";
+    $signup_result = mysqli_query($connection, $signup_query) or die(mysqli_error($connection));
+
+    if($signup_result) {
+	$msg = 1;
+    } else {
+	$msg = 0;
+    }
 }
 
 
@@ -101,11 +103,12 @@ $headers[] = 'Content-type: text/html; charset=iso-8859-1';
 $headers[] = 'From: fxUnivers <no-reply@fxunivers.com>';
 
 // Mail it!
-mail($to, $subject, $message, implode("\r\n", $headers));
+if(mail($to, $subject, $message, implode("\r\n", $headers))) {
+    echo 1;
+} else {
+    echo 0;
+}
 
 ////////////////////////////////////////////
-
-
-echo $msg;
 
 ?>
