@@ -21,7 +21,7 @@ if(isset($_GET['q'])) {
     }
 
 
-    $course_q = "SELECT * FROM teacher WHERE ((UPPER(header) LIKE UPPER('%$kw%')) OR (UPPER(description) LIKE UPPER('%$kw%'))) AND alive=1 ORDER BY id DESC";
+    $course_q = "SELECT * FROM teacher WHERE ((UPPER(header) LIKE UPPER('%$kw%')) OR (UPPER(description) LIKE UPPER('%$kw%'))) AND alive=1 AND private=0 ORDER BY id DESC";
     $course_result = mysqli_query($connection, $course_q);
     $course_count = mysqli_num_rows($course_result);
 
@@ -397,7 +397,7 @@ if(!isset($_GET['q'])) {
     echo '<h3 style="text-align:left;width:100%;margin-bottom:0;">Top fxCourses</h3>';
     echo '<div class="obj-box">';
     
-    $courses_q = "SELECT * FROM teacher";
+    $courses_q = "SELECT * FROM teacher WHERE private=0";
     $courses_r = mysqli_query($connection, $courses_q);
     $courses_count = mysqli_num_rows($courses_r);
 
