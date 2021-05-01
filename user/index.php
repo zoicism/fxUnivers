@@ -379,7 +379,7 @@ if($get_oneonone) {
 
 <?php
 
-if($get_oneonone) {
+if($get_oneonone && $session_id != $tar_id) {
     $oneonone_cost = $get_oneonone_f['fxstars'];
     if($oneonone_cost == 0) {
 	$oneonone_cost = '<b>free</b>';
