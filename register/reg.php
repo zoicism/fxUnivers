@@ -4,8 +4,8 @@ require('connect.php');
 if(isset($_POST['email']) && isset($_POST['password'])) {
   $email = $_POST['email'];
   if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-      header("Location: /");
-      exit();
+    header("Location: /");
+    exit();
   }
   $password = $_POST['password'];
   
@@ -37,9 +37,9 @@ if($signup_result) {
 $to = $email;
 $subject = 'fxUnivers Email Address Verification';
 if(isset($_POST['partner'])) {
-    $msg_href='https://fxunivers.com/register/verify_email.php?email='.$email.'&hash='.$hash.'&partner='.$_POST['partner'];
+  $msg_href='https://fxunivers.com/register/verify_email.php?email='.$email.'&hash='.$hash.'&partner='.$_POST['partner'];
 } else {
-    $msg_href='https://fxunivers.com/register/verify_email.php?email='.$email.'&hash='.$hash;
+  $msg_href='https://fxunivers.com/register/verify_email.php?email='.$email.'&hash='.$hash;
 }
 
 $message = '

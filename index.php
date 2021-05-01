@@ -1,10 +1,10 @@
 <?php
 // Requiring https
-/*if($_SERVER['HTTPS'] != "on") {
+if($_SERVER['HTTPS'] != "on") {
     $url = "https://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
     header("Location: $url");
     exit;
-}*/
+}
 	
 session_start();
 require('register/connect.php');
@@ -306,35 +306,35 @@ $('#pass').each(function() {
 <!-- SIGNUP FORM SUBMIT -->
 <script>
 $('#regForm').submit(function(event) {
-        event.preventDefault();
+    event.preventDefault();
 
     if(($('#pass').val().length <= 8) || ($('#confpass').val()!=$('#pass').val()) || !(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test($('#deskEmail').val()))) {
-        alert('Enter valid data!');
+      alert('Enter valid data!');
     } else {
-       $('#sup-btn').css('opacity','0.85');
-       $('#sup-btn').prop('disabled',true);
-       $('#sup-btn').val('Signing up...');
-       jQuery.ajax({
-         type:'POST',
-	 url: '/register/reg.php',
-	 data: $(this).serialize(),
-	 success: function(response) {
-	     console.log(response);
+      $('#sup-btn').css('opacity','0.85');
+      $('#sup-btn').prop('disabled',true);
+      $('#sup-btn').val('Signing up...');
+      jQuery.ajax({
+	type:'POST',
+	    url: '/register/reg.php',
+	    data: $(this).serialize(),
+	    success: function(response) {
+	    console.log(response);
 	     
-	   if(response==1) {
-	     $('#overlay-title').html('Confirm Your Email Address');
-	     $('#overlay-text').show();
-	     $('#regForm').hide();
-	   } else {
-	     $('#overlay-title').html('Error!');
-	     $('#overlay-text').show();
-	     $('#overlay-text').html('Something went wrong! :/ Try again.');
-	     $('#regForm').hide();
-	   }
-	 }
-       });
+	    if(response==1) {
+	      $('#overlay-title').html('Confirm Your Email Address');
+	      $('#overlay-text').show();
+	      $('#regForm').hide();
+	    } else {
+	      $('#overlay-title').html('Error!');
+	      $('#overlay-text').show();
+	      $('#overlay-text').html('Something went wrong! :/ Try again.');
+	      $('#regForm').hide();
+	    }
+	  }
+	});
     }
-});
+  });
 </script>
 
 <!-- CLOSE OVERLAY -->
