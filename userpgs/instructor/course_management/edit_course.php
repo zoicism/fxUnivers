@@ -194,7 +194,7 @@ if($get_course_fetch['video_url']!='') $embed_exists=1; else $embed_exists=0;
 			    <div class="content-box">
 				<div class="add-bulletin-con">
 				    <h3>Bulletin</h3>
-				    <p>Bulletins are available to the public in your course page. Adding a bulletin will infor your learners by notification and email.</p>
+				    <p>Bulletins are available to the public in your course page. Adding a bulletin will inform your learners by notification and email.</p>
 				    <form id="bulletin-form">
 					<input type="text" name="bulletin-body" class="txt-input" placeholder="Bulletin text" id="bulletin-txt" required>
 					<input type="hidden" name="course-id" value="<?php echo $course_id?>">
