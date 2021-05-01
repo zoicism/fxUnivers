@@ -1,10 +1,10 @@
 <?php
 // Requiring https
-if($_SERVER['HTTPS'] != "on") {
+/*if($_SERVER['HTTPS'] != "on") {
     $url = "https://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
     header("Location: $url");
     exit;
-}
+}*/
 	
 session_start();
 require('register/connect.php');
@@ -188,6 +188,7 @@ if(isset($_COOKIE['username']) && isset($_COOKIE['password'])) {
         <input type="submit" value="Sign up" class="signup-button" id="sup-btn">
       </form>
       <p id="overlay-text" style="display:none">Check your email inbox or spam folder for an activation link we just sent you. It may take a few minutes for you to get the email.</p>
+      <p>Didn't receive the email? <a id="resend-email">Click to Resend</a>.</p>
     </div>
   </div>
 
@@ -328,7 +329,7 @@ $('#regForm').submit(function(event) {
 	    } else {
 	      $('#overlay-title').html('Error!');
 	      $('#overlay-text').show();
-	      $('#overlay-text').html('Something went wrong! :/ Try again.');
+	      $('#overlay-text').html('Something went wrong! :/ <a href="/">Try again</a>.');
 	      $('#regForm').hide();
 	    }
 	  }
@@ -364,25 +365,52 @@ $('#open-forgot-overlay-mob').click(function() {
 </script>
 
 <script>
-$('#forgot-form').submit(function(event) {
-  event.preventDefault();
-  jQuery.ajax({
-    type:'POST',
-    url:'/register/forgot_password/forgotpass.php',
-    data:$(this).serialize(),
-    success: function(response) {
-      if(response=='no_res') {
-        alert('No account found with this email address');
-      } else if(response==1) {
-        alert('We sent you an email with the instructions to reset your password.');
-	window.location.reload();
-      } else {
-        alert('Failed to send the email. Please try again.');
-      }
-    }
-  });
-});
+ $('#forgot-form').submit(function(event) {
+     event.preventDefault();
+     jQuery.ajax({
+	 type:'POST',
+	 url:'/register/forgot_password/forgotpass.php',
+	 data:$(this).serialize(),
+	 success: function(response) {
+	     if(response=='no_res') {
+		 alert('No account found with this email address');
+	     } else if(response==1) {
+		 alert('We sent you an email with the instructions to reset your password.');
+		 window.location.reload();
+	     } else {
+		 alert('Failed to send the email. Please try again.');
+	     }
+	 }
+     });
+ });
 </script>
 
+<script>
+ $('#resend-email').click(function() {
+     $('#regForm').submit(function(event) {
+	 event.preventDefault();
+	 $.ajax({
+	     type:'POST',
+	     url: '/register/reg.php',
+	     data: $(this).serialize(),
+	     success: function(response) {
+		 console.log(response);
+		 /*
+		 if(response==1) {
+		     $('#overlay-title').html('Confirm Your Email Address');
+		     $('#overlay-text').show();
+		     $('#regForm').hide();
+		 } else {
+		     $('#overlay-title').html('Error!');
+		     $('#overlay-text').show();
+		     $('#overlay-text').html('Something went wrong! :/ <a href="/">Try again</a>.');
+		     $('#regForm').hide();
+		 }
+		 */
+	     }
+	 });
+     });
+ });
+</script>
 </body>
 </html>
