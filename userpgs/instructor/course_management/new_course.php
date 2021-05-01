@@ -79,7 +79,7 @@ $get_courses_r = mysqli_query($connection, $get_courses_q);
 
 
   <div class="relative-main-content">
-                            <div class="content-box">
+                            <div class="content-box" style="max-width:700px;">
 			      <h2 id="titleId">Add fxCourse</h2>
 
 			      <form method="POST" action="new_post.php" autocomplete="off">
@@ -102,7 +102,11 @@ $get_courses_r = mysqli_query($connection, $get_courses_q);
 				 </label>
 				 <hr class="hr-tct" >
 				 <p>Is this an fxSubCourse?</p>
-				 <select name="subOf" id="subOfId" class="select-input" style="margin-left:0; width:260px;" >
+				 <label class="switch" >
+				     <input type="checkbox" id="isfxSub" >
+				     <span class="slider round" ></span>
+				 </label>
+				 <select name="subOf" id="subOfId" class="select-input" style="margin-left:0; width:260px; display:none;" >
 				     <option value="" disabled selected>Select a Certified Course</option>
 				     <?php
 				     while($course = $get_courses_r -> fetch_assoc()) {
@@ -128,13 +132,12 @@ $get_courses_r = mysqli_query($connection, $get_courses_q);
 				     ?>
 				 </select>
 				 <hr class="hr-tct" >
-				 <p>Can underprivileged students ask for lower price for this fxCourse?</p>
+				 <p>Can students negotiate for lower price for this fxCourse? By doing so you help students lacking high privileges gain knowledge and at the same time increase your income.</p>
 				 <label class="switch">
   				     <input type="checkbox" name="negotiable" id="checkedId">
  				     <span class="slider round"></span>
 				 </label>
-
-				<input type="submit" class="submit-btn" value="Publish">
+				<input type="submit" class="submit-btn" value="Publish" style="margin-top:35px;">
 				
 			      </form>
 
@@ -189,6 +192,15 @@ $('#checkedId').click(function() {
 });*/
 </script>
 
-
+<script>
+ $('#isfxSub').click(function() {
+     if($(this).prop('checked') == true) {
+	 $('#subOfId').show();
+     } else {
+	 $('#subOfId').hide();
+     }
+ });
+    
+</script>
 </body>
 </html>
