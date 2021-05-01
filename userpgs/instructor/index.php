@@ -260,6 +260,17 @@ $get_oneonone_count = mysqli_num_rows($get_oneonone_r);
 				  <div class="little-box detail"><span>'.date("M jS, Y", strtotime($row3['start_date'])).'</span></div>
 				  </div>';
 
+			 if($row3['cost'] > 0) {
+			     if($row3['negotiable']) {
+				 echo '<div class="price gold-bg">'.$row3['cost'].' <span>fxStars</span> (Negable)</div>';
+			     } else {
+				 echo '<div class="price gold-bg">'.$row3['cost'].' <span>fxStars</span></div>';
+			     }
+			 } else {
+			     echo '<div class="price green-bg" style="padding: 4px 20px;">Free</div>';
+			 }
+
+			 /*
 		         if($row3['biddable']) {
 			     require_once('../../wallet/php/wallet_connect.php');
 			     $locked_q = 'SELECT * FROM locked WHERE course_id='.$row3['id'];
@@ -297,7 +308,7 @@ $get_oneonone_count = mysqli_num_rows($get_oneonone_r);
 			     }
 
 			 }
-
+			 */
 			 
 
 			 echo ' </div>

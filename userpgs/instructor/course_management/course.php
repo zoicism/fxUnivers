@@ -281,6 +281,17 @@ if($course_negotiable) {
 
 
 					<?php
+					if($cost > 0) {
+					    if($course_negotiable) {
+						echo '<div class="price gold-bg" style="width:100%;">'.$cost.' <span>fxStars (Negotiable)</span></div>';
+					    } else {
+						echo '<div class="price gold-bg" style="width:100%;">'.$cost.' <span>fxStars</span></div>';
+					    }
+					} else {
+					    echo '<div class="price green-bg" style="width:100%;">Free</div>';
+					}
+
+					/*
 					if($course_biddable) {
 
 					    $locked_q = 'SELECT * FROM locked WHERE course_id='.$course_id;
@@ -314,7 +325,7 @@ if($course_negotiable) {
 				      Free
 		    </div>';
 					    }
-					}
+					}*/
 
 
 
@@ -458,6 +469,17 @@ if($course_negotiable) {
 				  <div class="little-box detail"><span>'.date("M jS, Y", strtotime($subcourse_of_course['start_date'])).'</span></div>
 				  </div>';
 
+
+				if($subcourse_of_course['cost'] > 0) {
+				 if($subcourse_of_course['negotiable']) {
+				     echo '<div class="price gold-bg">'.$subcourse_of_course['cost'].' <span>fxStars</span> (Negable)</div>';
+				 } else {
+				     echo '<div class="price gold-bg">'.$subcourse_of_course['cost'].' <span>fxStars</span></div>';
+				 }
+			     } else {
+				 echo '<div class="price green-bg" style="padding: 4px 20px;">Free</div>';
+			     }
+				/*
 				if($subcourse_of_course['biddable']) {
 				    require_once('../../wallet/php/wallet_connect.php');
 				    $locked_q = 'SELECT * FROM locked WHERE course_id='.$subcourse_of_course['id'];
@@ -494,7 +516,7 @@ if($course_negotiable) {
 				    </div>';
 				    }
 
-				}
+				}*/
 
 				echo '</div></div></div></div>';
 				
@@ -573,6 +595,18 @@ if($course_negotiable) {
 				  <div class="little-box detail"><span>'.date("M jS, Y", strtotime($subcourse_f['start_date'])).'</span></div>
 				  </div>';
 
+
+				    if($subcourse_f['cost'] > 0) {
+					if($subcourse_f['negotiable']) {
+					    echo '<div class="price gold-bg">'.$subcourse_f['cost'].' <span>fxStars</span> (Negable)</div>';
+					} else {
+					    echo '<div class="price gold-bg">'.$subcourse_f['cost'].' <span>fxStars</span></div>';
+					}
+				    } else {
+					echo '<div class="price green-bg" style="padding: 4px 20px;">Free</div>';
+				    }
+				    
+				    /*
 				    if($subcourse_f['biddable']) {
 					require_once('../../wallet/php/wallet_connect.php');
 					$locked_q = 'SELECT * FROM locked WHERE course_id='.$subcourse_f['id'];
@@ -609,7 +643,7 @@ if($course_negotiable) {
 				    </div>';
 					}
 
-				    }
+				    }*/
 
 				    echo '</div></div></div>';
 
@@ -687,6 +721,8 @@ if($course_negotiable) {
 
 	      echo '<div class="add-box-con">';
 
+
+	      /*
 	      if($course_biddable) {
 
 		  
@@ -720,7 +756,7 @@ if($course_negotiable) {
                 Accept Bid (<div id="highest-ins"></div>) 
 	      </div>';
 		  }
-	      }
+	      }*/
 
 
 
@@ -804,7 +840,7 @@ if($course_negotiable) {
 
 
 	      
-	      
+	      /*
 	      if($course_biddable) {
 
 
@@ -845,7 +881,7 @@ if($course_negotiable) {
 	       </form>
               </div>';
 		  }
-	      } else {
+	      } else {*/
 		  
 		  echo '<div class="add-box blue-button"  id="purchbutt">Enroll</div>';
 
@@ -871,7 +907,7 @@ if($course_negotiable) {
 		      echo '</div>';
 		  }
 		  
-	      }
+	      //}
 	      echo '</div>';
 	      //echo '</div>';
 	      echo '</div>';
@@ -1125,6 +1161,7 @@ if($course_negotiable) {
 	</script>
 
 	<script>
+	 /*
 	 $('#bidForm').submit(function(event) {
 	     event.preventDefault();
 
@@ -1147,10 +1184,11 @@ if($course_negotiable) {
 		     }
 		 }
 	     });
-	 });
+	 });*/
 	</script>
 
 	<script>
+	 /*
 	 $(document).ready(function() {
 	     setInterval(function() {
 		 jQuery.ajax({
@@ -1166,10 +1204,11 @@ if($course_negotiable) {
 		     }
 		 });
 	     }, 2000);
-	 });
+	 });*/
 	</script>
 
 	<script>
+	 /*
 	 $(document).ready(function() {
 	     setInterval(function() {
 		 jQuery.ajax({
@@ -1185,7 +1224,7 @@ if($course_negotiable) {
 		     }
 		 });
 	     }, 2000);
-	 });
+	 });*/
 	</script>
 
 	<script>
@@ -1215,6 +1254,7 @@ if($course_negotiable) {
 	</script>
 
 	<script>
+	 /*
 	 $('#acceptBid').click(function() {
 	     if(confirm("Confirm accepting the highest bid.")) {
 		 
@@ -1236,7 +1276,7 @@ if($course_negotiable) {
 
 	     }
 	     
-	 });
+	 });*/
 	</script>
 
 

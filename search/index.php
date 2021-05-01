@@ -200,45 +200,17 @@ if($type=='course') {
 				    </div>';
 	    
 
-	    if($row3['biddable']) {
-		$locked_q = 'SELECT * FROM locked WHERE course_id='.$row3['id'];
-		$locked_r = mysqli_query($wallet_connection,$locked_q);
-		$locked_count = mysqli_num_rows($locked_r);
-		
-		
-
-		if($locked_count>0) {
-		    $locked=mysqli_fetch_array($locked_r);
-		    if($locked['finalized']) {
-			$obj_div[$course_j] .= '<div class="price gray-bg">
-				      <span>Sold</span> '.$locked['raw_amount'].' <span>fxStars</span>
-				    </div>';
-		    } else {
-			$obj_div[$course_j] .= '<div class="price purple-bg">
-				      <span>High </span> '.$locked['raw_amount'].' <span>fxStars</span>
-				    </div>';
-		    }
+	    if($row3['cost'] > 0) {
+		if($row3['negotiable']) {
+		    $obj_div[$course_j] .= '<div class="price gold-bg">'.$row3['cost'].' <span>fxStars</span> (Negable)</div>';
 		} else {
-		    $obj_div[$course_j] .= '<div class="price purple-bg">
-				      <span>Base </span> '.$row3['cost'].' <span>fxStars</span>
-				    </div>';
+		    $obj_div[$course_j] .= '<div class="price gold-bg">'.$row3['cost'].' <span>fxStars</span></div>';
 		}
 	    } else {
-
-		if($row3['cost']>0) {	  
-		    $obj_div[$course_j] .= '<div class="price gold-bg">
-		    '.$row3['cost'].' <span>fxStars</span>
-				    </div>';
-		} else {
-		    $obj_div[$course_j] .= '<div class="price green-bg" style="padding: 4px 20px;">
-				      Free
-				    </div>';
-		}
-
+		$obj_div[$course_j] .= '<div class="price green-bg" style="padding: 4px 20px;">Free</div>';
 	    }
-
-
-
+	    
+	    
 
 	    
 
@@ -433,7 +405,7 @@ if(!isset($_GET['q'])) {
     $top_courses = array(0,0,0,0,0);
 
     $top_course_user_id = array(); $top_course_video_url = array(); $top_course_header = array();
-    $top_course_start_date = array(); $top_course_biddable = array(); $top_course_cost = array();
+    $top_course_start_date = array(); $top_course_negotiable = array(); $top_course_cost = array();
     if($courses_count > 0) {
 
 
@@ -473,7 +445,7 @@ if(!isset($_GET['q'])) {
 			$top_course_video_url[$j+1] = $top_course_video_url[$j];
 			$top_course_header[$j+1] = $top_course_header[$j];
 			$top_course_start_date[$j+1] = $top_course_start_date[$j];
-			$top_course_biddable[$j+1] = $top_course_biddable[$j];
+			$top_course_negotiable[$j+1] = $top_course_negotiable[$j];
 			$top_course_cost[$j+1] = $top_course_cost[$j];
 		    }
 
@@ -484,7 +456,7 @@ if(!isset($_GET['q'])) {
 		    $top_course_video_url[$i] = $course['video_url'];
 		    $top_course_header[$i] = $course['header'];
 		    $top_course_start_date[$i] = $course['start_date'];
-		    $top_course_biddable[$i] = $course['biddable'];
+		    $top_course_negotiable[$i] = $course['negotiable'];
 		    $top_course_cost[$i] = $course['cost'];
 		    
 		    break;
@@ -556,42 +528,16 @@ if(!isset($_GET['q'])) {
 				    </div>';
 	    
 
-	    if($top_course_biddable[$i]) {
-		$locked_q = 'SELECT * FROM locked WHERE course_id='.$top_courses[$i];
-		$locked_r = mysqli_query($wallet_connection,$locked_q);
-		$locked_count = mysqli_num_rows($locked_r);
-		
-		
-
-		if($locked_count>0) {
-		    $locked=mysqli_fetch_array($locked_r);
-		    if($locked['finalized']) {
-			echo '<div class="price gray-bg">
-				      <span>Sold</span> '.$locked['raw_amount'].' <span>fxStars</span>
-				    </div>';
-		    } else {
-			echo '<div class="price purple-bg">
-				      <span>High </span> '.$locked['raw_amount'].' <span>fxStars</span>
-				    </div>';
-		    }
+	    if($top_course_cost[$i] > 0) {
+		if($top_course_negotiable[$i]) {
+		    echo '<div class="price gold-bg">'.$top_course_cost[$i].' <span>fxStars</span> (Negable)</div>';
 		} else {
-		    echo '<div class="price purple-bg">
-				      <span>Base </span> '.$top_course_cost[$i].' <span>fxStars</span>
-				    </div>';
+		    echo '<div class="price gold-bg">'.$top_course_cost[$i].' <span>fxStars</span></div>';
 		}
 	    } else {
-
-		if($top_course_cost[$i]>0) {	  
-		    echo '<div class="price gold-bg">
-		    '.$top_course_cost[$i].' <span>fxStars</span>
-				    </div>';
-		} else {
-		    echo '<div class="price green-bg" style="padding: 4px 20px;">
-				      Free
-				    </div>';
-		}
-
-	    }
+		echo '<div class="price green-bg" style="padding: 4px 20px;">Free</div>';
+	    }			    
+	    
 	    echo '</div></div></div>';  
 	}
 	echo '</div></div>';

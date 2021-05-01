@@ -260,8 +260,18 @@ $get_oneonone_count = mysqli_num_rows($get_oneonone_r);
 				    </div>
 				    <div class="little-box"><span>'.date("M jS, Y", strtotime($gsc_fetch['start_date'])).'</span></div>
 				    </div>';
-			     
 
+			     if($gsc_fetch['cost'] > 0) {
+				 if($gsc_fetch['negotiable']) {
+				     echo '<div class="price gold-bg">'.$gsc_fetch['cost'].' <span>fxStars</span> (Negable)</div>';
+				 } else {
+				     echo '<div class="price gold-bg">'.$gsc_fetch['cost'].' <span>fxStars</span></div>';
+				 }
+			     } else {
+				 echo '<div class="price green-bg" style="padding: 4px 20px;">Free</div>';
+			     }
+
+			     /*
 			     if($gsc_fetch['biddable']) {
 				 require_once('../../wallet/php/wallet_connect.php');
 				 $locked_q = 'SELECT * FROM locked WHERE course_id='.$gsc_fetch['id'];
@@ -299,7 +309,7 @@ $get_oneonone_count = mysqli_num_rows($get_oneonone_r);
 				 }
 
 			     }
-
+			     */
 
 
 			     
