@@ -54,38 +54,17 @@ $get_oneonone_count = mysqli_num_rows($get_oneonone_r);
     <body>
 	<div class="header-sidebar"></div>
 	<script id="upperbar-script" src="/js/upperbar.js" sess_avatar="<?php echo $session_avatar?>" sess_un="<?php echo $username?>"></script>
-
+	<script>
+	 if(screen.width >= 629) {
+	     $(document).ready(function() {
+		 $('.header-sidebar').prepend('<div style="width:100%; display:flex; flex-flow:row nowrap; justify-content:left;"><a href="/userpgs/instructor/" class="link-main" id="active-main"><div class="head">Teach (<?php echo $course_count ?>)</div></a><a href="/userpgs/student/" class="link-main"><div class="head">Learn (<?php echo $gss_count ?>)</div></a></div>');
+	     });
+	 }
+	</script>
 	<div class="blur mobile-main">
 	    
 	    <div class="sidebar"></div>
 	    <?php require('../../php/sidebar.php'); ?>
-
-
-
-
-
-
-
-            
-	    <div class="main-content">
-
-		<ul class="main-flex-container">
-                    <li class="main-items">
-			<a href="/userpgs/instructor" class="link-main" id="active-main">
-                            <div class="head">Teach (<?php echo $course_count ?>)</div>
-			</a>
-                    </li>
-                    <li class="main-items">
-			<a href="/userpgs/student" class="link-main">
-                            <div class="head">Learn (<?php echo $gss_count ?>)</div>
-			</a>
-                    </li>
-                    
-		</ul>
-
-	    </div>
-
-
 
 
 

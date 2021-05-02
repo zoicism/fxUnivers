@@ -65,39 +65,18 @@ if($past_date!=null && $interval->days < 7) {
 <body>
     <div class="header-sidebar"></div>
     <script id="upperbar-script" src="/js/upperbar.js" sess_avatar="<?php echo $session_avatar?>" sess_un="<?php echo $username?>"></script>
-
-<div class="blur mobile-main">
+    <script>
+     if(screen.width >= 629) {
+	 $(document).ready(function() {
+	     console.log('foobar');
+	     $('.header-sidebar').prepend('<div style="width:100%; display:flex; flex-flow:row nowrap; justify-content:left;"><a href="/userpgs/instructor/" class="link-main" <?php if($user_type=='instructor') echo 'id="active-main"'; ?>><div class="head">Teach</div></a><a href="/userpgs/student/" class="link-main" <?php if($user_type!='instructor') echo 'id="active-main"'; ?>><div class="head">Learn</div></a></div>');
+	 });
+     }
+    </script>
+    <div class="blur mobile-main">
     
 	<div class="sidebar"></div>
 	<?php require('../../../php/sidebar.php'); ?>
-
-
-
-
-
-
-
-                          
-    <div class="main-content">
-
-              <ul class="main-flex-container">
-                  <li class="main-items">
-                      <a href="/userpgs/instructor" class="link-main">
-                          <div class="head">Teach</div>
-                      </a>
-                  </li>
-                  <li class="main-items">
-                      <a href="/userpgs/student" class="link-main" id="active-main"">
-                          <div class="head">Learn</div>
-                      </a>
-                  </li>
-                  
-              </ul>
-
-    </div>
-
-
-
 
 
     <div class="relative-main-content">
