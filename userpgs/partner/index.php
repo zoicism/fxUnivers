@@ -42,21 +42,14 @@ require('../../wallet/php/get_fxcoin_count.php');
     
 <body>
 	<div class="header-sidebar"></div>
-    <script id="upperbar-script" src="/js/upperbar.js" sess_avatar="<?php echo $session_avatar?>" sess_un="<?php echo $username?>"></script>
-
-<div class="blur mobile-main">
+	<script id="upperbar-script" src="/js/upperbar.js" sess_avatar="<?php echo $session_avatar?>" sess_un="<?php echo $username?>"></script>
+	
+	<div class="blur mobile-main">
     
 	<div class="sidebar"></div>
 	<?php require('../../php/sidebar.php'); ?>
 
-
-
-
-
-
-
-                          
-    <div class="main-content">
+<div class="main-content">
 
               <ul class="main-flex-container">
                   <li class="main-items">
@@ -73,10 +66,6 @@ require('../../wallet/php/get_fxcoin_count.php');
               </ul>
 
     </div>
-
-
-
-
 
   <div class="relative-main-content">
                             <div class="content-box">

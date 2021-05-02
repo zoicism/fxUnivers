@@ -44,8 +44,15 @@ require('../../../wallet/php/get_fxcoin_count.php');
 
 <body>
 	<div class="header-sidebar"></div>
-    <script id="upperbar-script" src="/js/upperbar.js" sess_avatar="<?php echo $session_avatar?>" sess_un="<?php echo $username?>"></script>
-    <div class="blur mobile-main">
+	<script id="upperbar-script" src="/js/upperbar.js" sess_avatar="<?php echo $session_avatar?>" sess_un="<?php echo $username?>"></script>
+	<script>
+	 if(screen.width >= 629) {
+	     $(document).ready(function() {
+		 $('.header-sidebar').prepend('<div style="width:100%; display:flex; flex-flow:row nowrap; justify-content:left;"><a href="/userpgs/partner/positions" class="link-main" id="active-main"><div class="head">fxHR</div></a><a href="/userpgs/partner/income" class="link-main"><div class="head">Earnings History</div></a></div>');
+	     });
+	 }
+	</script>
+	<div class="blur mobile-main">
 
 
 
@@ -54,29 +61,8 @@ require('../../../wallet/php/get_fxcoin_count.php');
 
 
 
-  <div class="main-content">
-
-              <ul class="main-flex-container">
-                  <li class="main-items">
-                      <a href="/userpgs/partner/positions" class="link-main" id="active-main">
-                          <div class="head">fxHR</div>
-                      </a>
-                  </li>
-                  <li class="main-items">
-                      <a href="/userpgs/partner/income" class="link-main">
-                          <div class="head">Earnings History</div>
-                      </a>
-                  </li>
-              </ul>
-
-    </div>
-
-
-
-
-
   <div class="relative-main-content">
-  <div class="content-box">
+  <div class="content-box" style="max-width:700px" >
                           <h2>fxHR</h2>
                           
 <p>Share the following link with your friends who are not an fxUnivers user yet. Right after they register, we will share 50% of the profit gained from those users from any fxUnivers platform for 90 days.</p>
