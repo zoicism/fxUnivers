@@ -256,7 +256,7 @@ textarea:focus {
     margin: 0 0 0 15%;
     width: calc(100% - 15%);
     height: 84%;
-    padding: 10px 30px 30px 30px;
+    padding: 0 30px 30px 30px;
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
@@ -1244,7 +1244,7 @@ textarea:focus {
     align-items:center;
     font-size:1.3rem;
     font-weight:bold;
-    margin-top:50px;
+    margin-top:10px;
     color:#393939;
     cursor:pointer;
 }
@@ -1892,7 +1892,7 @@ textarea:focus {
     font-weight: bold;
     margin: 10px 11px;
     color: #000;
-    padding: 16px;
+    padding:6px 25px;
     text-decoration: none;
     border-radius: 200px;
     text-align: left;
@@ -1902,7 +1902,7 @@ textarea:focus {
 		-6px -6px 10px rgba(255, 255, 255, .5),
 		6px 6px 8px rgba(255, 255, 255, .075),
 		6px 6px 10px rgba(0, 0, 0, .15);
-    
+    cursor:pointer;    
 }
 
 .link-main .head{
@@ -1932,6 +1932,8 @@ textarea:focus {
 		inset 6px 6px 10px rgba(0, 0, 0, .15);
     transition: all 0.5s;
 }
+
+
 
 
 #active-main {
@@ -4132,16 +4134,6 @@ input:checked + .slider:before {
 
 
 @media (min-width:629px) {
-
-
-    
-
-    
-
-    /*.content-box {
-	margin-top:50px;
-	margin-bottom:50px;
-    }*/
 
     
     
