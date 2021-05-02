@@ -50,7 +50,15 @@ require('../php/get_fxcoin_count.php');
 <body>
 	<div class="header-sidebar"></div>
     <script id="upperbar-script" src="/js/upperbar.js" sess_avatar="<?php echo $session_avatar?>" sess_un="<?php echo $username?>"></script>
-<div class="blur mobile-main">
+    <script>
+     if(screen.width >= 629) {
+	 $(document).ready(function() {
+	     $('.header-sidebar').prepend('<div style="width:100%; display:flex; flex-flow:row nowrap; justify-content:left;"><a href="/wallet/buy" class="link-main" id="active-main"><div class="head">Buy fxStars</div></a><a href="/wallet/cashout" class="link-main"><div class="head">Cash-out</div></a><a href="/wallet/txn" class="link-main"><div class="head">Transactions</div></a><a href="/wallet/send" class="link-main"><div class="head">Transfer</div></a><a href="/wallet/req" class="link-main"><div class="head">Request</div></a></div>');
+	 });
+     }
+    </script>
+
+    <div class="blur mobile-main">
 
     
 
@@ -58,41 +66,6 @@ require('../php/get_fxcoin_count.php');
 
 <div class="sidebar"></div>
 	<?php require('../../php/sidebar.php'); ?>
-
-
-
-                          
-    <div class="main-content">
-
-              <ul class="main-flex-container">
-                  <li class="main-items">
-                      <a href="/wallet/buy" class="link-main" id="active-main">
-                          <div class="head">Buy fxStars</div>
-                      </a>
-                  </li>
-                  <li class="main-items">
-                      <a href="/wallet/cashout" class="link-main">
-                          <div class="head">Cash-out fxStars</div>
-                      </a> 
-                  </li>
-                  <li class="main-items">
-                      <a href="/wallet/txn" class="link-main">
-                          <div class="head">Transactions</div>
-                      </a>
-                  </li>
-                  <li class="main-items">
-                      <a href="/wallet/send" class="link-main">
-                          <div class="head">Send fxStars</div>
-                      </a>
-                  </li>
-                  <li class="main-items">
-                      <a href="/wallet/req" class="link-main">
-                          <div class="head">Request fxStars</div>
-                      </a>
-                  </li>
-              </ul>
-
-    </div>
 
 
 
