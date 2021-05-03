@@ -1654,5 +1654,11 @@ if($class_result->num_rows>0) {
 
 	     
 	 <?php } ?>
+
+	 <script>
+	  function unpurchased() {
+	      alert('You must enroll to the course first.');
+	  }
+	 </script>
     </body>
 </html>
