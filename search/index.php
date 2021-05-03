@@ -336,61 +336,58 @@ if($type=='course') {
 
 if(!isset($_GET['q'])) {
     /*
-    $top_fxstars_q = "SELECT * FROM fxstars ORDER BY balance DESC LIMIT 5";
-    $top_fxstars_r = mysqli_query($wallet_connection, $top_fxstars_q) or die(mysqli_error($wallet_connection));
+       $top_fxstars_q = "SELECT * FROM fxstars ORDER BY balance DESC LIMIT 5";
+       $top_fxstars_r = mysqli_query($wallet_connection, $top_fxstars_q) or die(mysqli_error($wallet_connection));
 
-    if($top_fxstars_r->num_rows > 0) {
-	echo '<hr class="hr-tct" style="width:100%">';
-	echo '<h3 style="text-align:left;width:100%;margin-bottom:0;">Top fxUsers</h3>';
-	require('../php/limit_str.php');
-	
-	echo '<div class="obj-box">';
+       if($top_fxstars_r->num_rows > 0) {
+       echo '<hr class="hr-tct" style="width:100%">';
+       echo '<h3 style="text-align:left;width:100%;margin-bottom:0;">Top fxUsers</h3>';
+       require('../php/limit_str.php');
+       
+       echo '<div class="obj-box">';
 
-	while($top_row = $top_fxstars_r->fetch_assoc()) {
+       while($top_row = $top_fxstars_r->fetch_assoc()) {
 
-	    $top_user_q = 'SELECT * FROM user WHERE id = '.$top_row['user_id'];
-	    $top_user_r = mysqli_query($connection, $top_user_q);
-	    $top_user = mysqli_fetch_array($top_user_r);
-	    
-            echo '<div class="object-user" onclick="location.href=\'/user/'.$top_user['username'].'\';">';
+       $top_user_q = 'SELECT * FROM user WHERE id = '.$top_row['user_id'];
+       $top_user_r = mysqli_query($connection, $top_user_q);
+       $top_user = mysqli_fetch_array($top_user_r);
+       
+       echo '<div class="object-user" onclick="location.href=\'/user/'.$top_user['username'].'\';">';
 
-	    if($top_user['avatar']==NULL) {
-                echo '<div class="preview-user">
-			       <img src="/images/background/avatar.png">
-			     </div>';
-	    } else {
-		echo '<div class="preview-user">
-			          <img src="/userpgs/avatars/'.$top_user['avatar'].'">
-				</div>';
-	    }
+       if($top_user['avatar']==NULL) {
+       echo '<div class="preview-user">
+       <img src="/images/background/avatar.png">
+       </div>';
+       } else {
+       echo '<div class="preview-user">
+       <img src="/userpgs/avatars/'.$top_user['avatar'].'">
+       </div>';
+       }
 
-	    echo '<div class="details-user">';
+       echo '<div class="details-user">';
 
-	    echo '<p><strong>'.$top_user['username'].'</strong></p>';
-	    echo '<p>'.$top_user['fname'].' '.$top_user['lname'].'</p>';
+       echo '<p><strong>'.$top_user['username'].'</strong></p>';
+       echo '<p>'.$top_user['fname'].' '.$top_user['lname'].'</p>';
 
-	    echo '<div class="detail-bottom">';
+       echo '<div class="detail-bottom">';
 
-	    if($top_row['balance']>0) {
-		echo '<div class="little-box"><span>'.$top_row['balance'].' fxStars</span></div>';
-	    } else {
-		echo '<div class="little-box"><span>0 fxStars</span></div>';
-	    }
-	    echo '</div>';
-	    
-            echo '</div></div>';
+       if($top_row['balance']>0) {
+       echo '<div class="little-box"><span>'.$top_row['balance'].' fxStars</span></div>';
+       } else {
+       echo '<div class="little-box"><span>0 fxStars</span></div>';
+       }
+       echo '</div>';
+       
+       echo '</div></div>';
 
-	    
-        }
-        $top_fxstars_r->free();
-	echo '</div>';
-    }*/
+       
+       }
+       $top_fxstars_r->free();
+       echo '</div>';
+       }*/
 
 
 
-    echo '<hr class="hr-tct" style="width:100%">';
-    echo '<h3 style="text-align:left;width:100%;margin-bottom:0;">Top fxCourses</h3>';
-    echo '<div class="obj-box">';
     
     $courses_q = "SELECT * FROM teacher WHERE alive=1 AND private=0";
     $courses_r = mysqli_query($connection, $courses_q);
@@ -402,7 +399,10 @@ if(!isset($_GET['q'])) {
     $top_course_user_id = array(); $top_course_video_url = array(); $top_course_header = array();
     $top_course_start_date = array(); $top_course_negotiable = array(); $top_course_cost = array();
     if($courses_count > 0) {
-
+	echo '<hr class="hr-tct" style="width:100%">';
+	echo '<h3 style="text-align:left;width:100%;margin-bottom:0;">Top fxCourses</h3>';
+	echo '<div class="obj-box">';
+	
 
 	//require('../php/limit_str.php');
 
