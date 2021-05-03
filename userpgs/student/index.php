@@ -220,8 +220,7 @@ $get_oneonone_count = mysqli_num_rows($get_oneonone_r);
 			     echo '<div class="details">';
 			     $ctitle=preg_replace("/<br\W*?\/>/"," ",$gsc_fetch['header']);
 			     
-			     echo '<p><strong>';
-			     echo limited($ctitle,40).'</strong></p>';
+			     echo '<p><strong>'.$ctitle.'</strong></p>';
 
 			     /*
 				$descrip=preg_replace("/<br\W*?\/>/"," ",$gsc_fetch['description']);
@@ -247,9 +246,9 @@ $get_oneonone_count = mysqli_num_rows($get_oneonone_r);
 
 			     if($gsc_fetch['cost'] > 0) {
 				 if($gsc_fetch['negotiable']) {
-				     echo '<div class="price gold-bg">'.$gsc_fetch['cost'].' <span>fxStars</span> (Negable)</div>';
+				     echo '<div style="display:flex; flex-flow:row nowrap;"><div class="price gold-bg" style="width:50%;"><div class="fxstar-white"></div>'.$gsc_fetch['cost'].'</div><div style="width:50%;" class="price medseagreen-bg">Negotiable</div></div>';
 				 } else {
-				     echo '<div class="price gold-bg">'.$gsc_fetch['cost'].' <span>fxStars</span></div>';
+				     echo '<div class="price gold-bg"><div class="fxstar-white"></div>'.$gsc_fetch['cost'].'</div>';
 				 }
 			     } else {
 				 echo '<div class="price green-bg" style="padding: 4px 20px;">Free</div>';

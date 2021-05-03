@@ -65,7 +65,7 @@ if($user_type!='instructor') {
 			<h2>Add Session</h2>
 			<form method="POST" action="new_post.php" autocomplete="off">
 				<input type="text" name="header" class="txt-input" placeholder="Session title" required>
-				<textarea name="description" placeholder="Session description" rows="10"></textarea>
+				<textarea name="description" placeholder="Session description (optional)" rows="10"></textarea>
 				<input type="hidden" name="course_id" value="<?php echo $course_id ?>">
 				<input type="submit" value="Publish" class="submit-btn">
                 	</form>

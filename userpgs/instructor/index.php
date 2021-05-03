@@ -215,8 +215,7 @@ $get_oneonone_count = mysqli_num_rows($get_oneonone_r);
 
 			 $ctitle=preg_replace("/<br\W*?\/>/"," ",$row3['header']);
 			 
-			 echo '<p><strong>';
-			 echo limited($ctitle,40).'</strong></p>';
+			 echo '<p><strong>'.$ctitle.'</strong></p>';
 			 
 			 /*$descrip=preg_replace("/<br\W*?\/>/"," ",$row3['description']);
 			    echo '<p>';
@@ -241,53 +240,53 @@ $get_oneonone_count = mysqli_num_rows($get_oneonone_r);
 
 			 if($row3['cost'] > 0) {
 			     if($row3['negotiable']) {
-				 echo '<div class="price gold-bg">'.$row3['cost'].' <span>fxStars</span> (Negable)</div>';
+				 echo '<div style="display:flex; flex-flow:row nowrap;"><div class="price gold-bg" style="width:50%;"><div class="fxstar-white"></div>'.$row3['cost'].'</div><div style="width:50%;" class="price medseagreen-bg">Negotiable</div></div>';
 			     } else {
-				 echo '<div class="price gold-bg">'.$row3['cost'].' <span>fxStars</span></div>';
+				 echo '<div class="price gold-bg"><div class="fxstar-white"></div>'.$row3['cost'].'</div>';
 			     }
 			 } else {
 			     echo '<div class="price green-bg" style="padding: 4px 20px;">Free</div>';
 			 }
 
 			 /*
-		         if($row3['biddable']) {
-			     require_once('../../wallet/php/wallet_connect.php');
-			     $locked_q = 'SELECT * FROM locked WHERE course_id='.$row3['id'];
-			     $locked_r = mysqli_query($wallet_connection,$locked_q);
-			     $locked_count = mysqli_num_rows($locked_r);
-			     
-			     
+		            if($row3['biddable']) {
+			    require_once('../../wallet/php/wallet_connect.php');
+			    $locked_q = 'SELECT * FROM locked WHERE course_id='.$row3['id'];
+			    $locked_r = mysqli_query($wallet_connection,$locked_q);
+			    $locked_count = mysqli_num_rows($locked_r);
+			    
+			    
 
-			     if($locked_count>0) {
-				 $locked=mysqli_fetch_array($locked_r);
-				 if($locked['finalized']) {
-			             echo '<div class="price gray-bg">
-				      <span>Sold</span> '.$locked['raw_amount'].' <span>fxStars</span>
-				    </div>';
-				 } else {
-			             echo '<div class="price purple-bg">
-				      <span>High </span> '.$locked['raw_amount'].' <span>fxStars</span>
-				    </div>';
-				 }
-			     } else {
-				 echo '<div class="price purple-bg">
-				      <span>Base </span> '.$row3['cost'].' <span>fxStars</span>
-				    </div>';
-		             }
-		         } else {
+			    if($locked_count>0) {
+			    $locked=mysqli_fetch_array($locked_r);
+			    if($locked['finalized']) {
+			    echo '<div class="price gray-bg">
+			    <span>Sold</span> '.$locked['raw_amount'].' <span>fxStars</span>
+			    </div>';
+			    } else {
+			    echo '<div class="price purple-bg">
+			    <span>High </span> '.$locked['raw_amount'].' <span>fxStars</span>
+			    </div>';
+			    }
+			    } else {
+			    echo '<div class="price purple-bg">
+			    <span>Base </span> '.$row3['cost'].' <span>fxStars</span>
+			    </div>';
+		            }
+		            } else {
 
-			     if($row3['cost']>0) {	  
-				 echo '<div class="price gold-bg">
-				 '.$row3['cost'].' <span>fxStars</span>
-				    </div>';
-			     } else {
-			      	 echo '<div class="price green-bg" style="padding: 4px 20px;">
-				      Free
-				    </div>';
-			     }
+			    if($row3['cost']>0) {	  
+			    echo '<div class="price gold-bg">
+			    '.$row3['cost'].' <span>fxStars</span>
+			    </div>';
+			    } else {
+			    echo '<div class="price green-bg" style="padding: 4px 20px;">
+			    Free
+			    </div>';
+			    }
 
-			 }
-			 */
+			    }
+			  */
 			 
 
 			 echo ' </div>

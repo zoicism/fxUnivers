@@ -664,22 +664,22 @@ textarea:focus {
 }
 
 .right-content .session:active {
-    background-color: #000E14;
+    background-color: #95d2e969;
     transition: 0.3s;
-    fill: #ffffff;
-    color: #fff;
+    /*fill: #ffffff;
+    color: #fff;*/
 }
 
 .sessions .sess-list #active {
-    background-color: #000E14;
+    background-color: #95d2e969;
     transition: 0.3s;
-    fill: #ffffff ;
-    color: #fff;
+    /*fill: #ffffff ;
+    color: #fff;*/
 }
-
+/*
 .sessions .sess-list #active p {
     color: #fff;
-}
+}*/
 
 /*.right-content #active {
     border-radius: 20px;
@@ -738,8 +738,16 @@ textarea:focus {
 }
 
 .session-prev img {
-    height: 3.2em;
+    /*height: 3.2em;*/
     margin: auto;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.session-prev svg {
+    fill: #3939394f;
 }
 
 .session .session-desc {
@@ -846,6 +854,23 @@ textarea:focus {
     text-align: center;
     border-radius: 50px;
     color: #efefef;
+}
+
+/*
+.price span {
+    font-size:0.8rem;
+}*/
+
+.price .fxstar-white {
+    height:1em;
+    width:1em;
+    margin-right:2px;
+    background-image: url('../images/fxstar-white.svg');
+}
+
+.price .extra {
+    font-size: 0.8rem;
+    margin-left:2px;
 }
 
 .course-upperleft .bulletin .bulletin-txt::-webkit-scrollbar {
@@ -1062,6 +1087,9 @@ textarea:focus {
     border-radius: 50px;
     color: #efefef;
     font-weight:bold;
+    display:flex;
+    flex-flow: row nowrap;
+    justify-content: center;
 }
 
 .little-box {
@@ -1099,6 +1127,11 @@ textarea:focus {
 .green {
     color:#6cc841
 }
+
+.medseagreen-bg {
+    background: #00d58f;
+}
+
 .violet {
     background:#7a00cc;
 }
@@ -1124,8 +1157,9 @@ textarea:focus {
 }
 
 .purple-bg {
-    background:#803597;
+    background:#80359740;
 }
+
 
 /***> User Search ***/
 

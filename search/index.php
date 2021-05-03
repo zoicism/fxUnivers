@@ -202,9 +202,9 @@ if($type=='course') {
 
 	    if($row3['cost'] > 0) {
 		if($row3['negotiable']) {
-		    $obj_div[$course_j] .= '<div class="price gold-bg">'.$row3['cost'].' <span>fxStars</span> (Negable)</div>';
+		    $obj_div[$course_j] .= '<div style="display:flex; flex-flow:row nowrap;"><div class="price gold-bg" style="width:50%;"><div class="fxstar-white"></div>'.$row3['cost'].'</div><div style="width:50%;" class="price medseagreen-bg">Negotiable</div></div>';
 		} else {
-		    $obj_div[$course_j] .= '<div class="price gold-bg">'.$row3['cost'].' <span>fxStars</span></div>';
+		    $obj_div[$course_j] .= '<div class="price gold-bg"><div class="fxstar-white"></div>'.$row3['cost'].'</div>';
 		}
 	    } else {
 		$obj_div[$course_j] .= '<div class="price green-bg" style="padding: 4px 20px;">Free</div>';
@@ -335,6 +335,7 @@ if($type=='course') {
 }
 
 if(!isset($_GET['q'])) {
+    /*
     $top_fxstars_q = "SELECT * FROM fxstars ORDER BY balance DESC LIMIT 5";
     $top_fxstars_r = mysqli_query($wallet_connection, $top_fxstars_q) or die(mysqli_error($wallet_connection));
 
@@ -346,12 +347,6 @@ if(!isset($_GET['q'])) {
 	echo '<div class="obj-box">';
 
 	while($top_row = $top_fxstars_r->fetch_assoc()) {
-	    /*
-	       $fxstars_q = 'SELECT * FROM fxstars WHERE user_id ='. $top_row['id'];
-	       $fxstars_r = mysqli_query($wallet_connection, $fxstars_q);
-	       $fxstars_f = mysqli_fetch_array($fxstars_r);
-	       $fxstars = $fxstars_f['balance'];
-	     */
 
 	    $top_user_q = 'SELECT * FROM user WHERE id = '.$top_row['user_id'];
 	    $top_user_r = mysqli_query($connection, $top_user_q);
@@ -389,7 +384,7 @@ if(!isset($_GET['q'])) {
         }
         $top_fxstars_r->free();
 	echo '</div>';
-    }
+    }*/
 
 
 
@@ -397,7 +392,7 @@ if(!isset($_GET['q'])) {
     echo '<h3 style="text-align:left;width:100%;margin-bottom:0;">Top fxCourses</h3>';
     echo '<div class="obj-box">';
     
-    $courses_q = "SELECT * FROM teacher WHERE private=0";
+    $courses_q = "SELECT * FROM teacher WHERE alive=1 AND private=0";
     $courses_r = mysqli_query($connection, $courses_q);
     $courses_count = mysqli_num_rows($courses_r);
 
@@ -530,9 +525,9 @@ if(!isset($_GET['q'])) {
 
 	    if($top_course_cost[$i] > 0) {
 		if($top_course_negotiable[$i]) {
-		    echo '<div class="price gold-bg">'.$top_course_cost[$i].' <span>fxStars</span> (Negable)</div>';
+		    echo '<div style="display:flex; flex-flow:row nowrap;"><div class="price gold-bg" style="width:50%;"><div class="fxstar-white"></div>'.$top_course_cost[$i].'</div><div style="width:50%;" class="price medseagreen-bg">Negotiable</div></div>';
 		} else {
-		    echo '<div class="price gold-bg">'.$top_course_cost[$i].' <span>fxStars</span></div>';
+		    echo '<div class="price gold-bg"><div class="fxstar-white"></div>'.$top_course_cost[$i].'</div>';
 		}
 	    } else {
 		echo '<div class="price green-bg" style="padding: 4px 20px;">Free</div>';

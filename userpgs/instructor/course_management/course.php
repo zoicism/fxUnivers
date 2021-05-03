@@ -131,7 +131,7 @@ if($course_negotiable) {
     $bargain_r = mysqli_query($fxinstructor_connection, $bargain_q);
     $bargain_count = mysqli_num_rows($bargain_r);
 }
-    
+
 ?>
 
 <!DOCTYPE html>
@@ -271,49 +271,49 @@ if($course_negotiable) {
 					<?php
 					if($cost > 0) {
 					    if($course_negotiable) {
-						echo '<div class="price gold-bg" style="width:100%;">'.$cost.' <span>fxStars (Negotiable)</span></div>';
+						echo '<div style="display:flex; flex-flow:row nowrap;"><div class="price gold-bg" style="width:50%;"><div class="fxstar-white"></div>'.$cost.'</div><div style="width:50%;" class="price medseagreen-bg">Negotiable</div></div>';
 					    } else {
-						echo '<div class="price gold-bg" style="width:100%;">'.$cost.' <span>fxStars</span></div>';
+						echo '<div class="price gold-bg"><div class="fxstar-white"></div>'.$cost.'</div>';
 					    }
 					} else {
 					    echo '<div class="price green-bg" style="width:100%;">Free</div>';
 					}
 
 					/*
-					if($course_biddable) {
+					   if($course_biddable) {
 
-					    $locked_q = 'SELECT * FROM locked WHERE course_id='.$course_id;
-					    $locked_r = mysqli_query($wallet_connection,$locked_q);
-					    $locked_count = mysqli_num_rows($locked_r);
+					   $locked_q = 'SELECT * FROM locked WHERE course_id='.$course_id;
+					   $locked_r = mysqli_query($wallet_connection,$locked_q);
+					   $locked_count = mysqli_num_rows($locked_r);
 
-					    if($locked_count>0) {
-						$locked=mysqli_fetch_array($locked_r);
-						if($locked['finalized']) {
-						    echo '<div class="price gray-bg">
-				      <span>Sold</span> '.$locked['raw_amount'].' <span>fxStars</span>
-				    </div>';
-						} else {
-						    echo '<div class="price purple-bg">
-				         <span>High </span> '.$locked['raw_amount'].' <span>fxStars</span>
-				       </div>';
-						}
-					    } else {
-						echo '<div class="price purple-bg">
-				      <span>Base </span> '.$cost.' <span>fxStars</span>
-				    </div>';
-					    }
+					   if($locked_count>0) {
+					   $locked=mysqli_fetch_array($locked_r);
+					   if($locked['finalized']) {
+					   echo '<div class="price gray-bg">
+					   <span>Sold</span> '.$locked['raw_amount'].' <span>fxStars</span>
+					   </div>';
+					   } else {
+					   echo '<div class="price purple-bg">
+				           <span>High </span> '.$locked['raw_amount'].' <span>fxStars</span>
+					   </div>';
+					   }
+					   } else {
+					   echo '<div class="price purple-bg">
+					   <span>Base </span> '.$cost.' <span>fxStars</span>
+					   </div>';
+					   }
 
-					} else {
-					    if($cost>0) {	  
-						echo '<div class="price gold-bg" style="width:100%;">
-						'.$cost.' <span>fxStars</span>
-				    </div>';
-					    } else {
-			      			echo '<div class="price green-bg" style="width:100%;">
-				      Free
-		    </div>';
-					    }
-					}*/
+					   } else {
+					   if($cost>0) {	  
+					   echo '<div class="price gold-bg" style="width:100%;">
+					   '.$cost.' <span>fxStars</span>
+					   </div>';
+					   } else {
+			      		   echo '<div class="price green-bg" style="width:100%;">
+					   Free
+					   </div>';
+					   }
+					   }*/
 
 
 
@@ -459,52 +459,52 @@ if($course_negotiable) {
 
 
 				if($subcourse_of_course['cost'] > 0) {
-				 if($subcourse_of_course['negotiable']) {
-				     echo '<div class="price gold-bg">'.$subcourse_of_course['cost'].' <span>fxStars</span> (Negable)</div>';
-				 } else {
-				     echo '<div class="price gold-bg">'.$subcourse_of_course['cost'].' <span>fxStars</span></div>';
-				 }
-			     } else {
-				 echo '<div class="price green-bg" style="padding: 4px 20px;">Free</div>';
-			     }
-				/*
-				if($subcourse_of_course['biddable']) {
-				    require_once('../../wallet/php/wallet_connect.php');
-				    $locked_q = 'SELECT * FROM locked WHERE course_id='.$subcourse_of_course['id'];
-				    $locked_r = mysqli_query($wallet_connection,$locked_q);
-				    $locked_count = mysqli_num_rows($locked_r);
-				    
-				    
-
-				    if($locked_count>0) {
-					$locked=mysqli_fetch_array($locked_r);
-					if($locked['finalized']) {
-					    echo '<div class="price gray-bg">
-				      <span>Sold</span> '.$locked['raw_amount'].' <span>fxStars</span>
-				    </div>';
-					} else {
-					    echo '<div class="price purple-bg">
-				      <span>High </span> '.$locked['raw_amount'].' <span>fxStars</span>
-				    </div>';
-					}
+				    if($subcourse_of_course['negotiable']) {
+					echo '<div style="display:flex; flex-flow:row nowrap;"><div class="price gold-bg" style="width:50%;"><div class="fxstar-white"></div>'.$subcourse_of_course['cost'].'</div><div style="width:50%;" class="price medseagreen-bg">Negotiable</div></div>';
 				    } else {
-					echo '<div class="price purple-bg">
-				      <span>Base </span> '.$subcourse_of_course['cost'].' <span>fxStars</span>
-				    </div>';
+					echo '<div class="price gold-bg"><div class="fxstar-white"></div>'.$subcourse_of_course['cost'].'</div>';
 				    }
 				} else {
+				    echo '<div class="price green-bg" style="padding: 4px 20px;">Free</div>';
+				}
+				/*
+				   if($subcourse_of_course['biddable']) {
+				   require_once('../../wallet/php/wallet_connect.php');
+				   $locked_q = 'SELECT * FROM locked WHERE course_id='.$subcourse_of_course['id'];
+				   $locked_r = mysqli_query($wallet_connection,$locked_q);
+				   $locked_count = mysqli_num_rows($locked_r);
+				   
+				   
 
-				    if($subcourse_of_course['cost']>0) {	  
-					echo '<div class="price gold-bg">
-					'.$subcourse_of_course['cost'].' <span>fxStars</span>
-				    </div>';
-				    } else {
-			      		echo '<div class="price green-bg" style="padding: 4px 20px;">
-				      Free
-				    </div>';
-				    }
+				   if($locked_count>0) {
+				   $locked=mysqli_fetch_array($locked_r);
+				   if($locked['finalized']) {
+				   echo '<div class="price gray-bg">
+				   <span>Sold</span> '.$locked['raw_amount'].' <span>fxStars</span>
+				   </div>';
+				   } else {
+				   echo '<div class="price purple-bg">
+				   <span>High </span> '.$locked['raw_amount'].' <span>fxStars</span>
+				   </div>';
+				   }
+				   } else {
+				   echo '<div class="price purple-bg">
+				   <span>Base </span> '.$subcourse_of_course['cost'].' <span>fxStars</span>
+				   </div>';
+				   }
+				   } else {
 
-				}*/
+				   if($subcourse_of_course['cost']>0) {	  
+				   echo '<div class="price gold-bg">
+				   '.$subcourse_of_course['cost'].' <span>fxStars</span>
+				   </div>';
+				   } else {
+			      	   echo '<div class="price green-bg" style="padding: 4px 20px;">
+				   Free
+				   </div>';
+				   }
+
+				   }*/
 
 				echo '</div></div></div></div>';
 				
@@ -586,52 +586,52 @@ if($course_negotiable) {
 
 				    if($subcourse_f['cost'] > 0) {
 					if($subcourse_f['negotiable']) {
-					    echo '<div class="price gold-bg">'.$subcourse_f['cost'].' <span>fxStars</span> (Negable)</div>';
+					    echo '<div style="display:flex; flex-flow:row nowrap;"><div class="price gold-bg" style="width:50%;"><div class="fxstar-white"></div>'.$subcourse_f['cost'].'</div><div style="width:50%;" class="price medseagreen-bg">Negotiable</div></div>';
 					} else {
-					    echo '<div class="price gold-bg">'.$subcourse_f['cost'].' <span>fxStars</span></div>';
+					    echo '<div class="price gold-bg"><div class="fxstar-white"></div>'.$subcourse_f['cost'].'</div>';
 					}
 				    } else {
 					echo '<div class="price green-bg" style="padding: 4px 20px;">Free</div>';
 				    }
 				    
 				    /*
-				    if($subcourse_f['biddable']) {
-					require_once('../../wallet/php/wallet_connect.php');
-					$locked_q = 'SELECT * FROM locked WHERE course_id='.$subcourse_f['id'];
-					$locked_r = mysqli_query($wallet_connection,$locked_q);
-					$locked_count = mysqli_num_rows($locked_r);
-					
-					
+				       if($subcourse_f['biddable']) {
+				       require_once('../../wallet/php/wallet_connect.php');
+				       $locked_q = 'SELECT * FROM locked WHERE course_id='.$subcourse_f['id'];
+				       $locked_r = mysqli_query($wallet_connection,$locked_q);
+				       $locked_count = mysqli_num_rows($locked_r);
+				       
+				       
 
-					if($locked_count>0) {
-					    $locked=mysqli_fetch_array($locked_r);
-					    if($locked['finalized']) {
-						echo '<div class="price gray-bg">
-				      <span>Sold</span> '.$locked['raw_amount'].' <span>fxStars</span>
-				    </div>';
-					    } else {
-						echo '<div class="price purple-bg">
-				      <span>High </span> '.$locked['raw_amount'].' <span>fxStars</span>
-				    </div>';
-					    }
-					} else {
-					    echo '<div class="price purple-bg">
-				      <span>Base </span> '.$subcourse_f['cost'].' <span>fxStars</span>
-				    </div>';
-					}
-				    } else {
+				       if($locked_count>0) {
+				       $locked=mysqli_fetch_array($locked_r);
+				       if($locked['finalized']) {
+				       echo '<div class="price gray-bg">
+				       <span>Sold</span> '.$locked['raw_amount'].' <span>fxStars</span>
+				       </div>';
+				       } else {
+				       echo '<div class="price purple-bg">
+				       <span>High </span> '.$locked['raw_amount'].' <span>fxStars</span>
+				       </div>';
+				       }
+				       } else {
+				       echo '<div class="price purple-bg">
+				       <span>Base </span> '.$subcourse_f['cost'].' <span>fxStars</span>
+				       </div>';
+				       }
+				       } else {
 
-					if($subcourse_f['cost']>0) {	  
-					    echo '<div class="price gold-bg">
-					    '.$subcourse_f['cost'].' <span>fxStars</span>
-				    </div>';
-					} else {
-			      		    echo '<div class="price green-bg" style="padding: 4px 20px;">
-				      Free
-				    </div>';
-					}
+				       if($subcourse_f['cost']>0) {	  
+				       echo '<div class="price gold-bg">
+				       '.$subcourse_f['cost'].' <span>fxStars</span>
+				       </div>';
+				       } else {
+			      	       echo '<div class="price green-bg" style="padding: 4px 20px;">
+				       Free
+				       </div>';
+				       }
 
-				    }*/
+				       }*/
 
 				    echo '</div></div></div>';
 
@@ -711,40 +711,40 @@ if($course_negotiable) {
 
 
 	      /*
-	      if($course_biddable) {
+		 if($course_biddable) {
 
-		  
-		  
-		  $bidding_q="SELECT * FROM locked WHERE course_id=$course_id";
-		  $bidding_r=mysqli_query($wallet_connection,$bidding_q) or die(mysqli_error($wallet_connection))
-		  ;
+		 
+		 
+		 $bidding_q="SELECT * FROM locked WHERE course_id=$course_id";
+		 $bidding_r=mysqli_query($wallet_connection,$bidding_q) or die(mysqli_error($wallet_connection))
+		 ;
 
-		  $bidding_finalized=0;
-		  if($bidding_r->num_rows > 0) {
-		      $bidding=mysqli_fetch_array($bidding_r);
-		      if($bidding['finalized']) $bidding_finalized=1;
+		 $bidding_finalized=0;
+		 if($bidding_r->num_rows > 0) {
+		 $bidding=mysqli_fetch_array($bidding_r);
+		 if($bidding['finalized']) $bidding_finalized=1;
 
-		      $sold2user_q = 'SELECT * FROM user WHERE id='.$bidding['from_id'];
-		      $sold2user_r=mysqli_query($connection,$sold2user_q) or die(mysqli_error($connection));
-		      if($sold2user_r) $sold2user=mysqli_fetch_array($sold2user_r);
-		  }
+		 $sold2user_q = 'SELECT * FROM user WHERE id='.$bidding['from_id'];
+		 $sold2user_r=mysqli_query($connection,$sold2user_q) or die(mysqli_error($connection));
+		 if($sold2user_r) $sold2user=mysqli_fetch_array($sold2user_r);
+		 }
 
 
-		  if($bidding_finalized) {
-		      echo '<div class="add-box">
-	  <p>Sold to <a href="/user/'.$sold2user['username'].'">'.$sold2user['username'].'</a> for '.$bidding['raw_amount'].' fxStars</p>
-	  </div>';
-		  } else {
-		      
-		      echo '<div class="add-box" id="acceptBid">
-		<svg viewBox="0 0 32 32">
-				           <path d="M16,2A14,14,0,1,1,2,16,14,14,0,0,1,16,2m0-2A16,16,0,1,0,32,16,16,16,0,0,0,16,0Z"></path>
-					   <path d="M13.4,22.4h0l-.7-.3L7.1,16.5a1.4,1.4,0,0,1,0-1.5,1.4,1.4,0,0,1,1.5,0l4.8,4.9,10-10a1.4,1.4,0,0,1,1.5,0,1.4,1.4,0,0,1,0,1.5L14.2,22.1A1.9,1.9,0,0,1,13.4,22.4Z"></path>
-				       </svg>
-                Accept Bid (<div id="highest-ins"></div>) 
-	      </div>';
-		  }
-	      }*/
+		 if($bidding_finalized) {
+		 echo '<div class="add-box">
+		 <p>Sold to <a href="/user/'.$sold2user['username'].'">'.$sold2user['username'].'</a> for '.$bidding['raw_amount'].' fxStars</p>
+		 </div>';
+		 } else {
+		 
+		 echo '<div class="add-box" id="acceptBid">
+		 <svg viewBox="0 0 32 32">
+		 <path d="M16,2A14,14,0,1,1,2,16,14,14,0,0,1,16,2m0-2A16,16,0,1,0,32,16,16,16,0,0,0,16,0Z"></path>
+		 <path d="M13.4,22.4h0l-.7-.3L7.1,16.5a1.4,1.4,0,0,1,0-1.5,1.4,1.4,0,0,1,1.5,0l4.8,4.9,10-10a1.4,1.4,0,0,1,1.5,0,1.4,1.4,0,0,1,0,1.5L14.2,22.1A1.9,1.9,0,0,1,13.4,22.4Z"></path>
+		 </svg>
+                 Accept Bid (<div id="highest-ins"></div>) 
+		 </div>';
+		 }
+		 }*/
 
 
 
@@ -829,34 +829,34 @@ if($course_negotiable) {
 
 	      
 	      /*
-	      if($course_biddable) {
+		 if($course_biddable) {
 
 
-		  
-		  $bidding_q="SELECT * FROM locked WHERE course_id=$course_id";
-		  $bidding_r=mysqli_query($wallet_connection,$bidding_q);
+		 
+		 $bidding_q="SELECT * FROM locked WHERE course_id=$course_id";
+		 $bidding_r=mysqli_query($wallet_connection,$bidding_q);
 
-		  
-		  
-		  $bidding_finalized=0;
-		  if($bidding_r->num_rows > 0) {
-		      $bidding=mysqli_fetch_array($bidding_r);
-		      if($bidding['finalized']) $bidding_finalized=1;
+		 
+		 
+		 $bidding_finalized=0;
+		 if($bidding_r->num_rows > 0) {
+		 $bidding=mysqli_fetch_array($bidding_r);
+		 if($bidding['finalized']) $bidding_finalized=1;
 
-		      $sold2user_q = 'SELECT * FROM user WHERE id='.$bidding['from_id'];
-		      $sold2user_r=mysqli_query($connection,$sold2user_q) or die(mysqli_error($connection));
-		      if($sold2user_r) $sold2user=mysqli_fetch_array($sold2user_r);
-		  }
+		 $sold2user_q = 'SELECT * FROM user WHERE id='.$bidding['from_id'];
+		 $sold2user_r=mysqli_query($connection,$sold2user_q) or die(mysqli_error($connection));
+		 if($sold2user_r) $sold2user=mysqli_fetch_array($sold2user_r);
+		 }
 
-		  if($bidding_finalized) {
-		      echo '<div class="add-box">
-	  <p>Sold to <a href="/user/'.$sold2user['username'].'">@'.$sold2user['username'].'</a> for '.$bidding['raw_amount'].' fxStars</p>
-	  </div>';
-		  } else {
+		 if($bidding_finalized) {
+		 echo '<div class="add-box">
+		 <p>Sold to <a href="/user/'.$sold2user['username'].'">@'.$sold2user['username'].'</a> for '.$bidding['raw_amount'].' fxStars</p>
+		 </div>';
+		 } else {
 
 
-		      echo '<div>Make an offer: <p>Highest offer: <span id="highest">'.$cost.'</span> fxStars</p>
-	       <form id="bidForm">
+		 echo '<div>Make an offer: <p>Highest offer: <span id="highest">'.$cost.'</span> fxStars</p>
+		 <form id="bidForm">
 	         <input type="number" name="amount" class="num-input" id="offer-input" placeholder="Your offer" min="1" required>
 		 <p>Total cost: <span id="totalOfferCost">0</span> fxStars</p>
 		 <input type="hidden" name="from_id" value="'.$get_user_id.'">
@@ -866,35 +866,35 @@ if($course_negotiable) {
 		 
 		 
 	         <input type="submit" class="submit-btn" value="Make Offer">
-	       </form>
-              </div>';
-		  }
-	      } else {*/
-		  
-		  echo '<div class="add-box blue-button"  id="purchbutt">Enroll</div>';
+		 </form>
+		 </div>';
+		 }
+		 } else {*/
+	      
+	      echo '<div class="add-box blue-button"  id="purchbutt">Enroll</div>';
 
-		  if($course_negotiable) {
-		      $check_prev_bargains_q = "SELECT * FROM bargains WHERE course_id = $course_id AND student_id = $get_user_id";
-		      $check_prev_bargains_r = mysqli_query($fxinstructor_connection, $check_prev_bargains_q);
-		      $check_prev_bargains = 0;
-		      if($check_prev_bargains_r) {
-			  $check_prev_bargains = mysqli_num_rows($check_prev_bargains_r);
-			  if($check_prev_bargains > 0) {
-			      $check_prev_bargains_f = mysqli_fetch_array($check_prev_bargains_r);
-			  }
+	      if($course_negotiable) {
+		  $check_prev_bargains_q = "SELECT * FROM bargains WHERE course_id = $course_id AND student_id = $get_user_id";
+		  $check_prev_bargains_r = mysqli_query($fxinstructor_connection, $check_prev_bargains_q);
+		  $check_prev_bargains = 0;
+		  if($check_prev_bargains_r) {
+		      $check_prev_bargains = mysqli_num_rows($check_prev_bargains_r);
+		      if($check_prev_bargains > 0) {
+			  $check_prev_bargains_f = mysqli_fetch_array($check_prev_bargains_r);
 		      }
-		      echo '<div class="add-box info-box">';
-		      echo '<p>If you cannot pay this course in full, you can request to enroll for a reasonable cost. The instructor may or may not approve your suggestion, in which case your fxStars will be returned.</p>';
-		      if($check_prev_bargains == 0) {
-			  echo '<input type="number" class="num-input" name="myBargain" min="0" max="'.($cost-1).'" placeholder="fxStars" id="myBargainId">';
-			  echo '<button class="submit-btn" id="applyBargain">Apply</button>';
-		      } else {
-			  echo '<input type="number" class="num-input" name="myBargain" min="0" max="'.($cost-1).'" placeholder="fxStars" value="'.$check_prev_bargains_f['fxstars'].'" id="myBargainId" disabled>';
-			  echo '<button class="submit-btn" id="withdrawBargain" bargainId="'.$check_prev_bargains_f['id'].'">Withdraw</button>';
-		      }
-		      echo '</div>';
 		  }
-		  
+		  echo '<div class="add-box info-box">';
+		  echo '<p>If you cannot pay this course in full, you can request to enroll for a reasonable cost. The instructor may or may not approve your suggestion, in which case your fxStars will be returned.</p>';
+		  if($check_prev_bargains == 0) {
+		      echo '<input type="number" class="num-input" name="myBargain" min="0" max="'.($cost-1).'" placeholder="fxStars" id="myBargainId">';
+		      echo '<button class="submit-btn" id="applyBargain">Apply</button>';
+		  } else {
+		      echo '<input type="number" class="num-input" name="myBargain" min="0" max="'.($cost-1).'" placeholder="fxStars" value="'.$check_prev_bargains_f['fxstars'].'" id="myBargainId" disabled>';
+		      echo '<button class="submit-btn" id="withdrawBargain" bargainId="'.$check_prev_bargains_f['id'].'">Withdraw</button>';
+		  }
+		  echo '</div>';
+	      }
+	      
 	      //}
 	      echo '</div>';
 	      //echo '</div>';
@@ -906,83 +906,96 @@ if($course_negotiable) {
 	  echo '<div class="sessions">';
 	  ?>
 
-<div class="tabs">
-<div class="tab-student active-tab" id="sessions-tab"><div>Sessions(<?php echo $class_num ?>)</div></div>
-<div class="tab-student" id="students-tab"><div>Students(<?php echo $coursecounts ?>)</div></div>
-<?php if($course_negotiable && $user_type == 'instructor') { ?>
-    <div class="tab-student" id="bargains-tab"><div id="bargains-count">Bargains(<?php echo $bargain_count ?>)</div></div>
-<?php } ?>
-</div>
+			<div class="tabs">
+			    <div class="tab-student active-tab" id="sessions-tab"><div>Sessions(<?php echo $class_num ?>)</div></div>
+			    <div class="tab-student" id="students-tab"><div>Students(<?php echo $coursecounts ?>)</div></div>
+			    <?php if($course_negotiable && $user_type == 'instructor') { ?>
+				<div class="tab-student" id="bargains-tab"><div id="bargains-count">Bargains(<?php echo $bargain_count ?>)</div></div>
+			    <?php } ?>
+			</div>
 
 <?php 	  
-	  //echo '<div class="sess-title"><h3>Sessions ('.$class_num.')</h3></div>';
-	  echo '<div class="sess-list">';
+//echo '<div class="sess-title"><h3>Sessions ('.$class_num.')</h3></div>';
+echo '<div class="sess-list">';
 
-          if($class_result->num_rows>0) {
+if($class_result->num_rows>0) {
 
-	      // CHECK SESSIONS WHERE INSTRUCTOR IS LIVE
-	      $instructor_q = 'SELECT * FROM user WHERE id='.$get_course_teacher_id;
-	      $instructor_r = mysqli_query($connection,$instructor_q);
-	      $instructor = mysqli_fetch_array($instructor_r);
+    // CHECK SESSIONS WHERE INSTRUCTOR IS LIVE
+    $instructor_q = 'SELECT * FROM user WHERE id='.$get_course_teacher_id;
+    $instructor_r = mysqli_query($connection,$instructor_q);
+    $instructor = mysqli_fetch_array($instructor_r);
 
-	      $session_counter=0;
-	      
-              while($row=$class_result->fetch_assoc()) {
+    $session_counter=0;
+    
+    while($row=$class_result->fetch_assoc()) {
 
-		  $session_counter++;
+	$session_counter++;
 
-                  if($user_type=='instructor' || $user_type=='student') {
-                      $onclickurl="location.href='/userpgs/instructor/class?course_id=".$course_id."&class_id=".$row['id']."'";
-                  } else {
-                      // not purchased
-                      $onclickurl="unpurchased()";
-                  }
-		  echo '<div class="session">';
-		  
+        if($user_type=='instructor' || $user_type=='student') {
+            $onclickurl="location.href='/userpgs/instructor/class?course_id=".$course_id."&class_id=".$row['id']."'";
+        } else {
+            // not purchased
+            $onclickurl="unpurchased()";
+        }
+	echo '<div class="session">';
+	
 
 
 
-		  $thumb_path = '../class/thumbnails/';
-		  $thumb = glob($thumb_path.$row['id'].'.jpg');
+	$thumb_path = '../class/thumbnails/';
+	$thumb = glob($thumb_path.$row['id'].'.jpg');
 
-		  if(count($thumb)>0) {
-		      echo '<div class="session-prev" onclick="'.$onclickurl.'">
+	if(count($thumb)>0) {
+	    echo '<div class="session-prev" onclick="'.$onclickurl.'">
 				  <img src="'.$thumb_path.$row['id'].'.jpg" style="height:100%;width:100%;border-radius:10px;">
 				</div>';
-		      
-		  } else {
-		      echo ' <div class="session-prev" onclick="'.$onclickurl.'">
-			   <img src="/images/background/course.svg" style="opacity: 0.4;">
+	    
+	} elseif($row['video'] != null) {
+	    $link_text = $row['video'];
+	    if(strpos($link_text,'youtube.com') !== false) {			    
+		$video_id = get_string_between($link_text,'embed/','" frameborder');
+		echo '<div class="session-prev" onclick="'.$onclickurl.'"><img src="https://img.youtube.com/vi/'.$video_id.'/0.jpg"></div>';
+	    } elseif(strpos($link_text,'vimeo.com') !== false) {
+		$video_id = get_string_between($link_text,'video/','" frameborder');
+		$hash = unserialize(file_get_contents("http://vimeo.com/api/v2/video/$video_id.php"));
+		
+		echo '<div class="session-prev" onclick="'.$onclickurl.'"> <img src="'.$hash[0]['thumbnail_medium'].'"> </div>';
+	    } else { echo 'shit'; }
+	} else {
+	    echo ' <div class="session-prev" onclick="'.$onclickurl.'">
+			   <svg viewBox="0 0 70 50.8">
+				  	<path class="cls-1" d="M659.7,889.3l-1.8-1.1v1.4l-25.4,16a.6.6,0,0,1-.9-.4V895a1.6,1.6,0,0,1,.8-1.4l26.8-16.3a1.1,1.1,0,0,0,.6-1.1h0a1.2,1.2,0,0,0-.7-1l-37.2-18a5.4,5.4,0,0,0-4.8.1l-25.8,13.6a2.2,2.2,0,0,0-1.2,2v12.9a1.1,1.1,0,0,0,.6,1.1L628.5,907a4.5,4.5,0,0,0,4.6-.2l26.6-16.3a.7.7,0,0,0,.4-.6h0A.9.9,0,0,0,659.7,889.3Zm-31,4.8-36.4-19.7a.7.7,0,0,1-.3-1h0a.8.8,0,0,1,1-.3l36.4,19.8a.6.6,0,0,1,.3.9h0A.6.6,0,0,1,628.7,894.1Z" transform="translate(-590.1 -856.7)"></path>
+				  </svg>
 			  </div>';
-		      
-		  }
+	    
+	}
 
-		  echo '<div class="session-desc" onclick="'.$onclickurl.'">';
+	echo '<div class="session-desc" onclick="'.$onclickurl.'">';
 
-		  if((time()-strtotime($row['dt'].' '.$row['theTime']) < 0)) {
-		      echo '<p><strong><span class="gray-bg">'.$session_counter.'</span> '.$row['title'].'</strong> [SCHEDULED]</p>';
-		      $liveExists=1;
-		      $liveSession=$row['id'];
-		  } elseif((time()-strtotime($instructor['lastseen']) < 15) && ($instructor['lsPage']=='live/#'.$row['id'])) {
-		      
-		      echo '<p><strong><span class="gray-bg">'.$session_counter.'</span> '.$row['title'].'</strong> <img src="/images/background/live6.png" style="width:32px" class="blink_me"></p>';
-		      $liveExists=1;
-		      $liveSession=$row['id'];
-		  } else {
-                      echo '<p><strong><span class="gray-bg">'.$session_counter.'</span> '.$row['title'].'</strong></p>'.$row['lastseen'];
-		  }
-                  if($row['body']=='') {
-                      $descrip='<span class="gray">(No description)</span>';
-                  } else {
-                      $descrip=preg_replace("/<br\W*?\/>/", " ", $row['body']);
-                  }
-                  echo '<p>';
-		  echo limited($descrip,70).'</p>';
-		  
-                  echo '</div>';
+	if((time()-strtotime($row['dt'].' '.$row['theTime']) < 0)) {
+	    echo '<p><strong><span class="gray-bg">'.$session_counter.'</span> '.$row['title'].'</strong> [SCHEDULED]</p>';
+	    $liveExists=1;
+	    $liveSession=$row['id'];
+	} elseif((time()-strtotime($instructor['lastseen']) < 15) && ($instructor['lsPage']=='live/#'.$row['id'])) {
+	    
+	    echo '<p><strong><span class="gray-bg">'.$session_counter.'</span> '.$row['title'].'</strong> <img src="/images/background/live6.png" style="width:32px" class="blink_me"></p>';
+	    $liveExists=1;
+	    $liveSession=$row['id'];
+	} else {
+            echo '<p><strong><span class="gray-bg">'.$session_counter.'</span> '.$row['title'].'</strong></p>'.$row['lastseen'];
+	}
+        if($row['body']=='') {
+            //$descrip='<span class="gray">(No description)</span>';
+        } else {
+            $descrip=preg_replace("/<br\W*?\/>/", " ", $row['body']);
+        }
+        echo '<p>';
+	echo limited($descrip,70).'</p>';
+	
+        echo '</div>';
 
-		  if($user_type=='instructor') {
-		      echo '<div class="session-mng" onclick="location.href=\'/userpgs/instructor/class/edit_class.php?course_id='.$course_id.'&class_id='.$row['id'].'\'"><svg viewBox="0 0 32 32">
+	if($user_type=='instructor') {
+	    echo '<div class="session-mng" onclick="location.href=\'/userpgs/instructor/class/edit_class.php?course_id='.$course_id.'&class_id='.$row['id'].'\'"><svg viewBox="0 0 32 32">
 				          <path d="M16,11.5A4.5,4.5,0,1,1,11.5,16,4.5,4.5,0,0,1,16,11.5m0-2A6.5,6.5,0,1,0,22.5,16,6.5,6.5,0,0,0,16,9.5Z"></path>
 					  <path d="M21.5,2h.3a.7.7,0,0,1,.4.6l.4,3.5A3.1,3.1,0,0,0,23.5,8l.5.5a3.1,3.1,0,0,0,1.8.9l3.5.4a.7.7,0,0,1,.6.4.8.8,0,0,
 					  1-.1.8l-2.2,2.8a2.6,2.6,0,0,0-.7,1.8.9.9,0,0,1,0,.8,2.6,2.6,0,0,0,.7,1.8L29.8,21a.8.8,0,0,1,.1.8.7.7,0,0,1-.6.4l-3.5.4a3.1,
@@ -996,35 +1009,35 @@ if($course_negotiable) {
 					  0,0,0,2.3-1.7h0a2.6,2.6,0,0,0-.4-2.7L29.1,17a1.4,1.4,0,0,1-.2-.6c.1-.1.1-.2.1-.4h0c0-.2,0-.3-.1-.4a1.4,1.4,0,0,1,.2-.6l2.3-2.8a2.6,2.6,0,0,0,.4-2.7h0a2.7,
 					  2.7,0,0,0-2.3-1.7L26,7.4l-.5-.2a2.3,2.3,0,0,0-.7-.7.8.8,0,0,1-.2-.5l-.4-3.5A2.7,2.7,0,0,0,22.5.2h0l-1-.2a2.7,2.7,0,0,0-1.7.6L17,2.9l-.5.2h-1L15,2.9,12.2.6A2.7,2.7,0,0,0,10.5,0Z"></path>
 			              </svg></div>';
-		  }
-		  
-		  
-		  echo '</div>';
-              }
-              $class_result->free();
-          } else {
-              echo '<p class="gray" style="text-align:center;">No sessions yet.</p>';
-          }
-	  ?>
-		    
-	  </div>
+	}
+	
+	
+	echo '</div>';
+    }
+    $class_result->free();
+} else {
+    echo '<p class="gray" style="text-align:center;">No sessions yet.</p>';
+}
+?>
+			
+		    </div>
 
 
-	  <div class="online-list" id="online-list" style="display:none">
-	      <?php
-	      if($stucourse_count > 0) {
-		  while($stud_i = $stucourse_result -> fetch_assoc()) {
-		      $student_user_q = 'SELECT * FROM user WHERE id = '.$stud_i['stu_id'];
-		      $student_user_r = mysqli_query($connection, $student_user_q);
-		      $student_user = mysqli_fetch_array($student_user_r);
+		    <div class="online-list" id="online-list" style="display:none">
+			<?php
+			if($stucourse_count > 0) {
+			    while($stud_i = $stucourse_result -> fetch_assoc()) {
+				$student_user_q = 'SELECT * FROM user WHERE id = '.$stud_i['stu_id'];
+				$student_user_r = mysqli_query($connection, $student_user_q);
+				$student_user = mysqli_fetch_array($student_user_r);
 
-		      if($student_user['avatar'] != NULL) {
-			  $avatar_url = '/userpgs/avatars/'.$student_user['avatar'];
-		      } else {
-			  $avatar_url='/images/background/avatar.png';
-		      }
+				if($student_user['avatar'] != NULL) {
+				    $avatar_url = '/userpgs/avatars/'.$student_user['avatar'];
+				} else {
+				    $avatar_url='/images/background/avatar.png';
+				}
 
-		      echo '
+				echo '
 		      <div class="user" onclick="window.location.href = \'/user/'.$student_user['username'].'\';">
                       <div class="user-img avatar" style="background-image:url(\''.$avatar_url.'\');"></div>
     	              <div class="user-name">
@@ -1033,33 +1046,33 @@ if($course_negotiable) {
       		      
 		      </div>
 		      </div>
-		      ';
-		  }
-		  $stucourse_result->free();
-	      } else {
-		  echo '<p class="gray" style="text-align:center;">No students yet.</p>';
-	      }
-	      ?>
-	  </div>
+			';
+			    }
+			    $stucourse_result->free();
+			} else {
+			    echo '<p class="gray" style="text-align:center;">No students yet.</p>';
+			}
+			?>
+		    </div>
 
-	  <?php
-	  if($course_negotiable && $user_type == 'instructor') {
-	      echo '<div class="online-list" id="bargains">';
-	      if($bargain_count > 0) {
-		  while($bargain = $bargain_r -> fetch_assoc()) {
-		      $bargainer_q = 'SELECT * FROM user WHERE id = '.$bargain['student_id'];
-		      $bargainer_r = mysqli_query($connection, $bargainer_q);
-		      $bargainer = mysqli_fetch_array($bargainer_r);
+		    <?php
+		    if($course_negotiable && $user_type == 'instructor') {
+			echo '<div class="online-list" id="bargains">';
+			if($bargain_count > 0) {
+			    while($bargain = $bargain_r -> fetch_assoc()) {
+				$bargainer_q = 'SELECT * FROM user WHERE id = '.$bargain['student_id'];
+				$bargainer_r = mysqli_query($connection, $bargainer_q);
+				$bargainer = mysqli_fetch_array($bargainer_r);
 
-		      if($bargainer['avatar'] != NULL) {
-			  $avatar_url = '/userpgs/avatars/'.$bargainer['avatar'];
-		      } else {
-			  $avatar_url='/images/background/avatar.png';
-		      }
+				if($bargainer['avatar'] != NULL) {
+				    $avatar_url = '/userpgs/avatars/'.$bargainer['avatar'];
+				} else {
+				    $avatar_url='/images/background/avatar.png';
+				}
 
-		      echo '<div style="display:flex; justify-content: space-around; width:100%;flex-flow: row nowrap; align-items:center;border-bottom:1px solid #00000020;" id="bargain'.$bargain['id'].'">';
-		      
-		      echo '
+				echo '<div style="display:flex; justify-content: space-around; width:100%;flex-flow: row nowrap; align-items:center;border-bottom:1px solid #00000020;" id="bargain'.$bargain['id'].'">';
+				
+				echo '
 		      <div class="user" onclick="window.location.href = \'/user/'.$bargainer['username'].'\';" style="width:25%">
                       <div class="user-img avatar" style="background-image:url(\''.$avatar_url.'\');"></div>
     	              <div class="user-name" >
@@ -1070,576 +1083,582 @@ if($course_negotiable) {
 		      </div>
 		      ';
 
-		      echo '<p style="font-weight:bold">'.$bargain['fxstars'].' fxStars</p>';
-		      echo '<button class="submit-btn accept-bargain" style="background: #86fab3;" bargainId="'.$bargain['id'].'" id="accept-bargain" studentId="'.$bargain['student_id'].'">Accept</button>';
-		      echo '<button class="submit-btn reject-bargain" style="background: #faa386;" bargainId="'.$bargain['id'].'" id="reject-bargain" studentId="'.$bargain['student_id'].'">Decline</button>';
+				echo '<p style="font-weight:bold">'.$bargain['fxstars'].' fxStars</p>';
+				echo '<button class="submit-btn accept-bargain" style="background: #86fab3;" bargainId="'.$bargain['id'].'" id="accept-bargain" studentId="'.$bargain['student_id'].'">Accept</button>';
+				echo '<button class="submit-btn reject-bargain" style="background: #faa386;" bargainId="'.$bargain['id'].'" id="reject-bargain" studentId="'.$bargain['student_id'].'">Decline</button>';
 
-		      echo '</div>';
-		  }
-	      } else {
-		  echo '<p class="gray" style="text-align:center;">No bargains yet.</p>';
-	      }
-	      echo '</div>';
-	  }
-	  ?>
-
-
-
-	  
-		    </div>
-		</div> 
-		
-	    </div>
-
-
-	</div>
-	
-
-	<div class="footbar blur"></div>
-	<script src="/js/footbar.js"></script><script src="/js/notif_msg.js" id="notmsg" nmuid="<?php echo $get_user_id?>"></script>
+				echo '</div>';
+			    }
+			} else {
+			    echo '<p class="gray" style="text-align:center;">No bargains yet.</p>';
+			}
+			echo '</div>';
+		    }
+		    ?>
 
 
 
-	<!-- SCRIPTS -->
-	<script>
-	 $('#page-header').html('fxUniversity');
-	 $('#page-header').attr('href','/userpgs/fxuniversity');
-	</script>
-
-	<script>
-	 $('#students-tab').click(function() {
-	     $('#sessions-tab').removeClass('active-tab');
-	     $('#bargains-tab').removeClass('active-tab');
-	     $('#students-tab').addClass('active-tab');
-
-	     $('#bargains').hide();
-	     $('.sess-list').hide();
-	     $('#online-list').show();
-	 });
-	 $('#sessions-tab').click(function() {	     
-	     $('#students-tab').removeClass('active-tab');
-	     $('#bargains-tab').removeClass('active-tab');
-	     $('#sessions-tab').addClass('active-tab');
-
-	     $('#online-list').hide();
-	     $('#bargains').hide();
-	     $('.sess-list').show();
-	 });
-	 $('#bargains-tab').click(function() {
-	     $('#sessions-tab').removeClass('active-tab');
-	     $('#students-tab').removeClass('active-tab');
-	     $('#bargains-tab').addClass('active-tab');
-	     
-	     $('.sess-list').hide();
-	     $('#online-list').hide();
-	     $('#bargains').show();
-	 });
-	</script>
-	
-	<!-- fxUniversity sidebar active -->
-	<script>
-	 $('.fxuniversity-sidebar').attr('id','sidebar-active');
-	</script>
-
-	<script>
-	 if(screen.width < 629) {
-	     var vhWidth = $('.video-holder').width();
-	     $('.video-holder').height(vhWidth/1.78);
-	 }
-	</script>
-
-	<script>
-	 /*
-	 $('#bidForm').submit(function(event) {
-	     event.preventDefault();
-
-	     jQuery.ajax({
-		 url:'/php/course_bid.php',
-		 type:'POST',
-		 data:$(this).serialize(),
-		 success: function(response) {
-		     //console.log(response);
-		     if(response=='low') {
-			 alert('Your offer must be higher than the highest bid.');
-		     } else if(response=='initlow') {
-			 alert('Your offer must be higher than the reserve declared by the instructor.');
-		     } else if(response=='insuff') {
-			 alert('You have insufficient fxStars.');
-		     } else if(response=='assigned') {
-			 alert('Your offer is assigned.');
-		     } else if(response=='initassigned') {
-			 alert('Your offer is assigned as the first bid.');
-		     }
-		 }
-	     });
-	 });*/
-	</script>
-
-	<script>
-	 /*
-	 $(document).ready(function() {
-	     setInterval(function() {
-		 jQuery.ajax({
-		     type:'POST',
-		     url:'/php/get_hi_bid.php',
-		     data:{courseId:<?php echo $course_id?>},
-		     success:function(response) {
-			 if(response=='no_offer') {
-			     $('#highest').text('<?php echo $cost?>');
-			 } else {
-			     $('#highest').text(response);
-			 }
-		     }
-		 });
-	     }, 2000);
-	 });*/
-	</script>
-
-	<script>
-	 /*
-	 $(document).ready(function() {
-	     setInterval(function() {
-		 jQuery.ajax({
-		     type:'POST',
-		     url:'/php/get_hi_bid.php',
-		     data:{courseId:<?php echo $course_id?>},
-		     success:function(response) {
-			 if(response=='no_offer') {
-			     $('#highest-ins').text('None');
-			 } else {
-			     $('#highest-ins').text(response+' fxStars');
-			 }
-		     }
-		 });
-	     }, 2000);
-	 });*/
-	</script>
-
-	<script>
-	 $('#offer-input').each(function() {
-
-	     var elem=$(this);
-	     elem.data('oldVal', elem.val());
-	     elem.bind('propertychange change click keyup input paste', function(event) {
-		 if(elem.data('oldVal')!=elem.val()) {
-		     elem.data('oldVal', elem.val());
-		     
-		     $('#totalOfferCost').html(Math.ceil(elem.val()*0.1)+parseInt(elem.val()));
-
-		 }
-	     });
-	 });
-	 $('#offer-input').keydown(function (e) {
-	     if (e.shiftKey || e.ctrlKey || e.altKey) {
-		 e.preventDefault();
-	     } else {
-		 var key = e.keyCode;
-		 if (!((key == 8) || (key == 46) || (key >= 35 && key <= 40) || (key >= 48 && key <= 57)      || (key >= 96 && key <= 105))) {
-		     e.preventDefault();
-		 }
-	     }
-	 });
-	</script>
-
-	<script>
-	 /*
-	 $('#acceptBid').click(function() {
-	     if(confirm("Confirm accepting the highest bid.")) {
-		 
-		 jQuery.ajax({
-		     url:'/php/accept_bid.php',
-		     type:'POST',
-		     data:{course_id:<?php echo $course_id?>},
-		     success:function(response) {
-			 if(response=='transferred') {
-			     alert('Course is sold.');
-			     window.location.reload();
-			 } else if(response=='nooffer') {
-			     alert('No offer has been made yet.');
-			 } else {
-			     alert('Failed to finalize the deal. Please try again.');
-			 }
-		     }
-		 });
-
-	     }
-	     
-	 });*/
-	</script>
-
-
-	<script>
-	 $(document).ready(function() {
-	     $('#examId').click(function(e) {
-		 if('<?php echo $user_type?>'=='student') {
-		     jQuery.ajax({
-			 url:'/php/exam_exists.php',
-			 type:'POST',
-			 data:{courseId:<?php echo $course_id?>},
-			 dataType:'json',
-			 success: function(response) {
-			     var wanted_num = response[0];
-			     var actual_num = response[1];
-
-			     if(wanted_num==null) {		  
-				 alert('Instructor has not added any questions yet.');
-			     } else {		  
-				 if(actual_num >= wanted_num) {
-				     jQuery.ajax({
-					 url:'/php/exam_date.php',
-					 type:'POST',
-					 data:{last_date:'<?php echo $stucourse_fetch["last_exam"]?>'},
-					 success: function(report) {
-					     console.log(report);
-					     if(report>=7) {
-						 if(confirm('By starting the quiz for this course you will not be able to retake it for 7 days.')) {
-						     window.location.href="/userpgs/student/exam?courseId=<?php echo $course_id?>";
-						 }
-					     } else {
-						 var wait_days = 7-report;
-               					 alert('You have taken the quiz '+report+' days ago. You have to wait '+wait_days+' days to be able to retake it.');
-					     }
-					 }		    
-				     });
-				 } else {
-				     alert('Instructor has not added enough questions yet.');
-				 }
-			     }
-			 }
-		     });
-		 } else if('<?php echo $user_type?>'=='neither') {
-		     alert('You need to purchase the course first.');
-		 }
-	     });
-	 });
-
-
-	 $(document).ready(function() {
-	     var testExists = '<?php echo $test_exists?>';
-	     $('#manageTestId').click(function() {
-		 //console.log(testExists);
-		 if(testExists != '') {
-		     window.location.href='/userpgs/instructor/exam/mng_question?courseId=<?php echo $course_id?>';
-		 } else {
-		     window.location.href='/userpgs/instructor/exam/new_question?courseId=<?php echo $course_id?>';
-		 }
-	     });  
-	 });
-	</script>
-
-
-
-	<!-- COURSE PURCHASE -->
-	<script>
-         $(document).ready(function() {
-             var courseId=<?php echo $course_id?>;
-             var stuId=<?php echo $get_user_id?>;
-	     var totalCost = <?php echo $cost?>;
-
-	     
-             $('#purchbutt').click(function(e) {
-		 if(confirm('Confirm spending '+totalCost+' fxStars to purchase this course.')) {
-		     
-                     jQuery.ajax({
-                         type:'POST',
-                         url:'/wallet/php/purchase.php',
-                         data: {item:'course', course_id:courseId, stu_id:stuId},
-			 //dataType: 'json',
-                         success: function(response) {
-			     console.log(response);
-			    
-                             if(response=='success') {
-                                 alert('Course purchased successfully.');
-                                 window.location.reload();
-                             } else if(response=='insuff') {
-				 alert('Insufficient fxStars to purchase this course.');
-			     } else {
-				 alert('Failed to purchase the course. Please try again.');
-			     }
-                         }
-                     });
-                 }   
-             });
-	     
-         });
-	</script>
-
-	<!-- LC -->
-	<script>
-	 $('#live-add-box').on('click',function() {
-	     $('.add-box-con').hide();
-	     $('#schedule-div').show();
-	     $(this).hide();
-	 });
-	 $('#schedule-back').click(function() {
-	     $('.add-box-con').show();
-	     $('#schedule-div').hide();
-	     $('#live-add-box').show();
-	 });
-	 
-	 $('#schedule-form').submit(function(event) {
-	     event.preventDefault();
-	     jQuery.ajax({
-		 url:'/php/set_live_from_course.php',
-		 data:$(this).serialize(),
-		 type:'POST',
-		 success: function(response) {
-		     if(response==0) {
-			 alert('Failed to create a live session. Please try again.');
-		     } else if(response=='in_the_past') {
-			 alert('Choose a date and time in the future.');
-		     } else {
-			 var theTimeVal = $('#theTimeId').val();
-			 var theDateVal = $('#theDateId').val();
-
-			 console.log(theTimeVal+theDateVal);
-
-			 $.ajax({
-			     url: '/php/set_bulletin.php',
-			     type: 'POST',
-			     data: {'bulletin-body': 'Live classroom scheduled for <b>'+ theDateVal +'</b> at <b>'+ theTimeVal +' (UTC)</b>',
-				    'course-id': '<?php echo $course_id?>',
-				    'teacher-id': '<?php echo $get_course_teacher_id?>',
-				    'course-header': '<?php echo $header?>' },
-			     success: function(bulletinResponse) {
-				 console.log(bulletinResponse);
-
-				 window.location.href = '/userpgs/instructor/class/live/?course_id=<?php echo $course_id ?>&class_id='+response;
-			     }
-			 });
-			 
-			 
-		     }
-		 }
-	     });
-	     
-	 });
-
-	 $('#live-now').click(function() {
-	     event.preventDefault();
-	     jQuery.ajax({
-		 url:'/php/set_live_from_course.php',
-		 data:{courseId: '<?php echo $course_id?>'},
-		 type:'POST',
-		 success: function(response) {
-		     if(response==0) {
-			 alert('Failed to create a live session. Please try again.');
-		     } else {
-			 window.location.href = '/userpgs/instructor/class/live/?course_id=<?php echo $course_id ?>&class_id='+response;
-		     }
-		 }
-	     });
-	     
-	 });
-
-	 <?php if($liveExists) { ?>
-	 
-	     $('#student-live-add-box').show();
-	     $('#student-live-add-box').click(function() {
-		 var liveSession=<?php echo $liveSession ?>;
-		 window.location.href='/userpgs/instructor/class/live/?course_id=<?php echo $course_id ?>&class_id='+liveSession;
-	     });
-	 <?php } ?>
-	     
-	</script>
-
-	<!-- LIKES/DISLIKE COURSE -->
-	<script>
-	 var userType='<?php echo $user_type?>';
-
-	 $('#likeBtn').click(function() {
-	     if(userType=='student' || userType=='instructor') {
-		 jQuery.ajax({
-		     url:'/php/set_course_like.php',
-		     type:'POST',
-		     data:{userId:'<?php echo $get_user_id?>', courseId:'<?php echo $course_id?>'},
-		     success: function(response) {
-			 var response = $.trim(response);
-			 var likeNum = parseInt($('#like-num').text());
-			 var dislikeNum = parseInt($('#dislike-num').text());
-			 console.log(likeNum);
-			 console.log(response);
-			 if(response=='liked') {
-			     var newLikeNum = likeNum+1;
-			     $('#like-num').text(newLikeNum);
-			     $('#like-word').html('<span class="blue">▲</span>');
-			 } else if(response=='unliked') {
-			     var newLikeNum = likeNum-1;
-			     $('#like-num').text(newLikeNum);
-			     $('#like-word').html('▲');
-			 } else if(response=='undisliked and liked') {
-			     var newLikeNum = likeNum+1;
-			     $('#like-num').text(newLikeNum);
-			     $('#like-word').html('<span class="blue">▲</span>');
-			     var newDislikeNum = dislikeNum-1;
-			     $('#dislike-num').text(newDislikeNum);
-			     $('#dislike-word').html('▼');
-			 }
-		     }
-		 });
-	     } else {
-		 alert('You need to be a student of this course to vote.');
-	     }
-	 });
-	</script>
-	<script>
-	 var userType='<?php echo $user_type?>';
-	 $('#dislikeBtn').click(function() {
-	     if(userType=='student' || userType=='instructor') {
-		 jQuery.ajax({
-		     url:'/php/set_course_dislike.php',
-		     type:'POST',
-		     data:{userId:'<?php echo $get_user_id?>', courseId:'<?php echo $course_id?>'},
-		     success: function(response) {
-			 var response = $.trim(response);
-			 var dislikeNum = parseInt($('#dislike-num').text());
-			 var likeNum = parseInt($('#like-num').text());
-			 console.log(dislikeNum);
-			 console.log(response);
-			 if(response=='disliked') {
-			     var newDislikeNum = dislikeNum+1;
-			     $('#dislike-num').text(newDislikeNum);
-			     $('#dislike-word').html('<span class="blue">▼</span>');
-			 } else if(response=='undisliked') {
-			     var newDislikeNum = dislikeNum-1;
-			     $('#dislike-num').text(newDislikeNum);
-			     $('#dislike-word').html('▼');
-			 } else if(response=='unliked and disliked') {
-			     var newDislikeNum = dislikeNum+1;
-			     $('#dislike-num').text(newDislikeNum);
-			     $('#dislike-word').html('<span class="blue">▼</span>');
-			     var newLikeNum = likeNum-1;
-			     $('#like-num').text(newLikeNum);
-			     $('#like-word').html('▲');
-			 }
-		     }
-		 });
-	     } else {
-		 alert('You need to be a student of this course to vote.');
-	     }
-	 });
-	</script>
-
-	<script>
-	 var lastExam = "<?php echo $stucourse_fetch['last_exam']; ?>";
-
-	 $('#addSub').click(function() {
-	     if(lastExam=='') {
-		 alert('You need to take and pass the Certification Exam first.');
-	     } else if(lastExam < 5) {
-		 alert('You need to pass the Certification Exam by scoring more than 5.');
-	     } else {
-		 window.location.href = '/userpgs/instructor/course_management/new_course.php?sub=<?php echo $course_id ?>';
-	     }
-	 });
-	</script>
-
-	<!-- BARGAINING -->
-	<?php if($user_type=='instructor') { ?>
-	<script>
-	 $('.accept-bargain').click(function() {
-	     var bargain_id = $(this).attr('bargainId');
-	     var student_id = $(this).attr('studentId');
-	     var course_id = '<?php echo $course_id ?>';
-	     var bargains_count = '<?php echo $bargain_count ?>';
-	     
-	     $.ajax({
-		 url: '/wallet/php/accept_course_bargain.php',
-		 type: 'POST',
-		 data: {courseId: course_id, bargainId: bargain_id, stuId: student_id, item: 'course'},
-		 success: function(response) {
-		     console.log(response);
-		     if(response == 1) {
-			 var newBargainsCount = bargains_count - 1;
-			 $('#bargain'+bargain_id).remove();
-			 $('#bargains-count').html('Bargains('+newBargainsCount+')');
-		     } else {
-			 alert('Failed to accept. Please try again.');
-		     }
-		 }
-	     });
-	 });
-	</script>
-	<script>
-	 $('.reject-bargain').click(function() {
-	     var bargain_id = $(this).attr('bargainId');
-	     var student_id = $(this).attr('studentId');
-	     var course_id = '<?php echo $course_id ?>';
-	     var bargains_count = '<?php echo $bargain_count ?>';
-	     
-	     $.ajax({
-		 url: '/wallet/php/reject_course_bargain.php',
-		 type: 'POST',
-		 data: {courseId: course_id, bargainId: bargain_id, stuId: student_id, item: 'course'},
-		 success: function(response) {
-		     console.log(response);
-		     if(response == 1) {
-			 var newBargainsCount = bargains_count - 1;
-			 $('#bargain'+bargain_id).remove();
-			 $('#bargains-count').html('Bargains('+newBargainsCount+')');
-		     } else {
-			 alert('Failed to accept. Please try again.');
-		     }
-		 }
-	     });
-	 });
-	</script>
-	<?php } else { ?>
-
-	    <script>
-	     $('#applyBargain').click(function() {
-		 var myBargain = $('#myBargainId').val();
-		 var courseId = '<?php echo $course_id ?>';
-		 var studentId = '<?php echo $get_user_id ?>';
-		 var realCost = '<?php echo $cost ?>';
-
-		 $.ajax({
-		     url: '/php/set_bargain.php',
-		     type: 'POST',
-		     data: {my_bargain: myBargain, course_id: courseId, student_id: studentId, real_cost: realCost},
-		     success: function(response) {
-			 if(response == 1) {
-			     alert('Your request is sent. We will let you know when the instructor accepts or rejects your offer.');
-			     window.location.reload();
-			 } else if(response == 'insuff') {
-			     alert('You have insufficient fxStars.');
-			 } else if(response == 'more_than_real_cost') {
-			     alert('Your request must be less than the original cost of the course.');
-			 } else if(response == 'invalid') {
-			     alert('Please enter a valid number of fxStars.');
-			 } else {
-			     alert('Failed to apply the request. Please try again.');
-			 }
-		     }
-		 });
-	     });
-	    </script>
-
-	    <script>
-	     $('#withdrawBargain').click(function() {
-		 var bargain_id = $(this).attr('bargainId');
-		 var student_id = '<?php echo $get_user_id ?>';
-		 var course_id = '<?php echo $course_id ?>';
-		 var user_type = '<?php echo $user_type ?>';
-		     
-		 $.ajax({
-		     url: '/wallet/php/reject_course_bargain.php',
-		     type: 'POST',
-		     data: {courseId: course_id, bargainId: bargain_id, stuId: student_id, item: 'course', user_type: userType},
-		     success: function(response) {
-			 console.log(response);
-			 if(response == 1) {
-			     alert('Request is widthdrawn and your fxStars are returned.');
-			     window.location.reload();
-			 } else {
-			     alert('Failed to withdraw the request. Please try again.');
-			 }
-		     }
-		 });
-	     });
-	    </script>
-
+		    
+		</div>
+	    </div> 
 	    
-	<?php } ?>
+	</div>
+
+
+	 </div>
+	 
+
+	 <div class="footbar blur"></div>
+	 <script src="/js/footbar.js"></script><script src="/js/notif_msg.js" id="notmsg" nmuid="<?php echo $get_user_id?>"></script>
+
+
+
+	 <!-- SCRIPTS -->
+	 <script>
+	  $('#page-header').html('fxUniversity');
+	  $('#page-header').attr('href','/userpgs/fxuniversity');
+	 </script>
+
+	 <script>
+	  $('#students-tab').click(function() {
+	      $('#sessions-tab').removeClass('active-tab');
+	      $('#bargains-tab').removeClass('active-tab');
+	      $('#students-tab').addClass('active-tab');
+
+	      $('#bargains').hide();
+	      $('.sess-list').hide();
+	      $('#online-list').show();
+	  });
+	  $('#sessions-tab').click(function() {	     
+	      $('#students-tab').removeClass('active-tab');
+	      $('#bargains-tab').removeClass('active-tab');
+	      $('#sessions-tab').addClass('active-tab');
+
+	      $('#online-list').hide();
+	      $('#bargains').hide();
+	      $('.sess-list').show();
+	  });
+	  $('#bargains-tab').click(function() {
+	      $('#sessions-tab').removeClass('active-tab');
+	      $('#students-tab').removeClass('active-tab');
+	      $('#bargains-tab').addClass('active-tab');
+	      
+	      $('.sess-list').hide();
+	      $('#online-list').hide();
+	      $('#bargains').show();
+	  });
+	 </script>
+	 
+	 <!-- fxUniversity sidebar active -->
+	 <script>
+	  $('.fxuniversity-sidebar').attr('id','sidebar-active');
+	 </script>
+
+	 <script>
+	  if(screen.width < 629) {
+	      var vhWidth = $('.video-holder').width();
+	      $('.video-holder').height(vhWidth/1.78);
+	  }
+	 </script>
+
+	 <script>
+	  /*
+	     $('#bidForm').submit(function(event) {
+	     event.preventDefault();
+
+	     jQuery.ajax({
+	     url:'/php/course_bid.php',
+	     type:'POST',
+	     data:$(this).serialize(),
+	     success: function(response) {
+	     //console.log(response);
+	     if(response=='low') {
+	     alert('Your offer must be higher than the highest bid.');
+	     } else if(response=='initlow') {
+	     alert('Your offer must be higher than the reserve declared by the instructor.');
+	     } else if(response=='insuff') {
+	     alert('You have insufficient fxStars.');
+	     } else if(response=='assigned') {
+	     alert('Your offer is assigned.');
+	     } else if(response=='initassigned') {
+	     alert('Your offer is assigned as the first bid.');
+	     }
+	     }
+	     });
+	     });*/
+	 </script>
+
+	 <script>
+	  /*
+	     $(document).ready(function() {
+	     setInterval(function() {
+	     jQuery.ajax({
+	     type:'POST',
+	     url:'/php/get_hi_bid.php',
+	     data:{courseId:<?php echo $course_id?>},
+	     success:function(response) {
+	     if(response=='no_offer') {
+	     $('#highest').text('<?php echo $cost?>');
+	     } else {
+	     $('#highest').text(response);
+	     }
+	     }
+	     });
+	     }, 2000);
+	     });*/
+	 </script>
+
+	 <script>
+	  /*
+	     $(document).ready(function() {
+	     setInterval(function() {
+	     jQuery.ajax({
+	     type:'POST',
+	     url:'/php/get_hi_bid.php',
+	     data:{courseId:<?php echo $course_id?>},
+	     success:function(response) {
+	     if(response=='no_offer') {
+	     $('#highest-ins').text('None');
+	     } else {
+	     $('#highest-ins').text(response+' fxStars');
+	     }
+	     }
+	     });
+	     }, 2000);
+	     });*/
+	 </script>
+
+	 <script>
+	  $('#offer-input').each(function() {
+
+	      var elem=$(this);
+	      elem.data('oldVal', elem.val());
+	      elem.bind('propertychange change click keyup input paste', function(event) {
+		  if(elem.data('oldVal')!=elem.val()) {
+		      elem.data('oldVal', elem.val());
+		      
+		      $('#totalOfferCost').html(Math.ceil(elem.val()*0.1)+parseInt(elem.val()));
+
+		  }
+	      });
+	  });
+	  $('#offer-input').keydown(function (e) {
+	      if (e.shiftKey || e.ctrlKey || e.altKey) {
+		  e.preventDefault();
+	      } else {
+		  var key = e.keyCode;
+		  if (!((key == 8) || (key == 46) || (key >= 35 && key <= 40) || (key >= 48 && key <= 57)      || (key >= 96 && key <= 105))) {
+		      e.preventDefault();
+		  }
+	      }
+	  });
+	 </script>
+
+	 <script>
+	  /*
+	     $('#acceptBid').click(function() {
+	     if(confirm("Confirm accepting the highest bid.")) {
+	     
+	     jQuery.ajax({
+	     url:'/php/accept_bid.php',
+	     type:'POST',
+	     data:{course_id:<?php echo $course_id?>},
+	     success:function(response) {
+	     if(response=='transferred') {
+	     alert('Course is sold.');
+	     window.location.reload();
+	     } else if(response=='nooffer') {
+	     alert('No offer has been made yet.');
+	     } else {
+	     alert('Failed to finalize the deal. Please try again.');
+	     }
+	     }
+	     });
+
+	     }
+	     
+	     });*/
+	 </script>
+
+
+	 <script>
+	  $(document).ready(function() {
+	      $('#examId').click(function(e) {
+		  if('<?php echo $user_type?>'=='student') {
+		      jQuery.ajax({
+			  url:'/php/exam_exists.php',
+			  type:'POST',
+			  data:{courseId:<?php echo $course_id?>},
+			  dataType:'json',
+			  success: function(response) {
+			      var wanted_num = response[0];
+			      var actual_num = response[1];
+
+			      if(wanted_num==null) {		  
+				  alert('Instructor has not added any questions yet.');
+			      } else {		  
+				  if(actual_num >= wanted_num) {
+				      jQuery.ajax({
+					  url:'/php/exam_date.php',
+					  type:'POST',
+					  data:{last_date:'<?php echo $stucourse_fetch["last_exam"]?>'},
+					  success: function(report) {
+					      console.log(report);
+					      if(report>=7) {
+						  if(confirm('By starting the quiz for this course you will not be able to retake it for 7 days.')) {
+						      window.location.href="/userpgs/student/exam?courseId=<?php echo $course_id?>";
+						  }
+					      } else {
+						  var wait_days = 7-report;
+               					  alert('You have taken the quiz '+report+' days ago. You have to wait '+wait_days+' days to be able to retake it.');
+					      }
+					  }		    
+				      });
+				  } else {
+				      alert('Instructor has not added enough questions yet.');
+				  }
+			      }
+			  }
+		      });
+		  } else if('<?php echo $user_type?>'=='neither') {
+		      alert('You need to purchase the course first.');
+		  }
+	      });
+	  });
+
+
+	  $(document).ready(function() {
+	      var testExists = '<?php echo $test_exists?>';
+	      $('#manageTestId').click(function() {
+		  //console.log(testExists);
+		  if(testExists != '') {
+		      window.location.href='/userpgs/instructor/exam/mng_question?courseId=<?php echo $course_id?>';
+		  } else {
+		      window.location.href='/userpgs/instructor/exam/new_question?courseId=<?php echo $course_id?>';
+		  }
+	      });  
+	  });
+	 </script>
+
+
+
+	 <!-- COURSE PURCHASE -->
+	 <script>
+          $(document).ready(function() {
+              var courseId=<?php echo $course_id?>;
+              var stuId=<?php echo $get_user_id?>;
+	      var totalCost = <?php echo $cost?>;
+
+	      
+              $('#purchbutt').click(function(e) {
+		  if(confirm('Confirm spending '+totalCost+' fxStars to purchase this course.')) {
+		      
+                      jQuery.ajax({
+                          type:'POST',
+                          url:'/wallet/php/purchase.php',
+                          data: {item:'course', course_id:courseId, stu_id:stuId},
+			  //dataType: 'json',
+                          success: function(response) {
+			      console.log(response);
+			      
+                              if(response=='success') {
+                                  alert('Course purchased successfully.');
+                                  window.location.reload();
+                              } else if(response=='insuff') {
+				  alert('Insufficient fxStars to purchase this course.');
+			      } else {
+				  alert('Failed to purchase the course. Please try again.');
+			      }
+                          }
+                      });
+                  }   
+              });
+	      
+          });
+	 </script>
+
+	 <!-- LC -->
+	 <script>
+	  $('#live-add-box').on('click',function() {
+	      $('.add-box-con').hide();
+	      $('#schedule-div').show();
+	      $(this).hide();
+	  });
+	  $('#schedule-back').click(function() {
+	      $('.add-box-con').show();
+	      $('#schedule-div').hide();
+	      $('#live-add-box').show();
+	  });
+	  
+	  $('#schedule-form').submit(function(event) {
+	      event.preventDefault();
+	      jQuery.ajax({
+		  url:'/php/set_live_from_course.php',
+		  data:$(this).serialize(),
+		  type:'POST',
+		  success: function(response) {
+		      if(response==0) {
+			  alert('Failed to create a live session. Please try again.');
+		      } else if(response=='in_the_past') {
+			  alert('Choose a date and time in the future.');
+		      } else {
+			  var theTimeVal = $('#theTimeId').val();
+			  var theDateVal = $('#theDateId').val();
+
+			  console.log(theTimeVal+theDateVal);
+
+			  $.ajax({
+			      url: '/php/set_bulletin.php',
+			      type: 'POST',
+			      data: {'bulletin-body': 'Live classroom scheduled for <b>'+ theDateVal +'</b> at <b>'+ theTimeVal +' (UTC)</b>',
+				     'course-id': '<?php echo $course_id?>',
+				     'teacher-id': '<?php echo $get_course_teacher_id?>',
+				     'course-header': '<?php echo $header?>' },
+			      success: function(bulletinResponse) {
+				  console.log(bulletinResponse);
+
+				  window.location.href = '/userpgs/instructor/class/live/?course_id=<?php echo $course_id ?>&class_id='+response;
+			      }
+			  });
+			  
+			  
+		      }
+		  }
+	      });
+	      
+	  });
+
+	  $('#live-now').click(function() {
+	      event.preventDefault();
+	      jQuery.ajax({
+		  url:'/php/set_live_from_course.php',
+		  data:{courseId: '<?php echo $course_id?>'},
+		  type:'POST',
+		  success: function(response) {
+		      if(response==0) {
+			  alert('Failed to create a live session. Please try again.');
+		      } else {
+			  window.location.href = '/userpgs/instructor/class/live/?course_id=<?php echo $course_id ?>&class_id='+response;
+		      }
+		  }
+	      });
+	      
+	  });
+
+	  <?php if($liveExists) { ?>
+	  
+	  $('#student-live-add-box').show();
+	  $('#student-live-add-box').click(function() {
+	      var liveSession=<?php echo $liveSession ?>;
+	      window.location.href='/userpgs/instructor/class/live/?course_id=<?php echo $course_id ?>&class_id='+liveSession;
+	  });
+	  <?php } ?>
+	  
+	 </script>
+
+	 <!-- LIKES/DISLIKE COURSE -->
+	 <script>
+	  var userType='<?php echo $user_type?>';
+
+	  $('#likeBtn').click(function() {
+	      if(userType=='student' || userType=='instructor') {
+		  jQuery.ajax({
+		      url:'/php/set_course_like.php',
+		      type:'POST',
+		      data:{userId:'<?php echo $get_user_id?>', courseId:'<?php echo $course_id?>'},
+		      success: function(response) {
+			  var response = $.trim(response);
+			  var likeNum = parseInt($('#like-num').text());
+			  var dislikeNum = parseInt($('#dislike-num').text());
+			  console.log(likeNum);
+			  console.log(response);
+			  if(response=='liked') {
+			      var newLikeNum = likeNum+1;
+			      $('#like-num').text(newLikeNum);
+			      $('#like-word').html('<span class="blue">▲</span>');
+			  } else if(response=='unliked') {
+			      var newLikeNum = likeNum-1;
+			      $('#like-num').text(newLikeNum);
+			      $('#like-word').html('▲');
+			  } else if(response=='undisliked and liked') {
+			      var newLikeNum = likeNum+1;
+			      $('#like-num').text(newLikeNum);
+			      $('#like-word').html('<span class="blue">▲</span>');
+			      var newDislikeNum = dislikeNum-1;
+			      $('#dislike-num').text(newDislikeNum);
+			      $('#dislike-word').html('▼');
+			  }
+		      }
+		  });
+	      } else {
+		  alert('You need to be a student of this course to vote.');
+	      }
+	  });
+	 </script>
+	 <script>
+	  var userType='<?php echo $user_type?>';
+	  $('#dislikeBtn').click(function() {
+	      if(userType=='student' || userType=='instructor') {
+		  jQuery.ajax({
+		      url:'/php/set_course_dislike.php',
+		      type:'POST',
+		      data:{userId:'<?php echo $get_user_id?>', courseId:'<?php echo $course_id?>'},
+		      success: function(response) {
+			  var response = $.trim(response);
+			  var dislikeNum = parseInt($('#dislike-num').text());
+			  var likeNum = parseInt($('#like-num').text());
+			  console.log(dislikeNum);
+			  console.log(response);
+			  if(response=='disliked') {
+			      var newDislikeNum = dislikeNum+1;
+			      $('#dislike-num').text(newDislikeNum);
+			      $('#dislike-word').html('<span class="blue">▼</span>');
+			  } else if(response=='undisliked') {
+			      var newDislikeNum = dislikeNum-1;
+			      $('#dislike-num').text(newDislikeNum);
+			      $('#dislike-word').html('▼');
+			  } else if(response=='unliked and disliked') {
+			      var newDislikeNum = dislikeNum+1;
+			      $('#dislike-num').text(newDislikeNum);
+			      $('#dislike-word').html('<span class="blue">▼</span>');
+			      var newLikeNum = likeNum-1;
+			      $('#like-num').text(newLikeNum);
+			      $('#like-word').html('▲');
+			  }
+		      }
+		  });
+	      } else {
+		  alert('You need to be a student of this course to vote.');
+	      }
+	  });
+	 </script>
+
+	 <script>
+	  var lastExam = "<?php echo $stucourse_fetch['last_exam']; ?>";
+
+	  $('#addSub').click(function() {
+	      if(lastExam=='') {
+		  alert('You need to take and pass the Certification Exam first.');
+	      } else if(lastExam < 5) {
+		  alert('You need to pass the Certification Exam by scoring more than 5.');
+	      } else {
+		  window.location.href = '/userpgs/instructor/course_management/new_course.php?sub=<?php echo $course_id ?>';
+	      }
+	  });
+	 </script>
+
+	 <!-- BARGAINING -->
+	 <?php if($user_type=='instructor') { ?>
+	     <script>
+	      $('.accept-bargain').click(function() {
+		  var bargain_id = $(this).attr('bargainId');
+		  var student_id = $(this).attr('studentId');
+		  var course_id = '<?php echo $course_id ?>';
+		  var bargains_count = '<?php echo $bargain_count ?>';
+		  
+		  $.ajax({
+		      url: '/wallet/php/accept_course_bargain.php',
+		      type: 'POST',
+		      data: {courseId: course_id, bargainId: bargain_id, stuId: student_id, item: 'course'},
+		      success: function(response) {
+			  console.log(response);
+			  if(response == 1) {
+			      var newBargainsCount = bargains_count - 1;
+			      $('#bargain'+bargain_id).remove();
+			      $('#bargains-count').html('Bargains('+newBargainsCount+')');
+			  } else {
+			      alert('Failed to accept. Please try again.');
+			  }
+		      }
+		  });
+	      });
+	     </script>
+	     <script>
+	      $('.reject-bargain').click(function() {
+		  var bargain_id = $(this).attr('bargainId');
+		  var student_id = $(this).attr('studentId');
+		  var course_id = '<?php echo $course_id ?>';
+		  var bargains_count = '<?php echo $bargain_count ?>';
+		  
+		  $.ajax({
+		      url: '/wallet/php/reject_course_bargain.php',
+		      type: 'POST',
+		      data: {courseId: course_id, bargainId: bargain_id, stuId: student_id, item: 'course'},
+		      success: function(response) {
+			  console.log(response);
+			  if(response == 1) {
+			      var newBargainsCount = bargains_count - 1;
+			      $('#bargain'+bargain_id).remove();
+			      $('#bargains-count').html('Bargains('+newBargainsCount+')');
+			  } else {
+			      alert('Failed to accept. Please try again.');
+			  }
+		      }
+		  });
+	      });
+	     </script>
+	 <?php } else { ?>
+
+	     <script>
+	      $('#applyBargain').click(function() {
+		  var myBargain = $('#myBargainId').val();
+		  var courseId = '<?php echo $course_id ?>';
+		  var studentId = '<?php echo $get_user_id ?>';
+		  var realCost = '<?php echo $cost ?>';
+
+		  $.ajax({
+		      url: '/php/set_bargain.php',
+		      type: 'POST',
+		      data: {my_bargain: myBargain, course_id: courseId, student_id: studentId, real_cost: realCost},
+		      success: function(response) {
+			  if(response == 1) {
+			      alert('Your request is sent. We will let you know when the instructor accepts or rejects your offer.');
+			      window.location.reload();
+			  } else if(response == 'insuff') {
+			      alert('You have insufficient fxStars.');
+			  } else if(response == 'more_than_real_cost') {
+			      alert('Your request must be less than the original cost of the course.');
+			  } else if(response == 'invalid') {
+			      alert('Please enter a valid number of fxStars.');
+			  } else {
+			      alert('Failed to apply the request. Please try again.');
+			  }
+		      }
+		  });
+	      });
+	     </script>
+
+	     <script>
+	      $('#withdrawBargain').click(function() {
+		  var bargain_id = $(this).attr('bargainId');
+		  var student_id = '<?php echo $get_user_id ?>';
+		  var course_id = '<?php echo $course_id ?>';
+		  var user_type = '<?php echo $user_type ?>';
+		  
+		  $.ajax({
+		      url: '/wallet/php/reject_course_bargain.php',
+		      type: 'POST',
+		      data: {courseId: course_id, bargainId: bargain_id, stuId: student_id, item: 'course', user_type: userType},
+		      success: function(response) {
+			  console.log(response);
+			  if(response == 1) {
+			      alert('Request is widthdrawn and your fxStars are returned.');
+			      window.location.reload();
+			  } else {
+			      alert('Failed to withdraw the request. Please try again.');
+			  }
+		      }
+		  });
+	      });
+	     </script>
+
+	     
+	 <?php } ?>
+
+	 <script>
+	  function unpurchased() {
+	      alert('You must enroll to the course first.');
+	  }
+	 </script>
     </body>
 </html>

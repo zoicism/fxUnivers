@@ -70,11 +70,20 @@ if((time()-strtotime($class_fetch['dt'].' '.$class_fetch['theTime']) < 0)) {
 }
 
 /*
-require_once($_SERVER['DOCUMENT_ROOT'].'/php/conn/fxinstructor.php');
-$dual_live_q = "SELECT * FROM ins_live WHERE class_id=$class_id";
-$dual_live_r = mysqli_query($fxinstructor_connection, $dual_live_q);
-$dual_live = mysqli_num_rows($dual_live_r);
-*/
+   require_once($_SERVER['DOCUMENT_ROOT'].'/php/conn/fxinstructor.php');
+   $dual_live_q = "SELECT * FROM ins_live WHERE class_id=$class_id";
+   $dual_live_r = mysqli_query($fxinstructor_connection, $dual_live_q);
+   $dual_live = mysqli_num_rows($dual_live_r);
+ */
+
+function get_string_between($string, $start, $end){
+    $string = ' ' . $string;
+    $ini = strpos($string, $start);
+    if ($ini == 0) return '';
+    $ini += strlen($start);
+    $len = strpos($string, $end, $ini) - $ini;
+    return substr($string, $ini, $len);
+}
 
 ?>
 
@@ -304,9 +313,41 @@ echo '<div class="sess-list">';
 			  }
 			?>
 
-			  <div class="session-prev">
+			  <!--<div class="session-prev">
 			   <img src="/images/background/course.svg">
-			  </div>
+			  </div>-->
+			  <?php
+			  $thumb_path = './thumbnails/';
+			  $thumb = glob($thumb_path.$row['id'].'.jpg');
+
+			  if(count($thumb)>0) {
+			  echo '<div class="session-prev" onclick="'.$onclickurl.'">
+			      <img src="'.$thumb_path.$row['id'].'.jpg" style="height:100%;width:100%;border-radius:10px;">
+			  </div>';
+			  
+			  } elseif($row['video'] != null) {
+			  $link_text = $row['video'];
+			  if(strpos($link_text,'youtube.com') !== false) {			    
+			  $video_id = get_string_between($link_text,'embed/','" frameborder');
+			  echo '<div class="session-prev" onclick="'.$onclickurl.'"><img src="https://img.youtube.com/vi/'.$video_id.'/0.jpg"></div>';
+			  } elseif(strpos($link_text,'vimeo.com') !== false) {
+			  $video_id = get_string_between($link_text,'video/','" frameborder');
+			  $hash = unserialize(file_get_contents("http://vimeo.com/api/v2/video/$video_id.php"));
+			  
+			  echo '<div class="session-prev" onclick="'.$onclickurl.'"> <img src="'.$hash[0]['thumbnail_medium'].'"> </div>';
+			  } else { echo 'shit'; }
+			  } else {
+			  echo ' <div class="session-prev" onclick="'.$onclickurl.'">
+			      <svg viewBox="0 0 70 50.8">
+				  <path class="cls-1" d="M659.7,889.3l-1.8-1.1v1.4l-25.4,16a.6.6,0,0,1-.9-.4V895a1.6,1.6,0,0,1,.8-1.4l26.8-16.3a1.1,1.1,0,0,0,.6-1.1h0a1.2,1.2,0,0,0-.7-1l-37.2-18a5.4,5.4,0,0,0-4.8.1l-25.8,13.6a2.2,2.2,0,0,0-1.2,2v12.9a1.1,1.1,0,0,0,.6,1.1L628.5,907a4.5,4.5,0,0,0,4.6-.2l26.6-16.3a.7.7,0,0,0,.4-.6h0A.9.9,0,0,0,659.7,889.3Zm-31,4.8-36.4-19.7a.7.7,0,0,1-.3-1h0a.8.8,0,0,1,1-.3l36.4,19.8a.6.6,0,0,1,.3.9h0A.6.6,0,0,1,628.7,894.1Z" transform="translate(-590.1 -856.7)"></path>
+			      </svg>
+			  </div>';
+			  
+			  }
+			  ?>
+
+
+			  
 			  <div class="session-desc">
 
 			      <?php
@@ -321,7 +362,7 @@ echo '<div class="sess-list">';
 			      }
 			      
                               if($row['body']=='') {
-				  $descrip='<span class="gray">(No description)</span>';
+				  //$descrip='<span class="gray">(No description)</span>';
                               } else {
 				  $descrip=preg_replace("/<br\W*?\/>/", " ", $row['body']);
                               }
