@@ -985,7 +985,7 @@ if($class_result->num_rows>0) {
             echo '<p><strong><span class="gray-bg">'.$session_counter.'</span> '.$row['title'].'</strong></p>'.$row['lastseen'];
 	}
         if($row['body']=='') {
-            $descrip='<span class="gray">(No description)</span>';
+            //$descrip='<span class="gray">(No description)</span>';
         } else {
             $descrip=preg_replace("/<br\W*?\/>/", " ", $row['body']);
         }

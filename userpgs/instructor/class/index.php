@@ -362,7 +362,7 @@ echo '<div class="sess-list">';
 			      }
 			      
                               if($row['body']=='') {
-				  $descrip='<span class="gray">(No description)</span>';
+				  //$descrip='<span class="gray">(No description)</span>';
                               } else {
 				  $descrip=preg_replace("/<br\W*?\/>/", " ", $row['body']);
                               }
