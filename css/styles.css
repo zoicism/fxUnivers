@@ -664,22 +664,22 @@ textarea:focus {
 }
 
 .right-content .session:active {
-    background-color: #000E14;
+    background-color: #95d2e969;
     transition: 0.3s;
-    fill: #ffffff;
-    color: #fff;
+    /*fill: #ffffff;
+    color: #fff;*/
 }
 
 .sessions .sess-list #active {
-    background-color: #000E14;
+    background-color: #95d2e969;
     transition: 0.3s;
-    fill: #ffffff ;
-    color: #fff;
+    /*fill: #ffffff ;
+    color: #fff;*/
 }
-
+/*
 .sessions .sess-list #active p {
     color: #fff;
-}
+}*/
 
 /*.right-content #active {
     border-radius: 20px;
@@ -738,8 +738,16 @@ textarea:focus {
 }
 
 .session-prev img {
-    height: 3.2em;
+    /*height: 3.2em;*/
     margin: auto;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.session-prev svg {
+    fill: #3939394f;
 }
 
 .session .session-desc {
