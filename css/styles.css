@@ -735,6 +735,7 @@ textarea:focus {
     display: flex;
     background-color: #000e141f;
     border-radius: 10px;
+    justify-content:center;
 }
 
 .session-prev img {
