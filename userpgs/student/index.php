@@ -220,8 +220,7 @@ $get_oneonone_count = mysqli_num_rows($get_oneonone_r);
 			     echo '<div class="details">';
 			     $ctitle=preg_replace("/<br\W*?\/>/"," ",$gsc_fetch['header']);
 			     
-			     echo '<p><strong>';
-			     echo limited($ctitle,40).'</strong></p>';
+			     echo '<p><strong>'.$ctitle.'</strong></p>';
 
 			     /*
 				$descrip=preg_replace("/<br\W*?\/>/"," ",$gsc_fetch['description']);
