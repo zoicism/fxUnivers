@@ -271,9 +271,9 @@ if($course_negotiable) {
 					<?php
 					if($cost > 0) {
 					    if($course_negotiable) {
-						echo '<div class="price gold-bg" style="width:100%;">'.$cost.' <span>fxStars (Negotiable)</span></div>';
+						echo '<div style="display:flex; flex-flow:row nowrap;"><div class="price gold-bg" style="width:50%;"><div class="fxstar-white"></div>'.$cost.'</div><div style="width:50%;" class="price medseagreen-bg">Negotiable</div></div>';
 					    } else {
-						echo '<div class="price gold-bg" style="width:100%;">'.$cost.' <span>fxStars</span></div>';
+						echo '<div class="price gold-bg"><div class="fxstar-white"></div>'.$cost.'</div>';
 					    }
 					} else {
 					    echo '<div class="price green-bg" style="width:100%;">Free</div>';
@@ -460,9 +460,9 @@ if($course_negotiable) {
 
 				if($subcourse_of_course['cost'] > 0) {
 				    if($subcourse_of_course['negotiable']) {
-					echo '<div class="price gold-bg">'.$subcourse_of_course['cost'].' <span>fxStars</span> (Negable)</div>';
+					echo '<div style="display:flex; flex-flow:row nowrap;"><div class="price gold-bg" style="width:50%;"><div class="fxstar-white"></div>'.$subcourse_of_course['cost'].'</div><div style="width:50%;" class="price medseagreen-bg">Negotiable</div></div>';
 				    } else {
-					echo '<div class="price gold-bg">'.$subcourse_of_course['cost'].' <span>fxStars</span></div>';
+					echo '<div class="price gold-bg"><div class="fxstar-white"></div>'.$subcourse_of_course['cost'].'</div>';
 				    }
 				} else {
 				    echo '<div class="price green-bg" style="padding: 4px 20px;">Free</div>';
@@ -586,9 +586,9 @@ if($course_negotiable) {
 
 				    if($subcourse_f['cost'] > 0) {
 					if($subcourse_f['negotiable']) {
-					    echo '<div class="price gold-bg">'.$subcourse_f['cost'].' <span>fxStars</span> (Negable)</div>';
+					    echo '<div style="display:flex; flex-flow:row nowrap;"><div class="price gold-bg" style="width:50%;"><div class="fxstar-white"></div>'.$subcourse_f['cost'].'</div><div style="width:50%;" class="price medseagreen-bg">Negotiable</div></div>';
 					} else {
-					    echo '<div class="price gold-bg">'.$subcourse_f['cost'].' <span>fxStars</span></div>';
+					    echo '<div class="price gold-bg"><div class="fxstar-white"></div>'.$subcourse_f['cost'].'</div>';
 					}
 				    } else {
 					echo '<div class="price green-bg" style="padding: 4px 20px;">Free</div>';

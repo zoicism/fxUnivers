@@ -202,9 +202,9 @@ if($type=='course') {
 
 	    if($row3['cost'] > 0) {
 		if($row3['negotiable']) {
-		    $obj_div[$course_j] .= '<div class="price gold-bg">'.$row3['cost'].' <span>fxStars</span> (Negable)</div>';
+		    $obj_div[$course_j] .= '<div style="display:flex; flex-flow:row nowrap;"><div class="price gold-bg" style="width:50%;"><div class="fxstar-white"></div>'.$row3['cost'].'</div><div style="width:50%;" class="price medseagreen-bg">Negotiable</div></div>';
 		} else {
-		    $obj_div[$course_j] .= '<div class="price gold-bg">'.$row3['cost'].' <span>fxStars</span></div>';
+		    $obj_div[$course_j] .= '<div class="price gold-bg"><div class="fxstar-white"></div>'.$row3['cost'].'</div>';
 		}
 	    } else {
 		$obj_div[$course_j] .= '<div class="price green-bg" style="padding: 4px 20px;">Free</div>';
@@ -530,9 +530,9 @@ if(!isset($_GET['q'])) {
 
 	    if($top_course_cost[$i] > 0) {
 		if($top_course_negotiable[$i]) {
-		    echo '<div class="price gold-bg">'.$top_course_cost[$i].' <span>fxStars</span> (Negable)</div>';
+		    echo '<div style="display:flex; flex-flow:row nowrap;"><div class="price gold-bg" style="width:50%;"><div class="fxstar-white"></div>'.$top_course_cost[$i].'</div><div style="width:50%;" class="price medseagreen-bg">Negotiable</div></div>';
 		} else {
-		    echo '<div class="price gold-bg">'.$top_course_cost[$i].' <span>fxStars</span></div>';
+		    echo '<div class="price gold-bg"><div class="fxstar-white"></div>'.$top_course_cost[$i].'</div>';
 		}
 	    } else {
 		echo '<div class="price green-bg" style="padding: 4px 20px;">Free</div>';

@@ -856,6 +856,23 @@ textarea:focus {
     color: #efefef;
 }
 
+/*
+.price span {
+    font-size:0.8rem;
+}*/
+
+.price .fxstar-white {
+    height:1em;
+    width:1em;
+    margin-right:2px;
+    background-image: url('../images/fxstar-white.svg');
+}
+
+.price .extra {
+    font-size: 0.8rem;
+    margin-left:2px;
+}
+
 .course-upperleft .bulletin .bulletin-txt::-webkit-scrollbar {
     width: 4px;
     height: 30px;
@@ -1070,6 +1087,9 @@ textarea:focus {
     border-radius: 50px;
     color: #efefef;
     font-weight:bold;
+    display:flex;
+    flex-flow: row nowrap;
+    justify-content: center;
 }
 
 .little-box {
@@ -1107,6 +1127,11 @@ textarea:focus {
 .green {
     color:#6cc841
 }
+
+.medseagreen-bg {
+    background: #00d58f;
+}
+
 .violet {
     background:#7a00cc;
 }
@@ -1132,8 +1157,9 @@ textarea:focus {
 }
 
 .purple-bg {
-    background:#803597;
+    background:#80359740;
 }
+
 
 /***> User Search ***/
 
