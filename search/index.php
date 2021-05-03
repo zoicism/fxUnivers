@@ -335,6 +335,7 @@ if($type=='course') {
 }
 
 if(!isset($_GET['q'])) {
+    /*
     $top_fxstars_q = "SELECT * FROM fxstars ORDER BY balance DESC LIMIT 5";
     $top_fxstars_r = mysqli_query($wallet_connection, $top_fxstars_q) or die(mysqli_error($wallet_connection));
 
@@ -346,12 +347,6 @@ if(!isset($_GET['q'])) {
 	echo '<div class="obj-box">';
 
 	while($top_row = $top_fxstars_r->fetch_assoc()) {
-	    /*
-	       $fxstars_q = 'SELECT * FROM fxstars WHERE user_id ='. $top_row['id'];
-	       $fxstars_r = mysqli_query($wallet_connection, $fxstars_q);
-	       $fxstars_f = mysqli_fetch_array($fxstars_r);
-	       $fxstars = $fxstars_f['balance'];
-	     */
 
 	    $top_user_q = 'SELECT * FROM user WHERE id = '.$top_row['user_id'];
 	    $top_user_r = mysqli_query($connection, $top_user_q);
@@ -389,7 +384,7 @@ if(!isset($_GET['q'])) {
         }
         $top_fxstars_r->free();
 	echo '</div>';
-    }
+    }*/
 
 
 
