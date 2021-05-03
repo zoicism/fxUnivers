@@ -132,10 +132,12 @@ if($get_oneonone) {
 			</div>
 			<div class="info-profile">
 			    <div class="id-profile"><?php echo $tarname ?> <?php if($verified) echo '<img src="/images/background/verified.png" style="width:1.5rem; height:1.5rem;">'; ?></div>
+			    <?php if($tarname != 'fxUniversity') { ?>
 			    <a class="follower-profile" id="open-friends">
 				<div class="follower-num"><?php echo $get_tar_friends_count ?></div>
 				<div class="follower-word">friends</div>
 			    </a>
+			<?php } ?> 
 			    <div class="profile-desktop">
 				<div class="name-profile"><?php echo $tar_fname.' '.$tar_lname ?></div>
 				<div class="bio-profile"><?php echo $tar_bio ?></div>
@@ -156,28 +158,29 @@ if($get_oneonone) {
 
 					    echo '<a class="edit-profile" id="accept-fnd">Accept Friend Request</a>';
 					}
+					if($tarname != 'fxUniversity') {
+					  echo '<a class="edit-profile" id="friendship">';
 					
-					echo '<a class="edit-profile" id="friendship">';
-					
-					if($get_fnd_count==0) {
+					  if($get_fnd_count==0) {
 					    echo 'Add Friend';
-					} else {
+					  } else {
 					    if($get_fnd==1) {
-						echo 'Unfriend';
+					      echo 'Unfriend';
 					    } else {
-						if($get_fnd_fetch['user1']==$session_id) {
-						    echo 'Cancel Friend Request';
-						} else {
-						    echo 'Decline Friend Request';
-						}
+					      if($get_fnd_fetch['user1']==$session_id) {
+						echo 'Cancel Friend Request';
+					      } else {
+						echo 'Decline Friend Request';
+					      }
 					    }
-					}
+					  }
 					echo '</a>';
 					
 					
 
 					echo '<a class="edit-profile" id="send-msg-btn">Send Message</a>';
-				    }
+					}
+			    }
 				    ?>
 				    
 				</div>
@@ -205,7 +208,7 @@ if($get_oneonone) {
 
 					echo '<a class="edit-profile" id="accept-fnd-mob">Accept</a>';
 				    }
-				    
+				    if($tarname != 'fxUniversity') {
 				    echo '<a class="edit-profile" id="friendship-mob">';
 				    
 				    if($get_fnd_count==0) {
@@ -224,6 +227,7 @@ if($get_oneonone) {
 				    echo '</a>';
 
 				    echo '<a class="edit-profile" id="send-msg-btn-mob">Send Message</a>';
+				    }
 				}
 				?>
 				
