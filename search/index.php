@@ -397,7 +397,7 @@ if(!isset($_GET['q'])) {
     echo '<h3 style="text-align:left;width:100%;margin-bottom:0;">Top fxCourses</h3>';
     echo '<div class="obj-box">';
     
-    $courses_q = "SELECT * FROM teacher WHERE private=0";
+    $courses_q = "SELECT * FROM teacher WHERE alive=1 AND private=0";
     $courses_r = mysqli_query($connection, $courses_q);
     $courses_count = mysqli_num_rows($courses_r);
 
