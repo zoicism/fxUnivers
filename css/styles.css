@@ -1048,6 +1048,11 @@ textarea:focus {
     overflow: hidden;
 }
 
+.object .details p {
+    margin:0;
+    padding-top:7px;
+}
+
 .obj-box .object .details strong {
     display: -webkit-box;
     -webkit-box-orient: vertical;
