@@ -67,7 +67,7 @@ if(screen.width>628) {
 
 <div id="mySidepanel" class="sidepanel">
                   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-                  <a href="#">About</a>
+                  <a href="/about">About</a>
                   <a href="/contact/msgus">Contact</a>
                   <a href="/register/logout.php">Log out</a>
                     <div class="socialmedia">
@@ -143,7 +143,7 @@ if(screen.width>628) {
 
         <div id="mySidepanel" class="sidepanel">
                   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-                  <a href="#">About</a>
+                  <a href="/about">About</a>
                   <a href="/contact/msgus">Contact</a>
                   <a href="/register/logout.php">Log out</a>
                     <div class="socialmedia">
@@ -224,7 +224,7 @@ $('.header').html(`
                     </div>
                     <div class="menu-info">
                         <a href="/policy" class="policy-m">Policy</a>
-                        <a href="#">About</a>
+                        <a href="/about">About</a>
                         <a href="/contact/msgus">Contact</a>
                         <a href="/register/logout.php">Log out</a>
                     </div>
@@ -272,7 +272,7 @@ $('.header').html(`
                     </div>
                     <div class="menu-info">
                         <a href="/policy" class="policy-m">Policy</a>
-                        <a href="#">About</a>
+                        <a href="/about">About</a>
                         <a href="/contact/msgus">Contact</a>
                         <a href="/register/logout.php">Log out</a>
                     </div>
