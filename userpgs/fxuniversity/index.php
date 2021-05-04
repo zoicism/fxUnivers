@@ -18,6 +18,19 @@ if(isset($_SESSION['username'])) {
 require('../instructor/php/courses.php');
 require('../../php/get_stu_stucourse.php');
 
+
+$gss_count_alive = 0;
+if($gss_count > 0) {
+    while($taken_row=$gss_result->fetch_assoc()) {
+	$taken_course_id=$taken_row['course_id'];
+        $get_stus_course_query="SELECT * FROM teacher WHERE id=$taken_course_id";
+        $get_stus_course_result=mysqli_query($connection,$get_stus_course_query) or die(mysqli_error($connection));
+        $gsc_fetch=mysqli_fetch_array($get_stus_course_result);
+	if($gsc_fetch['alive'] == 1) {
+	    $gss_count_alive++;
+	}
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -34,20 +47,12 @@ require('../../php/get_stu_stucourse.php');
     
 <body>
 	<div class="header-sidebar"></div>
-    <script id="upperbar-script" src="/js/upperbar.js" sess_avatar="<?php echo $session_avatar?>" sess_un="<?php echo $username?>"></script>
-
-<div class="blur mobile-main">
+	<script id="upperbar-script" src="/js/upperbar.js" sess_avatar="<?php echo $session_avatar?>" sess_un="<?php echo $username?>"></script>
+	<div class="blur mobile-main">
     
 	<div class="sidebar"></div>
 	<?php require('../../php/sidebar.php'); ?>
 
-
-
-
-
-
-
-                          
     <div class="main-content">
 
               <ul class="main-flex-container">
@@ -58,7 +63,7 @@ require('../../php/get_stu_stucourse.php');
                   </li>
                   <li class="main-items">
                       <a href="/userpgs/student" class="link-main">
-                          <div class="head">Learn (<?php echo $gss_count ?>)</div>
+                          <div class="head">Learn (<?php echo $gss_count_alive ?>)</div>
                       </a>
                   </li>
                   
@@ -66,10 +71,7 @@ require('../../php/get_stu_stucourse.php');
 
     </div>
 
-
-
-
-
+	
   <div class="relative-main-content">
   <!--                          <div class="content-box">
 			    	 <h2>fxUniversity</h2>
