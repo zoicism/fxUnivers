@@ -142,10 +142,10 @@ if($_SERVER['HTTPS'] != "on") {
 
 	  <h3>fxPartner Roadmap</h3>
 	  <ol>
-	    <li><p>Invitation</p></li>
-	    <li><p>Coordination</p></li>
-	    <li><p>Share of Revenue</p></li>
-	    <li><p>Network Expansion</p></li>
+		  <li><p><b>Invitation.</b> Use your fxPartner link to invite users and begin earning fxStars.</p></li>
+		  <li><p><b>Coordination.</b> Depending on your invitee, coordinatethem to be fxInstructors or potential fxSubInstructors as students.</p></li>
+		  <li><p><b>Share of Revenue.</b> We will share 50% of our interest from this fxUser with you for 90 days.</p></li>
+		  <li><p><b>Network Expansion.</b> The more people you bring in, the more you will earn, and help your network of fxUsers expand.</p></li>
 	  </ol>
 	</div>
 
