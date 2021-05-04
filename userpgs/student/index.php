@@ -56,7 +56,7 @@ $get_oneonone_count = mysqli_num_rows($get_oneonone_r);
 	 if(screen.width >= 629) {
 	     $(document).ready(function() {
 		 console.log('foobar');
-		 $('.header-sidebar').prepend('<div style="width:100%; display:flex; flex-flow:row nowrap; justify-content:left;"><a href="/userpgs/instructor/" class="link-main"><div class="head">Teach (<?php echo $course_count ?>)</div></a><a href="/userpgs/student/" class="link-main" id="active-main"><div class="head">Learn (<?php echo $gss_count ?>)</div></a></div>');
+		 $('.header-sidebar').prepend('<div style="width:100%; display:flex; flex-flow:row nowrap; justify-content:left;"><a href="/userpgs/instructor/" class="link-main"><div class="head">Teach (<?php echo $course_count ?>)</div></a><a href="/userpgs/student/" class="link-main" id="active-main"><div class="head">Learn (<span id="class-count"></span>)</div></a></div>');
 	     });
 	 }
 	</script>
@@ -145,7 +145,7 @@ $get_oneonone_count = mysqli_num_rows($get_oneonone_r);
 	         <?php
 
 		 require('../../php/limit_str.php');
-
+		 $gss_count_alive = 0;
 		 if($gss_count>0) {
 
 
@@ -167,7 +167,7 @@ $get_oneonone_count = mysqli_num_rows($get_oneonone_r);
                          $gsc_fetch=mysqli_fetch_array($get_stus_course_result);
 
 			 if($gsc_fetch['alive']==1) {
-
+			     $gss_count_alive++;
                              $course_link="/userpgs/instructor/course_management/course.php?course_id=".$gsc_fetch['id'];
 
 
@@ -345,5 +345,11 @@ $get_oneonone_count = mysqli_num_rows($get_oneonone_r);
 	 $('.fxuniversity-sidebar').attr('id','sidebar-active');
 	</script>
 
+	<script>
+	 $(document).ready(function() {
+	     var class_count = '<?php echo $gss_count_alive ?>';
+	     $('#class-count').html(class_count);
+	 });
+	</script>
     </body>
 </html>

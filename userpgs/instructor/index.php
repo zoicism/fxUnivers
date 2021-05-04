@@ -37,6 +37,19 @@ if($get_oneonone) $get_oneonone_f = mysqli_fetch_array($get_oneonone_r);
 $get_oneonone_q = "SELECT * FROM stu_oneonone WHERE instructor_id = $get_user_id";
 $get_oneonone_r = mysqli_query($fxinstructor_connection, $get_oneonone_q);
 $get_oneonone_count = mysqli_num_rows($get_oneonone_r);
+
+$gss_count_alive = 0;
+if($gss_count > 0) {
+    while($taken_row=$gss_result->fetch_assoc()) {
+	$taken_course_id=$taken_row['course_id'];
+        $get_stus_course_query="SELECT * FROM teacher WHERE id=$taken_course_id";
+        $get_stus_course_result=mysqli_query($connection,$get_stus_course_query) or die(mysqli_error($connection));
+        $gsc_fetch=mysqli_fetch_array($get_stus_course_result);
+	if($gsc_fetch['alive'] == 1) {
+	    $gss_count_alive++;
+	}
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -57,7 +70,7 @@ $get_oneonone_count = mysqli_num_rows($get_oneonone_r);
 	<script>
 	 if(screen.width >= 629) {
 	     $(document).ready(function() {
-		 $('.header-sidebar').prepend('<div style="width:100%; display:flex; flex-flow:row nowrap; justify-content:left;"><a href="/userpgs/instructor/" class="link-main" id="active-main"><div class="head">Teach (<?php echo $course_count ?>)</div></a><a href="/userpgs/student/" class="link-main"><div class="head">Learn (<?php echo $gss_count ?>)</div></a></div>');
+		 $('.header-sidebar').prepend('<div style="width:100%; display:flex; flex-flow:row nowrap; justify-content:left;"><a href="/userpgs/instructor/" class="link-main" id="active-main"><div class="head">Teach (<?php echo $course_count ?>)</div></a><a href="/userpgs/student/" class="link-main"><div class="head">Learn (<?php echo $gss_count_alive ?>)</div></a></div>');
 	     });
 	 }
 	</script>
