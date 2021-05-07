@@ -1959,7 +1959,7 @@ textarea:focus {
     color: #000;
     padding:6px 25px;
     text-decoration: none;
-    border-radius: 200px;
+    border-radius: 18px;
     text-align: left;
     font-size: 1rem;
     opacity: 0.6;
@@ -1971,6 +1971,19 @@ textarea:focus {
     
 }
 
+.extra-info-cnt {
+    position: absolute;
+    /*border:1px solid black;*/
+    box-shadow: -6px -6px 14px rgba(255, 255, 255, .7),
+		-6px -6px 10px rgba(255, 255, 255, .5),
+		6px 6px 8px rgba(255, 255, 255, .075),
+		6px 6px 10px rgba(0, 0, 0, .15);
+    border-radius:0 0 18px 18px;
+    padding: 15px;
+    z-index:2;
+    background-color: #efefef;
+}
+/*
 .extra-info-cnt .extra-info {
     opacity: 0;
     width: 200px;
@@ -1988,7 +2001,7 @@ textarea:focus {
     opacity: 1;
     transition: opacity .4s ease-in-out;
 }
-
+*/
 .link-main .head{
     display: block;
     text-align: center;

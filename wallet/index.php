@@ -57,27 +57,44 @@ require('php/get_fxcoin_count.php');
                   <li class="main-items">
                       <a href="/wallet/buy" class="link-main">
                           <div class="head">Buy fxStars</div>
-                      </a>
+			  
+		      </a>
+		      <div class="extra-info-cnt" style="display:none">
+			  <p class="extra-info">Buy fxStars and use them to enroll in courses.</p>
+		      </div>
+		      
                   </li>
                   <li class="main-items">
                       <a href="/wallet/cashout" class="link-main">
                           <div class="head">Cash-out fxStars</div>
                       </a>
+		      <div class="extra-info-cnt" style="display:none">
+			  <p class="extra-info">Request cash-out within 3-business-day delivery in USD, coming soon in all major cryptocurrencies.</p>
+		      </div>
                   </li>
                   <li class="main-items">
                       <a href="/wallet/txn" class="link-main">
                           <div class="head">Transactions</div>
                       </a>
+		      <div class="extra-info-cnt" style="display:none">
+			  <p class="extra-info">History of fxStar transactions.</p>
+		      </div>
                   </li>
                   <li class="main-items">
                       <a href="/wallet/send" class="link-main">
                           <div class="head">Send fxStars</div>
                       </a>
+		      <div class="extra-info-cnt" style="display:none">
+			  <p class="extra-info">Send fxStars to friends securely and instantaneously.</p>
+		      </div>
                   </li>
                   <li class="main-items">
                       <a href="/wallet/req" class="link-main">
                           <div class="head">Request fxStars</div>
                       </a>
+		      <div class="extra-info-cnt" style="display:none">
+			  <p class="extra-info">Request fxStars from friends and the transaction will take place as soon as they accept it.</p>
+		      </div>
                   </li>
               </ul>
 
@@ -176,8 +193,15 @@ $('#page-header').attr('href','/wallet');
 
 <!-- fxStar sidebar active -->
 <script>
-$('.fxstar-sidebar').attr('id','sidebar-active');
+ $('.fxstar-sidebar').attr('id','sidebar-active');
 </script>
 
+<script>
+ $('.main-items').hover(function() {
+     $(this).find('.extra-info-cnt').css('width',$(this).css('width')).show();
+ }, function() {
+     $(this).find('.extra-info-cnt').hide();
+ });
+</script>
 </body>
 </html>
