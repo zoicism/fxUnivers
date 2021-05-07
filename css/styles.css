@@ -875,6 +875,24 @@ textarea:focus {
     background-image: url('../images/fxstar-white.svg');
 }
 
+.fxstar-price {
+    height:1em;
+    width:1em;
+    margin-right:2px;
+    background-image: url('../images/icons/platforms/fxstar.svg');
+}
+
+.icon-txt {
+    /*height:1em;
+    width:1em;*/
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-flow:row nowrap;
+    opacity:0.7;
+}
+
 .price .extra {
     font-size: 0.8rem;
     margin-left:2px;
@@ -1921,8 +1939,9 @@ textarea:focus {
     text-align: center;
     margin-top: 10px;
     font-size: 1.2rem;
-    opacity: 0.7;
+    /*opacity: 0.7;*/
 }
+
 
 
 .link:focus {
@@ -1948,7 +1967,26 @@ textarea:focus {
 		-6px -6px 10px rgba(255, 255, 255, .5),
 		6px 6px 8px rgba(255, 255, 255, .075),
 		6px 6px 10px rgba(0, 0, 0, .15);
-    cursor:pointer;    
+    cursor:pointer;
+    
+}
+
+.extra-info-cnt .extra-info {
+    opacity: 0;
+    width: 200px;
+    background-color: #393939;
+    color: #fff;
+    text-align: left;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    transition: opacity .4s ease-in-out;
+}
+
+.extra-info-cnt:hover .extra-info {
+    opacity: 1;
+    transition: opacity .4s ease-in-out;
 }
 
 .link-main .head{
@@ -4125,7 +4163,21 @@ input:checked + .slider:before {
 }
 
 
+.in-icon {
+    display:flex;
+    flex-flow:row nowrap;
+    width:100%;
+    border-radius:0 !important;
+    justify-content:center;
+    align-items:center;
+    margin-bottom:5px;
+}
 
+.in-icon img {
+    width:40px;
+    height:40px;
+    border-radius:0 !important;
+}
 
 
 
