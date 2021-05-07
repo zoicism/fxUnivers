@@ -106,38 +106,50 @@ require('../php/get_stu_stucourse.php');
 	<section>
 		<ul class="flex-container">
 			<li class="items">
-                                <a href="/wallet" class="link">
-                                        <div class="head">fxStar
-                                         <p class="sub"><?php echo $get_fxcoin_count?> fxStars</p>
+                                <a href="/wallet" class="link" id="fxwallet-link">
+                                    <div class="head"><div class="in-icon" ><img src="/images/icons/platforms/fxstar.svg" ></div>fxStar
+					<div class="icon-txt" >
+					    <div class="fxstar-price"></div>
+                                            <p class="sub"><?php echo $get_fxcoin_count?></p>
                                         </div>
+				    </div>
                                 </a>
                         </li>
                         <li class="items">
-                                <a href="/userpgs/fxuniversity" class="link">
-                                        <div class="head">fxUniversity
-                                         <p class="sub"><?php echo $course_count+$gss_count?> courses</p>
-                                        </div>
+                            <a href="/userpgs/fxuniversity" class="link" id="fxuniversity-link" >
+				<div class="head"><div class="in-icon"><img src="/images/icons/platforms/fxuniversity.svg" ></div>fxUniversity
+				    <div class="icon-txt" >
+				        <p class="sub"><?php echo $course_count+$gss_count?> courses</p>
+				    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="items">
+                            <a href="/userpgs/partner" class="link" id="fxpartner-link">
+				<div class="head"><div class="in-icon" ><img src="/images/icons/platforms/fxpartner.svg" ></div>fxPartner
+				    <div class="icon-txt">
+					<div class="fxstar-price"></div>
+                                        <p class="sub"><?php echo $pTotal ?></p>
+				    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="items">
+                                <a onclick="coming()" class="link" id="fxuniverse-link">
+                                    <div class="head"><div class="in-icon" ><img src="/images/icons/platforms/fxuniverse.svg" ></div>fxUniverse
+					<div class="icon-txt">
+                                            <p class="sub">coming soon</p>
+					</div>
+                                    </div>
                                 </a>
                         </li>
                         <li class="items">
-                                <a href="/userpgs/partner" class="link">
-                                        <div class="head">fxPartner
-                                                <p class="sub"><?php echo $pTotal ?> fxStars</p>
-                                        </div>
-                                </a>
-                        </li>
-                        <li class="items">
-                                <a onclick="coming()" class="link">
-                                        <div class="head">fxUniverse
-                                                <p class="sub">coming soon</p>
-                                        </div>
-                                </a>
-                        </li>
-                        <li class="items">
-                                <a onclick="coming()" class="link">
-                                        <div class="head">fxSonet
-                                                <p class="sub">coming soon</p>
-                                        </div>
+                                <a onclick="coming()" class="link" id="fxsonet-link">
+                                    <div class="head"><div class="in-icon" ><img src="/images/icons/platforms/fxsonet.svg" ></div>fxSonet
+					<div class="icon-txt">
+                                            <p class="sub">coming soon</p>
+					</div>
+                                    </div>
                                 </a>
                         </li>
 		</ul>
@@ -172,6 +184,43 @@ $('#page-header').attr('href','/');
 <script>
   $('#nav-home .filled').show();
   $('#nav-home .stroked').hide();
+</script>
+
+<script>
+ var fxwalletB4 = $('#fxwallet-link').html();
+ $('#fxwallet-link').hover(function() {
+     $(this).html('<div class="icon-txt"><p class="sub">Buy fxStars and use them to purchase courses or send/receive them securely among friends</p></div>');
+ }, function() {
+     $(this).html(fxwalletB4);
+ });
+
+ var fxuniversityB4 = $('#fxuniversity-link').html();
+ $('#fxuniversity-link').hover(function() {
+     $(this).html('<div class="icon-txt"><p class="sub">Create and sell courses or enroll and learn</p></div>');
+ }, function() {
+     $(this).html(fxuniversityB4);
+ });
+
+ var fxpartnerB4 = $('#fxpartner-link').html();
+ $('#fxpartner-link').hover(function() {
+     $(this).html('<div class="icon-txt"><p class="sub">Make easy money by partnering with us in interests. Click to learn more</p></div>');
+ }, function() {
+     $(this).html(fxpartnerB4);
+ });
+
+ var fxuniverseB4 = $('#fxuniverse-link').html();
+ $('#fxuniverse-link').hover(function() {
+     $(this).html('<div class="icon-txt"><p class="sub">Universe of Forex Trading, coming soon</p></div>');
+ }, function() {
+     $(this).html(fxuniverseB4);
+ });
+
+ var fxsonetB4 = $('#fxsonet-link').html();
+ $('#fxsonet-link').hover(function() {
+     $(this).html('<div class="icon-txt"><p class="sub">Social network to make direct money from; coming soon</p></div>');
+ }, function() {
+     $(this).html(fxsonetB4);
+ });
 </script>
 </body>
 </html>
