@@ -666,94 +666,58 @@ if($course_negotiable) {
 			
 		    </div>
 		    <div class="right-content">
-	  <?php
-          require_once('../../../php/limit_str.php');
+			<?php
+			require_once('../../../php/limit_str.php');
 
 
 
-	  if($user_type=='instructor') {
-	      echo '<div class="options">';
-	      echo '<div class="add-box" id="live-add-box">Live Classroom</div>';
+			if($user_type=='instructor') {
+			    echo '<div class="options">';
+			    echo '<div class="add-box" id="live-add-box">Live Classroom</div>';
+			    
+			    echo '<div class="course-addbox-con">';
+			    echo '<div class="start-schedule-con">';
+			    
+			    
+			    echo '<div id="live-div" style="display:none"></div>';
 
-	      echo '<div class="course-addbox-con">';
-	      echo '<div class="start-schedule-con">';
-	      
-	      
-	      echo '<div id="live-div" style="display:none"></div>';
+			    echo '<div style="display:none" id="schedule-div">';
 
-	      echo '<div style="display:none" id="schedule-div">';
+			    echo '<div class="start-live-back-con">';
+			    echo '<div class="back-icon-cnt" id="schedule-back" isaudio="false">
+			    <svg viewBox="0 0 32 32"><path d="M32,16a1.1,1.1,0,0,1-1,1H3.1l4,3.3,2.8,2.4,6.7,5.6a1,1,0,0,1,0,1.5h0a.9.9,0,0,1-1.3,0L8.6,24.2,5.1,21.3.8,17.6a2,2,0,0,1,0-3.2l4.3-3.7L8.6,7.8l6.7-5.6a.9.9,0,0,1,1.3,0h0a1,1,0,0,1,0,1.5L9.9,9.3,7.1,11.7,3.1,15H31A1.1,1.1,0,0,1,32,16Z"></path></svg>
+			    </div>';
+			    echo '<button id="live-now" class="submit-btn" >Start Live Classroom Now</button>';
+			    echo '</div>';
 
-	      echo '<div class="start-live-back-con">';
-	      echo '<div class="back-icon-cnt" id="schedule-back" isaudio="false">
-	      <svg viewBox="0 0 32 32"><path d="M32,16a1.1,1.1,0,0,1-1,1H3.1l4,3.3,2.8,2.4,6.7,5.6a1,1,0,0,1,0,1.5h0a.9.9,0,0,1-1.3,0L8.6,24.2,5.1,21.3.8,17.6a2,2,0,0,1,0-3.2l4.3-3.7L8.6,7.8l6.7-5.6a.9.9,0,0,1,1.3,0h0a1,1,0,0,1,0,1.5L9.9,9.3,7.1,11.7,3.1,15H31A1.1,1.1,0,0,1,32,16Z"></path></svg>
-	      </div>';
-	      echo '<button id="live-now" class="submit-btn" >Start Live Classroom Now</button>';
-	      echo '</div>';
+			    echo '<form class="date-time-live-con" id="schedule-form" >
+			    <div  class="date-input">
+			    <div class="date-txt">Date</div>
+			    <input name="theDate" type="date" class="txt-input" id="theDateId" required>
+			    </div>
+			    <div class="time-input">
+			    <div class="time-txt">Time(UTC)</div>
+			    <input name="theTime" type="time" class="txt-input" id="theTimeId" required>
+			    </div>
+			    <input type="hidden" name="courseId" value="'.$course_id.'">
+			    <input type="submit" class="submit-btn" value="Schedule">
+			    </form>
 
-	      echo '<form class="date-time-live-con" id="schedule-form" >
-				<div  class="date-input">
-					<div class="date-txt">Date</div>
-					<input name="theDate" type="date" class="txt-input" id="theDateId" required>
-				</div>
-				<div class="time-input">
-					<div class="time-txt">Time(UTC)</div>
-					<input name="theTime" type="time" class="txt-input" id="theTimeId" required>
-				</div>
-				<input type="hidden" name="courseId" value="'.$course_id.'">
-				<input type="submit" class="submit-btn" value="Schedule">
-			</form>
+			    
+			    </div>';
+			    echo '</div></div>';
 
-                      
-                    </div>';
-	      echo '</div></div>';
-
-	      echo '<div class="add-box-con">';
-
-
-	      /*
-		 if($course_biddable) {
-
-		 
-		 
-		 $bidding_q="SELECT * FROM locked WHERE course_id=$course_id";
-		 $bidding_r=mysqli_query($wallet_connection,$bidding_q) or die(mysqli_error($wallet_connection))
-		 ;
-
-		 $bidding_finalized=0;
-		 if($bidding_r->num_rows > 0) {
-		 $bidding=mysqli_fetch_array($bidding_r);
-		 if($bidding['finalized']) $bidding_finalized=1;
-
-		 $sold2user_q = 'SELECT * FROM user WHERE id='.$bidding['from_id'];
-		 $sold2user_r=mysqli_query($connection,$sold2user_q) or die(mysqli_error($connection));
-		 if($sold2user_r) $sold2user=mysqli_fetch_array($sold2user_r);
-		 }
+			    echo '<div class="add-box-con">';
 
 
-		 if($bidding_finalized) {
-		 echo '<div class="add-box">
-		 <p>Sold to <a href="/user/'.$sold2user['username'].'">'.$sold2user['username'].'</a> for '.$bidding['raw_amount'].' fxStars</p>
-		 </div>';
-		 } else {
-		 
-		 echo '<div class="add-box" id="acceptBid">
-		 <svg viewBox="0 0 32 32">
-		 <path d="M16,2A14,14,0,1,1,2,16,14,14,0,0,1,16,2m0-2A16,16,0,1,0,32,16,16,16,0,0,0,16,0Z"></path>
-		 <path d="M13.4,22.4h0l-.7-.3L7.1,16.5a1.4,1.4,0,0,1,0-1.5,1.4,1.4,0,0,1,1.5,0l4.8,4.9,10-10a1.4,1.4,0,0,1,1.5,0,1.4,1.4,0,0,1,0,1.5L14.2,22.1A1.9,1.9,0,0,1,13.4,22.4Z"></path>
-		 </svg>
-                 Accept Bid (<div id="highest-ins"></div>) 
-		 </div>';
-		 }
-		 }*/
+			    
 
 
-
-
-
-	      echo '<div class="add-box" onclick="location.href=\'/userpgs/instructor/course_management/edit_course.php?course_id='.$course_id.'\';">
-			              <svg viewBox="0 0 32 32">
-				          <path d="M16,11.5A4.5,4.5,0,1,1,11.5,16,4.5,4.5,0,0,1,16,11.5m0-2A6.5,6.5,0,1,0,22.5,16,6.5,6.5,0,0,0,16,9.5Z"></path>
-					  <path d="M21.5,2h.3a.7.7,0,0,1,.4.6l.4,3.5A3.1,3.1,0,0,0,23.5,8l.5.5a3.1,3.1,0,0,0,1.8.9l3.5.4a.7.7,0,0,1,.6.4.8.8,0,0,
+			    echo '<div class="add-box-mg">';
+			    echo '<div class="add-box" onclick="location.href=\'/userpgs/instructor/course_management/edit_course.php?course_id='.$course_id.'\';">
+			    <svg viewBox="0 0 32 32">
+			    <path d="M16,11.5A4.5,4.5,0,1,1,11.5,16,4.5,4.5,0,0,1,16,11.5m0-2A6.5,6.5,0,1,0,22.5,16,6.5,6.5,0,0,0,16,9.5Z"></path>
+			    <path d="M21.5,2h.3a.7.7,0,0,1,.4.6l.4,3.5A3.1,3.1,0,0,0,23.5,8l.5.5a3.1,3.1,0,0,0,1.8.9l3.5.4a.7.7,0,0,1,.6.4.8.8,0,0,
 					  1-.1.8l-2.2,2.8a2.6,2.6,0,0,0-.7,1.8.9.9,0,0,1,0,.8,2.6,2.6,0,0,0,.7,1.8L29.8,21a.8.8,0,0,1,.1.8.7.7,0,0,1-.6.4l-3.5.4a3.1,
 					  3.1,0,0,0-1.8.9l-.5.5a3.1,3.1,0,0,0-.9,1.8l-.4,3.5a.7.7,0,0,1-.4.6h-.3l-.5-.2-2.8-2.2a2.8,2.8,0,0,0-1.7-.7h-1a2.8,2.8,0,0,
 					  0-1.7.7L11,29.8l-.5.2h-.3a.7.7,0,0,1-.4-.6l-.4-3.5A3.1,3.1,0,0,0,8.5,24L8,23.5a3.1,3.1,0,0,0-1.8-.9l-3.5-.4a.7.7,0,0,1-.6-.4.8.8,
@@ -764,147 +728,164 @@ if($course_negotiable) {
 					  0,1.7-.6L15,29.1l.5-.2h1l.5.2,2.8,2.3a2.7,2.7,0,0,0,1.7.6l1-.2h0a2.7,2.7,0,0,0,1.7-2.3l.4-3.5a.8.8,0,0,1,.2-.5,2.3,2.3,0,0,0,.7-.7l.5-.2,3.5-.4a2.7,2.7,
 					  0,0,0,2.3-1.7h0a2.6,2.6,0,0,0-.4-2.7L29.1,17a1.4,1.4,0,0,1-.2-.6c.1-.1.1-.2.1-.4h0c0-.2,0-.3-.1-.4a1.4,1.4,0,0,1,.2-.6l2.3-2.8a2.6,2.6,0,0,0,.4-2.7h0a2.7,
 					  2.7,0,0,0-2.3-1.7L26,7.4l-.5-.2a2.3,2.3,0,0,0-.7-.7.8.8,0,0,1-.2-.5l-.4-3.5A2.7,2.7,0,0,0,22.5.2h0l-1-.2a2.7,2.7,0,0,0-1.7.6L17,2.9l-.5.2h-1L15,2.9,12.2.6A2.7,2.7,0,0,0,10.5,0Z"></path>
-			              </svg>
-				      Manage Course
-				   </div>';
-
-	      echo '<div class="add-box" onclick="location.href=\'/userpgs/instructor/class/new_class.php?course_id='.$course_id.'\';">
-			               <svg viewBox="0 0 32 32">
-				           <path d="M16,2A14,14,0,1,1,2,16,14,14,0,0,1,16,2m0-2A16,16,0,1,0,32,16,16,16,0,0,0,16,0Z"></path>
-					   <path d="M25.9,16h0a1,1,0,0,1-1,1H17v7.9a1,1,0,0,1-1,1h0a1,1,0,0,1-1-1V17H7.1a1,1,0,0,1-1-1h0a1,1,0,0,1,1-1H15V7.1a1,1,0,0,1,1-1h0a1,1,0,0,1,1,1V15h7.9A1,1,0,0,1,25.9,16Z"></path>
-				       </svg>
-				       Add Session
-				   </div>';
-
-	      
-	      echo '<div class="add-box" id="manageTestId">
-			               <svg viewBox="0 0 32 32">
-				           <path d="M16,2A14,14,0,1,1,2,16,14,14,0,0,1,16,2m0-2A16,16,0,1,0,32,16,16,16,0,0,0,16,0Z"></path>
-					   <path d="M13.4,22.4h0l-.7-.3L7.1,16.5a1.4,1.4,0,0,1,0-1.5,1.4,1.4,0,0,1,1.5,0l4.8,4.9,10-10a1.4,1.4,0,0,1,1.5,0,1.4,1.4,0,0,1,0,1.5L14.2,22.1A1.9,1.9,0,0,1,13.4,22.4Z"></path>
-				       </svg>
-			               Manage Quiz
-				   </div>';
-	      
-
-	      echo '</div>';
-	      echo '</div>';
-	      
-	  } elseif($user_type=='student') {
-
-	      echo '<div class="options">';
-
-	      echo '<div class="add-box" id="student-live-add-box" style="display:none;">Live Classroom Now. Click!</div>';
-
-	      echo '<div class="add-box-con">';
-
-	      if($course_subbable) {
-		  echo '<div class="add-box" id="addSub"><svg viewBox="0 0 32 32">
-				           <path d="M16,2A14,14,0,1,1,2,16,14,14,0,0,1,16,2m0-2A16,16,0,1,0,32,16,16,16,0,0,0,16,0Z"></path>
-					   <path d="M13.4,22.4h0l-.7-.3L7.1,16.5a1.4,1.4,0,0,1,0-1.5,1.4,1.4,0,0,1,1.5,0l4.8,4.9,10-10a1.4,1.4,0,0,1,1.5,0,1.4,1.4,0,0,1,0,1.5L14.2,22.1A1.9,1.9,0,0,1,13.4,22.4Z"></path>
-				       </svg>
-				       Create fxSubCourse</div>';
-	      }
-	      
-
-	      
-	      echo '<div class="add-box" id="examId"><svg viewBox="0 0 32 32">
-				           <path d="M16,2A14,14,0,1,1,2,16,14,14,0,0,1,16,2m0-2A16,16,0,1,0,32,16,16,16,0,0,0,16,0Z"></path>
-					   <path d="M13.4,22.4h0l-.7-.3L7.1,16.5a1.4,1.4,0,0,1,0-1.5,1.4,1.4,0,0,1,1.5,0l4.8,4.9,10-10a1.4,1.4,0,0,1,1.5,0,1.4,1.4,0,0,1,0,1.5L14.2,22.1A1.9,1.9,0,0,1,13.4,22.4Z"></path>
-				       </svg>
-				       Certificate Exam</div>';
-	      if($stucourse_fetch['last_exam']!=null) {
-		  echo '<div class="add-box" style="cursor:auto"><p>Your Score: '.round($stucourse_fetch['score']*10,1).'</p></div>';
-	      } else {
-		  echo '<div class="add-box" style="cursor:auto"><p>Your Score: Not Taken</p></div>';
-	      }
-	      echo '<form action="/userpgs/instructor/exam/take_exam.php" id="goToExam" method="POST" style="display:none"><input type="hidden" name="course_id" value="'.$course_id.'"></form>';
-	      echo '</div>';
-	      echo '</div>';
-	  } else {
-	      
-	      echo '<div class="options">';
-	      
-	      echo '<div class="add-box-con" style="width:100%">';
+			    </svg>
+			    Manage Course
 
 
-	      
-	      /*
-		 if($course_biddable) {
+			    </div>';
+			    
+			    echo '<div class="extra-info-cnt" style="display:none">
+			    <p class="extra-info">Add or remove Intro Video to the course, add Bulletin to inform students, or change title, cost, and other settings. </p>
+			    </div>
+			    </div>';
+
+			    echo '<div class="add-box-mg">';
+			    echo '<div class="add-box" onclick="location.href=\'/userpgs/instructor/class/new_class.php?course_id='.$course_id.'\';">
+			    <svg viewBox="0 0 32 32">
+			    <path d="M16,2A14,14,0,1,1,2,16,14,14,0,0,1,16,2m0-2A16,16,0,1,0,32,16,16,16,0,0,0,16,0Z"></path>
+			    <path d="M25.9,16h0a1,1,0,0,1-1,1H17v7.9a1,1,0,0,1-1,1h0a1,1,0,0,1-1-1V17H7.1a1,1,0,0,1-1-1h0a1,1,0,0,1,1-1H15V7.1a1,1,0,0,1,1-1h0a1,1,0,0,1,1,1V15h7.9A1,1,0,0,1,25.9,16Z"></path>
+			    </svg>
+			    Add Session
+			    </div>';
+			    echo '<div class="extra-info-cnt" style="display:none">
+			    <p class="extra-info">Add sessions to your course which are only available to the enrolled students.</p>
+			    </div>
+			    </div>';
+			    
+
+			    echo '<div class="add-box-mg">';
+			    echo '<div class="add-box" id="manageTestId">
+			    <svg viewBox="0 0 32 32">
+			    <path d="M16,2A14,14,0,1,1,2,16,14,14,0,0,1,16,2m0-2A16,16,0,1,0,32,16,16,16,0,0,0,16,0Z"></path>
+			    <path d="M13.4,22.4h0l-.7-.3L7.1,16.5a1.4,1.4,0,0,1,0-1.5,1.4,1.4,0,0,1,1.5,0l4.8,4.9,10-10a1.4,1.4,0,0,1,1.5,0,1.4,1.4,0,0,1,0,1.5L14.2,22.1A1.9,1.9,0,0,1,13.4,22.4Z"></path>
+			    </svg>
+			    Certificate Exam
+			    </div>';
+			    echo '<div class="extra-info-cnt" style="display:none">
+			    <p class="extra-info">Add or remove questions, determine testing interval and how many of these questions should be asked of the students randomly.</p>
+			    </div>
+			    </div>';
+			    
+
+			    echo '</div>';
+			    echo '</div>';
+			    
+			} elseif($user_type=='student') {
+
+			    echo '<div class="options">';
+
+			    echo '<div class="add-box" id="student-live-add-box" style="display:none;">Live Classroom Now. Click!</div>';
+
+			    echo '<div class="add-box-con">';
+
+			    if($course_subbable) {
+				echo '<div class="add-box" id="addSub"><svg viewBox="0 0 32 32">
+			    <path d="M16,2A14,14,0,1,1,2,16,14,14,0,0,1,16,2m0-2A16,16,0,1,0,32,16,16,16,0,0,0,16,0Z"></path>
+			    <path d="M13.4,22.4h0l-.7-.3L7.1,16.5a1.4,1.4,0,0,1,0-1.5,1.4,1.4,0,0,1,1.5,0l4.8,4.9,10-10a1.4,1.4,0,0,1,1.5,0,1.4,1.4,0,0,1,0,1.5L14.2,22.1A1.9,1.9,0,0,1,13.4,22.4Z"></path>
+			    </svg>
+			    Create fxSubCourse</div>';
+			    }
+			    
+
+			    
+			    echo '<div class="add-box" id="examId"><svg viewBox="0 0 32 32">
+			    <path d="M16,2A14,14,0,1,1,2,16,14,14,0,0,1,16,2m0-2A16,16,0,1,0,32,16,16,16,0,0,0,16,0Z"></path>
+			    <path d="M13.4,22.4h0l-.7-.3L7.1,16.5a1.4,1.4,0,0,1,0-1.5,1.4,1.4,0,0,1,1.5,0l4.8,4.9,10-10a1.4,1.4,0,0,1,1.5,0,1.4,1.4,0,0,1,0,1.5L14.2,22.1A1.9,1.9,0,0,1,13.4,22.4Z"></path>
+			    </svg>
+			    Certificate Exam</div>';
+			    if($stucourse_fetch['last_exam']!=null) {
+				echo '<div class="add-box" style="cursor:auto"><p>Your Score: '.round($stucourse_fetch['score']*10,1).'</p></div>';
+			    } else {
+				echo '<div class="add-box" style="cursor:auto"><p>Your Score: Not Taken</p></div>';
+			    }
+			    echo '<form action="/userpgs/instructor/exam/take_exam.php" id="goToExam" method="POST" style="display:none"><input type="hidden" name="course_id" value="'.$course_id.'"></form>';
+			    echo '</div>';
+			    echo '</div>';
+			} else {
+			    
+			    echo '<div class="options">';
+			    
+			    echo '<div class="add-box-con" style="width:100%">';
 
 
-		 
-		 $bidding_q="SELECT * FROM locked WHERE course_id=$course_id";
-		 $bidding_r=mysqli_query($wallet_connection,$bidding_q);
-
-		 
-		 
-		 $bidding_finalized=0;
-		 if($bidding_r->num_rows > 0) {
-		 $bidding=mysqli_fetch_array($bidding_r);
-		 if($bidding['finalized']) $bidding_finalized=1;
-
-		 $sold2user_q = 'SELECT * FROM user WHERE id='.$bidding['from_id'];
-		 $sold2user_r=mysqli_query($connection,$sold2user_q) or die(mysqli_error($connection));
-		 if($sold2user_r) $sold2user=mysqli_fetch_array($sold2user_r);
-		 }
-
-		 if($bidding_finalized) {
-		 echo '<div class="add-box">
-		 <p>Sold to <a href="/user/'.$sold2user['username'].'">@'.$sold2user['username'].'</a> for '.$bidding['raw_amount'].' fxStars</p>
-		 </div>';
-		 } else {
+			    
+			    /*
+			       if($course_biddable) {
 
 
-		 echo '<div>Make an offer: <p>Highest offer: <span id="highest">'.$cost.'</span> fxStars</p>
-		 <form id="bidForm">
-	         <input type="number" name="amount" class="num-input" id="offer-input" placeholder="Your offer" min="1" required>
-		 <p>Total cost: <span id="totalOfferCost">0</span> fxStars</p>
-		 <input type="hidden" name="from_id" value="'.$get_user_id.'">
-		 <input type="hidden" name="course_id" value="'.$course_id.'">
-		 <input type="hidden" name="to_id" value="'.$get_course_teacher_id.'">
-		 <input type="hidden" name="initial_bid" value="'.$cost.'">
-		 
-		 
-	         <input type="submit" class="submit-btn" value="Make Offer">
-		 </form>
-		 </div>';
-		 }
-		 } else {*/
-	      
-	      echo '<div class="add-box blue-button"  id="purchbutt">Enroll</div>';
+			       
+			       $bidding_q="SELECT * FROM locked WHERE course_id=$course_id";
+			       $bidding_r=mysqli_query($wallet_connection,$bidding_q);
 
-	      if($course_negotiable) {
-		  $check_prev_bargains_q = "SELECT * FROM bargains WHERE course_id = $course_id AND student_id = $get_user_id";
-		  $check_prev_bargains_r = mysqli_query($fxinstructor_connection, $check_prev_bargains_q);
-		  $check_prev_bargains = 0;
-		  if($check_prev_bargains_r) {
-		      $check_prev_bargains = mysqli_num_rows($check_prev_bargains_r);
-		      if($check_prev_bargains > 0) {
-			  $check_prev_bargains_f = mysqli_fetch_array($check_prev_bargains_r);
-		      }
-		  }
-		  echo '<div class="add-box info-box">';
-		  echo '<p>If you cannot pay this course in full, you can request to enroll for a reasonable cost. The instructor may or may not approve your suggestion, in which case your fxStars will be returned.</p>';
-		  if($check_prev_bargains == 0) {
-		      echo '<input type="number" class="num-input" name="myBargain" min="0" max="'.($cost-1).'" placeholder="fxStars" id="myBargainId">';
-		      echo '<button class="submit-btn" id="applyBargain">Apply</button>';
-		  } else {
-		      echo '<input type="number" class="num-input" name="myBargain" min="0" max="'.($cost-1).'" placeholder="fxStars" value="'.$check_prev_bargains_f['fxstars'].'" id="myBargainId" disabled>';
-		      echo '<button class="submit-btn" id="withdrawBargain" bargainId="'.$check_prev_bargains_f['id'].'">Withdraw</button>';
-		  }
-		  echo '</div>';
-	      }
-	      
-	      //}
-	      echo '</div>';
-	      //echo '</div>';
-	      echo '</div>';
-	      
-	  }
+			       
+			       
+			       $bidding_finalized=0;
+			       if($bidding_r->num_rows > 0) {
+			       $bidding=mysqli_fetch_array($bidding_r);
+			       if($bidding['finalized']) $bidding_finalized=1;
+
+			       $sold2user_q = 'SELECT * FROM user WHERE id='.$bidding['from_id'];
+			       $sold2user_r=mysqli_query($connection,$sold2user_q) or die(mysqli_error($connection));
+			       if($sold2user_r) $sold2user=mysqli_fetch_array($sold2user_r);
+			       }
+
+			       if($bidding_finalized) {
+			       echo '<div class="add-box">
+			       <p>Sold to <a href="/user/'.$sold2user['username'].'">@'.$sold2user['username'].'</a> for '.$bidding['raw_amount'].' fxStars</p>
+			       </div>';
+			       } else {
 
 
-	  echo '<div class="sessions">';
-	  ?>
+			       echo '<div>Make an offer: <p>Highest offer: <span id="highest">'.$cost.'</span> fxStars</p>
+			       <form id="bidForm">
+			       <input type="number" name="amount" class="num-input" id="offer-input" placeholder="Your offer" min="1" required>
+			       <p>Total cost: <span id="totalOfferCost">0</span> fxStars</p>
+			       <input type="hidden" name="from_id" value="'.$get_user_id.'">
+			       <input type="hidden" name="course_id" value="'.$course_id.'">
+			       <input type="hidden" name="to_id" value="'.$get_course_teacher_id.'">
+			       <input type="hidden" name="initial_bid" value="'.$cost.'">
+			       
+			       
+			       <input type="submit" class="submit-btn" value="Make Offer">
+			       </form>
+			       </div>';
+			       }
+			       } else {*/
+			    
+			    echo '<div class="add-box blue-button"  id="purchbutt">Enroll</div>';
+
+			    if($course_negotiable) {
+				$check_prev_bargains_q = "SELECT * FROM bargains WHERE course_id = $course_id AND student_id = $get_user_id";
+				$check_prev_bargains_r = mysqli_query($fxinstructor_connection, $check_prev_bargains_q);
+				$check_prev_bargains = 0;
+				if($check_prev_bargains_r) {
+				    $check_prev_bargains = mysqli_num_rows($check_prev_bargains_r);
+				    if($check_prev_bargains > 0) {
+					$check_prev_bargains_f = mysqli_fetch_array($check_prev_bargains_r);
+				    }
+				}
+				echo '<div class="add-box info-box">';
+				echo '<p>If you cannot pay this course in full, you can request to enroll for a reasonable cost. The instructor may or may not approve your suggestion, in which case your fxStars will be returned.</p>';
+				if($check_prev_bargains == 0) {
+				    echo '<input type="number" class="num-input" name="myBargain" min="0" max="'.($cost-1).'" placeholder="fxStars" id="myBargainId">';
+				    echo '<button class="submit-btn" id="applyBargain">Apply</button>';
+				} else {
+				    echo '<input type="number" class="num-input" name="myBargain" min="0" max="'.($cost-1).'" placeholder="fxStars" value="'.$check_prev_bargains_f['fxstars'].'" id="myBargainId" disabled>';
+				    echo '<button class="submit-btn" id="withdrawBargain" bargainId="'.$check_prev_bargains_f['id'].'">Withdraw</button>';
+				}
+				echo '</div>';
+			    }
+			    
+			    //}
+			    echo '</div>';
+			    //echo '</div>';
+			    echo '</div>';
+			    
+			}
+
+
+			echo '<div class="sessions">';
+			?>
 
 			<div class="tabs">
 			    <div class="tab-student active-tab" id="sessions-tab"><div>Sessions(<?php echo $class_num ?>)</div></div>
@@ -1659,6 +1640,14 @@ if($class_result->num_rows>0) {
 	  function unpurchased() {
 	      alert('You must enroll to the course first.');
 	  }
+	 </script>
+
+	 <script>
+	  $('.add-box-mg').hover(function() {
+	      $(this).find('.extra-info-cnt').css('width',$(this).css('width')).show();
+	  }, function() {
+	      $(this).find('.extra-info-cnt').hide();
+	  });
 	 </script>
     </body>
 </html>
