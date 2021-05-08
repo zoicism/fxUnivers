@@ -239,6 +239,7 @@ echo '<div class="little-box"><span>'.date("M jS, Y", strtotime($dt)).'</span></
 		echo '<div class="add-box" id="live-add-box">Go Live in This Session </div>';
 
 		echo '<div class="add-box-con">';
+		echo '<div class="add-box-mg">';
 		echo '<div class="add-box" onclick="location.href=\'/userpgs/instructor/class/edit_class.php?course_id='.$course_id.'&class_id='.$class_id.'\';"><svg viewBox="0 0 32 32">
 				          <path d="M16,11.5A4.5,4.5,0,1,1,11.5,16,4.5,4.5,0,0,1,16,11.5m0-2A6.5,6.5,0,1,0,22.5,16,6.5,6.5,0,0,0,16,9.5Z"></path>
 					  <path d="M21.5,2h.3a.7.7,0,0,1,.4.6l.4,3.5A3.1,3.1,0,0,0,23.5,8l.5.5a3.1,3.1,0,0,0,1.8.9l3.5.4a.7.7,0,0,1,.6.4.8.8,0,0,
@@ -253,14 +254,15 @@ echo '<div class="little-box"><span>'.date("M jS, Y", strtotime($dt)).'</span></
 					  0,0,0,2.3-1.7h0a2.6,2.6,0,0,0-.4-2.7L29.1,17a1.4,1.4,0,0,1-.2-.6c.1-.1.1-.2.1-.4h0c0-.2,0-.3-.1-.4a1.4,1.4,0,0,1,.2-.6l2.3-2.8a2.6,2.6,0,0,0,.4-2.7h0a2.7,
 					  2.7,0,0,0-2.3-1.7L26,7.4l-.5-.2a2.3,2.3,0,0,0-.7-.7.8.8,0,0,1-.2-.5l-.4-3.5A2.7,2.7,0,0,0,22.5.2h0l-1-.2a2.7,2.7,0,0,0-1.7.6L17,2.9l-.5.2h-1L15,2.9,12.2.6A2.7,2.7,0,0,0,10.5,0Z"></path>
 			              </svg>Manage Session</div>';
+		echo '<div class="extra-info-cnt" style="display:none">
+			    <p class="extra-info">Add Video and files, change title or description, or delete this session.</p>
+			    </div>
+			    </div>';
+		echo '</div>';
 		echo '</div>';
 		
-		//echo '<form action="/userpgs/instructor/class/live/#'.$class_id.'" method="POST" id="LiveForm"><input type="hidden" name="course_id" value="'.$course_id.'"><input type="hidden" name="class_id" value="'.$class_id.'"></form>';
 
-		//echo '<form action="/userpgs/instructor/class/live" method="GET" id="LiveForm"><input type="hidden" name="course_id" value="'.$course_id.'"><input type="hidden" name="class_id" value="'.$class_id.'"><input type="hidden" name="hash" value="#'.$class_id.'"></form>';
-
-
-		echo '</div>';
+		
 	    } else {
 		//echo '<div class="options session-learn-options">';
 		//echo '<div class="add-box" id="live-add-box">Open Live Classroom</div>';
@@ -268,7 +270,7 @@ echo '<div class="little-box"><span>'.date("M jS, Y", strtotime($dt)).'</span></
 
 		//echo '<form action="/userpgs/instructor/class/live/#'.$class_id.'" method="POST" id="LiveForm"><input type="hidden" name="course_id" value="'.$course_id.'"><input type="hidden" name="class_id" value="'.$class_id.'"></form>';
 
-	//	echo '<form action="/userpgs/instructor/class/live" method="GET" id="LiveForm"><input type="hidden" name="course_id" value="'.$course_id.'"><input type="hidden" name="class_id" value="'.$class_id.'"><input type="hidden" name="hash" value="#'.$class_id.'"></form>';
+		//	echo '<form action="/userpgs/instructor/class/live" method="GET" id="LiveForm"><input type="hidden" name="course_id" value="'.$course_id.'"><input type="hidden" name="class_id" value="'.$class_id.'"><input type="hidden" name="hash" value="#'.$class_id.'"></form>';
 
 		// Go directly to live if this is a live session as of now
 		
@@ -506,6 +508,14 @@ $('#sessions-tab').click(function() {
   $('.sess-list').show();
   $('.file-list').hide();
 });
+</script>
+
+<script>
+ $('.add-box-mg').hover(function() {
+     $(this).find('.extra-info-cnt').css('width',$(this).css('width')).show();
+ }, function() {
+     $(this).find('.extra-info-cnt').hide();
+ });
 </script>
 </body>
 </html>
