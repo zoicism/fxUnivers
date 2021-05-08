@@ -46,7 +46,7 @@ $get_courses_r = mysqli_query($connection, $get_courses_q);
     <script>
      if(screen.width >= 629) {
 	 $(document).ready(function() {
-	     $('.header-sidebar').prepend('<div style="width:100%; display:flex; flex-flow:row nowrap; justify-content:left;"><a href="/userpgs/instructor/" class="link-main" <?php if($user_type=='instructor') echo 'id="active-main"'; ?>><div class="head">Teach</div></a><a href="/userpgs/student/" class="link-main" <?php if($user_type!='instructor') echo 'id="active-main"'; ?>><div class="head">Learn</div></a></div>');
+	     $('.header-sidebar').prepend('<div style="width:100%; display:flex; flex-flow:row nowrap; justify-content:left;"><a href="/userpgs/instructor/" class="link-main" id="active-main"><div class="head">Teach</div></a><a href="/userpgs/student/" class="link-main"><div class="head">Learn</div></a></div>');
 	 });
      }
     </script>
@@ -72,12 +72,14 @@ $get_courses_r = mysqli_query($connection, $get_courses_q);
 				    <input type="checkbox" name="private" id="privateId" >
 				    <span class="slider round" ></span>
 				</label>
+				<p>By making a course private, you will be able to invite users to become students of this course after the course is published. You can change this setting in Course Management later.</p>
 				<hr class="hr-tct" >
 				<p>Can students with certificate from this fxCourse create fxSubCourses?</p>
 				 <label class="switch" >
 				     <input type="checkbox"  name="subbable" id="subbableId" >
 				     <span class="slider round" ></span>
 				 </label>
+				 <p>If you allow students of this fxCourse to create fxSubCourses, they will be able to do so after they successfully pass this course's Certificate Exam. By doing so, these sub-courses will be shown in your fxCourse page as fxSubCourses and in return you will get a share of their income. You <u>cannot</u> change this setting later. </p>
 				 <hr class="hr-tct" >
 				 <p>Is this an fxSubCourse?</p>
 				 <label class="switch" >
@@ -109,13 +111,15 @@ $get_courses_r = mysqli_query($connection, $get_courses_q);
 				     }
 				     ?>
 				 </select>
+				 <p>If you want to publish this course as an fxSubCourse, you can choose from the list of the courses you have earned a certificate from, and get advertised in their fxCourse page in return for 10% of your income. You <u>cannot</u> change this setting later.</p>
 				 <hr class="hr-tct" >
-				 <p>Can students negotiate for lower price for this fxCourse? By doing so you help students lacking high privileges gain knowledge and at the same time increase your income.</p>
+				 <p>Can students negotiate for lower price for this fxCourse?</p>
 				 <label class="switch">
   				     <input type="checkbox" name="negotiable" id="checkedId">
  				     <span class="slider round"></span>
 				 </label>
-				<input type="submit" class="submit-btn" value="Publish" style="margin-top:35px;">
+				 <p>By doing so you help students lacking high privileges gain knowledge and at the same time increase your income. You can change this setting in Course Management later.</p>
+				     <input type="submit" class="submit-btn" value="Publish" style="margin-top:35px;">
 				
 			      </form>
 
