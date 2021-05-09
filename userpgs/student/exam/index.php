@@ -79,15 +79,12 @@ if($past_date!=null && $interval->days < 7) {
 	<?php require('../../../php/sidebar.php'); ?>
 
 
-    <div class="relative-main-content">
-
-		
+    <div class="relative-main-content">		
 
 	<div class="simple-bg">
-	  <h2>Course Test</h2>
+	    <h2><?php echo $get_course['header'] ?>: <span class="gray" >Certificate Exam</span> </h2>
 
-
-	  <p style="color:red">Remaining Time: <span style="font-weight:bold" id="rem-time"></span> seconds</p>
+	  <p style="color:red" id="remaining-time" >Remaining Time: <span style="font-weight:bold" id="rem-time"></span></p>
 <p>Note that by leaving the page or reloading it, the exam will be submitted and scored, restricting you from taking the test again for a week.</p>
 
 
@@ -177,97 +174,112 @@ $('#page-header').attr('href','/userpgs/fxuniversity');
 $('.fxuniversity-sidebar').attr('id','sidebar-active');
 </script>
 
+
+
+
 <script>
-$('#testForm').submit(function(event) {
-  event.preventDefault();
+ $('#goto-course').click(function(e) {
+     e.preventDefault();
+     window.location.replace('/userpgs/instructor/course_management/course.php?course_id=<?php echo $course_id?>');
+ });
+</script>
 
-  var questionCount = $('.question').length;
+<script>
+ var testInterval = null;
+ var totalSeconds = <?php echo $total_time?>;
+ totalSeconds *= 60;
+ 
+ $(document).ready(function() {
+     setInterval(testIntervalUpdate, 1000);
+ });
 
-  jQuery.ajax({
-    url:'/php/correct_exam.php',
-    type:'POST',
-    data:$(this).serialize() + "&qCount=" + questionCount,
-    dataType:'json',
-    success: function(response) {
-      console.log(response);
-
-      $('#done-btn').hide();
-
-      var correct_answers=0;
-      for(var i=1; i<=questionCount; i++) {
-        if(response[i]==1) {
-  	  $('#question'+i).css('background-color','green');
-	  correct_answers++;
-	} else {
-	  $('#question'+i).css('background-color','red');
- 	}
-      }
-      
-      var mark = correct_answers/questionCount;
-      if(mark>=0.5) {
-        alert('You are passed by answering '+correct_answers+' questions correctly.');
-      } else {
-        alert('You failed by answering '+correct_answers+' questions correctly.');
-      }
-
-      $('#testForm :input').prop('disabled', true);
-
-      
-      $('#goto-course').show();
-      
-
-    }
-  });
-});
+ function testIntervalUpdate() {
+     var minutes = Math.floor(totalSeconds / 60);
+     console.log(minutes);
+     var seconds = totalSeconds - minutes * 60;
+     console.log(seconds);
+     $('#rem-time').html(minutes.toString() + ':' + seconds.toString());
+     totalSeconds--;
+     if(totalSeconds <= 0) {
+	 $('#testForm').submit();
+	 $('#rem-time').html("Time's Up");
+     }
+ }
 </script>
 
 
 <script>
-$('#goto-course').click(function(e) {
-  e.preventDefault();
-  window.location.replace('/userpgs/instructor/course_management/course.php?course_id=<?php echo $course_id?>');
-});
+ $('#testForm').submit(function(event) {
+     event.preventDefault();
+
+     var questionCount = $('.question').length;
+
+     jQuery.ajax({
+	 url:'/php/correct_exam.php',
+	 type:'POST',
+	 data:$(this).serialize() + "&qCount=" + questionCount,
+	 dataType:'json',
+	 success: function(response) {
+	     console.log(response);
+
+	     $('#done-btn').hide();
+
+	     var correct_answers=0;
+	     for(var i=1; i<=questionCount; i++) {
+		 if(response[i]==1) {
+  		     $('#question'+i).css('background-color','#00b9484f');
+		     correct_answers++;
+		 } else {
+		     $('#question'+i).css('background-color','#ff000026');
+ 		 }
+	     }
+	     
+	     var mark = correct_answers/questionCount;
+	     if(mark>=0.5) {
+		 alert('You are passed by answering '+correct_answers+' questions correctly.');
+	     } else {
+		 alert('You failed by answering '+correct_answers+' questions correctly.');
+	     }
+
+	     $('#testForm :input').prop('disabled', true);
+	     $('#goto-course').show();
+	     $('#remaining-time').hide();
+	     window.removeEventListener('beforeunload', beforeUnload);
+
+	 }
+     });
+ });
 </script>
 
-<script>
-$(document).ready(function() {
-  var startTime = <?php echo $total_time?>;
-  startTime *= 60;
-  setInterval(function() {
-    $('#rem-time').html(startTime);
-    startTime--;
-    if(startTime<=0) {
-      $('#testForm').submit();
-      $('#rem-time').html("Time's Up");
-    }
-  }, 1000);
-});
-</script>
 
 <script>
-$(window).bind('beforeunload', function() {
-  return "The test will be submitted and scored if you leave the page. Want to leave the page?";
-});
-window.onunload = function() {
-  $('#testForm').submit();
-}
+ function beforeUnload(e) {
+     var confirmationMessage = "The test will be submitted and scored if you leave the page. Want to leave the page?";
+     (e || window.event).returnValue = confirmationMessage; //Gecko + IE
+     return confirmationMessage;
+ }
+ window.addEventListener('beforeunload', beforeUnload);
+ 
+ window.onunload = function() {
+     $('#testForm').submit();
+ }
 </script>
 
 
 <script>
-$(window).on('load',function() {
-  jQuery.ajax({
-    url: '/php/exam_date.php',
-    type: 'POST',
-    data: {last_date: '<?php echo $past_date?>'},
-    success: function(response) {
-      console.log(response);
-      if(response<7) {
-        window.location.replace("/userpgs/instructor/course_management/course.php?course_id=<?php echo $course_id?>");
-      }
-    }
-  });
-});
+ $(window).on('load',function() {
+     jQuery.ajax({
+	 url: '/php/exam_date.php',
+	 type: 'POST',
+	 data: {last_date: '<?php echo $past_date?>'},
+	 success: function(response) {
+	     console.log(response);
+	     if(response<7) {
+		 window.location.replace("/userpgs/instructor/course_management/course.php?course_id=<?php echo $course_id?>");
+	     }
+	 }
+     });
+ });
 </script>
 </body>
 </html>
