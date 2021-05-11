@@ -44,22 +44,23 @@ if($_SERVER['HTTPS'] != "on") {
 	
 	<h2>fxUnivers</h2>
 	<div class="solo-sub">
-	  <p><b>fxUniversity.</b> Create courses as instructor & make fxStars, or browse to take them as student.</p>
-	  <p><b>fxPartner.</b> Partner us & make easy fxStars.</p>
-	  <p><b>fxStar.</b> Purchase products and services, or send, recieve, and request as gift.</p>
+    <p><b>fxUniversity.</b> Create a course & Earn fxStars. <a href="#fxuniversity">Learn more</a></p>
+	  <p><b>fxPartner.</b> Partner us & make easy fxStars. <a href="#fxpartner">Learn more</a></p>
+    <p><b>fxStar.</b> Buy and gift products and services: send, receive, or donate them. <a href="#fxstar">Learn more</a></p>
 	  <p><b>fxUniverse.</b> Universe of trading (Coming soon for public).</p>
 	</div>
 
 
 
 	
-	<h2>fxUniversity</h2>
+	<h2 id="fxuniversity">fxUniversity</h2>
 	<div class="solo-sub">
-	  <p>At fxUniversity you can teach your favorite subjects as an fxInstructor using many top-notch tools and unlimited volume of cloud storage free of charge, and earn fxStars, determined by yourself, for each course. You can also learn from other fxInstructors, build up your knowledge, and start your own courses right after.</p>
+	  <p>At fxUniversity you can teach your favorite subjects as an fxInstructor using many top-notch tools and unlimited volume of cloud storage free of charge, and earn fxStars. You can also learn from other fxInstructors, build up your knowledge, and start your own courses by becoming fxSubInstructors.</p>
+    <!--<p>Create a course, teach your subject, or just join a course using fxUniversity and earn fxStars. Our FX tool is a cloud-based educational hub and learning experience. Earn fxStars and trade -->
 	  
 	  <h3>fxInstructors and fxSubInstructors</h3>
-	  <p>An <b>fxInstructor</b> is the primary creator of any course, topic, presentation, speech, talk, or certification.</p>
-	  <p>An <b>fxSubInstructor</b> is the secondary instructor of any available fxCourse or fxSubCourse, topic, presentation, speech, talk, or certification.</p>
+    <p>Become an <b>fxInstructor</b> -- the primary course creator; create a course with recorded/live sessions, presentation, certificate, etc.</p>
+								  <p>Become an <b>fxSubInstructor</b> -- choose from our available courses (fxCourse & fxSubCourse) and teach your audience./p>
 
 	  
 	  <h4>fxInstructor Steps</h4>
@@ -112,7 +113,7 @@ if($_SERVER['HTTPS'] != "on") {
 	  </ul>
 	  
 	</div>
-	<h2>fxPartner</h2>
+	<h2 id="fxpartner">fxPartner</h2>
 	<div class="solo-sub">
 	  
 	  <p>Generate revenue as our partner by:</p>
@@ -149,7 +150,7 @@ if($_SERVER['HTTPS'] != "on") {
 	  </ol>
 	</div>
 
-	<h2>fxStar</h2>
+	<h2 id="fxstar">fxStar</h2>
 	<div class="solo-sub">
 	  
 	  <p>Purchase fxStars and benefit from the following products and services.</p>
