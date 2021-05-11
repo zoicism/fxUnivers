@@ -189,14 +189,10 @@ require('../php/get_messenger.php');
 			    ?>
 			</div>
 
-
 			<div class="footer-chat">
 
 			    <div class="image-upload">
-				<label for="file-input">
 				    <img src="/images/background/plus.svg" class="chat-icon" id="file-btn">
-				</label>
-				<!--<input id="file-input" type="file" multiple>-->
 				
 				<form method="POST" style="display:none" id="file-form" enctype="multipart/form-data" action="/php/messenger_file_send.php">
 				    <input type="hidden" name="senderId" value="<?php echo $get_user_id?>">
@@ -1094,7 +1090,6 @@ require('../php/get_messenger.php');
 	<script>
 	 $(function() {
 	     $('#file-form').ajaxForm(function(response) {
-		 
 		 if(response==0) {
 		     alert('Failed to send the file. Please try again.');
 		 } else {
