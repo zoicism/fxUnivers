@@ -135,6 +135,7 @@ if($type=='course') {
     if($course_count>0) {
 	$course_arr = array();
 	$course_id_arr = array();
+	$course_user_id_arr = array();
 	$course_j = 0;
 
 	echo '<div class="obj-box">';
@@ -152,6 +153,8 @@ if($type=='course') {
 	    $teacher_verified = $teacher_un_f['verified'];
 	    
 	    $course_id_arr[$course_j] = $row3['id'];
+	    $course_user_id_arr[$course_j] = $row3['user_id'];
+
 	    $obj_div[$course_j] = '<div class="object" onclick="location.href=\'/userpgs/instructor/course_management/course.php?course_id='.$row3['id'].'\';">';
 
 
@@ -227,7 +230,8 @@ if($type=='course') {
 	for($course_i = 0; $course_i < count($obj_div); $course_i++) {
 	    //echo $obj_div[$course_i];
 	    $course_vote_id = $course_id_arr[$course_i];
-	    
+	    $course_user_id = $course_user_id_arr[$course_i];
+
 	    $upvotes_q = "SELECT * FROM courseLikes WHERE courseId = $course_vote_id";
 	    $upvotes_r = mysqli_query($fxinstructor_connection, $upvotes_q);
 	    $upvotes = mysqli_num_rows($upvotes_r);
@@ -238,6 +242,10 @@ if($type=='course') {
 
 	    $course_votes[$course_i][0] = $upvotes - $downvotes;
 	    $course_votes[$course_i][1] = $course_i;
+
+	    if($course_user_id == 3) {
+	      $course_votes[$course_i][0] = 1000000;
+	    }
 	}
 
 	usort($course_votes, function($a, $b) {
@@ -250,7 +258,7 @@ if($type=='course') {
 
 	
 	
-	echo '</div>';	      
+	echo '</div>';   
 
     } else {
 	echo '<p class="gray">No courses found</p>';
