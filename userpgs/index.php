@@ -1,10 +1,10 @@
 <?php
 // Requiring https
-/*if($_SERVER['HTTPS'] != "on") {
+if($_SERVER['HTTPS'] != "on") {
    $url = "https://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
    header("Location: $url");
    exit;
-}*/
+}
 
 session_start();
 require('../register/connect.php');
@@ -47,6 +47,19 @@ require('../php/get_partner.php');
 
 require('instructor/php/courses.php');
 require('../php/get_stu_stucourse.php');
+
+$gss_count_alive = 0;
+if($gss_count > 0) {
+  while($taken_row=$gss_result->fetch_assoc()) {
+    $taken_course_id=$taken_row['course_id'];
+    $get_stus_course_query="SELECT * FROM teacher WHERE id=$taken_course_id";
+    $get_stus_course_result=mysqli_query($connection,$get_stus_course_query) or die(mysqli_error($connection));
+    $gsc_fetch=mysqli_fetch_array($get_stus_course_result);
+    if($gsc_fetch['alive'] == 1) {
+      $gss_count_alive++;
+    }
+  }
+}
 ?>
 
 
@@ -120,7 +133,7 @@ require('../php/get_stu_stucourse.php');
                             <a href="/userpgs/fxuniversity" class="link" id="fxuniversity-link" >
 				<div class="head" id="main-info"><div class="in-icon"><img src="/images/icons/platforms/fxuniversity.svg" ></div>fxUniversity
 				    <div class="icon-txt" >
-				        <p class="sub"><?php echo $course_count+$gss_count?> courses</p>
+				        <p class="sub"><?php echo $course_count+$gss_count_alive?> courses</p>
 				    </div>
                                 </div>
 				<div class="icon-txt" style="display:none" id="extra-info"><p class="sub">Create and sell courses or enroll and learn</p></div>
@@ -154,7 +167,7 @@ require('../php/get_stu_stucourse.php');
                                             <p class="sub">coming soon</p>
 					</div>
                                     </div>
-				    <div class="icon-txt" style="display:none" id="extra-info"><p class="sub">Social network to make direct money from; coming soon</p></div>
+				    <div class="icon-txt" style="display:none" id="extra-info"><p class="sub">A trading social network for traders; coming soon</p></div>
 				    
                                 </a>
                         </li>
