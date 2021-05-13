@@ -47,7 +47,7 @@ require('../php/get_fxcoin_count.php');
     <script>
      if(screen.width >= 629) {
 	 $(document).ready(function() {
-	     $('.header-sidebar').prepend('<div style="width:100%; display:flex; flex-flow:row nowrap; justify-content:left;"><a href="/wallet/buy" class="link-main"><div class="head">Buy fxStars</div></a><a href="/wallet/cashout" class="link-main"><div class="head">Cash-out</div></a><a href="/wallet/txn" class="link-main"><div class="head">Transactions</div></a><a href="/wallet/send" class="link-main"><div class="head">Transfer</div></a><a href="/wallet/req" class="link-main" id="active-main"><div class="head">Request</div></a></div>');
+	     $('.header-sidebar').prepend('<div style="width:100%; display:flex; flex-flow:row nowrap; justify-content:left;"><a href="/wallet/buy" class="link-main"><div class="head">Buy fxStars</div></a><a href="/wallet/send" class="link-main"><div class="head">Transfer</div></a><a href="/wallet/req" class="link-main" id="active-main"><div class="head">Request</div></a><a href="/wallet/txn" class="link-main"><div class="head">Transactions</div></a><a href="/wallet/cashout" class="link-main"><div class="head">Cash-out</div></a></div>');
 	 });
      }
     </script>
