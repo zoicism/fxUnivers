@@ -4559,6 +4559,45 @@ input:checked + .slider:before {
 	width:100%;
 	padding:0 5%;
     }
+	
+    /********************** > about page mobile **********************/
+	
+    .solo-container {
+        padding: 0;
+    }
+
+    .solo-container .solo {
+    	width: 100%;
+	border-radius: 0;
+    	box-shadow: none;
+    }
+	
+    .solo-container .about .fxuniversity-about {
+    	padding: 0;
+    }
+	
+    .solo-container .about .fxpartner-about {
+    	padding: 0;
+    }
+	
+    .solo-container .about .fxstar-about {
+    	padding: 0;
+    }
+
+    .solo-container .about .fxuniversity-about .university-background {
+    	border-radius: 0;
+    }
+	
+    .solo-container .solo-sub {
+	padding: 0 30px 40px 30px;
+    }
+	
+    .solo-container .about .fxpartner-about .partner-background {
+	border-radius: 0;
+    }
+	
+    /********************** < about page mobile **********************/
+	
 
     /********************** > profile mobile **********************/
 
@@ -4669,10 +4708,6 @@ input:checked + .slider:before {
     
     .overlay {
 	width:80%;
-    }
-
-    .solo-container .solo {
-	width:90%;
     }
     
     .login-container {
