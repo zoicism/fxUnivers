@@ -2330,13 +2330,140 @@ textarea:focus {
     -webkit-text-fill-color: transparent;
 }
 
-.solo-container .about .fxuniversity-about, .fxpartner-about, fxstar-about .solo-sub h4 {
+.solo-container .about .fxuniversity-about h4 {
     font-size: 18px;
 }
 
-.solo-container .about .fxuniversity-about, .fxpartner-about, fxstar-about .solo-sub ol, ul {
-    padding-left: 50px;
+.solo-container .about .fxpartner-about h4 {
+    font-size: 18px;
 }
+
+.solo-container .about .fxstar-about h4 {
+    font-size: 18px;
+}
+
+.solo-container .about .fxuniversity-about ol, ul {
+    list-style-type: none;
+}
+
+.solo-container .about .fxpartner-about ol, ul {
+    list-style-type: none;
+}
+
+.solo-container .about .fxstar-about ol, ul {
+    list-style-type: none;
+}
+
+.solo-sub li {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+
+
+
+.solo-container .about .fxuniversity-about ul .fxuniversity-circle {
+    min-width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    margin-right: 16px;
+    background: hsla(197, 100%, 44%, 1);
+    background: linear-gradient( 0deg, hsla(197, 100%, 44%, 1) 0%, hsla(277, 100%, 44%, 1) 100%);
+    background: -moz-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(277, 100%, 44%, 1) 100%);
+    background: -webkit-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(277, 100%, 44%, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#00A1E0", endColorstr="#8A00E0", GradientType=1 );
+}
+
+.solo-container .about .fxuniversity-about ul .fxuniversity-circle svg {
+    width: 12px;
+    height: 10px;
+    margin-left: 6px;
+}
+
+.solo-container .about .fxuniversity-about ol .fxuniversity-circle {
+    min-width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    margin-right: 16px;
+    background: hsla(197, 100%, 44%, 1);
+    background: linear-gradient( 0deg, hsla(197, 100%, 44%, 1) 0%, hsla(277, 100%, 44%, 1) 100%);
+    background: -moz-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(277, 100%, 44%, 1) 100%);
+    background: -webkit-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(277, 100%, 44%, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#00A1E0", endColorstr="#8A00E0", GradientType=1 );
+}
+
+.solo-container .about .fxuniversity-about ol .fxuniversity-circle .about-num {
+    color: #efefef;
+    font-size: 15px;
+    padding-left: 8px;
+    padding-top: 3px;
+}
+
+
+
+
+.solo-container .about .fxpartner-about ul .fxpartner-circle {
+    min-width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    margin-right: 16px;
+    background: hsla(197, 100%, 44%, 1);
+    background: linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(179, 100%, 44%, 1) 100%);
+    background: -moz-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(179, 100%, 44%, 1) 100%);
+    background: -webkit-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(179, 100%, 44%, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#00A1E0", endColorstr="#00E0DD", GradientType=1 );
+}
+
+.solo-container .about .fxpartner-about ul .fxpartner-circle svg {
+    width: 12px;
+    height: 10px;
+    margin-left: 6px;
+}
+
+.solo-container .about .fxpartner-about ol .fxpartner-circle {
+    min-width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    margin-right: 16px;
+    background: hsla(197, 100%, 44%, 1);
+    background: linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(179, 100%, 44%, 1) 100%);
+    background: -moz-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(179, 100%, 44%, 1) 100%);
+    background: -webkit-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(179, 100%, 44%, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#00A1E0", endColorstr="#00E0DD", GradientType=1 );
+}
+
+.solo-container .about .fxpartner-about ol .fxpartner-circle .about-num {
+    color: #efefef;
+    font-size: 15px;
+    padding-left: 8px;
+    padding-top: 3px;
+}
+
+
+
+.solo-container .about .fxstar-about ul .fxstar-circle {
+    min-width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    margin-right: 16px;
+    background: hsla(197, 100%, 44%, 1);
+    background: linear-gradient(90deg, hsla(197, 100%, 44%, 1) 0%, hsla(61, 99%, 44%, 1) 100%);
+    background: -moz-linear-gradient(90deg, hsla(197, 100%, 44%, 1) 0%, hsla(61, 99%, 44%, 1) 100%);
+    background: -webkit-linear-gradient(90deg, hsla(197, 100%, 44%, 1) 0%, hsla(61, 99%, 44%, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#00A1E0", endColorstr="#DDE001", GradientType=1 );
+}
+
+.solo-container .about .fxstar-about ul .fxstar-circle svg {
+    width: 12px;
+    height: 10px;
+    margin-left: 6px;
+}
+
+.solo-container .about .fxstar-about ul .details {
+    margin-left: 70px;
+}
+
+
 
 .solo-container .about .fxpartner-about .partner-background {
     display: flex;
@@ -2357,7 +2484,7 @@ textarea:focus {
     display: block;
 }
 
-.solo-container .about .partner-about .solo-sub h3 {
+.solo-container .about .fxpartner-about .solo-sub h3 {
     font-size: 20px;
     background: #00A1E0;
     background: -webkit-linear-gradient(to right, #00A1E0 0%, #00E0DD 100%);
@@ -2375,10 +2502,10 @@ textarea:focus {
     margin-bottom: 40px;
     border-radius: 20px;
     background: hsla(197, 100%, 44%, 1);
-    background: linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(61, 92%, 50%, 1) 100%);
-    background: -moz-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(61, 92%, 50%, 1) 100%);
-    background: -webkit-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(61, 92%, 50%, 1) 100%);
-    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#00A1E0", endColorstr="#F0F40A", GradientType=1 );
+    background: linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(61, 100%, 44%, 1) 100%);
+    background: -moz-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(61, 100%, 44%, 1) 100%);
+    background: -webkit-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(61, 100%, 44%, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#00A1E0", endColorstr="#DDE000", GradientType=1 );
 }
 
 .solo-container .about .fxstar-about .star-background svg {
@@ -2389,9 +2516,10 @@ textarea:focus {
 .solo-container .about .fxstar-about .solo-sub h3 {
     font-size: 20px;
     background: #00A1E0;
-    background: -webkit-linear-gradient(to right, #00A1E0 0%, #8900E0 100%);
-    background: -moz-linear-gradient(to right, #00A1E0 0%, #8900E0 100%);
-    background: linear-gradient(to right, #00A1E0 0%, #8900E0 100%);
+    background: #00A1E0;
+    background: -webkit-linear-gradient(to right, #00A1E0 0%, #dde001 100%);
+    background: -moz-linear-gradient(to right, #00A1E0 0%, #dde001 100%);
+    background: linear-gradient(to right, #00A1E0 0%, #dde001 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
