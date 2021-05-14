@@ -2294,10 +2294,12 @@ textarea:focus {
 }
 
 .solo-container .about .about-top, .fxuniversity-about, .fxpartner-about {
+    width: 100%;
     padding: 0 30px 40px 30px;
 }
 
 .solo-container .about .fxstar-about {
+    width: 100%;
     padding: 0 30px;
 }
 
@@ -2375,9 +2377,9 @@ textarea:focus {
 }
 
 .solo-container .about .fxuniversity-about ul .fxuniversity-circle svg {
-    width: 12px;
+    width: 24px;
     height: 10px;
-    margin-left: 6px;
+    margin-top: 6px;
 }
 
 .solo-container .about .fxuniversity-about ol .fxuniversity-circle {
@@ -2415,9 +2417,9 @@ textarea:focus {
 }
 
 .solo-container .about .fxpartner-about ul .fxpartner-circle svg {
-    width: 12px;
+    width: 24px;
     height: 10px;
-    margin-left: 6px;
+    margin-top: 6px;
 }
 
 .solo-container .about .fxpartner-about ol .fxpartner-circle {
@@ -2447,22 +2449,22 @@ textarea:focus {
     border-radius: 50%;
     margin-right: 16px;
     background: hsla(197, 100%, 44%, 1);
-    background: linear-gradient(90deg, hsla(197, 100%, 44%, 1) 0%, hsla(61, 99%, 44%, 1) 100%);
-    background: -moz-linear-gradient(90deg, hsla(197, 100%, 44%, 1) 0%, hsla(61, 99%, 44%, 1) 100%);
-    background: -webkit-linear-gradient(90deg, hsla(197, 100%, 44%, 1) 0%, hsla(61, 99%, 44%, 1) 100%);
+    background: linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(61, 99%, 44%, 1) 100%);
+    background: -moz-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(61, 99%, 44%, 1) 100%);
+    background: -webkit-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(61, 99%, 44%, 1) 100%);
     filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#00A1E0", endColorstr="#DDE001", GradientType=1 );
 }
 
 .solo-container .about .fxstar-about ul .fxstar-circle svg {
-    width: 12px;
+    width: 24px;
     height: 10px;
-    margin-left: 6px;
+    margin-top: 6px;
 }
 
-.solo-container .about .fxstar-about ul .details {
-    margin-left: 70px;
+.solo-container .about .fxstar-about .circle-text {
+    display: flex;
+    align-items: baseline;
 }
-
 
 
 .solo-container .about .fxpartner-about .partner-background {
