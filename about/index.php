@@ -48,25 +48,75 @@ if($_SERVER['HTTPS'] != "on") {
 
 		  <h3>fxInstructors and fxSubInstructors</h3>
 	    <p>Become an <b>fxInstructor</b> -- the primary course creator; create a course with recorded/live sessions, presentation, certificate, etc.</p>
-									  <p>Become an <b>fxSubInstructor</b> -- choose from our available courses (fxCourse & fxSubCourse) and teach your audience./p>
+									  <p>Become an <b>fxSubInstructor</b> -- choose from our available courses (fxCourse & fxSubCourse) and teach your audience.</p>
 
 
 		  <h4>fxInstructor Steps</h4>
 		  <ol>
-		    <li><p><b>Course Creation.</b> You can create <em>Recorded</em>, <em>Live 1-on-1</em>, or <em>Live Classrooms</em> with up to 250 fxStudents simultaneously present in one live session.</p></li>
-		    <li><p><b>Student Enrollment.</b> Students can enroll to a course by simply <em>purchasing</em> it, i.e. paying you the fixed number of fxStars prescribed by you, or, in case you allow it, by <em>bargaining</em> over a suitable number of fxStars for both you and the student.</p></li>
-		    <li><p><b>Examination.</b> Test the students by your own set of questions.</p></li>
-		    <li><p><b>Certification.</b> Give a certificate to the students who succeed in a course examination.</p></li>
-		    <li><p><b>Course Subs.</b> Allow certified students to generate more revenue for your on auto-pilot.</p></li>
+		    <li>
+			<div class="fxuniversity-circle">
+			    <div class="about-num">1</div>
+			</div>
+		        <p><b>Course Creation.</b> You can create <em>Recorded</em>, <em>Live 1-on-1</em>, or <em>Live Classrooms</em> with up to 250 fxStudents simultaneously present in one live session.</p>
+		    </li>
+		    <li>
+			<div class="fxuniversity-circle">
+			    <div class="about-num">2</div>
+			</div>
+			<p><b>Student Enrollment.</b> Students can enroll to a course by simply <em>purchasing</em> it, i.e. paying you the fixed number of fxStars prescribed by you, or, in case you allow it, by <em>bargaining</em> over a suitable number of fxStars for both you and the student.</p>
+		    </li>
+		    <li>
+			<div class="fxuniversity-circle">
+			    <div class="about-num">3</div>
+			</div>
+			<p><b>Examination.</b> Test the students by your own set of questions.</p>
+		    </li>
+		    <li>
+			<div class="fxuniversity-circle">
+			    <div class="about-num">4</div>
+			</div>
+			<p><b>Certification.</b> Give a certificate to the students who succeed in a course examination.</p>
+		    </li>
+		    <li>
+			<div class="fxuniversity-circle">
+			    <div class="about-num">5</div>
+			</div>
+			<p><b>Course Subs.</b> Allow certified students to generate more revenue for your on auto-pilot.</p>
+		    </li>
 		  </ol>
 
 		  <h4>fxSubInstructor Steps</h4>
 		  <ol>
-		    <li><p><b>Certification.</b> Get certified on a top.</p></li>
-		    <li><p><b>Course Sub.</b> Become an instructor of the topic you have a certificate from.</p></li>
-		    <li><p><b>Student Enrollment.</b> Teach the topic to new fxStudents.</p></li>
-		    <li><p><b>Examination.</b> Test your own students.</p></li>
-		    <li><p><b>Certification and Course Subs.</b> Allow certified students to generate more revenue on auto-pilot.</p></li>
+		    <li>
+			<div class="fxuniversity-circle">
+			    <div class="about-num">1</div>
+			</div>
+			<p><b>Certification.</b> Get certified on a top.</p>
+		    </li>
+		    <li>
+			<div class="fxuniversity-circle">
+			    <div class="about-num">2</div>
+			</div>
+			<p><b>Course Sub.</b> Become an instructor of the topic you have a certificate from.</p>
+		    </li>
+		    <li>
+			<div class="fxuniversity-circle">
+			    <div class="about-num">3</div>
+			</div>
+			<p><b>Student Enrollment.</b> Teach the topic to new fxStudents.</p>
+		    </li>
+		    <li>
+			<div class="fxuniversity-circle">
+			    <div class="about-num">4</div>
+			</div>
+			<p><b>Examination.</b> Test your own students.</p>
+		    </li>
+		    <li>
+			<div class="fxuniversity-circle">
+			    <div class="about-num">5</div>
+			</div>
+			<p><b>Certification and Course Subs.</b> Allow certified students to generate more revenue on auto-pilot.</p>
+		    </li>
 		  </ol>
 
 
@@ -76,31 +126,88 @@ if($_SERVER['HTTPS'] != "on") {
 		  <h4>fxInstructor Revenue</h4>
 		  <p>The following conditions apply to an fxInstructor's revenue concerning an fxCrouse.</p>
 		  <ul>
-		    <li><p>90% of fxCourse fxStars</p></li>
-		    <li><p>10% of direct fxSubCourses</p></li>
-		    <li><p>5% of all indirect fxSubCourses</p></li>
+		    <li>
+			<div class="fxuniversity-circle">
+			    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
+			</div>
+			<p>90% of fxCourse fxStars</p>
+		    </li>
+		    <li>
+			<div class="fxuniversity-circle">
+			    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
+			</div>
+			<p>10% of direct fxSubCourses</p>
+		    </li>
+		    <li>
+			<div class="fxuniversity-circle">
+			    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
+			</div>
+			<p>5% of all indirect fxSubCourses</p>
+		    </li>
 		  </ul>
 		  <p>As an fxInstructor:</p>
 		  <ul>
-		    <li><p>Always get the credit as the founder and creator of the course content.</p></li>
-		    <li><p>Utilize the most efficient method to spread and educate many students and audiences for your topics/courses.</p></li>
-		    <li><p>Expose your course material to many audiences in the World Wide Web.</p></li>
-		    <li><p>Set up private courses among your own students or audiences; fxUniversity will administrate the operation.</p></li>
+		    <li>
+			<div class="fxuniversity-circle">
+			    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
+			</div>
+			<p>Always get the credit as the founder and creator of the course content.</p>
+		    </li>
+		    <li>
+			<div class="fxuniversity-circle">
+			    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
+			</div>
+			<p>Utilize the most efficient method to spread and educate many students and audiences for your topics/courses.</p>
+		    </li>
+		    <li>
+			<div class="fxuniversity-circle">
+			    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
+			</div>
+			<p>Expose your course material to many audiences in the World Wide Web.</p>
+		    </li>
+		    <li>
+			<div class="fxuniversity-circle">
+			    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
+			</div>
+			<p>Set up private courses among your own students or audiences; fxUniversity will administrate the operation.</p>
+		    </li>
 		  </ul>
 
 		  <h4>fxSubInstructor Revenue</h4>
 		  <p>The following conditions apply to an fxSubInstructor's revenue concerning an fxSubCrouse.</p>
 		  <ul>
-		    <li><p>80% of fxSubCourse fxStars</p></li>
-		    <li><p>A share of 5% resulting from further fxSubCourses from this fxSubCourse</p></li>
+		    <li>
+			<div class="fxuniversity-circle">
+			    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
+			</div>
+			<p>80% of fxSubCourse fxStars</p>
+		    </li>
+		    <li>
+			<div class="fxuniversity-circle">
+			    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
+			</div>
+			<p>A share of 5% resulting from further fxSubCourses from this fxSubCourse</p>
+		    </li>
 		  </ul>
 		  <p>As an fxSubInstructor:</p>
 		  <ul>
-		    <li><p>Utilize the fastest way to monetize and earn revenue from courses taken and certified.</p></li>
-		    <li><p>Find topics of interest to teach and earn income online on the World Wide Web with outreach to many students a click away.</p></li>
+		    <li>
+			<div class="fxuniversity-circle">
+			    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
+			</div>
+			<p>Utilize the fastest way to monetize and earn revenue from courses taken and certified.</p>
+		    </li>
+		    <li>
+			<div class="fxuniversity-circle">
+			    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
+			</div>
+			<p>Find topics of interest to teach and earn income online on the World Wide Web with outreach to many students a click away.</p>
+		    </li>
 		  </ul>
 		</div>
 	      </div>
+	      
+	      
 	      
 	      <div class="fxpartner-about">
 		<div class="partner-background">
@@ -111,38 +218,132 @@ if($_SERVER['HTTPS'] != "on") {
 
 		  <p>Generate revenue as our partner by:</p>
 		  <ul>
-		    <li><p>Recruiting fxStudents</p></li>
-		    <li><p>Recruiting fxInstructors</p></li>
-		    <li><p>Recruiting fxSubInstructors</p></li>
+		    <li>
+			<div class="fxpartner-circle">
+			    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
+			</div>
+			<p>Recruiting fxStudents</p>
+		    </li>
+		    <li>
+			<div class="fxpartner-circle">
+			    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
+			</div>
+			<p>Recruiting fxInstructors</p>
+		    </li>
+		    <li>
+			<div class="fxpartner-circle">
+			    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
+			</div>
+			<p>Recruiting fxSubInstructors</p>
+		    </li>
 		  </ul>
+			
 		  <p>As an fxPartner you will benefit from:</p>
 		  <ul>
-		    <li><p>Revenue Sharing</p></li>
-		    <li><p>Solid Online Job</p></li>
-		    <li><p>Possibility of Secure Cash-out, Anytime</p></li>
+		    <li>
+			<div class="fxpartner-circle">
+			    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
+			</div>
+			<p>Revenue Sharing</p>
+		    </li>
+		    <li>
+			<div class="fxpartner-circle">
+			    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
+			</div>
+			<p>Solid Online Job</p>
+		    </li>
+		    <li>
+			<div class="fxpartner-circle">
+			    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
+			</div>
+			<p>Possibility of Secure Cash-out, Anytime</p>
+		    </li>
 		  </ul>
+			
 		  <p>Additional Skills to be Rewarded for as an fxPartner:</p>
 		  <ul>
-		    <li><p>Marketing</p></li>
-		    <li><p>Advertising</p></li>
-		    <li><p>Human Resources</p></li>
-		    <li><p>Talent Acquisition</p></li>
-		    <li><p>Teaching</p></li>
-		    <li><p>Selling</p></li>
-		    <li><p>Public Relations</p></li>
-		    <li><p>etc.</p></li>
+		    <li>
+			<div class="fxpartner-circle">
+			    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
+			</div>
+			<p>Marketing</p>
+		    </li>
+		    <li>
+			<div class="fxpartner-circle">
+			    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
+			</div>
+			<p>Advertising</p>
+		    </li>
+		    <li>
+			<div class="fxpartner-circle">
+			    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
+			</div>
+			<p>Human Resources</p>
+		    </li>
+		    <li>
+			<div class="fxpartner-circle">
+			    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
+			</div>
+			<p>Talent Acquisition</p>
+		    </li>
+		    <li>
+			<div class="fxpartner-circle">
+			    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
+			</div>
+			<p>Teaching</p>
+		    </li>
+		    <li>
+			<div class="fxpartner-circle">
+			    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
+			</div>
+			<p>Selling</p>
+		    </li>
+		    <li>
+			<div class="fxpartner-circle">
+			    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
+			</div>
+			<p>Public Relations</p>
+		    </li>
+		    <li>
+			<div class="fxpartner-circle">
+			    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
+			</div>
+			<p>etc.</p>
+		    </li>
 		  </ul>
+			
 		  <p><b>We are open to any form of revenue-generating partnership.</b></p>
 
 		  <h3>fxPartner Roadmap</h3>
 		  <ol>
-			  <li><p><b>Invitation.</b> Use your fxPartner link to invite users and begin earning fxStars.</p></li>
-			  <li><p><b>Coordination.</b> Depending on your invitee, coordinate them to be fxInstructors or potential fxSubInstructors as students.</p></li>
-			  <li><p><b>Share of Revenue.</b> We will share 50% of our interest from this fxUser with you for 90 days.</p></li>
-			  <li><p><b>Network Expansion.</b> The more people you bring in, the more you will earn, and help your network of fxUsers expand.</p></li>
+			  <li>
+			      <div class="fxpartner-circle">
+			          <div class="about-num">1</div>
+			      </div>
+			      <p><b>Invitation.</b> Use your fxPartner link to invite users and begin earning fxStars.</p>
+			  </li>
+			  <li>
+			      <div class="fxpartner-circle">
+			          <div class="about-num">2</div>
+			      </div>
+			      <p><b>Coordination.</b> Depending on your invitee, coordinate them to be fxInstructors or potential fxSubInstructors as students.</p>
+			  </li>
+			  <li>
+			      <div class="fxpartner-circle">
+			          <div class="about-num">3</div>
+			      </div>
+			      <p><b>Share of Revenue.</b> We will share 50% of our interest from this fxUser with you for 90 days.</p>
+			  </li>
+			  <li>
+			      <div class="fxpartner-circle">
+			          <div class="about-num">4</div>
+			      </div>
+			      <p><b>Network Expansion.</b> The more people you bring in, the more you will earn, and help your network of fxUsers expand.</p>
+			  </li>
 		  </ol>
 		</div>
 	      </div>
+	      
 	      <div class="fxstar-about">
 		<div class="star-background">
 		    <svg viewBox="0 0 273.7 116"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M136.8,1.1a5.2,5.2,0,0,1,4.8,3L156.9,35l.2.5h.6l34.1,4.9a5.2,5.2,0,0,1,4.3,3.7,5,5,0,0,1-1.4,5.4L170.1,73.7l-.4.4v.5l5.8,34a5.3,5.3,0,0,1-1.1,4.4,5.6,5.6,0,0,1-6.7,1.3l-30.5-16-.5-.3-.5.3-30.4,16a6.2,6.2,0,0,1-2.6.6,5.3,5.3,0,0,1-4.1-1.9,5.7,5.7,0,0,1-1.2-4.4l5.9-34v-.5l-.4-.4L78.9,49.6a5.2,5.2,0,0,1-1.4-5.4,5.4,5.4,0,0,1,4.4-3.7L116,35.6h.6l.2-.5L132,4.1a5.4,5.4,0,0,1,4.8-3m0-1.1a6.2,6.2,0,0,0-5.7,3.6L115.8,34.5,81.7,39.4a6.4,6.4,0,0,0-3.5,11l24.6,24.1L97,108.4a6.4,6.4,0,0,0,6.3,7.6,6,6,0,0,0,3.1-.8l30.4-16,30.5,16a5.6,5.6,0,0,0,3,.8,6.5,6.5,0,0,0,6.4-7.6l-5.8-33.9,24.6-24.1a6.4,6.4,0,0,0-3.6-11l-34.1-4.9L142.6,3.6A6.4,6.4,0,0,0,136.8,0Z"></path><path class="cls-1" d="M139.2,37.3a17,17,0,0,1,10.9,4.1l-3,3a12.2,12.2,0,0,0-7.9-2.9,12.4,12.4,0,0,0-12.4,12.3v6.8H144v4.1H126.8v7.6h11.3v4.1H126.8V87.9h-4.1V76.4h-5.9V72.3h5.9V64.7h-5.9V60.6h5.9V53.8a16.5,16.5,0,0,1,16.5-16.5m0-1.1a17.6,17.6,0,0,0-17.6,17.6v5.7h-5.9v6.3h5.9v5.4h-5.9v6.3h5.9V89h6.3V77.5h11.3V71.2H127.9V65.8h17.2V59.5H127.9V53.8a11.2,11.2,0,0,1,11.3-11.2,10.8,10.8,0,0,1,7.9,3.3h.1l4.4-4.6a17.9,17.9,0,0,0-12.4-5.1Z"></path></svg>
@@ -152,27 +353,70 @@ if($_SERVER['HTTPS'] != "on") {
 		<div class="solo-sub">
 		  <p>Purchase fxStars and benefit from the following products and services.</p>
 		  <ul>
-		    <li><p>fxUnivers approved digital currency</p></li>
-		    <li><p>Up to 5,000 USD per transaction</p></li>
-		    <li><p>Unlimited fxStar transaction quantities</p></li>
-		    <li><p>Purchase Courses</p></li>
-		    <li><p>Cash-out (100 fxStars minimum):<p>
-			<ul>
+		    <li>
+			<div class="fxstar-circle">
+			    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
+			</div>
+			<p>fxUnivers approved digital currency</p>
+		    </li>
+		    <li>
+			<div class="fxstar-circle">
+			    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
+			</div>
+			<p>Up to 5,000 USD per transaction</p>
+		    </li>
+		    <li>
+			<div class="fxstar-circle">
+			    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
+			</div>
+			<p>Unlimited fxStar transaction quantities</p>
+		    </li>
+		    <li>
+			<div class="fxstar-circle">
+			    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
+			</div>
+			<p>Purchase Courses</p>
+		    </li>
+		    <li>
+			<div class="fxstar-circle">
+			    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
+			</div>
+			<p>Cash-out (100 fxStars minimum):<p>
+			<ul class="details">
 			  <li><p>Major Cryptocurrencies</p></li>
 			  <li><p>SWIFT / Wire</p></li>
 			  <li><p>PayPal</p></li>
 			</ul>
 		    </li>
-		    <li><p>Buy</p></li>
-		    <li><p>Send / Receive / Request</p></li>
-		    <li><p>Earn as:</p>
-		      <ul>
+		    <li>
+			<div class="fxstar-circle">
+			    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
+			</div>
+			<p>Buy</p>
+		    </li>
+		    <li>
+			<div class="fxstar-circle">
+			    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
+			</div>
+			<p>Send / Receive / Request</p>
+		    </li>
+		    <li>
+			<div class="fxstar-circle">
+			    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
+			</div>
+			<p>Earn as:</p>
+		      <ul class="details">
 			<li><p>fxPartner</p></li>
 			<li><p>fxInstructor</p></li>
 			<li><p>fxSubInstructor</p></li>
 		      </ul>
 		    </li>
-		    <li><p><em>More programs to come...</em></p></li>
+		    <li>
+			<div class="fxstar-circle">
+			    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
+			</div>
+			<p><em>More programs to come...</em></p>
+		    </li>
 		  </ul>
 		</div>
 	      </div>
