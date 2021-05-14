@@ -70,6 +70,7 @@ h4 {
 
 p {
     margin:7px 0;
+    line-height: 150%;
     font-size:0.9rem;
     color:#393939;
 }
@@ -2230,8 +2231,7 @@ textarea:focus {
     display:flex;
     justify-content:center;
     align-items:center;
-    flex-flow:row;
-    margin: 40px 0;
+    padding: 40px 0;
 }
 
 .solo-container .solo {
@@ -2239,15 +2239,14 @@ textarea:focus {
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
-    width: 50%;
-    height: 90%;
+    width: 750px;
     background-color: #efefef;
-    padding: 20px;
-    border-radius: 25px;
+    padding: 30px 0;
+    border-radius: 20px;
     box-shadow: inset -4px -2px 4px 0px #fff,
-		inset 4px 2px 6px 0px #DFE4EA,
-		-4px -2px 4px 0px #ffffff,
-		4px 2px 6px 0px #DFE4EA;
+	    	inset 4px 2px 6px 0px #dfe4ea,
+	    	-4px -2px 4px 0px #ffffff,
+	    	4px 2px 6px 0px #dfe4ea;
 }
 
 .solo-container .about h2 {
@@ -2265,9 +2264,140 @@ textarea:focus {
 .solo-container .solo-sub {
     display: flex;
     flex-flow: column wrap;
-    align-items: left;
     width:100%;
 }
+
+.solo-container .about .about-top {
+    padding: 0 30px 40px 30px;
+}
+
+.solo-container .about .about-top .fxunivers-logo .fxunivers-word {
+    color: #00a1e0;
+    font-family: 'Roboto';
+    font-size: 28px;
+}
+
+.solo-container .about .about-top .fxunivers-logo .slogan {
+    color: #00a1e0;
+    font-family: 'Roboto';
+    font-size: 20px;
+}
+
+.solo-container .about a {
+    color: rgb(0 161 224);
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.solo-container .about a:hover {
+    text-decoration: revert;
+}
+
+.solo-container .about .about-top, .fxuniversity-about, .fxpartner-about {
+    padding: 0 30px 40px 30px;
+}
+
+.solo-container .about .fxstar-about {
+    padding: 0 30px;
+}
+
+.solo-container .about .fxuniversity-about .university-background {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 200px;
+    margin-bottom: 40px;
+    border-radius: 20px;
+    background: hsla(197, 100%, 44%, 1);
+    background: linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(277, 100%, 44%, 1) 100%);
+    background: -moz-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(277, 100%, 44%, 1) 100%);
+    background: -webkit-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(277, 100%, 44%, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#00A1E0", endColorstr="#8A00E0", GradientType=1 );
+}
+
+.solo-container .about .fxuniversity-about .university-background svg {
+    width: 100%;
+    display: block;
+}
+
+.solo-container .about .fxuniversity-about .solo-sub h3 {
+    font-size: 20px;
+    background: #00A1E0;
+    background: -webkit-linear-gradient(to right, #00A1E0 0%, #8900E0 100%);
+    background: -moz-linear-gradient(to right, #00A1E0 0%, #8900E0 100%);
+    background: linear-gradient(to right, #00A1E0 0%, #8900E0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.solo-container .about .fxuniversity-about, .fxpartner-about, fxstar-about .solo-sub h4 {
+    font-size: 18px;
+}
+
+.solo-container .about .fxuniversity-about, .fxpartner-about, fxstar-about .solo-sub ol, ul {
+    padding-left: 50px;
+}
+
+.solo-container .about .fxpartner-about .partner-background {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 200px;
+    margin-bottom: 40px;
+    border-radius: 20px;
+    background: hsla(197, 100%, 44%, 1);
+    background: linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(179, 100%, 44%, 1) 100%);
+    background: -moz-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(179, 100%, 44%, 1) 100%);
+    background: -webkit-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(179, 100%, 44%, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#00A1E0", endColorstr="#00E0DD", GradientType=1 );
+}
+
+.solo-container .about .fxpartner-about .partner-background svg {
+    width: 100%;
+    display: block;
+}
+
+.solo-container .about .partner-about .solo-sub h3 {
+    font-size: 20px;
+    background: #00A1E0;
+    background: -webkit-linear-gradient(to right, #00A1E0 0%, #00E0DD 100%);
+    background: -moz-linear-gradient(to right, #00A1E0 0%, #00E0DD 100%);
+    background: linear-gradient(to right, #00A1E0 0%, #00E0DD 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.solo-container .about .fxstar-about .star-background {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 200px;
+    margin-bottom: 40px;
+    border-radius: 20px;
+    background: hsla(197, 100%, 44%, 1);
+    background: linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(61, 92%, 50%, 1) 100%);
+    background: -moz-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(61, 92%, 50%, 1) 100%);
+    background: -webkit-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(61, 92%, 50%, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#00A1E0", endColorstr="#F0F40A", GradientType=1 );
+}
+
+.solo-container .about .fxstar-about .star-background svg {
+    width: 100%;
+    display: block;
+}
+
+.solo-container .about .fxstar-about .solo-sub h3 {
+    font-size: 20px;
+    background: #00A1E0;
+    background: -webkit-linear-gradient(to right, #00A1E0 0%, #8900E0 100%);
+    background: -moz-linear-gradient(to right, #00A1E0 0%, #8900E0 100%);
+    background: linear-gradient(to right, #00A1E0 0%, #8900E0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+
 /************************************ > Login Page ******************************************/
 
 .login-container {
