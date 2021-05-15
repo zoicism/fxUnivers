@@ -27,7 +27,6 @@ if($_SERVER['HTTPS'] != "on") {
 		  <p class="slogan">Universe of Possibilities</p>
 		</div>
 
-		<h2>fxUnivers</h2>
 		<div class="solo-sub">
 		    <p><b>fxUniversity.</b> Create a course & Earn fxStars. <a href="#fxuniversity">Learn more</a></p>
 			  <p><b>fxPartner.</b> Partner us & make easy fxStars. <a href="#fxpartner">Learn more</a></p>
@@ -382,9 +381,9 @@ if($_SERVER['HTTPS'] != "on") {
 			    <div class="fxstar-circle">
 			        <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
 			    </div>
-			    <div class="details-con>
+			    <div class="details-con">
 			        <p>Cash-out (100 fxStars minimum):</p>
-			        <ul class="details">
+			        <ul>
 			            <li><p>Major Cryptocurrencies</p></li>
 			            <li><p>SWIFT / Wire</p></li>
 			            <li><p>PayPal</p></li>
@@ -409,9 +408,9 @@ if($_SERVER['HTTPS'] != "on") {
 				<div class="fxstar-circle">
 				    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
 				</div>
-				<div class="details-con>
+				<div class="details-con">
 					<p>Earn as:</p>
-				        <ul class="details">
+				        <ul>
 					    <li><p>fxPartner</p></li>
 					    <li><p>fxInstructor</p></li>
 					    <li><p>fxSubInstructor</p></li>

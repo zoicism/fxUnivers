@@ -2267,10 +2267,6 @@ textarea:focus {
     width:100%;
 }
 
-.solo-container .about .about-top {
-    padding: 0 30px 40px 30px;
-}
-
 .solo-container .about .about-top .fxunivers-logo .fxunivers-word {
     color: #00a1e0;
     font-family: 'Roboto';
@@ -4595,6 +4591,15 @@ input:checked + .slider:before {
     .solo-container .about .fxpartner-about .partner-background {
 	border-radius: 0;
     }
+
+    .solo-container .about .fxstar-about .star-background {
+	border-radius: 0;
+    }
+
+    .solo-container .about .about-top {
+	padding: 0;
+    }
+
 	
     /********************** < about page mobile **********************/
 	
@@ -5312,7 +5317,7 @@ input:checked + .slider:before {
 	display:none;
     }
 
-
+    
 }
 
 @media (max-width: 374px) {
