@@ -1,10 +1,10 @@
 <?php
 // Requiring https
-if($_SERVER['HTTPS'] != "on") {
+/*if($_SERVER['HTTPS'] != "on") {
     $url = "https://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
     header("Location: $url");
     exit;
-}
+}*/
 	
 session_start();
 require('register/connect.php');
@@ -115,9 +115,10 @@ if(isset($_COOKIE['username']) && isset($_COOKIE['password'])) {
       
     <div class="login-description">
       <div class="login-text">
-        <div class="fx-icon fxstar-icon"><span>fxStar</span><p>Purchase products/services, or send/recieve as gift <a href="/about#fxstar">Learn more</a></p></div>
-        <div class="fx-icon fxuniversity-icon"><span>fxUniversity</span><p>Create courses as instructor & make fxStars, or browse to take them as student <a href="/about#fxuniversity">Learn more</a></p></div>
-        <div class="fx-icon fxpartner-icon"><span>fxPartner</span><p>Partner us & make easy fxStars <a href="/about#fxpartner">Learn more</a></p></div>
+        
+        <div class="fx-icon fxuniversity-icon"><span>fxUniversity</span><p>Create courses as instructor & make fxStars, or browse to take them as student. <a href="/about#fxuniversity">Learn more</a></p></div>
+        <div class="fx-icon fxpartner-icon"><span>fxPartner</span><p>Partner us & make easy fxStars. <a href="/about#fxpartner">Learn more</a></p></div>
+	<div class="fx-icon fxstar-icon"><span>fxStar</span><p>Purchase products/services, or send/recieve as gift. <a href="/about#fxstar">Learn more</a></p></div>
         <div class="fx-icon fxuniverse-icon"><span>fxUniverse</span><p>Universe of trading (Coming soon for public)</p></div>
         <div class="fx-icon fxsonet-icon"><span>fxSonet</span><p>A social network of trading for traders (Coming soon for public)</p></div>
       </div>
