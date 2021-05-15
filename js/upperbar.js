@@ -215,9 +215,10 @@ $('.header').html(`
                     <a class="id-sidebar-m menu-info" href="/user/`+sess_un+`">@`+sess_un+`</a>
                     <div class="sidebar-m">
                         <div class="elements">
-                            <a href="/wallet" class="sidebar-icon fxstar-sidebar">fxStar</a>
+                            
                             <a href="/userpgs/fxuniversity" class="sidebar-icon fxuniversity-sidebar">fxUniversity</a>
                             <a href="/userpgs/partner" class="sidebar-icon fxpartner-sidebar">fxPartner</a>
+<a href="/wallet" class="sidebar-icon fxstar-sidebar">fxStar</a>
                             <a href="/" class="sidebar-icon fxuniverse-sidebar">fxUniverse</a>
                             <a href="/" class="sidebar-icon fxsonet-sidebar">fxSonet</a>
                         </div>
@@ -263,9 +264,10 @@ $('.header').html(`
                     <a class="id-sidebar-m menu-info" href="/user/`+sess_un+`">@`+sess_un+`</a>
                     <div class="sidebar-m">
                         <div class="elements">
-                            <a href="/wallet" class="sidebar-icon fxstar-sidebar">fxStar</a>
+                            
                             <a href="/userpgs/fxuniversity" class="sidebar-icon fxuniversity-sidebar">fxUniversity</a>
                             <a href="/userpgs/partner" class="sidebar-icon fxpartner-sidebar">fxPartner</a>
+<a href="/wallet" class="sidebar-icon fxstar-sidebar">fxStar</a>
                             <a href="/" class="sidebar-icon fxuniverse-sidebar">fxUniverse</a>
                             <a href="/" class="sidebar-icon fxsonet-sidebar">fxSonet</a>
                         </div>

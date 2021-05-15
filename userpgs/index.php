@@ -1,10 +1,10 @@
 <?php
 // Requiring https
-if($_SERVER['HTTPS'] != "on") {
+/*if($_SERVER['HTTPS'] != "on") {
    $url = "https://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
    header("Location: $url");
    exit;
-}
+}*/
 
 session_start();
 require('../register/connect.php');
@@ -117,8 +117,29 @@ if($gss_count > 0) {
 	
 
 	<section>
-		<ul class="flex-container">
-			<li class="items">
+	    <ul class="flex-container">
+		<li class="items">
+                            <a href="/userpgs/fxuniversity" class="link" id="fxuniversity-link" >
+				<div class="head" id="main-info"><div class="in-icon"><img src="/images/icons/platforms/fxuniversity.svg" ></div>fxUniversity
+				    <div class="icon-txt" >
+				        <p class="sub"><?php echo $course_count+$gss_count_alive?> courses</p>
+				    </div>
+                                </div>
+				<div class="icon-txt" style="display:none" id="extra-info"><p class="sub">Create and sell courses or enroll and learn</p></div>
+                            </a>
+                </li>
+		<li class="items">
+                            <a href="/userpgs/partner" class="link" id="fxpartner-link">
+				<div class="head" id="main-info"><div class="in-icon" ><img src="/images/icons/platforms/fxpartner.svg" ></div>fxPartner
+				    <div class="icon-txt">
+					<div class="fxstar-price"></div>
+                                        <p class="sub"><?php echo $pTotal ?></p>
+				    </div>
+                                </div>
+				<div class="icon-txt" style="display:none" id="extra-info" ><p class="sub">Make easy money by partnering with us in interests. Click to learn more</p></div>
+                            </a>
+                </li>
+		<li class="items">
                                 <a href="/wallet" class="link">
                                     <div class="head" id="main-info"><div class="in-icon" ><img src="/images/icons/platforms/fxstar.svg" ></div>fxStar
 					<div class="icon-txt" >
@@ -129,27 +150,8 @@ if($gss_count > 0) {
 				    <div class="icon-txt" style="display:none" id="extra-info"><p class="sub">Buy fxStars and use them to purchase courses or send/receive them securely among friends</p></div>
                                 </a>
                         </li>
-                        <li class="items">
-                            <a href="/userpgs/fxuniversity" class="link" id="fxuniversity-link" >
-				<div class="head" id="main-info"><div class="in-icon"><img src="/images/icons/platforms/fxuniversity.svg" ></div>fxUniversity
-				    <div class="icon-txt" >
-				        <p class="sub"><?php echo $course_count+$gss_count_alive?> courses</p>
-				    </div>
-                                </div>
-				<div class="icon-txt" style="display:none" id="extra-info"><p class="sub">Create and sell courses or enroll and learn</p></div>
-                            </a>
-                        </li>
-                        <li class="items">
-                            <a href="/userpgs/partner" class="link" id="fxpartner-link">
-				<div class="head" id="main-info"><div class="in-icon" ><img src="/images/icons/platforms/fxpartner.svg" ></div>fxPartner
-				    <div class="icon-txt">
-					<div class="fxstar-price"></div>
-                                        <p class="sub"><?php echo $pTotal ?></p>
-				    </div>
-                                </div>
-				<div class="icon-txt" style="display:none" id="extra-info" ><p class="sub">Make easy money by partnering with us in interests. Click to learn more</p></div>
-                            </a>
-                        </li>
+                        
+                        
                         <li class="items">
                                 <a onclick="coming()" class="link" id="fxuniverse-link">
                                     <div class="head" id="main-info"><div class="in-icon" ><img src="/images/icons/platforms/fxuniverse.svg" ></div>fxUniverse

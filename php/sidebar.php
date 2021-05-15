@@ -42,9 +42,11 @@ echo <<<EOL
 			<a class="id-sidebar" href="/user/$username">@$username</a>
 		</div>
 		<div class="elements">
-		    <a href="/wallet" class="sidebar-icon fxstar-sidebar">fxStar</a>
-		    <a href="/userpgs/fxuniversity" class="sidebar-icon fxuniversity-sidebar">fxUniversity</a>
+<a href="/userpgs/fxuniversity" class="sidebar-icon fxuniversity-sidebar">fxUniversity</a>
+
 		    <a href="/userpgs/partner" class="sidebar-icon fxpartner-sidebar">fxPartner</a>
+		    <a href="/wallet" class="sidebar-icon fxstar-sidebar">fxStar</a>
+		    
 		    <a onclick="coming()" class="sidebar-icon fxuniverse-sidebar">fxUniverse</a>
 		    <a onclick="coming()" class="sidebar-icon fxsonet-sidebar">fxSonet</a>
 		    
