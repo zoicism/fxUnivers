@@ -3,6 +3,7 @@ if(screen.width>628) {
     $('.header').html(`
 
         <a class="logo logo-25" href="/">
+	    <svg viewBox="0 0 50 50"><defs><style>.cls-1{fill:#00a1e0;}</style></defs><g id="three"><path class="cls-1" d="M25,1.7a22.2,22.2,0,0,1,9.1,1.9,23.9,23.9,0,0,1,7.4,4.9,23.9,23.9,0,0,1,4.9,7.4,22.7,22.7,0,0,1,0,18.2,23.9,23.9,0,0,1-4.9,7.4,23.9,23.9,0,0,1-7.4,4.9,22.7,22.7,0,0,1-18.2,0,23.9,23.9,0,0,1-7.4-4.9,23.9,23.9,0,0,1-4.9-7.4,22.7,22.7,0,0,1,0-18.2A23.9,23.9,0,0,1,8.5,8.5a23.9,23.9,0,0,1,7.4-4.9A22.2,22.2,0,0,1,25,1.7M25,0h0A25,25,0,0,0,0,25H0A25,25,0,0,0,25,50h0A25,25,0,0,0,50,25h0A25,25,0,0,0,25,0Z"></path><path class="cls-1" d="M33.7,35l1.9,1.8-4.4,4.4-1.8-1.8L25,35l-4.4-4.4-4.3-4.3-4.4-4.4,4.4-4.3L25,8.8l4.4,4.4-8.8,8.7L25,26.3l4.4-4.4a6.2,6.2,0,0,1,8.7,0l-8.7,8.7Z"></path><path class="cls-1" d="M21.8,38.2l-1.2,1.2a6.2,6.2,0,0,1-8.7,0l5.6-5.6Z"></path></g></svg>
         </a>
         <nav>
             <ul class="nav__links">
@@ -158,7 +159,9 @@ if(screen.width>628) {
     
     $('.upperbar').html(`
       <span style="float:left">
-        <div class="logo logo-25" onclick="location.href='/';" style="margin-left:30px;margin-top:10px;cursor:pointer;"></div>
+        <div class="logo logo-25" onclick="location.href='/';" style="margin-left:30px;margin-top:10px;cursor:pointer;">
+	    <svg viewBox="0 0 50 50"><defs><style>.cls-1{fill:#00a1e0;}</style></defs><g id="three"><path class="cls-1" d="M25,1.7a22.2,22.2,0,0,1,9.1,1.9,23.9,23.9,0,0,1,7.4,4.9,23.9,23.9,0,0,1,4.9,7.4,22.7,22.7,0,0,1,0,18.2,23.9,23.9,0,0,1-4.9,7.4,23.9,23.9,0,0,1-7.4,4.9,22.7,22.7,0,0,1-18.2,0,23.9,23.9,0,0,1-7.4-4.9,23.9,23.9,0,0,1-4.9-7.4,22.7,22.7,0,0,1,0-18.2A23.9,23.9,0,0,1,8.5,8.5a23.9,23.9,0,0,1,7.4-4.9A22.2,22.2,0,0,1,25,1.7M25,0h0A25,25,0,0,0,0,25H0A25,25,0,0,0,25,50h0A25,25,0,0,0,50,25h0A25,25,0,0,0,25,0Z"></path><path class="cls-1" d="M33.7,35l1.9,1.8-4.4,4.4-1.8-1.8L25,35l-4.4-4.4-4.3-4.3-4.4-4.4,4.4-4.3L25,8.8l4.4,4.4-8.8,8.7L25,26.3l4.4-4.4a6.2,6.2,0,0,1,8.7,0l-8.7,8.7Z"></path><path class="cls-1" d="M21.8,38.2l-1.2,1.2a6.2,6.2,0,0,1-8.7,0l5.6-5.6Z"></path></g></svg>
+	</div>
       </span>
 
       <span style="float:right;margin-right:30px;">
@@ -177,7 +180,9 @@ if(screen.width>628) {
     var upperbar = `
 <div class="upperbar-icon back" style="margin-left:30px;float:left;" onclick="goBack()"></div>
 <div id="current" style="margin-right:30px;margin-top:3%;float:right;"></div>
-<div class="logo logo-25" style="margin:0 auto;margin-top:8px;cursor:pointer;" onclick="location.href='/';"></div>
+<div class="logo logo-25" style="margin:0 auto;margin-top:8px;cursor:pointer;" onclick="location.href='/';">
+    <svg viewBox="0 0 50 50"><defs><style>.cls-1{fill:#00a1e0;}</style></defs><g id="three"><path class="cls-1" d="M25,1.7a22.2,22.2,0,0,1,9.1,1.9,23.9,23.9,0,0,1,7.4,4.9,23.9,23.9,0,0,1,4.9,7.4,22.7,22.7,0,0,1,0,18.2,23.9,23.9,0,0,1-4.9,7.4,23.9,23.9,0,0,1-7.4,4.9,22.7,22.7,0,0,1-18.2,0,23.9,23.9,0,0,1-7.4-4.9,23.9,23.9,0,0,1-4.9-7.4,22.7,22.7,0,0,1,0-18.2A23.9,23.9,0,0,1,8.5,8.5a23.9,23.9,0,0,1,7.4-4.9A22.2,22.2,0,0,1,25,1.7M25,0h0A25,25,0,0,0,0,25H0A25,25,0,0,0,25,50h0A25,25,0,0,0,50,25h0A25,25,0,0,0,25,0Z"></path><path class="cls-1" d="M33.7,35l1.9,1.8-4.4,4.4-1.8-1.8L25,35l-4.4-4.4-4.3-4.3-4.4-4.4,4.4-4.3L25,8.8l4.4,4.4-8.8,8.7L25,26.3l4.4-4.4a6.2,6.2,0,0,1,8.7,0l-8.7,8.7Z"></path><path class="cls-1" d="M21.8,38.2l-1.2,1.2a6.2,6.2,0,0,1-8.7,0l5.6-5.6Z"></path></g></svg>
+</div>
 `;
     
     $('.upperbar').html(upperbar);
