@@ -1949,17 +1949,17 @@ textarea:focus {
 
 .items .fxuniverse-bg {
     background: hsla(197, 100%, 44%, 1);
-    background: linear-gradient(90deg, hsla(197, 100%, 44%, 1) 0%, hsla(239, 100%, 44%, 1) 100%);
-    background: -moz-linear-gradient(90deg, hsla(197, 100%, 44%, 1) 0%, hsla(239, 100%, 44%, 1) 100%);
-    background: -webkit-linear-gradient(90deg, hsla(197, 100%, 44%, 1) 0%, hsla(239, 100%, 44%, 1) 100%);
+    background: linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(239, 100%, 44%, 1) 100%);
+    background: -moz-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(239, 100%, 44%, 1) 100%);
+    background: -webkit-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(239, 100%, 44%, 1) 100%);
     filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#00A1E0", endColorstr="#0004E0", GradientType=1 );
 }
 
 .items .fxsonet-bg {
     background: hsla(197, 100%, 44%, 1);
-    background: linear-gradient(90deg, hsla(197, 100%, 44%, 1) 0%, hsla(13, 100%, 44%, 1) 100%);
-    background: -moz-linear-gradient(90deg, hsla(197, 100%, 44%, 1) 0%, hsla(13, 100%, 44%, 1) 100%);
-    background: -webkit-linear-gradient(90deg, hsla(197, 100%, 44%, 1) 0%, hsla(13, 100%, 44%, 1) 100%);
+    background: linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(13, 100%, 44%, 1) 100%);
+    background: -moz-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(13, 100%, 44%, 1) 100%);
+    background: -webkit-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(13, 100%, 44%, 1) 100%);
     filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#00A1E0", endColorstr="#E03100", GradientType=1 );
 }
 
@@ -4490,7 +4490,10 @@ input:checked + .slider:before {
     }
 }
 
-
+#extra-info .sub {
+    color:white;
+    padding:0 10px;
+}
 
 @media (max-width:1454px) {
     .elements a {

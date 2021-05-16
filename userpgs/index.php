@@ -1,10 +1,10 @@
 <?php
 // Requiring https
-/*if($_SERVER['HTTPS'] != "on") {
+if($_SERVER['HTTPS'] != "on") {
    $url = "https://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
    header("Location: $url");
    exit;
-}*/
+}
 
 session_start();
 require('../register/connect.php');
@@ -150,7 +150,7 @@ if($gss_count > 0) {
 					    </div>
 					</div>
 				 </div>
-				<div class="icon-txt" style="display:none" id="extra-info" ><p class="sub">Make easy money by partnering with us in interests. Click to learn more</p></div>
+				<div class="icon-txt" style="display:none" id="extra-info" ><p class="sub">Make easy money by partnering with us in interests</p></div>
                             </a>
                 </li>
 		<li class="items">
@@ -169,7 +169,7 @@ if($gss_count > 0) {
 						</div>
 					    </div>
 				     </div>
-				    <div class="icon-txt" style="display:none" id="extra-info"><p class="sub">Buy fxStars and use them to purchase courses or send/receive them securely among friends</p></div>
+				    <div class="icon-txt" style="display:none" id="extra-info"><p class="sub">Buy fxStars and use them to purchase courses or send or receive them securely among friends</p></div>
                                 </a>
                         </li>
                         
@@ -244,9 +244,11 @@ $('#page-header').attr('href','/');
 <script>
  $('.link').hover(function() {
      $(this).find('#main-info').hide();
+$(this).find('.inner-element').hide();
      $(this).find('#extra-info').show();
  }, function() {
      $(this).find('#extra-info').hide();
+$(this).find('.inner-element').show();
      $(this).find('#main-info').show();
  });
 </script>
