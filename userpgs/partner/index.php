@@ -43,12 +43,26 @@ require('../../wallet/php/get_fxcoin_count.php');
   <body>
   <div class="header-sidebar"></div>
   <script id="upperbar-script" src="/js/upperbar.js" sess_avatar="<?php echo $session_avatar?>" sess_un="<?php echo $username?>"></script>
-	
-  <div class="blur mobile-main">
+  <script>
+  if(screen.width >= 629) {
+    $(document).ready(function() {
+	$('.header-sidebar').prepend('<div style="width:100%; display:flex; flex-flow:row nowrap; justify-\
+content:left;"><div class="bar-items"><a href="/userpgs/partner/positions" class="link-main"><div class="head">fxHR</div>\
+</a><div class="extra-info-cnt" style="display:none"><p class="extra-info">Copy and share the link provided here and we will share our interests with you.</p></div></div><div class="bar-items"><a href="/userpgs/partner/income" class="link-main"><div class="head">Earnings History</div></a><div class="extra-info-cnt" style="display:none"><p class="extra-info">History of the income you have made by sharing your fxHR link and building up our workforce</p></div></div></div>');
+	$('.bar-items').hover(function() {
+	    $(this).find('.extra-info-cnt').css('width',$(this).css('width')).show();
+	  }, function() {
+	    $(this).find('.extra-info-cnt').hide();
+	  });
+      });
+  }
+</script>
+
+<div class="blur mobile-main">
     
   <div class="sidebar"></div>
   <?php require('../../php/sidebar.php'); ?>
-
+<!--
 <div class="main-content">
 
   <ul class="main-flex-container">
@@ -56,7 +70,7 @@ require('../../wallet/php/get_fxcoin_count.php');
   <a href="/userpgs/partner/positions" class="link-main">
   <div class="head">fxHR</div>
   </a>
-<div class="extra-info-cnt" style="display:none">
+  <div class="extra-info-cnt" style="display:none">
   <p class="extra-info">Copy and share the link provided here and we will share our interests with you.</p>
   </div>
   </li>
@@ -74,7 +88,7 @@ require('../../wallet/php/get_fxcoin_count.php');
   </ul>
 
   </div>
-
+-->
   <div class="relative-main-content">
   <div class="content-box">
   <?php
@@ -109,9 +123,8 @@ while($row=$get_partner_result->fetch_assoc()) {
 
 
   <div class="description">
-  <h3>fxPartner Options</h3>
-  <p><strong>fxHR:</strong> Create an invitation link with which you can invite friends to use fxUnivers. We will share our profit from these new users with you half-half for 90 days.</p>
-  <p><strong>Earnings History:</strong> The earnings you have made using fxHR.</p>
+  <h3>How to make fxStars using fxPartner</h3>
+  <p>Click on <a href="/userpgs/partner/positions/">fxHR</a> above and share the link we have decdicated to you. When your invitees register on fxUnivers using that link, you will automatically get 50% of our interests concerning them for 90 days. You can visit your <a href="/userpgs/partner/income">Earnings History</a> from all your registered invitees, right above this page.</p>
   </div>
 
 
