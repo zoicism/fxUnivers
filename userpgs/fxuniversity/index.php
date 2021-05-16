@@ -105,7 +105,7 @@ if($gss_count > 0) {
 			<li><p>Click on <a href="/userpgs/student/" ><strong>Learn</strong></a> above, enroll in your favorite courses, and after getting the certification, start teaching your own fxSubCourses as an fxSubInstructor which helps you make fxStars very quickly. See below to learn more.</p></li>
 		    </ol>
 
-		    <h3>How to create an course?</h3>
+		    <h3>How to create a course?</h3>
 		    <p>After you enter <a href="/userpgs/instructor/" >Teach</a> section, click on <a href="/userpgs/instructor/course_management/new_course.php">Add New Course</a>, enter a title, a description, and put a price on the course. Right after this you can publish the course, however you can also consider applying the following options to make more fxStars or to just set it as you prefer.</p>
 		    <ul>
 			<li>
