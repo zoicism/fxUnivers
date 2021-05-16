@@ -228,6 +228,7 @@ textarea:focus {
 .logo-25 svg {
     width: 25px;
     height: 25px;
+    fill: #00a1e0;
 }
 
 .sidebar .sidebar-logo-con .fxunivers-txt {
@@ -1771,6 +1772,7 @@ textarea:focus {
 .nav__links li svg {
     width: 100%;
     height: 100%;
+    fill: #393939;
 }
 
 .nav__links li .stroked {
