@@ -173,9 +173,9 @@ textarea:focus {
 
 .submit-btn:active {
     box-shadow: inset -4px -2px 4px 0px #fff,
-	    	inset 4px 2px 6px 0px #dfe4ea,
-	    	-4px -2px 4px 0px #ffffff,
-	    	4px 2px 6px 0px #dfe4ea;
+        inset 4px 2px 6px 0px #dfe4ea,
+        -4px -2px 4px 0px #ffffff,
+        4px 2px 6px 0px #dfe4ea;
 }
 
 .header {
@@ -247,9 +247,9 @@ textarea:focus {
     height: 100%;
     overflow: auto;
     box-shadow: -6px -6px 14px rgba(255, 255, 255, .7),
-		-6px -6px 10px rgba(255, 255, 255, .5),
-		6px 6px 8px rgba(255, 255, 255, .075),
-		6px 6px 10px rgba(0, 0, 0, .15);
+    -6px -6px 10px rgba(255, 255, 255, .5),
+    6px 6px 8px rgba(255, 255, 255, .075),
+    6px 6px 10px rgba(0, 0, 0, .15);
 }
 
 .main-content {
@@ -335,16 +335,16 @@ textarea:focus {
     min-width:3.5rem;
     height:3.5rem;
     box-shadow: -6px -6px 14px rgba(255, 255, 255, .7),
-		-6px -6px 10px rgba(255, 255, 255, .5),
-		6px 6px 8px rgba(255, 255, 255, .075),
-		6px 6px 10px rgba(0, 0, 0, .15);
+    -6px -6px 10px rgba(255, 255, 255, .5),
+    6px 6px 8px rgba(255, 255, 255, .075),
+    6px 6px 10px rgba(0, 0, 0, .15);
 }
 
 .pub-avatar .pub-img:active {
     box-shadow: inset -2px -2px 14px rgba(255, 255, 255, .7),
-		inset -2px -2px 10px rgba(255, 255, 255, .5),
-		inset 6px 6px 6px rgba(255, 255, 255, .075),
-		inset 6px 6px 10px rgba(0, 0, 0, .15);
+    inset -2px -2px 10px rgba(255, 255, 255, .5),
+    inset 6px 6px 6px rgba(255, 255, 255, .075),
+    inset 6px 6px 10px rgba(0, 0, 0, .15);
 }
 .pub-avatar .pub-name {
     margin-left:10px;
@@ -542,9 +542,9 @@ textarea:focus {
     width:3.5rem;
     height:3.5rem;
     box-shadow: -6px -6px 14px rgba(255, 255, 255, .7),
-		-6px -6px 10px rgba(255, 255, 255, .5),
-		6px 6px 8px rgba(255, 255, 255, .075),
-		6px 6px 10px rgba(0, 0, 0, .15);
+    -6px -6px 10px rgba(255, 255, 255, .5),
+    6px 6px 8px rgba(255, 255, 255, .075),
+    6px 6px 10px rgba(0, 0, 0, .15);
 }
 
 .sessions .sess-list {
@@ -880,21 +880,21 @@ textarea:focus {
 }
 
 .fxstar-price {
-    height:1em;
-    width:1em;
-    margin-right:2px;
-    background-image: url('../images/icons/platforms/fxstar.svg');
+    margin-right: 6px;
+}
+
+.fxstar-price svg {
+    width: 18px;
+    display: block;
 }
 
 .icon-txt {
-    /*height:1em;
-    width:1em;*/
-    width:100%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    flex-flow:row nowrap;
-    opacity:0.7;
+    width: 100%;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    flex-flow: row nowrap;
+    opacity: 0.7;
 }
 
 .price .extra {
@@ -951,9 +951,9 @@ textarea:focus {
     padding: 13px;
     margin-left: 24px;
     box-shadow: -6px -6px 14px rgba(255, 255, 255, .7),
-		-6px -6px 10px rgba(255, 255, 255, .5),
-		6px 6px 8px rgba(255, 255, 255, .075),
-		6px 6px 10px rgba(0, 0, 0, .15);
+    -6px -6px 10px rgba(255, 255, 255, .5),
+    6px 6px 8px rgba(255, 255, 255, .075),
+    6px 6px 10px rgba(0, 0, 0, .15);
 }
 
 .ctrl .ctrl-row {
@@ -971,16 +971,16 @@ textarea:focus {
 .video-holder .ctrl img:active {
     opacity:1;
     box-shadow: inset -2px -2px 14px rgba(255, 255, 255, .7),
-		inset -2px -2px 10px rgba(255, 255, 255, .5),
-		inset 6px 6px 6px rgba(255, 255, 255, .075),
-		inset 6px 6px 10px rgba(0, 0, 0, .15);
+    inset -2px -2px 10px rgba(255, 255, 255, .5),
+    inset 6px 6px 6px rgba(255, 255, 255, .075),
+    inset 6px 6px 10px rgba(0, 0, 0, .15);
 }
 
 .course-content .video-placeholder {
     border-radius: 20px;
     background: #efefef;
     box-shadow:  9px 9px 18px #cbcbcb, 
-		 -9px -9px 18px #ffffff;
+     -9px -9px 18px #ffffff;
     /*max-width:560px;*/
     height:250px;
     display:flex;
@@ -1021,7 +1021,7 @@ textarea:focus {
     border-radius: 10px;
     background: #efefef;
     box-shadow:  6px 6px 6px #d9d9d9, 
-		 -6px -6px 6px #ffffff;
+     -6px -6px 6px #ffffff;
     width: 267px;
     margin:2em;
     cursor:pointer;
@@ -1039,7 +1039,7 @@ textarea:focus {
     border-radius: 10px;
     background: #efefef;
     box-shadow: inset 6px 6px 12px #d9d9d9, 
-		inset -6px -6px 12px #ffffff;
+    inset -6px -6px 12px #ffffff;
 }
 
 
@@ -1220,7 +1220,7 @@ textarea:focus {
 .obj-box .object-user:active {
     background: #efefef;
     box-shadow: inset 6px 6px 12px #d9d9d9, 
-		inset -6px -6px 12px #ffffff;
+    inset -6px -6px 12px #ffffff;
 }
 
 .obj-box .object-user .preview-user {
@@ -1289,16 +1289,16 @@ textarea:focus {
     border-radius: 50px;
     padding: 9px;
     box-shadow: -6px -6px 14px rgb(255 255 255 / 70%),
-	    	-6px -6px 10px rgb(255 255 255 / 50%),
-	    	6px 6px 8px rgb(255 255 255 / 8%),
-	    	6px 6px 10px rgb(0 0 0 / 15%);
+        -6px -6px 10px rgb(255 255 255 / 50%),
+        6px 6px 8px rgb(255 255 255 / 8%),
+        6px 6px 10px rgb(0 0 0 / 15%);
 }
 
 .search-input-icon-con .search-button:active {
     box-shadow: inset -4px -2px 4px 0px #fff,
-	    	inset 4px 2px 6px 0px #dfe4ea,
-	    	-4px -2px 4px 0px #ffffff,
-	    	4px 2px 6px 0px #dfe4ea;
+        inset 4px 2px 6px 0px #dfe4ea,
+        -4px -2px 4px 0px #ffffff,
+        4px 2px 6px 0px #dfe4ea;
 }
 
 .search-input-icon-con .search-button svg {
@@ -1324,16 +1324,16 @@ textarea:focus {
     border-radius: 50px;
     margin-left: 10px;
     box-shadow: -6px -6px 14px rgba(255, 255, 255, .7),
-	        -6px -6px 10px rgba(255, 255, 255, .5),
-	        6px 6px 8px rgba(255, 255, 255, .075),
-	        6px 6px 10px rgba(0, 0, 0, .15);
+          -6px -6px 10px rgba(255, 255, 255, .5),
+          6px 6px 8px rgba(255, 255, 255, .075),
+          6px 6px 10px rgba(0, 0, 0, .15);
 }
 
 .add-box span:active {
     box-shadow: inset -4px -2px 4px 0px #fff,
-	    	inset 4px 2px 6px 0px #dfe4ea,
-	    	-4px -2px 4px 0px #ffffff,
-	    	4px 2px 6px 0px #dfe4ea;
+        inset 4px 2px 6px 0px #dfe4ea,
+        -4px -2px 4px 0px #ffffff,
+        4px 2px 6px 0px #dfe4ea;
 }
 
 .add-box span img {
@@ -1346,9 +1346,9 @@ textarea:focus {
     margin: 0 auto;
     width: 90%;
     box-shadow: -6px -6px 14px rgba(255, 255, 255, .7),
-	        -6px -6px 10px rgba(255, 255, 255, .5),
-	        6px 6px 8px rgba(255, 255, 255, .075),
-	        6px 6px 10px rgba(0, 0, 0, .15);
+          -6px -6px 10px rgba(255, 255, 255, .5),
+          6px 6px 8px rgba(255, 255, 255, .075),
+          6px 6px 10px rgba(0, 0, 0, .15);
     border-radius: 50px;
     color: #fff;
     background: #0093d1;
@@ -1361,9 +1361,9 @@ textarea:focus {
     margin: 0 auto !important;
     width: 90% !important;
     box-shadow: -6px -6px 14px rgba(255, 255, 255, .7),
-	        -6px -6px 10px rgba(255, 255, 255, .5),
-	        6px 6px 8px rgba(255, 255, 255, .075),
-	        6px 6px 10px rgba(0, 0, 0, .15);
+          -6px -6px 10px rgba(255, 255, 255, .5),
+          6px 6px 8px rgba(255, 255, 255, .075),
+          6px 6px 10px rgba(0, 0, 0, .15);
     border-radius: 50px;
     color: #fff !important;
     background: #0093d1;
@@ -1389,9 +1389,9 @@ textarea:focus {
     margin: 0 auto;
     width: 90%;
     box-shadow: -6px -6px 14px rgba(255, 255, 255, .7),
-	        -6px -6px 10px rgba(255, 255, 255, .5),
-	        6px 6px 8px rgba(255, 255, 255, .075),
-	        6px 6px 10px rgba(0, 0, 0, .15);
+          -6px -6px 10px rgba(255, 255, 255, .5),
+          6px 6px 8px rgba(255, 255, 255, .075),
+          6px 6px 10px rgba(0, 0, 0, .15);
     border-radius: 50px;
     color: #fff;
     background: #00a1e0;
@@ -1524,9 +1524,9 @@ textarea:focus {
 
 .options .course-addbox-con .start-schedule-con .start-live-back-con .back-icon-cnt:active {
     box-shadow: inset -4px -2px 4px 0px #fff,
-	    	inset 4px 2px 6px 0px #dfe4ea,
-	    	-4px -2px 4px 0px #ffffff,
-	    	4px 2px 6px 0px #dfe4ea;
+        inset 4px 2px 6px 0px #dfe4ea,
+        -4px -2px 4px 0px #ffffff,
+        4px 2px 6px 0px #dfe4ea;
 }
 
 .options .course-addbox-con .start-schedule-con .start-live-back-con .back-icon-cnt svg {
@@ -1535,8 +1535,8 @@ textarea:focus {
 
 .options .course-addbox-con .start-schedule-con .start-live-back-con #live-now {
     background: linear-gradient( 126deg, rgba(255,66,29,1) 0%,
-	    	rgba(252,67,67,1) 50%,
-	    	rgba(249,67,104,1) 100%);
+        rgba(252,67,67,1) 50%,
+        rgba(249,67,104,1) 100%);
     color: #fff;
     height: 38px;
     margin: 0;
@@ -1570,9 +1570,9 @@ textarea:focus {
 
 .options .course-addbox-con .start-schedule-con .date-time-live-con .submit-btn:hover {
     background: linear-gradient( 126deg,
-	    	rgba(255,66,29,1) 0%,
-	    	rgba(252,67,67,1) 50%,
-	    	rgba(249,67,104,1) 100%);
+        rgba(255,66,29,1) 0%,
+        rgba(252,67,67,1) 50%,
+        rgba(249,67,104,1) 100%);
     color: #fff;
     transition: 0.3s;
 }
@@ -1700,9 +1700,9 @@ textarea:focus {
     border: 2px solid #fff;
     padding: 20px;
     box-shadow: inset -4px -4px 4px 0px #ffffff,
-	        inset 4px 4px 6px 0px #c2c2c2,
-	        -4px -4px 4px 0px #ffffff,
-	        4px 4px 6px 0px #c2c2c2;
+          inset 4px 4px 6px 0px #c2c2c2,
+          -4px -4px 4px 0px #ffffff,
+          4px 4px 6px 0px #c2c2c2;
 }
 
 
@@ -1907,20 +1907,68 @@ textarea:focus {
 
 
 .link {
-    display:flex;
-    justify-content:space-around;
-    font-size:1.4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4rem;
     margin: 0.8rem;
-    text-decoration:none;
-    color:#000;
+    text-decoration: none;
+    color: #000;
     width: 13rem;
     height: 13rem;
-    border-radius:50%;
-    
-    box-shadow: -6px -6px 14px rgba(255, 255, 255, .7),
-		-6px -6px 10px rgba(255, 255, 255, .5),
-		6px 6px 8px rgba(255, 255, 255, .075),
-		6px 6px 10px rgba(0, 0, 0, .15);
+    border-radius: 50%;
+    box-shadow: -6px -6px 14px rgb(255 255 255 / 70%),
+        -6px -6px 10px rgb(255 255 255 / 50%),
+        6px 6px 8px rgb(255 255 255 / 8%),
+        6px 6px 10px rgb(0 0 0 / 15%);
+}
+
+.items .fxuniversity-bg {
+    background: hsla(197, 100%, 44%, 1);
+    background: linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(277, 100%, 44%, 1) 100%);
+    background: -moz-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(277, 100%, 44%, 1) 100%);
+    background: -webkit-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(277, 100%, 44%, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#00A1E0", endColorstr="#8A00E0", GradientType=1 );
+}
+
+.items .fxpartner-bg {
+    background: hsla(197, 100%, 44%, 1);
+    background: linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(179, 100%, 44%, 1) 100%);
+    background: -moz-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(179, 100%, 44%, 1) 100%);
+    background: -webkit-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(179, 100%, 44%, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#00A1E0", endColorstr="#00E0DD", GradientType=1 );
+}
+
+.items .fxstar-bg {
+    background: hsla(197, 100%, 44%, 1);
+    background: linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(61, 100%, 44%, 1) 100%);
+    background: -moz-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(61, 100%, 44%, 1) 100%);
+    background: -webkit-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(61, 100%, 44%, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#00A1E0", endColorstr="#DDE000", GradientType=1 );
+}
+
+.items .fxuniverse-bg {
+    background: hsla(197, 100%, 44%, 1);
+    background: linear-gradient(90deg, hsla(197, 100%, 44%, 1) 0%, hsla(239, 100%, 44%, 1) 100%);
+    background: -moz-linear-gradient(90deg, hsla(197, 100%, 44%, 1) 0%, hsla(239, 100%, 44%, 1) 100%);
+    background: -webkit-linear-gradient(90deg, hsla(197, 100%, 44%, 1) 0%, hsla(239, 100%, 44%, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#00A1E0", endColorstr="#0004E0", GradientType=1 );
+}
+
+.items .fxsonet-bg {
+    background: hsla(197, 100%, 44%, 1);
+    background: linear-gradient(90deg, hsla(197, 100%, 44%, 1) 0%, hsla(13, 100%, 44%, 1) 100%);
+    background: -moz-linear-gradient(90deg, hsla(197, 100%, 44%, 1) 0%, hsla(13, 100%, 44%, 1) 100%);
+    background: -webkit-linear-gradient(90deg, hsla(197, 100%, 44%, 1) 0%, hsla(13, 100%, 44%, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#00A1E0", endColorstr="#E03100", GradientType=1 );
+}
+
+.items .link .inner-element {
+    width: calc( 100% - 3px );
+    height: calc( 100% - 3px );
+    display: flex;
+    border-radius: 50%;
+    background: #efefef;
 }
 
 .link .head{
@@ -1929,22 +1977,39 @@ textarea:focus {
     margin:auto;
 }
 
+.in-icon {
+    display:flex;
+    flex-flow:row nowrap;
+    width:100%;
+    border-radius:0 !important;
+    justify-content:center;
+    align-items:center;
+    margin-bottom:14px;
+}
+
+.in-icon svg {
+    width: 28px;
+    border-radius:0 !important;
+}
+
+.link .head .head-txt {
+    margin-bottom: 14px;
+}
+
 .link .sub {
     display: block;
     text-align: center;
-    margin-top: 10px;
-    font-size: 1.2rem;
-    /*opacity: 0.7;*/
+    margin: auto 0;
+    font-size: 18px;
 }
 
 
 
 .link:focus {
-
     box-shadow: inset -2px -2px 14px rgba(255, 255, 255, .7),
-		inset -2px -2px 10px rgba(255, 255, 255, .5),
-		inset 6px 6px 6px rgba(255, 255, 255, .075),
-		inset 6px 6px 10px rgba(0, 0, 0, .15);
+    inset -2px -2px 10px rgba(255, 255, 255, .5),
+    inset 6px 6px 6px rgba(255, 255, 255, .075),
+    inset 6px 6px 10px rgba(0, 0, 0, .15);
 }
 
 .link-main {
@@ -1959,9 +2024,9 @@ textarea:focus {
     font-size: 1rem;
     opacity: 0.6;
     box-shadow: -6px -6px 14px rgba(255, 255, 255, .7),
-		-6px -6px 10px rgba(255, 255, 255, .5),
-		6px 6px 8px rgba(255, 255, 255, .075),
-		6px 6px 10px rgba(0, 0, 0, .15);
+    -6px -6px 10px rgba(255, 255, 255, .5),
+    6px 6px 8px rgba(255, 255, 255, .075),
+    6px 6px 10px rgba(0, 0, 0, .15);
     cursor:pointer;
     
 }
@@ -1970,9 +2035,9 @@ textarea:focus {
     position: absolute;
     /*border:1px solid black;*/
     box-shadow: -6px -6px 14px rgba(255, 255, 255, .7),
-		-6px -6px 10px rgba(255, 255, 255, .5),
-		6px 6px 8px rgba(255, 255, 255, .075),
-		6px 6px 10px rgba(0, 0, 0, .15);
+    -6px -6px 10px rgba(255, 255, 255, .5),
+    6px 6px 8px rgba(255, 255, 255, .075),
+    6px 6px 10px rgba(0, 0, 0, .15);
     border-radius:0 0 18px 18px;
     padding: 15px;
     z-index:2;
@@ -2019,9 +2084,9 @@ textarea:focus {
 .link-main:focus {
     opacity: 1;
     box-shadow: inset -2px -2px 14px rgba(255, 255, 255, .7),
-		inset -2px -2px 10px rgba(255, 255, 255, .5),
-		inset 6px 6px 6px rgba(255, 255, 255, .075),
-		inset 6px 6px 10px rgba(0, 0, 0, .15);
+    inset -2px -2px 10px rgba(255, 255, 255, .5),
+    inset 6px 6px 6px rgba(255, 255, 255, .075),
+    inset 6px 6px 10px rgba(0, 0, 0, .15);
     transition: all 0.5s;
 }
 
@@ -2126,18 +2191,18 @@ textarea:focus {
 .elements a:focus {
     opacity: 1;
     box-shadow: inset -2px -2px 14px rgba(255, 255, 255, .7),
-		inset -2px -2px 10px rgba(255, 255, 255, .5),
-		inset 6px 6px 6px rgba(255, 255, 255, .075),
-		inset 6px 6px 10px rgba(0, 0, 0, .15);
+    inset -2px -2px 10px rgba(255, 255, 255, .5),
+    inset 6px 6px 6px rgba(255, 255, 255, .075),
+    inset 6px 6px 10px rgba(0, 0, 0, .15);
     transition: all 0.5s;
 }
 
 .elements #sidebar-active {
     opacity: 1;
     box-shadow: inset -2px -2px 14px rgba(255, 255, 255, .7),
-		inset -2px -2px 10px rgba(255, 255, 255, .5),
-		inset 6px 6px 6px rgba(255, 255, 255, .075),
-		inset 6px 6px 10px rgba(0, 0, 0, .15);
+    inset -2px -2px 10px rgba(255, 255, 255, .5),
+    inset 6px 6px 6px rgba(255, 255, 255, .075),
+    inset 6px 6px 10px rgba(0, 0, 0, .15);
     transition: all 0.5s;
 }
 
@@ -2240,9 +2305,9 @@ textarea:focus {
     padding: 30px 0;
     border-radius: 20px;
     box-shadow: inset -4px -2px 4px 0px #fff,
-	    	inset 4px 2px 6px 0px #dfe4ea,
-	    	-4px -2px 4px 0px #ffffff,
-	    	4px 2px 6px 0px #dfe4ea;
+        inset 4px 2px 6px 0px #dfe4ea,
+        -4px -2px 4px 0px #ffffff,
+        4px 2px 6px 0px #dfe4ea;
 }
 
 .solo-container .about h2 {
@@ -2660,9 +2725,9 @@ textarea:focus {
     padding: 20px;
     border-radius: 25px;
     box-shadow: inset -4px -2px 4px 0px #fff,
-		inset 4px 2px 6px 0px #DFE4EA,
-		-4px -2px 4px 0px #ffffff,
-		4px 2px 6px 0px #DFE4EA;
+    inset 4px 2px 6px 0px #DFE4EA,
+    -4px -2px 4px 0px #ffffff,
+    4px 2px 6px 0px #DFE4EA;
 }
 
 
@@ -2990,9 +3055,9 @@ textarea:focus {
     padding: 10px;
     border-radius: 20px;
     box-shadow: inset -4px -2px 4px 0px #fff,
-		inset 4px 2px 6px 0px #DFE4EA,
-		-4px -2px 4px 0px #ffffff,
-		4px 2px 6px 0px #DFE4EA;
+    inset 4px 2px 6px 0px #DFE4EA,
+    -4px -2px 4px 0px #ffffff,
+    4px 2px 6px 0px #DFE4EA;
 }
 
 .notifications {
@@ -3055,9 +3120,9 @@ textarea:focus {
     border: none;
     cursor: pointer;
     box-shadow: -6px -6px 14px rgba(255, 255, 255, .7),
-		-6px -6px 10px rgba(255, 255, 255, .5),
-		6px 6px 8px rgba(255, 255, 255, .075),
-		6px 6px 10px rgba(0, 0, 0, .15);
+    -6px -6px 10px rgba(255, 255, 255, .5),
+    6px 6px 8px rgba(255, 255, 255, .075),
+    6px 6px 10px rgba(0, 0, 0, .15);
 }
 /************************************************* < notification ***********************************/
 
@@ -3099,9 +3164,9 @@ textarea:focus {
     padding: 10px;
     border-radius: 20px;
     box-shadow: inset -4px -2px 4px 0px #fff,
-		inset 4px 2px 6px 0px #DFE4EA,
-		-4px -2px 4px 0px #ffffff,
-		4px 2px 6px 0px #DFE4EA;
+    inset 4px 2px 6px 0px #DFE4EA,
+    -4px -2px 4px 0px #ffffff,
+    4px 2px 6px 0px #DFE4EA;
 }
 
 /*** friends ***/
@@ -3339,9 +3404,9 @@ textarea:focus {
 
 .footer-chat a:active, .image-upload img:active {
     box-shadow: inset -4px -2px 4px 0px #fff,
-		inset 4px 2px 6px 0px #DFE4EA,
-		-4px -2px 4px 0px #ffffff,
-		4px 2px 6px 0px #DFE4EA;
+    inset 4px 2px 6px 0px #DFE4EA,
+    -4px -2px 4px 0px #ffffff,
+    4px 2px 6px 0px #DFE4EA;
 }
 
 
@@ -3370,9 +3435,9 @@ textarea:focus {
 
 .msg-icon-cnt:active {
     box-shadow: inset -4px -2px 4px 0px #fff,
-		inset 4px 2px 6px 0px #DFE4EA,
-		-4px -2px 4px 0px #ffffff,
-		4px 2px 6px 0px #DFE4EA;
+    inset 4px 2px 6px 0px #DFE4EA,
+    -4px -2px 4px 0px #ffffff,
+    4px 2px 6px 0px #DFE4EA;
 }
 /************************************************* < messaging ***********************************/
 
@@ -3404,7 +3469,7 @@ textarea:focus {
     border: 2px solid #fff ;
     margin-bottom: 15px;
     box-shadow: 8px 8px 16px #c4c4c4, 
-		-8px -8px 16px #ffffff;
+    -8px -8px 16px #ffffff;
 }
 
 
@@ -3452,7 +3517,7 @@ textarea:focus {
     border: 2px solid #fff ;
     opacity: 1;
     box-shadow: 5px 5px 10px #c4c4c4, 
-		-5px -5px 10px #ffffff;
+    -5px -5px 10px #ffffff;
 }
 
 .frame-container .frame-call .call-btn .btn:active {
@@ -3636,9 +3701,9 @@ textarea:focus {
     border-radius: 50%;
     width: inherit;
     box-shadow: -6px -6px 14px rgba(255, 255, 255, .7),
-		-6px -6px 10px rgba(255, 255, 255, .5),
-		6px 6px 8px rgba(255, 255, 255, .075),
-		6px 6px 10px rgba(0, 0, 0, .15);
+    -6px -6px 10px rgba(255, 255, 255, .5),
+    6px 6px 8px rgba(255, 255, 255, .075),
+    6px 6px 10px rgba(0, 0, 0, .15);
 }
 
 .profile-container .profile-top .info-profile {
@@ -3717,25 +3782,25 @@ textarea:focus {
 .profile-bottom .flex-container .items #open-fxuniversity {
     cursor: pointer;
     box-shadow: -6px -6px 14px rgb(255 255 255 / 70%),
-	    	-6px -6px 10px rgb(255 255 255 / 50%),
-	    	6px 6px 8px rgb(255 255 255 / 8%),
-	    	6px 6px 10px rgb(0 0 0 / 15%);
+        -6px -6px 10px rgb(255 255 255 / 50%),
+        6px 6px 8px rgb(255 255 255 / 8%),
+        6px 6px 10px rgb(0 0 0 / 15%);
 }
 
 
 .profile-bottom .flex-container .items #open-fxuniversity:active {
     box-shadow: inset -2px -2px 14px rgb(255 255 255 / 70%),
-	    	inset -2px -2px 10px rgb(255 255 255 / 50%),
-	    	inset 6px 6px 6px rgb(255 255 255 / 8%),
-	    	inset 6px 6px 10px rgb(0 0 0 / 15%);
+        inset -2px -2px 10px rgb(255 255 255 / 50%),
+        inset 6px 6px 6px rgb(255 255 255 / 8%),
+        inset 6px 6px 10px rgb(0 0 0 / 15%);
 }
 
 .profile-bottom .flex-container .items .link {
     cursor: default;
     box-shadow: inset -4px -2px 4px 0px #fff,
-	    	inset 4px 2px 6px 0px #dfe4ea,
-	    	-4px -2px 4px 0px #ffffff,
-	    	4px 2px 6px 0px #dfe4ea;
+        inset 4px 2px 6px 0px #dfe4ea,
+        -4px -2px 4px 0px #ffffff,
+        4px 2px 6px 0px #dfe4ea;
 }
 
 /************************************************* < profile ***********************************/
@@ -4307,7 +4372,7 @@ input:checked + .slider:before {
     border-radius: 20px;
     background: #efefef;
     box-shadow: inset 5px 5px 9px #d5d5d5, 
-		inset -5px -5px 9px #ffffff;
+    inset -5px -5px 9px #ffffff;
     max-width:50em;
     margin-top:50px;
 }
@@ -4371,9 +4436,9 @@ input:checked + .slider:before {
     margin-top:9px;
     margin-bottom:9px;
     box-shadow: inset -4px -4px 4px 0px #ffffff,
-	        inset 4px 4px 6px 0px #c2c2c2,
-	        -4px -4px 4px 0px #ffffff,
-	        4px 4px 6px 0px #c2c2c2;
+          inset 4px 4px 6px 0px #c2c2c2,
+          -4px -4px 4px 0px #ffffff,
+          4px 4px 6px 0px #c2c2c2;
 }
 
 .toggle-btn:before,
@@ -4421,88 +4486,71 @@ input:checked + .slider:before {
 
 @keyframes blinker {
     50% {
-	opacity:0;
+  opacity:0;
     }
-}
-
-
-.in-icon {
-    display:flex;
-    flex-flow:row nowrap;
-    width:100%;
-    border-radius:0 !important;
-    justify-content:center;
-    align-items:center;
-    margin-bottom:5px;
-}
-
-.in-icon img {
-    width:40px;
-    height:40px;
-    border-radius:0 !important;
 }
 
 
 
 @media (max-width:1454px) {
     .elements a {
-	font-size:0.9rem;
-	margin:10px 11px;
+  font-size:0.9rem;
+  margin:10px 11px;
     }
     .sidebar-icon::before {
-	margin: 0 6px 0 5px;
+  margin: 0 6px 0 5px;
     }
 }
 
 
 @media (max-width:1036px) and (min-width:629px) {
     .link-main {
-	font-size:0.8rem;
+  font-size:0.8rem;
     }
 
     .session .session-desc p {
-	font-size:0.7rem;
-	-webkit-line-clamp: 3;
+  font-size:0.7rem;
+  -webkit-line-clamp: 3;
     }
 
     .course-content .add-box {
-	font-size: 0.7rem;
+  font-size: 0.7rem;
     }
 
     .session .session-prev {
-	min-width:70px;
-	max-width:70px;
+  min-width:70px;
+  max-width:70px;
     }
 
     .user-name p, .user-name .fullname {
-	font-size:0.7rem;
+  font-size:0.7rem;
     }
     
     .sessions .chat-list .msgs p {
-	font-size:0.7rem;
+  font-size:0.7rem;
     }
 
     .sessions .chat-list .msgs p audio {
-	width:100%;
+  width:100%;
     }
 
     .live-chat-con audio {
-	width:50%;
+  width:50%;
     }
 
     .sessions .file-list form .uploadfile-con .filename-b4-upload-con #filename-b4-upload {
-	font-size:12px;
+  font-size:12px;
     }
 
     .sessions .file-list .submit-btn {
-	padding: 0 5px;
-	font-size:13px;
+  padding: 0 5px;
+  font-size:13px;
     }
 
     .file-list .file {
-	font-size: 12px;
+  font-size: 12px;
     }
-	
+  
 }
 
 
@@ -4512,30 +4560,30 @@ input:checked + .slider:before {
     
     
     .footer {
-	width:100%;
-	height:auto;
-	padding-top:5px;
-	padding-bottom:10px;
-	background:#efefef;
-	border-top:1px solid #dfdddd;
-	text-align:center;
-	color:#939393;
-	position:fixed;
-	bottom:0;
-	left:0;
-	font-size:0.8rem;
+  width:100%;
+  height:auto;
+  padding-top:5px;
+  padding-bottom:10px;
+  background:#efefef;
+  border-top:1px solid #dfdddd;
+  text-align:center;
+  color:#939393;
+  position:fixed;
+  bottom:0;
+  left:0;
+  font-size:0.8rem;
     }
 
     .main-content-mob {
-	display:none;
+  display:none;
     }
 
     .course-content {
-	margin-top:15px;
+  margin-top:15px;
     }
 
     #goto-login {
-	display:none;
+  display:none;
     }
 }
 
@@ -4546,141 +4594,141 @@ input:checked + .slider:before {
     html, body {
        min-height: 100vh;
     }
-	
+  
     .search-form {
-	width:100%;
-	padding:0 5%;
+  width:100%;
+  padding:0 5%;
     }
-	
+  
     /********************** > about page mobile **********************/
-	
+  
     .solo-container {
         padding: 0;
     }
 
     .solo-container .solo {
-    	width: 100%;
-	border-radius: 0;
-    	box-shadow: none;
+      width: 100%;
+  border-radius: 0;
+      box-shadow: none;
     }
-	
+  
     .solo-container .about .fxuniversity-about {
-    	padding: 0;
+      padding: 0;
     }
-	
+  
     .solo-container .about .fxpartner-about {
-    	padding: 0;
+      padding: 0;
     }
-	
+  
     .solo-container .about .fxstar-about {
-    	padding: 0;
+      padding: 0;
     }
 
     .solo-container .about .fxuniversity-about .university-background {
-    	border-radius: 0;
+      border-radius: 0;
     }
-	
+  
     .solo-container .solo-sub {
-	padding: 0 30px 40px 30px;
+  padding: 0 30px 40px 30px;
     }
-	
+  
     .solo-container .about .fxpartner-about .partner-background {
-	border-radius: 0;
+  border-radius: 0;
     }
 
     .solo-container .about .fxstar-about .star-background {
-	border-radius: 0;
+  border-radius: 0;
     }
 
     .solo-container .about .about-top {
-	padding: 0;
+  padding: 0;
     }
 
-	
+  
     /********************** < about page mobile **********************/
-	
+  
 
     /********************** > profile mobile **********************/
 
     .profile-container {
-	padding:0;
-	height:100%;
+  padding:0;
+  height:100%;
     }
     
     .profile-container .profile-top {
-	border-bottom: none;
-	padding:0 20px;
+  border-bottom: none;
+  padding:0 20px;
     }
 
     .profile-container .profile-top-mob {
-	display: block;
-	border-bottom: solid 1px #C0C0C0;
-	padding:0 20px;
+  display: block;
+  border-bottom: solid 1px #C0C0C0;
+  padding:0 20px;
     }
 
     .profile-container .profile-top .profile-desktop {
-	display: none;
+  display: none;
     }
 
     .profile-container .profile-top .avatar-profile-container {
-	width: 5rem;
-	height: 5rem;
-	margin-bottom: 20px;
+  width: 5rem;
+  height: 5rem;
+  margin-bottom: 20px;
     }
 
     .profile-container .profile-top .info-profile {
-	margin-left: 2rem;
-	justify-content: center;
-	font-size: 14px;
-	line-height: 30px;
-	width: 100%;
+  margin-left: 2rem;
+  justify-content: center;
+  font-size: 14px;
+  line-height: 30px;
+  width: 100%;
     }
 
     .profile-container .profile-top .info-profile .id-profile {
-	margin-bottom: 0;
+  margin-bottom: 0;
     }
 
     .profile-container .profile-top .info-profile .follower-profile {
-	margin-bottom: 0;
+  margin-bottom: 0;
     }
 
     .profile-container .profile-top-mob .info-profile {
-	display: flex;
-	flex-flow: column nowrap;
-	width: 100%;
-	margin-top: 1.5rem;
-	font-size: 14px;
-	line-height: 20px;
-	overflow: hidden;
-	text-overflow: ellipsis;
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+  margin-top: 1.5rem;
+  font-size: 14px;
+  line-height: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
     }
 
     .profile-container .profile-top-mob .info-profile .name-profile {
-	font-weight: 500;
+  font-weight: 500;
     }
 
     .profile-container .profile-top-mob .info-profile .bio-profile {
-	overflow: hidden;
-	margin-bottom: 15px;
+  overflow: hidden;
+  margin-bottom: 15px;
     }
 
     .profile-container .profile-top-mob .info-profile .edit-profile-con {
-	margin-bottom: 25px;
+  margin-bottom: 25px;
     }
 
     .profile-container .profile-top-mob .info-profile .edit-profile {
-	padding: 5px 10px;
-	border-radius: 50px;
-	border: solid 1px #C0C0C0;
-	text-decoration: none;
-	color: inherit;
-	text-align: center;
-	white-space: nowrap;
-	margin-right:10px;
+  padding: 5px 10px;
+  border-radius: 50px;
+  border: solid 1px #C0C0C0;
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  white-space: nowrap;
+  margin-right:10px;
     }
 
     .profile-container .profile-top-mob .info-profile .edit-profile:active {
-	opacity: 0.6;
+  opacity: 0.6;
     }
 
 
@@ -4689,9 +4737,9 @@ input:checked + .slider:before {
     /********************** > friends overlay mobile **********************/
 
     .frame-container .frame {
-	min-width: 100%;
-	min-height: 100%;
-	border-radius: 0;
+  min-width: 100%;
+  min-height: 100%;
+  border-radius: 0;
     }
 
     /********************** < friends overlay mobile **********************/
@@ -4699,310 +4747,310 @@ input:checked + .slider:before {
     /********************** > fxuniversity overlay mobile **********************/
 
     .frame-container .frame-fxuniversity {
-	min-width: 100%;
-	min-height: 100%;
-	border-radius: 0;
+  min-width: 100%;
+  min-height: 100%;
+  border-radius: 0;
     }
 
     /********************** < fxuniversity overlay mobile **********************/
 
     
     .overlay {
-	width:80%;
+  width:80%;
     }
     
     .login-container {
-	flex-flow: column nowrap;
-	padding:0 20px;
+  flex-flow: column nowrap;
+  padding:0 20px;
     }
     
     .login-form {
-	width: 100%;
-	height: 100%;
-	margin: 30px 0 40px 0;
+  width: 100%;
+  height: 100%;
+  margin: 30px 0 40px 0;
     }
     
     .login-description {
-	width:100%;
-	height: 100%;
+  width:100%;
+  height: 100%;
     }
     
     .login-form h2, .login-input, .login-forgot, .remember-me {
-	display: none !important;
+  display: none !important;
     }
 
     .mob-login-forgot {
-	text-align:center;
-	display:block;
+  text-align:center;
+  display:block;
     }
 
     #desktop-login-btn {
-	display:none;
+  display:none;
     }
 
     
     .login-button, .signup-button {
-	width: 100%;
+  width: 100%;
     }
     
     
     .mobile-main {
-	/*margin-bottom: 100px;*/
-	overflow: hidden;
+  /*margin-bottom: 100px;*/
+  overflow: hidden;
     }
     .upperbar {
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-	padding: 30px 7%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 30px 7%;
     }
     
     .flex-container {
-	padding: 0 0;
-	margin-bottom: 20px;
+  padding: 0 0;
+  margin-bottom: 20px;
     }
     
     .id {
-	font-size: 1.2em;
+  font-size: 1.2em;
     }
     
     .link {
-	font-size: 1.2em;
-	width: 10rem;
-	height:10rem;
+  font-size: 1.2em;
+  width: 10rem;
+  height:10rem;
     }
     
     .link .sub {
-	font-size: 0.9em;
+  font-size: 0.9em;
     }
 
     .height-18 {
-	height:13em;
+  height:13em;
     }
     .footbar {
-	background-color: #efefef;
-	overflow: hidden;
-	border-top:1px solid #dfdddd;
-	width:100%;
-	position:fixed;
-	bottom:0;
-	left:0;
-	height:50px;
-	display:flex;
-	justify-content:space-between;
+  background-color: #efefef;
+  overflow: hidden;
+  border-top:1px solid #dfdddd;
+  width:100%;
+  position:fixed;
+  bottom:0;
+  left:0;
+  height:50px;
+  display:flex;
+  justify-content:space-between;
     }
 
     .footbar-icon .stroked {
-	fill: #393939;
-	display: block;
+  fill: #393939;
+  display: block;
     }
     
     .footbar-icon .filled {
-	display:none;
-	fill: #393939;
+  display:none;
+  fill: #393939;
     }
     
     .header {
-	padding:0;
-	margin: 0 0 20px 0;
-	display: block;
-	height: 50px;
+  padding:0;
+  margin: 0 0 20px 0;
+  display: block;
+  height: 50px;
     }
     .header nav {
-	width:100%;
+  width:100%;
     }
     
     .header-sidebar {
-	padding:0;
-	margin:0 0 20px 0;
-	display:block;
-	height:50px;
+  padding:0;
+  margin:0 0 20px 0;
+  display:block;
+  height:50px;
     }
     
     .header-sidebar nav {
-	width:100%;
+  width:100%;
     }
     
     
     .sidebar {
-	display:none;
+  display:none;
     }
     
     .main-content {
-	display:none;
+  display:none;
     }
     
     .relative-main-content {
-	margin:0;
-	height:86%;
-	padding:0;
-	flex-flow:column nowrap;
-	align-items:center;
-	justify-content:space-between;
-	width:100%;
+  margin:0;
+  height:86%;
+  padding:0;
+  flex-flow:column nowrap;
+  align-items:center;
+  justify-content:space-between;
+  width:100%;
     }
     
     .content-box {
-	width:95%;
-	margin:auto;
-	padding:2em;
+  width:95%;
+  margin:auto;
+  padding:2em;
     }
     
-    .description {	
-	margin:auto;
-	margin-top:2em;
-	width:95%;
+    .description {  
+  margin:auto;
+  margin-top:2em;
+  width:95%;
     }
 
     .main-content-mob {
-	margin:20px auto 0 auto;
-	padding:0;
-	width:100%;
-	display:flex;
-	flex-flow:row wrap;
-	justify-content: space-around;
-	align-items:center;
-	
+  margin:20px auto 0 auto;
+  padding:0;
+  width:100%;
+  display:flex;
+  flex-flow:row wrap;
+  justify-content: space-around;
+  align-items:center;
+  
     }
     
     .main-flex-container {
-	flex-flow: column wrap;
+  flex-flow: column wrap;
     }
     
     .main-items {
-	width:100%;
+  width:100%;
     }
 
     .nav__links {
-	justify-content:space-between;
-	display:flex;
-	position:fixed;
-	align-items:center;
-	background-color:#efefef;
-	height:50px;
-	width:100%;
-	border-bottom:1px solid #dfdddd;
+  justify-content:space-between;
+  display:flex;
+  position:fixed;
+  align-items:center;
+  background-color:#efefef;
+  height:50px;
+  width:100%;
+  border-bottom:1px solid #dfdddd;
     }
     
     .nav__links li {
-	padding:0;
-	margin:10px;
-	width:auto;
-	height:auto;
+  padding:0;
+  margin:10px;
+  width:auto;
+  height:auto;
     }
 
     .nav__links li a {
-	width: 16px;
-	padding: 6px 10px;
-	border-radius: 4px;
-	text-decoration: none;
-	box-shadow:none;
-	margin:0;
+  width: 16px;
+  padding: 6px 10px;
+  border-radius: 4px;
+  text-decoration: none;
+  box-shadow:none;
+  margin:0;
     }
     
     .nav__links li svg {
-	width:inherit;
+  width:inherit;
     }
     .nav__links li a:focus {
-	box-shadow:none;
+  box-shadow:none;
     }
     
     #page-header {
-	font-weight:bold;
-	opacity:0.5;
-	text-decoration:none;
-	color:black;
+  font-weight:bold;
+  opacity:0.5;
+  text-decoration:none;
+  color:black;
     }
     
     .sidebar-m {
-	display: block;
-	align-items: left;
-	font-weight: bold;
-	margin: 0;
-	color: #000;
-	padding: 16px 5px;
-	text-decoration: none;
-	border-radius: 200px;
-	text-align: left;
-	font-size: 1rem;
-	opacity: 1;
+  display: block;
+  align-items: left;
+  font-weight: bold;
+  margin: 0;
+  color: #000;
+  padding: 16px 5px;
+  text-decoration: none;
+  border-radius: 200px;
+  text-align: left;
+  font-size: 1rem;
+  opacity: 1;
     }
     
     .sidebar-m a {
-	padding: 10px;
-	text-align: left;
+  padding: 10px;
+  text-align: left;
     }
     
     .sidepanel  {
-	width: 0;
-	position: fixed;
-	height: 100%;
-	z-index: 1;
-	top: 0;
-	right: 0;
-	background-color: #efefef;
-	box-shadow: -4px -2px 4px 0px #ffffff, 4px 2px 6px 0px #DFE4EA;
-	overflow-x: hidden;
-	transition: 0.3s;
-	padding-top: 30px;
-	padding-bottom: 30px;
+  width: 0;
+  position: fixed;
+  height: 100%;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-color: #efefef;
+  box-shadow: -4px -2px 4px 0px #ffffff, 4px 2px 6px 0px #DFE4EA;
+  overflow-x: hidden;
+  transition: 0.3s;
+  padding-top: 30px;
+  padding-bottom: 30px;
     }
     
     .avatar-m {
-	display: block;
-	margin: auto;
-	background:url('../images/background/avatar.png');
-	background-size: 120px;
-	border-radius: 50%;
-	border: 4px solid #efefef;
-	max-width: 120px;
-	height: 120px;
-	text-decoration: none;
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-position: center center;
-	border-radius:50%;
-	width: inherit;
-	box-shadow: -10px -10px 10px rgba(255, 255, 255, 0.5), 10px 10px 10px rgba(70, 70, 70, 0.12);
+  display: block;
+  margin: auto;
+  background:url('../images/background/avatar.png');
+  background-size: 120px;
+  border-radius: 50%;
+  border: 4px solid #efefef;
+  max-width: 120px;
+  height: 120px;
+  text-decoration: none;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  border-radius:50%;
+  width: inherit;
+  box-shadow: -10px -10px 10px rgba(255, 255, 255, 0.5), 10px 10px 10px rgba(70, 70, 70, 0.12);
     }
     
     .id-sidebar-m {
-	display: block;
-	text-align: center;
-	margin: 0 auto;
-	text-decoration: none;
-	color: #000;
-	font-size: 1rem;
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+  text-decoration: none;
+  color: #000;
+  font-size: 1rem;
     }
     
     
     .menu-info a{
-	margin-bottom: 5px;
+  margin-bottom: 5px;
     }
     
     .socialmedia {
-	margin: 10px 35px;
-	justify-content: space-around;
+  margin: 10px 35px;
+  justify-content: space-around;
     }
     
     .socialmedia a {
-	width: 12px;
-	height: 12px;
-	margin: 0;
+  width: 12px;
+  height: 12px;
+  margin: 0;
     }
 
     .add-box {
-	margin-top:0;
+  margin-top:0;
     }
 
     .obj-box {
-	margin-top:10px;
-	width:100%;
-	padding: 0 15px;
+  margin-top:10px;
+  width:100%;
+  padding: 0 15px;
     }
 
     .obj-box .object {
-	width: 100%;
+  width: 100%;
         margin: 0 0 1em 0;
         flex-flow: row nowrap;
         height: auto;
@@ -5011,20 +5059,20 @@ input:checked + .slider:before {
     }
     
     .obj-box .object .preview {
-	min-width: 150px;
-	width: 0;
+  min-width: 150px;
+  width: 0;
         height: 84.27px;
         position: relative;
         border-radius: 0;
     }
     
     .obj-box .object .preview svg {
-	width: 71px;
+  width: 71px;
     }
     
     .obj-box .object .preview .price {
-	display: block;
-	position: absolute;
+  display: block;
+  position: absolute;
         bottom: 0;
         width: 100%;
         color: #fff;
@@ -5033,125 +5081,125 @@ input:checked + .slider:before {
     }
     
     .detail-bottom .price {
-	display: none;
+  display: none;
     }
     
     .obj-box .object .preview .gold-bg {
-	background-color: #e0b000;
+  background-color: #e0b000;
     }
     
     .obj-box .object .preview .green-bg {
-	background-color: #3C7915;
+  background-color: #3C7915;
     }
     
     .obj-box .object .preview .gray-bg {
-	background-color: #313131;
+  background-color: #313131;
     }
     
     .obj-box .object .details {
-	padding: 0 0 0 10px;
-	height: auto;
+  padding: 0 0 0 10px;
+  height: auto;
     }
 
     .txt-input {
-	width:100%;
+  width:100%;
     }
 
     textarea {
-	width:100%;
+  width:100%;
     }
 
     .course-content {
-	flex-flow:column;
+  flex-flow:column;
     }
 
     .course-content .left-content {
-	width:100%;
-	padding-right:0;
-	margin-bottom:20px;
+  width:100%;
+  padding-right:0;
+  margin-bottom:20px;
     }
 
     .course-content .left-content h2 {
-	font-size:1.2rem;
+  font-size:1.2rem;
     }
 
     .course-content .right-content {
-	width:100%;
-	padding:0 15px;
+  width:100%;
+  padding:0 15px;
     }
 
     .notif-container {
-	width:90%;
-	height:auto;
-	overflow:none;
+  width:90%;
+  height:auto;
+  overflow:none;
     }
 
     /******************* > chat *******************/
     .row-chat {
-	box-shadow: none;
-	padding: 0;
-	max-height:100%;
+  box-shadow: none;
+  padding: 0;
+  max-height:100%;
     }
 
     .chat {
-	width: 100%;
-	height: 100vh;
+  width: 100%;
+  height: 100vh;
     }
 
     
     .chat .header-chat {
-	min-height: 50px;
+  min-height: 50px;
     }
     
     .discussions {
-	width: 100%;
-	border-right: none;
-	display: block;
+  width: 100%;
+  border-right: none;
+  display: block;
     }
 
 
     /********************** > edit profile overlay mobile **********************/
 
     .frame-container .frame-edit {
-	min-width: 100%;
-	min-height: 100%;
-	border-radius: 0;
+  min-width: 100%;
+  min-height: 100%;
+  border-radius: 0;
     }
 
     .frame-container .frame-edit .edit-firstname, .edit-lastname, .edit-bio {
-	display: flex;
-	flex-flow: column nowrap;
+  display: flex;
+  flex-flow: column nowrap;
     }
 
     .frame-container .frame-edit .edit-input-container .edit-input, .edit-input-bio {
-	width: 100%;
-	height: 40px;
+  width: 100%;
+  height: 40px;
     }
 
     .frame-container .frame-edit .edit-input-container .edit-input-bio {
-	width: 100%;
+  width: 100%;
     }
 
     .frame-container .frame-edit .edit-input-container .edit-input-text {
-	width: 100%;
-	margin-bottom: 10px;
+  width: 100%;
+  margin-bottom: 10px;
     }
 
     .frame-container .frame-edit .edit-avatar .avatar-profile-container {
-	margin-left: 0;
+  margin-left: 0;
     }
 
     .frame-container .frame-edit .edit-input-container .edit-input-text .first-name-word, .last-name-word, .bio-word {
-	margin-left: 0;
+  margin-left: 0;
     }
 
     .frame-container .frame-edit .edit-profile-text {
-	width: 100%;
+  width: 100%;
     }
 
     .frame-container .frame-edit .edit-avatar .avatar-prf-cnt {
-	width: 20%;
-	margin-right: 10px;
+  width: 20%;
+  margin-right: 10px;
     }
 
     /********************** > edit profile overlay mobile **********************/
@@ -5159,43 +5207,43 @@ input:checked + .slider:before {
     /******** > Forgot Password Overlay Mobile ********/
 
     .overlay-container .overlay-forgot {
-	min-width: auto;
-	width:90%;
+  min-width: auto;
+  width:90%;
     }
 
     .overlay-container .overlay-forgot h1 {
-	font-size: 20px;
-	text-align: center;
-	margin: 30px 0;
+  font-size: 20px;
+  text-align: center;
+  margin: 30px 0;
     }
 
     /******** < Forgot Password Overlay Mobile ********/
 
 
     .notif-header {
-	display:none;
+  display:none;
     }
 
     .notif-container {
-	width:100%;
-	box-shadow:none;
+  width:100%;
+  box-shadow:none;
     }
 
 
     /********************** > video call mobile **********************/
 
     .frame-container .frame-call {
-	min-width: 100%;
-	height: 100%;
-	border-radius: 0;
+  min-width: 100%;
+  height: 100%;
+  border-radius: 0;
     }
 
     .frame-container .frame-call .id-friend {
-	margin-bottom: 80px;
+  margin-bottom: 80px;
     }
 
     .frame-container .frame-call .calling {
-	margin-bottom: 80px;
+  margin-bottom: 80px;
     }
 
     /********************** > video call mobile **********************/
@@ -5203,114 +5251,114 @@ input:checked + .slider:before {
     /********************** > video face call mobile **********************/
 
     .frame-container .frame-videocall {
-	border-radius: 0;
-	background-color:#a2a2a2;
-	height:100%;
+  border-radius: 0;
+  background-color:#a2a2a2;
+  height:100%;
     }
 
     .frame-container .frame-videocall video {
-	height:auto;
+  height:auto;
     }
 
     .frame-container .frame-videocall .guest-video {
-	border-radius: 0;
-	width: 100vw;
-	height: 100vh;
+  border-radius: 0;
+  width: 100vw;
+  height: 100vh;
     }
 
     /********************** < video face call mobile **********************/
 
     .footer-chat .msg-icon-cnt {
-	width:50px;
+  width:50px;
     }
 
     #header-menu .msg-icon-cnt {
-	margin:0;
+  margin:0;
     }
 
     .obj-box .object-user {
-	width:90%;
-	margin:1em 0;
+  width:90%;
+  margin:1em 0;
     }
 
     .course-des-con {
-	padding:0 15px;
+  padding:0 15px;
     }
 
     .right-content .sessions {
-	box-shadow:none;
-	border-radius: 0;
-	padding: 0;
-	height:auto;
-	
+  box-shadow:none;
+  border-radius: 0;
+  padding: 0;
+  height:auto;
+  
     }
     
     .sessions .sess-list {
-	overflow-y:none;
-	height:auto;
-	padding-left:0;
-	padding-right:0;
+  overflow-y:none;
+  height:auto;
+  padding-left:0;
+  padding-right:0;
     }
 
     .right-content .options {
-	height:auto;
-	padding:20px 10px;
+  height:auto;
+  padding:20px 10px;
     }
 
     .course-content .course-upperleft {
-	flex-flow:column nowrap;
+  flex-flow:column nowrap;
     }
 
     .course-content .course-upperleft .video-holder {
-	margin-right:0;
-	width:100%;
-	
+  margin-right:0;
+  width:100%;
+  
     }
 
     .course-content .course-upperleft .video-placeholder {
-	width:100%;
-	border-radius:0;
-	height:150px;
+  width:100%;
+  border-radius:0;
+  height:150px;
     }
 
     .course-content .video-placeholder {
-	width:100%;
-	border-radius:0;
-	height:150px;
+  width:100%;
+  border-radius:0;
+  height:150px;
     }
 
     .course-upperleft .bulletin {
-	width:100%;
-	box-shadow:none;
-	height:auto;
+  width:100%;
+  box-shadow:none;
+  height:auto;
     }
 
     .bulletin .bulletin-txt-con {
-	display:none;
+  display:none;
     }
 
     .detail-bottom .detail-row .detail {
-	font-weight:normal;
-	font-size:12px;
+  font-weight:normal;
+  font-size:12px;
     }
 
 
     .relative-main-content .course-management-con .course-management-boxes {
-	flex-flow: column nowrap;
-	width:100%;
+  flex-flow: column nowrap;
+  width:100%;
     }
 
     .relative-main-content .course-management-con .course-management-boxes .left {
-	width:95%;
-	margin-bottom:30px;
+  width:95%;
+  margin-bottom:30px;
     }
 
     .relative-main-content .course-management-con .course-management-boxes .video-bulletin-con {
-	width:100%;
+  width:100%;
     }
 
     .relative-main-content .fxuniversity-nav {
-	display:none;
+  display:none;
     }
 
     
@@ -5318,12 +5366,12 @@ input:checked + .slider:before {
 
 @media (max-width: 374px) {
     .link {
-	width: 8rem;
-	height:8rem;
+  width: 8rem;
+  height:8rem;
     }
     
 
     .height-18 {
-	height:10em;
+  height:10em;
     }
 }
