@@ -119,56 +119,90 @@ if($gss_count > 0) {
 	<section>
 	    <ul class="flex-container">
 		<li class="items">
-                            <a href="/userpgs/fxuniversity" class="link" id="fxuniversity-link" >
-				<div class="head" id="main-info"><div class="in-icon"><img src="/images/icons/platforms/fxuniversity.svg" ></div>fxUniversity
-				    <div class="icon-txt" >
-				        <p class="sub"><?php echo $course_count+$gss_count_alive?> courses</p>
-				    </div>
-                                </div>
+                            <a href="/userpgs/fxuniversity" class="link fxuniversity-bg" id="fxuniversity-link" >
+				<div class="inner-element">
+					<div class="head" id="main-info">
+					    <div class="in-icon">
+						<svg viewBox="0 0 16 16"><defs><style>.cls-1 {fill: #393939;}</style></defs><path class="cls-1" d="M15.6,3.9,8.2.3H7.8L.4,3.9c-.3.1-.2.7.2.7H15.4C15.8,4.6,15.9,4,15.6,3.9Z"/><path class="cls-1" d="M13.5,13.7H2.5L.2,14.9A.6.6,0,0,0,.6,16H15.4a.6.6,0,0,0,.4-1.1Z"/><rect class="cls-1" x="2.5" y="6.3" width="1.7" height="5.69" transform="translate(6.7 18.3) rotate(180)"/><rect class="cls-1" x="11.8" y="6.3" width="1.7" height="5.69" transform="translate(25.3 18.3) rotate(180)"/><rect class="cls-1" x="7.1" y="6.3" width="1.7" height="5.69" transform="translate(16 18.3) rotate(180)"/></svg>
+					    </div>
+					    <div class="head-txt">fxUniversity</div>
+					    <div class="icon-txt" >
+						<p class="sub"><?php echo $course_count+$gss_count_alive?> courses</p>
+					    </div>
+					</div>
+				 </div>
 				<div class="icon-txt" style="display:none" id="extra-info"><p class="sub">Create and sell courses or enroll and learn</p></div>
                             </a>
                 </li>
 		<li class="items">
-                            <a href="/userpgs/partner" class="link" id="fxpartner-link">
-				<div class="head" id="main-info"><div class="in-icon" ><img src="/images/icons/platforms/fxpartner.svg" ></div>fxPartner
-				    <div class="icon-txt">
-					<div class="fxstar-price"></div>
-                                        <p class="sub"><?php echo $pTotal ?></p>
-				    </div>
-                                </div>
+                            <a href="/userpgs/partner" class="link fxpartner-bg" id="fxpartner-link">
+				<div class="inner-element">
+					<div class="head" id="main-info">
+					    <div class="in-icon" >
+						<svg viewBox="0 0 16 16"><defs><style>.cls-1 {fill: #393939;}</style></defs><path class="cls-1" d="M16,3.1V9a.9.9,0,0,1-.9.9h-.7V9.1a.9.9,0,0,0-.3-.6L10.8,5.1,9.6,3.9,7.5,5H6.9a1.3,1.3,0,0,1-1.2-.8,1.3,1.3,0,0,1,.6-1.7l1.9-.9.6-.3.4-.2h.7l1.5.6h0l2.2.9,1.2-.4A.9.9,0,0,1,16,3.1Z"/><path class="cls-1" d="M12.5,9.7a3.1,3.1,0,0,1-.5,1L8.5,14.1a2.3,2.3,0,0,1-3,.1L.8,9.9H0V2.8a.9.9,0,0,1,.9-.9H4.6a2.9,2.9,0,0,0-.5,3.2l.6.8a3.2,3.2,0,0,0,2,.8h.9L8,6.4l1.3-.6h0l3,3.1A.8.8,0,0,1,12.5,9.7Z"/></svg>
+					    </div>
+					    <div class="head-txt">fxPartner</div>
+					    <div class="icon-txt">
+						<div class="fxstar-price">
+						    <svg viewBox="0 0 16 16"><defs><style>.cls-1 {fill: #393939;</style></defs><path class="cls-1" d="M15.3,5.6l-4.5-.7L8.8.8A.9.9,0,0,0,7.2.8l-2,4.1L.7,5.6A.8.8,0,0,0,.3,7l3.2,3.2-.8,4.5a.9.9,0,0,0,1.3.9l4-2.1,4,2.1a.9.9,0,0,0,1.3-.9l-.8-4.5L15.7,7A.8.8,0,0,0,15.3,5.6ZM9.8,6.8H9A1.1,1.1,0,0,0,7.9,8v.5H9.8v1.7H7.9v1.7H6.2V8a2.3,2.3,0,0,1,.2-1.2A2.8,2.8,0,0,1,9,5.1h.8Z"/></svg>
+						</div>
+						<p class="sub"><?php echo $pTotal ?></p>
+					    </div>
+					</div>
+				 </div>
 				<div class="icon-txt" style="display:none" id="extra-info" ><p class="sub">Make easy money by partnering with us in interests. Click to learn more</p></div>
                             </a>
                 </li>
 		<li class="items">
-                                <a href="/wallet" class="link">
-                                    <div class="head" id="main-info"><div class="in-icon" ><img src="/images/icons/platforms/fxstar.svg" ></div>fxStar
-					<div class="icon-txt" >
-					    <div class="fxstar-price"></div>
-                                            <p class="sub"><?php echo $get_fxcoin_count?></p>
-                                        </div>
-				    </div>
+                                <a href="/wallet" class="link fxstar-bg">
+				    <div class="inner-element">
+					    <div class="head" id="main-info">
+						<div class="in-icon" >
+						    <svg viewBox="0 0 16 16"><defs><style>.cls-1 {fill: #393939;</style></defs><path class="cls-1" d="M15.3,5.6l-4.5-.7L8.8.8A.9.9,0,0,0,7.2.8l-2,4.1L.7,5.6A.8.8,0,0,0,.3,7l3.2,3.2-.8,4.5a.9.9,0,0,0,1.3.9l4-2.1,4,2.1a.9.9,0,0,0,1.3-.9l-.8-4.5L15.7,7A.8.8,0,0,0,15.3,5.6ZM9.8,6.8H9A1.1,1.1,0,0,0,7.9,8v.5H9.8v1.7H7.9v1.7H6.2V8a2.3,2.3,0,0,1,.2-1.2A2.8,2.8,0,0,1,9,5.1h.8Z"/></svg>
+						</div>
+						<div class="head-txt">fxStar</div>
+						<div class="icon-txt" >
+						    <div class="fxstar-price">
+							<svg viewBox="0 0 16 16"><defs><style>.cls-1 {fill: #393939;</style></defs><path class="cls-1" d="M15.3,5.6l-4.5-.7L8.8.8A.9.9,0,0,0,7.2.8l-2,4.1L.7,5.6A.8.8,0,0,0,.3,7l3.2,3.2-.8,4.5a.9.9,0,0,0,1.3.9l4-2.1,4,2.1a.9.9,0,0,0,1.3-.9l-.8-4.5L15.7,7A.8.8,0,0,0,15.3,5.6ZM9.8,6.8H9A1.1,1.1,0,0,0,7.9,8v.5H9.8v1.7H7.9v1.7H6.2V8a2.3,2.3,0,0,1,.2-1.2A2.8,2.8,0,0,1,9,5.1h.8Z"/></svg>
+						    </div>
+						    <p class="sub"><?php echo $get_fxcoin_count?></p>
+						</div>
+					    </div>
+				     </div>
 				    <div class="icon-txt" style="display:none" id="extra-info"><p class="sub">Buy fxStars and use them to purchase courses or send/receive them securely among friends</p></div>
                                 </a>
                         </li>
                         
                         
                         <li class="items">
-                                <a onclick="coming()" class="link" id="fxuniverse-link">
-                                    <div class="head" id="main-info"><div class="in-icon" ><img src="/images/icons/platforms/fxuniverse.svg" ></div>fxUniverse
-					<div class="icon-txt">
-                                            <p class="sub">coming soon</p>
+                                <a onclick="coming()" class="link fxuniverse-bg" id="fxuniverse-link">
+				    <div class="inner-element">
+					    <div class="head" id="main-info">
+						<div class="in-icon" >
+						    <svg viewBox="0 0 16 16"><defs><style>.cls-1 {fill: #393939;}</style></defs><path class="cls-1" d="M4.4,4.7,1.1,4A8,8,0,0,1,7.8,0C6.3.2,5,2,4.4,4.7Z"/><path class="cls-1" d="M9.9,4.8H6.1C6.6,2.9,7.5,1.7,8,1.7S9.4,2.9,9.9,4.8Z"/><path class="cls-1" d="M14.9,4a23.6,23.6,0,0,1-3.3.7C11,2,9.7.2,8.2,0A8,8,0,0,1,14.9,4Z"/><path class="cls-1" d="M4.1,9.7a20.2,20.2,0,0,0-3.7.7A6.4,6.4,0,0,1,0,8,6.1,6.1,0,0,1,.4,5.6a20.2,20.2,0,0,0,3.7.7A9.7,9.7,0,0,0,4,8,9.7,9.7,0,0,0,4.1,9.7Z"/><path class="cls-1" d="M7.8,16a8,8,0,0,1-6.7-4l3.3-.7C5,14,6.3,15.8,7.8,16Z"/><path class="cls-1" d="M8,14.3c-.5,0-1.4-1.2-1.9-3.1H9.9C9.4,13.1,8.5,14.3,8,14.3Z"/><path class="cls-1" d="M5.8,9.5A7.6,7.6,0,0,1,5.7,8a7.6,7.6,0,0,1,.1-1.5h4.4A7.6,7.6,0,0,1,10.3,8a7.6,7.6,0,0,1-.1,1.5H5.8Z"/><path class="cls-1" d="M11.6,11.3a23.6,23.6,0,0,1,3.3.7,8,8,0,0,1-6.7,4C9.7,15.8,11,14,11.6,11.3Z"/><path class="cls-1" d="M16,8a7.3,7.3,0,0,1-.4,2.5,14.3,14.3,0,0,0-3.7-.8A9.7,9.7,0,0,0,12,8a9.7,9.7,0,0,0-.1-1.7,14.3,14.3,0,0,0,3.7-.8A6.9,6.9,0,0,1,16,8Z"/></svg>
+						</div>
+						<div class="head-txt>fxUniverse</div>
+						<div class="icon-txt">
+						    <p class="sub">coming soon</p>
+						</div>
+					    </div>
 					</div>
-                                    </div>
 				    <div class="icon-txt" style="display:none" id="extra-info"><p class="sub">Universe of Forex Trading, coming soon</p></div>
                                 </a>
                         </li>
                         <li class="items">
-                                <a onclick="coming()" class="link" id="fxsonet-link">
-                                    <div class="head" id="main-info"><div class="in-icon" ><img src="/images/icons/platforms/fxsonet.svg" ></div>fxSonet
-					<div class="icon-txt">
-                                            <p class="sub">coming soon</p>
+                                <a onclick="coming()" class="link fxsonet-bg" id="fxsonet-link">
+				    <div class="inner-element">
+					    <div class="head" id="main-info">
+						<div class="in-icon" >
+						    <svg viewBox="0 0 16 16"><defs><style>.cls-1 {fill: #393939;}</style></defs><path class="cls-1" d="M16,12a3.1,3.1,0,0,0-3.1-3.1H12L10.3,6.1A3,3,0,0,0,11.1,4,3.1,3.1,0,0,0,4.9,4a3,3,0,0,0,.8,2.1L4,9H3.1A3.1,3.1,0,0,0,0,12a3.1,3.1,0,0,0,3.1,3.1A3.1,3.1,0,0,0,6.2,12a3,3,0,0,0-.8-2.1L7.2,7l.8.2L8.9,7l1.7,2.9A3,3,0,0,0,9.8,12,3.1,3.1,0,1,0,16,12Z"/></svg>
+						</div>
+						<div class="head-txt">fxSonet</div>
+						<div class="icon-txt">
+						    <p class="sub">coming soon</p>
+						</div>
+					    </div>
 					</div>
-                                    </div>
 				    <div class="icon-txt" style="display:none" id="extra-info"><p class="sub">A trading social network for traders; coming soon</p></div>
 				    
                                 </a>
