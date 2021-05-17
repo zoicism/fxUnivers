@@ -2096,7 +2096,7 @@ textarea:focus {
     border-bottom: 2px solid #393939;
 }
 
-inner-content-box {
+.inner-content-box {
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-between;
