@@ -1691,20 +1691,6 @@ textarea:focus {
 
 /* * * < Add Session * * */
 
-.content-box {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 20px;
-    border: 2px solid #fff;
-    padding: 20px;
-    box-shadow: inset -4px -4px 4px 0px #ffffff,
-          inset 4px 4px 6px 0px #c2c2c2,
-          -4px -4px 4px 0px #ffffff,
-          4px 4px 6px 0px #c2c2c2;
-}
-
 
 .content-box .row {
     display:flex;
@@ -2048,15 +2034,14 @@ textarea:focus {
 
 .extra-info-cnt {
     position: absolute;
-    /*border:1px solid black;*/
-    box-shadow: -6px -6px 14px rgba(255, 255, 255, .7),
-    -6px -6px 10px rgba(255, 255, 255, .5),
-    6px 6px 8px rgba(255, 255, 255, .075),
-    6px 6px 10px rgba(0, 0, 0, .15);
-    border-radius:0 0 18px 18px;
-    padding: 15px;
-    z-index:2;
-    background-color: #efefef;
+    width: 240px;
+    text-align: center;
+    white-space: pre-wrap;
+    border: 1px solid #c2c2c2;
+    border-radius: 0 10px 10px 10px;
+    padding: 10px;
+    z-index: 2;
+    background-color: #e8e8e8;
 }
 /*
 .extra-info-cnt .extra-info {
@@ -2105,13 +2090,81 @@ textarea:focus {
     transition: all 0.5s;
 }*/
 
-
-
-
 #active-main {
     opacity:1;
     border-bottom: 2px solid #393939;
 }
+
+
+
+
+
+.content-box {
+    position: absolute;
+    display: flex;
+    background-color: #00000047;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    color: #fbfbfb;
+    padding: 20px 40px;
+}
+
+.contentbox-bg .content-box .contentbox-word {
+    font-size: 26px;
+    margin-bottom: 14px;
+}
+
+.contentbox-bg {
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.fxstar-contentbox {
+    background: hsla(197, 100%, 44%, 1);
+    background: linear-gradient( 0deg, hsla(197, 100%, 44%, 1) 0%, hsla(61, 100%, 44%, 1) 100%);
+    background: -moz-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(61, 100%, 44%, 1) 100%);
+    background: -webkit-linear-gradient( 0deg, hsla(197, 100%, 44%, 1) 0%, hsla(61, 100%, 44%, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#00A1E0", endColorstr="#DDE000", GradientType=1 );
+}
+
+.fxstar-contentbox svg {
+    min-width: 1200px;
+    filter: blur(4px);
+}
+
+.fxuniversity-contentbox {
+    background: hsla(197, 100%, 44%, 1);
+    background: linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(277, 100%, 44%, 1) 100%);
+    background: -moz-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(277, 100%, 44%, 1) 100%);
+    background: -webkit-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(277, 100%, 44%, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#00A1E0", endColorstr="#8A00E0", GradientType=1 );
+}
+
+.fxuniversity-contentbox svg {
+    min-width: 1200px;
+    filter: blur(4px);
+}
+
+.fxpartner-contentbox {
+    background: hsla(197, 100%, 44%, 1);
+    background: linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(179, 100%, 44%, 1) 100%);
+    background: -moz-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(179, 100%, 44%, 1) 100%);
+    background: -webkit-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(179, 100%, 44%, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#00A1E0", endColorstr="#00E0DD", GradientType=1 );
+}
+
+.fxpartner-contentbox svg {
+    min-width: 1200px;
+    filter: blur(4px);
+}
+
 
 
 
