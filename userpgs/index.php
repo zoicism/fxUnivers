@@ -89,7 +89,7 @@ if($gss_count > 0) {
 
 <section>
                 <ul class="flex-container height-18">
-                        <li class="items" >
+                        <li class="items profilepic-id" >
                             <?php
 			    $avatar_path=$_SERVER['DOCUMENT_ROOT'];
                     $avatar_path.='/userpgs/avatars/';
