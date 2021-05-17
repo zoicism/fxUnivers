@@ -99,7 +99,7 @@ require('../../wallet/php/get_fxcoin_count.php');
           }
           ?>
 	      <div class="contentbox-word">fxPartner</div>
-	      <p>Earnings: <strong><?php echo $total ?> fxStars</strong></p>
+	      <p class="earnings-txt-cnt">Earnings: <strong><?php echo $total ?> fxStars</strong></p>
 	  </div>
       </div>
 
