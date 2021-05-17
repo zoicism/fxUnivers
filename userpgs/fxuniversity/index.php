@@ -53,7 +53,7 @@ if($gss_count > 0) {
 	     $(document).ready(function() {
 		 $('.header-sidebar').prepend('<div class="bar-cnt"><div class="bar-items"><a href="/userpgs/instructor/" class="link-main"><div class="head">Teach (<?php echo $course_count ?>)</div></a><div class="extra-info-cnt" style="display:none"><p class="extra-info">Create unlimited courses and make fxStars as students enroll in them.</p></div></div><div class="bar-items"><a href="/userpgs/student/" class="link-main"><div class="head">Learn (<?php echo $gss_count_alive ?>)</div></a><div class="extra-info-cnt" style="display:none"><p class="extra-info">Enroll in courses, get certified, and start making fxStars right after by teaching.</p></div></div></div>');
 		 $('.bar-items').hover(function() {
-		     $(this).find('.extra-info-cnt').css('width',$(this).css('width')).show();
+		     $(this).find('.extra-info-cnt').show();
 		 }, function() {
 		     $(this).find('.extra-info-cnt').hide();
 		 });

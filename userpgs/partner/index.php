@@ -49,7 +49,7 @@ require('../../wallet/php/get_fxcoin_count.php');
 	$('.header-sidebar').prepend('<div class="bar-cnt"><div class="bar-items"><a href="/userpgs/partner/positions" class="link-main"><div class="head">fxHR</div>\
 </a><div class="extra-info-cnt" style="display:none"><p class="extra-info">Copy and share the link provided here and we will share our interests with you.</p></div></div><div class="bar-items"><a href="/userpgs/partner/income" class="link-main"><div class="head">Earnings History</div></a><div class="extra-info-cnt" style="display:none"><p class="extra-info">History of the income you have made by sharing your fxHR link and building up our workforce</p></div></div></div>');
 	$('.bar-items').hover(function() {
-	    $(this).find('.extra-info-cnt').css('width',$(this).css('width')).show();
+	    $(this).find('.extra-info-cnt').show();
 	  }, function() {
 	    $(this).find('.extra-info-cnt').hide();
 	  });

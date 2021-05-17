@@ -51,7 +51,7 @@ require('php/get_fxcoin_count.php');
        $(document).ready(function() {
      $('.header-sidebar').prepend('<div class="bar-cnt"><div class="bar-items"><a href="/wallet/buy" class="link-main"><div class="head">Buy fxStars</div></a><div class="extra-info-cnt" style="display:none"><p class="extra-info">Buy fxStars and use them to enroll in courses.</p></div></div><div class="bar-items"><a href="/wallet/send" class="link-main"><div class="head">Transfer</div></a><div class="extra-info-cnt" style="display:none"><p class="extra-info">Send fxStars to friends securely and instantaneously.</p></div></div><div class="bar-items"><a href="/wallet/req" class="link-main"><div class="head">Request</div></a><div class="extra-info-cnt" style="display:none"><p class="extra-info">Request fxStars from friends and the transaction will take place as soon as they accept it.</p></div></div><div class="bar-items"><a href="/wallet/txn" class="link-main"><div class="head">Transactions</div></a><div class="extra-info-cnt" style="display:none"><p class="extra-info">History of fxStar transactions.</p></div></div><div class="bar-items"><a href="/wallet/cashout" class="link-main"><div class="head">Cash-out</div></a><div class="extra-info-cnt" style="display:none"><p class="extra-info">Request cash-out within 3-business-day delivery in USD, coming soon in all major cryptocurrencies.</p></div></div></div>');
      $('.bar-items').hover(function() {
-         $(this).find('.extra-info-cnt').css('width',$(this).css('width')).show();
+         $(this).find('.extra-info-cnt').show();
      }, function() {
          $(this).find('.extra-info-cnt').hide();
      });
