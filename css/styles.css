@@ -266,7 +266,7 @@ textarea:focus {
     margin: 0 0 0 15%;
     width: calc(100% - 15%);
     height: 84%;
-    padding: 0 30px 30px 30px;
+    /*padding: 0 30px 30px 30px;*/
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
@@ -1897,6 +1897,7 @@ textarea:focus {
     width:100%;
     margin:1px;
     text-align:left;
+    padding: 0 30px 30px 30px;
     /*font-size:0.7rem !important;*/
 }
 
@@ -2165,7 +2166,16 @@ textarea:focus {
     filter: blur(4px);
 }
 
+.content-box p {
+    color: #fbfbfb;
+    font-size: 20px;
+    font-weight: normal;
+}
 
+.content-box .earnings-txt-cnt {
+    display: flex;
+    flex-flow: row nowrap;
+}
 
 
 
