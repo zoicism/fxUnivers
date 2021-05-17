@@ -46,8 +46,7 @@ require('../../wallet/php/get_fxcoin_count.php');
   <script>
   if(screen.width >= 629) {
     $(document).ready(function() {
-	$('.header-sidebar').prepend('<div style="width:100%; display:flex; flex-flow:row nowrap; justify-\
-content:left;"><div class="bar-items"><a href="/userpgs/partner/positions" class="link-main"><div class="head">fxHR</div>\
+	$('.header-sidebar').prepend('<div class="bar-cnt"><div class="bar-items"><a href="/userpgs/partner/positions" class="link-main"><div class="head">fxHR</div>\
 </a><div class="extra-info-cnt" style="display:none"><p class="extra-info">Copy and share the link provided here and we will share our interests with you.</p></div></div><div class="bar-items"><a href="/userpgs/partner/income" class="link-main"><div class="head">Earnings History</div></a><div class="extra-info-cnt" style="display:none"><p class="extra-info">History of the income you have made by sharing your fxHR link and building up our workforce</p></div></div></div>');
 	$('.bar-items').hover(function() {
 	    $(this).find('.extra-info-cnt').css('width',$(this).css('width')).show();
