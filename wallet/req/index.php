@@ -60,7 +60,7 @@ require('../php/get_fxcoin_count.php');
 
 <div class="relative-main-content">
 
-  <div class="content-box">
+  <div class="inner-content-box">
 
                           <h2>Request fxStars</h3>
 
