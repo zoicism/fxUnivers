@@ -62,7 +62,7 @@ require('../php/get_fxcoin_count.php');
 
   <div class="relative-main-content">
 
-  <div class="content-box">
+  <div class="inner-content-box">
 
                           <h2>Request Cash-out</h2>
                           <p>Your current balance: <strong><?php echo $get_fxcoin_count?> fxStars</strong></p>
