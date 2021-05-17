@@ -2021,21 +2021,27 @@ textarea:focus {
     inset 6px 6px 10px rgba(0, 0, 0, .15);
 }
 
+
+
+.header-sidebar .bar-cnt {
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    white-space: nowrap;
+}
+
+
+
+
 .link-main {
     display: block;
     font-weight: bold;
-    margin: 10px 11px;
-    color: #000;
+    color: #393939;
     padding:6px 25px;
     text-decoration: none;
-    border-radius: 18px;
-    text-align: left;
     font-size: 1rem;
-    opacity: 0.6;
-    box-shadow: -6px -6px 14px rgba(255, 255, 255, .7),
-    -6px -6px 10px rgba(255, 255, 255, .5),
-    6px 6px 8px rgba(255, 255, 255, .075),
-    6px 6px 10px rgba(0, 0, 0, .15);
+    opacity: 0.8;
     cursor:pointer;
     
 }
@@ -2071,11 +2077,11 @@ textarea:focus {
     transition: opacity .4s ease-in-out;
 }
 */
-.link-main .head{
+/*.link-main .head{
     display: block;
     text-align: center;
     margin:auto;
-}
+}*/
 
 .link-main .sub {
     display: block;
@@ -2086,28 +2092,25 @@ textarea:focus {
 }
 
 .link-main:hover:not(:focus) {
-    opacity: 0.8;
+    opacity: 1;
     transition: all 0.3s;
 }
 
-.link-main:focus {
+/*.link-main:focus {
     opacity: 1;
     box-shadow: inset -2px -2px 14px rgba(255, 255, 255, .7),
     inset -2px -2px 10px rgba(255, 255, 255, .5),
     inset 6px 6px 6px rgba(255, 255, 255, .075),
     inset 6px 6px 10px rgba(0, 0, 0, .15);
     transition: all 0.5s;
-}
+}*/
 
 
 
 
 #active-main {
     opacity:1;
-    box-shadow: inset -2px -2px 14px rgba(255, 255, 255, .7),
-                inset -2px -2px 10px rgba(255, 255, 255, .5),
-                inset 6px 6px 6px rgba(255, 255, 255, .075),
-                inset 6px 6px 10px rgba(0, 0, 0, .15);
+    border-bottom: 2px solid #393939;
 }
 
 
