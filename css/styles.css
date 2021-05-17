@@ -1898,6 +1898,15 @@ textarea:focus {
     width:20%;
 }
 
+.profilepic-id {
+    width: 50%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
 .description {
     width:100%;
     margin:1px;
