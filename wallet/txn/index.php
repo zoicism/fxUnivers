@@ -59,7 +59,7 @@ require('../../php/get_trans.php');
 	<?php require('../../php/sidebar.php'); ?>
 
   <div class="relative-main-content">
-  <div class="content-box" id="txn-content-box">
+  <div class="inner-content-box" id="txn-content-box">
                           <h2>Transactions</h2>
                           
 <div class="row" style="width:100%">
