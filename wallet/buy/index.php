@@ -72,7 +72,7 @@ require('../php/get_fxcoin_count.php');
 
 <div class="relative-main-content">
 
-<div class="content-box">
+<div class="inner-content-box">
 
                           <h2>Buy fxStars</h2>
 <p>Number of fxStars to purchase:</p>
