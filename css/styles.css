@@ -2426,6 +2426,7 @@ textarea:focus {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
+    margin: 14px 0;
 }
 
 
