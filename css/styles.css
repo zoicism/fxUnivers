@@ -1897,10 +1897,91 @@ textarea:focus {
 
 .description {
     width:100%;
-    margin:1px;
     text-align:left;
     padding: 0 30px 30px 30px;
-    /*font-size:0.7rem !important;*/
+}
+
+.description p {
+    line-height: 24px;
+    padding: 0 30px;
+}
+
+.description h3 {
+    font-size: 20px;
+    line-height: 44px;
+}
+
+.description ol, ul {
+    padding-left: 16px;
+    padding: 0 30px;
+    list-style: none;
+}
+
+.description ul li, ol li {
+    margin: 10px 0;
+}
+
+.description .fxuniversity-desc {
+    font-size: 28px;
+}
+
+.fxuniversity-desc-cnt h3 {
+    background: #00A1E0;
+    background: -webkit-linear-gradient(to right, #00A1E0 0%, #8900E0 100%);
+    background: -moz-linear-gradient(to right, #00A1E0 0%, #8900E0 100%);
+    background: linear-gradient(to right, #00A1E0 0%, #8900E0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    width: fit-content;
+}
+
+.fxuniversity-desc-cnt a {
+    color: #4551E0;
+}
+
+.fxuniversity-desc-cnt span {
+    cursor: pointer;
+    color: #4551E0;
+}
+
+
+
+.description .fxpartner-desc {
+    font-size: 28px;
+}
+
+.fxpartner-desc-cnt h3 {
+    background: #00A1E0;
+    background: -webkit-linear-gradient(to right, #00A1E0 0%, #00E0DD 100%);
+    background: -moz-linear-gradient(to right, #00A1E0 0%, #00E0DD 100%);
+    background: linear-gradient(to right, #00A1E0 0%, #00E0DD 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    width: fit-content;
+}
+
+.fxpartner-desc-cnt a {
+    color: #0096AD;
+}
+
+
+
+.description .fxstar-desc {
+    font-size: 28px;
+}
+
+.fxstar-desc-cnt h3 {
+    background: #00A1E0;
+    background: -webkit-linear-gradient(to right, #00A1E0 0%, #dde000 100%);
+    background: -moz-linear-gradient(to right, #00A1E0 0%, #dde000 100%);
+    background: linear-gradient(to right, #00A1E0 0%, #dde000 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    width: fit-content;
+}
+
+.fxstar-desc-cnt a {
+    color: #42A183;
 }
 
 
@@ -2117,13 +2198,16 @@ textarea:focus {
 .content-box {
     position: absolute;
     display: flex;
-    background-color: #00000047;
     flex-flow: column nowrap;
     justify-content: space-between;
     align-items: center;
-    border-radius: 10px;
+    border-radius: 5px;
     color: #fbfbfb;
-    padding: 20px 40px;
+    padding: 40px 60px;
+    box-shadow: 0 0 1rem 0 rgb(0 0 0 / 20%);
+    background-color: rgba(255, 255, 255, .15);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 
 .contentbox-bg .content-box .contentbox-word {
@@ -2133,7 +2217,7 @@ textarea:focus {
 
 .contentbox-bg {
     width: 100%;
-    height: 150px;
+    height: 200px;
     overflow: hidden;
     display: flex;
     flex-flow: row nowrap;
@@ -2155,6 +2239,24 @@ textarea:focus {
     fill: #fff;
 }
 
+.fxstar-contentbox .icon-txt svg {
+    max-width: 20px;
+    min-width: 20px;
+    margin-right: 10px;
+    filter: blur(0px);
+    fill: #fbfbfb;
+}
+
+.fxpartner-contentbox .icon-txt svg {
+    max-width: 20px;
+    min-width: 20px;
+    margin-right: 10px;
+    filter: blur(0px);
+    fill: #fbfbfb;
+}
+
+
+
 .fxuniversity-contentbox {
     background: hsla(197, 100%, 44%, 1);
     background: linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(277, 100%, 44%, 1) 100%);
@@ -2165,7 +2267,7 @@ textarea:focus {
 
 .fxuniversity-contentbox svg {
     min-width: 1200px;
-    filter: blur(4px);
+    filter: blur(2px);
     fill: #fff;
 }
 
