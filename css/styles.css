@@ -2574,12 +2574,18 @@ textarea:focus {
 
 .solo-container .about .fxuniversity-about .solo-sub h3 {
     font-size: 20px;
+    line-height: 44px;
+    margin: 0;
     background: #00A1E0;
     background: -webkit-linear-gradient(to right, #00A1E0 0%, #8900E0 100%);
     background: -moz-linear-gradient(to right, #00A1E0 0%, #8900E0 100%);
     background: linear-gradient(to right, #00A1E0 0%, #8900E0 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+.solo-container .about .fxuniversity-about .solo-sub p {
+    line-height: 24px;
 }
 
 .solo-container .about .fxuniversity-about h4 {
