@@ -1933,6 +1933,7 @@ textarea:focus {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     width: fit-content;
+    width: -moz-fit-content;
 }
 
 .fxuniversity-desc-cnt a {
@@ -1958,6 +1959,7 @@ textarea:focus {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     width: fit-content;
+    width: -moz-fit-content;
 }
 
 .fxpartner-desc-cnt a {
@@ -1978,6 +1980,7 @@ textarea:focus {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     width: fit-content;
+    width: -moz-fit-content;
 }
 
 .fxstar-desc-cnt a {
@@ -2267,7 +2270,7 @@ textarea:focus {
 
 .fxuniversity-contentbox svg {
     min-width: 1200px;
-    filter: blur(2px);
+    filter: blur(4px);
     fill: #fff;
 }
 
