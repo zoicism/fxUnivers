@@ -132,6 +132,7 @@ require('php/get_fxcoin_count.php');
         <div class="content-box">
            <div class="contentbox-word">fxStar Balance</div>
            <div class="icon-txt">
+		   <svg viewBox="0 0 16 16"><defs><style>{fill: #393939;</style></defs><path d="M15.3,5.6l-4.5-.7L8.8.8A.9.9,0,0,0,7.2.8l-2,4.1L.7,5.6A.8.8,0,0,0,.3,7l3.2,3.2-.8,4.5a.9.9,0,0,0,1.3.9l4-2.1,4,2.1a.9.9,0,0,0,1.3-.9l-.8-4.5L15.7,7A.8.8,0,0,0,15.3,5.6ZM9.8,6.8H9A1.1,1.1,0,0,0,7.9,8v.5H9.8v1.7H7.9v1.7H6.2V8a2.3,2.3,0,0,1,.2-1.2A2.8,2.8,0,0,1,9,5.1h.8Z"></path></svg>
 						   <p><?php echo $get_fxcoin_count?></p>
            </div>
          </div>
@@ -179,8 +180,8 @@ require('php/get_fxcoin_count.php');
 
 
 
-                          <div class="description">
-            <h3>What to use fxStars for?</h3>
+                          <div class="description fxstar-desc-cnt">
+            <h3 class="fxstar-desc">What to use fxStars for?</h3>
             <p>You can use fxStars to:</p>
             <ul>
           <li>
@@ -191,19 +192,19 @@ require('php/get_fxcoin_count.php');
           </li>
             </ul>
                           <h3>How to Buy fxStars</h3>
-                          <p>Click on the <a href="/wallet/buy" ><strong>Buy fxStars</strong></a> above to buy fxStars. The cost of 10 fxStars is 11 USD.</p>
+                          <p>Click on the <a href="/wallet/buy" >Buy fxStars</a> above to buy fxStars. The cost of 10 fxStars is 11 USD.</p>
 
         <h3>How to Transfer fxStars</h3>
-        <p>Click on the <a href="/wallet/send" ><strong>Transfer</strong></a> above, enter how many fxStars and to whom you wish to send, and your friends will receive the fxStars instantly and securely! They will be informed of the transaction right away.</p>
+        <p>Click on the <a href="/wallet/send" >Transfer</a> above, enter how many fxStars and to whom you wish to send, and your friends will receive the fxStars instantly and securely! They will be informed of the transaction right away.</p>
 
         <h3>How to Request fxStars</h3>
-        <p>Click on the <strong><a href="/wallet/req" >Request</a></strong> above and request a specific number of fxStars from any of your friends. They will get informed immediately and will send you the requested amount if they want to, with just one click.</p>
+        <p>Click on the <a href="/wallet/req" >Request</a> above and request a specific number of fxStars from any of your friends. They will get informed immediately and will send you the requested amount if they want to, with just one click.</p>
 
         <h3>How to see the Transactions</h3>
-        <p>Click on the <strong><a href="/wallet/txn" >Transactions</a></strong> above to get a list of all your incoming and outgoing transactions.</p>
+        <p>Click on the <a href="/wallet/txn" >Transactions</a> above to get a list of all your incoming and outgoing transactions.</p>
 
         <h3>How to Cash-out</h3>
-        <p>Click on the <strong><a href="/wallet/cashout" >Cash-out</a></strong> and submit a cash-out request of at least 100 fxStars which will take place within 3 business days. Coming soon, you will also be able to request instantaneous cash-outs with various cryptocurrencies.</p>                     
+        <p>Click on the <a href="/wallet/cashout" >Cash-out</a> and submit a cash-out request of at least 100 fxStars which will take place within 3 business days. Coming soon, you will also be able to request instantaneous cash-outs with various cryptocurrencies.</p>                     
                         </div>
   </div>
 
