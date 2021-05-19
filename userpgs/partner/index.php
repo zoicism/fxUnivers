@@ -108,6 +108,7 @@ require('../../wallet/php/get_fxcoin_count.php');
           ?>
 	      <div class="contentbox-word">fxPartner Earnings</div>
 <div class="icon-txt">
+	<svg viewBox="0 0 16 16"><defs><style>{fill: #393939;</style></defs><path d="M15.3,5.6l-4.5-.7L8.8.8A.9.9,0,0,0,7.2.8l-2,4.1L.7,5.6A.8.8,0,0,0,.3,7l3.2,3.2-.8,4.5a.9.9,0,0,0,1.3.9l4-2.1,4,2.1a.9.9,0,0,0,1.3-.9l-.8-4.5L15.7,7A.8.8,0,0,0,15.3,5.6ZM9.8,6.8H9A1.1,1.1,0,0,0,7.9,8v.5H9.8v1.7H7.9v1.7H6.2V8a2.3,2.3,0,0,1,.2-1.2A2.8,2.8,0,0,1,9,5.1h.8Z"></path></svg>
 	      <p><?php echo $total ?></p>
 </div>
 	  </div>
@@ -134,8 +135,8 @@ require('../../wallet/php/get_fxcoin_count.php');
 
 
 
-  <div class="description">
-  <h3>How to make fxStars using fxPartner</h3>
+  <div class="description fxpartner-desc-cnt">
+  <h3 class="fxpartner-desc">How to make fxStars using fxPartner</h3>
   <p>Click on <a href="/userpgs/partner/positions/">fxHR</a> above and share the link we have decdicated to you. When your invitees register on fxUnivers using that link, you will automatically get 50% of our interests concerning them for 90 days. You can visit your <a href="/userpgs/partner/income">Earnings History</a> from all your registered invitees, right above this page.</p>
   </div>
 
