@@ -38,6 +38,14 @@ require('../../wallet/php/get_fxcoin_count.php');
   <link rel="stylesheet" href="/css/icons.css">
   <link rel="stylesheet" href="/css/logo.css">
   <script src="/js/jquery-3.4.1.min.js"></script>
+
+<style>
+  @media(max-width:629px) {
+  .header-sidebar {
+  margin:0;
+  }
+}
+</style>
   </head>
     
   <body>
@@ -98,8 +106,10 @@ require('../../wallet/php/get_fxcoin_count.php');
           $total+=$row['income'];
           }
           ?>
-	      <div class="contentbox-word">fxPartner</div>
-	      <p class="earnings-txt-cnt">Earnings: <div><?php echo $total ?> fxStars</div></p>
+	      <div class="contentbox-word">fxPartner Earnings</div>
+<div class="icon-txt">
+	      <p><?php echo $total ?></p>
+</div>
 	  </div>
       </div>
 

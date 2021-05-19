@@ -39,6 +39,15 @@ require('php/get_fxcoin_count.php');
     <link rel="stylesheet" href="/css/icons.css">
     <link rel="stylesheet" href="/css/logo.css">
     <script src="/js/jquery-3.4.1.min.js"></script>
+<style>
+  @media(max-width:629px) {
+  .header-sidebar {
+  margin:0;
+  }
+}
+</style>
+
+
 </head>
     
 <body>
@@ -123,7 +132,7 @@ require('php/get_fxcoin_count.php');
         <div class="content-box">
            <div class="contentbox-word">fxStar Balance</div>
            <div class="icon-txt">
-               <p><div class="fxstar-price"></div><?php echo $get_fxcoin_count?></p>
+						   <p><?php echo $get_fxcoin_count?></p>
            </div>
          </div>
      </div>
