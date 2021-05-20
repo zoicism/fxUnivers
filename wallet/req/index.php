@@ -47,8 +47,14 @@ require('../php/get_fxcoin_count.php');
     <script>
      if(screen.width >= 629) {
 	 $(document).ready(function() {
-	     $('.header-sidebar').prepend('<div style="width:100%; display:flex; flex-flow:row nowrap; justify-content:left;"><a href="/wallet/buy" class="link-main"><div class="head">Buy fxStars</div></a><a href="/wallet/send" class="link-main"><div class="head">Transfer</div></a><a href="/wallet/req" class="link-main" id="active-main"><div class="head">Request</div></a><a href="/wallet/txn" class="link-main"><div class="head">Transactions</div></a><a href="/wallet/cashout" class="link-main"><div class="head">Cash-out</div></a></div>');
-	 });
+	     $('.header-sidebar').prepend('<div class="bar-cnt"><div class="bar-items fxstar-bar-items"><a href="/w\
+allet/buy" class="link-main"  ><div class="head">Buy fxStars</div></a></div><div class="bar-items f\
+xstar-bar-items"><a href="/wallet/send" class="link-main"><div class="head">Transfer</div></a></div><div class="bar\
+-items fxstar-bar-items"><a href="/wallet/req" id="active-main" class="link-main"><div class="head">Request</div></a></div><div clas\
+s="bar-items fxstar-bar-items"><a href="/wallet/txn" class="link-main"><div class="head">Transactions</div></a></di\
+v><div class="bar-items fxstar-bar-items"><a href="/wallet/cashout" class="link-main"><div class="head">Cash-out</d\
+iv></a></div></div>');
+	   });
      }
     </script>
     <div class="blur mobile-main">

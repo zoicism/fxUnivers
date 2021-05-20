@@ -39,12 +39,7 @@ require('../php/get_fxcoin_count.php');
     <link rel="stylesheet" href="/css/icons.css">
     <link rel="stylesheet" href="/css/logo.css">
     <script src="/js/jquery-3.4.1.min.js"></script>
-
-    <!-- to Sandbox Paypal acnt -->
-    <script src="https://www.paypal.com/sdk/js?client-id=AamVi8YxFRCNHDKC8cNfMuhM7IoNwGFbx59cMUQrd-Wd6d53EjjhhHJoWtCQeIXXxIIUCTfY6iVZ1gRQ"></script>
-    
-    <!-- to real-world Paypal acnt -->
-    <!--<script src="https://www.paypal.com/sdk/js?client-id=ARS5GFZ290HgkTD6KmPQ1Y5CRxPgZ6GIBwDQ3j4b_NKzQhPXYciKGOSlINhE93SmEZ6SKR47wohz4h6M"></script>-->
+    <script src="https://www.paypal.com/sdk/js?client-id=ARS5GFZ290HgkTD6KmPQ1Y5CRxPgZ6GIBwDQ3j4b_NKzQhPXYciKGOSlINhE93SmEZ6SKR47wohz4h6M"></script>
 </head>
     
 <body>
@@ -53,7 +48,7 @@ require('../php/get_fxcoin_count.php');
     <script>
      if(screen.width >= 629) {
 	 $(document).ready(function() {
-	     $('.header-sidebar').prepend('<div style="width:100%; display:flex; flex-flow:row nowrap; justify-content:left;"><a href="/wallet/buy" class="link-main" id="active-main" ><div class="head">Buy fxStars</div></a><a href="/wallet/send" class="link-main"><div class="head">Transfer</div></a><a href="/wallet/req" class="link-main"><div class="head">Request</div></a><a href="/wallet/txn" class="link-main"><div class="head">Transactions</div></a><a href="/wallet/cashout" class="link-main"><div class="head">Cash-out</div></a></div>');
+	     $('.header-sidebar').prepend('<div class="bar-cnt"><div class="bar-items fxstar-bar-items"><a href="/wallet/buy" class="link-main" id="active-main" ><div class="head">Buy fxStars</div></a></div><div class="bar-items fxstar-bar-items"><a href="/wallet/send" class="link-main"><div class="head">Transfer</div></a></div><div class="bar-items fxstar-bar-items"><a href="/wallet/req" class="link-main"><div class="head">Request</div></a></div><div class="bar-items fxstar-bar-items"><a href="/wallet/txn" class="link-main"><div class="head">Transactions</div></a></div><div class="bar-items fxstar-bar-items"><a href="/wallet/cashout" class="link-main"><div class="head">Cash-out</div></a></div></div>');
 	 });
      }
     </script>
