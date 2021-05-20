@@ -1434,6 +1434,10 @@ textarea:focus {
     border-radius: 100px;
 }
 
+.add-box-con .extra-info-cnt {
+    top: auto;
+}
+
 .add-box-con .add-box:not(:last-child) {
     margin: 10px 0;
 }
