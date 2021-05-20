@@ -48,7 +48,7 @@ require('../../../wallet/php/get_fxcoin_count.php');
 	<script>
 	 if(screen.width >= 629) {
 	     $(document).ready(function() {
-		 $('.header-sidebar').prepend('<div style="width:100%; display:flex; flex-flow:row nowrap; justify-content:left;"><a href="/userpgs/partner/positions" class="link-main"><div class="head">fxHR</div></a><a href="/userpgs/partner/income" class="link-main" id="active-main"><div class="head">Earnings History</div></a></div>');
+		 $('.header-sidebar').prepend('<div class="bar-cnt"><div class="bar-items fxpartner-bar-items"><a href="/userpgs/partner/positions" class="link-main"><div class="head">fxHR</div></a></div><div class="bar-items fxpartner-bar-items"><a href="/userpgs/partner/income" id="active-main" class="link-main"><div class="head">Earnings History</div></a></div></div>');
 	     });
 	 }
 	</script>
