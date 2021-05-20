@@ -84,7 +84,7 @@ if($get_class['video']!='') $embed_exists=1; else $embed_exists=0;
 		<div class="course-management-con">
 		    <h2 class="course-management-txt">Session Management</h2>
 		    <div class="course-management-boxes">
-			<div class="content-box left">
+			<div class="inner-content-box left">
 			    <h3>Title & Description</h3>
 			    <form class="form" id="edit-post" autocomplete="off">
 				<input type="text" name="header" placeholder="Session title" value="<?php echo $get_class['title']?>" class="txt-input" required>
@@ -104,7 +104,7 @@ if($get_class['video']!='') $embed_exists=1; else $embed_exists=0;
 			    </div>
 			</div>
 			<div class="video-bulletin-con">
-			    <div class="content-box video">
+			    <div class="inner-content-box video">
 				<div class="upload-video-con">
 				    <h3>Video</h3>
 				    <p style="display:none;" id="up-vid-p">Upload a video from your device.</p>
@@ -132,7 +132,7 @@ if($get_class['video']!='') $embed_exists=1; else $embed_exists=0;
 				    </form>
 				</div>
 			    </div>
-			    <div class="content-box">
+			    <div class="inner-content-box">
 				<div class="add-bulletin-con">
 				    <h3>File upload</h3>
 				    <form method="POST" id="fileForm" enctype="multipart/form-data" action="class_file_upload.php">

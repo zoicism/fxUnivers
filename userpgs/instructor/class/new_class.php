@@ -60,7 +60,7 @@ if($user_type!='instructor') {
 
 
 <div class="relative-main-content">
-	<div class="content-box add-session-box">
+	<div class="inner-content-box add-session-box">
 		<div class="add-session-con">
 			<h2>Add Session</h2>
 			<form method="POST" action="new_post.php" autocomplete="off">
