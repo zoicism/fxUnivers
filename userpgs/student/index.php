@@ -55,8 +55,7 @@ $get_oneonone_count = mysqli_num_rows($get_oneonone_r);
 	<script>
 	 if(screen.width >= 629) {
 	     $(document).ready(function() {
-		 console.log('foobar');
-		 $('.header-sidebar').prepend('<div style="width:100%; display:flex; flex-flow:row nowrap; justify-content:left;"><a href="/userpgs/instructor/" class="link-main"><div class="head">Teach (<?php echo $course_count ?>)</div></a><a href="/userpgs/student/" class="link-main" id="active-main"><div class="head">Learn (<span id="class-count"></span>)</div></a></div>');
+		 $('.header-sidebar').prepend('<div class="bar-cnt"><div class="bar-items fxuniversity-bar-items"><a href="/userpgs/instructor/" class="link-main"><div class="head">Teach</div></a></div><div class="bar-items fxuniversity-bar-items"><a href="/userpgs/student/" id="active-main" class="link-main"><div class="head">Learn</div></a></div></div>');
 	     });
 	 }
 	</script>
