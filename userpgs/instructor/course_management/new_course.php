@@ -57,7 +57,7 @@ $get_courses_r = mysqli_query($connection, $get_courses_q);
 
 
   <div class="relative-main-content">
-                            <div class="content-box" style="max-width:700px;">
+                            <div class="inner-content-box" style="max-width:700px;">
 			      <h2 id="titleId">Add fxCourse</h2>
 
 			      <form method="POST" action="new_post.php" autocomplete="off">
