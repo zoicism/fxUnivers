@@ -76,7 +76,7 @@ if($get_course_fetch['video_url']!='') $embed_exists=1; else $embed_exists=0;
 		<div class="course-management-con">
 		    <h2 class="course-management-txt">Course Management</h2>
 		    <div class="course-management-boxes">
-			<div class="content-box left">
+			<div class="inner-content-box left">
 			    <h3>Title, Description, Cost</h3>
 			    <form class="form" id="edit-post" autocomplete="off">
 				<input type="text" class="txt-input" name="header" placeholder="Course title" value="<?php echo $get_course_fetch['header']?>" required>
@@ -144,7 +144,7 @@ if($get_course_fetch['video_url']!='') $embed_exists=1; else $embed_exists=0;
 			    </div>
 			</div>
 			<div class="video-bulletin-con">
-			    <div class="content-box video">
+			    <div class="inner-content-box video">
 				<div class="upload-video-con">
 				    <h3>Video</h3>
 				    <p style="display:none;" id="up-vid-p">Upload a video from your device.</p>
@@ -170,7 +170,7 @@ if($get_course_fetch['video_url']!='') $embed_exists=1; else $embed_exists=0;
 				    </form>
 				</div>
 			    </div>
-			    <div class="content-box">
+			    <div class="inner-content-box">
 				<div class="add-bulletin-con">
 				    <h3>Bulletin</h3>
 				    <p>Bulletins are available to the public in your course page. Adding a bulletin will inform your learners by notification and email.</p>
