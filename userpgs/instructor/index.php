@@ -70,7 +70,7 @@ if($gss_count > 0) {
 	<script>
 	 if(screen.width >= 629) {
 	     $(document).ready(function() {
-		 $('.header-sidebar').prepend('<div style="width:100%; display:flex; flex-flow:row nowrap; justify-content:left;"><a href="/userpgs/instructor/" class="link-main" id="active-main"><div class="head">Teach (<?php echo $course_count ?>)</div></a><a href="/userpgs/student/" class="link-main"><div class="head">Learn (<?php echo $gss_count_alive ?>)</div></a></div>');
+		 $('.header-sidebar').prepend('<div class="bar-cnt"><div class="bar-items fxuniversity-bar-items"><a href="/userpgs/instructor/" class="link-main" id="active-main"><div class="head">Teach (<?php echo $course_count ?>)</div></a></div><div class="bar-items fxuniversity-bar-items"><a href="/userpgs/student/" class="link-main"><div class="head">Learn (<?php echo $gss_count_alive ?>)</div></a></div></div>');
 	     });
 	 }
 	</script>
@@ -83,16 +83,17 @@ if($gss_count > 0) {
 
 	    <div class="relative-main-content">
 		<div class="inner-content-box"><div class="options" >
-		    <p>Create courses about your favorite topics and make fxStars as more and more students enroll to it.</p>
+<p>Create courses about your favorite topics and make fxStars as more and more students enroll to it.</p>
 		    <div class="add-allow-cnt">
 			    <div class="add-box blue-button" onclick="location.href='/userpgs/instructor/course_management/new_course.php';">
 				Add New Course
 			    </div>
-
+  
+		    
 			    
 			    <div class="add-box">
 				<label class="checkbox switch">Allow 1-on-1 Live Request
-				    <input type="checkbox" name="one-on-one" value="1on1" <?php if($get_oneonone) echo 'checked' ?>>
+				    <input type="checkbox" name="one-on-one" id="1on1" <?php if($get_oneonone) echo 'checked' ?>>
 				    <span class="checkmark"></span>
 				</label>
 			    </div>
@@ -105,7 +106,7 @@ if($gss_count > 0) {
 				</label>
 			    </div>-->
 			    
-			    <div class="add-box" <?php if(!$get_oneonone) echo 'display:none;' ?>" id="1on1-cost">
+			    <div class="add-box" style="<?php if(!$get_oneonone) echo 'display:none;' ?> cursor:auto;" id="1on1-cost">
 				<input type="number" class="num-input" id="1on1-cost-input" placeholder="Cost (fxStars)" <?php if($get_oneonone) echo 'value="'.$get_oneonone_f['fxstars'].'"'; ?> min="0" required>
 				<button class="submit-btn" id="1on1-cost-btn">Apply Cost</button>
 			    </div>

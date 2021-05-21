@@ -2252,6 +2252,16 @@ textarea:focus {
     padding: 20px 80px;
 }
 
+.options .add-allow-cnt .switch {
+    width:auto;
+    margin-bottom:0;
+    height:auto;
+}
+
+.options .add-allow-cnt .num-input, .submit-btn {
+    width:50%;
+}
+
 .options .add-allow-cnt .checkbox {
     padding-left: 30px;
 }
