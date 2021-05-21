@@ -98,6 +98,7 @@ input:focus, textarea:focus, select:focus{
     height: 40px;
     border-radius: 200px;
     background-color: #e8e8e8;
+    border: 1px solid #3939394d;
     box-shadow: inset 2px 2px 4px #33333357, inset -2px -2px 4px #ffffff;
 }
 
@@ -169,6 +170,7 @@ textarea:focus {
     cursor: pointer;
     box-shadow: 5px 5px 10px #c6c6c6, -5px -5px 10px #ffffff;
     background:transparent;
+    border: 1px solid #3939394d;
 }
 
 .submit-btn:active {
@@ -1312,9 +1314,7 @@ textarea:focus {
     display:flex;
     flex-flow:row nowrap;
     align-items:center;
-    font-size:1.3rem;
-    font-weight:bold;
-    margin-top:10px;
+    font-size:18px;
     color:#393939;
     cursor:pointer;
 }
@@ -1360,22 +1360,24 @@ textarea:focus {
 }
 
 .options .blue-button {
-    margin: 0 auto !important;
-    width: 90% !important;
     box-shadow: -6px -6px 14px rgba(255, 255, 255, .7),
           -6px -6px 10px rgba(255, 255, 255, .5),
           6px 6px 8px rgba(255, 255, 255, .075),
           6px 6px 10px rgba(0, 0, 0, .15);
     border-radius: 50px;
-    color: #fff !important;
-    background: #0093d1;
-    height: 2.5rem;
     cursor: pointer;
     justify-content: center;
+    border: 1px solid #00a1e0;
+    background-color: #00a1e0;
+    color: #fff;
+    margin: 0 0 20px 0;
+    padding: 5px;
 }
 
 .options .blue-button:hover {
-    background: #0093d1 !important;
+    background-color: #efefef;
+    color: #00a1e0;
+    transition: all .2s;
 }
 
 .options .blue-button:focus {
@@ -2240,8 +2242,33 @@ textarea:focus {
     align-items: center;
     border-radius: 10px;
     padding: 20px 40px;
-    box-shadow: 5px 5px 10px #c6c6c6,
-                -5px -5px 10px #ffffff;
+    max-width: 700px;
+    overflow: hidden;
+    margin-top: 30px;
+    box-shadow: 5px 5px 10px #c6c6c6, -5px -5px 10px #ffffff;
+}
+
+.add-allow-cnt {
+    padding: 20px 80px;
+}
+
+.options .add-allow-cnt .checkbox {
+    padding-left: 30px;
+}
+
+.options .add-allow-cnt .checkbox input:not(:checked) ~ .checkmark {
+    background-color: #efefef;
+}
+
+.options .add-allow-cnt .add-box span {
+    width: 19px;
+    height: 19px;
+    margin-left: 0;
+    border: 1px solid #00a1e0;
+}
+
+.options .add-allow-cnt .submit-btn {
+    margin-left: 20px;
 }
 
 
