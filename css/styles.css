@@ -1380,6 +1380,15 @@ textarea:focus {
     transition: all .2s;
 }
 
+.add-box.blue-button:active {
+    background-color: #00a1e0;
+    color: #fff;
+    box-shadow: inset -4px -2px 4px 0px #fff,
+                inset 4px 2px 6px 0px #dfe4ea,
+                -4px -2px 4px 0px #ffffff,
+                4px 2px 6px 0px #dfe4ea;
+}
+
 .options .blue-button:focus {
     background: #0093d1 !important;
 }
@@ -2275,6 +2284,13 @@ textarea:focus {
     height: 19px;
     margin-left: 0;
     border: 1px solid #00a1e0;
+}
+
+.options .add-allow-cnt .checkbox .checkmark:after {
+    left: 5.25px;
+    top: 2.25px;
+    width: 3px;
+    height: 9px;
 }
 
 .options .add-allow-cnt .submit-btn {
