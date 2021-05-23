@@ -323,7 +323,7 @@ if($gss_count > 0) {
 		     
 
 		 } else {
-		     echo '<p class="gray">No courses added yet</p>';
+		     echo '<p class="gray">No courses added yet<br>Your published courses will apear here</p>';
 		 }	
 		 
 		 ?>
