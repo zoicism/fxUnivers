@@ -105,6 +105,7 @@ input:focus, textarea:focus, select:focus{
 .num-input:focus {
     box-shadow: inset 4px 4px 4px #33333357, inset -4px -4px 4px #ffffff;
     transition: 0.5s;
+    border: 1px solid #00a1e0;
 }
 
 textarea {
@@ -121,6 +122,7 @@ textarea {
 textarea:focus {
     box-shadow: inset 4px 4px 4px #33333357, inset -4px -4px 4px #ffffff;
     transition: 0.5s;
+    border: 1px solid #00a1e0;
 }
 
 .txt-input {
@@ -137,6 +139,7 @@ textarea:focus {
 .txt-input:focus {
     box-shadow: inset 4px 4px 4px #33333357, inset -4px -4px 4px #ffffff;
     transition: 0.5s;
+    border: 1px solid #00a1e0;
 }
 
 
@@ -2253,9 +2256,49 @@ textarea:focus {
     padding: 20px 40px;
     max-width: 700px;
     overflow: hidden;
-    margin-top: 30px;
+    margin: 30px 0;
     box-shadow: 5px 5px 10px #c6c6c6, -5px -5px 10px #ffffff;
 }
+
+.inner-content-box .txt-input {
+    width: 100%;
+}
+
+.add-course-prop .checkbox {
+    width: 100%;
+    color: #393939;
+    padding-left: 28px;
+}
+
+.add-course-prop .checkbox .checkmark {
+    border-radius: 4px;
+    width: 19px;
+    height: 19px;
+}
+
+.add-course-prop .checkbox .checkmark:after {
+    left: 4.5px;
+    top: 1px;
+    width: 4px;
+    height: 10px;
+}
+
+.inner-content-box .submit-btn {
+    margin: 30px auto 10px;
+    border: none;
+    background-color: #00a1e0;
+    color: #fff;
+    font-size: 18px;
+}
+
+.inner-content-box .submit-btn:hover {
+    background-color: #efefef;
+    color: #00a1e0;
+    border: 1px solid #00a1e0;
+}
+
+
+
 
 .add-allow-cnt {
     padding: 20px 80px;
