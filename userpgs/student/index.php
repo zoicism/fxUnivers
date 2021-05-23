@@ -319,7 +319,11 @@ if($gss_count > 0) {
 
 		 } else {
 		     echo '<p class="gray">No courses added yet</p>';
-		 }	
+		 }
+if($gss_count_live < 1) {
+  echo '<p class="gray">No courses added yet.<br>Use <a href="/search?type=course">Search Courses</a> button above to look for your favorite courses.</p>';
+}
+
 		 
 		 ?>
 		</div>
