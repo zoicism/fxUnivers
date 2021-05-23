@@ -1194,6 +1194,14 @@ textarea:focus {
     line-height: 26px;
 }
 
+.gray a {
+    color: #999;
+}
+
+.gray a:hover {
+    color: #00a1e0;
+}
+
 .obj-box .gray {
     margin-top: 150px;
 }
