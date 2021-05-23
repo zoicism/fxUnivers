@@ -2277,7 +2277,7 @@ textarea:focus {
 }
 
 .add-course-prop .checkbox .checkmark:after {
-    left: 4.5px;
+    left: 5px;
     top: 1px;
     width: 4px;
     height: 10px;
@@ -2297,6 +2297,17 @@ textarea:focus {
     border: 1px solid #00a1e0;
 }
 
+.add-course-prop .select-input {
+    margin-left: 0px;
+    margin-bottom: 20px;
+    width: 50%;
+    border: 1px solid #3939394d;
+    color: #393939;
+}
+
+.add-course-prop .select-input:focus {
+    border: 1px solid #00a1e0;
+}
 
 
 
