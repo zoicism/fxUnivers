@@ -74,7 +74,7 @@ require('../wallet/php/get_fxcoin_count.php');
 
 		<div class="main-content" style="display:block !important;">
 
-		    <ul class="main-flex-container" style="flex-flow:row nowrap;">
+		    <ul class="main-flex-container">
 			<li class="main-items">
 			    <a href="<?php echo '/search?q='.$kw; ?>" class="link-main" <?php if(isset($_GET['q']) && !empty($_GET['q']) && !isset($_GET['type'])) echo 'id="active-main"'; ?>>
 				<div class="head">Users <?php if(isset($_GET['q']) && !empty($_GET['q'])) echo '('.$user_count.')'; ?></div>
