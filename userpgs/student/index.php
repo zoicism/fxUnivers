@@ -88,8 +88,13 @@ if($gss_count > 0) {
 
 		<div class="add-box">
 
-		    
-		    Search Courses <span><img src="/images/background/magnifier.svg" onclick="location.href='/search?type=course';"></span>
+		    Search Courses
+		    <span>
+			<svg aria-label="search" viewBox="0 0 32 32" onclick="location.href='/search?type=course';">
+                      		<path class="stroked" d="M24.3,22.8a13.8,13.8,0,0,0,3.2-10.3A13.9,13.9,0,0,0,14.7,0,13.9,13.9,0,0,0,0,14.8,14,14,0,0,0,12.5,27.6a14.1,14.1,0,0,0,10.3-3.3l7.5,7.4a1,1,0,0,0,1.4,0h0a1,1,0,0,0,0-1.4ZM13.8,25.6A11.8,11.8,0,1,1,25.6,13.8a11.3,11.3,0,0,1-2.8,7.6l-1.4,1.4A11.3,11.3,0,0,1,13.8,25.6Z"></path>
+			</svg>
+		    	<!--<img src="/images/background/magnifier.svg" onclick="location.href='/search?type=course';">-->
+		    </span>
 
 		</div>
 
