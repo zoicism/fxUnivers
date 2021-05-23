@@ -71,7 +71,7 @@ $get_courses_r = mysqli_query($connection, $get_courses_q);
 					     
 					<label class="checkbox switch">
 						Make this fxCourse private:
-						<input type="checkbox" name="private" id="privateId" checked="">
+						<input type="checkbox" name="private" id="privateId">
 				    		<span class="checkmark"></span>
 					</label>     
 					    
@@ -88,7 +88,7 @@ $get_courses_r = mysqli_query($connection, $get_courses_q);
 					     
 					<label class="checkbox switch">
 						Can students with certificate from this fxCourse create fxSubCourses?
-						<input type="checkbox" name="subbable" id="subbableId" checked="">
+						<input type="checkbox" name="subbable" id="subbableId">
 				    		<span class="checkmark"></span>
 					</label>     
 					     
@@ -105,7 +105,7 @@ $get_courses_r = mysqli_query($connection, $get_courses_q);
 					     
 					 <label class="checkbox switch">
 						 Is this an fxSubCourse?
-						 <input type="checkbox" id="isfxSub" checked="" <?php if(isset($_GET['sub']) && !empty($_GET['sub'])) { echo 'checked'; } ?>>
+						 <input type="checkbox" id="isfxSub" <?php if(isset($_GET['sub']) && !empty($_GET['sub'])) { echo 'checked'; } ?>>
 				    		<span class="checkmark"></span>
 					</label>    
 					     
@@ -147,7 +147,7 @@ $get_courses_r = mysqli_query($connection, $get_courses_q);
 					     
 					 <label class="checkbox switch">
 						 Can students negotiate for lower price for this fxCourse?
-						 <input type="checkbox" name="negotiable" id="checkedId" checked="">
+						 <input type="checkbox" name="negotiable" id="checkedId">
 				    		<span class="checkmark"></span>
 					</label>    
 					     
