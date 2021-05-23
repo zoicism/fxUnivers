@@ -159,7 +159,7 @@ $get_courses_r = mysqli_query($connection, $get_courses_q);
 				    </div>
 				<p>By doing so you help students lacking high privileges gain knowledge and at the same time increase your income. You can change this setting in Course Management later.</p>
 				     
-				     <input type="submit" class="submit-btn" value="Publish">
+				     <input type="submit" class="publish-btn submit-btn" value="Publish">
 				
 			      </form>
 
