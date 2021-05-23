@@ -407,7 +407,7 @@ if(!isset($_GET['q'])) {
     $top_course_start_date = array(); $top_course_negotiable = array(); $top_course_cost = array();
     if($courses_count > 0) {
 	echo '<hr class="hr-tct" style="width:100%">';
-	echo '<h3 style="text-align:left;width:100%;margin-bottom:0;">Top fxCourses</h3>';
+	echo '<h3 class="top-fxcourses-word">Top fxCourses</h3>';
 	echo '<div class="obj-box">';
 	
 
