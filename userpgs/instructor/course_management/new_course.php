@@ -114,7 +114,7 @@ $get_courses_r = mysqli_query($connection, $get_courses_q);
 					     <input type="checkbox" id="isfxSub" <?php if(isset($_GET['sub']) && !empty($_GET['sub'])) { echo 'checked'; } ?>>
 					     <span class="slider round" ></span>
 					 </label>-->
-					 <select name="subOf" id="subOfId" class="select-input" style="margin-left:0; width:260px; <?php if(!isset($_GET['sub']) || empty($_GET['sub'])) { echo 'display:none;'; } ?>" >
+					 <select name="subOf" id="subOfId" class="select-input" style="<?php if(!isset($_GET['sub']) || empty($_GET['sub'])) { echo 'display:none;'; } ?>" >
 					     <option value="" disabled selected>Select a Certified Course</option>
 					     <?php
 					     while($course = $get_courses_r -> fetch_assoc()) {
