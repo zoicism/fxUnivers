@@ -258,13 +258,13 @@ textarea:focus {
 }
 
 .main-content {
-    margin:0 0 0 15%;
-    padding:0 2% 0 30px;
-    height:9%;
-    display:flex;
-    flex-flow:row wrap;
+    margin: 5px 0 10px 15%;
+    padding: 0 2% 0 30px;
+    height: 9%;
+    display: flex;
+    flex-flow: row wrap;
     justify-content: space-around;
-    align-items:center;
+    align-items: center;
 }
 
 .relative-main-content {
@@ -1014,6 +1014,10 @@ textarea:focus {
     opacity:0.5;
 }
 
+.relative-main-content .top-fxcourses-word {
+    text-align: center;
+}
+
 .obj-box {
     display:flex;
     flex-flow:row wrap;
@@ -1296,7 +1300,7 @@ textarea:focus {
 .search-input-icon-con {
     display: flex;
     flex-flow:row nowrap;
-    margin-top:20px;
+    margin: 20px 0;
 }
 
 .search-input-icon-con .txt-input {
@@ -1900,8 +1904,6 @@ textarea:focus {
 
 .main-flex-container{
     width: 100%;
-    max-width: 98rem;
-    padding:0;
     display:flex;
     justify-content:center;
     flex-flow:row wrap;
@@ -1912,9 +1914,35 @@ textarea:focus {
     
 }
 
-.main-items {
+.main-flex-container .main-items {
     list-style:none;
-    width:20%;
+    white-space: nowrap;
+}
+
+.main-items .link-main {
+    display: block;
+    font-weight: bold;
+    color: #393939;
+    padding: 6px 25px;
+    text-decoration: none;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 100px;
+    margin: 0 10px;
+    border: 1px solid #393939;
+}
+
+.main-items .link-main:hover {
+    border: 1px solid #00a1e0;
+    color: #00a1e0;
+}
+
+.main-items #active-main {
+    opacity: 1;
+    transition: all 0.3s;
+    background-color: #00a1e0;
+    border: 1px solid #efefef;
+    color: #fff;
 }
 
 .profilepic-id {
