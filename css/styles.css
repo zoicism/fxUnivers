@@ -1018,7 +1018,6 @@ textarea:focus {
     display:flex;
     flex-flow:row wrap;
     width:100%;
-    margin-top:50px;
     justify-content:center;
 }
 
@@ -1190,7 +1189,13 @@ textarea:focus {
 }
 
 .gray {
-    color:#999;
+    color: #999;
+    text-align: center;
+    line-height: 26px;
+}
+
+.obj-box .gray {
+    margin-top: 150px;
 }
 
 .gray-bg {
