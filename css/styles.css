@@ -286,6 +286,7 @@ textarea:focus {
 
 .course-content {
     width: 100%;
+    padding: 0 30px 30px 30px;
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
@@ -505,9 +506,18 @@ textarea:focus {
 }
 
 .sessions .online-list {
+    position: relative;
     overflow-y: auto;
     min-height: 25em;
     padding: 10px;
+}
+
+.online-list .gray {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 }
 
 .online-list .user {
@@ -553,11 +563,20 @@ textarea:focus {
 }
 
 .sessions .sess-list {
+    position: relative;
     overflow-y: scroll;
     width: 100%;
     /*height: calc(100% - 40px);*/
     height:400px;
     padding: 0 10px 10px 10px;
+}
+
+.sess-list .gray {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 }
 
 .sessions .chat-list {
@@ -651,6 +670,7 @@ textarea:focus {
     width: 50%;
     height: 40px;
     cursor:pointer;
+    border-bottom: 2px solid #0000;
 }
 
 .sessions .tabs .active-tab {
@@ -748,7 +768,7 @@ textarea:focus {
     max-width: 148px;
     height: 83px;
     display: flex;
-    background-color: #000e141f;
+    background-color: #3939390d;
     border-radius: 10px;
     justify-content:center;
 }
@@ -763,7 +783,8 @@ textarea:focus {
 }
 
 .session-prev svg {
-    fill: #3939394f;
+    fill: #c2c2c2;
+    width: 90px;
 }
 
 .session .session-desc {
@@ -785,7 +806,7 @@ textarea:focus {
 
 .session .session-mng {
     width:10%;
-    background-color:#0003;
+    background-color:#e6e6e6;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -986,8 +1007,6 @@ textarea:focus {
 .course-content .video-placeholder {
     border-radius: 20px;
     background: #efefef;
-    box-shadow:  9px 9px 18px #cbcbcb, 
-     -9px -9px 18px #ffffff;
     /*max-width:560px;*/
     height:250px;
     display:flex;
@@ -996,6 +1015,7 @@ textarea:focus {
     flex-flow:column;
     margin-bottom: 20px;
     width: 100%;
+    box-shadow: -4px -2px 4px 0px #ffffff, 4px 2px 6px 0px #dfe4ea;
 }
 
 .course-content .course-upperleft .video-placeholder {
@@ -1075,7 +1095,7 @@ textarea:focus {
 }
 
 .obj-box .object .preview svg {
-    fill: #3939394f;
+    fill: #c2c2c2;
     width: 126px;
 }
 
