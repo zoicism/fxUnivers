@@ -57,7 +57,7 @@ $get_courses_r = mysqli_query($connection, $get_courses_q);
 
 
   <div class="relative-main-content">
-                            <div class="inner-content-box" style="max-width:700px;">
+                            <div class="inner-content-box">
 			      <h2 id="titleId">Add fxCourse</h2>
 
 			      <form method="POST" action="new_post.php" autocomplete="off">
@@ -67,59 +67,99 @@ $get_courses_r = mysqli_query($connection, $get_courses_q);
 				<textarea name="description" rows="10" placeholder="Description" required></textarea>
 				<input type="number" class="num-input" name="course_fxstar" placeholder="Cost (fxStars)" id="costIn" min="0" required>
 				<hr class="hr-tct" >
-				<p>Make this fxCourse private:</p>
-				<label class="switch" >
-				    <input type="checkbox" name="private" id="privateId" >
-				    <span class="slider round" ></span>
-				</label>
+				     <div class="add-course-prop">
+					     
+					<label class="checkbox switch">
+						Make this fxCourse private:
+						<input type="checkbox" name="private" id="privateId" checked="">
+				    		<span class="checkmark"></span>
+					</label>     
+					    
+					<!--<p>Make this fxCourse private:</p>
+					<label class="switch" >
+					    <input type="checkbox" name="private" id="privateId" >
+					    <span class="slider round" ></span>
+					</label>-->
+				    </div>
 				<p>By making a course private, you will be able to invite users to become students of this course after the course is published. You can change this setting in Course Management later.</p>
+				     
 				<hr class="hr-tct" >
-				<p>Can students with certificate from this fxCourse create fxSubCourses?</p>
-				 <label class="switch" >
-				     <input type="checkbox"  name="subbable" id="subbableId" >
-				     <span class="slider round" ></span>
-				 </label>
-				 <p>If you allow students of this fxCourse to create fxSubCourses, they will be able to do so after they successfully pass this course's Certificate Exam. By doing so, these sub-courses will be shown in your fxCourse page as fxSubCourses and in return you will get a share of their income. You <u>cannot</u> change this setting later. </p>
+				     <div class="add-course-prop">
+					     
+					<label class="checkbox switch">
+						Can students with certificate from this fxCourse create fxSubCourses?
+						<input type="checkbox" name="subbable" id="subbableId" checked="">
+				    		<span class="checkmark"></span>
+					</label>     
+					     
+					<!--<p>Can students with certificate from this fxCourse create fxSubCourses?</p>
+					 <label class="switch" >
+					     <input type="checkbox"  name="subbable" id="subbableId" >
+					     <span class="slider round" ></span>
+					 </label>-->
+				     </div>
+				<p>If you allow students of this fxCourse to create fxSubCourses, they will be able to do so after they successfully pass this course's Certificate Exam. By doing so, these sub-courses will be shown in your fxCourse page as fxSubCourses and in return you will get a share of their income. You <u>cannot</u> change this setting later. </p>
+				     
 				 <hr class="hr-tct" >
-				 <p>Is this an fxSubCourse?</p>
-				 <label class="switch" >
-				     <input type="checkbox" id="isfxSub" <?php if(isset($_GET['sub']) && !empty($_GET['sub'])) { echo 'checked'; } ?>>
-				     <span class="slider round" ></span>
-				 </label>
-				 <select name="subOf" id="subOfId" class="select-input" style="margin-left:0; width:260px; <?php if(!isset($_GET['sub']) || empty($_GET['sub'])) { echo 'display:none;'; } ?>" >
-				     <option value="" disabled selected>Select a Certified Course</option>
-				     <?php
-				     while($course = $get_courses_r -> fetch_assoc()) {
-					 $c_id = $course['course_id'];
-					 $cert = $course['exam_accepted'];
-					 $get_sub_q = "SELECT * FROM teacher WHERE id = $c_id";
-					 $get_sub_r = mysqli_query($connection, $get_sub_q);
-					 $get_sub_f = mysqli_fetch_array($get_sub_r);
-					 $subbable = $get_sub_f['subbable'];
+				     <div class="add-course-prop">
+					     
+					 <label class="checkbox switch">
+						 Is this an fxSubCourse?
+						 <input type="checkbox" id="isfxSub" checked="" <?php if(isset($_GET['sub']) && !empty($_GET['sub'])) { echo 'checked'; } ?>>
+				    		<span class="checkmark"></span>
+					</label>    
+					     
+					 <!--<p>Is this an fxSubCourse?</p>
+					 <label class="switch" >
+					     <input type="checkbox" id="isfxSub" <?php if(isset($_GET['sub']) && !empty($_GET['sub'])) { echo 'checked'; } ?>>
+					     <span class="slider round" ></span>
+					 </label>-->
+					 <select name="subOf" id="subOfId" class="select-input" style="margin-left:0; width:260px; <?php if(!isset($_GET['sub']) || empty($_GET['sub'])) { echo 'display:none;'; } ?>" >
+					     <option value="" disabled selected>Select a Certified Course</option>
+					     <?php
+					     while($course = $get_courses_r -> fetch_assoc()) {
+						 $c_id = $course['course_id'];
+						 $cert = $course['exam_accepted'];
+						 $get_sub_q = "SELECT * FROM teacher WHERE id = $c_id";
+						 $get_sub_r = mysqli_query($connection, $get_sub_q);
+						 $get_sub_f = mysqli_fetch_array($get_sub_r);
+						 $subbable = $get_sub_f['subbable'];
 
-					 if($cert && $subbable) {
-					     if(isset($_GET['sub']) && !empty($_GET['sub'])) {
-						 if($c_id == $_GET['sub']) {
-						     echo '<option value="'.$c_id.'" selected="selected">'.$get_sub_f['header'].'</option>';
-						 } else {
-						     echo '<option value="'.$c_id.'">'.$get_sub_f['header'].'</option>';
+						 if($cert && $subbable) {
+						     if(isset($_GET['sub']) && !empty($_GET['sub'])) {
+							 if($c_id == $_GET['sub']) {
+							     echo '<option value="'.$c_id.'" selected="selected">'.$get_sub_f['header'].'</option>';
+							 } else {
+							     echo '<option value="'.$c_id.'">'.$get_sub_f['header'].'</option>';
+							 }
+						     } else {
+							 echo '<option value="'.$c_id.'">'.$get_sub_f['header'].'</option>';
+						     }
 						 }
-					     } else {
-						 echo '<option value="'.$c_id.'">'.$get_sub_f['header'].'</option>';
 					     }
-					 }
-				     }
-				     ?>
-				 </select>
-				 <p>If you want to publish this course as an fxSubCourse, you can choose from the list of the courses you have earned a certificate from, and get advertised in their fxCourse page in return for 10% of your income. You <u>cannot</u> change this setting later.</p>
+					     ?>
+					 </select>
+				     </div>
+				<p>If you want to publish this course as an fxSubCourse, you can choose from the list of the courses you have earned a certificate from, and get advertised in their fxCourse page in return for 10% of your income. You <u>cannot</u> change this setting later.</p>
+				     
 				 <hr class="hr-tct" >
-				 <p>Can students negotiate for lower price for this fxCourse?</p>
-				 <label class="switch">
-  				     <input type="checkbox" name="negotiable" id="checkedId">
- 				     <span class="slider round"></span>
-				 </label>
-				 <p>By doing so you help students lacking high privileges gain knowledge and at the same time increase your income. You can change this setting in Course Management later.</p>
-				     <input type="submit" class="submit-btn" value="Publish" style="margin-top:35px;">
+				     <div class="add-course-prop">
+					     
+					 <label class="checkbox switch">
+						 Can students negotiate for lower price for this fxCourse?
+						 <input type="checkbox" name="negotiable" id="checkedId" checked="">
+				    		<span class="checkmark"></span>
+					</label>    
+					     
+					 <!--<p>Can students negotiate for lower price for this fxCourse?</p>
+					 <label class="switch">
+					     <input type="checkbox" name="negotiable" id="checkedId">
+					     <span class="slider round"></span>
+					 </label>-->
+				    </div>
+				<p>By doing so you help students lacking high privileges gain knowledge and at the same time increase your income. You can change this setting in Course Management later.</p>
+				     
+				     <input type="submit" class="submit-btn" value="Publish">
 				
 			      </form>
 
