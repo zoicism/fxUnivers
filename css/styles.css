@@ -2283,7 +2283,7 @@ textarea:focus {
     height: 10px;
 }
 
-.inner-content-box .submit-btn {
+.inner-content-box .publish-btn .submit-btn {
     margin: 30px auto 10px;
     border: none;
     background-color: #00a1e0;
@@ -2291,7 +2291,7 @@ textarea:focus {
     font-size: 18px;
 }
 
-.inner-content-box .submit-btn:hover {
+.inner-content-box .publish-btn .submit-btn:hover {
     background-color: #efefef;
     color: #00a1e0;
     border: 1px solid #00a1e0;
