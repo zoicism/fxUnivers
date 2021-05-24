@@ -345,6 +345,8 @@ if($course_negotiable) {
 
  			    echo '<div class="pub-avatar" style="cursor:auto">';
 			    
+			    echo '<div class="inner-pub-avatar">';	
+			    echo '<div class="pub-avatar-cnt">';
 	     		    echo '<div class="pub-img avatar" onclick="location.href=\'/user/'.$tar_user_fetch['username'].'\'" style="background-image:url(\''.$avatar_url.'\');cursor:pointer;">';
 			    echo '</div>';
 			    echo '<div class="pub-name" style="cursor:pointer" onclick="location.href=\'/user/'.$tar_user_fetch['username'].'\'">';
@@ -366,6 +368,9 @@ if($course_negotiable) {
 
 
 			    echo '<div class="like-dislike">';
+			    echo '</div>';
+			    echo '</div>';
+				
 
 			    echo '<span style="cursor:pointer;" id="likeBtn"><span id="like-num">'.$course_likes.'</span> <span id="like-word">'.$my_like_word.'</span></span>';
 			    echo '       <span style="cursor:pointer;" id="dislikeBtn"><span id="dislike-word">'.$my_dislike_word.' </span> <span id="dislike-num">'.$course_dislikes.'</span></span>';
