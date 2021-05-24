@@ -300,13 +300,31 @@ textarea:focus {
 }
 
 .left-content .pub-avatar {
-    display:flex;
-    flex-flow:row nowrap;
-    cursor:pointer;
-    margin-bottom:10px;
-    background-color: #95d2e969;
-    border-radius: 30px;
-    height: 3.5rem;
+    display: flex;
+    flex-flow: row nowrap;
+    cursor: pointer;
+    margin-bottom: 10px;
+    border-radius: 100px;
+    padding: 1px;
+    background: hsl(197deg 100% 44% / 60%);
+    background: linear-gradient( 0deg, hsl(197deg 100% 44% / 60%) 0%, hsl(277deg 100% 44% / 60%) 100%);
+    background: -moz-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(277, 100%, 44%, 1) 100%);
+    background: -webkit-linear-gradient( 0deg, hsl(197deg 100% 44% / 60%) 0%, hsl(277deg 100% 44% / 60%) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#00a1e0b8", endColorstr="#8a00e0ba", GradientType=1 );
+}
+
+.left-content .pub-avatar .inner-pub-avatar {
+    display: flex;
+    background-color: #efefef;
+    width: 100%;
+    height: 100%;
+    border-radius: 100px;
+}
+
+.left-content .pub-avatar .inner-pub-avatar .pub-avatar-cnt {
+    display: flex;
+    width: 100%;
+    margin: 10px;
 }
 
 .left-content .pub-avatar .like-dislike {
@@ -1393,10 +1411,14 @@ textarea:focus {
           6px 6px 10px rgba(0, 0, 0, .15);
     border-radius: 50px;
     color: #fff;
-    background: #0093d1;
     height: 2.5rem;
     cursor: pointer;
     justify-content: center;
+    background: hsl(197deg 100% 44% / 60%);
+    background: linear-gradient( 0deg, hsl(197deg 100% 44% / 60%) 0%, hsl(277deg 100% 44% / 60%) 100%);
+    background: -moz-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(277, 100%, 44%, 1) 100%);
+    background: -webkit-linear-gradient( 0deg, hsl(197deg 100% 44% / 60%) 0%, hsl(277deg 100% 44% / 60%) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#00a1e0b8", endColorstr="#8a00e0ba", GradientType=1 );
 }
 
 .options .blue-button {
@@ -1542,6 +1564,12 @@ textarea:focus {
     cursor: pointer;
     width: 24px;
     height: 24px;
+}
+
+.add-box span svg {
+    margin: 0;
+    width: auto;
+    height: auto;
 }
 /*
 .options .add-box-con {
