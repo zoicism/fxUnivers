@@ -1687,6 +1687,7 @@ textarea:focus {
     display: flex;
     flex-flow: column nowrap;
     width: 100%;
+    padding: 0 30px 30px 30px;
 }
 
 .relative-main-content .course-management-con .course-management-txt {
@@ -1728,9 +1729,14 @@ textarea:focus {
 }
 
 .relative-main-content .course-management-con .course-management-boxes .submit-btn {
-    width: 50%;
+    width: 200px;
     margin: 20px auto;
-    border: 1px solid #ffffffb0;
+    border: 1px solid #00a1e0;
+}
+
+.relative-main-content .course-management-con .course-management-boxes .submit-btn:hover {
+    background-color: #00a1e0;
+    color: #fff;
 }
 
 .relative-main-content .course-management-con .course-management-boxes .left .delete-course-con {
@@ -1746,6 +1752,7 @@ textarea:focus {
 
 .relative-main-content .course-management-con .course-management-boxes .video-bulletin-con .video {
     margin-bottom: 45px;
+    text-align: center;
 }
 
 .relative-main-content .course-management-con .course-management-boxes .video-bulletin-con .content-box .upload-video-con, .add-bulletin-con {
