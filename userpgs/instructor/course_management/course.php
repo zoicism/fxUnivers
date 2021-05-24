@@ -368,13 +368,14 @@ if($course_negotiable) {
 
 
 			    echo '<div class="like-dislike">';
-			    echo '</div>';
-			    echo '</div>';
+			    
 				
 
 			    echo '<span style="cursor:pointer;" id="likeBtn"><span id="like-num">'.$course_likes.'</span> <span id="like-word">'.$my_like_word.'</span></span>';
 			    echo '       <span style="cursor:pointer;" id="dislikeBtn"><span id="dislike-word">'.$my_dislike_word.' </span> <span id="dislike-num">'.$course_dislikes.'</span></span>';
-
+				
+			    echo '</div>';
+			    echo '</div>';
 			    echo '</div>';
 
 
