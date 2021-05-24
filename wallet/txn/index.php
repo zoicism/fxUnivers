@@ -66,17 +66,16 @@ iv></a></div></div>');
   <div class="inner-content-box" id="txn-content-box">
                           <h2>Transactions</h2>
                           
-<div class="row" style="width:100%">
-                          
-                          <div class="col" style="overflow:hidden;"><h3>Incoming</h3></div>
-			  <div class="col" style="overflow:hidden;"><h3>Outgoing</h3></div>
+<div class="row-header" style="width:100%">                 
+    <div class="col"><h3>Incoming</h3></div>
+    <div class="col"><h3>Outgoing</h3></div>
 </div>
 
 
 
 
                        
-              <div class="row" style="width:100%">
+              <div class="row">
                           
                                                    
                   <div class="col">
@@ -94,7 +93,7 @@ iv></a></div></div>');
 				 $trans_to_un_fetch=mysqli_fetch_array($trans_to_un_r);
 				 $trans_to_un=$trans_to_un_fetch['username'];
 			       */
-			      echo '<div style="border-bottom:1px solid gray"><p>From: <strong><a href="/user/'.$trans_from_un.'">@'.$trans_from_un.'</a></strong></p> <p>Amount: <strong>'.$trans_out_row['amnt'].' fxStars</strong></p><p>Date & Time: <strong>'.date("M jS, Y H:i", strtotime($trans_out_row['dt'])).' (UTC)</strong></p></div>';
+			      echo '<div class="transaction"><p>From: <strong><a href="/user/'.$trans_from_un.'">@'.$trans_from_un.'</a></strong></p> <p>Amount: <strong>'.$trans_out_row['amnt'].' fxStars</strong></p><p>Date & Time: <strong>'.date("M jS, Y H:i", strtotime($trans_out_row['dt'])).' (UTC)</strong></p></div>';
 			      $trans_i++;
 			  }
 		      } else {
@@ -106,7 +105,7 @@ iv></a></div></div>');
 
                   </div>
 
-		  <div class="col" style="border-right:1px solid gray">
+		  <div class="col">
 
 		      <?php
 		      if($get_trans_in_count>0) {
@@ -120,7 +119,7 @@ iv></a></div></div>');
 				  $trans_to_un_fetch=mysqli_fetch_array($trans_to_un_r);
 				  $trans_to_un=$trans_to_un_fetch['username'];
 
-				  echo '<div style="border-bottom:1px solid gray"><p>To: <strong><a href="/user/'.$trans_to_un.'">@'.$trans_to_un.'</a></strong></p> <p>Amount: <strong>'.$trans_in_row['amnt'].' fxStars (+'.ceil($trans_in_row['amnt']*0.1).' interest)</strong></p> <p>Date & Time: <strong>'.date("M jS, Y H:i", strtotime($trans_in_row['dt'])).' (UTC)</strong></p></div>';
+				  echo '<div class="transaction"><p>To: <strong><a href="/user/'.$trans_to_un.'">@'.$trans_to_un.'</a></strong></p> <p>Amount: <strong>'.$trans_in_row['amnt'].' fxStars (+'.ceil($trans_in_row['amnt']*0.1).' interest)</strong></p> <p>Date & Time: <strong>'.date("M jS, Y H:i", strtotime($trans_in_row['dt'])).' (UTC)</strong></p></div>';
 				  $trans_i++;
 				  
 			      }
