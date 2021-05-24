@@ -69,8 +69,8 @@ h4 {
 }
 
 p {
-    margin:7px 0
-    font-size:0.9rem;
+    /*margin:7px 0;
+    font-size:0.9rem;*/
     color:#393939;
 }
 
@@ -1809,8 +1809,53 @@ textarea:focus {
 
 #txn-content-box {
     height:90%;
-    width:95%;
+    max-width: none;
+    width: 80%;
+    align-items: unset;
+    justify-content: flex-start;
 }
+
+#txn-content-box h2 {
+    margin: 0 auto 20px auto;
+}
+
+.row-header {
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    text-align: center;
+}
+
+.row-header .col {
+    width: 50%;
+}
+
+.row-header .col h3 {
+    margin: 0 0 20px 0;
+}
+
+.row {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 100%;
+}
+
+.row .col {
+    width: 50%;
+}
+
+.row .col .transaction {
+    margin-bottom: 15px;
+}
+
+.row .col strong {
+    font-weight: normal;
+}
+
+.inner-content-box .row .col a {
+    color: #393939;
+}
+
 
 .main-section {
     margin-bottom:50px;
