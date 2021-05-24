@@ -2550,7 +2550,7 @@ textarea:focus {
     background-repeat: no-repeat;
     background-position: center center;
     border-radius:50%;
-    margin-bottom:6px;
+    /*margin-bottom:6px;*/
 }
 
 .avatar-sidebar {
