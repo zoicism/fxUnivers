@@ -185,7 +185,7 @@ if($get_course_fetch['video_url']!='') $embed_exists=1; else $embed_exists=0;
 			    </div>
 			</div>
 		    </div>
-		    <button onclick="window.location.replace('/userpgs/instructor/course_management/course.php?course_id=<?php echo $course_id ?>')" class="submit-btn" style="margin-left:auto">Done</button>
+		    <button onclick="window.location.replace('/userpgs/instructor/course_management/course.php?course_id=<?php echo $course_id ?>')" class="submit-btn" style="margin: 0 auto;background-color: #00a1e0d4;color: #efefef;font-size: 18px;">Done</button>
 		</div>
 	    </div>
 	</div>
