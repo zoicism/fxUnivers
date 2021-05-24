@@ -90,7 +90,7 @@ if($get_course_fetch['video_url']!='') $embed_exists=1; else $embed_exists=0;
 			    <?php
 			    if($get_course_fetch['private']) {
 				echo '<div style="width:100%; border-bottom: 1px solid #3333332e;display:flex; align-items:center; justify-content:center; padding-bottom:20px; flex-flow:wrap;">';
-				echo '<div style="display:flex; width:100%;align-items:center;justify-content:center;padding-bottom:20px;flex-flow:wrap;">';
+				echo '<div style="display:flex; width:100%;align-items:center;justify-content:center;flex-flow:wrap;">';
 				echo '<p style="padding-right:15px" id="privateP">This course is private. Make it public:</p> <label class="switch" >
 				<input type="checkbox" name="private" id="privateId" checked>
 				<span class="slider round" ></span>
@@ -119,9 +119,9 @@ if($get_course_fetch['video_url']!='') $embed_exists=1; else $embed_exists=0;
 
 
 			    <div>
-				<div  style="display:flex; flex-flow:row wrap; justify-content:center; border-bottom: 1px solid #3333332e;padding-bottom:20px;">
+				<div  style="display:flex; flex-flow:row wrap; justify-content:center; text-align: center; border-bottom: 1px solid #3333332e;padding-bottom:20px;">
 				<h3>Negotiable Cost</h3>
-				<p>Do you want the cost of this course be negotiable? It will help attract underprivileged students.</p>
+				<p style="margin-bottom: 14px;">Do you want the cost of this course be negotiable? It will help attract underprivileged students.</p>
 				<label class="switch" >
 				    <?php
 				    if($get_course_fetch['negotiable']) {
