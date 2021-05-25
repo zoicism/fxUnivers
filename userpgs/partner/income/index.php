@@ -61,10 +61,11 @@ require('../../../wallet/php/get_fxcoin_count.php');
 
 
   <div class="relative-main-content">
-  <div class="inner-content-box inner-content-margin earnings-content" >
-       <h2>Earnings</h2>
-           <div class="row">
-               <div class="col">
+  <div class="inner-content-box inner-content-margin earnings-content">
+      <div class="earnings-cnt">
+          <h2>Earnings</h2>
+          <div class="row">
+              <div class="col">
 
 
 
@@ -112,7 +113,7 @@ require('../../../wallet/php/get_fxcoin_count.php');
                           </div>
 
 
-
+	      </div>
 
                           
                          
