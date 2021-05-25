@@ -70,14 +70,12 @@ iv></a></div></div>');
 
                           <div class="relative-main-content">
 
-  <div class="inner-content-box">
-
-<h2>Send fxStars</h3>
-
-
-<form id="sendToFndForm">
-                          <p>Select a friend:</p>
-<?php
+  <div class="inner-content-box inner-content-margin">
+      <div class="send-fxstars-cnt">
+          <h2>Send fxStars</h3>
+	  <form id="sendToFndForm">
+              <p>Select a friend:</p>
+	      <?php
                           if($get_rel_friends_count>0) {
                               echo '<select name="sendTo" id="sendToId" class="select-input" style="margin-left:0;">';
                               echo '<option value="" disabled selected>Select</option>';
@@ -110,13 +108,13 @@ iv></a></div></div>');
 
                           <p>Amount:</p>
                           <input type="number" class="num-into num-input" name="sendAmnt" id="sendToAmnt" min="1" max="1000000" value="1" required/>
-                          <p>Total cost: <strong><span id="totalSendCost">2</span> fxStars</strong></p>
+                          <p class="cost-txt">Total cost: <strong><span id="totalSendCost">2</span> fxStars</strong></p>
 
 
 
                           <input type="submit" class="submit-btn" class="pointer" value="Send">
 </form>
-
+</div>
 
 
 
