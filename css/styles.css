@@ -144,19 +144,17 @@ textarea:focus {
 
 
 .select-input {
-    font-size: inherit;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    background-color: #efefef;
-    margin: 0 15px;
-    width: 200px;
-    height: 40px;
-    border-radius: 200px;
-    box-shadow: inset 2px 2px 4px #d1d9e6, inset -2px -2px 4px #f9f9f9;
+    padding: 0 15px;
+    border-radius: 100px;
+    background-color: #e8e8e8;
+    box-shadow: inset 2px 2px 4px #33333357, inset -2px -2px 4px #ffffff;
+    border: 1px solid #3939394d;
 }
 
 .select-input:focus {
-    box-shadow: inset 4px 4px 4px #d1d9e6, inset -4px -4px 4px #f9f9f9;
+    box-shadow: inset 4px 4px 4px #33333357, inset -4px -4px 4px #ffffff;
+    transition: 0.5s;
+    border: 1px solid #00a1e0;
 }
 
 
@@ -2426,6 +2424,26 @@ textarea:focus {
     transform: translate(-50%, -50%);
 }
 
+
+
+.send-fxstars-cnt {
+    text-align: center;
+}
+
+.send-fxstars-cnt input, .send-fxstars-cnt select {
+    margin: 12px 0;
+}
+
+.send-fxstars-cnt .submit-btn {
+    width: 100%;
+}
+
+.send-fxstars-cnt .cost-txt {
+    margin-top: 25px;
+}
+
+
+
 .inner-content-box {
     display: flex;
     flex-flow: column nowrap;
@@ -2434,6 +2452,7 @@ textarea:focus {
     border-radius: 10px;
     padding: 20px 40px;
     max-width: 700px;
+    min-width: 500px;
     min-height: 300px;
     overflow: hidden;
     margin: 30px 0;
