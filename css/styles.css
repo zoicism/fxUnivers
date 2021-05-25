@@ -2030,9 +2030,11 @@ textarea:focus {
     border-radius: 100px;
     margin: 0 10px;
     border: 1px solid #393939;
+    width: auto;
+    height: auto;
 }
 
-.main-items .link-main:hover {
+.main-items .link-main:hover:not(:focus) {
     border: 1px solid #00a1e0;
     color: #00a1e0;
 }
