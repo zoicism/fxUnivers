@@ -2413,6 +2413,19 @@ textarea:focus {
     color: #fff;
 }
 
+.inner-content-box.inner-content-margin.earnings-content {
+    width: 700px;
+    position: relative;
+}
+
+.earnings-cnt .gray {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
 .inner-content-box {
     display: flex;
     flex-flow: column nowrap;
@@ -2421,9 +2434,24 @@ textarea:focus {
     border-radius: 10px;
     padding: 20px 40px;
     max-width: 700px;
+    min-height: 300px;
     overflow: hidden;
     margin: 30px 0;
     box-shadow: 5px 5px 10px #c6c6c6, -5px -5px 10px #ffffff;
+}
+
+.inner-content-box.inner-content-margin {
+    margin-top: 11%;
+}
+
+.inner-content-box .submit-btn {
+    border: 1px solid #00a1e0;
+}
+
+.inner-content-box .submit-btn:hover {
+    background-color: #00a1e0;
+    color: #fff;
+    transition: all .2s;
 }
 
 .inner-content-box .txt-input {
