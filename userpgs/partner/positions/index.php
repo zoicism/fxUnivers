@@ -62,7 +62,7 @@ require('../../../wallet/php/get_fxcoin_count.php');
 
 
   <div class="relative-main-content">
-  <div class="inner-content-box" style="max-width:700px" >
+  <div class="inner-content-box inner-content-margin">
                           <h2>fxHR</h2>
                           
 <p>Share the following link with your friends who are not an fxUnivers user yet. Right after they register, we will share 50% of the profit gained from those users from any fxUnivers platform for 90 days.</p>
