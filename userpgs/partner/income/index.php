@@ -61,14 +61,10 @@ require('../../../wallet/php/get_fxcoin_count.php');
 
 
   <div class="relative-main-content">
-  <div class="inner-content-box" >
-                          <h2>Earnings</h2>
-                          
-
-                       
-              <div class="row">
-                          
-                          <div class="col" style="overflow-y:auto">
+  <div class="inner-content-box inner-content-margin" >
+       <h2>Earnings</h2>
+           <div class="row">
+               <div class="col">
 
 
 
