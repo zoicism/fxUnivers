@@ -1626,6 +1626,7 @@ textarea:focus {
 .options .course-addbox-con .start-schedule-con .start-live-back-con #live-now {
     color: #fff;
     height: 38px;
+    width:100%;
     margin: 0;
     background: hsla(197, 100%, 44%, 1);
     background: linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(277, 100%, 44%, 1) 100%);
@@ -1777,6 +1778,11 @@ textarea:focus {
 }
 
 .relative-main-content .content-box .add-session-con {
+    width: 100%;
+    text-align: center;
+}
+
+.relative-main-content .inner-content-box .add-session-con {
     width: 100%;
     text-align: center;
 }
