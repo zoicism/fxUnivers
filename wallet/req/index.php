@@ -66,8 +66,8 @@ iv></a></div></div>');
 
 <div class="relative-main-content">
 
-  <div class="inner-content-box">
-
+  <div class="inner-content-box inner-content-margin">
+		<div class="req-fxstar-cnt">
                           <h2>Request fxStars</h3>
 
                           <form id="reqToFndForm">
@@ -100,6 +100,7 @@ iv></a></div></div>');
 <p>Total cost: <strong><span id="totalReqCost">2</span> fxStars</strong></p>
                           <input type="submit" class="submit-btn"  value="Request">
                           </form>
+	  </div>
 
   </div>
 </div>
