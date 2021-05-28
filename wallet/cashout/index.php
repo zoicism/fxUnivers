@@ -68,8 +68,8 @@ out</div></a></div></div>')
 
   <div class="relative-main-content">
 
-  <div class="inner-content-box">
-
+  <div class="inner-content-box inner-content-margin">
+		<div class="cashout-fxstar-cnt">
                           <h2>Request Cash-out</h2>
                           <p>Your current balance: <strong><?php echo $get_fxcoin_count?> fxStars</strong></p>
                           <p>You need a minimum of 100 fxStars to request cash-out.</p>
@@ -81,8 +81,9 @@ out</div></a></div></div>')
                           <p>Total cash-out amount: <strong><span id="totalCash">90</span> USD</strong></p>
                           <input type="submit" class="submit-btn" id="reqButt" value="Request" <?php if($get_fxcoin_count<100) echo 'style="opacity:0.5" disabled'?>>
                           </form>
+	  	</div>
 <hr style="opacity:0.3;margin:20px 10px 0 0;">
-<div>
+<div class="req-history">
 <h3 style="margin-bottom:20px">Request History</h3>
 <?php
 $cashout_q = "SELECT * FROM cashout WHERE userId=$get_user_id ORDER BY id DESC";
