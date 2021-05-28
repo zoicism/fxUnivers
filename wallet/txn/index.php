@@ -63,7 +63,7 @@ iv></a></div></div>');
 	<?php require('../../php/sidebar.php'); ?>
 
   <div class="relative-main-content">
-  <div class="inner-content-box" id="txn-content-box">
+  <div class="inner-content-box inner-content-margin" id="txn-content-box">
                           <h2>Transactions</h2>
                           
 <div class="row-header" style="width:100%">                 
