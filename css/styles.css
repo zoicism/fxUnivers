@@ -145,6 +145,8 @@ textarea:focus {
 
 .select-input {
     padding: 0 15px;
+    height: 40px;
+    width: 200px;
     border-radius: 100px;
     background-color: #e8e8e8;
     box-shadow: inset 2px 2px 4px #33333357, inset -2px -2px 4px #ffffff;
@@ -2431,8 +2433,7 @@ textarea:focus {
 }
 
 
-
-.send-fxstars-cnt {
+.send-fxstars-cnt, req-fxstar-cnt {
     text-align: center;
 }
 
