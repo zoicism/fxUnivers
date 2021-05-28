@@ -2433,6 +2433,30 @@ textarea:focus {
 }
 
 
+
+
+
+.cashout-fxstar-cnt {
+    text-align: center;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+.cashout-fxstar-cnt .num-input {
+    width: 100%;
+}
+
+.cashout-fxstar-cnt .submit-btn {
+    width: 100%;
+    margin: 0;
+    margin-top: 20px;
+}
+
+.req-history {
+    text-align: center;
+}
+
 .send-fxstars-cnt, req-fxstar-cnt {
     text-align: center;
 }
