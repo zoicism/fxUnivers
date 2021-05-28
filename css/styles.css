@@ -2457,8 +2457,12 @@ textarea:focus {
     text-align: center;
 }
 
-.send-fxstars-cnt, req-fxstar-cnt {
+.send-fxstars-cnt, .req-fxstar-cnt {
     text-align: center;
+}
+
+.req-fxstar-cnt .submit-btn  {
+    width: 100%;
 }
 
 .send-fxstars-cnt input, .send-fxstars-cnt select {
