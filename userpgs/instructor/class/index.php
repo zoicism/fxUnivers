@@ -172,7 +172,7 @@ function get_string_between($string, $start, $end){
 
 	   
 	   <div class="video-placeholder">
-         	   <img src="/images/background/novid.svg">
+         	   <svg viewBox="0 0 60 60"><path d="M30,2A28,28,0,1,1,2,30,28.1,28.1,0,0,1,30,2m0-2A30,30,0,1,0,60,30,30,30,0,0,0,30,0Z"></path><path d="M41.2,14.4H18.8a4,4,0,0,0-4,4V41.6a4,4,0,0,0,4,4H41.2a4,4,0,0,0,4-4V18.4A4,4,0,0,0,41.2,14.4ZM22.7,43.6H18.8a2,2,0,0,1-2-2V35.9h5.9Zm0-9.7H16.8V26.1h5.9Zm0-9.8H16.8V18.4a2,2,0,0,1,2-2h3.9ZM35.3,43.6H24.7V16.4H35.3Zm7.9-2a2,2,0,0,1-2,2H37.3V35.9h5.9Zm0-7.7H37.3V26.1h5.9Zm0-9.8H37.3V16.4h3.9a2,2,0,0,1,2,2Z"></path></svg>
 
 		   	   <p>No video</p>	
 	   </div>
