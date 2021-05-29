@@ -244,13 +244,17 @@ if($tar_user_fetch['avatar']!=NULL) {
 }
 
  echo '<div class="pub-avatar" style="cursor:auto">';
+	echo '<div class="inner-pub-avatar">';
+	   echo '<div class="pub-avatar-cnt">';
 	     	  echo '<div class="pub-img avatar" style="cursor:pointer;background-image:url(\''.$avatar_url.'\');" onclick="location.href=\'/user/'.$tar_user_fetch['username'].'\'">';
 		  echo '</div>';
 		  echo '<div class="pub-name" style="cursor:pointer;" onclick="location.href=\'/user/'.$tar_user_fetch['username'].'\'">';
+		  echo '<p class="username">'.$tar_user_fetch['username'].'</p>';
 		  echo '<p class="fullname">'.$tar_user_fetch['fname'].' '.$tar_user_fetch['lname'].'</p>';
-		  echo '<p>@'.$tar_user_fetch['username'].'</p>';
 		  echo '</div>';
-	     echo '</div>';
+	   echo '</div>';
+	echo '</div>';
+ echo '</div>';
 
 
 	     echo '<h2>'.$header.'</h2>';
