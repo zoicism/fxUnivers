@@ -125,7 +125,7 @@ function get_string_between($string, $start, $end){
 
     <div class="relative-main-content">
 
-	<div class="fxuniversity-nav" style="margin-right:auto;opacity:0.6;">
+	<div class="fxuniversity-nav">
 	    <p><?php echo '<a style="font-weight:bold" href="/userpgs/instructor/course_management/course.php?course_id='.$get_course_fetch['id'].'">'.$get_course_fetch['header'].'</a> / <span style="font-weight:bold">'.$header.'</span>' ?></p>
 	</div>
 
