@@ -735,9 +735,9 @@ textarea:focus {
 }
 
 .sessions .sess-list #active {
-    background-color: #95d2e969;
-    transition: 0.3s;
-    /*fill: #ffffff ;
+    background-color: #cccccc;
+    /*transition: 0.3s;
+    fill: #ffffff ;
     color: #fff;*/
 }
 /*
@@ -798,7 +798,7 @@ textarea:focus {
     height: 83px;
     display: flex;
     background-color: #3939390d;
-    border-radius: 10px;
+    border-radius: 5px;
     justify-content:center;
 }
 
