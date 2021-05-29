@@ -110,14 +110,18 @@ if($gss_count > 0) {
 		
 
 		<div class="description fxuniversity-desc-cnt">
-		    <h3 class="fxuniversity-desc">How to make fxStars using fxUniversity?</h3>
+		    <h3 class="fxuniversity-desc question-header1" style="cursor:pointer">How to make fxStars using fxUniversity?</h3>
+		    <div class="answer-header1" style="display:none">
 		    <p>There are two ways to make fxStars:</p>
 		    <ol>
 			<li><p>1. Click on <a href="/userpgs/instructor/" >Teach</a> above, create a course, and publish it for a price. As students purchase and enroll in your courses, you will gain fxStars. We have provided various tools for you to use and attract as many students as possible. What's more, each student will potentially increase your fxStars directly by creating fxSubCourses. See below to learn more.</p></li>
 			<li><p>2. Click on <a href="/userpgs/student/" >Learn</a> above, enroll in your favorite courses, and after getting the certification, start teaching your own fxSubCourses as an fxSubInstructor which helps you make fxStars very quickly. See below to learn more.</p></li>
 		    </ol>
-
-		    <h3>How to create a course?</h3>
+            </div>
+            
+            
+		    <h3 class="question-header2" style="cursor:pointer">How to create a course?</h3>
+		    <div class="answer-header2" style="display:none" >
 		    <p>After you enter <a href="/userpgs/instructor/" >Teach</a> section, click on <a href="/userpgs/instructor/course_management/new_course.php">Add New Course</a>, enter a title, a description, and put a price on the course. Right after this you can publish the course, however you can also consider applying the following options to make more fxStars or to just set it as you prefer.</p>
 		    <ul>
 			<li>
@@ -135,11 +139,15 @@ if($gss_count > 0) {
 			</li>
 		    </ul>
 		    <p>By using these options you can help spread your knowledge as effectively and beneficially as possible.</p>
+            </div>
 
-		    <h3>How to enroll in a course?</h3>
+
+
+		    <h3 class="question-header3" style="cursor:pointer">How to enroll in a course?</h3>
+		    <div class="answer-header3" style="display:none">
 		    <p>You can search for courses either by entering the <a href="/userpgs/student/" >Learn</a> section or clicking on <a href="/search/" >Search</a> icon.</p>
 		    <p>After enrolling in a course and passing the certification exam, if enabled by the instructor, you will be able to create your own fxSubCourses for it. This way, your course will be displayed to the viewers and students of that course, hence increasing your profits. Read the <span id="hili-fxsubcourse" style="cursor:pointer;color:blue;">Make this course and fxSubCourse</span> above to learn how to do so.</p>
-		    
+		    </div>
 		    
 		</div>
 
@@ -179,6 +187,18 @@ if($gss_count > 0) {
 	     }, 1000);
 	 });
 	</script>
+
+    <script>
+        $('.question-header1').click(function() {
+            $('.answer-header1').slideToggle();
+        });
+        $('.question-header2').click(function() {
+            $('.answer-header2').slideToggle();
+        });
+        $('.question-header3').click(function() {
+            $('.answer-header3').slideToggle();
+        });
+    </script>
 	
     </body>
 </html>
