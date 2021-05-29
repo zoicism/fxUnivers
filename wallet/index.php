@@ -181,7 +181,8 @@ require('php/get_fxcoin_count.php');
 
 
                           <div class="description fxstar-desc-cnt">
-            <h3 class="fxstar-desc">What to use fxStars for?</h3>
+            <h3 class="fxstar-desc question-header1" style="cursor:pointer">What to use fxStars for?</h3>
+            <div class="answer-header1" style="display:none">
             <p>You can use fxStars to:</p>
             <ul>
           <li>
@@ -191,20 +192,35 @@ require('php/get_fxcoin_count.php');
               <p>Send fxStars to your friends securely and instantaneously.</p>
           </li>
             </ul>
-                          <h3>How to Buy fxStars</h3>
-                          <p>Click on the <a href="/wallet/buy" >Buy fxStars</a> above to buy fxStars. The cost of 10 fxStars is 11 USD.</p>
-
-        <h3>How to Transfer fxStars</h3>
+            </div>
+            
+        
+        
+        <h3 class="question-header2" style="cursor:pointer">How to Buy fxStars?</h3>
+        <div class="answer-header2" style="display:none">
+            <p>Click on the <a href="/wallet/buy" >Buy fxStars</a> above to buy fxStars. The cost of 10 fxStars is 11 USD.</p>
+        </div>
+            
+            
+        <h3 class="question-header3" style="cursor:pointer">How to Transfer fxStars?</h3>
+        <div class="answer-header3" style="display:none">
         <p>Click on the <a href="/wallet/send" >Transfer</a> above, enter how many fxStars and to whom you wish to send, and your friends will receive the fxStars instantly and securely! They will be informed of the transaction right away.</p>
+        </div>
 
-        <h3>How to Request fxStars</h3>
-        <p>Click on the <a href="/wallet/req" >Request</a> above and request a specific number of fxStars from any of your friends. They will get informed immediately and will send you the requested amount if they want to, with just one click.</p>
-
-        <h3>How to see the Transactions</h3>
-        <p>Click on the <a href="/wallet/txn" >Transactions</a> above to get a list of all your incoming and outgoing transactions.</p>
-
-        <h3>How to Cash-out</h3>
-        <p>Click on the <a href="/wallet/cashout" >Cash-out</a> and submit a cash-out request of at least 100 fxStars which will take place within 3 business days. Coming soon, you will also be able to request instantaneous cash-outs with various cryptocurrencies.</p>                     
+        <h3 class="question-header4" style="cursor:pointer">How to Request fxStars?</h3>
+        <div class="answer-header4" style="display:none">
+            <p>Click on the <a href="/wallet/req" >Request</a> above and request a specific number of fxStars from any of your friends. They will get informed immediately and will send you the requested amount if they want to, with just one click.</p>
+        </div>
+        
+        <h3 class="question-header5" style="cursor:pointer">How to see the Transactions?</h3>
+        <div class="answer-header5" style="display:none">
+            <p>Click on the <a href="/wallet/txn" >Transactions</a> above to get a list of all your incoming and outgoing transactions.</p>
+        </div>
+        
+        <h3 class="question-header6" style="cursor:pointer">How to Cash-out?</h3>
+        <div class="answer-header6" style="display:none">
+            <p>Click on the <a href="/wallet/cashout" >Cash-out</a> and submit a cash-out request of at least 100 fxStars which will take place within 3 business days. Coming soon, you will also be able to request instantaneous cash-outs with various cryptocurrencies.</p>                     
+        </div>
                         </div>
   </div>
 
@@ -238,8 +254,24 @@ $('#page-header').attr('href','/wallet');
 </script>
 
 <script>
- 
- 
-</script>
+        $('.question-header1').click(function() {
+            $('.answer-header1').slideToggle();
+        });
+        $('.question-header2').click(function() {
+            $('.answer-header2').slideToggle();
+        });
+        $('.question-header3').click(function() {
+            $('.answer-header3').slideToggle();
+        });
+        $('.question-header4').click(function() {
+            $('.answer-header4').slideToggle();
+        });
+        $('.question-header5').click(function() {
+            $('.answer-header5').slideToggle();
+        });
+        $('.question-header6').click(function() {
+            $('.answer-header6').slideToggle();
+        });
+    </script>
 </body>
 </html>
