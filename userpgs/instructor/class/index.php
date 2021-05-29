@@ -190,6 +190,8 @@ if($tar_user_fetch['avatar']!=NULL) {
 }
 echo '<div class="course-des-con">';
  echo '<div class="pub-avatar" style="cursor:auto">';
+	echo '<div class="inner-pub-avatar">';
+	     echo '<div class="pub-avatar-cnt">';
 	     	  echo '<div class="pub-img avatar" onclick="location.href=\'/user/'.$tar_user_fetch['username'].'\'" style="background-image:url(\''.$avatar_url.'\');cursor:pointer;">';
 		  echo '</div>';
 		  echo '<div class="pub-name" style="cursor:pointer" onclick="location.href=\'/user/'.$tar_user_fetch['username'].'\'">';
@@ -203,6 +205,8 @@ if($tar_user_fetch['verified']) {
 		  echo '<p class="fullname">'.$tar_user_fetch['fname'].' '.$tar_user_fetch['lname'].'</p>';
 		  
 		  echo '</div>';
+		echo '</div>';
+	       echo '</div>';
 	     echo '</div>';
 
 
@@ -341,7 +345,7 @@ echo '<div class="sess-list">';
 			  } else {
 			  echo ' <div class="session-prev" onclick="'.$onclickurl.'">
 			      <svg viewBox="0 0 70 50.8">
-				  <path class="cls-1" d="M659.7,889.3l-1.8-1.1v1.4l-25.4,16a.6.6,0,0,1-.9-.4V895a1.6,1.6,0,0,1,.8-1.4l26.8-16.3a1.1,1.1,0,0,0,.6-1.1h0a1.2,1.2,0,0,0-.7-1l-37.2-18a5.4,5.4,0,0,0-4.8.1l-25.8,13.6a2.2,2.2,0,0,0-1.2,2v12.9a1.1,1.1,0,0,0,.6,1.1L628.5,907a4.5,4.5,0,0,0,4.6-.2l26.6-16.3a.7.7,0,0,0,.4-.6h0A.9.9,0,0,0,659.7,889.3Zm-31,4.8-36.4-19.7a.7.7,0,0,1-.3-1h0a.8.8,0,0,1,1-.3l36.4,19.8a.6.6,0,0,1,.3.9h0A.6.6,0,0,1,628.7,894.1Z" transform="translate(-590.1 -856.7)"></path>
+				  <path d="M659.7,889.3l-1.8-1.1v1.4l-25.4,16a.6.6,0,0,1-.9-.4V895a1.6,1.6,0,0,1,.8-1.4l26.8-16.3a1.1,1.1,0,0,0,.6-1.1h0a1.2,1.2,0,0,0-.7-1l-37.2-18a5.4,5.4,0,0,0-4.8.1l-25.8,13.6a2.2,2.2,0,0,0-1.2,2v12.9a1.1,1.1,0,0,0,.6,1.1L628.5,907a4.5,4.5,0,0,0,4.6-.2l26.6-16.3a.7.7,0,0,0,.4-.6h0A.9.9,0,0,0,659.7,889.3Zm-31,4.8-36.4-19.7a.7.7,0,0,1-.3-1h0a.8.8,0,0,1,1-.3l36.4,19.8a.6.6,0,0,1,.3.9h0A.6.6,0,0,1,628.7,894.1Z" transform="translate(-590.1 -856.7)"></path>
 			      </svg>
 			  </div>';
 			  
@@ -357,10 +361,10 @@ echo '<div class="sess-list">';
 
 
 			      if((time()-strtotime($instructor['lastseen']) < 15) && ($instructor['lsPage']=='live/#'.$row['id'])) {
-				  echo '<p><strong><span class="gray-bg" style="color:white;padding:2px 5px;">'.$session_counter.'</span> '.$row['title'].'</strong> <img src="/images/background/live6.png" style="width:32px" class="blink_me"></p>';
+				  echo '<p><strong><span class="gray-bg">'.$session_counter.'</span> '.$row['title'].'</strong> <img src="/images/background/live6.png" style="width:32px" class="blink_me"></p>';
 				  if(($user_type!='instructor') && ($class_id==$row['id'])) $mustRedirect=1;
 			      } else {
-				  echo '<p><strong><span class="gray-bg" style="color:white;padding:2px 5px;">'.$session_counter.'</span> '.$row['title'].'</strong></p>';
+				  echo '<p><strong><span class="gray-bg">'.$session_counter.'</span> '.$row['title'].'</strong></p>';
 			      }
 			      
                               if($row['body']=='') {
