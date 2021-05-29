@@ -196,7 +196,7 @@ textarea:focus {
     justify-content: flex-end;
     align-items: center;
     margin-left: 15%;
-    padding: 15px 2%;
+    padding: 15px 30px;
     height:7%;
 }
 
@@ -282,6 +282,21 @@ textarea:focus {
     flex-flow:row;
     align-items:flex-start;
     justify-content:space-around;
+}
+
+.fxuniversity-nav {
+    margin-right: auto;
+    opacity: 0.7;
+    padding-left: 30px;
+}
+
+.fxuniversity-nav a {
+    color: #4551E0;
+    text-decoration: none;
+}
+
+.fxuniversity-nav a:hover {
+    text-decoration: underline;
 }
 
 .course-content {
@@ -1043,7 +1058,7 @@ textarea:focus {
     border-radius: 20px;
     background: #efefef;
     /*max-width:560px;*/
-    height:250px;
+    height:300px;
     display:flex;
     justify-content:center;
     align-items:center;
