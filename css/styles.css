@@ -1070,6 +1070,9 @@ textarea:focus {
 
 .video-placeholder .live-placeholder {
     position: absolute;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
 }
 
 .video-placeholder .video-holder {
@@ -1170,7 +1173,7 @@ textarea:focus {
     width: 60px;
     height: 60px;
     opacity: .3;
-    margin-bottom: 8px;
+    margin-bottom: 24px;
 }
 
 .video-placeholder p {
