@@ -271,7 +271,7 @@ if($course_negotiable) {
 					<?php
 					if($cost > 0) {
 					    if($course_negotiable) {
-						echo '<div style="display:flex; flex-flow:row nowrap;"><div class="price gold-bg" style="width:50%;"><div class="fxstar-white"></div>'.$cost.'</div><div style="width:50%;" class="price medseagreen-bg">Negotiable</div></div>';
+						echo '<div style="display:flex; flex-flow:row nowrap;"><div class="price gold-bg" style="width:50%; margin-right: 10px;"><div class="fxstar-white"></div>'.$cost.'</div><div style="width:50%;" class="price medseagreen-bg">Negotiable</div></div>';
 					    } else {
 						echo '<div class="price gold-bg"><div class="fxstar-white"></div>'.$cost.'</div>';
 					    }
@@ -858,7 +858,7 @@ if($course_negotiable) {
 			       }
 			       } else {*/
 			    
-			    echo '<div class="add-box blue-button"  id="purchbutt">Enroll</div>';
+			    echo '<div class="blue-button"  id="purchbutt">Enroll</div>';
 
 			    if($course_negotiable) {
 				$check_prev_bargains_q = "SELECT * FROM bargains WHERE course_id = $course_id AND student_id = $get_user_id";
