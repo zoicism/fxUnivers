@@ -184,11 +184,10 @@ if($user_type=='instructor') {
 	      <div class="video-placeholder">
 		<div class="live-placeholder">
 			<svg viewBox="0 0 60 60"><path d="M30,2A28,28,0,1,1,2,30,28.1,28.1,0,0,1,30,2m0-2A30,30,0,1,0,60,30,30,30,0,0,0,30,0Z"></path><path d="M32.7,38.6a3.9,3.9,0,0,0-5.4,0,4,4,0,0,0-1,2.6,4.1,4.1,0,0,0,1,2.7,3.9,3.9,0,0,0,5.4,0h0a4.1,4.1,0,0,0,1.1-2.7A4.1,4.1,0,0,0,32.7,38.6ZM30,43a1.7,1.7,0,0,1-1.2-.5,1.5,1.5,0,0,1-.5-1.3,1.5,1.5,0,0,1,.5-1.2,1.7,1.7,0,0,1,1.2-.5,2.1,2.1,0,0,1,1.3.5,1.8,1.8,0,0,1,.5,1.2,1.9,1.9,0,0,1-.5,1.3A2.1,2.1,0,0,1,30,43Z"></path><path d="M37.2,32.6A11.3,11.3,0,0,0,30,30a11.5,11.5,0,0,0-7.2,2.6,1.1,1.1,0,0,0-.1,1.5h0a1.1,1.1,0,0,0,1.4,0A9.4,9.4,0,0,1,30,32a9.2,9.2,0,0,1,6,2.2.9.9,0,0,0,1.3-.1h0A1,1,0,0,0,37.2,32.6Z"></path><path d="M30,24.5a17,17,0,0,1,11.3,4.4.9.9,0,0,0,1.3-.1h0a.9.9,0,0,0,0-1.4A18.7,18.7,0,0,0,30,22.5a18.4,18.4,0,0,0-12.6,4.9,1,1,0,0,0,0,1.4h0a1,1,0,0,0,1.4,0A16.4,16.4,0,0,1,30,24.5Z"></path><path d="M30,17a24,24,0,0,1,16.6,6.6,1,1,0,0,0,1.4,0h0a1.1,1.1,0,0,0,0-1.5,26.2,26.2,0,0,0-35.9,0,1,1,0,0,0,0,1.4h0a1,1,0,0,0,1.4,0A24.2,24.2,0,0,1,30,17Z"></path></svg>
-			<p>Your broadcasting will apear here</p>
+			<p>Your broadcast will appear here</p>
 		</div>
 		      
-		      
-		<div class="audio-bc-cnt">
+		      <div class="audio-bc-cnt" id="audio-cnt" style="display:none">
     			<div class="audio-bc-txt">Broadcasting Audio</div>
 			<div id="container">
 				<div id="one"></div>
@@ -197,7 +196,7 @@ if($user_type=='instructor') {
 				<div id="four"></div>
 				<div id="five"></div>
 			</div>
-		</div>
+		      </div>
 		      
 		      
 		<div class="video-holder" id="live-session">
@@ -231,17 +230,26 @@ if($user_type=='instructor') {
 
 	<div class="video-placeholder">
 	   <div class="live-placeholder">
-		<svg viewBox="0 0 60 60"><path d="M30,2A28,28,0,1,1,2,30,28.1,28.1,0,0,1,30,2m0-2A30,30,0,1,0,60,30,30,30,0,0,0,30,0Z"></path><path d="M41.2,14.4H18.8a4,4,0,0,0-4,4V41.6a4,4,0,0,0,4,4H41.2a4,4,0,0,0,4-4V18.4A4,4,0,0,0,41.2,14.4ZM22.7,43.6H18.8a2,2,0,0,1-2-2V35.9h5.9Zm0-9.7H16.8V26.1h5.9Zm0-9.8H16.8V18.4a2,2,0,0,1,2-2h3.9ZM35.3,43.6H24.7V16.4H35.3Zm7.9-2a2,2,0,0,1-2,2H37.3V35.9h5.9Zm0-7.7H37.3V26.1h5.9Zm0-9.8H37.3V16.4h3.9a2,2,0,0,1,2,2Z"></path></svg>
-		<p>No video</p>
+			<svg viewBox="0 0 60 60"><path d="M30,2A28,28,0,1,1,2,30,28.1,28.1,0,0,1,30,2m0-2A30,30,0,1,0,60,30,30,30,0,0,0,30,0Z"></path><path d="M32.7,38.6a3.9,3.9,0,0,0-5.4,0,4,4,0,0,0-1,2.6,4.1,4.1,0,0,0,1,2.7,3.9,3.9,0,0,0,5.4,0h0a4.1,4.1,0,0,0,1.1-2.7A4.1,4.1,0,0,0,32.7,38.6ZM30,43a1.7,1.7,0,0,1-1.2-.5,1.5,1.5,0,0,1-.5-1.3,1.5,1.5,0,0,1,.5-1.2,1.7,1.7,0,0,1,1.2-.5,2.1,2.1,0,0,1,1.3.5,1.8,1.8,0,0,1,.5,1.2,1.9,1.9,0,0,1-.5,1.3A2.1,2.1,0,0,1,30,43Z"></path><path d="M37.2,32.6A11.3,11.3,0,0,0,30,30a11.5,11.5,0,0,0-7.2,2.6,1.1,1.1,0,0,0-.1,1.5h0a1.1,1.1,0,0,0,1.4,0A9.4,9.4,0,0,1,30,32a9.2,9.2,0,0,1,6,2.2.9.9,0,0,0,1.3-.1h0A1,1,0,0,0,37.2,32.6Z"></path><path d="M30,24.5a17,17,0,0,1,11.3,4.4.9.9,0,0,0,1.3-.1h0a.9.9,0,0,0,0-1.4A18.7,18.7,0,0,0,30,22.5a18.4,18.4,0,0,0-12.6,4.9,1,1,0,0,0,0,1.4h0a1,1,0,0,0,1.4,0A16.4,16.4,0,0,1,30,24.5Z"></path><path d="M30,17a24,24,0,0,1,16.6,6.6,1,1,0,0,0,1.4,0h0a1.1,1.1,0,0,0,0-1.5,26.2,26.2,0,0,0-35.9,0,1,1,0,0,0,0,1.4h0a1,1,0,0,0,1.4,0A24.2,24.2,0,0,1,30,17Z"></path></svg>
+			<p>Your broadcast will appear here</p>
+    
+    <div class="audio-bc-cnt" id="audio-cnt" style="display:none">
+    <div class="audio-bc-txt">Broadcasting AuOAdio</div>
+    <div id="container">
+    <div id="one"></div>
+    <div id="two"></div>
+    <div id="three"></div>
+    <div id="four"></div>
+    <div id="five"></div>
+    </div>
+    </div>
+		      
+		
 	   </div>
 	   <div class="video-holder" id="live-session">
 	   	<div id="videos-container" id="stu-vid-cnt"></div>
 	   	     <div class="ctrl">
 	                     <div class="ctrl-row" id="before-stream-start">
-			       <p id="join-p">Live video hasn't started yet.</p>			       
-			       <img src="/images/background/live.svg" style="padding:5px;opacity:0.5;cursor:not-allowed;" disabled id="join-img">
-			       <!-- <div style="display:none" id="setup-new-broadcast"></div>
-			       <input type="hidden" id="broadcast-name">-->
 			     </div>
 	   	     </div>
 		</div>
@@ -594,6 +602,11 @@ echo '<div class="sess-list" style="display:none">';
                        joinUser: broadcaster
 		   });
 		   hideUnnecessaryStuff();
+
+		 document.getElementById('audio-cnt').style.display = 'flex';
+		 /*document.getElementById('videos-container').style.display = 'none';*/
+		 document.getElementsByClassName('live-placeholder')[0].style.display = 'none';
+
                };
 
 	       $('.join').click();
@@ -675,13 +688,22 @@ echo '<div class="sess-list" style="display:none">';
 	   try {
                htmlElement.setAttributeNode(document.createAttribute('autoplay'));
                htmlElement.setAttributeNode(document.createAttribute('playsinline'));
-               if(option==='Only Audio') htmlElement.setAttributeNode(document.createAttribute('controls'));
+               if(option==='Only Audio') {
+		 htmlElement.setAttributeNode(document.createAttribute('controls'));
+		 document.getElementById('audio-cnt').style.display = 'flex';
+		 document.getElementById('videos-container').style.display = 'none';
+		 document.getElementsByClassName('live-placeholder')[0].style.display = 'none';
+		 
+	       }
 	       htmlElement.setAttributeNode(document.createAttribute('id'));
 	       htmlElement.setAttribute('id','video-broadcast');
 	   } catch (e) {
                htmlElement.setAttribute('autoplay', true);
                htmlElement.setAttribute('playsinline', true);
-               if(option==='Only Audio') htmlElement.setAttribute('controls', true);
+               if(option==='Only Audio') {
+		 htmlElement.setAttribute('controls', true);
+		 
+	       }
 	       
 	   }
 
