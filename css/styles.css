@@ -1593,6 +1593,39 @@ textarea:focus {
     background: #0093d1 !important;
 }
 
+.options .blue-button-enroll {
+    border-radius: 50px;
+    cursor: pointer;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    border: 1px solid #00a1e0;
+    background-color: #00a1e0;
+    height: 40px;
+    margin: 0;
+    color: #fff;
+    margin: 0 0 0px 0;
+    padding: 5px;
+    box-shadow: -6px -6px 14px rgb(255 255 255 / 70%),
+                -6px -6px 10px rgb(255 255 255 / 50%),
+                6px 6px 8px rgb(255 255 255 / 8%),
+}
+
+.options .blue-button-enroll:hover {
+    background-color: #efefef;
+    color: #00a1e0;
+    transition: all .2s;
+}
+
+.add-box.blue-button-enroll:active {
+    background-color: #00a1e0;
+    color: #fff;
+    box-shadow: inset -4px -2px 4px 0px #fff,
+                inset 4px 2px 6px 0px #dfe4ea,
+                -4px -2px 4px 0px #ffffff,
+                4px 2px 6px 0px #dfe4ea;
+}
+      
 
 .options #live-add-box img {
     box-shadow:none;
