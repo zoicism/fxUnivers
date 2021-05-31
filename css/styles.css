@@ -3837,50 +3837,67 @@ textarea:focus {
 }
 
 .notifications .notification .avatar-container {
-    display: flex;
-    flex-flow: row nowrap;
     cursor: pointer;
-    margin-bottom:auto;
 }
 
 .notification .avatar-container .photo {
-    width:3.5rem;
-    height:3.5rem;
+    width: 3rem;
+    height: 3rem;
     box-shadow: -4px -2px 4px 0px #ffffff, 4px 2px 6px 0px #DFE4EA;
 }
 
 .notification .desc-contact {
     width:100%;
+    padding: 0 18px;
 }
 
 .notifications .notification .name {
-    margin: 0 0 0 20px;
-    font-size: 11pt;
+    margin-right: 10px;
+    font-size: 14px;
     color:#515151;
-    font-weight: 500;
     text-decoration:none;
     font-weight:bold;
 }
 
 .notifications .notification .notif-message {
-    margin: 6px 0 0 20px;
+    margin: 10px 0;
     font-size: 10pt;
     color:#515151;
 }
 
 .notification input[type=submit] {
-    margin:10px;
-    padding:0 10px;
-    min-width: 100px;
-    height: 40px;
+    margin: 10px 0;
+    padding: 0 10px;
+    width: 50%;
+    height: 34px;
     border-radius: 100px;
-    border: none;
+    border: 1px solid #00a1e0;
     cursor: pointer;
-    box-shadow: -6px -6px 14px rgba(255, 255, 255, .7),
-    -6px -6px 10px rgba(255, 255, 255, .5),
-    6px 6px 8px rgba(255, 255, 255, .075),
-    6px 6px 10px rgba(0, 0, 0, .15);
+    box-shadow: -6px -6px 14px rgb(255 255 255 / 70%),
+                -6px -6px 10px rgb(255 255 255 / 50%),
+                6px 6px 8px rgb(255 255 255 / 8%),
+                6px 6px 10px rgb(0 0 0 / 15%);
 }
+
+.notification input[type=submit]:hover {
+    background-color: #00a1e0;
+    color: #fff;
+    transition: all .2s;
+}
+
+.notification .submit-btn {
+    width: 50%;
+    margin: 10px 0;
+    height: 34px;
+    border: 1px solid #00a1e0;
+}
+
+.notification .submit-btn:hover {
+    background-color: #00a1e0;
+    color: #fff;
+    transition: all .2s;
+}
+
 /************************************************* < notification ***********************************/
 
 
