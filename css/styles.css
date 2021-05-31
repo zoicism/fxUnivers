@@ -3891,9 +3891,9 @@ textarea:focus {
 }
 
 .notifications .notification .notif-message {
-    margin: 10px 0;
-    font-size: 10pt;
-    color:#515151;
+    font-size: 14px;
+    line-height: 18px;
+    color: #393939;
 }
 
 .notification input[type=submit] {
@@ -3927,6 +3927,20 @@ textarea:focus {
     background-color: #00a1e0;
     color: #fff;
     transition: all .2s;
+}
+
+.notification .send-decline-cnt {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 100%;
+}
+
+.notification .send-decline-cnt form {
+    width: 100%;
+}
+
+.notification .send-decline-cnt input[type=submit] {
+    width: 90%;
 }
 
 /************************************************* < notification ***********************************/
