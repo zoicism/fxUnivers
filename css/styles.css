@@ -1558,15 +1558,13 @@ textarea:focus {
 .options .blue-button {
     border-radius: 50px;
     cursor: pointer;
-    align-items: center;
-    display: flex;
     justify-content: center;
     border: 1px solid #00a1e0;
     background-color: #00a1e0;
     height: 40px;
     margin: 0;
     color: #fff;
-    margin: 0 0 0px 0;
+    margin-bottom: 14px;
     padding: 5px;
     box-shadow: -6px -6px 14px rgb(255 255 255 / 70%),
                 -6px -6px 10px rgb(255 255 255 / 50%),
