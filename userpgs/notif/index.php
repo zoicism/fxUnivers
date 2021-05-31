@@ -122,6 +122,7 @@ $dns_result=mysqli_query($connection,$dns_query) or die(mysqli_error($connection
                             echo '<p class="notif-message">'.$row['body'].'</p>';
                             if(!isset($fxCoinReq_fetch['accepted'])) {
 ?>
+		  	<div class="send-decline-cnt">
                                 <form class="reqFxCoinForm">
                                   <input type="hidden" name="reason" value="<?php echo $row['reason'] ?>">
                                   <input type="hidden" name="sender" value="<?php echo $fxCoinReq_fetch['sender'] ?>">
@@ -140,6 +141,7 @@ $dns_result=mysqli_query($connection,$dns_query) or die(mysqli_error($connection
                                   <input type="hidden" name="accepted" value="0">
                                   <input type="submit" value="Decline">
                                 </form>
+		  	</div>
 <?php
                                 }
                             } else {
