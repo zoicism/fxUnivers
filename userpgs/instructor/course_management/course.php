@@ -858,7 +858,7 @@ if($course_negotiable) {
 			       }
 			       } else {*/
 			    
-			    echo '<div class="blue-button"  id="purchbutt">Enroll</div>';
+			    echo '<div class="blue-button-enroll"  id="purchbutt">Enroll</div>';
 
 			    if($course_negotiable) {
 				$check_prev_bargains_q = "SELECT * FROM bargains WHERE course_id = $course_id AND student_id = $get_user_id";
