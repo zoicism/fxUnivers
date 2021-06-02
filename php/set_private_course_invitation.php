@@ -37,7 +37,7 @@ if(isset($_POST['inviteeUsername']) && isset($_POST['courseId'])) {
 }
 
 if($add_invitee_r) {
-    $invitation_notif_body = 'You are invited to a private fxCourse: '.$course_header.'. Please visit by clicking the button below. <a href="/userpgs/instructor/course_management/course.php?course_id='.$course_id.'"><button class="submit-btn">Visit fxCourse</button></a>';
+    $invitation_notif_body = '<p>You are invited to a private fxCourse: '.$course_header.'. Please visit by clicking the button below.</p><a href="/userpgs/instructor/course_management/course.php?course_id='.$course_id.'"><button class="submit-btn">Visit fxCourse</button></a>';
     $invitation_notif_body = mysqli_real_escape_string($connection, $invitation_notif_body);
 
     $dt = date('Y-m-d H:i:s');
