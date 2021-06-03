@@ -27,11 +27,20 @@ if($_SERVER['HTTPS'] != "on") {
 		  <p class="slogan">Universe of Possibilities</p>
 		</div>
 
-		<div class="solo-sub">
-		    <p><b>fxUniversity.</b> Create a course & Earn fxStars. <a href="#fxuniversity">Learn more</a></p>
-			  <p><b>fxPartner.</b> Partner us & make easy fxStars. <a href="#fxpartner">Learn more</a></p>
+		<div class="about-box-cnt">
+			
+			<div class="fxuniversity-box about-box">
+    				<div class="about-box-txt">fxUniversity</div>
+    				<div class="about-box-des">
+    					Create a course &amp; Earn fxStars.
+				</div>
+				<a href="#fxuniversity">Learn more</a>
+				<button class="enter-fxuniversity enter-box">Enter fxUniversity</button>
+			</div>
+		    <!--<p><b>fxUniversity.</b> Create a course & Earn fxStars. <a href="#fxuniversity">Learn more</a></p>
+		    <p><b>fxPartner.</b> Partner us & make easy fxStars. <a href="#fxpartner">Learn more</a></p>
 		    <p><b>fxStar.</b> Buy and gift products and services: send, receive, or donate them. <a href="#fxstar">Learn more</a></p>
-			  <p><b>fxUniverse.</b> Universe of trading (Coming soon for public).</p>
+		   <p><b>fxUniverse.</b> Universe of trading (Coming soon for public).</p>-->
 		</div>
 	      </div>
 
