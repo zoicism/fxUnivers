@@ -15,9 +15,6 @@ html,body {
     100%{border: 1px solid #00a1e0}
 }
 
-
-
-
 section {
     width: 100%;
     display:flex;
@@ -3122,14 +3119,78 @@ textarea:focus {
 }
 
 .solo-container .about a {
-    color: rgb(0 161 224);
     text-decoration: none;
     font-size: 14px;
+    margin-bottom: 20px;
 }
 
 .solo-container .about a:hover {
     text-decoration: revert;
 }
+
+
+
+
+
+.solo-container .about-box-cnt {
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    padding: 30px 10%;
+}
+
+.about-box-cnt .about-box {
+    width: 220px;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    border-radius: 20px;
+    padding: 30px;
+}
+
+.about-box-cnt .fxuniversity-box {
+    background: hsl(197deg 100% 44% / 20%);
+    background: linear-gradient( 0deg, hsl(197deg 100% 44% / 20%) 0%, hsl(277deg 100% 44% / 20%) 100%);
+    background: -moz-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(277, 100%, 44%, 1) 100%);
+    background: -webkit-linear-gradient( 0deg, hsl(197deg 100% 44% / 20%) 0%, hsl(277deg 100% 44% / 20%) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#00A1E0", endColorstr="#8A00E0", GradientType=1 );
+}
+
+.about-box-cnt .about-box-txt {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.about-box-cnt .about-box-des {
+    margin-bottom: 20px;
+}
+
+.about-box .enter-box {
+    padding: 10px 20px;
+    width: 100%;
+    border-radius: 100px;
+    outline: none;
+    cursor: pointer;
+    background-color: #efefef82;
+}
+
+.about-box .enter-fxuniversity {
+    border: 1px solid #4551E0;
+}
+
+.fxuniversity-box .enter-fxuniversity:hover {
+    color: #fff;
+    transition: all .2s;
+    background: hsla(197, 100%, 44%, 1);
+    background: linear-gradient( 0deg, hsla(197, 100%, 44%, 1) 0%, hsla(277, 100%, 44%, 1) 100%);
+    background: -moz-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(277, 100%, 44%, 1) 100%);
+    background: -webkit-linear-gradient( 0deg, hsla(197, 100%, 44%, 1) 0%, hsla(277, 100%, 44%, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#00A1E0", endColorstr="#8A00E0", GradientType=1 );
+}
+
+
+
+
 
 .solo-container .about .about-top, .fxuniversity-about, .fxpartner-about {
     width: 100%;
