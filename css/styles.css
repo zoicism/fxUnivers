@@ -3078,14 +3078,9 @@ textarea:focus {
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
-    width: 750px;
+    width: 100%;
     background-color: #efefef;
     padding: 30px 0;
-    border-radius: 20px;
-    box-shadow: inset -4px -2px 4px 0px #fff,
-        inset 4px 2px 6px 0px #dfe4ea,
-        -4px -2px 4px 0px #ffffff,
-        4px 2px 6px 0px #dfe4ea;
 }
 
 .solo-container .about h2 {
@@ -3098,18 +3093,21 @@ textarea:focus {
     width:8rem;
     height:8rem;
     cursor:pointer;
+    margin-bottom: 12px;
 }
 
 .solo-container .solo-sub {
     display: flex;
     flex-flow: column wrap;
     width:100%;
+    padding: 30px 15%;
 }
 
 .solo-container .about .about-top .fxunivers-logo .fxunivers-word {
     color: #00a1e0;
     font-family: 'Roboto';
     font-size: 28px;
+    margin-bottom: 4px;
 }
 
 .solo-container .about .about-top .fxunivers-logo .slogan {
@@ -3194,7 +3192,6 @@ textarea:focus {
 
 .solo-container .about .about-top, .fxuniversity-about, .fxpartner-about {
     width: 100%;
-    padding: 0 30px 40px 30px;
 }
 
 .solo-container .about .fxstar-about {
@@ -3208,7 +3205,6 @@ textarea:focus {
     width: 100%;
     height: 200px;
     margin-bottom: 40px;
-    border-radius: 20px;
     background: hsla(197, 100%, 44%, 1);
     background: linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(277, 100%, 44%, 1) 100%);
     background: -moz-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(277, 100%, 44%, 1) 100%);
@@ -3217,8 +3213,8 @@ textarea:focus {
 }
 
 .solo-container .about .fxuniversity-about .university-background svg {
-    width: 100%;
-    display: block;
+    width: 50%;
+    height: 90%;
 }
 
 .solo-container .about .fxuniversity-about .solo-sub h3 {
@@ -3379,7 +3375,6 @@ textarea:focus {
     width: 100%;
     height: 200px;
     margin-bottom: 40px;
-    border-radius: 20px;
     background: hsla(197, 100%, 44%, 1);
     background: linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(179, 100%, 44%, 1) 100%);
     background: -moz-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(179, 100%, 44%, 1) 100%);
@@ -3388,8 +3383,8 @@ textarea:focus {
 }
 
 .solo-container .about .fxpartner-about .partner-background svg {
-    width: 100%;
-    display: block;
+    width: 50%;
+    height: 90%;
 }
 
 .solo-container .about .fxpartner-about .solo-sub h3 {
@@ -3408,7 +3403,6 @@ textarea:focus {
     width: 100%;
     height: 200px;
     margin-bottom: 40px;
-    border-radius: 20px;
     background: hsla(197, 100%, 44%, 1);
     background: linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(61, 100%, 44%, 1) 100%);
     background: -moz-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(61, 100%, 44%, 1) 100%);
@@ -3417,8 +3411,8 @@ textarea:focus {
 }
 
 .solo-container .about .fxstar-about .star-background svg {
-    width: 100%;
-    display: block;
+    width: 50%;
+    height: 90%;
 }
 
 .solo-container .about .fxstar-about .solo-sub h3 {
