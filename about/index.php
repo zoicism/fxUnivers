@@ -28,15 +28,44 @@ if($_SERVER['HTTPS'] != "on") {
 		</div>
 
 		<div class="about-box-cnt">
-			
+			<div class="fxstar-box about-box">
+    				<div class="about-box-txt">fxStar</div>
+    				<div class="about-box-des">
+    <p>Buy products &amp; services</p>
+<p>Send / Request fxStars</p>
+				</div>
+				<a href="#fxstar">Learn more</a>
+				<button class="enter-fxstar enter-box">Enter fxStar</button>
+			</div>
 			<div class="fxuniversity-box about-box">
     				<div class="about-box-txt">fxUniversity</div>
     				<div class="about-box-des">
-    					Create a course &amp; Earn fxStars.
+    					<p>Create a course &amp; Earn fxStars</p>
 				</div>
 				<a href="#fxuniversity">Learn more</a>
 				<button class="enter-fxuniversity enter-box">Enter fxUniversity</button>
 			</div>
+
+		
+			<div class="fxpartner-box about-box">
+    				<div class="about-box-txt">fxPartner</div>
+    				<div class="about-box-desabout/index.php">
+				    <p>Invite instructors and students</p>
+				    <p>Get half the interest of invitees</p>
+                                    <p>Each for 90 days straight</p>
+				</div>
+				<a href="#fxpartner">Learn more</a>
+				<button class="enter-fxpartner enter-box">Enter fxPartner</button>
+			</div>
+<div class="fxuniverse-box about-box">
+    				<div class="about-box-txt">fxUniverse</div>
+    				<div class="about-box-desabout/index.php">
+				    <p>Universe of Forex Trading</p>
+				</div>
+				<a href="#fxuniverse">Coming soon</a>
+				<button class="enter-fxuniverse enter-box">Coming soon</button>
+			</div>
+								 
 		    <!--<p><b>fxUniversity.</b> Create a course & Earn fxStars. <a href="#fxuniversity">Learn more</a></p>
 		    <p><b>fxPartner.</b> Partner us & make easy fxStars. <a href="#fxpartner">Learn more</a></p>
 		    <p><b>fxStar.</b> Buy and gift products and services: send, receive, or donate them. <a href="#fxstar">Learn more</a></p>
