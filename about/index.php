@@ -49,7 +49,7 @@ if($_SERVER['HTTPS'] != "on") {
 		
 			<div class="fxpartner-box about-box">
     				<div class="about-box-txt">fxPartner</div>
-    				<div class="about-box-desabout/index.php">
+    				<div class="about-box-des about/index.php">
 				    <p>Invite instructors and students</p>
 				    <p>Get half the interest of invitees</p>
                                     <p>Each for 90 days straight</p>
@@ -59,10 +59,9 @@ if($_SERVER['HTTPS'] != "on") {
 			</div>
 <div class="fxuniverse-box about-box">
     				<div class="about-box-txt">fxUniverse</div>
-    				<div class="about-box-desabout/index.php">
+    				<div class="about-box-des about/index.php">
 				    <p>Universe of Forex Trading</p>
 				</div>
-				<a href="#fxuniverse">Coming soon</a>
 				<button class="enter-fxuniverse enter-box">Coming soon</button>
 			</div>
 								 
