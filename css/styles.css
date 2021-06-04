@@ -3119,7 +3119,8 @@ textarea:focus {
 .solo-container .about a {
     text-decoration: none;
     font-size: 14px;
-    margin-bottom: 20px;
+    margin-top: auto;
+    color: #0084b7;
 }
 
 .solo-container .about a:hover {
@@ -3134,7 +3135,12 @@ textarea:focus {
     width: 100%;
     display: flex;
     flex-flow: row nowrap;
-    padding: 30px 10%;
+    justify-content: center;
+    padding: 50px 0;
+}
+
+.solo-container .about-box-cnt .about-box {
+    margin: 0 20px;
 }
 
 .about-box-cnt .about-box {
@@ -3154,6 +3160,30 @@ textarea:focus {
     filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#00A1E0", endColorstr="#8A00E0", GradientType=1 );
 }
 
+.about-box-cnt .fxpartner-box {
+    background: hsl(197deg 100% 44% / 20%);
+    background: linear-gradient( 0deg, hsl(197deg 100% 44% / 20%) 0%, hsl(277deg 100% 44% / 20%) 100%);
+    background: -moz-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(277, 100%, 44%, 1) 100%);
+    background: -webkit-linear-gradient( 0deg, hsl(197deg 100% 44% / 20%) 0%, hsl(277deg 100% 44% / 20%) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#00A1E0", endColorstr="#8A00E0", GradientType=1 );
+}
+
+.about-box-cnt .fxstar-box {
+    background: hsla(197, 100%, 44%, 20%);
+    background: linear-gradient(0deg, hsla(197, 100%, 44%, 20%) 0%, hsla(61, 100%, 44%, 20%) 100%);
+    background: -moz-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(61, 100%, 44%, 1) 100%);
+    background: -webkit-linear-gradient(0deg, hsla(197, 100%, 44%, 20%) 0%, hsla(61, 100%, 44%, 20%) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#00A1E0", endColorstr="#DDE000", GradientType=1 );
+}
+
+.about-box-cnt .fxuniverse-box {
+    background: hsla(197, 100%, 44%, 20%);
+    background: linear-gradient(0deg, hsla(197, 100%, 44%, 20%) 0%, hsla(239, 100%, 44%, 20%) 100%);
+    background: -moz-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(239, 100%, 44%, 1) 100%);
+    background: -webkit-linear-gradient(0deg, hsla(197, 100%, 44%, 20%) 0%, hsla(239, 100%, 44%, 20%) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#00A1E0", endColorstr="#0004E0", GradientType=1 );
+}
+
 .about-box-cnt .about-box-txt {
     font-size: 28px;
     margin-bottom: 20px;
@@ -3170,10 +3200,23 @@ textarea:focus {
     outline: none;
     cursor: pointer;
     background-color: #efefef82;
+    margin-top: 14px;
 }
 
 .about-box .enter-fxuniversity {
     border: 1px solid #4551E0;
+}
+
+.about-box .enter-fxstar {
+    border: 1px solid #6FC170;
+}
+
+.about-box .enter-fxpartner {
+    border: 1px solid #00C1DF;
+}
+
+.about-box .enter-fxuniverse {
+    border: 1px solid #29292947;
 }
 
 .fxuniversity-box .enter-fxuniversity:hover {
@@ -3186,6 +3229,26 @@ textarea:focus {
     filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#00A1E0", endColorstr="#8A00E0", GradientType=1 );
 }
 
+.fxstar-box .enter-fxstar:hover {
+    color: #fff;
+    transition: all .2s;
+    background: hsla(197, 100%, 44%, 1);
+    background: linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(61, 100%, 44%, 1) 100%);
+    background: -moz-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(61, 100%, 44%, 1) 100%);
+    background: -webkit-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(61, 100%, 44%, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#00A1E0", endColorstr="#DDE000", GradientType=1 );
+}
+
+.fxpartner-box .enter-fxpartner:hover {
+    color: #fff;
+    transition: all .2s;
+    background: hsla(197, 100%, 44%, 1);
+    background: linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(179, 100%, 44%, 1) 100%);
+    background: -moz-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(179, 100%, 44%, 1) 100%);
+    background: -webkit-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(179, 100%, 44%, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#00A1E0", endColorstr="#00E0DD", GradientType=1 );
+}
+
 
 
 
@@ -3196,7 +3259,6 @@ textarea:focus {
 
 .solo-container .about .fxstar-about {
     width: 100%;
-    padding: 0 30px;
 }
 
 .solo-container .about .fxuniversity-about .university-background {
