@@ -3161,11 +3161,11 @@ textarea:focus {
 }
 
 .about-box-cnt .fxpartner-box {
-    background: hsl(197deg 100% 44% / 20%);
-    background: linear-gradient( 0deg, hsl(197deg 100% 44% / 20%) 0%, hsl(277deg 100% 44% / 20%) 100%);
-    background: -moz-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(277, 100%, 44%, 1) 100%);
-    background: -webkit-linear-gradient( 0deg, hsl(197deg 100% 44% / 20%) 0%, hsl(277deg 100% 44% / 20%) 100%);
-    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#00A1E0", endColorstr="#8A00E0", GradientType=1 );
+    background: hsla(197, 100%, 44%, 20%);
+    background: linear-gradient(0deg, hsla(197, 100%, 44%, 20%) 0%, hsla(179, 100%, 44%, 20%) 100%);
+    background: -moz-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(179, 100%, 44%, 1) 100%);
+    background: -webkit-linear-gradient(0deg, hsla(197, 100%, 44%, 20%) 0%, hsla(179, 100%, 44%, 20%) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#00A1E0", endColorstr="#00E0DD", GradientType=1 );
 }
 
 .about-box-cnt .fxstar-box {
