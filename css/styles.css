@@ -3144,7 +3144,7 @@ textarea:focus {
 }
 
 .about-box-cnt .about-box {
-    width: 220px;
+    width: 240px;
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
@@ -3217,6 +3217,8 @@ textarea:focus {
 
 .about-box .enter-fxuniverse {
     border: 1px solid #29292947;
+    cursor: initial;
+    margin-top: auto;
 }
 
 .fxuniversity-box .enter-fxuniversity:hover {
