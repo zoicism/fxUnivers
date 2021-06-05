@@ -80,82 +80,95 @@ if($_SERVER['HTTPS'] != "on") {
 		    <svg viewBox="0 0 273.7 116"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M98.4,1.1a15,15,0,0,1,3.5.4V6.4h-1.3c-4.8,0-5.5,3-5.5,4.9v3.4h6.1v4.6H95.1V43.7H87.6V19.3H83.1V14.7h4.5V11.2c0-3.3.9-5.7,2.8-7.5s4.6-2.6,8-2.6m0-1.1c-3.7,0-6.7,1-8.8,2.9s-3.1,4.7-3.1,8.3v2.5H82v6.7h4.5V44.8h9.7V20.4h6.1V13.7H96.2V11.3c0-2.6,1.5-3.8,4.4-3.8l2.4.2V.6A20,20,0,0,0,98.4,0Z"></path><path class="cls-1" d="M131,14.7l-7.3,13.6-.3.5.3.5,7.8,14.4h-7.7l-4.6-8.6-.9-1.9-1,1.9-4.5,8.6h-7.7l7.8-14.4.3-.5-.3-.5-7.3-13.6h7.7l4,8,1,1.9,1-1.9,4.2-8H131m1.9-1H122.8l-4.5,8.5-4.4-8.5H103.7l8.2,15.1-8.6,16h10.2l4.8-9.2,4.9,9.2h10.1l-8.6-16,8.2-15.1Z"></path><path class="cls-1" d="M153.8,24.1v5.3H138.7V24.1h15.1m1.1-1.1H137.6v7.4h17.3V23Z"></path><path class="cls-1" d="M100.8,74.1a18.6,18.6,0,0,1,7.7,1.5,11.8,11.8,0,0,1,5.1,4.2,10,10,0,0,1,1.7,5.1h-7.9a5.9,5.9,0,0,0-1.8-3.7,7.4,7.4,0,0,0-5-1.7,8.1,8.1,0,0,0-4.9,1.4,4.9,4.9,0,0,0-2,3.9,4.7,4.7,0,0,0,2.1,3.8,23,23,0,0,0,6.4,2.9,40.1,40.1,0,0,1,7,2.9c4.2,2.4,6.2,5.6,6.2,9.8a9.1,9.1,0,0,1-3.7,7.8c-2.6,1.9-6.2,2.9-10.7,2.9a22.6,22.6,0,0,1-8.8-1.7,12.7,12.7,0,0,1-5.7-4.6,12.5,12.5,0,0,1-1.9-5.7h8a6.4,6.4,0,0,0,2,4.7c1.4,1.3,3.5,1.9,6.4,1.9a7.4,7.4,0,0,0,4.6-1.3,4.8,4.8,0,0,0,1.9-3.9,5.2,5.2,0,0,0-2-4.3,21.1,21.1,0,0,0-5.8-2.7,54.9,54.9,0,0,1-6.3-2.5c-5.1-2.5-7.6-5.8-7.6-10.1a8.8,8.8,0,0,1,1.8-5.4,12.5,12.5,0,0,1,5.3-3.8,21.8,21.8,0,0,1,7.9-1.4m0-1.1a22.3,22.3,0,0,0-8.3,1.5,12.4,12.4,0,0,0-5.7,4.1,9.6,9.6,0,0,0-2.1,6.1c0,4.7,2.8,8.4,8.2,11a41.9,41.9,0,0,0,6.4,2.6,20.7,20.7,0,0,1,5.5,2.5,4.2,4.2,0,0,1,1.6,3.5,3.4,3.4,0,0,1-1.5,3,5.7,5.7,0,0,1-3.9,1.1c-2.6,0-4.5-.5-5.7-1.6a6.5,6.5,0,0,1-1.7-4.9H83.5a13,13,0,0,0,2.1,7.3,13.7,13.7,0,0,0,6.2,5A22.5,22.5,0,0,0,101,116c4.8,0,8.6-1,11.3-3.1a10.3,10.3,0,0,0,4.2-8.7c0-4.5-2.3-8.1-6.8-10.7a34.4,34.4,0,0,0-7.1-3,28.5,28.5,0,0,1-6.1-2.7,3.9,3.9,0,0,1-1.7-3,3.7,3.7,0,0,1,1.5-3,7.1,7.1,0,0,1,4.3-1.2,6.5,6.5,0,0,1,4.3,1.4,5.4,5.4,0,0,1,1.5,4h10.1a12.1,12.1,0,0,0-2-6.8,12.8,12.8,0,0,0-5.6-4.6,18.6,18.6,0,0,0-8.1-1.6Z"></path><path class="cls-1" d="M131.4,77.7v7.7h5.1V90h-5.1v15.3a4.9,4.9,0,0,0,.9,3.2,4.5,4.5,0,0,0,3.3,1H137v4.8a16.1,16.1,0,0,1-4.4.6c-3,0-5.3-.7-6.6-2s-2.1-3.5-2.1-6.4V90h-4V85.4h4V77.7h7.5m1.1-1.1h-9.7v7.7h-4V91h4v15.5c0,3.2.8,5.6,2.4,7.1s4.1,2.4,7.4,2.4a19.1,19.1,0,0,0,5.4-.8v-7a8.2,8.2,0,0,1-2.4.2,3.4,3.4,0,0,1-2.5-.7,3.7,3.7,0,0,1-.6-2.4V91h5.1V84.3h-5.1V76.6Z"></path><path class="cls-1" d="M154.4,84.8q5.5,0,8.7,2.7a8.9,8.9,0,0,1,3.1,7.1v13.8a18.5,18.5,0,0,0,1,5.9h-7.6c-.1-.5-.3-1.1-.5-1.9l-.5-2.2-1.4,1.8a8.2,8.2,0,0,1-6.6,2.9,10.1,10.1,0,0,1-6.8-2.4,7.4,7.4,0,0,1-2.7-5.8,7.6,7.6,0,0,1,3.3-6.8q3.4-2.4,10.2-2.4h4.1V94.8c0-4.7-3-5.4-4.8-5.4s-4.1,1.2-4.5,3.4h-7.5a8,8,0,0,1,3.3-5.4,15.6,15.6,0,0,1,9.2-2.6m-1.5,25.4a6.1,6.1,0,0,0,3.6-1,7,7,0,0,0,2.1-2.1v-6.6h-3.9c-4,0-6.2,2-6.2,5.6a3.8,3.8,0,0,0,1.3,3,4.4,4.4,0,0,0,3,1.1m1.5-26.5a15.8,15.8,0,0,0-9.8,2.9,8.4,8.4,0,0,0-3.8,7.3h9.6c0-2.3,1.2-3.4,3.5-3.4s3.7,1.4,3.7,4.3v1.6h-3c-4.7,0-8.4.9-10.9,2.6s-3.7,4.3-3.7,7.7a8.2,8.2,0,0,0,3.1,6.6,10.8,10.8,0,0,0,7.5,2.7,8.8,8.8,0,0,0,7.4-3.4,8.8,8.8,0,0,0,1,2.8h9.6v-.5a15.5,15.5,0,0,1-1.3-6.5V94.6a10,10,0,0,0-3.5-8c-2.3-1.9-5.5-2.9-9.4-2.9Zm-1.5,25.4a3.6,3.6,0,0,1-2.3-.8,2.9,2.9,0,0,1-.9-2.2q0-4.5,5.1-4.5h2.8v5a4.6,4.6,0,0,1-1.7,1.7,5.6,5.6,0,0,1-3,.8Z"></path><path class="cls-1" d="M189,84.8h1.6l-.2,7h-2.1c-3.5,0-5.8,1.1-6.9,3.5v19h-7.6V85.4h7l.3,3,.3,3.7,1.7-3.3c1.5-2.7,3.4-4,5.9-4m0-1.1c-2.9,0-5.2,1.6-6.8,4.6l-.4-4h-9v31.1h9.6V95.7c.9-1.9,2.9-2.8,5.9-2.8l3.2.2.2-9a11,11,0,0,0-2.7-.4Z"></path></svg>
 		</div>
 		      
-		<div class="solo-sub">
-		  <p>Purchase fxStars and benefit from the following products and services.</p>
-		  <ul>
-		    <li>
-			<div class="fxstar-circle">
-			    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
-			</div>
-			<p>fxUnivers approved digital currency</p>
-		    </li>
-		    <li>
-			<div class="fxstar-circle">
-			    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
-			</div>
-			<p>Up to 5,000 USD per transaction</p>
-		    </li>
-		    <li>
-			<div class="fxstar-circle">
-			    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
-			</div>
-			<p>Unlimited fxStar transaction quantities</p>
-		    </li>
-		    <li>
-			<div class="fxstar-circle">
-			    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
-			</div>
-			<p>Purchase Courses</p>
-		    </li>
-		    <li>
-			<div class="circle-text">
-			    <div class="fxstar-circle">
-			        <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
-			    </div>
-			    <div class="details-con">
-			        <p>Cash-out (100 fxStars minimum):</p>
-			        <ul>
-			            <li><p>Major Cryptocurrencies</p></li>
-			            <li><p>SWIFT / Wire</p></li>
-			            <li><p>PayPal</p></li>
-			        </ul>
-			    </div>
-			</div>
-		    </li>
-		    <li>
-			<div class="fxstar-circle">
-			    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
-			</div>
-			<p>Buy</p>
-		    </li>
-		    <li>
-			<div class="fxstar-circle">
-			    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
-			</div>
-			<p>Send / Receive / Request</p>
-		    </li>
-		    <li>
-		        <div class="circle-text">
-				<div class="fxstar-circle">
-				    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
-				</div>
-				<div class="details-con">
-					<p>Earn as:</p>
-				        <ul>
-					    <li><p>fxPartner</p></li>
-					    <li><p>fxInstructor</p></li>
-					    <li><p>fxSubInstructor</p></li>
-				        </ul>
-				 </div>
-			</div>
-		    </li>
-		    <li>
-			<div class="fxstar-circle">
-			    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
-			</div>
-			<p><em>More programs to come...</em></p>
-		    </li>
-		  </ul>
+		<div class="solo-sub" style="display:flex; flex-flow:row nowrap; justify-content:space-around;">
+
+
+<div>
+<h3>What to use fxStars for?</h3>
+<ul>
+  <li>
+    <div class="fxstar-circle">
+    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
+    </div>
+    <p>Purchase fxCourses</p>
+  </li>
+  <li>
+    <div class="fxstar-circle">
+    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
+    </div>
+    <p>Send and receive among friends</p>
+  </li>
+  <li>
+    <div class="fxstar-circle">
+    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
+    </div>
+    <p>Request from friends</p>
+  </li>
+  <li>
+    <div class="fxstar-circle">
+    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
+    </div>
+    <p>Unlimited transaction quantities</p>
+  </li>
+</ul>
+  
+</div>
+
+<div>
+<h3>How to get fxStars?</h3>
+<ul>
+<li>
+    <div class="fxstar-circle">
+    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
+    </div>
+    <p>Buy</p>
+  </li>
+<li>
+    <div class="fxstar-circle">
+    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
+    </div>
+    <p>Earn as an fxPartner</p>
+  </li>
+<li>
+    <div class="fxstar-circle">
+    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
+    </div>
+    <p>Earn as an fxInsturcotr</p>
+  </li><li>
+    <div class="fxstar-circle">
+    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
+    </div>
+    <p>Earn as an fxSubInstructor</p>
+  </li>
+</ul>
+</div>
+
+
+<div style="max-width:300px">
+<h3>How to cash-out?</h3>
+<p>With a minimum of 100 fxStars, you can request cash-out from the following channels.</p>
+<ul>
+  <li>
+    <div class="fxstar-circle">
+    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
+    </div>
+    <p>Major Cryptocurrencies</p>
+  </li>
+  <li>
+    <div class="fxstar-circle">
+    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
+    </div>
+    <p>SWIFT / Wire</p>
+  </li>
+  <li>
+    <div class="fxstar-circle">
+    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
+    </div>
+    <p>PayPal</p>
+  </li>
+</ul>
+</div>
+
 		</div>
 	      </div>
 
