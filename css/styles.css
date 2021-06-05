@@ -3281,6 +3281,12 @@ textarea:focus {
     height: 90%;
 }
 
+.solo-container .about h3 {
+    width: fit-content;
+    width: -moz-fit-content;
+}
+
+
 .solo-container .about .fxuniversity-about .solo-sub h3 {
     font-size: 20px;
     line-height: 44px;
