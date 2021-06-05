@@ -180,14 +180,15 @@ if($_SERVER['HTTPS'] != "on") {
 		     </div>
 		<div class="solo-sub">
 		  <p>At fxUniversity you can teach your favorite subjects as an fxInstructor using many top-notch tools and unlimited volume of cloud storage free of charge, and earn fxStars. You can also learn from other fxInstructors, build up your knowledge, and start your own courses by becoming fxSubInstructors.</p>
-	    <!--<p>Create a course, teach your subject, or just join a course using fxUniversity and earn fxStars. Our FX tool is a cloud-based educational hub and learning experience. Earn fxStars and trade -->
 
-		  <h3>fxInstructors and fxSubInstructors</h3>
+		  <!--<h3>fxInstructors and fxSubInstructors</h3>
 	    <p>Become an <b>fxInstructor</b> -- the primary course creator; create a course with recorded/live sessions, presentation, certificate, etc.</p>
 									  <p>Become an <b>fxSubInstructor</b> -- choose from our available courses (fxCourse & fxSubCourse) and teach your audience.</p>
+-->
 
-
-		  <h4>fxInstructor Steps</h4>
+<div style="padding-top:50px; padding-bottom:50px; display:flex; flex-flow:row nowrap; justify-content:space-around;">
+<div style="width:40%">
+		  <h3 style="text-align:center">fxInstructor</h3>
 		  <ol>
 		    <li>
 			<div class="fxuniversity-circle">
@@ -220,8 +221,9 @@ if($_SERVER['HTTPS'] != "on") {
 			<p><b>Course Subs.</b> Allow certified students to generate more revenue for your on auto-pilot.</p>
 		    </li>
 		  </ol>
-
-		  <h4>fxSubInstructor Steps</h4>
+</div>
+<div style="width:40%">
+		  <h3 style="text-align:center">fxSubInstructor</h3>
 		  <ol>
 		    <li>
 			<div class="fxuniversity-circle">
@@ -254,13 +256,21 @@ if($_SERVER['HTTPS'] != "on") {
 			<p><b>Certification and Course Subs.</b> Allow certified students to generate more revenue on auto-pilot.</p>
 		    </li>
 		  </ol>
+</div>
+</div>
+		  <h3>Revenue Stream</h3>
+<p>Here is how shares are dedicated to fxInstructors and fxSubInstructors from the fxCourses and fxCourses they publish, respectively.</p>
+<div style="display:flex; flex-flow:row nowrap; justify-content:space-around;">
+<img src="/images/fxabout/fxcourse.png" style="width:auto; height:356px; margin-top:20px;">
+<img src="/images/fxabout/fxsubcourse.png" style="width:auto; height:356px; margin-top:20px;">
+</div>
+<p>In case there are numerous levels of fxSubCourses for which lead to an fxSubCourse, here is how shares are dedicated to the fxInstructor, fxSubInstructor, and other fxSubInstructors in between:</p> 
+<img src="/images/fxabout/fxsubsubcourse.png" style="width:800px; height:auto; margin-left:auto; margin-right:auto; margin-top:20px;">
 
-
-		  <h4>Revenue Stream for fxInstructor and fxSubInstructors</h4>
-		  <p>fxInstructor can allow an fxCourse's certified students to create fxCourses for their own students as fxSubCourses and hence become fxSubInstructors.</p>
-
-		  <h4>fxInstructor Revenue</h4>
-		  <p>The following conditions apply to an fxInstructor's revenue concerning an fxCrouse.</p>
+<div style="padding-top:50px; padding-bottom:50px; display:flex; flex-flow:row nowrap; justify-content:space-around;">
+<div style="width:40%">
+		  <h3>fxInstructor Revenue</h3>
+		  <p>Here is how an fxInstructor benefits from creating an fxCourse:</p>
 		  <ul>
 		    <li>
 			<div class="fxuniversity-circle">
@@ -308,9 +318,10 @@ if($_SERVER['HTTPS'] != "on") {
 			<p>Set up private courses among your own students or audiences; fxUniversity will administrate the operation.</p>
 		    </li>
 		  </ul>
-
-		  <h4>fxSubInstructor Revenue</h4>
-		  <p>The following conditions apply to an fxSubInstructor's revenue concerning an fxSubCrouse.</p>
+</div>
+<div style="width:40%">
+		  <h3>fxSubInstructor Revenue</h3>
+		  <p>The following conditions apply to an fxSubInstructor\'s revenue concerning an fxSubCrouse.</p>
 		  <ul>
 		    <li>
 			<div class="fxuniversity-circle">
@@ -342,7 +353,8 @@ if($_SERVER['HTTPS'] != "on") {
 		  </ul>
 		</div>
 	      </div>
-	      
+</div>
+</div>	      
 	      
 	      
 	      <div class="fxpartner-about" id="fxpartner">
@@ -352,7 +364,64 @@ if($_SERVER['HTTPS'] != "on") {
 		</div>
 		<div class="solo-sub">
 
-		  <p>Generate revenue as our partner by:</p>
+<div style="display:flex; flex-flow:row nowrap; justify-content:space-around;">
+<div>
+<h3>Benefits of becoming fxPartner</h3>
+<ul>
+		    <li>
+			<div class="fxpartner-circle">
+			    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
+			</div>
+			<p>Revenue Sharing</p>
+		    </li>
+		    <li>
+			<div class="fxpartner-circle">
+			    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
+			</div>
+			<p>Solid Online Job</p>
+		    </li>
+		    <li>
+			<div class="fxpartner-circle">
+			    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
+			</div>
+			<p>Possibility of Secure Cash-out, Anytime</p>
+		    </li>
+		  </ul>
+		</div>
+
+<div style="max-width:500px">
+<h3>fxPartner Roadmap</h3>
+		  <ol>
+			  <li>
+			      <div class="fxpartner-circle">
+			          <div class="about-num">1</div>
+			      </div>
+			      <p><b>Invitation.</b> Use your fxPartner link to invite users and begin earning fxStars.</p>
+			  </li>
+			  <li>
+			      <div class="fxpartner-circle">
+			          <div class="about-num">2</div>
+			      </div>
+			      <p><b>Coordination.</b> Depending on your invitee, coordinate them to be fxInstructors or potential fxSubInstructors as students.</p>
+			  </li>
+			  <li>
+			      <div class="fxpartner-circle">
+			          <div class="about-num">3</div>
+			      </div>
+			      <p><b>Share of Revenue.</b> We will share 50% of our interest from this fxUser with you for 90 days.</p>
+			  </li>
+			  <li>
+			      <div class="fxpartner-circle">
+			          <div class="about-num">4</div>
+			      </div>
+			      <p><b>Network Expansion.</b> The more people you bring in, the more you will earn, and help your network of fxUsers expand.</p>
+			  </li>
+		  </ol>
+
+</div>
+
+<div>
+<h3>fxUsers to Recruit as fxPartner</h3>
 		  <ul>
 		    <li>
 			<div class="fxpartner-circle">
@@ -373,29 +442,10 @@ if($_SERVER['HTTPS'] != "on") {
 			<p>Recruiting fxSubInstructors</p>
 		    </li>
 		  </ul>
-			
-		  <p>As an fxPartner you will benefit from:</p>
-		  <ul>
-		    <li>
-			<div class="fxpartner-circle">
-			    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
-			</div>
-			<p>Revenue Sharing</p>
-		    </li>
-		    <li>
-			<div class="fxpartner-circle">
-			    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
-			</div>
-			<p>Solid Online Job</p>
-		    </li>
-		    <li>
-			<div class="fxpartner-circle">
-			    <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
-			</div>
-			<p>Possibility of Secure Cash-out, Anytime</p>
-		    </li>
-		  </ul>
-			
+</div>
+</div>
+<!--		  <p>Generate revenue as our partner by:</p>
+		  	
 		  <p>Additional Skills to be Rewarded for as an fxPartner:</p>
 		  <ul>
 		    <li>
@@ -449,35 +499,8 @@ if($_SERVER['HTTPS'] != "on") {
 		  </ul>
 			
 		  <p><b>We are open to any form of revenue-generating partnership.</b></p>
-
-		  <h3>fxPartner Roadmap</h3>
-		  <ol>
-			  <li>
-			      <div class="fxpartner-circle">
-			          <div class="about-num">1</div>
-			      </div>
-			      <p><b>Invitation.</b> Use your fxPartner link to invite users and begin earning fxStars.</p>
-			  </li>
-			  <li>
-			      <div class="fxpartner-circle">
-			          <div class="about-num">2</div>
-			      </div>
-			      <p><b>Coordination.</b> Depending on your invitee, coordinate them to be fxInstructors or potential fxSubInstructors as students.</p>
-			  </li>
-			  <li>
-			      <div class="fxpartner-circle">
-			          <div class="about-num">3</div>
-			      </div>
-			      <p><b>Share of Revenue.</b> We will share 50% of our interest from this fxUser with you for 90 days.</p>
-			  </li>
-			  <li>
-			      <div class="fxpartner-circle">
-			          <div class="about-num">4</div>
-			      </div>
-			      <p><b>Network Expansion.</b> The more people you bring in, the more you will earn, and help your network of fxUsers expand.</p>
-			  </li>
-		  </ol>
-		</div>
+-->
+		  		</div>
 	      </div>
 	      
       </div>
