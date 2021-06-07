@@ -1,10 +1,10 @@
 <?php
 // Requiring https
-if($_SERVER['HTTPS'] != "on") {
+/*if($_SERVER['HTTPS'] != "on") {
     $url = "https://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
     header("Location: $url");
     exit;
-}
+}*/
 ?>
 
 <!DOCTYPE html>
@@ -351,9 +351,13 @@ if($_SERVER['HTTPS'] != "on") {
 			<p>Find topics of interest to teach and earn income online on the World Wide Web with outreach to many students a click away.</p>
 		    </li>
 		  </ul>
-		</div>
-	      </div>
 </div>
+
+	      </div>
+	      <p>The following chart, as an example, is presenting how you can gain fxStars for an fxCourse with a value of 100 fxStars, allowing your students to become an fxSubInstructor.</p>
+	      <p>Supposing all courses are valued 100 fxStars and you have only <br><b>Depth 1:</b> 10 fxSubInstructors (students), each of which has:<br><b>Depth 2:</b> 10 fxSubInstructors, each of which has:<br><b>Depth 3:</b> 10 fxSubInstructors,<br>you will gain nearly 7,000 fxStars as net income only reaching the third level of depth in fxSubInstructors. And it's all taking place <u>automatically</u> without having you add anything else to your fxCourse.</p>
+	      <img src="/images/fxabout/fxcourse_net_income.svg" style="width:1000px; height:auto; margin-left:auto; margin-right:auto;">
+		</div>
 </div>	      
 	      
 	      
@@ -363,8 +367,12 @@ if($_SERVER['HTTPS'] != "on") {
 		    <svg viewBox="0 0 272.6 116"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M52.8,1.1a15,15,0,0,1,3.5.4V6.4H55c-4.8,0-5.5,3-5.5,4.9v3.4h6.1v4.6H49.5V43.7H42V19.3H37.5V14.7H42V11.2c0-3.3.9-5.7,2.8-7.5s4.5-2.6,8-2.6m0-1.1C49,0,46.1,1,44,2.9s-3.1,4.7-3.1,8.3v2.5H36.4v6.7h4.5V44.8h9.7V20.4h6.1V13.7H50.6V11.3c0-2.6,1.5-3.8,4.4-3.8l2.4.2V.6A20,20,0,0,0,52.8,0Z"></path><path class="cls-1" d="M85.4,14.7,78.1,28.3l-.3.5.3.5,7.7,14.4H78.2l-4.6-8.6-1-1.9-.9,1.9-4.5,8.6H59.5l7.8-14.4.2-.5-.2-.5L60,14.7h7.6l4.1,8,1,1.9.9-1.9,4.3-8h7.5m1.9-1H77.2l-4.5,8.5-4.4-8.5H58.1l8.2,15.1-8.6,16H67.9l4.8-9.2,4.8,9.2H87.7l-8.6-16,8.2-15.1Z"></path><path class="cls-1" d="M108.2,24.1v5.3H93.1V24.1h15.1m1.1-1.1H92v7.4h17.3V23Z"></path><path class="cls-1" d="M55.9,74.7a18.4,18.4,0,0,1,8,1.6,12.6,12.6,0,0,1,5.3,4.6A13.1,13.1,0,0,1,71,87.8a11.1,11.1,0,0,1-3.9,8.9c-2.8,2.3-6.6,3.4-11.4,3.4H48.2v14.2H40.3V74.7H55.9M48.2,94.5h7.7a7.6,7.6,0,0,0,5.2-1.7,6.5,6.5,0,0,0,1.9-5,7.6,7.6,0,0,0-1.9-5.4A6.4,6.4,0,0,0,56,80.3H48.2V94.5m7.7-20.9H39.2v41.8H49.3V101.2h6.4c5.1,0,9.1-1.2,12.1-3.6a12.3,12.3,0,0,0,4.3-9.8,13,13,0,0,0-2-7.4,12.9,12.9,0,0,0-5.7-5.1,20.8,20.8,0,0,0-8.5-1.7ZM49.3,93.4v-12H56a5.6,5.6,0,0,1,4.3,1.7,6.7,6.7,0,0,1,1.6,4.7A5.7,5.7,0,0,1,60.4,92a6.9,6.9,0,0,1-4.5,1.4Z"></path><path class="cls-1" d="M89.7,84.8q5.5,0,8.7,2.7a9,9,0,0,1,3.2,7.1v13.8a16.3,16.3,0,0,0,.9,5.9H95a14.5,14.5,0,0,1-.6-1.9l-.5-2.2L92.5,112a8.1,8.1,0,0,1-6.6,2.9,10.1,10.1,0,0,1-6.8-2.4,7.4,7.4,0,0,1-2.7-5.8,7.6,7.6,0,0,1,3.3-6.8q3.5-2.4,10.2-2.4H94V94.8c0-4.7-3-5.4-4.8-5.4s-4.1,1.2-4.4,3.4H77.2a7.8,7.8,0,0,1,3.4-5.4,15.1,15.1,0,0,1,9.1-2.6m-1.5,25.4a6.1,6.1,0,0,0,3.6-1,5.3,5.3,0,0,0,2.1-2.1v-6.6H90.1c-4,0-6.1,2-6.1,5.6a4.1,4.1,0,0,0,1.2,3,4.4,4.4,0,0,0,3,1.1m1.5-26.5a16.1,16.1,0,0,0-9.8,2.9,8.7,8.7,0,0,0-3.8,7.3h9.7c0-2.3,1.1-3.4,3.4-3.4s3.7,1.4,3.7,4.3v1.6h-3c-4.7,0-8.3.9-10.8,2.6a8.8,8.8,0,0,0-3.8,7.7,8.5,8.5,0,0,0,3.1,6.6,11,11,0,0,0,7.5,2.7,9,9,0,0,0,7.5-3.4,7,7,0,0,0,.9,2.8H104v-.5c-.9-1.5-1.3-3.7-1.4-6.5V94.6a10,10,0,0,0-3.5-8c-2.3-1.9-5.4-2.9-9.4-2.9Zm-1.5,25.4a3.6,3.6,0,0,1-2.3-.8,2.9,2.9,0,0,1-.9-2.2q0-4.5,5.1-4.5h2.8v5a4.6,4.6,0,0,1-1.7,1.7,5.6,5.6,0,0,1-3,.8Z"></path><path class="cls-1" d="M124.3,84.8h1.6v7h-2.2c-3.5,0-5.8,1.1-6.8,3.5v19h-7.5V85.4h7l.2,3,.3,3.7,1.7-3.3c1.5-2.7,3.4-4,5.9-4m0-1.1c-2.9,0-5.2,1.6-6.8,4.6l-.3-4h-9.1v31.1h9.7V95.7c.8-1.9,2.8-2.8,5.8-2.8l3.2.2.2-9a11,11,0,0,0-2.7-.4Z"></path><path class="cls-1" d="M141.9,77.7v7.7h5.2V90h-5.2v15.3a4.4,4.4,0,0,0,1,3.2c.6.7,1.7,1,3.3,1h1.3v4.8a16.1,16.1,0,0,1-4.4.6c-3,0-5.2-.7-6.6-2s-2.1-3.5-2.1-6.4V90h-3.9V85.4h3.9V77.7h7.5m1.1-1.1h-9.7v7.7h-3.9V91h3.9v15.5c0,3.2.8,5.6,2.4,7.1s4.1,2.4,7.4,2.4a20.3,20.3,0,0,0,5.5-.8v-7a9,9,0,0,1-2.4.2c-1.3,0-2.1-.2-2.5-.7a3.1,3.1,0,0,1-.7-2.4V91h5.2V84.3H143V76.6Z"></path><path class="cls-1" d="M170.1,84.8a8.1,8.1,0,0,1,6.4,2.5c1.4,1.8,2.2,4.5,2.2,8.1v18.9h-7.5V95.8a6.4,6.4,0,0,0-1.2-4.2,5.5,5.5,0,0,0-4.3-1.5,5.9,5.9,0,0,0-5.2,2.8v21.4h-7.5V85.4h7l.2,2.7.2,2.8,1.7-2.3a9.7,9.7,0,0,1,8.1-3.8m0-1.1a10.3,10.3,0,0,0-8.9,4.3l-.3-3.7h-9.1v31.1h9.7V93.5a4.6,4.6,0,0,1,4.2-2.3c1.7,0,2.8.4,3.4,1.1a5,5,0,0,1,1,3.5v19.6h9.7v-20c0-3.9-.9-6.8-2.5-8.8s-4-2.9-7.2-2.9Z"></path><path class="cls-1" d="M199.2,84.8c4.1,0,7.2,1.2,9.5,3.8s3.5,6,3.5,10.6v2.6H192.7l.3,1.3a8.7,8.7,0,0,0,2.6,4.8,8.4,8.4,0,0,0,5.3,1.7A10,10,0,0,0,208,107l3.1,3.6a11.7,11.7,0,0,1-4.2,2.9,16.4,16.4,0,0,1-6.7,1.4c-4.4,0-8.1-1.3-10.8-4s-4.1-6-4.1-10.3v-.8a17.7,17.7,0,0,1,1.7-7.9,10.8,10.8,0,0,1,4.7-5.2,14.9,14.9,0,0,1,7.5-1.9m-6.4,13.1h12.1V96.1a5.9,5.9,0,0,0-1.4-4.4,6.2,6.2,0,0,0-4.4-1.6c-2.3,0-5.3,1.2-6.1,6.6l-.2,1.2m6.4-14.2a16.2,16.2,0,0,0-8.1,2,14.1,14.1,0,0,0-5.1,5.7,18.6,18.6,0,0,0-1.8,8.4v.8a14.8,14.8,0,0,0,4.4,11.1,16,16,0,0,0,11.6,4.3,17.2,17.2,0,0,0,7.2-1.5,12.2,12.2,0,0,0,5.1-4l-4.4-5.2a8.6,8.6,0,0,1-7.2,3.2,6.4,6.4,0,0,1-6.8-5.6h19.2V99.2c0-4.9-1.2-8.7-3.8-11.4s-5.9-4.1-10.3-4.1Zm-5.1,13.2c.5-3.8,2.2-5.7,5-5.7a4.7,4.7,0,0,1,3.6,1.3,4.6,4.6,0,0,1,1.1,3.6v.8Z"></path><path class="cls-1" d="M233.5,84.8h1.6v7h-2.1c-3.5,0-5.9,1.1-6.9,3.5v19h-7.5V85.4h7l.2,3,.3,3.7,1.8-3.3c1.4-2.7,3.3-4,5.8-4m0-1.1c-2.9,0-5.2,1.6-6.8,4.6l-.3-4h-9.1v31.1H227V95.7c.9-1.9,2.8-2.8,5.9-2.8l3.1.2.2-9a9.6,9.6,0,0,0-2.7-.4Z"></path></svg>
 		</div>
 		<div class="solo-sub">
-
-<div style="display:flex; flex-flow:row nowrap; justify-content:space-around;">
+		    <div style="display:flex; flex-flow:row nowrap; justify-content:space-around;">
+			<div><p>Once you invite a new user, fxUnivers' profit from their usage of our services will be shared 50-50 with you for 90 days straight.</p><img src="/images/fxabout/fxpartner1.svg" style="height:400px;width:auto;"></div>
+			<div><p>Here's an example of how an fxSubCourse's fxStars will be shared among fxUnivers and users, including the fxPartner.</p><img src="/images/fxabout/fxpartner2.svg" style="width:auto; height:400px;"></div>
+		    </div>
+		    <div style="display:flex; flex-flow:row nowrap; justify-content:space-around;">
+			
 <div>
 <h3>Benefits of becoming fxPartner</h3>
 <ul>
