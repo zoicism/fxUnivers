@@ -1,10 +1,10 @@
 <?php
 // Requiring https
-/*if($_SERVER['HTTPS'] != "on") {
+if($_SERVER['HTTPS'] != "on") {
     $url = "https://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
     header("Location: $url");
     exit;
-}*/
+}
 ?>
 
 <!DOCTYPE html>
@@ -374,7 +374,7 @@
 		    <div style="display:flex; flex-flow:row nowrap; justify-content:space-around;">
 			
 <div>
-<h3>Benefits of becoming fxPartner</h3>
+<h3>Benefits of fxPartnering</h3>
 <ul>
 		    <li>
 			<div class="fxpartner-circle">
