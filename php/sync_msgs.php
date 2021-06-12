@@ -43,7 +43,7 @@ if($sync_msgs_count>0) {
                   	      <div class="upload-recieved">
                     	        <img src="/images/background/file-recieved.svg">
                   	      </div>
-                  	      <div class="file-name">'.$sync_fetch['text'].'<div>'.$formatSize($sync_fetch['file_size']).'</div></div>
+                  	      <div class="file-name">'.$sync_fetch['text'].'<div>'.formatSize($sync_fetch['file_size']).'</div></div>
                   	      <span class="time">'.$sent_time->format('H:i').'</span>
                 	    </div>
        ';
