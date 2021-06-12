@@ -3496,6 +3496,51 @@ textarea:focus {
     -webkit-text-fill-color: transparent;
 }
 
+.fxcourse-fxsubcourse-chart {
+    margin-bottom: 30px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.fxcourse-fxsubcourse-chart .fxcourse-chart, .fxcourse-fxsubcourse-chart .fxsubcourse-chart {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+.fxcourse-fxsubcourse-chart .fxcourse-chart .chart-header-txt {
+    color: #393939;
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-size: 19px;
+}
+
+.fxcourse-fxsubcourse-chart svg {
+    height: 270px;
+    min-width: 270px;
+}
+
+.chart-desc-cnt {
+    padding: 52px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chart-desc-cnt .chart-desc .desc-square {
+    display: flex;
+    margin: 10px 0;
+    align-items: center;
+}
+
+.chart-desc-cnt .chart-desc .desc-square svg {
+    width: 13px;
+    height: 13px;
+    margin-right: 10px;
+}
+
+
 
 
 /************************************ > Login Page ******************************************/
