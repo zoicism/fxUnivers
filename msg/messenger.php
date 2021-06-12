@@ -33,6 +33,7 @@ require('../php/get_msg.php');
 
 require('../php/get_messenger.php');
 
+require($_SERVER['DOCUMENT_ROOT'].'/php/get_filesize_format.php');
 ?>
 
 <!DOCTYPE html>
@@ -157,7 +158,7 @@ require('../php/get_messenger.php');
                   	      <div class="upload-recieved">
                     	        <img src="/images/background/file-recieved.svg">
                   	      </div>
-                  	      <div class="file-name">'.$row['text'].'<div>'.$row['file_size'].' MB</div></div>
+                  	      <div class="file-name">'.$row['text'].'<div>'.formatSize($row['file_size']).'</div></div>
                   	      <span class="time">'.$sent_time->format('H:i').'</span>
                 	    </div>
 			      ';
