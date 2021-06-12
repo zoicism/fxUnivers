@@ -175,7 +175,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/php/get_filesize_format.php');
                   	      <div class="upload-sent">
                     	        <img src="/images/background/file-sent.svg">
                               </div>
-                  	      <div class="file-name">'.$row['text'].'<div>'.$row['file_size'].' MB</div></div>
+                  	      <div class="file-name">'.$row['text'].'<div>'.formatSize($row['file_size']).'</div></div>
                   	      <span class="time">'.$sent_time->format('H:i').'</span>
                 	    </div>
 			      ';
