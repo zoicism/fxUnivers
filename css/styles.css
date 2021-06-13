@@ -3564,7 +3564,29 @@ textarea:focus {
     width: 270px;
 }
 
+.fxpartner-shares {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 50px;
+}
 
+.fxpartner-shares-pg {
+    width: 270px;
+    font-size: 20px;
+}
+
+.fxpartner-chart {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+.fxpartner-chart svg {
+    width: 270px;
+    height: 270px;
+}
 
 
 /************************************ > Login Page ******************************************/
