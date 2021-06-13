@@ -3497,10 +3497,11 @@ textarea:focus {
 }
 
 .fxcourse-fxsubcourse-chart {
-    margin-bottom: 30px;
+    margin-bottom: 50px;
     display: flex;
     width: 100%;
-    justify-content: space-around;
+    justify-content: space-between;
+    padding-top: 30px;
 }
 
 .fxcourse-fxsubcourse-chart .fxcourse-chart, .fxcourse-fxsubcourse-chart .fxsubcourse-chart {
@@ -3546,6 +3547,21 @@ textarea:focus {
     font-weight: bold;
     margin-bottom: 20px;
     font-size: 19px;
+}
+
+.fxsubcourse-chart-cnt {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.fxsubcourse-chart-cnt .fxsubcourse-chart-pg {
+    width: 270px;
+}
+
+.fxsubcourse-chart-cnt svg {
+    width: 270px;
 }
 
 
