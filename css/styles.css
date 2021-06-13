@@ -3500,7 +3500,7 @@ textarea:focus {
     margin-bottom: 50px;
     display: flex;
     width: 100%;
-    justify-content: space-between;
+    justify-content: space-around;
     padding-top: 30px;
 }
 
@@ -3553,7 +3553,7 @@ textarea:focus {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .fxsubcourse-chart-cnt .fxsubcourse-chart-pg {
