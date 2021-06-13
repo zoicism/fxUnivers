@@ -3500,7 +3500,7 @@ textarea:focus {
     margin-bottom: 30px;
     display: flex;
     width: 100%;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .fxcourse-fxsubcourse-chart .fxcourse-chart, .fxcourse-fxsubcourse-chart .fxsubcourse-chart {
@@ -3535,9 +3535,17 @@ textarea:focus {
 }
 
 .chart-desc-cnt .chart-desc .desc-square svg {
-    width: 13px;
+    max-width: 13px;
+    min-width: 13px;
     height: 13px;
     margin-right: 10px;
+}
+
+.fxcourse-header-txt {
+    color: #393939;
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-size: 19px;
 }
 
 
