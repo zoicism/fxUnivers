@@ -422,11 +422,11 @@ if($_SERVER['HTTPS'] != "on") {
     					<div class="chart-desc">
 						<div class="desc-square">
 							<svg viewBox="0 0 20 20" style="fill: #00e0dd;"><rect width="20" height="20" rx="3"></rect></svg>
-							<div>fxpartner</div>
+							<div>fxPartner</div>
 						</div>
 						<div class="desc-square">
 							<svg viewBox="0 0 20 20" style="fill: #00a1e0;"><rect width="20" height="20" rx="3"></rect></svg>
-							<div>fxunivers</div>
+							<div>fxUnivers</div>
 						</div>
 			
 					</div>
@@ -450,11 +450,11 @@ if($_SERVER['HTTPS'] != "on") {
 						</div>
 						<div class="desc-square">
 							<svg viewBox="0 0 20 20" style="fill: #4551e0;"><rect width="20" height="20" rx="3"></rect></svg>
-							<div>fxInstructor</div>
+							<div>fxSubInstructor</div>
 						</div>
 						<div class="desc-square">
 							<svg viewBox="0 0 20 20" style="fill: #8a00e0;"><rect width="20" height="20" rx="3"></rect></svg>
-							<div>fxInstructors</div>
+							<div>fxSubInstructors</div>
 						</div>
 						<div class="desc-square">
 							<svg viewBox="0 0 20 20" style="fill: #00e0dd;"><rect width="20" height="20" rx="3"></rect></svg>
