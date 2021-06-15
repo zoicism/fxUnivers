@@ -133,7 +133,7 @@ if($_SERVER['HTTPS'] != "on") {
     <div class="fxstar-circle">
     <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
     </div>
-    <p>Earn as an fxInsturcotr</p>
+    <p>Earn as an fxInstructor</p>
   </li><li>
     <div class="fxstar-circle">
     <svg viewBox="0 0 12 10"><defs><style>.cls-1{fill:#efefef;}</style></defs><path class="cls-1" d="M4.5,10a1.1,1.1,0,0,1-.7-.3L.3,6.2a1,1,0,0,1,0-1.4,1,1,0,0,1,1.4,0L4.4,7.6,10.3.4A.9.9,0,0,1,11.6.2a1,1,0,0,1,.2,1.4l-6.5,8a.8.8,0,0,1-.7.4Z"></path></svg>
