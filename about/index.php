@@ -29,6 +29,7 @@ if($_SERVER['HTTPS'] != "on") {
 
 		<div class="about-box-cnt">
 			<div class="fxstar-box about-box">
+				<svg viewBox="0 0 26.9 26.9"><path d="M20.7,11l-4.5-.6-2-4.1a.8.8,0,0,0-1.5,0l-2,4.1L6.2,11a.9.9,0,0,0-.5,1.5L9,15.6l-.8,4.5a.8.8,0,0,0,1.2.9l4-2.1L17.5,21a.8.8,0,0,0,1.2-.9l-.8-4.5,3.3-3.1A.9.9,0,0,0,20.7,11Zm-5.4,1.2h-.9a1.2,1.2,0,0,0-1.1,1.2V14h2v1.6h-2v1.7H11.6V13.4a5,5,0,0,1,.2-1.2,3,3,0,0,1,2.6-1.7h.9Z"></path><path d="M13.4,1A12.5,12.5,0,1,1,1,13.4,12.5,12.5,0,0,1,13.4,1m0-1A13.5,13.5,0,1,0,26.9,13.4,13.4,13.4,0,0,0,13.4,0Z"></path></svg>
     				<div class="about-box-txt">fxStar</div>
     				<div class="about-box-des">
     <p>Buy products &amp; services</p>
@@ -38,6 +39,7 @@ if($_SERVER['HTTPS'] != "on") {
 				<button class="enter-fxstar enter-box" onclick="window.location.href='/wallet/';">Enter fxStar</button>
 			</div>
 			<div class="fxuniversity-box about-box">
+				<svg viewBox="0 0 26.9 26.9"><path d="M13.4,1A12.5,12.5,0,1,1,1,13.4,12.5,12.5,0,0,1,13.4,1m0-1A13.5,13.5,0,1,0,26.9,13.4,13.4,13.4,0,0,0,13.4,0Z"></path><path d="M21,9.2,13.6,5.6h-.3L5.9,9.2c-.4.2-.3.7.1.7H20.8A.4.4,0,0,0,21,9.2Z"></path><path d="M19,19H7.9L5.7,20.2a.6.6,0,0,0,.4,1.1H20.8a.6.6,0,0,0,.4-1.1Z"></path><rect x="7.9" y="11.6" width="1.7" height="5.69" transform="translate(17.5 29) rotate(180)"></rect><rect x="17.3" y="11.6" width="1.7" height="5.69" transform="translate(36.2 29) rotate(180)"></rect><rect x="12.6" y="11.6" width="1.7" height="5.69" transform="translate(26.9 29) rotate(180)"></rect></svg>
     				<div class="about-box-txt">fxUniversity</div>
     				<div class="about-box-des">
     					<p>Create a course &amp; Earn fxStars</p>
@@ -48,6 +50,7 @@ if($_SERVER['HTTPS'] != "on") {
 
 		
 			<div class="fxpartner-box about-box">
+				<svg viewBox="0 0 26.9 26.9"><path d="M13.4,1A12.5,12.5,0,1,1,1,13.4,12.5,12.5,0,0,1,13.4,1m0-1A13.5,13.5,0,1,0,26.9,13.4,13.4,13.4,0,0,0,13.4,0Z"></path><path d="M21.4,8.6v5.9a.7.7,0,0,1-.8.8h-.8v-.7a.8.8,0,0,0-.2-.6l-3.4-3.5L15,9.4l-2.1,1h-.6a1.3,1.3,0,0,1-1.2-.7A1.4,1.4,0,0,1,11.8,8l1.8-.9.6-.3.4-.2h.7l1.5.6h0l2.3,1,1.2-.5A.9.9,0,0,1,21.4,8.6Z"></path><path d="M18,15.2a4.7,4.7,0,0,1-.6.9L14,19.5a2.2,2.2,0,0,1-3,.1L6.2,15.3H5.4V8.2a.8.8,0,0,1,.9-.8H10a2.9,2.9,0,0,0-.4,3.1,1.6,1.6,0,0,0,.6.8,2.5,2.5,0,0,0,2,.9H13l.4-.2,1.3-.6h0l3,3C18,14.5,18,14.9,18,15.2Z"></path></svg>
     				<div class="about-box-txt">fxPartner</div>
     				<div class="about-box-des about/index.php">
 				    <p>Invite instructors and students</p>
@@ -58,6 +61,7 @@ if($_SERVER['HTTPS'] != "on") {
 				<button class="enter-fxpartner enter-box" onclick="window.location.href='/userpgs/partner/';">Enter fxPartner</button>
 			</div>
 <div class="fxuniverse-box about-box">
+				<svg viewBox="0 0 26.9 26.9"><path d="M13.4,1A12.5,12.5,0,1,1,1,13.4,12.5,12.5,0,0,1,13.4,1m0-1A13.5,13.5,0,1,0,26.9,13.4,13.4,13.4,0,0,0,13.4,0Z"></path><path d="M9.8,10.1a16,16,0,0,1-3.3-.7,7.9,7.9,0,0,1,6.7-3.9C11.7,5.6,10.4,7.5,9.8,10.1Z"></path><path d="M15.4,10.3H11.5c.5-2,1.4-3.2,1.9-3.2S14.9,8.3,15.4,10.3Z"></path><path d="M20.4,9.4a16,16,0,0,1-3.3.7c-.6-2.6-1.9-4.5-3.4-4.6A7.9,7.9,0,0,1,20.4,9.4Z"></path><path d="M9.5,15.1a22.1,22.1,0,0,0-3.7.8,10.1,10.1,0,0,1-.4-2.5A10,10,0,0,1,5.8,11l3.7.8c0,.5-.1,1.1-.1,1.6S9.5,14.6,9.5,15.1Z"></path><path d="M13.2,21.4a7.9,7.9,0,0,1-6.7-3.9,16,16,0,0,1,3.3-.7C10.4,19.4,11.7,21.3,13.2,21.4Z"></path><path d="M13.4,19.7c-.5,0-1.4-1.1-1.9-3.1h3.9C14.9,18.6,14,19.7,13.4,19.7Z"></path><path d="M11.2,14.9c0-.4-.1-.9-.1-1.5s.1-1,.1-1.4h4.5v2.9H11.2Z"></path><path d="M17.1,16.8a16,16,0,0,1,3.3.7,7.9,7.9,0,0,1-6.7,3.9C15.2,21.3,16.5,19.4,17.1,16.8Z"></path><path d="M21.4,13.4a10.1,10.1,0,0,1-.3,2.5,22.1,22.1,0,0,0-3.7-.8V11.8l3.7-.8A9.9,9.9,0,0,1,21.4,13.4Z"></path></svg>
     				<div class="about-box-txt">fxUniverse</div>
     				<div class="about-box-des about/index.php">
 				    <p>Universe of Forex Trading</p>
