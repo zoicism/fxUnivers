@@ -3103,6 +3103,18 @@ textarea:focus {
     padding: 30px 15%;
 }
 
+.fxinstructor-fxsubinstructor-cnt {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+}
+
+.fxinstructor-fxsubinstructor-cnt .fxinstructor-fxsubinstructor-desc {
+    width: 40%;
+}
+
 .solo-sub.solo-sub-fxstar, .solo-sub-fxpartner {
     display: flex;
     flex-flow: row nowrap;
@@ -3595,6 +3607,11 @@ textarea:focus {
 
 .fxsubcourse-chart-cnt svg {
     width: 270px;
+}
+
+.fxuniversity-line-chart {
+    height: 300px;
+    margin-top: 50px;
 }
 
 .fxpartner-shares {
@@ -5693,7 +5710,7 @@ input:checked + .slider:before {
 
     .solo-container .solo {
       width: 100%;
-  border-radius: 0;
+        border-radius: 0;
       box-shadow: none;
     }
   
@@ -5714,19 +5731,40 @@ input:checked + .slider:before {
     }
   
     .solo-container .solo-sub {
-  padding: 0 30px 40px 30px;
+        padding: 0 30px 40px 30px;
     }
   
     .solo-container .about .fxpartner-about .partner-background {
-  border-radius: 0;
+        border-radius: 0;
     }
 
     .solo-container .about .fxstar-about .star-background {
-  border-radius: 0;
+        border-radius: 0;
     }
 
     .solo-container .about .about-top {
-  padding: 0;
+        padding: 0;
+    }
+    
+    .solo-sub.solo-sub-fxstar, .solo-sub-fxpartner, .solo-container .about-box-cnt, .fxcourse-fxsubcourse-chart, .fxsubcourse-chart-cnt, .solo-container .solo-sub, .fxpartner-shares, .fxinstructor-fxsubinstructor-cnt, .fxsubcourse-chart-cnt {
+        flex-flow: row wrap;
+    }
+    
+    .fxinstructor-fxsubinstructor-desc {
+        width: 100%;
+    }
+    
+    .fxuniversity-line-chart {
+        height: auto;
+        width: 100%;
+    }
+    
+    .solo-container .about-box-cnt .about-box {
+        margin: 20px 0;
+    }
+    
+    .about-box-cnt .about-box {
+        width: 90%;
     }
 
   
