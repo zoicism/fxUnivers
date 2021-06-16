@@ -3103,6 +3103,20 @@ textarea:focus {
     padding: 30px 15%;
 }
 
+.solo-sub.solo-sub-fxstar {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+}
+
+.solo-sub-inside {
+    width: 33.33%;
+}
+
+.solo-sub-rpadding {
+    padding-right: 20px;
+}
+
 .solo-container .about .about-top .fxunivers-logo .fxunivers-word {
     color: #00a1e0;
     font-family: 'Roboto';
@@ -3214,6 +3228,7 @@ textarea:focus {
     cursor: pointer;
     background-color: #efefef;
     margin-top: 14px;
+    border: 1px solid #fff;
 }
 
 /*.about-box .enter-fxuniversity {
