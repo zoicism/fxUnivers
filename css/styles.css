@@ -3103,7 +3103,7 @@ textarea:focus {
     padding: 30px 15%;
 }
 
-.solo-sub.solo-sub-fxstar {
+.solo-sub.solo-sub-fxstar, .solo-sub-fxpartner {
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-around;
