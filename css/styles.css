@@ -3120,7 +3120,7 @@ textarea:focus {
     text-decoration: none;
     font-size: 14px;
     margin-top: auto;
-    color: #0084b7;
+    color: #fff;
 }
 
 .solo-container .about a:hover {
@@ -3141,6 +3141,8 @@ textarea:focus {
 
 .solo-container .about-box-cnt .about-box {
     margin: 0 20px;
+    box-shadow: 0 0 1rem 0 rgb(0 0 0 / 20%);
+    border: 1px solid #efefef;
 }
 
 .about-box-cnt .about-box {
@@ -3153,40 +3155,51 @@ textarea:focus {
 }
 
 .about-box-cnt .fxuniversity-box {
-    background: hsl(197deg 100% 44% / 20%);
-    background: linear-gradient( 0deg, hsl(197deg 100% 44% / 20%) 0%, hsl(277deg 100% 44% / 20%) 100%);
+    background: hsl(197deg 100% 44%);
+    background: linear-gradient( 0deg, hsl(197deg 100% 44%) 0%, hsl(277deg 100% 44%) 100%);
     background: -moz-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(277, 100%, 44%, 1) 100%);
-    background: -webkit-linear-gradient( 0deg, hsl(197deg 100% 44% / 20%) 0%, hsl(277deg 100% 44% / 20%) 100%);
+    background: -webkit-linear-gradient( 0deg, hsl(197deg 100% 44%) 0%, hsl(277deg 100% 44%) 100%);
     filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#00A1E0", endColorstr="#8A00E0", GradientType=1 );
 }
 
 .about-box-cnt .fxpartner-box {
-    background: hsla(197, 100%, 44%, 20%);
-    background: linear-gradient(0deg, hsla(197, 100%, 44%, 20%) 0%, hsla(179, 100%, 44%, 20%) 100%);
+    background: hsl(197deg 100% 44%);
+    background: linear-gradient(0deg, hsl(197deg 100% 44%) 0%, hsl(179deg 100% 44%) 100%);
     background: -moz-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(179, 100%, 44%, 1) 100%);
-    background: -webkit-linear-gradient(0deg, hsla(197, 100%, 44%, 20%) 0%, hsla(179, 100%, 44%, 20%) 100%);
+    background: -webkit-linear-gradient(0deg, hsl(197deg 100% 44%) 0%, hsl(179deg 100% 44%) 100%);
     filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#00A1E0", endColorstr="#00E0DD", GradientType=1 );
 }
 
 .about-box-cnt .fxstar-box {
-    background: hsla(197, 100%, 44%, 20%);
-    background: linear-gradient(0deg, hsla(197, 100%, 44%, 20%) 0%, hsla(61, 100%, 44%, 20%) 100%);
+    background: hsl(197deg 100% 44%);
+    background: linear-gradient(0deg, hsl(197deg 100% 44%) 0%, hsl(61deg 100% 44%) 100%);
     background: -moz-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(61, 100%, 44%, 1) 100%);
-    background: -webkit-linear-gradient(0deg, hsla(197, 100%, 44%, 20%) 0%, hsla(61, 100%, 44%, 20%) 100%);
+    background: -webkit-linear-gradient(0deg, hsl(197deg 100% 44%) 0%, hsl(61deg 100% 44%) 100%);
     filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#00A1E0", endColorstr="#DDE000", GradientType=1 );
 }
 
 .about-box-cnt .fxuniverse-box {
-    background: hsla(197, 100%, 44%, 20%);
-    background: linear-gradient(0deg, hsla(197, 100%, 44%, 20%) 0%, hsla(239, 100%, 44%, 20%) 100%);
+    background: hsl(197deg 100% 44%);
+    background: linear-gradient(0deg, hsl(197deg 100% 44%) 0%, hsl(239deg 100% 44%) 100%);
     background: -moz-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(239, 100%, 44%, 1) 100%);
-    background: -webkit-linear-gradient(0deg, hsla(197, 100%, 44%, 20%) 0%, hsla(239, 100%, 44%, 20%) 100%);
+    background: -webkit-linear-gradient(0deg, hsl(197deg 100% 44%) 0%, hsl(239deg 100% 44%) 100%);
     filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#00A1E0", endColorstr="#0004E0", GradientType=1 );
 }
 
 .about-box-cnt .about-box-txt {
     font-size: 28px;
     margin-bottom: 20px;
+    color: #fff;
+}
+
+.about-box-des p {
+    color: #fff;
+}
+
+.solo-container .about-box-cnt svg {
+    width: 60px;
+    margin-bottom: 15px;
+    fill: #fff;
 }
 
 .about-box-cnt .about-box-des {
@@ -3199,11 +3212,11 @@ textarea:focus {
     border-radius: 100px;
     outline: none;
     cursor: pointer;
-    background-color: #efefef82;
+    background-color: #efefef;
     margin-top: 14px;
 }
 
-.about-box .enter-fxuniversity {
+/*.about-box .enter-fxuniversity {
     border: 1px solid #4551E0;
 }
 
@@ -3217,6 +3230,11 @@ textarea:focus {
 
 .about-box .enter-fxuniverse {
     border: 1px solid #29292947;
+    cursor: initial;
+    margin-top: auto;
+}*/
+
+.about-box .enter-fxuniverse {
     cursor: initial;
     margin-top: auto;
 }
