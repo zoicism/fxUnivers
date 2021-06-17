@@ -5766,6 +5766,10 @@ input:checked + .slider:before {
     .about-box-cnt .about-box {
         width: 90%;
     }
+    
+    .solo-sub-rpadding {
+        padding-right: unset;
+    }
 
   
     /********************** < about page mobile **********************/
