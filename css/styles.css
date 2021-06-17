@@ -3180,6 +3180,7 @@ textarea:focus {
 .solo-container .about-box-cnt .about-box .about-box-inside {
     display: flex;
     flex-flow: column nowrap;
+    align-items: center;
     height: 100%;
 }
 
@@ -5784,7 +5785,7 @@ input:checked + .slider:before {
         width: 90%;
     }
     
-    .solo-container .about-box-cnt .about-box {
+    .solo-container .about-box-cnt .about-box .about-box-inside {
         flex-flow: row;
         width: 100%;
     }
@@ -5805,7 +5806,7 @@ input:checked + .slider:before {
         width: 100%;
     }
     
-    .learn-more-enter-cnt {
+    .solo-container .about-box-cnt .about-box .about-box-inside .desc-enter-cnt .learn-more-enter-cnt {
         display: flex;
         flex-flow: row nowrap;
         align-items: center;
