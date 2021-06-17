@@ -5750,7 +5750,7 @@ input:checked + .slider:before {
         flex-flow: row wrap;
     }
     
-    .fxinstructor-fxsubinstructor-desc {
+    .fxinstructor-fxsubinstructor-cnt .fxinstructor-fxsubinstructor-desc, .solo-sub-inside {
         width: 100%;
     }
     
