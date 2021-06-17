@@ -658,6 +658,6 @@ if($_SERVER['HTTPS'] != "on") {
 	      </div>
 	      
       </div>
-<div class="footer">With all due Reserves, &copy; fxUnivers 2017-2021 All rights reserved. <a href="/policy" style="color:#939393;">Policy</a></div> 
+	<!--<div class="footer">With all due Reserves, &copy; fxUnivers 2017-2021 All rights reserved. <a href="/policy" style="color:#939393;">Policy</a></div>-->
   </body>
 </html>
