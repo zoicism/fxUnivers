@@ -204,6 +204,9 @@ if($_SERVER['HTTPS'] != "on") {
 </div>
 
 		</div>
+		 <div class="enter-box-cnt">
+			<button class="enter-fxstar enter-box" onclick="window.location.href='/wallet/';">Enter fxStar</button>
+		 </div>     
 	      </div>
 
 
@@ -452,6 +455,9 @@ if($_SERVER['HTTPS'] != "on") {
 			
 			</div>
 		</div>
+		<div class="enter-box-cnt">
+			<button class="enter-fxuniversity enter-box" onclick="window.location.href='/userpgs/fxuniversity/';">Enter fxUniversity</button>
+		</div>	
 		</div>
 </div>	      
 	      
@@ -655,6 +661,9 @@ if($_SERVER['HTTPS'] != "on") {
 		  <p><b>We are open to any form of revenue-generating partnership.</b></p>
 -->
 		  		</div>
+		      <div class="enter-box-cnt">
+				<button class="enter-fxpartner enter-box" onclick="window.location.href='/userpgs/partner/';">Enter fxPartner</button>
+		      </div>
 	      </div>
 	      
       </div>
