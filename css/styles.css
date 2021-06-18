@@ -3243,8 +3243,11 @@ textarea:focus {
 
 .about-box-des p {
     color: #fff;
+	padding-bottom: 10px;
 }
-
+.about-box-des p:before {
+	content: "• "; 
+}
 .solo-container .about-box-cnt svg {
     width: 60px;
     margin-bottom: 15px;

@@ -55,6 +55,7 @@ if($_SERVER['HTTPS'] != "on") {
 					<div class="desc-enter-cnt">
 						<div class="about-box-des">
 							<p>Create a course &amp; Earn fxStars</p>
+							<p>Learn a course &amp; Make fxStars</p>
 						</div>
 						<div class="learn-more-enter-cnt">
 							<a href="#fxuniversity">Learn more</a>
