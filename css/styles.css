@@ -3319,7 +3319,56 @@ textarea:focus {
     filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#00A1E0", endColorstr="#00E0DD", GradientType=1 );
 }
 
+.enter-box-cnt {
+    width: 100%;
+    display: flex;
+}
 
+.fxstar-about .enter-box, .fxuniversity-about .enter-box, .fxpartner-about .enter-box {
+    padding: 10px 90px;
+    border-radius: 100px;
+    outline: none;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 0 auto 50px auto;
+    border: 1px solid #fff;
+    color: #fff;
+    white-space: nowrap;
+}
+
+.fxstar-about .enter-box {
+    transition: all .2s;
+    background: hsla(197, 100%, 44%, 1);
+    background: linear-gradient( 0deg, hsla(197, 100%, 44%, 1) 0%, hsla(61, 100%, 44%, 1) 100%);
+    background: -moz-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(61, 100%, 44%, 1) 100%);
+    background: -webkit-linear-gradient( 0deg, hsla(197, 100%, 44%, 1) 0%, hsla(61, 100%, 44%, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#00A1E0", endColorstr="#DDE000", GradientType=1 );
+}
+
+.fxuniversity-about .enter-box {
+    background: hsl(197deg 100% 44%);
+    background: linear-gradient( 0deg, hsl(197deg 100% 44%) 0%, hsl(277deg 100% 44%) 100%);
+    background: -moz-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(277, 100%, 44%, 1) 100%);
+    background: -webkit-linear-gradient( 0deg, hsl(197deg 100% 44%) 0%, hsl(277deg 100% 44%) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#00A1E0", endColorstr="#8A00E0", GradientType=1 );
+}
+
+.fxpartner-about .enter-box {
+    background: hsla(197, 100%, 44%, 1);
+    background: linear-gradient( 0deg, hsla(197, 100%, 44%, 1) 0%, hsla(179, 100%, 44%, 1) 100%);
+    background: -moz-linear-gradient(0deg, hsla(197, 100%, 44%, 1) 0%, hsla(179, 100%, 44%, 1) 100%);
+    background: -webkit-linear-gradient( 0deg, hsla(197, 100%, 44%, 1) 0%, hsla(179, 100%, 44%, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#00A1E0", endColorstr="#00E0DD", GradientType=1 );
+}
+
+.fxstar-about .enter-box:hover, .fxuniversity-about .enter-box:hover, .fxpartner-about .enter-box:hover {
+    background: #00a1e0;
+    transition: all .2s;
+}
+
+.fxstar-about .enter-box:active, .fxuniversity-about .enter-box:active, .fxpartner-about .enter-box:active {
+    background: #0288bd;
+}
 
 
 
