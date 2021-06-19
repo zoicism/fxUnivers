@@ -56,7 +56,7 @@ if(screen.width>628) {
                 <li><a class="openbtn" onclick="openNav()">
 
                     <svg aria-label="menu" viewBox="0 0 32 32">
-                      <rect class="cls-1" x="3" y="3" width="26" height="2" rx="1"/><rect class="cls-1" x="3" y="15" width="26" height="2" rx="1"/><rect class="cls-1" x="3" y="27" width="26" height="2" rx="1"/>
+                      <rect x="3" y="3" width="26" height="2" rx="1"/><rect x="3" y="15" width="26" height="2" rx="1"/><rect x="3" y="27" width="26" height="2" rx="1"/>
                     </svg>
 
                 </a></li>
