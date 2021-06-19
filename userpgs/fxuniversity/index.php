@@ -92,19 +92,19 @@ if($gss_count > 0) {
 		</div>
 		<div class="main-content-mob">
 
-		    <ul class="main-flex-container">
-			<li class="main-items">
+		    <div class="bar-cnt">
+			<div class="bar-items fxuniversity-bar-items">
 			    <a href="/userpgs/instructor" class="link-main">
 				<div class="head">Teach (<?php echo $course_count ?>)</div>
 			    </a>
-			</li>
-			<li class="main-items">
+			</div>
+			<div class="bar-items fxuniversity-bar-items">
 			    <a href="/userpgs/student" class="link-main">
 				<div class="head">Learn (<?php echo $gss_count_alive ?>)</div>
 			    </a>
-			</li>
+			</div>
 			
-		    </ul>
+		    </div>
 
 		</div>
 		
