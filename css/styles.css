@@ -3686,8 +3686,13 @@ textarea:focus {
     justify-content: space-around;
 }
 
+.revenue-stream-cnt p {
+    font-size: 20px;
+}
+
 .fxsubcourse-chart-cnt .fxsubcourse-chart-pg {
     width: 270px;
+    font-size: 20px;
 }
 
 .fxsubcourse-chart-cnt svg {
@@ -3710,6 +3715,10 @@ textarea:focus {
 .fxpartner-shares-pg {
     width: 270px;
     font-size: 20px;
+}
+
+.fxpartner-shares-pg.mobile-view-pg {
+    display: none;
 }
 
 .fxpartner-chart {
@@ -5857,6 +5866,19 @@ input:checked + .slider:before {
     .fxuniversity-line-chart {
         height: auto;
         width: 100%;
+    }
+	
+   .fxsubcourse-chart-cnt .fxsubcourse-chart-pg, .fxpartner-shares-pg {
+	width: 100%;
+	    
+    }
+	
+    .fxpartner-shares-pg.mobile-view-pg {
+	display: block;
+    }
+	
+    .fxpartner-shares-pg.desktop-view-pg {
+	display: none;
     }
     
     .solo-sub-rpadding {
