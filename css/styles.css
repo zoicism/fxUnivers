@@ -5918,7 +5918,7 @@ input:checked + .slider:before {
         width: 100%;
     }
     
-    .solo-container .about a {
+    .solo-container .about-top a {
         margin: 0 0 12px 0;
     }
     
@@ -5947,7 +5947,7 @@ input:checked + .slider:before {
 	    border-top: 1px solid #c2c2c2;
 	}
 
-	.solo-container .about .footer a {
+	.solo-container .about .footer-about a {
 	    padding-left: 10px;
 	    text-decoration: underline;
 	}
