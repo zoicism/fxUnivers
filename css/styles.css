@@ -6022,10 +6022,11 @@ input:checked + .slider:before {
 	    padding: 30px 20px;
     }
 	
-    .empty-space {
-    min-height: 30px;
-    border: 1px solid #0000;
-	}
+    .login-container .empty-space {
+	display: block;
+    	min-height: 30px;
+    	border: 1px solid #0000;
+     }
     
     .login-form h2, .login-input, .login-forgot, .remember-me {
   display: none !important;
