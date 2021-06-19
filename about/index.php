@@ -668,6 +668,7 @@ if($_SERVER['HTTPS'] != "on") {
 		      <div class="enter-box-cnt">
 				<button class="enter-fxpartner enter-box" onclick="window.location.href='/userpgs/partner/';">Enter fxPartner</button>
 		      </div>
+		      <div class="footer-about">With all due Reserves, &copy; fxUnivers 2017-2021 All rights reserved. <a href="/policy" style="color:#939393;">Policy</a></div>
 	      </div>
 	      
       </div>
