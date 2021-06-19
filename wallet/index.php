@@ -143,33 +143,33 @@ require('php/get_fxcoin_count.php');
 
                           <div class="main-content-mob">
 
-              <ul class="main-flex-container">
-                  <li class="main-items">
+              <div class="bar-cnt">
+                  <div class="bar-items fxstar-bar-items">
                       <a href="/wallet/buy" class="link-main">
                           <div class="head">Buy fxStars</div>
                       </a>
-                  </li>
-                  <li class="main-items">
+                  </div>
+                  <div class="bar-items fxstar-bar-items">
                       <a href="/wallet/cashout" class="link-main">
                           <div class="head">Cash-out fxStars</div>
                       </a>
-                  </li>
-                  <li class="main-items">
+                  </div>
+                  <div class="bar-items fxstar-bar-items">
                       <a href="/wallet/txn" class="link-main">
                           <div class="head">Transactions</div>
                       </a>
-                  </li>
-                  <li class="main-items">
+                  </div>
+                  <div class="bar-items fxstar-bar-items">
                       <a href="/wallet/send" class="link-main">
                           <div class="head">Send fxStars</div>
                       </a>
-                  </li>
-                  <li class="main-items">
+                  </div>
+                  <div class="bar-items fxstar-bar-items">
                       <a href="/wallet/req" class="link-main">
                           <div class="head">Request fxStars</div>
                       </a>
-                  </li>
-              </ul>
+                  </div>
+              </div>
 
                           </div>
 
