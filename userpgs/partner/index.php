@@ -118,19 +118,20 @@ require('../../wallet/php/get_fxcoin_count.php');
 
 
 <div class="main-content-mob">
-  <ul class="main-flex-container">
-  <li class="main-items">
-  <a href="/userpgs/partner/positions" class="link-main">
-  <div class="head">fxHR</div>
-  </a>
+  <div class="bar-cnt">
+	  <div class="bar-items fxpartner-bar-items">
+		  <a href="/userpgs/partner/positions" class="link-main">
+		  	<div class="head">fxHR</div>
+		  </a>
+	  </div>
   
-  <li class="main-items">
-  <a href="/userpgs/partner/income" class="link-main">
-  <div class="head">Earnings History</div>
-  </a>
-  </li>
+	  <div class="bar-items fxpartner-bar-items">
+		  <a href="/userpgs/partner/income" class="link-main">
+		  	<div class="head">Earnings History</div>
+		  </a>
+	  </div>
                   
-  </ul>
+  </div>
   </div>
 
 
