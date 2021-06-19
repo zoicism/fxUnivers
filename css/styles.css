@@ -80,6 +80,16 @@ input, textarea, select {
     display:block;
 }
 
+input, select, textarea, button, a {
+    -webkit-tap-highlight-color: #fff0;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 input[type=number]::-webkit-inner-spin-button {
     opacity: 1;
     position: relative; 
@@ -5855,6 +5865,7 @@ input:checked + .slider:before {
     
     .solo-container .about-box-cnt .about-box {
         margin: 20px 0;
+	padding: 30px 20px;
         width: 90%;
     }
     
@@ -5867,6 +5878,7 @@ input:checked + .slider:before {
         display: flex;
         flex-flow: column nowrap;
         align-items: center;
+	min-width: 93.42px;
         margin-right: 20px;
     }
     
