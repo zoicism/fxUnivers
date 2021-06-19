@@ -3754,11 +3754,14 @@ textarea:focus {
     width: 100px;
 }
 
-.fxunivers-logo svg {
-    display: block;
-    height: 25px;
-    fill: #00a1e0;
-    margin-top: 10px;
+.fxunivers-logo .fxunivers-txt {
+    font-size: 24px;
+    color: #00a1e0;
+    margin: 10px 0 7px 0;
+}
+
+.login-container .empty-space {
+    display: none;
 }
 
 .fxunivers-logo p {
@@ -3831,6 +3834,7 @@ textarea:focus {
     border: 2px solid #F7F7F7;
     background-color: #00A1E0;
     color: #fff;
+    margin-top: 10px;
 }
 
 .login-button:active {
@@ -3861,13 +3865,24 @@ textarea:focus {
 
 
 .login-text span {
-    font-size: 16px;
-    font-weight: 800;
+    font-size: 18px;
+    font-weight: bold;
 }
 
 .login-text p {
-    font-size: 14px;
+    font-size: 15px;
+    line-height: 19px;
     margin-bottom: 30px;
+}
+
+.login-text a {
+    text-decoration: none;
+    color: #038fc5;
+    margin-left: 6px;
+}
+
+.login-text a:hover {
+    text-decoration: underline;
 }
 
 .fx-icon {
@@ -3888,8 +3903,8 @@ textarea:focus {
     content: "";
     display: block;
     background: url("/images/icons/platforms/fxuniversity.svg") no-repeat;
-    width: 1em;
-    height: 1em;
+    width: 18px;
+    height: 18px;
     float: left;
     margin-right: 1em;
     margin: 0 10px 0 0;
@@ -3898,8 +3913,8 @@ textarea:focus {
     content: "";
     display: block;
     background: url("/images/icons/platforms/fxpartner.svg") no-repeat;
-    width: 1em;
-    height: 1em;
+    width: 18px;
+    height: 18px;
     float: left;
     margin-right: 1em;
     margin: 0 10px 0 0;
@@ -3908,8 +3923,8 @@ textarea:focus {
     content: "";
     display: block;
     background: url("/images/icons/platforms/fxuniverse.svg") no-repeat;
-    width: 1em;
-    height: 1em;
+    width: 18px;
+    height: 18px;
     float: left;
     margin-right: 1em;
     margin: 0 10px 0 0;
@@ -3918,8 +3933,8 @@ textarea:focus {
     content: "";
     display: block;
     background: url("/images/icons/platforms/fxsonet.svg") no-repeat;
-    width: 1em;
-    height: 1em;
+    width: 18px;
+    height: 18px;
     float: left;
     margin-right: 1em;
     margin: 0 10px 0 0;
@@ -3993,7 +4008,7 @@ textarea:focus {
     height: 25px;
     align-items: center;
     margin-bottom: 0;
-    margin-top: 4px;
+    margin-top: 14px;
 }
 
 .checkbox {
@@ -4031,8 +4046,8 @@ textarea:focus {
     position: absolute;
     top: 0;
     left: 0;
-    height: 25px;
-    width: 25px;
+    height: 23px;
+    width: 23px;
     border: 1px solid #00A1E0;
     border-radius: 50px;
 }
@@ -4046,7 +4061,7 @@ textarea:focus {
 }
 
 .checkbox input:not(:checked) ~ .checkmark {
-    background-color: #D2E6EE;
+    background-color: #e8f0fe;
 }
 
 .checkmark:after {
@@ -6004,7 +6019,13 @@ input:checked + .slider:before {
     .login-description {
   width:100%;
   height: 100%;
+	    padding: 30px 20px;
     }
+	
+    .empty-space {
+    min-height: 30px;
+    border: 1px solid #0000;
+	}
     
     .login-form h2, .login-input, .login-forgot, .remember-me {
   display: none !important;
@@ -6021,7 +6042,8 @@ input:checked + .slider:before {
 
     
     .login-button, .signup-button {
-  width: 100%;
+       width: 100%;
+       margin-top: 30px;
     }
     
     
