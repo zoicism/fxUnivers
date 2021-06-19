@@ -3737,20 +3737,6 @@ textarea:focus {
     display: none;
 }
 
-.solo-container .about .footer-about {
-    width: 100%;
-    padding: 30px 20px 0 20px;
-    color: #939393;
-    font-size: 14px;
-    line-height: 20px;
-    border-top: 1px solid #c2c2c2;
-}
-
-.solo-container .about .footer a {
-    padding-left: 10px;
-    text-decoration: underline;
-}
-
 
 /************************************ > Login Page ******************************************/
 
