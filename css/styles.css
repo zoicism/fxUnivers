@@ -3790,6 +3790,7 @@ textarea:focus {
 
 .fxunivers-logo p {
     font-size: 20px;
+    color: 00a1e0;
 }
 
 .login-form h2 {
@@ -6094,8 +6095,10 @@ input:checked + .slider:before {
     }
 
     .mob-login-forgot {
-  text-align:center;
-  display:block;
+        text-align:center;
+        display:block;
+        padding-top: 11px;
+        color: #038fc5;
     }
 
     #desktop-login-btn {
@@ -6249,6 +6252,17 @@ input:checked + .slider:before {
         padding: 6px 100px;
         transition: all .1s;
     }
+	
+   .bar-items {
+	margin: 10px 0;
+   }
+	
+   .link-main {
+	padding: 6px 100px;
+	white-space: nowrap;
+	margin: 1px 0;
+   }
+	
 
     .nav__links {
   justify-content:space-between;
