@@ -2234,6 +2234,7 @@ textarea:focus {
 .main-flex-container .main-items {
     list-style:none;
     white-space: nowrap;
+    text-align: center;
 }
 
 .main-items .link-main {
@@ -5823,8 +5824,8 @@ input:checked + .slider:before {
     }
   
     .search-form {
-  width:100%;
-  padding:0 5%;
+  	width:100%;
+  	padding:0 30px;
     }
     
     
@@ -6261,7 +6262,7 @@ input:checked + .slider:before {
     }
     
     .main-flex-container {
-  flex-flow: column wrap;
+        padding: 0 20px;
     }
     
     .main-items {
