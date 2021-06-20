@@ -6279,7 +6279,6 @@ input:checked + .slider:before {
     
     a.link-main:active {
         background-color: #dcdcdc;
-        padding: 6px 100px;
         transition: all .1s;
     }
 	
@@ -6511,9 +6510,9 @@ input:checked + .slider:before {
   font-size:1.2rem;
     }
 
-    .course-content .right-content {
+    .course-content .right-content, .course-des-con {
   width:100%;
-  padding:0 20px;
+  padding:0 30px;
     }
 
     .notif-container {
@@ -6667,10 +6666,6 @@ input:checked + .slider:before {
     .obj-box .object-user {
   width:90%;
   margin:1em 0;
-    }
-
-    .course-des-con {
-  padding:0 20px;
     }
 
     .right-content .sessions {
