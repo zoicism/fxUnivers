@@ -614,7 +614,7 @@ textarea:focus {
 
 .sessions .sess-list {
     position: relative;
-    overflow-y: scroll;
+    overflow-y: auto;
     width: 100%;
     /*height: calc(100% - 40px);*/
     height:400px;
@@ -6440,6 +6440,10 @@ input:checked + .slider:before {
 	background: #cccccc;
 	transition: 0.2s;
     }
+	
+    .obj-box .object .preview img {
+        border-radius: 5px;
+    }
     
     .obj-box .object .preview {
   	min-width: 150px;
@@ -6493,7 +6497,8 @@ input:checked + .slider:before {
     }
 
     .course-content {
-  flex-flow:column;
+  	flex-flow:column;
+	padding: 0;
     }
 
     .course-content .left-content {
@@ -6508,7 +6513,7 @@ input:checked + .slider:before {
 
     .course-content .right-content {
   width:100%;
-  padding:0 15px;
+  padding:0 20px;
     }
 
     .notif-container {
@@ -6665,20 +6670,19 @@ input:checked + .slider:before {
     }
 
     .course-des-con {
-  padding:0 15px;
+  padding:0 20px;
     }
 
     .right-content .sessions {
-  box-shadow:none;
-  border-radius: 0;
-  padding: 0;
-  height:auto;
+    box-shadow: none;
+    padding: 0;
+    border: 1px solid #c2c2c2;
+    border-radius: 10px;
+    margin-bottom: 20px;
   
     }
     
     .sessions .sess-list {
-  overflow-y:none;
-  height:auto;
   padding-left:0;
   padding-right:0;
     }
@@ -6711,9 +6715,10 @@ input:checked + .slider:before {
     }
 
     .course-upperleft .bulletin {
-  width:100%;
-  box-shadow:none;
-  height:auto;
+	  width:100%;
+	  box-shadow:none;
+	  height:auto;
+	  padding-bottom: 0;
     }
 
     .bulletin .bulletin-txt-con {
