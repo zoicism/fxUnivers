@@ -6529,6 +6529,7 @@ input:checked + .slider:before {
 	
   .left-content .pub-avatar .like-dislike {
     padding: 0 20px;
+    width: auto;
     }
 
     .notif-container {
