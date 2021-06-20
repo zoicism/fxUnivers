@@ -2223,7 +2223,7 @@ textarea:focus {
     width: 100%;
     display:flex;
     justify-content:center;
-    flex-flow:row wrap;
+    flex-flow:row nowrap;
 }
 
 .items {
