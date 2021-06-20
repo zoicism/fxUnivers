@@ -1225,8 +1225,6 @@ textarea:focus {
 }
 
 .obj-box .object:active {
-    border-radius: 10px;
-    background: #efefef;
     box-shadow: inset 6px 6px 12px #d9d9d9, 
     inset -6px -6px 12px #ffffff;
 }
@@ -1254,7 +1252,8 @@ textarea:focus {
 }
 
 .obj-box .object .preview svg {
-    fill: #c2c2c2;
+    fill: #000;
+    opacity: .2;
     width: 126px;
 }
 
@@ -5831,7 +5830,7 @@ input:checked + .slider:before {
     
     
     .inner-content-box {
-        padding: 0 20px 20px 20px;
+        padding: 0 65px 20px 65px;
         margin: 0;
         box-shadow: none;
         border-radius: 0;
@@ -6423,20 +6422,30 @@ input:checked + .slider:before {
     }
 
     .obj-box .object {
-  width: 100%;
+  	width: 100%;
         margin: 0 0 1em 0;
         flex-flow: row nowrap;
         height: auto;
-        border-radius: 0;
+        border-radius: 5px;
         box-shadow: none;
+    }
+	
+    .obj-box .object:hover {
+	background: #e6e6e6;
+    }
+	
+    .obj-box .object:active {
+	box-shadow: none;
+	background: #cccccc;
+	transition: 0.2s;
     }
     
     .obj-box .object .preview {
-  min-width: 150px;
-  width: 0;
+  	min-width: 150px;
+  	width: 0;
         height: 84.27px;
         position: relative;
-        border-radius: 0;
+        border-radius: 5px;
     }
     
     .obj-box .object .preview svg {
