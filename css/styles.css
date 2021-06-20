@@ -4332,7 +4332,7 @@ textarea:focus {
 
 /* width */
 ::-webkit-scrollbar {
-    width: 4px;
+    width: 9px;
     height: 30px;
 }
 
@@ -4345,7 +4345,7 @@ textarea:focus {
 /* Handle */
 ::-webkit-scrollbar-thumb {
     background: #c1c1c1; 
-    border-radius: 4px;
+    border-radius: 9px;
 }
 
 /* Handle on hover */
