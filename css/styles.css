@@ -359,6 +359,11 @@ textarea:focus {
     color: #333333bd;
 }
 
+.like-dislike span {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
 .left-content .pub-avatar .like-dislike #dislikeBtn {
     margin-left: 10px;
 }
@@ -393,14 +398,18 @@ textarea:focus {
     inset 6px 6px 10px rgba(0, 0, 0, .15);
 }
 .pub-avatar .pub-name {
-    margin-left: 18px;
+    margin-left: 14px;
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
+    overflow: hidden;
 }
 
 .pub-avatar .pub-name .username {
     margin-bottom: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .pub-name .username {
@@ -411,7 +420,10 @@ textarea:focus {
 .pub-name .fullname {
     font-size: 16px;
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
+
 .pub-avatar .pub-name a{
     text-decoration:none;
 }
@@ -6514,6 +6526,10 @@ input:checked + .slider:before {
   width:100%;
   padding:0 30px;
     }
+	
+  .left-content .pub-avatar .like-dislike {
+    padding: 0 20px;
+    }
 
     .notif-container {
   width:90%;
@@ -6675,11 +6691,6 @@ input:checked + .slider:before {
     border-radius: 10px;
     margin-bottom: 20px;
   
-    }
-    
-    .sessions .sess-list {
-  padding-left:0;
-  padding-right:0;
     }
 
     .right-content .options {
