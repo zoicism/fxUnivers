@@ -6704,22 +6704,20 @@ input:checked + .slider:before {
     }
 
     .course-content .course-upperleft .video-holder {
-  margin-right:0;
-  width:100%;
-  margin-bottom: 20px;
+	  margin-right:0;
+	  width:100%;
+	  margin-bottom: 20px;
+    }
+	
+    .course-content .left-content .video-holder {
+          margin-bottom: 20px;
     }
 
     .course-content .course-upperleft .video-placeholder {
-  width:100%;
-  border-radius:0;
-  height:150px;
-    }
-
-    .course-content .video-placeholder {
-  	width:100%;
-  	border-radius:0;
-  	height:150px;
-	margin-bottom: 20px;
+	  width:100%;
+	  border-radius:0;
+	  height:150px;
+	  margin-bottom: 20px;
     }
 
     .course-upperleft .bulletin {
