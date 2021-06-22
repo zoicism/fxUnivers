@@ -1908,18 +1908,40 @@ textarea:focus {
 
 .relative-main-content .course-management-con .course-management-boxes {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: column nowrap;
     justify-content: space-between;
     width: 100%;
 }
 
-.relative-main-content .course-management-con .course-management-boxes .left {
-    width: calc(50% - 30px);
+.relative-main-content .course-management-con .course-management-boxes .left,
+.relative-main-content .course-management-con .course-management-boxes .video-bulletin-con
+{
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+
+.relative-main-content .course-management-con .course-management-boxes .left .inner-content-box,
+.relative-main-content .course-management-con .course-management-boxes .video-bulletin-con .inner-content-box  {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    padding: 20px 40px;
+    text-align: center;
+    max-width: none;
+    min-width: auto;
+    min-height: auto;
+    width: 50%;
+    margin: 20px;
+    overflow: hidden;
+    box-shadow: 5px 5px 10px #c6c6c6, -5px -5px 10px #ffffff;
 }
 
 .relative-main-content .course-management-con .course-management-boxes .left .form {
     width: 100%;
-    border-bottom: 1px solid #3333332e;
 }
 
 .relative-main-content .course-management-con .course-management-boxes .left .form textarea {
@@ -1954,12 +1976,6 @@ textarea:focus {
 .relative-main-content .course-management-con .course-management-boxes .left .delete-course-con {
     width: 100%;
     text-align: center;
-}
-
-.relative-main-content .course-management-con .course-management-boxes .video-bulletin-con {
-    display: flex;
-    flex-flow: column nowrap;
-    width: calc(50% - 20px);
 }
 
 .relative-main-content .course-management-con .course-management-boxes .video-bulletin-con .video {
@@ -3265,10 +3281,10 @@ textarea:focus {
 
 .about-box-des p {
     color: #fff;
-	padding-bottom: 10px;
+    padding-bottom: 10px;
 }
 .about-box-des p:before {
-	content: "• "; 
+    content: "• "; 
 }
 .solo-container .about-box-cnt svg {
     width: 60px;
@@ -5836,8 +5852,8 @@ input:checked + .slider:before {
     }
   
     .search-form {
-  	width:100%;
-  	padding:0 30px;
+    width:100%;
+    padding:0 30px;
     }
     
     
@@ -5855,7 +5871,7 @@ input:checked + .slider:before {
     }
   
     /********************** > 
-	mobile **********************/
+    mobile **********************/
   
     .solo-container {
         padding: 0;
@@ -5911,18 +5927,18 @@ input:checked + .slider:before {
         height: auto;
         width: 100%;
     }
-	
+    
    .fxsubcourse-chart-cnt .fxsubcourse-chart-pg, .fxpartner-shares-pg {
-	width: 100%;
-	    
+    width: 100%;
+        
     }
-	
+    
     .fxpartner-shares-pg.mobile-view-pg {
-	display: block;
+    display: block;
     }
-	
+    
     .fxpartner-shares-pg.desktop-view-pg {
-	display: none;
+    display: none;
     }
     
     .solo-sub-rpadding {
@@ -5931,7 +5947,7 @@ input:checked + .slider:before {
     
     .solo-container .about-box-cnt .about-box {
         margin: 20px 0;
-	padding: 30px 20px;
+    padding: 30px 20px;
         width: 90%;
     }
     
@@ -5944,7 +5960,7 @@ input:checked + .slider:before {
         display: flex;
         flex-flow: column nowrap;
         align-items: center;
-	min-width: 93.42px;
+    min-width: 93.42px;
         margin-right: 20px;
     }
     
@@ -5968,34 +5984,34 @@ input:checked + .slider:before {
     .solo-container .about-box-cnt svg {
         width: 50px;
     }
-	
-	.solo-container .footer {
-	    display: none;
-	}
-	
-	.solo-container .about .footer-about {
-	    display: block;
-	}
+    
+    .solo-container .footer {
+        display: none;
+    }
+    
+    .solo-container .about .footer-about {
+        display: block;
+    }
 
-	.solo-container .about .footer-about {
-	    width: 100%;
-	    padding: 30px 20px 0 20px;
-	    color: #939393;
-	    font-size: 14px;
-	    line-height: 20px;
-	    border-top: 1px solid #c2c2c2;
-	}
+    .solo-container .about .footer-about {
+        width: 100%;
+        padding: 30px 20px 0 20px;
+        color: #939393;
+        font-size: 14px;
+        line-height: 20px;
+        border-top: 1px solid #c2c2c2;
+    }
 
-	.solo-container .about .footer-about a {
-	    padding-left: 10px;
-	    text-decoration: underline;
-	}
+    .solo-container .about .footer-about a {
+        padding-left: 10px;
+        text-decoration: underline;
+    }
   
     /********************** < about page mobile **********************/
-	
-	.solo .policy-page {
-	    padding: 0 30px 40px;
-	}
+    
+    .solo .policy-page {
+        padding: 0 30px 40px;
+    }
   
 
     /********************** > profile mobile **********************/
@@ -6123,13 +6139,13 @@ input:checked + .slider:before {
     .login-description {
   width:100%;
   height: 100%;
-	    padding: 30px 20px;
+        padding: 30px 20px;
     }
-	
+    
     .login-container .empty-space {
-	display: block;
-    	min-height: 30px;
-    	border: 1px solid #0000;
+    display: block;
+        min-height: 30px;
+        border: 1px solid #0000;
      }
     
     .login-form h2, .login-input, .login-forgot, .remember-me {
@@ -6293,17 +6309,17 @@ input:checked + .slider:before {
         background-color: #dcdcdc;
         transition: all .1s;
     }
-	
+    
    .bar-items {
-	margin: 10px 0;
+    margin: 10px 0;
    }
-	
+    
    .link-main {
-	padding: 6px 100px;
-	white-space: nowrap;
-	margin: 1px 0;
+    padding: 6px 100px;
+    white-space: nowrap;
+    margin: 1px 0;
    }
-	
+    
 
     .nav__links {
   justify-content:space-between;
@@ -6434,31 +6450,31 @@ input:checked + .slider:before {
     }
 
     .obj-box .object {
-  	width: 100%;
+    width: 100%;
         margin: 0 0 1em 0;
         flex-flow: row nowrap;
         height: auto;
         border-radius: 5px;
         box-shadow: none;
     }
-	
+    
     .obj-box .object:hover {
-	background: #e6e6e6;
+    background: #e6e6e6;
     }
-	
+    
     .obj-box .object:active {
-	box-shadow: none;
-	background: #cccccc;
-	transition: 0.2s;
+    box-shadow: none;
+    background: #cccccc;
+    transition: 0.2s;
     }
-	
+    
     .obj-box .object .preview img {
         border-radius: 5px;
     }
     
     .obj-box .object .preview {
-  	min-width: 150px;
-  	width: 0;
+    min-width: 150px;
+    width: 0;
         height: 84.27px;
         position: relative;
         border-radius: 5px;
@@ -6508,8 +6524,8 @@ input:checked + .slider:before {
     }
 
     .course-content {
-  	flex-flow:column;
-	padding: 0;
+    flex-flow:column;
+    padding: 0;
     }
 
     .course-content .left-content {
@@ -6526,7 +6542,7 @@ input:checked + .slider:before {
   width:100%;
   padding:0 30px;
     }
-	
+    
   .left-content .pub-avatar .like-dislike {
     padding: 0 20px;
     width: auto;
@@ -6704,27 +6720,27 @@ input:checked + .slider:before {
     }
 
     .course-content .course-upperleft .video-holder {
-	  margin-right:0;
-	  width:100%;
-	  margin-bottom: 20px;
+      margin-right:0;
+      width:100%;
+      margin-bottom: 20px;
     }
-	
+    
     .course-content .left-content .video-holder {
           margin-bottom: 20px;
     }
 
     .course-content .course-upperleft .video-placeholder {
-	  width:100%;
-	  border-radius:0;
-	  height:150px;
-	  margin-bottom: 20px;
+      width:100%;
+      border-radius:0;
+      height:150px;
+      margin-bottom: 20px;
     }
 
     .course-upperleft .bulletin {
-	  width:100%;
-	  box-shadow:none;
-	  height:auto;
-	  padding: 0;
+      width:100%;
+      box-shadow:none;
+      height:auto;
+      padding: 0;
     }
 
     .bulletin .bulletin-txt-con {
