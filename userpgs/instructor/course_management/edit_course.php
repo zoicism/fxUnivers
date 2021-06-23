@@ -222,7 +222,7 @@ if($get_course_fetch['video_url']!='') $embed_exists=1; else $embed_exists=0;
 				</label>';
 				echo '</div>';
 				echo '<div>';
-				echo '<!--<p>Invite fxUsers:</p>-->
+				//echo '<p>Invite fxUsers:</p>
 				<div  style="display:flex; flex-flow:row wrap; justify-content:space-between;">
                                 <input type="text" list="fxUsersList" name="query" id="fxInvitee" class="txt-input" placeholder="fxUser">
 <div id="datalistDiv">
