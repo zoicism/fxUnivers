@@ -222,7 +222,7 @@ if($get_course_fetch['video_url']!='') $embed_exists=1; else $embed_exists=0;
 				</label>';
 				echo '</div>';
 				echo '<div>';
-				//echo '<p>Invite fxUsers:</p>
+				/*echo '<p>Invite fxUsers:</p>
 				<div  style="display:flex; flex-flow:row wrap; justify-content:space-between;">
                                 <input type="text" list="fxUsersList" name="query" id="fxInvitee" class="txt-input" placeholder="fxUser">
 <div id="datalistDiv">
@@ -230,7 +230,7 @@ if($get_course_fetch['video_url']!='') $embed_exists=1; else $embed_exists=0;
                                   
                                 </datalist>
 </div>
-                                <button class="submit-btn" id="private-invite">Invite</button></div>';
+<button class="submit-btn" id="private-invite">Invite</button></div>';*/
 				echo '</div></div>';
 			    } else {
 				echo '<div style="display:flex; border-bottom: 1px solid #3333332e; width:100%;align-items:center;justify-content:center;padding-bottom:20px;flex-flow:wrap;">';
