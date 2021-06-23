@@ -5348,8 +5348,8 @@ textarea:focus {
 .switch {
     position: relative;
     display: inline-block;
-    width: 60px;
-    height: 34px;
+    width: 50px;
+    height: 13px;
 }
 
 .switch input { 
@@ -5365,7 +5365,7 @@ textarea:focus {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #ccc;
+    background-color: #c1c1c1;
     -webkit-transition: .4s;
     transition: .4s;
 }
@@ -5375,30 +5375,36 @@ textarea:focus {
     content: "";
     height: 26px;
     width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
+    left: -5px;
+    bottom: -5px;
+    background-color: #c1c1c1;
     -webkit-transition: .4s;
     transition: .4s;
+    box-shadow: 3px 3px 5px 0px rgb(0 0 0 / 20%);
+    -webkit-box-shadow: 3px 3px 5px 0px rgb(0 0 0 / 20%);
+    -moz-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.2);
 }
 
 input:checked + .slider {
-    background-color: #2196F3;
+    background-color: #00a1e0ad;
 }
 
 input:focus + .slider {
-    box-shadow: 0 0 1px #2196F3;
+    box-shadow: 0 0 1px #00a1e0ad;
 }
 
 input:checked + .slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
+    -webkit-transform: translateX(29px);
+    -ms-transform: translateX(29px);
+    transform: translateX(29px);
+    background-color: #00a1e0;
 }
 
 /* Rounded sliders */
 .slider.round {
     border-radius: 34px;
+    height: 16px;
+    width: 50px;
 }
 
 .slider.round:before {
