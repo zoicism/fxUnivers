@@ -1922,14 +1922,13 @@ textarea:focus {
     justify-content: space-between;
 }
 
-.relative-main-content .course-management-con .course-management-boxes .left .inner-content-box,
-.relative-main-content .course-management-con .course-management-boxes .video-bulletin-con .inner-content-box  {
+.relative-main-content .course-management-con .inner-content-box {
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-between;
     align-items: center;
     border-radius: 10px;
-    padding: 20px 40px;
+    padding: 30px 40px;
     text-align: center;
     max-width: none;
     min-width: auto;
@@ -1940,12 +1939,28 @@ textarea:focus {
     box-shadow: 5px 5px 10px #c6c6c6, -5px -5px 10px #ffffff;
 }
 
+.relative-main-content .course-management-con .inner-content-box.delete-course-con {
+    width: calc(50% - 40px);
+}
+
+.relative-main-content .course-management-con .inner-content-box.delete-course-con input {
+    border: 1px solid #e03636;
+}
+
+.relative-main-content .course-management-con .inner-content-box.delete-course-con input:hover {
+    background-color: #e03636;
+}
+
+.course-management-con .inner-content-box h3 {
+    margin: 20px 0 25px 0;
+}
+
 .relative-main-content .course-management-con .course-management-boxes .left .form {
     width: 100%;
 }
 
-.relative-main-content .course-management-con .course-management-boxes .left .form textarea {
-    height: 168px;
+.relative-main-content .course-management-con .course-management-boxes .left form textarea {
+    height: 150px;
     width: 100%;
     resize: none;
     line-height: 1.6;
@@ -1962,9 +1977,17 @@ textarea:focus {
     width: 100%;
 }
 
+.inner-content-box #bulletin-form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+}
+
 .relative-main-content .course-management-con .course-management-boxes .submit-btn {
     width: 200px;
-    margin: 20px auto;
+    margin: 20px auto 0 auto;
     border: 1px solid #00a1e0;
 }
 
