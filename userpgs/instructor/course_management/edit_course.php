@@ -92,22 +92,23 @@ if($get_course_fetch['video_url']!='') $embed_exists=1; else $embed_exists=0;
 			    
 			    <div class="inner-content-box video">
 				<div class="upload-video-con">
-				    <h3>Video</h3>
+					<h3>Video</h3>
 				    <div class="inner-forms">
-<p style="" id="up-vid-p">Upload a video from your device.</p><button class="submit-btn" id="up-vid-id" style="">Upload Video</button><form method="POST" style="display:none" id="up-vid-form" action="file_uploader.php" enctype="multipart/form-data">
+					<p style="" id="up-vid-p">Upload a video from your device.</p>
+					<button class="submit-btn" id="up-vid-id" style="">Upload Video</button><form method="POST" style="display:none" id="up-vid-form" action="file_uploader.php" enctype="multipart/form-data">
+				    <form>
 					<input name="video_up" type="file" id="vid-file-up">
 					<input name="course_id" type="hidden" value="<?php echo $course_id?>">
 					<input type="submit" value="Upload" class="submit-btn">
-				    </form><p style="display:none;" id="del-vid-p">Remove your uploaded video for the course.</p><button id="del-vid-id" class="submit-btn" style="display:none">Delete Video</button><form id="vid-embed" autocomplete="off" style="">
+				    </form>
+				    <p style="display:none;" id="del-vid-p">Remove your uploaded video for the course.</p>
+				    <button id="del-vid-id" class="submit-btn" style="display:none">Delete Video</button>
+				    <form id="vid-embed" autocomplete="off" style="">
 					<p>Paste a YouTube/Vimeo link here as your course video. In case you have already uploaded a video using the button above, that video will be shown instead of the link.</p>
 					<input type="text" class="txt-input" name="embed_link" placeholder="Video link" id="link-text" required="">
 					<input type="hidden" name="course_id" value="<?php echo $course_id?>">
 					<input type="submit" class="submit-btn" value="Link Video" id="embedBtn">
-				    </form></div>
-				    
-				    
-
-				    
+				    </form>
 				    
 				    
 				    <form id="del-embed" style="display:none">
@@ -173,31 +174,35 @@ if($get_course_fetch['video_url']!='') $embed_exists=1; else $embed_exists=0;
 				    <span class="slider round"></span>
 				</label>
 				</div>
-			    </div></div><div class="inner-content-box">
+			    </div>
+			</div>
+			<div class="inner-content-box">
 				<div class="add-bulletin-con">
-				    <h3>Bulletin</h3>
-				    <div class="inner-forms">
-<p>Bulletins are available to the public in your course page. Adding a bulletin will inform your learners by notification and email.</p><form id="bulletin-form">
-					<input type="text" name="bulletin-body" class="txt-input" placeholder="Bulletin text" id="bulletin-txt" required="">
-					<input type="hidden" name="course-id" value="<?php echo $course_id?>">
-					<input type="hidden" name="teacher-id" value="<?php echo $get_user_id?>">
-					<input type="hidden" name="course-header" value="<?php echo $get_course_fetch['header']?>">
-					<input type="submit" class="submit-btn" value="Add Bulletin">
-				    </form></div>
-				    
+					<h3>Bulletin</h3>
+					<p>Bulletins are available to the public in your course page. Adding a bulletin will inform your learners by notification and email.</p>
+					<form id="bulletin-form">
+						<textarea type="text" name="bulletin-body" placeholder="Bulletin text" id="bulletin-txt" required="">
+						<input type="hidden" name="course-id" value="<?php echo $course_id?>">
+						<input type="hidden" name="teacher-id" value="<?php echo $get_user_id?>">
+						<input type="hidden" name="course-header" value="<?php echo $get_course_fetch['header']?>">
+						<input type="submit" class="submit-btn" value="Add Bulletin">
+				    	</form>
 				</div>
 			    </div>
 			</div>
-<div class="inner-content-box delete-course-con">
+			<div class="inner-content-box delete-course-con">
 				<h3>Delete Course</h3>
 				<p>By deleting a course, all of the related sessions and videos will be lost permenantly, so think twice before deciding to do so.</p>
-				<form id="delCourseForm"><input type="hidden" name="course_id" value="<?php echo $course_id?>"><input type="submit" class="submit-btn" value="Delete Course" style="
-    border: 1px solid #ff6c6c;
-"></form>
-			    </div>
+				<form id="delCourseForm">
+					<input type="hidden" name="course_id" value="<?php echo $course_id?>">
+					<input type="submit" class="submit-btn" value="Delete Course" style="border: 1px solid #ff6c6c;">
+				</form>
+			</div>
 		    </div>
 		    <button onclick="window.location.replace('/userpgs/instructor/course_management/course.php?course_id=<?php echo $course_id ?>')" class="submit-btn" style="margin: 0 auto;background-color: #00a1e0d4;color: #efefef;font-size: 18px;">Done</button>
 		</div>
+		    
+		    
 		<!--<div class="course-management-con">
 		    <h2 class="course-management-txt">Course Management</h2>
 		    <div class="course-management-boxes">
