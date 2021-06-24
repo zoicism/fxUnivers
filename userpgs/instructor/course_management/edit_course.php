@@ -81,10 +81,10 @@ if($get_course_fetch['video_url']!='') $embed_exists=1; else $embed_exists=0;
 			<div class="left">
 			    <div class="inner-content-box video">
 <h3>Title, Description, Cost</h3><form class="form" id="edit-post" autocomplete="off">
-				<input type="text" class="txt-input" name="header" placeholder="Course title" value="Learn HTML" required="">
-				<textarea name="description" rows="10" placeholder="Description" required="">This is a crash course</textarea>
-				<input type="number" class="num-input" name="course_fxstar" placeholder="Cost (fxStars)" id="newCost" min="0" value="0" required="">
-				<input type="hidden" name="course_id" value="63">
+				<input type="text" class="txt-input" name="header" placeholder="Course title" value="<?php echo $get_course_fetch['header']?>" required="">
+  <textarea name="description" rows="10" placeholder="Description" required=""><?php echo preg_replace('/\<br(\s*)?\/?\>/i', "",$get_course_fetch['description']) ?></textarea>
+				<input type="number" class="num-input" name="course_fxstar" placeholder="Cost (fxStars)" id="newCost" min="0" value="<?php echo $get_course_fetch['cost'] ?>" required="">
+				<input type="hidden" name="course_id" value="<?php echo $course_id?>">
 				<input type="submit" class="submit-btn" value="Update Details and Cost">
 			    </form></div>
 			    
@@ -103,7 +103,7 @@ if($get_course_fetch['video_url']!='') $embed_exists=1; else $embed_exists=0;
 				    </form>
 				    <p style="display:none;" id="del-vid-p">Remove your uploaded video for the course.</p>
 				    <button id="del-vid-id" class="submit-btn" style="display:none">Delete Video</button>
-				    <form id="vid-embed" autocomplete="off" style="">
+				    <form id="vid-embed" autocomplete="off" style="display:none">
 					<p>Paste a YouTube/Vimeo link here as your course video. In case you have already uploaded a video using the button above, that video will be shown instead of the link.</p>
 					<input type="text" class="txt-input" name="embed_link" placeholder="Video link" id="link-text" required="">
 					<input type="hidden" name="course_id" value="<?php echo $course_id?>">
@@ -124,6 +124,7 @@ if($get_course_fetch['video_url']!='') $embed_exists=1; else $embed_exists=0;
 			    
 			    
 			</div>
+</div>
 			<div class="video-bulletin-con">
 			    
 			    <div class="inner-content-box">
@@ -139,7 +140,7 @@ if($get_course_fetch['video_url']!='') $embed_exists=1; else $embed_exists=0;
 				</label>';
 				echo '</div>';
 				echo '<div>';
-				echo '<!--<p>Invite fxUsers:</p>-->
+				/*echo '<p>Invite fxUsers:</p>
 				<div  style="display:flex; flex-flow:row wrap; justify-content:space-between;">
                                 <input type="text" list="fxUsersList" name="query" id="fxInvitee" class="txt-input" placeholder="fxUser">
 <div id="datalistDiv">
@@ -147,7 +148,7 @@ if($get_course_fetch['video_url']!='') $embed_exists=1; else $embed_exists=0;
                                   
                                 </datalist>
 </div>
-                                <button class="submit-btn" id="private-invite">Invite</button></div>';
+<button class="submit-btn" id="private-invite">Invite</button></div>';*/
 				echo '</div></div>';
 			    } else {
 				echo '<div style="display:flex; border-bottom: 1px solid #3333332e; width:100%;align-items:center;justify-content:center;padding-bottom:20px;flex-flow:wrap;">';
@@ -181,7 +182,7 @@ if($get_course_fetch['video_url']!='') $embed_exists=1; else $embed_exists=0;
 					<h3>Bulletin</h3>
 					<p>Bulletins are available to the public in your course page. Adding a bulletin will inform your learners by notification and email.</p>
 					<form id="bulletin-form">
-						<textarea type="text" name="bulletin-body" placeholder="Bulletin text" id="bulletin-txt" required="">
+						<textarea type="text" name="bulletin-body" placeholder="Bulletin text" id="bulletin-txt" required=""></textarea>
 						<input type="hidden" name="course-id" value="<?php echo $course_id?>">
 						<input type="hidden" name="teacher-id" value="<?php echo $get_user_id?>">
 						<input type="hidden" name="course-header" value="<?php echo $get_course_fetch['header']?>">
@@ -203,120 +204,7 @@ if($get_course_fetch['video_url']!='') $embed_exists=1; else $embed_exists=0;
 		</div>
 		    
 		    
-		<!--<div class="course-management-con">
-		    <h2 class="course-management-txt">Course Management</h2>
-		    <div class="course-management-boxes">
-			<div class="inner-content-box left">
-			    <h3>Title, Description, Cost</h3>
-			    <form class="form" id="edit-post" autocomplete="off">
-				<input type="text" class="txt-input" name="header" placeholder="Course title" value="<?php echo $get_course_fetch['header']?>" required>
-				<textarea name="description" rows="10" placeholder="Description" required><?php echo preg_replace('/\<br(\s*)?\/?\>/i', "",$get_course_fetch['description']) ?></textarea>
-				<input type="number" class="num-input" name="course_fxstar" placeholder="Cost (fxStars)" id="newCost" min="0" value="<?php echo $get_course_fetch['cost'] ?>" required>
-				<input type="hidden" name="course_id" value="<?php echo $course_id?>">
-				<input type="submit" class="submit-btn" value="Update Details and Cost">
-			    </form>
-			    <h3>Privacy</h3>
-			    
-			    <?php
-			    if($get_course_fetch['private']) {
-				echo '<div style="width:100%; border-bottom: 1px solid #3333332e;display:flex; align-items:center; justify-content:center; padding-bottom:20px; flex-flow:wrap;">';
-				echo '<div style="display:flex; width:100%;align-items:center;justify-content:center;flex-flow:wrap;">';
-				echo '<p style="padding-right:15px" id="privateP">This course is private. Make it public:</p> <label class="switch" >
-				<input type="checkbox" name="private" id="privateId" checked>
-				<span class="slider round" ></span>
-				</label>';
-				echo '</div>';
-				echo '<div>';
-				/*echo '<p>Invite fxUsers:</p>
-				<div  style="display:flex; flex-flow:row wrap; justify-content:space-between;">
-                                <input type="text" list="fxUsersList" name="query" id="fxInvitee" class="txt-input" placeholder="fxUser">
-<div id="datalistDiv">
-                                <datalist id="fxUsersList">
-                                  
-                                </datalist>
-</div>
-<button class="submit-btn" id="private-invite">Invite</button></div>';*/
-				echo '</div></div>';
-			    } else {
-				echo '<div style="display:flex; border-bottom: 1px solid #3333332e; width:100%;align-items:center;justify-content:center;padding-bottom:20px;flex-flow:wrap;">';
-				echo '<p style="padding-right:15px" id="privateP">This course is public. Make it private:</p> <label class="switch" >
-				<input type="checkbox" name="private" id="privateId">
-				<span class="slider round" ></span>
-				</label>';
-				echo '</div>';
-			    }
-			    ?>
 
-
-			    <div>
-				<div  style="display:flex; flex-flow:row wrap; justify-content:center; text-align: center; border-bottom: 1px solid #3333332e;padding-bottom:20px;">
-				<h3>Negotiable Cost</h3>
-				<p style="margin-bottom: 14px;">Do you want the cost of this course be negotiable? It will help attract underprivileged students.</p>
-				<label class="switch" >
-				    <?php
-				    if($get_course_fetch['negotiable']) {
-					echo '<input type="checkbox" name="negotiable" id="negotiableId" checked>';
-				    } else {
-					echo '<input type="checkbox" name="negotiable" id="negotiableId">';
-				    }
-				    ?>
-				    
-				    <span class="slider round" ></span>
-				</label>
-				</div>
-			    </div>
-
-			    
-			    <div class="delete-course-con">
-				<h3>Delete Course</h3>
-				<p>By deleting a course, all of the related sessions and videos will be lost permenantly, so think twice before deciding to do so.</p>
-				<form id="delCourseForm"><input type="hidden" name="course_id" value="<?php echo $course_id?>"><input type="submit" class="submit-btn" value="Delete Course"></form>
-			    </div>
-			</div>
-			<div class="video-bulletin-con">
-			    <div class="inner-content-box video">
-				<div class="upload-video-con">
-				    <h3>Video</h3>
-				    <p style="display:none;" id="up-vid-p">Upload a video from your device.</p>
-				    <button class="submit-btn" id="up-vid-id" style="display:none">Upload Video</button>
-				    <form method="POST" style="display:none" id="up-vid-form" action="file_uploader.php" enctype="multipart/form-data" >
-					<input name="video_up" type="file" id="vid-file-up">
-					<input name="course_id" type="hidden" value="<?php echo $course_id?>">
-					<input type="submit" value="Upload" class="submit-btn">
-				    </form>
-
-				    <p style="display:none;" id="del-vid-p">Remove your uploaded video for the course.</p>
-				    <button id="del-vid-id" class="submit-btn" style="display:none">Delete Video</button>
-				    <form id="vid-embed" autocomplete="off" style="display:none">
-					<p>Paste a YouTube/Vimeo link here as your course video. In case you have already uploaded a video using the button above, that video will be shown instead of the link.</p>
-					<input type="text" class="txt-input" name="embed_link" placeholder="Video link" id="link-text" required>
-					<input type="hidden" name="course_id" value="<?php echo $course_id?>">
-					<input type="submit" class="submit-btn" value="Link Video" id="embedBtn">
-				    </form>
-				    <form id="del-embed" style="display:none">
-					<p>Remove your linked video.</p>
-					<input type="hidden" name="course_id" value="<?php echo $course_id?>">
-					<input type="submit" class="submit-btn" value="Remove Link" id="delEmbedBtn">
-				    </form>
-				</div>
-			    </div>
-			    <div class="inner-content-box">
-				<div class="add-bulletin-con">
-				    <h3>Bulletin</h3>
-				    <p>Bulletins are available to the public in your course page. Adding a bulletin will inform your learners by notification and email.</p>
-				    <form id="bulletin-form">
-					<input type="text" name="bulletin-body" class="txt-input" placeholder="Bulletin text" id="bulletin-txt" required>
-					<input type="hidden" name="course-id" value="<?php echo $course_id?>">
-					<input type="hidden" name="teacher-id" value="<?php echo $get_user_id?>">
-					<input type="hidden" name="course-header" value="<?php echo $get_course_fetch['header']?>">
-					<input type="submit" class="submit-btn" value="Add Bulletin">
-				    </form>
-				</div>
-			    </div>
-			</div>
-		    </div>
-		    <button onclick="window.location.replace('/userpgs/instructor/course_management/course.php?course_id=<?php echo $course_id ?>')" class="submit-btn" style="margin: 0 auto;background-color: #00a1e0d4;color: #efefef;font-size: 18px;">Done</button>
-		</div>-->
 	    </div>
 	</div>
 
