@@ -1951,6 +1951,10 @@ textarea:focus {
     background-color: #e03636;
 }
 
+.relative-main-content .course-management-con .inner-content-box .upload-video-con form {
+    padding-top: 20px;
+}
+
 .course-management-con .inner-content-box h3 {
     margin: 20px 0 25px 0;
 }
@@ -1979,7 +1983,6 @@ textarea:focus {
 
 .inner-content-box #bulletin-form {
     width: 100%;
-    height: 100%;
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
@@ -6781,23 +6784,22 @@ input:checked + .slider:before {
   font-size:12px;
     }
 
-
-    .relative-main-content .course-management-con .course-management-boxes {
-  flex-flow: column nowrap;
-  width:100%;
-    }
-
-    .relative-main-content .course-management-con .course-management-boxes .left {
-  width:95%;
-  margin-bottom:30px;
-    }
-
+    .relative-main-content .course-management-con .course-management-boxes .left,
     .relative-main-content .course-management-con .course-management-boxes .video-bulletin-con {
-  width:100%;
+        flex-flow: column nowrap;
+    }
+    
+    .relative-main-content .course-management-con .inner-content-box {
+        margin: 20px 0;
+        width: 100%;
+    }
+    
+    .relative-main-content .course-management-con .inner-content-box.delete-course-con {
+        width: 100%;
     }
 
     .relative-main-content .fxuniversity-nav {
-  display:none;
+        display:none;
     }
 
     
