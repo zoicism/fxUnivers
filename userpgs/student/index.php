@@ -325,7 +325,7 @@ if($gss_count > 0) {
 		 } else {
 		     echo '<p class="gray">No courses added yet<br>The courses you enroll in will apear here<br>Use <a href="/search?type=course">Search Courses</a> button above to look for your favorite courses.</p>';
 		 }
-if($gss_count_alive < 1) {
+if($gss_count_alive<1 && $gss_count>0) {
   echo '<p class="gray">No courses added yet<br>The courses you enroll in will apear here<br>Use <a href="/search?type=course">Search Courses</a> button above to look for your favorite courses.</p>';
 }
 
