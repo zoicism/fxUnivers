@@ -139,7 +139,7 @@ require('../../wallet/php/get_fxcoin_count.php');
   <div class="description fxpartner-desc-cnt">
   <h3 class="fxpartner-desc question-header1" style="cursor:pointer">How to make fxStars using fxPartner?</h3>
   <div class="answer-header1" style="display:none">
-  <p>Click on <a href="/userpgs/partner/positions/">fxHR</a> above and share the link we have decdicated to you. When your invitees register on fxUnivers using that link, you will automatically get 50% of our interests concerning them for 90 days. You can visit your <a href="/userpgs/partner/income">Earnings History</a> from all your registered invitees, right above this page.</p>
+  <p>Click on <a href="/userpgs/partner/positions/">fxHR</a> above and share the link we have dedicated to you. When your invitees register on fxUnivers using that link, you will automatically get 50% of our interests concerning them for 90 days. You can visit your <a href="/userpgs/partner/income">Earnings History</a> from all your registered invitees, right above this page.</p>
   </div>
   </div>
 
