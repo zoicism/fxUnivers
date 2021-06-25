@@ -4,8 +4,8 @@ session_start();
 require('../register/connect.php');
 
 if(isset($_POST['username']) and isset($_POST['password'])) {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+    $username = strtolower(mysqli_real_escape_string($connection, $_POST['username']));
+    $password = mysqli_real_escape_string($connection, $_POST['password']);
 
     $login_query = "SELECT * FROM user WHERE ((username='$username' and password='$password') or (email='$username' and password='$password'))";
     $login_result = mysqli_query($connection, $login_query);
