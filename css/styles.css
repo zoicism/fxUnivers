@@ -1527,6 +1527,7 @@ textarea:focus {
     font-size:18px;
     color:#393939;
     cursor:pointer;
+    padding: 10px;
 }
 
 .add-box span {
@@ -5353,6 +5354,7 @@ textarea:focus {
     display: inline-block;
     width: 50px;
     height: 13px;
+    margin: 10px;
 }
 
 .switch input { 
@@ -6792,10 +6794,20 @@ input:checked + .slider:before {
     .relative-main-content .course-management-con .inner-content-box {
         margin: 20px 0;
         width: 100%;
+        border: 1px solid #fff;
     }
     
     .relative-main-content .course-management-con .inner-content-box.delete-course-con {
         width: 100%;
+    }
+    
+    .relative-main-content .course-management-con .submit-btn.done-btn {
+        width: 100%;
+        margin: 20px auto 0 auto;
+        background-color: #00a1e0d4;
+        color: #efefef;
+        font-size: 18px;
+        border: none;
     }
 
     .relative-main-content .fxuniversity-nav {
