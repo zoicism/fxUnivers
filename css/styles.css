@@ -1952,6 +1952,25 @@ textarea:focus {
     background-color: #e03636;
 }
 
+.course-management-con .submit-btn.done-btn {
+    margin: 0 auto;
+    background-color: #00a1e0d4;
+    color: #efefef;
+    font-size: 18px;
+}
+
+.relative-main-content .course-management-con .inner-content-box.delete-session-con {
+    width: 50%;
+}
+
+.relative-main-content .course-management-con .inner-content-box.delete-session-con input {
+    border: 1px solid #e03636;
+}
+
+.relative-main-content .course-management-con .inner-content-box.delete-session-con input:hover {
+    background-color: #e03636;
+}
+
 .relative-main-content .course-management-con .inner-content-box .upload-video-con form {
     padding-top: 20px;
 }
