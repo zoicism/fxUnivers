@@ -264,7 +264,7 @@ if($tar_user_fetch['avatar']!=NULL) {
 } else {
       $avatar_url='/images/background/avatar.png';
 }
-
+ echo '<div class="course-des-con">';
  echo '<div class="pub-avatar" style="cursor:auto">';
 	echo '<div class="inner-pub-avatar">';
 	   echo '<div class="pub-avatar-cnt">';
@@ -281,6 +281,7 @@ if($tar_user_fetch['avatar']!=NULL) {
 
 	     echo '<h2>'.$header.'</h2>';
              echo '<p>'.$description.'</p>';
+ echo '</div>';
 ?>
 	  
 <div class="detail-bottom"></div>
