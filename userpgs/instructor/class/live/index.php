@@ -121,7 +121,7 @@ if($user_type=='instructor') {
     <div style="height:100%;width:100%;display:flex;align-items:center;justify-content:center;position:fixed;background-color:black;opacity:0.3;cursor:auto;z-index:2;" id="loading"><img src="/images/background/loading.gif" style="z-index:3"></div>
 
     
-  <div class="header-sidebar"></div>
+  <div class="header-sidebar" style="margin-bottom:0"></div>
   <script id="upperbar-script" src="/js/upperbar.js" sess_avatar="<?php echo $session_avatar?>" sess_un="<?php echo $username?>"></script>
   <script>
    if(screen.width >= 629) {
