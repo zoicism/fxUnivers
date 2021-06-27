@@ -6770,6 +6770,13 @@ input:checked + .slider:before {
       height:150px;
       margin-bottom: 20px;
     }
+    
+    .course-content .video-placeholder {
+        width: 100%;
+        border-radius: 0;
+        height: 150px;
+        margin-bottom: 20px;
+    }
 
     .course-upperleft .bulletin {
       width:100%;
