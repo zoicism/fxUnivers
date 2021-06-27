@@ -125,16 +125,6 @@ if($get_class['video']!='') $embed_exists=1; else $embed_exists=0;
 			    </div>
 			</div>
 			<div class="video-bulletin-con">
-			    <div class="inner-content-box delete-course-con">
-				<h3>Delete Session</h3>
-				<p>By deleting a session, all of the related videos and files will be lost permenantly, so think twice before deciding to do so.</p>
-				<form id="delClassForm">
-				    <input type="hidden" name="rm_courseId" value="<?php echo $course_id ?>">
-				    <input type="hidden" name="rm_classId"  value="<?php echo $class_id ?>">
-				    <input type="submit" value="Delete Session" class="submit-btn">
-				</form>
-			    </div>
-			    
 			    <div class="inner-content-box">
 				<div class="add-bulletin-con">
 				    <h3>File upload</h3>
@@ -148,9 +138,18 @@ if($get_class['video']!='') $embed_exists=1; else $embed_exists=0;
 				    </form>
 				</div>
 			    </div>
+			    <div class="inner-content-box delete-session-con">
+				<h3>Delete Session</h3>
+				<p>By deleting a session, all of the related videos and files will be lost permenantly, so think twice before deciding to do so.</p>
+				<form id="delClassForm">
+				    <input type="hidden" name="rm_courseId" value="<?php echo $course_id ?>">
+				    <input type="hidden" name="rm_classId"  value="<?php echo $class_id ?>">
+				    <input type="submit" value="Delete Session" class="submit-btn">
+				</form>
+			    </div>
 			</div>
 		    </div>
-		    <button onclick="window.location.replace('/userpgs/instructor/class/?course_id=<?php echo $course_id ?>&class_id=<?php echo $class_id ?>')" class="submit-btn" style="margin-left:auto">Done</button>
+		    <button onclick="window.location.replace('/userpgs/instructor/class/?course_id=<?php echo $course_id ?>&class_id=<?php echo $class_id ?>')" class="submit-btn">Done</button>
 		</div>
 	    </div>
 	</div>
