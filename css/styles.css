@@ -6828,6 +6828,10 @@ input:checked + .slider:before {
         width: 100%;
     }
     
+    .relative-main-content .course-management-con .inner-content-box.delete-session-con {
+        width: 100%;
+    }
+    
     .relative-main-content .course-management-con .submit-btn.done-btn {
         width: 100%;
         margin: 20px auto 0 auto;
