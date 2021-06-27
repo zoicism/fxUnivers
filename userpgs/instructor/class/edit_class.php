@@ -149,7 +149,7 @@ if($get_class['video']!='') $embed_exists=1; else $embed_exists=0;
 			    </div>
 			</div>
 		    </div>
-		    <button onclick="window.location.replace('/userpgs/instructor/class/?course_id=<?php echo $course_id ?>&class_id=<?php echo $class_id ?>')" class="submit-btn">Done</button>
+		    <button onclick="window.location.replace('/userpgs/instructor/class/?course_id=<?php echo $course_id ?>&class_id=<?php echo $class_id ?>')" class="submit-btn done-btn">Done</button>
 		</div>
 	    </div>
 	</div>
