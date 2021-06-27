@@ -84,26 +84,17 @@ if($get_class['video']!='') $embed_exists=1; else $embed_exists=0;
 		<div class="course-management-con">
 		    <h2 class="course-management-txt">Session Management</h2>
 		    <div class="course-management-boxes">
-			<div class="inner-content-box left">
-			    <h3>Title & Description</h3>
-			    <form class="form" id="edit-post" autocomplete="off">
-				<input type="text" name="header" placeholder="Session title" value="<?php echo $get_class['title']?>" class="txt-input" required>
-				<textarea name="description" rows="10" placeholder="Description"><?php echo preg_replace('#<br\s*/?>#i',"",$get_class['body'])?></textarea>
-				<input type="hidden" name="class_id" value="<?php echo $class_id?>">
-				<input type="hidden" name="course_id" value="<?php echo $course_id?>">
-				<input type="submit" value="Update Title and Description" class="submit-btn">
-			    </form>
-			    <div class="delete-course-con">
-				<h3>Delete Session</h3>
-				<p>By deleting a session, all of the related videos and files will be lost permenantly, so think twice before deciding to do so.</p>
-				<form id="delClassForm">
-				    <input type="hidden" name="rm_courseId" value="<?php echo $course_id ?>">
-				    <input type="hidden" name="rm_classId"  value="<?php echo $class_id ?>">
-				    <input type="submit" value="Delete Session" class="submit-btn">
-				</form>
+			<div class="left">
+			    <div class="inner-content-box">
+				    <h3>Title & Description</h3>
+				    <form class="form" id="edit-post" autocomplete="off">
+					<input type="text" name="header" placeholder="Session title" value="<?php echo $get_class['title']?>" class="txt-input" required>
+					<textarea name="description" rows="10" placeholder="Description"><?php echo preg_replace('#<br\s*/?>#i',"",$get_class['body'])?></textarea>
+					<input type="hidden" name="class_id" value="<?php echo $class_id?>">
+					<input type="hidden" name="course_id" value="<?php echo $course_id?>">
+					<input type="submit" value="Update Title and Description" class="submit-btn">
+				    </form>
 			    </div>
-			</div>
-			<div class="video-bulletin-con">
 			    <div class="inner-content-box video">
 				<div class="upload-video-con">
 				    <h3>Video</h3>
@@ -132,6 +123,18 @@ if($get_class['video']!='') $embed_exists=1; else $embed_exists=0;
 				    </form>
 				</div>
 			    </div>
+			</div>
+			<div class="video-bulletin-con">
+			    <div class="inner-content-box delete-course-con">
+				<h3>Delete Session</h3>
+				<p>By deleting a session, all of the related videos and files will be lost permenantly, so think twice before deciding to do so.</p>
+				<form id="delClassForm">
+				    <input type="hidden" name="rm_courseId" value="<?php echo $course_id ?>">
+				    <input type="hidden" name="rm_classId"  value="<?php echo $class_id ?>">
+				    <input type="submit" value="Delete Session" class="submit-btn">
+				</form>
+			    </div>
+			    
 			    <div class="inner-content-box">
 				<div class="add-bulletin-con">
 				    <h3>File upload</h3>
