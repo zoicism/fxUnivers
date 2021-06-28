@@ -137,7 +137,7 @@ if(isset($_GET['qNum'])) {
 		<div class="add-q-test">Add Question</div>
 	</button>
 		  
-	<input type="submit" class="submit-btn" value="Apply to Quiz">
+	<input type="submit" class="submit-btn apply-q" value="Apply to Quiz">
 		
 		
 	  </form>
