@@ -5676,42 +5676,101 @@ input:checked + .slider:before {
 
 /*** SIMPLE BG ***/
 .relative-main-content .simple-bg {
-    border-radius: 20px;
+    border-radius: 10px;
     background: #efefef;
-    box-shadow: inset 5px 5px 9px #d5d5d5, 
-    inset -5px -5px 9px #ffffff;
-    max-width:50em;
-    margin-top:50px;
+    max-width: 50em;
+    margin: 50px 0;
+    padding: 30px 50px;
+    box-shadow: 5px 5px 10px #c6c6c6, -5px -5px 10px #ffffff;
 }
 
 .simple-bg h2 {
-    margin: 20px;
+    margin: 30px 0;
+    text-align: center;
 }
 
 .simple-bg h3 {
-    margin: 30px 20px 20px 20px;
+    margin: 30px 0;
 }
 
 .simple-bg .question {
-    background:#eaeaea;
-    width:80%;
-    margin:20px auto;
-    padding:20px;
-    border-radius:20px;
+    padding: 40px;
+    border-radius: 10px;
+    border: 1px solid #c2c2c2;
+    margin-bottom: 30px;
 }
 
-.simple-bg p {
-    margin:20px;
-}
-
-.simple-bg input {
-    margin:20px;
-    min-width:25em;
+.simple-bg .num-input {
+    margin: 0 0 0 20px;
 }
 
 .simple-bg textarea {
-    margin:20px;
-    max-height:10em;
+    height: 130px;
+    background-color: #c2c2c21f;
+    border: 1px solid #fff;
+}
+
+
+.simple-bg .txt-input-cnt {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.simple-bg .question-num {
+    text-align: center;
+    font-size: 18px;
+}
+
+.simple-bg .option-cnt {
+    padding: 0 40px;
+}
+
+.option-cnt .opt-num-txtarea-cnt {
+    display: flex;
+    flex-flow: row;
+    align-items: baseline;
+    margin: 20px 0;
+}
+
+.option-cnt .opt-num-txtarea-cnt .opt-txtarea {
+    height: 50px;
+    margin: 0 0 0 20px;
+}
+
+.simple-bg .questions .correct-opt-cnt .select-input {
+    width: auto;
+    margin: 0 0 0 20px;
+    border-radius: 10px;
+}
+
+.simple-bg .add-q {
+    margin: 0 80px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    padding: 5px;
+    border: 1px solid #00a1e0;
+}
+
+.simple-bg .add-q svg {
+    height: 100%;
+    fill: #00a1e0;
+}
+
+.simple-bg .add-q .add-q-test {
+    padding: 10px;
+    font-size: 15px;
+    color: #00a1e0;
+}
+
+.simple-bg .add-q .add-q-test {
+    padding: 10px;
+    font-size: 15px;
+    color: #00a1e0;
 }
 
 
