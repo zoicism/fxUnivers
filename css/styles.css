@@ -5745,8 +5745,14 @@ input:checked + .slider:before {
     border-radius: 10px;
 }
 
+.simple-bg .option-cnt .correct-opt-cnt {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+
 .simple-bg .add-q {
-    margin: 0 80px;
+    margin: 0;
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
@@ -5771,6 +5777,14 @@ input:checked + .slider:before {
     padding: 10px;
     font-size: 15px;
     color: #00a1e0;
+}
+
+.simple-bg .apply-q {
+    width: 50%;
+    margin: 30px auto;
+    background-color: #00a1e0;
+    color: #fff;
+    font-size: 14px;
 }
 
 
