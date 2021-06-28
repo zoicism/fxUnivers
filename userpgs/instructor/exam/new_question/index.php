@@ -76,8 +76,14 @@ if(isset($_GET['qNum'])) {
 
 	  <form id="testForm">
 <?php if($get_course['test_duration']==null) { ?>
-	    <input id="num-to-ask" type="number" name="ask_num" class="num-input" placeholder="How many questions to ask a learner?" min="1" required>
-	    <input type="number" name="duration" class="num-input" placeholder="Quiz duration in minutes" min="5" required>
+	    <div class="txt-input-cnt">
+		<div>How many questions to ask a learner</div>
+	    	<input id="num-to-ask" type="number" name="ask_num" class="num-input" placeholder="Choose a number" min="1" required>
+	    </div>
+	    <div class="txt-input-cnt">
+		<div>Quiz duration in minutes</div>
+	    	<input type="number" name="duration" class="num-input" placeholder="Choose a number" min="5" required>
+	    </div>
 <?php } else {?>
 <input type="number" id="num-to-ask" name="ask_num" value="<?php echo $get_course['test_num'] ?>" class="num-input" placeholder="How many questions to ask a learner?" min="1" required>
 	    <input type="number" name="duration"  value="<?php echo $get_course['test_duration'] ?>" class="num-input" placeholder="Quiz duration in minutes" min="5" required>
@@ -88,29 +94,50 @@ if(isset($_GET['qNum'])) {
 	    <h3>Questions</h3>
 	 <div class="questions">
 	    <div class="question">
-	      <p>Question #<span class="q_num">1</span></p>
-	      <textarea name="q1" placeholder="Question" required></textarea>
-
-	      <p>Options</p>
-	      <textarea name="q1o1" placeholder="Option A" required></textarea>
-	      <textarea name="q1o2" placeholder="Option B" required></textarea>
-	      <textarea name="q1o3" placeholder="Option C" required></textarea>
-	      <textarea name="q1o4" placeholder="Option D" required></textarea>
-
-	      <p>Correct Option</p>
-	      <select name="corr1" class="select-input">
-	        <option value="a">A</option>
-		<option value="b">B</option>
-		<option value="c">C</option>
-		<option value="d">D</option>
-	      </select>
-	    </div>
-
-
-	    
+	      <p class="question-num">Question #<span class="q_num">1</span></p>
+	      <textarea name="q1" placeholder="Write a question" required></textarea>
+		    
+	      <div class="option-cnt">
+		  <p class="question-num">Options</p>
+		  <div class="opt-num-txtarea-cnt">
+    		  	<div class="opt-num">A.</div>
+			<textarea name="q1o1" placeholder="Option A" required="" class="opt-txtarea"></textarea>
+		  </div>
+		  <div class="opt-num-txtarea-cnt">
+    			<div class="opt-num">B.</div>
+			<textarea class="opt-txtarea" name="q1o2" placeholder="Option B" required=""></textarea>
+		  </div>
+		  <div class="opt-num-txtarea-cnt">
+    			<div class="opt-num">C.</div>
+			<textarea class="opt-txtarea" name="q1o3" placeholder="Option C" required=""></textarea>
+		  </div>
+		  <div class="opt-num-txtarea-cnt">
+    			<div class="opt-num">D.</div>
+     			<textarea class="opt-txtarea" name="q1o4" placeholder="Option D" required=""></textarea>
+		  </div>
+		    
+		  <div class="correct-opt-cnt">
+			<p>Correct Option</p>
+			<select name="corr1" class="select-input">
+			    <option value="a">A</option>
+			    <option value="b">B</option>
+			    <option value="c">C</option>
+			    <option value="d">D</option>
+			</select>
+		  </div>
+		</div>
+		    
+	    </div>   
 	</div>
-<button class="submit-btn" id="add-q-btn">Add Question</button>
-	    <input type="submit" class="submit-btn" value="Apply to Quiz">
+		  
+	<button class="submit-btn add-q" id="add-q-btn">
+		<svg viewBox="0 0 32 32">
+			<path d="M16,0A16,16,0,1,0,32,16,16,16,0,0,0,16,0Zm0,31A15,15,0,1,1,31,16,15,15,0,0,1,16,31Z"></path><polygon points="25.9 15.5 25.9 16.5 16.5 16.5 16.5 25.9 15.5 25.9 15.5 16.5 6.1 16.5 6.1 15.5 15.5 15.5 15.5 6.1 16.5 6.1 16.5 15.5 25.9 15.5"></polygon>
+		</svg>
+		<div class="add-q-test">Add Question</div>
+	</button>
+		  
+	<input type="submit" class="submit-btn" value="Apply to Quiz">
 		
 		
 	  </form>
