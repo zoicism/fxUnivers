@@ -36,6 +36,7 @@ $get_oneonone_q = "SELECT * FROM stu_oneonone WHERE student_id = $get_user_id";
 $get_oneonone_r = mysqli_query($fxinstructor_connection, $get_oneonone_q);
 $get_oneonone_count = mysqli_num_rows($get_oneonone_r);
 
+/*
 $gss_count_alive = 0;
 if($gss_count > 0) {
   while($taken_row=$gss_result->fetch_assoc()) {
@@ -48,6 +49,7 @@ if($gss_count > 0) {
     }
   }
 }
+*/
 
 ?>
 
@@ -69,7 +71,7 @@ if($gss_count > 0) {
 	<script>
 	 if(screen.width >= 629) {
 	     $(document).ready(function() {
-		 $('.header-sidebar').prepend('<div class="bar-cnt"><div class="bar-items fxuniversity-bar-items"><a href="/userpgs/instructor/" class="link-main"><div class="head">Teach(<?php echo $course_count ?>)</div></a></div><div class="bar-items fxuniversity-bar-items"><a href="/userpgs/student/" id="active-main" class="link-main"><div class="head">Learn(<?php echo $gss_count_alive ?>)</div></a></div></div>');
+		 $('.header-sidebar').prepend('<div class="bar-cnt"><div class="bar-items fxuniversity-bar-items"><a href="/userpgs/instructor/" class="link-main"><div class="head">Teach (<?php echo $course_count ?>)</div></a></div><div class="bar-items fxuniversity-bar-items"><a href="/userpgs/student/" id="active-main" class="link-main"><div class="head">Learn (<span id="learn-counter"></span>)</div></a></div></div>');
 	     });
 	 }
 	</script>
@@ -165,7 +167,6 @@ if($gss_count > 0) {
 		 require('../../php/limit_str.php');
 		 $gss_count_alive = 0;
 		 if($gss_count>0) {
-
 
 		     function get_string_between($string, $start, $end){
     			 $string = ' ' . $string;
@@ -272,49 +273,6 @@ if($gss_count > 0) {
 				 echo '<div class="price green-bg" style="padding: 4px 20px;">Free</div>';
 			     }
 
-			     /*
-			     if($gsc_fetch['biddable']) {
-				 require_once('../../wallet/php/wallet_connect.php');
-				 $locked_q = 'SELECT * FROM locked WHERE course_id='.$gsc_fetch['id'];
-				 $locked_r = mysqli_query($wallet_connection,$locked_q);
-				 $locked_count = mysqli_num_rows($locked_r);
-				 
-				 
-
-				 if($locked_count>0) {
-				     $locked=mysqli_fetch_array($locked_r);
-				     if($locked['finalized']) {
-					 echo '<div class="price gray-bg">
-				      <span>Sold</span> '.$locked['raw_amount'].' <span>fxStars</span>
-				    </div>';
-				     } else {
-					 echo '<div class="price purple-bg">
-				      <span>High </span> '.$locked['raw_amount'].' <span>fxStars</span>
-				    </div>';
-				     }
-				 } else {
-				     echo '<div class="price purple-bg">
-				      <span>Base </span> '.$gsc_fetch['cost'].' <span>fxStars</span>
-				    </div>';
-				 }
-		             } else {
-
-				 if($gsc_fetch['cost']>0) {	  
-				     echo '<div class="price gold-bg">
-				     '.$gsc_fetch['cost'].' <span>fxStars</span>
-				    </div>';
-				 } else {
-			      	     echo '<div class="price green-bg" style="padding: 4px 20px;">
-				      Free
-				    </div>';
-				 }
-
-			     }
-			     */
-
-
-			     
-
 			     echo ' </div>
 				  </div>
 				  </div>';
@@ -333,20 +291,7 @@ if($gss_count_alive<1 && $gss_count>0) {
 		 ?>
 		</div>
 
-		
-		
-
-
-
-
-
 	    </div>
-
-
-
-	    
-
-
 	</div>
 
 
@@ -361,7 +306,12 @@ if($gss_count_alive<1 && $gss_count>0) {
 	 $('#page-header').attr('href','/userpgs/fxuniversity');
 	</script>
 
+<script>
+$(document).ready(function() {
 
+	$('#learn-counter').html('<?php echo $gss_count_alive ?>');
+});
+</script>
 	<!-- fxUniversity sidebar active -->
 	<script>
 	 $('.fxuniversity-sidebar').attr('id','sidebar-active');
