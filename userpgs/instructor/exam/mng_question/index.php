@@ -77,16 +77,22 @@ $get_question_c = mysqli_num_rows($get_question_r);
 
 	  <form id="testForm">
 <?php if($get_course['test_duration']==null) { ?>
-	    <input type="number" id="num-to-ask" name="ask_num" class="num-input" placeholder="How many questions to ask a learner?" min="1" required>
-	    <input type="number" name="duration" class="num-input" placeholder="Quiz duration in minutes" min="5" required>
+	    <div class="txt-input-cnt">
+		<div>How many questions to ask a learner</div>
+	    	<input type="number" id="num-to-ask" name="ask_num" class="num-input" placeholder="Choose a number" min="1" required>
+	    </div>
+	    <div class="txt-input-cnt">
+		<div>Quiz duration in minutes</div>
+	    	<input type="number" name="duration" class="num-input" placeholder="Choose a number" min="5" required>
+	    </div>
 <?php } else {?>
 <input type="number" id="num-to-ask" name="ask_num" value="<?php echo $get_course['test_num'] ?>" class="num-input" placeholder="How many questions to ask a learner?" min="1" required>
 	    <input type="number" name="duration"  value="<?php echo $get_course['test_duration'] ?>" class="num-input" placeholder="Quiz duration in minutes" min="5" required>
 	    <input type="hidden" name="course_id" value="<?php echo $course_id?>">
 	<?php } ?>
-	
 	    <input type="hidden" name="course_id" value="<?php echo $course_id?>">
-<h3>Questions</h3>
+		  
+	    <h3>Questions</h3>
 	 <div class="questions">
 <?php
 if($get_question_c>0) {
@@ -97,47 +103,68 @@ $i=1;
     
     echo '	    
 	    <div class="question">
-	      <p>Question #<span class="q_num">'.$i.'</span></p>
-	      <textarea name="q'.$i.'" placeholder="Question">'.$row['question'].'</textarea>
+	      <p class="question-num">Question #<span class="q_num">'.$i.'</span></p>
+	      <textarea name="q'.$i.'" placeholder="Write a question">'.$row['question'].'</textarea>
 
-	      <p>Options</p>
-	      <textarea name="q'.$i.'o1" placeholder="Option A">'.$row['a'].'</textarea>
-	      <textarea name="q'.$i.'o2" placeholder="Option B">'.$row['b'].'</textarea>
-	      <textarea name="q'.$i.'o3" placeholder="Option C">'.$row['c'].'</textarea>
-	      <textarea name="q'.$i.'o4" placeholder="Option D">'.$row['d'].'</textarea>
+	      <div class="option-cnt">
+		      <p class="question-num">Options</p>
+		      <div class="opt-num-txtarea-cnt">
+		          <div class="opt-num">A.</div>
+		          <textarea class="opt-txtarea" name="q'.$i.'o1" placeholder="Option A">'.$row['a'].'</textarea>
+		      </div>
+		      <div class="opt-num-txtarea-cnt">
+    			  <div class="opt-num">B.</div>
+		          <textarea class="opt-txtarea" name="q'.$i.'o2" placeholder="Option B">'.$row['b'].'</textarea>
+		      </div>
+		      <div class="opt-num-txtarea-cnt">
+    			  <div class="opt-num">C.</div>
+		          <textarea class="opt-txtarea" name="q'.$i.'o3" placeholder="Option C">'.$row['c'].'</textarea>
+		      </div>
+		      <div class="opt-num-txtarea-cnt">
+    			  <div class="opt-num">D.</div>
+		          <textarea class="opt-txtarea" name="q'.$i.'o4" placeholder="Option D">'.$row['d'].'</textarea>
+		      </div>
 
-	      <p>Correct Option</p>
-	      <select name="corr'.$i.'" class="select-input">';
+		      <div class="correct-opt-cnt">
+		          <p>Correct Option</p>
+		          <select name="corr'.$i.'" class="select-input">';
 
-    if($selected_option=='a') {
-      echo '<option value="a" selected="selected">A</option>';
-    } else {
-      echo '<option value="a">A</option>';
-    }
+			    if($selected_option=='a') {
+			      echo '<option value="a" selected="selected">A</option>';
+			    } else {
+			      echo '<option value="a">A</option>';
+			    }
 
-    if($selected_option=='b') {
-      echo '<option value="b" selected="selected">B</option>';
-    } else {
-      echo '<option value="b">B</option>';
-    }
+			    if($selected_option=='b') {
+			      echo '<option value="b" selected="selected">B</option>';
+			    } else {
+			      echo '<option value="b">B</option>';
+			    }
 
-    if($selected_option=='c') {
-      echo '<option value="c" selected="selected">C</option>';
-    } else {
-      echo '<option value="c">C</option>';
-    }
+			    if($selected_option=='c') {
+			      echo '<option value="c" selected="selected">C</option>';
+			    } else {
+			      echo '<option value="c">C</option>';
+			    }
 
-    if($selected_option=='d') {
-      echo '<option value="d" selected="selected">D</option>';
-    } else {
-      echo '<option value="d">D</option>';
-    }
+			    if($selected_option=='d') {
+			      echo '<option value="d" selected="selected">D</option>';
+			    } else {
+			      echo '<option value="d">D</option>';
+			    }
 
-	echo '
-	    <input type="hidden" name="question_id'.$i.'" value="'.$row['id'].'">
-	      </select>
+				echo '
+				    <input type="hidden" name="question_id'.$i.'" value="'.$row['id'].'">
+			</select>
+	   	    </div>
+		</div>
 
-<a id="del-question" questionId="'.$row['id'].'"><button  class="submit-btn">Delete this Question</button></a>
+<a id="del-question" questionId="'.$row['id'].'">
+	<button  class="submit-btn">
+		<svg viewBox="0 0 32 32"><path d="M16,0A16,16,0,1,0,32,16,16,16,0,0,0,16,0Zm0,31A15,15,0,1,1,31,16,15,15,0,0,1,16,31Z"></path><rect x="6.1" y="15.5" width="19.9" height="1"></rect></svg>
+		<div class="delete-q-test">Delete this Question</div>
+	</button>
+</a>
 	    </div>
 	';
 
@@ -148,8 +175,13 @@ $i=1;
 
 	    
 	</div>
-            <button class="submit-btn" id="add-q-btn">Add Question</button>
-	    <input type="submit" class="submit-btn" value="Apply Changes">
+            <button class="submit-btn" id="add-q-btn">
+		    <svg viewBox="0 0 32 32">
+			<path d="M16,0A16,16,0,1,0,32,16,16,16,0,0,0,16,0Zm0,31A15,15,0,1,1,31,16,15,15,0,0,1,16,31Z"></path><polygon points="25.9 15.5 25.9 16.5 16.5 16.5 16.5 25.9 15.5 25.9 15.5 16.5 6.1 16.5 6.1 15.5 15.5 15.5 15.5 6.1 16.5 6.1 16.5 15.5 25.9 15.5"></polygon>
+		    </svg>
+		    <div class="add-q-test">Add Question</div>
+	    </button>
+	    <input type="submit" class="submit-btn apply-q" value="Apply Changes">
 		
 		
 	  </form>
