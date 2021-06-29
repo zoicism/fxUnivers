@@ -228,11 +228,23 @@ $('#add-q-btn').click(function(e) {
 
 	<div class="option-cnt">
 	      <p class="question-num">Options</p>
-	      <textarea name="q`+newNum+`o1" placeholder="Option A" id="option-a"></textarea>
-	      <textarea name="q`+newNum+`o2" placeholder="Option B" id="option-b"></textarea>
-	      <textarea name="q`+newNum+`o3" placeholder="Option C" id="option-c"></textarea>
-	      <textarea name="q`+newNum+`o4" placeholder="Option D" id="option-d"></textarea>
-
+		<div class="opt-num-txtarea-cnt">
+<div class="opt-num">A.</div>
+	      <textarea name="q`+newNum+`o1" placeholder="Option A" id="option-a" required class="opt-txtarea"></textarea>
+		</div>
+<div class="opt-num-txtarea-cnt">
+	<div class="opt-num">B.</div>
+      <textarea name="q`+newNum+`o2" placeholder="Option B" id="option-b" required class="opt-txtarea"></textarea>
+		</div>
+<div class="opt-num-txtarea-cnt">
+	 <div class="opt-num">C.</div>
+     <textarea name="q`+newNum+`o3" placeholder="Option C" id="option-c" required class="opt-txtarea"></textarea>
+		</div>
+<div class="opt-num-txtarea-cnt">
+	  <div class="opt-num">D.</div>
+    <textarea name="q`+newNum+`o4" placeholder="Option D" id="option-d" required class="opt-txtarea"></textarea>
+</div>
+<div class="correct-opt-cnt"> 
 	      <p>Correct Option</p>
 	      <select name="corr`+newNum+`" class="select-input" id="select-num">
 	        <option value="a">A</option>
@@ -240,47 +252,11 @@ $('#add-q-btn').click(function(e) {
 		<option value="c">C</option>
 		<option value="d">D</option>
 	      </select>
-
+</div>
 <button id="del-question" onclick="delQuestion(this,`+newNum+`)" class="submit-btn">Delete this Question</button>
 	    </div>`);
 });
 </script>
-
-	    <div class="question">
-	      <p class="question-num">Question #<span class="q_num">1</span></p>
-	      <textarea name="q1" placeholder="Write a question" required></textarea>
-		    
-	      <div class="option-cnt">
-		  <p class="question-num">Options</p>
-		  <div class="opt-num-txtarea-cnt">
-    		  	<div class="opt-num">A.</div>
-			<textarea name="q1o1" placeholder="Option A" required="" class="opt-txtarea"></textarea>
-		  </div>
-		  <div class="opt-num-txtarea-cnt">
-    			<div class="opt-num">B.</div>
-			<textarea class="opt-txtarea" name="q1o2" placeholder="Option B" required=""></textarea>
-		  </div>
-		  <div class="opt-num-txtarea-cnt">
-    			<div class="opt-num">C.</div>
-			<textarea class="opt-txtarea" name="q1o3" placeholder="Option C" required=""></textarea>
-		  </div>
-		  <div class="opt-num-txtarea-cnt">
-    			<div class="opt-num">D.</div>
-     			<textarea class="opt-txtarea" name="q1o4" placeholder="Option D" required=""></textarea>
-		  </div>
-		    
-		  <div class="correct-opt-cnt">
-			<p>Correct Option</p>
-			<select name="corr1" class="select-input">
-			    <option value="a">A</option>
-			    <option value="b">B</option>
-			    <option value="c">C</option>
-			    <option value="d">D</option>
-			</select>
-		  </div>
-		</div>
-		    
-	    </div>   
 <script>
 function delQuestion(element, num) {
 
