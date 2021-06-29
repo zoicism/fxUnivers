@@ -166,7 +166,7 @@ $i=1;
 		</div>
 
 <a id="del-question" questionId="'.$row['id'].'">
-	<button  class="submit-btn">
+	<button  class="submit-btn del-q">
 		<svg viewBox="0 0 32 32"><path d="M16,0A16,16,0,1,0,32,16,16,16,0,0,0,16,0Zm0,31A15,15,0,1,1,31,16,15,15,0,0,1,16,31Z"></path><rect x="6.1" y="15.5" width="19.9" height="1"></rect></svg>
 		<div class="delete-q-test">Delete this Question</div>
 	</button>
@@ -181,7 +181,7 @@ $i=1;
 
 	    
 	</div>
-            <button class="submit-btn" id="add-q-btn">
+            <button class="submit-btn add-q" id="add-q-btn">
 		    <svg viewBox="0 0 32 32">
 			<path d="M16,0A16,16,0,1,0,32,16,16,16,0,0,0,16,0Zm0,31A15,15,0,1,1,31,16,15,15,0,0,1,16,31Z"></path><polygon points="25.9 15.5 25.9 16.5 16.5 16.5 16.5 25.9 15.5 25.9 15.5 16.5 6.1 16.5 6.1 15.5 15.5 15.5 15.5 6.1 16.5 6.1 16.5 15.5 25.9 15.5"></polygon>
 		    </svg>
@@ -196,7 +196,7 @@ $i=1;
 <form id="del-test-form">
 <input type="hidden" name="courseId" value="<?php echo $course_id?>">
 <input type="hidden" name="userType" value="<?php echo $user_type?>">
-<input type="submit" class="submit-btn" value="Remove Quiz">
+<input type="submit" class="submit-btn remove-q" value="Remove Quiz">
 </form>
 	</div>
 
