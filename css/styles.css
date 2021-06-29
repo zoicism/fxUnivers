@@ -5791,6 +5791,7 @@ input:checked + .slider:before {
     padding: 10px;
     margin: 0 auto;
     font-size: 15px;
+    white-space: nowrap;
 }
 
 .simple-bg .apply-q, .simple-bg .remove-q {
