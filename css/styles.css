@@ -5751,7 +5751,7 @@ input:checked + .slider:before {
     align-items: center;
 }
 
-.simple-bg .add-q, .simple-bg #del-question {
+.simple-bg .add-q, .simple-bg .del-q {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
@@ -5776,17 +5776,17 @@ input:checked + .slider:before {
     color: #00a1e0;
 }
 
-.simple-bg #del-question {
+.simple-bg .del-q {
     margin: 30px auto 0;
     border: 1px solid #e03636;
 }
 
-.simple-bg #del-question svg {
+.simple-bg .del-q svg {
     height: 100%;
     fill: #e03636;
 }
 
-.simple-bg #del-question .delete-q-test {
+.simple-bg .del-q .delete-q-test {
     color: #e03636;
     padding: 10px;
     margin: 0 auto;
