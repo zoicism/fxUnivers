@@ -5751,14 +5751,16 @@ input:checked + .slider:before {
     align-items: center;
 }
 
-.simple-bg .add-q {
-    margin: 0;
+.simple-bg .add-q, .simple-bg #del-question {
     display: flex;
     flex-flow: row nowrap;
-    justify-content: center;
     align-items: center;
-    width: auto;
+    width: 200px;
     padding: 5px;
+}
+
+.simple-bg .add-q {
+    margin: 0 auto;
     border: 1px solid #00a1e0;
 }
 
@@ -5769,14 +5771,26 @@ input:checked + .slider:before {
 
 .simple-bg .add-q .add-q-test {
     padding: 10px;
+    margin: 0 auto;
     font-size: 15px;
     color: #00a1e0;
 }
 
-.simple-bg .add-q .add-q-test {
+.simple-bg #del-question {
+    margin: 30px auto 0;
+    border: 1px solid #e03636;
+}
+
+.simple-bg #del-question svg {
+    height: 100%;
+    fill: #e03636;
+}
+
+.simple-bg #del-question .delete-q-test {
+    color: #e03636;
     padding: 10px;
+    margin: 0 auto;
     font-size: 15px;
-    color: #00a1e0;
 }
 
 .simple-bg .apply-q {
@@ -6938,10 +6952,6 @@ input:checked + .slider:before {
 	
 	.simple-bg .option-cnt {
 		padding: 0;
-	}
-	
-	.simple-bg .add-q {
-		margin: 0 auto;
 	}
 	
 	.simple-bg .apply-q {
