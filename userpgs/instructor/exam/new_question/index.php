@@ -253,7 +253,10 @@ $('#add-q-btn').click(function(e) {
 		<option value="d">D</option>
 	      </select>
 </div>
-<button id="del-question" onclick="delQuestion(this,`+newNum+`)" class="submit-btn">Delete this Question</button>
+<button id="del-question" onclick="delQuestion(this,`+newNum+`)" class="submit-btn">
+	<svg viewBox="0 0 32 32"><path d="M16,0A16,16,0,1,0,32,16,16,16,0,0,0,16,0Zm0,31A15,15,0,1,1,31,16,15,15,0,0,1,16,31Z"></path><rect x="6.1" y="15.5" width="19.9" height="1"></rect></svg>
+	<div class="delete-q-test">Delete this Question</div>
+</button>
 	    </div>`);
 });
 </script>
