@@ -5701,7 +5701,7 @@ input:checked + .slider:before {
 }
 
 .simple-bg .num-input {
-    margin: 0 0 0 20px;
+    margin: 20px;
 }
 
 .simple-bg textarea {
@@ -5713,7 +5713,7 @@ input:checked + .slider:before {
 
 .simple-bg .txt-input-cnt {
     display: flex;
-    flex-flow: row;
+    flex-flow: row wrap;
     align-items: center;
     margin: 20px 0;
 }
@@ -6918,11 +6918,37 @@ input:checked + .slider:before {
         display:none;
     }
 
-	.relative-main-content .simple-bg {
+    	.relative-main-content .simple-bg {
 		margin: 0;
-padding: 20px 30px;
-box-shadow: none;
-} 
+		padding: 0 30px;
+		box-shadow: none;
+    	}
+	
+	.simple-bg .txt-input-cnt {
+		justify-content: center;
+	}
+	
+	.simple-bg h3 {
+		text-align: center;
+	}
+	
+	.simple-bg .question {
+		padding: 20px;
+	}
+	
+	.simple-bg .option-cnt {
+		padding: 0;
+	}
+	
+	.simple-bg .add-q {
+		margin: 0 auto;
+	}
+	
+	.simple-bg .apply-q {
+		width: 100%;
+	}
+	
+	
 }
 
 @media (max-width: 374px) {

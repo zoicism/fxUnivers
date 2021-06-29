@@ -196,7 +196,7 @@ if($get_course_fetch['video_url']!='') $embed_exists=1; else $embed_exists=0;
 				<p>By deleting a course, all of the related sessions and videos will be lost permenantly, so think twice before deciding to do so.</p>
 				<form id="delCourseForm">
 					<input type="hidden" name="course_id" value="<?php echo $course_id?>">
-					<input type="submit" class="submit-btn" value="Delete Course" style="border: 1px solid #ff6c6c;">
+					<input type="submit" class="submit-btn" value="Delete Course">
 				</form>
 			</div>
 		    </div>
