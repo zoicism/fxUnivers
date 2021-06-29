@@ -5793,12 +5793,19 @@ input:checked + .slider:before {
     font-size: 15px;
 }
 
-.simple-bg .apply-q {
+.simple-bg .apply-q, .simple-bg .remove-q {
     width: 50%;
     margin: 30px auto;
-    background-color: #00a1e0;
     color: #fff;
     font-size: 14px;
+}
+
+.simple-bg .apply-q {
+    background-color: #00a1e0;
+}
+
+.simple-bg .remove-q {
+    background-color: #e03636;
 }
 
 
