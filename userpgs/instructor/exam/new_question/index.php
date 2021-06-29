@@ -223,10 +223,11 @@ $('#add-q-btn').click(function(e) {
   var newNum = oldNum+1;
   
   $('.questions').append(`<div class="question" id="qNum`+newNum+`">
-	      <p>Question #<span id="qnum">`+newNum+`</span></p>
+	      <p class="question-num">Question #<span id="qnum">`+newNum+`</span></p>
 	      <textarea name="q`+newNum+`" placeholder="Question" id="question-num"></textarea>
 
-	      <p>Options</p>
+	<div class="option-cnt">
+	      <p class="question-num">Options</p>
 	      <textarea name="q`+newNum+`o1" placeholder="Option A" id="option-a"></textarea>
 	      <textarea name="q`+newNum+`o2" placeholder="Option B" id="option-b"></textarea>
 	      <textarea name="q`+newNum+`o3" placeholder="Option C" id="option-c"></textarea>
@@ -245,6 +246,41 @@ $('#add-q-btn').click(function(e) {
 });
 </script>
 
+	    <div class="question">
+	      <p class="question-num">Question #<span class="q_num">1</span></p>
+	      <textarea name="q1" placeholder="Write a question" required></textarea>
+		    
+	      <div class="option-cnt">
+		  <p class="question-num">Options</p>
+		  <div class="opt-num-txtarea-cnt">
+    		  	<div class="opt-num">A.</div>
+			<textarea name="q1o1" placeholder="Option A" required="" class="opt-txtarea"></textarea>
+		  </div>
+		  <div class="opt-num-txtarea-cnt">
+    			<div class="opt-num">B.</div>
+			<textarea class="opt-txtarea" name="q1o2" placeholder="Option B" required=""></textarea>
+		  </div>
+		  <div class="opt-num-txtarea-cnt">
+    			<div class="opt-num">C.</div>
+			<textarea class="opt-txtarea" name="q1o3" placeholder="Option C" required=""></textarea>
+		  </div>
+		  <div class="opt-num-txtarea-cnt">
+    			<div class="opt-num">D.</div>
+     			<textarea class="opt-txtarea" name="q1o4" placeholder="Option D" required=""></textarea>
+		  </div>
+		    
+		  <div class="correct-opt-cnt">
+			<p>Correct Option</p>
+			<select name="corr1" class="select-input">
+			    <option value="a">A</option>
+			    <option value="b">B</option>
+			    <option value="c">C</option>
+			    <option value="d">D</option>
+			</select>
+		  </div>
+		</div>
+		    
+	    </div>   
 <script>
 function delQuestion(element, num) {
 
