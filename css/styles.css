@@ -6918,7 +6918,11 @@ input:checked + .slider:before {
         display:none;
     }
 
-    
+	.relative-main-content .simple-bg {
+		margin: 0;
+padding: 20px 30px;
+box-shadow: none;
+} 
 }
 
 @media (max-width: 374px) {
