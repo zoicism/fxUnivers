@@ -2238,7 +2238,7 @@ textarea:focus {
     color: #393939;
     display: block;
     transition: 0.3s;
-    opacity: .8;
+    opacity: 1;
     text-align: center;
 }
 
@@ -6960,7 +6960,7 @@ input:checked + .slider:before {
 		padding: 0;
 	}
 	
-	.simple-bg .apply-q {
+	.simple-bg .apply-q, .simple-bg .remove-q {
 		width: 100%;
 	}
 	
