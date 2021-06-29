@@ -2221,7 +2221,7 @@ textarea:focus {
     position: fixed;
     z-index: 2;
     top: 7%;
-    right: 0;
+    right: -2;
     background-color: #e8e8e8;
     border: 1px solid #fff;
     border-radius: 10px 0 0 10px;
@@ -3076,7 +3076,7 @@ textarea:focus {
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
-    margin-top: 20px;
+    margin: 20px 0 0 0;
 }
 
 .socialmedia a {
@@ -6537,8 +6537,6 @@ input:checked + .slider:before {
   z-index: 1;
   top: 0;
   right: 0;
-  background-color: #efefef;
-  box-shadow: -4px -2px 4px 0px #ffffff, 4px 2px 6px 0px #DFE4EA;
   overflow-x: hidden;
   transition: 0.3s;
   padding-top: 30px;
@@ -6578,7 +6576,7 @@ input:checked + .slider:before {
     }
     
     .socialmedia {
-  margin: 10px 35px;
+  margin: 20px 35px;
   justify-content: space-around;
     }
     
