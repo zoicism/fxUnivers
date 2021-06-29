@@ -86,8 +86,14 @@ $get_question_c = mysqli_num_rows($get_question_r);
 	    	<input type="number" name="duration" class="num-input" placeholder="Choose a number" min="5" required>
 	    </div>
 <?php } else {?>
-<input type="number" id="num-to-ask" name="ask_num" value="<?php echo $get_course['test_num'] ?>" class="num-input" placeholder="How many questions to ask a learner?" min="1" required>
-	    <input type="number" name="duration"  value="<?php echo $get_course['test_duration'] ?>" class="num-input" placeholder="Quiz duration in minutes" min="5" required>
+	    <div class="txt-input-cnt">
+		<div>How many questions to ask a learner</div>
+	        <input type="number" id="num-to-ask" name="ask_num" value="<?php echo $get_course['test_num'] ?>" class="num-input" placeholder="Choose a number" min="1" required>
+	    </div>
+	    <div class="txt-input-cnt">
+		<div>Quiz duration in minutes</div>
+	        <input type="number" name="duration"  value="<?php echo $get_course['test_duration'] ?>" class="num-input" placeholder="Choose a number" min="5" required>
+	    </div>
 	    <input type="hidden" name="course_id" value="<?php echo $course_id?>">
 	<?php } ?>
 	    <input type="hidden" name="course_id" value="<?php echo $course_id?>">
