@@ -1,10 +1,10 @@
 <?php
 // Requiring https
-/*if($_SERVER['HTTPS'] != "on") {
+if($_SERVER['HTTPS'] != "on") {
     $url = "https://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
     header("Location: $url");
     exit;
-}*/
+}
 	
 session_start();
 require('register/connect.php');
@@ -91,7 +91,7 @@ if(isset($_COOKIE['username']) && isset($_COOKIE['password'])) {
       </div>
       <h2>Log in to fxUnivers</h2>
       <form action="/php/login.php" method="POST">
-	<input class="login-input" type="text" placeholder="Username or Email" name="username" <?php if(isset($_GET['un'])) echo 'value="'.$_GET['un'].'"'; ?> required>
+	<input class="login-input" type="text" id="email-input-desktop" placeholder="Username or Email" name="username" <?php if(isset($_GET['un'])) echo 'value="'.$_GET['un'].'"'; ?> required>
 	<input class="login-input" type="password" name="password" placeholder="Password" required>
 
 	<label class="checkbox remember-me">Remember me
@@ -101,9 +101,11 @@ if(isset($_COOKIE['username']) && isset($_COOKIE['password'])) {
 
 	
 	<?php 
-	 if(isset($_GET['err']) && $_GET['err']=='wup') {
-	 echo '<p class="red">Wrong username or password.</p>';
-}
+	if(isset($_GET['err']) && $_GET['err']=='wup') {
+		echo '<p class="red">Wrong username or password.</p>';
+	} elseif(isset($_GET['err']) && $_GET['err']=='ver') {
+		echo '<p class="red">Please verify your email first.<br><a id="resend-email-from-login" style="color:blue">Click here to resend the verification email.</a></p>';
+	}
 ?>
 	<a class="login-forgot" id="open-forgot-overlay">Forgot your password?</a>
 	<input type="submit" class="login-button" value="Log in" id="desktop-login-btn">
@@ -190,7 +192,7 @@ if(isset($_COOKIE['username']) && isset($_COOKIE['password'])) {
         <input type="submit" value="Sign up" class="signup-button" id="sup-btn">
       </form>
       <p id="overlay-text" style="display:none">Check your email inbox or spam folder for an activation link we just sent you. It may take a few minutes for you to get the email.</p>
-      <p>Didn't receive the email? <a id="resend-email">Click to Resend</a>.</p>
+      <p id="resend-p" style="display:none">Didn't receive the email? <a id="resend-email" style="color:blue">Click to Resend</a>.</p>
     </div>
   </div>
 
@@ -328,6 +330,7 @@ $('#regForm').submit(function(event) {
 	      $('#overlay-title').html('Confirm Your Email Address');
 	      $('#overlay-text').show();
 	      $('#regForm').hide();
+		$('#resend-p').show();
 	    } else {
 	      $('#overlay-title').html('Error!');
 	      $('#overlay-text').show();
@@ -389,29 +392,38 @@ $('#open-forgot-overlay-mob').click(function() {
 
 <script>
  $('#resend-email').click(function() {
-     $('#regForm').submit(function(event) {
-	 event.preventDefault();
+	var email = $("#deskEmail").val();
+	console.log(email);
 	 $.ajax({
 	     type:'POST',
-	     url: '/register/reg.php',
-	     data: $(this).serialize(),
+	     url: '/register/resend_ver.php',
+	     data: {'email': email},
 	     success: function(response) {
 		 console.log(response);
-		 /*
-		 if(response==1) {
-		     $('#overlay-title').html('Confirm Your Email Address');
-		     $('#overlay-text').show();
-		     $('#regForm').hide();
-		 } else {
-		     $('#overlay-title').html('Error!');
-		     $('#overlay-text').show();
-		     $('#overlay-text').html('Something went wrong! :/ <a href="/">Try again</a>.');
-		     $('#regForm').hide();
-		 }
-		 */
+		if(response==1) {
+			alert('We resent the verification email. Please remember to check your spam folder too.');
+		} else {
+			alert('Failed to resend the verification email. Please try again.');
+		}
 	     }
 	 });
-     });
+ });
+ $('#resend-email-from-login').click(function() {
+	var email = $("#email-input-desktop").val();
+	console.log(email);
+	 $.ajax({
+	     type:'POST',
+	     url: '/register/resend_ver.php',
+	     data: {'email': email},
+	     success: function(response) {
+		 console.log(response);
+		if(response==1) {
+			alert('We resent the verification email. Please remember to check your spam folder too.');
+		} else {
+			alert('Failed to resend the verification email. Please try again.');
+		}
+	     }
+	 });
  });
 </script>
 </body>
