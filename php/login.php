@@ -10,7 +10,7 @@ if(isset($_POST['username']) and isset($_POST['password'])) {
     $login_query = "SELECT * FROM user WHERE ((username='$username' AND password='$password') OR (email='$username' AND password='$password'))";
     $login_result = mysqli_query($connection, $login_query);
 	$login_f = mysqli_fetch_array($login_result);
-	$email_ver = $login_f['verified'];
+	$email_ver = $login_f['active'];
     $login_count = mysqli_num_rows($login_result);
     if($login_count==1 && $email_ver==1) {
 	

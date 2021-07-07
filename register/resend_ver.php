@@ -17,7 +17,7 @@ if($email_ver_count > 0) {
 	$exists = 1;
 	// Check verification
 	$email_ver_f = mysqli_fetch_array($email_ver_r);
-	$verified = $email_ver_f['verified'];
+	$verified = $email_ver_f['active'];
 	if($verified) {
 		echo 403;
 		exit();
