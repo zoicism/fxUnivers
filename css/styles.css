@@ -2221,7 +2221,8 @@ textarea:focus {
     position: fixed;
     z-index: 2;
     top: 7%;
-    right: -2;
+    right: 0;
+    margin-right: -2px;
     background-color: #e8e8e8;
     border: 1px solid #fff;
     border-radius: 10px 0 0 10px;
@@ -4088,6 +4089,10 @@ textarea:focus {
     font-size:16px;
 }
 
+.overlay .tooltip.red {
+    color: #e03636;
+}
+
 .overlay h1 {
     font-size: 30px;
     text-align: center;
@@ -4100,13 +4105,27 @@ textarea:focus {
     margin: 15px 0;
     padding-left: 25px;
     font-family: 'roboto', sans-serif;
-    background-color: #efefef;
+    background-color: #e8e8e8;
     border-radius: 200px;
     box-shadow: inset 2px 2px 4px #d1d9e6, inset -2px -2px 4px #f9f9f9;
+    border: 1px solid #c2c2c280;
 }
 
 .signup-input:focus {
     box-shadow: inset 4px 4px 4px #d1d9e6, inset -4px -4px 4px #f9f9f9;
+    border: 1px solid #00a1e0;
+    transition: .3s;
+}
+
+.overlay .alert-icon-cnt {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.overlay .alert-icon-cnt svg {
+    fill: #e03636;
+    width: 18px;
+    margin-right: 8px;
 }
 
 .login-container .login-form .remember-me {
