@@ -4117,17 +4117,6 @@ textarea:focus {
     transition: .3s;
 }
 
-.overlay .alert-icon-cnt {
-    display: flex;
-    flex-flow: row nowrap;
-}
-
-.overlay .alert-icon-cnt svg {
-    fill: #e03636;
-    width: 18px;
-    margin-right: 8px;
-}
-
 .login-container .login-form .remember-me {
     display: flex;
     height: 25px;
