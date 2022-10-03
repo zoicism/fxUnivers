@@ -1,6 +1,8 @@
 # fxUnivers
 fxUnivers is a financial multiplatform website where users can buy "fxStars" and use them to trade for services and productions created by us or other users. We get our small share in each transaction of these fxStars through various usages.
 
+Lead Front End Developer: Mehran Ebrahimpour @zoicism
+
 ## fxStar
 fxUnivers is based on fxStars; these are chips that we sell to the users so that they can use other parts of the website with them. There are different ways to buy, ear, or spend fxStars. Users can request fxStars from their friends which is followed by the transaction taking place if it's accepted. Users can also send fxStars to their friends and the transaction takes place immediately. The fxStars and the transactions are securely encrypted.
 
